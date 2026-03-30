@@ -454,7 +454,7 @@ if (!id) {
     .then(data => {
       const nota = buscarNota(data, id);
       if (nota) {
-        renderNota(nota, data.fecha_display);
+        renderNota(nota, data.fecha_display, data);
       } else {
         document.getElementById("loading").textContent = "Nota no encontrada.";
       }
