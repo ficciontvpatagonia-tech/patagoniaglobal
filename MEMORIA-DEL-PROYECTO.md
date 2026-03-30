@@ -20,7 +20,7 @@ Un portal de noticias digital que cubra **toda la Patagonia** — argentina y ch
 | **Nombre del medio** | PatagoniaGLOBAL |
 | **Dominio principal** | patagoniaglobal.ar ✅ disponible |
 | **Dominio alternativo sugerido** | patagoniapress.com (verificar disponibilidad) |
-| **Slogan** | *The South. The Story.* |
+| **Slogan** | *Sur Global, principio de todo.* |
 | **Subtítulo** | Argentina · Chile · Sin fronteras |
 
 **Acción urgente:** Registrar `patagoniaglobal.ar` en [nic.ar](https://nic.ar) antes de que otro lo tome.
@@ -266,5 +266,5 @@ La paleta evoca los colores reales de la Patagonia andina: el azul profundo de l
 
 ---
 
-*PatagoniaGLOBAL — The South. The Story.*
+*PatagoniaGLOBAL — Sur Global, principio de todo.*
 *Documento generado con Claude (Anthropic) — Marzo 2026*

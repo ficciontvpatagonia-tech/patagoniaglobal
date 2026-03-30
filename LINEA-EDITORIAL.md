@@ -113,7 +113,7 @@ Las noticias no son todas iguales. Este es el orden de importancia para la tapa 
 
 La Patagonia es local en su paisaje, en su gente, en su historia. Pero es global en su impacto: el deshielo de sus glaciares afecta el nivel del mar mundial. Sus parques reciben viajeros de 80 países. Sus carreras de aventura convocan atletas de todos los continentes. Sus pueblos originarios son parte de la memoria de la humanidad.
 
-*The South. The Story.*
+*Sur Global, principio de todo.*
 
 ---
 
