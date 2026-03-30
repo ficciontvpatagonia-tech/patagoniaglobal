@@ -10,6 +10,18 @@
   <meta property="og:type" content="article"/>
   <meta property="og:image" content="https://martinsubira.github.io/patagoniaglobal/fotos/torres-del-paine.webp"/>
   <meta name="twitter:card" content="summary_large_image"/>
+  <!-- JSON-LD base (se sobreescribe dinámicamente al cargar la nota) -->
+  <script type="application/ld+json" id="jsonld-nota">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "publisher": {
+      "@type": "NewsMediaOrganization",
+      "name": "PatagoniaGLOBAL",
+      "url": "https://martinsubira.github.io/patagoniaglobal/"
+    }
+  }
+  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
@@ -400,6 +412,28 @@ function renderNota(nota, fechaDisplay, data) {
   setMeta('meta[property="og:description"]', nota.bajada || nota.titulo);
   if (nota.imagen) setMeta('meta[property="og:image"]', nota.imagen);
   setMeta('meta[name="description"]', nota.bajada || nota.titulo);
+
+  // JSON-LD dinámico para Google
+  const jsonld = document.getElementById("jsonld-nota");
+  if (jsonld) {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": nota.titulo,
+      "description": nota.bajada || nota.titulo,
+      "url": window.location.href,
+      "datePublished": fechaDisplay || "",
+      "image": nota.imagen || "https://martinsubira.github.io/patagoniaglobal/fotos/torres-del-paine.webp",
+      "publisher": {
+        "@type": "NewsMediaOrganization",
+        "name": "PatagoniaGLOBAL",
+        "url": "https://martinsubira.github.io/patagoniaglobal/",
+        "logo": { "@type": "ImageObject", "url": "https://martinsubira.github.io/patagoniaglobal/favicon.svg" }
+      },
+      "author": { "@type": "Organization", "name": nota.fuente || "PatagoniaGLOBAL" }
+    };
+    jsonld.textContent = JSON.stringify(schema);
+  }
 
   // Imagen
   let imgHtml = "";
