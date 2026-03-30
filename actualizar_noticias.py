@@ -136,7 +136,25 @@ def cargar_historial():
 
 
 def guardar_historial(articulos):
+    """Guarda los últimos MAX_HISTORIAL artículos. Los que salen van a archivo.json."""
     path = os.path.join(os.path.dirname(__file__), "historial.json")
+    archivo_path = os.path.join(os.path.dirname(__file__), "archivo.json")
+
+    # Notas que quedan fuera del historial → van al archivo
+    descartadas = articulos[MAX_HISTORIAL:]
+    if descartadas:
+        try:
+            with open(archivo_path, encoding="utf-8") as f:
+                archivo = json.load(f)
+        except Exception:
+            archivo = {"_info": "Notas que rotaron del feed principal. Base del buscador.", "notas": []}
+        ids_existentes = {n.get("id") for n in archivo.get("notas", [])}
+        nuevas = [n for n in descartadas if n.get("id") not in ids_existentes]
+        archivo["notas"] = archivo.get("notas", []) + nuevas
+        with open(archivo_path, "w", encoding="utf-8") as f:
+            json.dump(archivo, f, ensure_ascii=False, indent=2)
+        print(f"  → {len(nuevas)} nota(s) movidas a archivo.json")
+
     with open(path, "w", encoding="utf-8") as f:
         json.dump(articulos[:MAX_HISTORIAL], f, ensure_ascii=False, indent=2)
 
