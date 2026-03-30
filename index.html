@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PatagoniaGLOBAL — The South. The World.</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --verde: #1c2d3d;
+      --verde-medio: #3a5a7a;
+      --verde-claro: #7aadcc;
+      --azul: #1b2e42;
+      --azul-claro: #5a8db5;
+      --gris-oscuro: #252830;
+      --gris-medio: #5a6070;
+      --gris-claro: #e8eaed;
+      --crema: #f0ede8;
+      --rojo: #b03a2e;
+      --dorado: #8c6b4a;
+      --blanco: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--crema);
+      color: var(--gris-oscuro);
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--verde);
+      padding: 0;
+    }
+
+    .top-bar {
+      background: var(--gris-oscuro);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 40px;
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 0.5px;
+    }
+
+    .top-bar .fecha { color: #ccc; }
+    .top-bar .clima { color: #8ab8d4; font-weight: 600; }
+
+    .header-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 40px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .logo-tagline {
+      font-size: 11px;
+      color: #8ab8d4;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 58px;
+      font-weight: 900;
+      color: var(--blanco);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .logo span { color: #8ab8d4; }
+
+    .logo-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--verde);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 14px 18px;
+      transition: all 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+
+    nav a:hover, nav a.active {
+      color: #8ab8d4;
+      border-bottom-color: #8ab8d4;
+      background: rgba(255,255,255,0.04);
+    }
+
+    /* ── BREAKING / TICKER ── */
+    .ticker {
+      background: #2a3d52;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 8px 0;
+      border-top: 2px solid #7aadcc;
+    }
+
+    .ticker-label {
+      background: var(--gris-oscuro);
+      color: var(--blanco);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 2px 16px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      flex-shrink: 0;
+      margin-right: 12px;
+    }
+
+    .ticker-text {
+      color: white;
+      font-size: 12px;
+      white-space: nowrap;
+      animation: ticker 30s linear infinite;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(100vw); }
+      100% { transform: translateX(-200%); }
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── SECTION TITLES ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      margin: 36px 0 20px;
+      gap: 14px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--verde);
+      white-space: nowrap;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, #7aadcc, transparent);
+    }
+
+    .section-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+
+    .badge-verde { background: var(--verde); color: #8ab8d4; }
+    .badge-azul  { background: var(--azul); color: #8ab8d4; }
+    .badge-rojo  { background: var(--rojo); color: white; }
+    .badge-dorado { background: var(--dorado); color: white; }
+
+    /* ── TAPA PRINCIPAL ── */
+    .tapa-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .nota-tapa {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      grid-row: 1 / 3;
+    }
+
+    .nota-tapa .img-cover {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+      background: linear-gradient(135deg, #0e1a26 0%, #1c2d3d 40%, #3a5a7a 100%);
+    }
+
+    .nota-tapa .img-placeholder {
+      width: 100%;
+      height: 480px;
+      background: linear-gradient(160deg, #0e1a26 0%, #1c2d3d 45%, #4a7a9a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 48px;
+    }
+
+    .nota-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+      padding: 32px 24px 24px;
+    }
+
+    .nota-overlay .tag {
+      display: inline-block;
+      background: #7aadcc;
+      color: #1c2d3d;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      margin-bottom: 10px;
+      border-radius: 2px;
+    }
+
+    .nota-overlay h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .nota-overlay p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+
+    /* Notas secundarias de tapa */
+    .nota-secundaria {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    /* Limitar texto en overlay de notas secundarias */
+    .nota-secundaria .nota-overlay {
+      padding: 20px 16px 16px;
+    }
+    .nota-secundaria .nota-overlay h2 {
+      font-size: 17px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .nota-secundaria .nota-overlay p {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-size: 12px;
+    }
+
+    .nota-secundaria .img-placeholder {
+      width: 100%;
+      height: 238px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+
+    .nota-sec-1 { background: linear-gradient(135deg, #1b2e42, #4a7aaa); }
+    .nota-sec-2 { background: linear-gradient(135deg, #2a2018, #7a5a38); }
+
+    /* ── FILA DE NOTICIAS DEL DÍA ── */
+    .noticias-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .noticia-card {
+      background: white;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .noticia-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .noticia-card .card-img {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .card-azul  { background: linear-gradient(135deg, #1b2e42, #4a7aaa); }
+    .card-verde { background: linear-gradient(135deg, #2a3540, #5a8090); }
+    .card-gris  { background: linear-gradient(135deg, #32363d, #6a7080); }
+    .card-cafe  { background: linear-gradient(135deg, #3a2410, #8a6030); }
+
+    .noticia-card .card-body {
+      padding: 14px;
+    }
+
+    .card-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .tag-social   { color: var(--azul-claro); }
+    .tag-policial { color: var(--rojo); }
+    .tag-turismo  { color: #3a7a6a; }
+    .tag-historia { color: var(--dorado); }
+
+    .noticia-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--gris-oscuro);
+      margin-bottom: 6px;
+    }
+
+    .noticia-card .card-meta {
+      font-size: 10px;
+      color: #999;
+    }
+
+    /* ── INFORMES ── */
+    .informes-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 20px;
+    }
+
+    .informe-principal {
+      background: var(--verde);
+      color: white;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .informe-principal .inf-img {
+      height: 200px;
+      background: linear-gradient(135deg, #0d1820, #1c2d3d, #3a5a7a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .informe-principal .inf-body { padding: 20px; }
+
+    .inf-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8ab8d4;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .informe-principal h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .informe-principal p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+
+    .informes-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .informe-item {
+      background: white;
+      border-left: 4px solid #7aadcc;
+      padding: 14px 16px;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: border-color 0.2s;
+    }
+
+    .informe-item:hover { border-left-color: var(--verde); }
+
+    .informe-item .inf-label { color: #3a5a7a; }
+
+    .informe-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--gris-oscuro);
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .informe-item p { font-size: 12px; color: #777; line-height: 1.4; }
+
+    /* ── GUÍAS Y TURISMO ── */
+    .guias-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .guia-card {
+      background: white;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .guia-card .guia-img {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      position: relative;
+    }
+
+    .guia-img-1 { background: linear-gradient(135deg, #1b2e42, #5a98c0); }
+    .guia-img-2 { background: linear-gradient(135deg, #2a1808, #a07040); }
+    .guia-img-3 { background: linear-gradient(135deg, #1e2a38, #4a7090); }
+
+    .guia-tipo {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    .guia-card .guia-body { padding: 16px; }
+
+    .guia-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gris-oscuro);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .guia-card p { font-size: 12px; color: #777; line-height: 1.5; }
+
+    .guia-card .guia-meta {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+      font-size: 10px;
+      color: #aaa;
+    }
+
+    .guia-meta span { display: flex; align-items: center; gap: 3px; }
+
+    /* ── HISTORIA ── */
+    .historia-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .historia-card {
+      background: var(--gris-oscuro);
+      color: white;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .historia-card .hist-img {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      opacity: 0.7;
+    }
+
+    .hist-img-1 { background: linear-gradient(135deg, #181210, #5a3a20); filter: sepia(0.6); }
+    .hist-img-2 { background: linear-gradient(135deg, #0e1420, #2a3a52); filter: sepia(0.4); }
+    .hist-img-3 { background: linear-gradient(135deg, #141010, #3a2a1a); filter: sepia(0.5); }
+
+    .hist-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: var(--dorado);
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    .historia-card .hist-body { padding: 16px; }
+
+    .historia-card .hist-periodo {
+      font-size: 10px;
+      color: #c4a882;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .historia-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .historia-card p { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+    /* ── EL DATO & LUGAR DESCONOCIDO ── */
+    .especiales-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .especial-card {
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .especial-dato {
+      background: linear-gradient(135deg, #1b2e42, #3a6a90);
+      color: white;
+    }
+
+    .especial-lugar {
+      background: linear-gradient(135deg, #281a0e, #6a4422);
+      color: white;
+    }
+
+    .especial-card .esp-header {
+      padding: 20px 24px 0;
+    }
+
+    .esp-icono { font-size: 32px; margin-bottom: 8px; }
+
+    .esp-tipo {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 700;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+
+    .especial-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .especial-card .esp-img {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      margin: 16px 0 0;
+      opacity: 0.6;
+    }
+
+    .especial-card .esp-body { padding: 16px 24px 24px; }
+
+    .especial-card p { font-size: 13px; opacity: 0.85; line-height: 1.6; }
+
+    .esp-cta {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 2px solid rgba(255,255,255,0.5);
+      padding-bottom: 2px;
+      color: white;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--gris-oscuro);
+      color: rgba(255,255,255,0.5);
+      margin-top: 60px;
+      padding: 40px 20px 24px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .footer-logo span { color: var(--verde-claro); }
+
+    .footer-tagline {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .footer-nav a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover { color: #8ab8d4; }
+
+    .footer-copy {
+      font-size: 11px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 20px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #ddd, transparent);
+      margin: 8px 0;
+    }
+
+    /* ── BADGE FECHA ── */
+    .fecha-badge {
+      text-align: center;
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 12px 0;
+    }
+
+    /* Responsive básico */
+    @media (max-width: 768px) {
+      .tapa-grid, .noticias-grid, .informes-grid, .guias-grid, .historia-grid, .especiales-grid {
+        grid-template-columns: 1fr;
+      }
+      .logo { font-size: 36px; }
+      nav a { font-size: 10px; padding: 10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header>
+  <div class="top-bar">
+    <span class="fecha" id="fecha-display">Domingo, 29 de Marzo de 2026 · Patagonia Argentina y Chilena</span>
+    <span class="clima">🌤 Bariloche 12° · Neuquén 18° · Punta Arenas 8° · Puerto Montt 14°</span>
+  </div>
+  <div class="header-main">
+    <div class="logo-tagline">The South. The World.</div>
+    <div class="logo">Patagonia<span>GLOBAL</span></div>
+    <div class="logo-sub">Argentina · Chile · Sin fronteras</div>
+  </div>
+  <nav>
+    <a href="#" class="active">Inicio</a>
+    <a href="#">Noticias</a>
+    <a href="#">Deportes</a>
+    <a href="#">Turismo</a>
+    <a href="#">Pesca</a>
+    <a href="#">Historia</a>
+    <a href="#">Guías</a>
+  </nav>
+</header>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-label">⚡ AHORA</div>
+  <div class="ticker-text" id="ticker-texto">
+    Temporada de pesca: récord de turistas en el río Limay · Nueva ruta de trekking habilitada en el Parque Nacional Los Alerces · Torres del Paine reabre senderos tras las nevadas · Bariloche prepara la temporada de esquí 2026 · Descubren pinturas rupestres en la Meseta del Lago Buenos Aires
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ══ TAPA ══ -->
+  <div class="section-header">
+    <div class="section-title">La Tapa</div>
+    <div class="section-line"></div>
+    <div class="section-badge badge-verde">Hoy</div>
+  </div>
+
+  <div class="tapa-grid" id="tapa-grid">
+    <!-- Nota principal -->
+    <div class="nota-tapa">
+      <div class="img-placeholder" style="background-image:url('https://images.unsplash.com/photo-1531761535209-180857e963b9?w=1000&q=85&fit=crop&crop=center');background-size:cover;background-position:center;"></div>
+      <div class="nota-overlay">
+        <div class="tag">🎯 Nota principal</div>
+        <h2>El Fitz Roy vuelve a ser la meca del andinismo mundial: temporada récord de expediciones</h2>
+        <p>Más de 200 equipos de 40 países se registraron esta temporada en El Chaltén. La mística del granito patagónico sigue atrayendo a los mejores escaladores del planeta.</p>
+      </div>
+    </div>
+
+    <!-- Nota secundaria 1 -->
+    <div class="nota-secundaria">
+      <div class="img-placeholder nota-sec-1" style="background-image:url('https://images.unsplash.com/photo-1498036882173-b41c28a8ba34?w=700&q=80&fit=crop&crop=center');background-size:cover;background-position:center;"></div>
+      <div class="nota-overlay">
+        <div class="tag">🐟 Pesca</div>
+        <h2>El Limay bate récords: temporada histórica de trucha marrón</h2>
+        <p>Guías y pescadores reportan capturas inusuales en todo el recorrido del río.</p>
+      </div>
+    </div>
+
+    <!-- Nota secundaria 2 -->
+    <div class="nota-secundaria">
+      <div class="img-placeholder nota-sec-2" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80&fit=crop&crop=center');background-size:cover;background-position:center;"></div>
+      <div class="nota-overlay">
+        <div class="tag">🌿 Medio Ambiente</div>
+        <h2>Alerta en la Patagonia chilena: sequía afecta los glaciares del Parque Pumalín</h2>
+        <p>Científicos de ambos países monitorean el retroceso acelerado del hielo.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ NOTICIAS DEL DÍA ══ -->
+  <div class="section-header" style="margin-top:28px">
+    <div class="section-title">Noticias de la Semana</div>
+    <div class="section-line"></div>
+    <div class="section-badge badge-azul">Diario</div>
+  </div>
+
+  <div class="noticias-grid" id="noticias-grid">
+    <div class="noticia-card">
+      <div class="card-img card-azul" style="background-image:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&q=75&fit=crop&crop=center');background-size:cover;background-position:center;"></div>
+      <div class="card-body">
+        <div class="card-tag tag-social">· Interés Social ·</div>
+        <h3>Comunidad mapuche inaugura centro cultural en Junín de los Andes</h3>
+        <div class="card-meta">Hace 3 horas · Neuquén</div>
+      </div>
+    </div>
+    <div class="noticia-card">
+      <div class="card-img card-gris" style="background-image:url('https://images.unsplash.com/photo-1504608524841-42584120d491?w=400&q=75&fit=crop&crop=center');background-size:cover;background-position:center;"></div>
+      <div class="card-body">
+        <div class="card-tag tag-policial">· Policial ·</div>
+        <h3>Desarticulan red de caza furtiva de huemules en Santa Cruz</h3>
+        <div class="card-meta">Hace 5 horas · Santa Cruz</div>
+      </div>
+    </div>
+    <div class="noticia-card">
+      <div class="card-img card-verde" style="background-image:url('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&q=75&fit=crop&crop=center');background-size:cover;background-position:center;"></div>
+      <div class="card-body">
+        <div class="card-tag tag-turismo">· Deportes de Invierno ·</div>
+        <h3>Cerro Catedral anuncia inversión de $80 millones para la temporada 2026</h3>
+        <div class="card-meta">Ayer · Bariloche</div>
+      </div>
+    </div>
+    <div class="noticia-card">
+      <div class="card-img card-cafe" style="background-image:url('fotos/torres-del-paine.jpg');background-size:cover;background-position:center;"></div>
+      <div class="card-body">
+        <div class="card-tag tag-turismo">· Turismo ·</div>
+        <h3>Puerto Natales se posiciona como el nuevo hub del turismo de aventura en Chile</h3>
+        <div class="card-meta">Ayer · Magallanes</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin:24px 0;"></div>
+
+  <!-- ══ INFORMES ══ -->
+  <div class="section-header">
+    <div class="section-title">Informes</div>
+    <div class="section-line"></div>
+    <div class="section-badge badge-verde">En profundidad</div>
+  </div>
+
+  <div class="informes-grid">
+    <div class="informe-principal">
+      <div class="inf-img" style="background-image:url('fotos/rio-alumine.jpg');background-size:cover;background-position:center;"></div>
+      <div class="inf-body">
+        <div class="inf-label">· Informe especial · Pesca ·</div>
+        <h3>Temporada 2026 en el Río Alumine: aguas altas y truchas que baten récords históricos</h3>
+        <p>Un recorrido completo por los mejores puntos del Alumine esta temporada. Hablamos con guías locales, medimos los caudales, analizamos las zonas de captura y te damos el panorama completo para que planifiques tu próxima salida.</p>
+      </div>
+    </div>
+
+    <div class="informes-lista">
+      <div class="informe-item">
+        <div class="inf-label">· Energía ·</div>
+        <h4>El viento patagónico como reserva estratégica: los proyectos eólicos que cambiarán la región</h4>
+        <p>Análisis de las 12 centrales en construcción entre Neuquén y Santa Cruz.</p>
+      </div>
+      <div class="informe-item">
+        <div class="inf-label">· Economía ·</div>
+        <h4>El boom del turismo binacional: cómo viajan los argentinos a Chile y los chilenos a Argentina</h4>
+        <p>Datos de cruces de frontera, gasto promedio y destinos más elegidos.</p>
+      </div>
+      <div class="informe-item">
+        <div class="inf-label">· Medio Ambiente ·</div>
+        <h4>Los últimos guanacos salvajes de Tierra del Fuego: una especie bajo presión</h4>
+        <p>Censo poblacional y estado de conservación en ambos lados de la isla.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin:32px 0;"></div>
+
+  <!-- ══ AVENTURA ══ -->
+  <div class="section-header">
+    <div class="section-title">🧗 Aventura</div>
+    <div class="section-line"></div>
+    <div class="section-badge" style="background:#7a2020;color:#f4a0a0;">Cumbres · Rescates · Expediciones</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:4px;margin-bottom:16px;">
+
+    <!-- Nota aventura principal -->
+    <div style="position:relative;overflow:hidden;cursor:pointer;">
+      <div style="height:300px;background-image:url('fotos/cerro-torre.jpg');background-size:cover;background-position:center;"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.1) 65%,transparent 100%);padding:22px;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div style="display:inline-block;background:#b03a2e;color:white;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:8px;width:fit-content;">🆘 Rescate</div>
+        <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.25;margin-bottom:6px;">Rescatan a dos andinistas alemanes en la cara norte del Torre tras 48 horas atrapados por tormenta</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);">El Gendarme Antártico y voluntarios de El Chaltén completaron el operativo en condiciones extremas. Los escaladores están fuera de peligro.</div>
+      </div>
+    </div>
+
+    <!-- Notas aventura secundarias -->
+    <div style="display:flex;flex-direction:column;gap:4px;">
+      <div style="position:relative;overflow:hidden;cursor:pointer;flex:1;">
+        <div style="height:148px;background-image:url('https://images.unsplash.com/photo-1531761535209-180857e963b9?w=600&q=80&fit=crop&crop=center');background-size:cover;background-position:center;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,transparent 60%);padding:14px;display:flex;flex-direction:column;justify-content:flex-end;">
+          <div style="display:inline-block;background:#7aadcc;color:#1c2d3d;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-bottom:6px;width:fit-content;">🏔️ Cumbre</div>
+          <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:white;line-height:1.25;">Tres alpinistas cordobeses alcanzan la cima del Fitz Roy por nueva variante</div>
+        </div>
+      </div>
+      <div style="position:relative;overflow:hidden;cursor:pointer;flex:1;">
+        <div style="height:148px;background-image:url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80&fit=crop&crop=center');background-size:cover;background-position:center;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,transparent 60%);padding:14px;display:flex;flex-direction:column;justify-content:flex-end;">
+          <div style="display:inline-block;background:#c4a882;color:#1c2d3d;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-bottom:6px;width:fit-content;">⚠️ Alerta</div>
+          <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:white;line-height:1.25;">Torres del Paine cierra el Mirador Base Las Torres por riesgo de desprendimiento de roca</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Fila noticias aventura rápidas -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:4px;">
+    <div style="background:white;border-radius:4px;padding:14px;border-left:3px solid #b03a2e;box-shadow:0 1px 3px rgba(0,0,0,0.05);cursor:pointer;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#b03a2e;margin-bottom:5px;">🧗 Escalada</div>
+      <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;line-height:1.3;color:#252830;">Temporada de escalada en Bariloche: las paredes de granito que el mundo está descubriendo</div>
+    </div>
+    <div style="background:white;border-radius:4px;padding:14px;border-left:3px solid #3a5a7a;box-shadow:0 1px 3px rgba(0,0,0,0.05);cursor:pointer;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#3a5a7a;margin-bottom:5px;">🏃 Trail</div>
+      <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;line-height:1.3;color:#252830;">Patagonia Run: perfil completo de los 100k más duros de la Patagonia argentina</div>
+    </div>
+    <div style="background:white;border-radius:4px;padding:14px;border-left:3px solid #8c6b4a;box-shadow:0 1px 3px rgba(0,0,0,0.05);cursor:pointer;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8c6b4a;margin-bottom:5px;">🚵 Ciclismo</div>
+      <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;line-height:1.3;color:#252830;">Gravel en la Ruta 40 patagónica: la nueva meca del cicloturismo de aventura mundial</div>
+    </div>
+    <div style="background:white;border-radius:4px;padding:14px;border-left:3px solid #b03a2e;box-shadow:0 1px 3px rgba(0,0,0,0.05);cursor:pointer;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#b03a2e;margin-bottom:5px;">🆘 Rescate</div>
+      <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;line-height:1.3;color:#252830;">Protocolo de emergencia en alta montaña: qué hacer y a quién llamar en cada provincia</div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin:32px 0;"></div>
+
+  <!-- ══ DEPORTES PATAGÓNICOS ══ -->
+  <div class="section-header">
+    <div class="section-title">Deportes Patagónicos</div>
+    <div class="section-line"></div>
+    <div class="section-badge badge-rojo">Solo aquí</div>
+  </div>
+
+  <!-- Evento destacado -->
+  <div style="position:relative;overflow:hidden;border-radius:4px;margin-bottom:16px;cursor:pointer;">
+    <div style="height:320px;background-image:url('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1200&q=85&fit=crop&crop=center');background-size:cover;background-position:center;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);padding:28px 32px;display:flex;flex-direction:column;justify-content:flex-end;">
+      <div style="display:inline-block;background:#b03a2e;color:white;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:10px;width:fit-content;">🏆 Evento del mes</div>
+      <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:white;line-height:1.2;margin-bottom:8px;">Ultra Trail Patagonia 2026: 160 km desde Torres del Paine hasta Puerto Natales con 5.000 metros de desnivel</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.75);">El evento más extremo de trail running del hemisferio sur regresa en abril con 800 corredores de 42 países. Cronograma, perfiles de ruta y cómo llegar.</div>
+    </div>
+  </div>
+
+  <!-- Grid deportes -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:8px;">
+
+    <div style="background:white;border-radius:4px;overflow:hidden;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+      <div style="height:130px;background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&q=75&fit=crop');background-size:cover;background-position:center;"></div>
+      <div style="padding:12px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#b03a2e;margin-bottom:5px;">· Canotaje ·</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;line-height:1.3;color:#252830;">Río Futaleufú: temporada récord en el río más salvaje del mundo</div>
+        <div style="font-size:10px;color:#aaa;margin-top:5px;">📍 Chubut · Chile</div>
+      </div>
+    </div>
+
+    <div style="background:white;border-radius:4px;overflow:hidden;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+      <div style="height:130px;background-image:url('https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=400&q=75&fit=crop');background-size:cover;background-position:center;"></div>
+      <div style="padding:12px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#b03a2e;margin-bottom:5px;">· Escalada ·</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;line-height:1.3;color:#252830;">Primera ascensión en la cara sur del Fitz Roy: expedición chileno-argentina hace historia</div>
+        <div style="font-size:10px;color:#aaa;margin-top:5px;">📍 Santa Cruz</div>
+      </div>
+    </div>
+
+    <div style="background:white;border-radius:4px;overflow:hidden;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+      <div style="height:130px;background-image:url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&q=75&fit=crop');background-size:cover;background-position:center;"></div>
+      <div style="padding:12px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#b03a2e;margin-bottom:5px;">· Triatlón ·</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;line-height:1.3;color:#252830;">Iron Man Pucón 2026: resultados y análisis del circuito más duro de Sudamérica</div>
+        <div style="font-size:10px;color:#aaa;margin-top:5px;">📍 Pucón · Chile</div>
+      </div>
+    </div>
+
+    <div style="background:white;border-radius:4px;overflow:hidden;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+      <div style="height:130px;background-image:url('https://images.unsplash.com/photo-1530143584546-02191bc84eb5?w=400&q=75&fit=crop');background-size:cover;background-position:center;"></div>
+      <div style="padding:12px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#b03a2e;margin-bottom:5px;">· Buceo ·</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;line-height:1.3;color:#252830;">Puerto Madryn: los cinco naufragios que convirtieron la bahía en meca del buceo</div>
+        <div style="font-size:10px;color:#aaa;margin-top:5px;">📍 Chubut</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Calendario de eventos -->
+  <div style="background:#1c2d3d;border-radius:4px;padding:20px 24px;margin-top:6px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#7aadcc;margin-bottom:14px;">📅 Próximos eventos · Abril — Junio 2026</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+      <div style="border-left:3px solid #b03a2e;padding-left:12px;">
+        <div style="font-size:10px;color:#7aadcc;font-weight:700;">5 ABR · Neuquén</div>
+        <div style="font-size:13px;color:white;font-weight:600;margin-top:3px;">Patagonia Run 100k — San Martín de los Andes</div>
+      </div>
+      <div style="border-left:3px solid #b03a2e;padding-left:12px;">
+        <div style="font-size:10px;color:#7aadcc;font-weight:700;">19 ABR · Magallanes</div>
+        <div style="font-size:13px;color:white;font-weight:600;margin-top:3px;">Ultra Trail Patagonia — Torres del Paine</div>
+      </div>
+      <div style="border-left:3px solid #b03a2e;padding-left:12px;">
+        <div style="font-size:10px;color:#7aadcc;font-weight:700;">3 MAY · Chubut</div>
+        <div style="font-size:13px;color:white;font-weight:600;margin-top:3px;">Triatlón Golfo Nuevo — Puerto Madryn</div>
+      </div>
+      <div style="border-left:3px solid #b03a2e;padding-left:12px;">
+        <div style="font-size:10px;color:#7aadcc;font-weight:700;">17 MAY · Río Negro</div>
+        <div style="font-size:13px;color:white;font-weight:600;margin-top:3px;">Titan Desert Patagonia — Bariloche</div>
+      </div>
+      <div style="border-left:3px solid #b03a2e;padding-left:12px;">
+        <div style="font-size:10px;color:#7aadcc;font-weight:700;">7 JUN · TDF</div>
+        <div style="font-size:13px;color:white;font-weight:600;margin-top:3px;">Ushuaia Ski Classic — Cerro Castor</div>
+      </div>
+      <div style="border-left:3px solid #b03a2e;padding-left:12px;">
+        <div style="font-size:10px;color:#7aadcc;font-weight:700;">21 JUN · Aysén</div>
+        <div style="font-size:13px;color:white;font-weight:600;margin-top:3px;">Patagonian Expedition Race — Coyhaique</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin:32px 0;"></div>
+
+  <!-- ══ GUÍAS Y TURISMO ══ -->
+  <div class="section-header">
+    <div class="section-title">Guías & Turismo</div>
+    <div class="section-line"></div>
+    <div class="section-badge badge-azul">Para visitantes</div>
+  </div>
+
+  <div class="guias-grid">
+    <div class="guia-card">
+      <div class="guia-img guia-img-1" style="background-image:url('https://images.unsplash.com/photo-1517591187965-c4e8c8a80e88?w=600&q=80&fit=crop&crop=center');background-size:cover;background-position:center;">
+        <div class="guia-tipo">Guía completa</div>
+      </div>
+      <div class="guia-body">
+        <h3>Cómo llegar, moverse y disfrutar El Calafate en 4 días</h3>
+        <p>Todo lo que necesitás saber: transporte, alojamiento, visitas al Perito Moreno y mini-trekking sobre el glaciar.</p>
+        <div class="guia-meta">
+          <span>📍 Santa Cruz</span>
+          <span>⏱ 8 min lectura</span>
+          <span>📅 Actualizado marzo 2026</span>
+        </div>
+      </div>
+    </div>
+    <div class="guia-card">
+      <div class="guia-img guia-img-2" style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=80&fit=crop&crop=center');background-size:cover;background-position:center;">
+        <div class="guia-tipo">El dato</div>
+      </div>
+      <div class="guia-body">
+        <h3>El secreto de Bariloche que los turistas no conocen: la Ruta de los Siete Lagos en moto de agua</h3>
+        <p>La mayoría la hace en auto o bus. Pero hacerla en lancha desde el lago Nahuel Huapi cambia completamente la experiencia.</p>
+        <div class="guia-meta">
+          <span>📍 Bariloche</span>
+          <span>⏱ 5 min lectura</span>
+          <span>🔥 Muy leído</span>
+        </div>
+      </div>
+    </div>
+    <div class="guia-card">
+      <div class="guia-img guia-img-3" style="background-image:url('https://images.unsplash.com/photo-1511497584788-876760111969?w=600&q=80&fit=crop&crop=center');background-size:cover;background-position:center;">
+        <div class="guia-tipo">Lugar desconocido</div>
+      </div>
+      <div class="guia-body">
+        <h3>Río Pico: el pueblo sin señal donde el tiempo se detuvo en 1950</h3>
+        <p>A 300 km de Esquel, este pueblo casi sin turistas guarda paisajes únicos, ganadería trashumante y una hospitalidad que ya no existe en otros lugares.</p>
+        <div class="guia-meta">
+          <span>📍 Chubut</span>
+          <span>⏱ 6 min lectura</span>
+          <span>💎 Exclusivo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin:32px 0;"></div>
+
+  <!-- ══ ESPECIALES ══ -->
+  <div class="section-header">
+    <div class="section-title">El Dato & El Lugar</div>
+    <div class="section-line"></div>
+    <div class="section-badge badge-dorado">Diferencial</div>
+  </div>
+
+  <div class="especiales-grid">
+    <div class="especial-card especial-dato">
+      <div class="esp-header">
+        <div class="esp-icono">💡</div>
+        <div class="esp-tipo">El dato de la semana</div>
+        <h3>Torres del Paine: por qué entrar al parque a las 6 AM lo cambia todo</h3>
+      </div>
+      <div class="esp-img" style="background-image:url('fotos/torres-del-paine.webp');background-size:cover;background-position:center top;height:160px;opacity:1;"></div>
+      <div class="esp-body">
+        <p>El parque más visitado de la Patagonia chilena recibe el 80% de sus turistas entre las 9 y las 14 horas. Entrar al amanecer no solo te da luz perfecta para fotos: también te permite caminar el Mirador Las Torres casi solo, algo que era impensable hace cinco años.</p>
+        <span class="esp-cta">Leer el dato completo →</span>
+      </div>
+    </div>
+
+    <div class="especial-card especial-lugar">
+      <div class="esp-header">
+        <div class="esp-icono">🗺️</div>
+        <div class="esp-tipo">El lugar desconocido</div>
+        <h3>Lago Vintter: la joya secreta en la frontera que casi nadie visita</h3>
+      </div>
+      <div class="esp-img" style="background-image:url('fotos/rio-alumine.jpg');background-size:cover;background-position:center;height:160px;opacity:1;"></div>
+      <div class="esp-body">
+        <p>En el límite entre Chubut y Chile, el lago Vintter (o General Paz en el lado chileno) es uno de los lagos más grandes de la Patagonia. Sin infraestructura turística, sin WiFi, sin multitudes. Solo agua turquesa, cóndores y silencio absoluto.</p>
+        <span class="esp-cta">Descubrir el lugar →</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin:32px 0;"></div>
+
+  <!-- ══ HISTORIA ══ -->
+  <div class="section-header">
+    <div class="section-title">Historia Patagónica</div>
+    <div class="section-line"></div>
+    <div class="section-badge badge-dorado">Notas de la semana</div>
+  </div>
+
+  <div class="historia-grid">
+    <a href="nota.html?id=historia-huelgas-1921" style="text-decoration:none;color:inherit;">
+    <div class="historia-card">
+      <div class="hist-img hist-img-1" style="background-image:url('fotos/huelgas-1921-patagonia.jpg');background-size:cover;background-position:center top;"></div>
+      <div class="hist-badge">Historia</div>
+      <div class="hist-body">
+        <div class="hist-periodo">· 1920 · La Patagonia Rebelde ·</div>
+        <h3>Las huelgas de 1921: cuando los peones rurales de Santa Cruz se enfrentaron al Estado</h3>
+        <p>A 105 años de la masacre, revisamos los hechos que inspiraron la película de Olivera y siguen siendo un capítulo pendiente de la historia argentina.</p>
+      </div>
+    </div>
+    </a>
+    <a href="nota.html?id=historia-perito-moreno" style="text-decoration:none;color:inherit;">
+    <div class="historia-card">
+      <div class="hist-img hist-img-2" style="background-image:url('fotos/perito-moreno.jpg');background-size:cover;background-position:center top;"></div>
+      <div class="hist-badge">Historia</div>
+      <div class="hist-body">
+        <div class="hist-periodo">· 1879 · Expedición ·</div>
+        <h3>El viaje de Perito Moreno al Nahuel Huapi: 147 años del primer registro científico de la Patagonia andina</h3>
+        <p>Francisco Moreno llegó al lago en enero de 1879. Su bitácora de viaje es una obra maestra de la observación científica y la narración de aventuras.</p>
+      </div>
+    </div>
+    </a>
+    <a href="nota.html?id=historia-kawesqar" style="text-decoration:none;color:inherit;">
+    <div class="historia-card">
+      <div class="hist-img hist-img-3" style="background-image:url('fotos/kawesqar-canal-beagle.jpg');background-size:cover;background-position:center top;"></div>
+      <div class="hist-badge">Historia</div>
+      <div class="hist-body">
+        <div class="hist-periodo">· Pueblos Originarios ·</div>
+        <h3>Los Kawésqar: los últimos nómades del mar en el canal Beagle y su lucha por la memoria</h3>
+        <p>Quedan menos de 20 personas que hablan el idioma Kawésqar. Esta es la historia de un pueblo que navegó los canales más inhóspitos del planeta por siglos.</p>
+      </div>
+    </div>
+    </a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo" style="color:white">Patagonia<span style="color:#8ab8d4">Press</span></div>
+  <div class="footer-tagline">Argentina · Chile · Sin fronteras</div>
+  <div class="footer-nav">
+    <a href="#">Inicio</a>
+    <a href="#">Noticias</a>
+    <a href="#">Turismo</a>
+    <a href="#">Montaña</a>
+    <a href="#">Pesca</a>
+    <a href="#">Historia</a>
+    <a href="#">Guías</a>
+    <a href="#">Pueblos Originarios</a>
+    <a href="#">Medio Ambiente</a>
+    <a href="#">Acerca de</a>
+  </div>
+  <div class="footer-copy">
+    © 2026 PatagoniaGLOBAL · patagoniaglobal.ar · Argentina · Chile
+  </div>
+</footer>
+
+<script>
+/* PatagoniaGLOBAL — Carga dinámica desde noticias.json */
+
+const CARD_COLORS = ["card-azul","card-verde","card-gris","card-cafe"];
+const SEC_COLORS  = ["nota-sec-1","nota-sec-2"];
+
+const TAG_CLASSES = {
+  turismo:       "tag-turismo",
+  aventura:      "tag-social",
+  deportes:      "tag-social",
+  "medio ambiente":"tag-turismo",
+  social:        "tag-social",
+  policial:      "tag-policial",
+  "política":    "tag-social",
+  "economía":    "tag-social",
+  historia:      "tag-historia",
+  pesca:         "tag-turismo",
+  escalada:      "tag-social",
+  general:       "tag-social",
+};
+
+function imgStyle(url, altura) {
+  if (url) return `background-image:url('${url}');background-size:cover;background-position:center;`;
+  return "";
+}
+
+function bandera(pais) {
+  if (pais === "chile")   return '<span style="font-size:11px;opacity:0.8;">🇨🇱</span> ';
+  if (pais === "ambos")   return '<span style="font-size:11px;opacity:0.8;">🇦🇷🇨🇱</span> ';
+  return '<span style="font-size:11px;opacity:0.8;">🇦🇷</span> ';
+}
+
+function irANota(id) {
+  window.location.href = "nota.html?id=" + id;
+}
+
+function renderTapa(data) {
+  const t = data.tapa;
+  const s = data.secundarias || [];
+  const grid = document.getElementById("tapa-grid");
+  if (!grid) return;
+
+  const tapaCls = t.imagen ? "img-cover" : "img-placeholder";
+  const tapaBg  = t.imagen ? `background-image:url('${t.imagen}');background-size:cover;background-position:center;` : "background:linear-gradient(160deg,#0e1a26 0%,#1c2d3d 45%,#4a7a9a 100%);";
+
+  let html = `
+    <div class="nota-tapa" onclick="irANota('${t.id||'tapa'}')">
+      <div class="${tapaCls}" style="width:100%;height:480px;display:block;${tapaBg}"></div>
+      <div class="nota-overlay">
+        <div class="tag">${t.tag || '🗞️ Tapa'}</div>
+        <h2>${t.titulo}</h2>
+        <p>${bandera(t.pais)}${t.bajada}</p>
+      </div>
+    </div>`;
+
+  (s.slice(0,2)).forEach((n, i) => {
+    const bg = n.imagen
+      ? `background-image:url('${n.imagen}');background-size:cover;background-position:center;`
+      : "";
+    const cls = SEC_COLORS[i] || "";
+    html += `
+    <div class="nota-secundaria" onclick="irANota('${n.id||'sec'+(i+1)}')">
+      <div class="img-placeholder ${cls}" style="width:100%;height:238px;${bg}"></div>
+      <div class="nota-overlay">
+        <div class="tag">${n.tag || '🗞️ Noticias'}</div>
+        <h2>${n.titulo}</h2>
+        <p>${bandera(n.pais)}${n.bajada || ''}</p>
+      </div>
+    </div>`;
+  });
+
+  grid.innerHTML = html;
+}
+
+function renderNoticias(data) {
+  const noticias = data.noticias || [];
+  const grid = document.getElementById("noticias-grid");
+  if (!grid) return;
+
+  let html = "";
+  noticias.slice(0,4).forEach((n, i) => {
+    const colorCls = CARD_COLORS[i % CARD_COLORS.length];
+    const tagCls   = TAG_CLASSES[n.categoria] || "tag-social";
+    const bg = n.imagen
+      ? `background-image:url('${n.imagen}');background-size:cover;background-position:center;`
+      : "";
+    html += `
+    <div class="noticia-card" onclick="irANota('${n.id||'n'+(i+1)}')">
+      <div class="card-img ${colorCls}" style="${bg}"></div>
+      <div class="card-body">
+        <div class="card-tag ${tagCls}">${n.tag}</div>
+        <h3>${n.titulo}</h3>
+        <div class="card-meta">${bandera(n.pais)}${n.meta}</div>
+      </div>
+    </div>`;
+  });
+
+  grid.innerHTML = html;
+}
+
+function renderTicker(data) {
+  const ticker = document.getElementById("ticker-texto");
+  if (!ticker || !data.ticker || !data.ticker.length) return;
+  ticker.textContent = data.ticker.join(" · ");
+}
+
+function renderFecha(data) {
+  const el = document.getElementById("fecha-display");
+  if (!el || !data.fecha_display) return;
+  el.textContent = data.fecha_display + " · Patagonia Argentina y Chilena";
+}
+
+fetch("noticias.json")
+  .then(r => r.json())
+  .then(data => {
+    renderFecha(data);
+    renderTicker(data);
+    renderTapa(data);
+    renderNoticias(data);
+  })
+  .catch(() => {
+    // Si no hay noticias.json, el sitio muestra el contenido hardcodeado. OK.
+  });
+</script>
+</body>
+</html>

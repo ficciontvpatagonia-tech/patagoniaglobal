@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PatagoniaGLOBAL — Edición 29 de Marzo 2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+    :root {
+      --azul: #1c2d3d; --azul-medio: #3a5a7a; --azul-claro: #7aadcc;
+      --gris: #252830; --gris-medio: #5a6070; --arcilla: #8c6b4a;
+      --arcilla-clara: #c4a882; --fondo: #f0ede8; --blanco: #fff;
+      --rojo: #b03a2e;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; background:var(--fondo); color:var(--gris); }
+
+    /* HEADER */
+    header { background:var(--azul); }
+    .top-bar { background:#0e1a26; display:flex; justify-content:space-between; padding:6px 40px; font-size:11px; color:#888; }
+    .top-bar .clima { color:var(--azul-claro); font-weight:600; }
+    .header-main { display:flex; flex-direction:column; align-items:center; padding:24px 40px 14px; }
+    .logo { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; color:#fff; letter-spacing:-1px; }
+    .logo span { color:var(--azul-claro); }
+    .logo-sub { font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:3px; text-transform:uppercase; margin-top:4px; }
+    nav { background:var(--azul); display:flex; justify-content:center; border-top:1px solid rgba(255,255,255,0.08); flex-wrap:wrap; }
+    nav a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; padding:12px 16px; border-bottom:3px solid transparent; }
+    nav a:hover, nav a.act { color:var(--azul-claro); border-bottom-color:var(--azul-claro); }
+
+    /* TICKER */
+    .ticker { background:#1e3550; border-top:2px solid var(--azul-claro); display:flex; align-items:center; overflow:hidden; padding:8px 0; }
+    .ticker-label { background:var(--rojo); color:#fff; font-size:9px; font-weight:800; letter-spacing:2px; padding:3px 14px; white-space:nowrap; flex-shrink:0; margin-right:12px; text-transform:uppercase; }
+    .ticker-text { color:rgba(255,255,255,0.85); font-size:12px; white-space:nowrap; animation:tick 40s linear infinite; }
+    @keyframes tick { 0%{transform:translateX(100vw)} 100%{transform:translateX(-200%)} }
+
+    .container { max-width:1100px; margin:0 auto; padding:0 20px; }
+
+    /* SECTION HEADER */
+    .sec-head { display:flex; align-items:center; gap:12px; margin:36px 0 18px; }
+    .sec-title { font-family:'Playfair Display',serif; font-size:21px; font-weight:700; color:var(--azul); white-space:nowrap; }
+    .sec-line { flex:1; height:2px; background:linear-gradient(to right,var(--azul-claro),transparent); }
+    .sec-badge { font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; padding:3px 10px; border-radius:2px; }
+    .b-azul { background:var(--azul); color:var(--azul-claro); }
+    .b-rojo { background:var(--rojo); color:#fff; }
+    .b-arcilla { background:var(--arcilla); color:#fff; }
+    .b-verde { background:#2a5a3a; color:#7adcaa; }
+
+    /* NOTA COMPLETA */
+    .nota-full { background:#fff; border-radius:6px; overflow:hidden; margin-bottom:28px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+    .nota-full .hero { height:360px; background-size:cover; background-position:center; position:relative; }
+    .nota-full .hero-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.15) 65%,transparent 100%); display:flex; flex-direction:column; justify-content:flex-end; padding:28px 32px; }
+    .nota-cat { display:inline-block; font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; padding:3px 10px; border-radius:2px; margin-bottom:10px; width:fit-content; }
+    .cat-deporte { background:var(--rojo); color:#fff; }
+    .cat-ambiente { background:#2a5a3a; color:#7adcaa; }
+    .cat-glacier { background:#1b3a5c; color:#7aadcc; }
+    .cat-politica { background:#4a3a1a; color:#c4a882; }
+    .nota-full .hero h2 { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; line-height:1.25; margin-bottom:8px; }
+    .nota-full .hero .bajada { font-size:13px; color:rgba(255,255,255,0.8); line-height:1.5; max-width:680px; }
+    .nota-body { padding:28px 36px; }
+    .nota-meta { display:flex; gap:20px; font-size:11px; color:#aaa; padding-bottom:16px; margin-bottom:20px; border-bottom:1px solid #eee; flex-wrap:wrap; }
+    .nota-meta strong { color:var(--azul-medio); }
+    .nota-texto p { font-size:15px; line-height:1.85; color:#333; margin-bottom:16px; }
+    .nota-texto p:last-child { margin-bottom:0; }
+    .nota-texto strong { color:var(--azul); }
+    .nota-texto .destacado { border-left:3px solid var(--azul-claro); padding-left:18px; margin:20px 0; font-style:italic; color:var(--gris-medio); font-size:15px; line-height:1.7; }
+    .fuente { background:#f5f2ed; border-left:3px solid var(--azul-claro); padding:12px 16px; border-radius:0 4px 4px 0; margin-top:20px; font-size:11px; color:#888; line-height:1.5; }
+    .fuente a { color:var(--azul-medio); }
+
+    /* GRID 2 COL */
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:28px; }
+    .nota-card { background:#fff; border-radius:6px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.06); display:flex; flex-direction:column; }
+    .nota-card .card-hero { height:220px; background-size:cover; background-position:center; position:relative; }
+    .nota-card .card-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,transparent 60%); display:flex; flex-direction:column; justify-content:flex-end; padding:18px 20px; }
+    .nota-card .card-overlay h3 { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#fff; line-height:1.3; }
+    .nota-card .card-body { padding:20px 24px; flex:1; }
+    .nota-card .card-meta { font-size:10px; color:#aaa; margin-bottom:10px; }
+    .nota-card .card-body p { font-size:13px; line-height:1.7; color:#444; margin-bottom:12px; }
+    .nota-card .card-body p:last-child { margin-bottom:0; }
+    .nota-card .card-body .fuente { margin-top:14px; }
+
+    /* OPINIÓN BOX */
+    .opinion-box { background:var(--azul); color:#fff; border-radius:6px; padding:22px 28px; margin:20px 0; }
+    .opinion-label { font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--azul-claro); margin-bottom:8px; }
+    .opinion-box blockquote { font-family:'Playfair Display',serif; font-size:16px; font-style:italic; line-height:1.6; color:rgba(255,255,255,0.9); }
+    .opinion-box cite { display:block; font-size:11px; color:rgba(255,255,255,0.5); margin-top:10px; font-style:normal; }
+
+    /* DATOS BOX */
+    .datos-box { background:#edf4f8; border-radius:6px; padding:18px 22px; margin:18px 0; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .dato { text-align:center; }
+    .dato-num { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--azul); }
+    .dato-label { font-size:11px; color:var(--gris-medio); margin-top:2px; }
+
+    /* DIVIDER */
+    .div { height:1px; background:linear-gradient(to right,transparent,#ccc,transparent); margin:12px 0; }
+
+    footer { background:var(--gris); color:rgba(255,255,255,0.4); text-align:center; padding:28px 20px; margin-top:60px; }
+    footer .flogo { font-family:'Playfair Display',serif; font-size:26px; color:#fff; margin-bottom:6px; }
+    footer .flogo span { color:var(--azul-claro); }
+    footer p { font-size:11px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top-bar">
+    <span>Domingo 29 de Marzo de 2026 · Patagonia Argentina y Chilena</span>
+    <span class="clima">🌤 Bariloche 12° · S. Martín 10° · Torres del Paine 6° · Ushuaia 4°</span>
+  </div>
+  <div class="header-main">
+    <div style="font-size:11px;color:#7aadcc;letter-spacing:4px;text-transform:uppercase;margin-bottom:4px;">The South. The World.</div>
+    <div class="logo">Patagonia<span>GLOBAL</span></div>
+    <div class="logo-sub">Argentina · Chile · Sin fronteras</div>
+  </div>
+  <nav>
+    <a href="#" class="act">Inicio</a>
+    <a href="#">Noticias</a>
+    <a href="#">🧗 Aventura</a>
+    <a href="#">Deportes</a>
+    <a href="#">Turismo</a>
+    <a href="#">Pesca</a>
+    <a href="#">Invierno</a>
+    <a href="#">Historia</a>
+    <a href="#">Guías</a>
+    <a href="#">Pueblos Originarios</a>
+    <a href="#">Medio Ambiente</a>
+  </nav>
+</header>
+
+<div class="ticker">
+  <div class="ticker-label">⚡ Hoy</div>
+  <div class="ticker-text">
+    100 ciclistas de 24 países llegan a Ushuaia tras 2.900 km · Perito Moreno: retroceso histórico confirmado por satélite · Argentina debate reforma a ley de glaciares · Patagonia Run: 10 días para el festival de trail más grande de América · Torres del Paine limita cupos para proteger senderos · Investigación chilena estudia impacto del deshielo en fiordos
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ══ DEPORTES EXCLUSIVOS ══ -->
+  <div class="sec-head">
+    <div class="sec-title">🚵 Deportes Exclusivos Patagonia</div>
+    <div class="sec-line"></div>
+    <div class="sec-badge b-rojo">Hoy</div>
+  </div>
+
+  <!-- NOTA 1: Final Frontier Patagonia -->
+  <div class="nota-full">
+    <div class="hero" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1100&q=85&fit=crop&crop=center');">
+      <div class="hero-overlay">
+        <span class="nota-cat cat-deporte">🚵 Ciclismo · Binacional · Aventura</span>
+        <h2>2.900 kilómetros de Patagonia, 100 ciclistas, 24 países: la primera Final Frontier llega a su fin en Ushuaia</h2>
+        <div class="bajada">El evento de bikepacking más ambicioso del hemisferio sur completó su primera edición histórica. Ninguna carrera cruza la Patagonia entera de este modo.</div>
+      </div>
+    </div>
+    <div class="nota-body">
+      <div class="nota-meta">
+        <span>📅 <strong>29 marzo, 2026</strong></span>
+        <span>📍 <strong>Puerto Montt (Chile) → Ushuaia (Argentina)</strong></span>
+        <span>🏷 <strong>Deportes · Turismo de Aventura · Binacional</strong></span>
+        <span>✍️ PatagoniaGLOBAL</span>
+      </div>
+      <div class="nota-texto">
+        <p>Empezaron el 8 de marzo en Puerto Montt. Tenían 24 días para llegar a Ushuaia. El camino: <strong>2.900 kilómetros de Patagonia en estado puro</strong> — rutas de ripio, bosques de lengas, pasos de frontera, transbordadores en los canales australes y el viento que, en esta región, nunca pide permiso. Este sábado, los últimos participantes de la <strong>Final Frontier Patagonia</strong> cruzaron la meta en la ciudad más austral del mundo, cerrando la primera edición de un evento que ya marca historia en el ciclismo de aventura global.</p>
+
+        <p>Cien ciclistas de <strong>24 países</strong> — con un 25% de participación femenina, dato que distingue a este evento de otros similares — eligieron la modalidad de bikepacking autosuficiente: sin vehículos de apoyo, sin asistencia logística, sin más compañía que el paisaje y otros participantes. Cada uno decidió su propio ritmo, su ruta dentro del corredor marcado y sus paradas. Un formato que, en el mundo del ciclismo extremo, se llama "non-competitive" pero que exige tanto o más que una carrera cronometrada.</p>
+
+        <p>El evento ofreció tres niveles de desafío: el <strong>Huemul Challenge</strong> (650 km hasta Coyhaique), el <strong>Guanaco Challenge</strong> (1.610 km hasta El Calafate) y el <strong>Puma Challenge</strong> (2.250 km hasta Punta Arenas). Quienes eligieron la travesía completa hasta Ushuaia enfrentaron el recorrido total sin cortes.</p>
+
+        <div class="destacado">"El objetivo no es ganar. Es conectar con la Patagonia a un ritmo que te permita entenderla." — Filosofía oficial del evento Final Frontier Patagonia.</div>
+
+        <p>Para los organizadores, el propósito va más allá del deporte: posicionar la Patagonia como destino mundial de turismo de aventura de bajo impacto, descentralizar el flujo turístico de los circuitos tradicionales y generar economía en comunidades que los turistas convencionales nunca visitan. En ese sentido, <strong>Final Frontier no es solo una carrera. Es una propuesta de desarrollo regional</strong> que toca de lleno la agenda que PatagoniaGLOBAL considera urgente: turismo que llega a todos los rincones, no solo a los íconos.</p>
+
+        <div class="datos-box">
+          <div class="dato"><div class="dato-num">2.900</div><div class="dato-label">kilómetros totales</div></div>
+          <div class="dato"><div class="dato-num">100</div><div class="dato-label">ciclistas participantes</div></div>
+          <div class="dato"><div class="dato-num">24</div><div class="dato-label">países representados</div></div>
+        </div>
+
+        <div class="fuente">🔗 <strong>Fuentes:</strong> <a href="https://www.publimetro.cl/deportes/2026/03/12/desafio-ciclista-enfrenta-a-participantes-de-24-paises-en-un-recorrido-de-2-900-kilometros-entre-puerto-montt-y-ushuaia/">Publimetro Chile</a> · <a href="https://bikepacking.com/event/final-frontier-patagonia-2026/">Bikepacking.com</a> · Nota reescrita con voz editorial PatagoniaGLOBAL.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRID 2 COL: Patagonia Run + Torres del Paine Running Festival -->
+  <div class="grid-2">
+
+    <!-- NOTA 2: Patagonia Run -->
+    <div class="nota-card">
+      <div class="card-hero" style="background-image:url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&q=80&fit=crop&crop=center');">
+        <div class="card-overlay">
+          <span class="nota-cat cat-deporte" style="margin-bottom:8px;">🏃 Trail Running · Neuquén</span>
+          <h3>Patagonia Run 2026: en 10 días arranca el festival de trail más grande de América en el corazón del Lanín</h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">📅 8-12 abril, 2026 · 📍 San Martín de los Andes, Neuquén</div>
+        <p>Del 8 al 12 de abril, San Martín de los Andes se convierte en la capital mundial del trail running. La 16ª edición del <strong>Patagonia Run</strong> reúne atletas de todos los continentes dentro del Parque Nacional Lanín, con seis distancias que van desde los 10K hasta los 160K — el legendario "100 Millas Patagónicas".</p>
+        <p>Lo que diferencia a Patagonia Run de cualquier otro evento de la región es su doble condición: es una competencia de altísimo nivel técnico y, al mismo tiempo, un festival que celebra la cultura del trail y la identidad del sur. El campamento base en San Martín funciona durante toda la semana como punto de encuentro, feria de equipamiento y espacio cultural.</p>
+        <div class="opinion-box" style="margin:14px 0;">
+          <div class="opinion-label">Voces del evento</div>
+          <blockquote>"Correr en el Lanín no es solo un desafío físico. Es una conversación con el paisaje."</blockquote>
+          <cite>— Atleta participante, edición 2025</cite>
+        </div>
+        <div class="fuente">🔗 <a href="https://patagoniarun.com">patagoniarun.com</a> · <a href="https://carreraspatagonicas.ar/carrera/patagonia-run-2026/">Carreras Patagónicas</a></div>
+      </div>
+    </div>
+
+    <!-- NOTA 3: Torres del Paine Running Festival -->
+    <div class="nota-card">
+      <div class="card-hero" style="background-image:url('https://images.unsplash.com/photo-1612392166886-ee8475b03af2?w=700&q=80&fit=crop&crop=center');">
+        <div class="card-overlay">
+          <span class="nota-cat cat-deporte" style="margin-bottom:8px;">🏃 Trail Running · Magallanes</span>
+          <h3>500 corredores, un parque único en el mundo: el Patagonia Running Festival vuelve a Torres del Paine en otoño</h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">📅 25 abril, 2026 · 📍 Torres del Paine, Chile</div>
+        <p>El <strong>Patagonia Running Festival</strong> celebra su sexta edición el 25 de abril dentro del Parque Nacional Torres del Paine con un formato deliberadamente pequeño: solo <strong>500 participantes</strong>. La decisión no es casual — es una apuesta por la experiencia de calidad sobre la masificación, algo que los parques patagónicos necesitan urgentemente.</p>
+        <p>La edición 2026 se corre por segunda vez en otoño, una temporada que los organizadores y corredores veteranos prefieren: menos viento, luz dorada, colores únicos y una Patagonia que muy pocos turistas conocen. Las distancias van de 5K a 50K, con largada desde el Hotel Río Serrano.</p>
+        <p>Para el turismo de la región, este evento es un modelo: genera ingresos en temporada baja, atrae viajeros de alto valor y lo hace dentro de un marco de respeto al ecosistema protegido.</p>
+        <div class="fuente">🔗 <a href="https://patagoniarunningfestival.com/en/">patagoniarunningfestival.com</a> · <a href="https://marathontours.com/en-us/events/patagonia-marathon/">Marathon Tours</a></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="div"></div>
+
+  <!-- ══ MEDIO AMBIENTE ══ -->
+  <div class="sec-head">
+    <div class="sec-title">🧊 Medio Ambiente</div>
+    <div class="sec-line"></div>
+    <div class="sec-badge b-verde">Internacional · Nacional</div>
+  </div>
+
+  <!-- NOTA 4: Perito Moreno -->
+  <div class="nota-full">
+    <div class="hero" style="background-image:url('https://images.unsplash.com/photo-1517591187965-c4e8c8a80e88?w=1100&q=85&fit=crop&crop=center');">
+      <div class="hero-overlay">
+        <span class="nota-cat cat-glacier">🧊 Glaciares · Ciencia · Turismo</span>
+        <h2>El Perito Moreno ya no es el glaciar estable que conocimos: 800 metros de retroceso en cuatro años cambian todo</h2>
+        <div class="bajada">El emblema turístico más visitado de la Patagonia argentina entra en una fase de retroceso sin precedentes. Lo que esto significa para la ciencia, el turismo y el futuro del agua en la región.</div>
+      </div>
+    </div>
+    <div class="nota-body">
+      <div class="nota-meta">
+        <span>📅 <strong>Marzo 2026</strong></span>
+        <span>📍 <strong>Parque Nacional Los Glaciares · Santa Cruz</strong></span>
+        <span>🏷 <strong>Medio Ambiente · Turismo · Ciencia</strong></span>
+        <span>✍️ PatagoniaGLOBAL</span>
+      </div>
+      <div class="nota-texto">
+        <p>Durante casi un siglo, el glaciar Perito Moreno fue la excepción al apocalipsis del hielo. Mientras otros glaciares del planeta retrocedían sin pausa, el Moreno avanzaba, se estabilizaba, rompía con sus famosas descargas de hielo y volvía a crecer. Era, para científicos y turistas por igual, una prueba de que algo en este sistema todavía funcionaba. Ese tiempo parece haber terminado.</p>
+
+        <p>Un estudio conjunto entre la Administración de Parques Nacionales y el Glaciarium confirmó en las últimas semanas lo que las imágenes satelitales ya sugerían: <strong>el Perito Moreno perdió 0,8 kilómetros cuadrados de superficie y retrocedió hasta 420 metros en apenas 97 días</strong>. La velocidad de adelgazamiento pasó de 0,34 metros por año (período 2000-2019) a 5,5 metros por año entre 2019 y 2024. Los números son difíciles de leer con calma.</p>
+
+        <div class="destacado">"Ese volumen de hielo no se recupera en un invierno." — Científico del Glaciarium, citado por Diario Crónica.</div>
+
+        <p>Los investigadores señalan que el proceso se disparó cuando el glaciar perdió apoyo en la morena de sedimentos que lo mantenía estabilizado durante décadas. Sin ese freno natural, el hielo comenzó a moverse más rápido, a adelgazarse desde abajo por contacto con el agua lacustre y a perder masa de forma acelerada. El calentamiento global es el conductor de fondo, pero el mecanismo disparador fue la pérdida de ese soporte geológico.</p>
+
+        <p>Para el turismo de El Calafate — ciudad cuya economía depende en buena medida de las visitas al glaciar — las noticias generan inquietud legítima. El Perito Moreno recibió más de 600.000 visitantes en 2024. La pregunta que nadie quiere hacer en voz alta es cuánto tiempo más el espectáculo seguirá siendo el de siempre. <strong>Desde PatagoniaGLOBAL creemos que es exactamente ese el momento de decirlo con claridad</strong>: no para desalentar el turismo, sino para entender que visitar el Perito Moreno hoy tiene una urgencia nueva. Y para exigir políticas de protección a la altura del desafío.</p>
+
+        <div class="datos-box">
+          <div class="dato"><div class="dato-num">420m</div><div class="dato-label">de retroceso en 97 días</div></div>
+          <div class="dato"><div class="dato-num">0,8 km²</div><div class="dato-label">de superficie perdida</div></div>
+          <div class="dato"><div class="dato-num">16×</div><div class="dato-label">más rápido que antes de 2019</div></div>
+        </div>
+
+        <div class="fuente">🔗 <strong>Fuentes:</strong> <a href="https://www.infobae.com/america/medio-ambiente/2026/03/06/por-que-el-perito-moreno-dejo-de-ser-el-glaciar-mas-firme-de-la-patagonia/">Infobae</a> · <a href="https://www.diariocronica.com.ar/noticias/2026/03/08/134772-detectan-un-retroceso-historico-en-el-glaciar-perito-moreno-durante-este-verano">Diario Crónica</a> · Nota reescrita con voz editorial PatagoniaGLOBAL.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTA 5: Ley de Glaciares -->
+  <div class="nota-full">
+    <div class="hero" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1100&q=85&fit=crop&crop=center');">
+      <div class="hero-overlay">
+        <span class="nota-cat cat-politica">⚖️ Política · Binacional · Conflicto</span>
+        <h2>Argentina reforma la ley que protege sus glaciares y Chile enciende alarmas: lo que está en juego para toda la Patagonia</h2>
+        <div class="bajada">El Senado argentino aprobó cambios que abrirían los glaciares a la minería. Las cuencas compartidas con Chile ponen en alerta a ambos países. El debate es técnico, político y profundamente patagónico.</div>
+      </div>
+    </div>
+    <div class="nota-body">
+      <div class="nota-meta">
+        <span>📅 <strong>Marzo 2026</strong></span>
+        <span>📍 <strong>Argentina · Chile · Andes Patagónicos</strong></span>
+        <span>🏷 <strong>Política · Medio Ambiente · Binacional</strong></span>
+        <span>✍️ PatagoniaGLOBAL</span>
+      </div>
+      <div class="nota-texto">
+        <p>La ley de glaciares argentina, aprobada en 2010, protegía de forma integral los cuerpos de hielo y el ambiente periglacial del país. Era, en términos de legislación ambiental, una de las más avanzadas de la región. El Senado la modificó. Y lo que cambia no es un detalle técnico: es la filosofía entera del texto.</p>
+
+        <p>La reforma impulsada por el gobierno de Milei reemplaza la protección universal por un criterio funcional: solo quedarán protegidos los glaciares que demuestren tener <strong>"función hidrológica efectiva"</strong>. Y quien decide cuáles son esos glaciares deja de ser el Estado nacional o los organismos científicos para pasar a ser <strong>cada provincia</strong>. En la práctica, esto abre la puerta a proyectos mineros de litio y cobre en zonas que hoy están vedadas.</p>
+
+        <div class="opinion-box">
+          <div class="opinion-label">Distintas voces</div>
+          <blockquote>"La reforma podría generar hasta 200.000 empleos y atraer 33 mil millones de dólares en inversiones." — Cámara Argentina de Empresarios Mineros (CAEM).</blockquote>
+          <cite>— En contrapartida: Naciones Unidas advirtió que los cambios podrían violar derechos humanos, incluido el acceso al agua.</cite>
+        </div>
+
+        <p>El conflicto no es solo argentino. Argentina y Chile comparten <strong>alrededor de 20 cuencas hidrográficas andinas</strong> que cubren unos 60.000 km² — la mayoría en la Patagonia. El agua que se origina en los glaciares del lado argentino llega al territorio chileno, riega comunidades, alimenta ríos y sostiene ecosistemas transfronterizos. Cualquier degradación en la fuente tiene consecuencias inevitables al otro lado de la cordillera.</p>
+
+        <p>Desde Chile, el debate se sigue con atención creciente. El gobierno chileno no se ha pronunciado formalmente, pero legisladores y organizaciones ambientales del lado trasandino han elevado la voz. <strong>Ladera Sur, una de las principales plataformas de medio ambiente de habla hispana, alertó sobre campañas ciudadanas</strong> que crecen en ambos países.</p>
+
+        <p>PatagoniaGLOBAL entiende que en este debate existen intereses legítimos en tensión. La minería genera trabajo en regiones postergadas. La protección del agua es un derecho humano. El desafío real — y el que ningún actor político parece dispuesto a abordar con honestidad — es cómo conciliar desarrollo económico con la integridad de los sistemas de agua que sostienen la vida en el sur del continente. <strong>Esa conversación no puede postergarse más.</strong></p>
+
+        <div class="fuente">🔗 <strong>Fuentes:</strong> <a href="https://chequeado.com/el-explicador/ley-de-glaciares-4-claves-para-que-entiendas-su-relevancia-y-que-quiere-cambiar-el-gobierno/">Chequeado</a> · <a href="https://laderasur.com/articulo/argentina-en-vilo-modificacion-de-ley-de-glaciares-desata-preocupacion-y-campanas-en-el-pais/">Ladera Sur</a> · <a href="https://www.redimin.cl/chile-atento-a-reforma-en-ley-de-glaciares-de-argentina-y-su-impacto/">Redimin Chile</a> · Nota reescrita con voz editorial PatagoniaGLOBAL.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="flogo">Patagonia<span>GLOBAL</span></div>
+  <p style="margin-bottom:6px;">patagoniaglobal.ar · Argentina · Chile · Sin fronteras</p>
+  <p>Edición del 29 de marzo de 2026 · Noticias procesadas y reescritas con IA · Fuentes citadas en cada nota</p>
+</footer>
+
+</body>
+</html>

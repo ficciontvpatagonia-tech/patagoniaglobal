@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PatagoniaGLOBAL</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --verde: #1c2d3d;
+      --verde-medio: #3a5a7a;
+      --azul-claro: #8ab8d4;
+      --gris-oscuro: #252830;
+      --gris-medio: #5a6070;
+      --crema: #f0ede8;
+      --blanco: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--crema); color: var(--gris-oscuro); }
+
+    /* HEADER */
+    header { background: var(--verde); }
+    .top-bar {
+      background: #252830;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 40px;
+      font-size: 11px;
+      color: #aaa;
+    }
+    .header-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 40px 14px;
+    }
+    .logo-tagline { font-size: 11px; color: #8ab8d4; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 4px; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: white; letter-spacing: -1px; line-height: 1; }
+    .logo span { color: #8ab8d4; }
+    nav {
+      background: var(--verde);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    nav a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 12px 18px;
+      transition: all 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+    nav a:hover { color: #8ab8d4; border-bottom-color: #8ab8d4; }
+
+    /* CONTENIDO */
+    .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+    .volver {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 28px 0 24px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--verde-medio);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .volver:hover { color: var(--verde); }
+
+    .nota-tag {
+      display: inline-block;
+      background: var(--verde);
+      color: #8ab8d4;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+
+    .nota-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--gris-oscuro);
+      margin-bottom: 16px;
+    }
+
+    .nota-bajada {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--gris-medio);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      border-left: 3px solid #8ab8d4;
+      padding-left: 16px;
+    }
+
+    .nota-meta {
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nota-meta span { display: flex; align-items: center; gap: 5px; }
+
+    .nota-imagen {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 32px;
+      display: block;
+    }
+    .nota-imagen-placeholder {
+      width: 100%;
+      height: 320px;
+      background: linear-gradient(160deg, #0e1a26 0%, #1c2d3d 45%, #4a7a9a 100%);
+      border-radius: 4px;
+      margin-bottom: 32px;
+    }
+
+    .nota-cuerpo p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--gris-oscuro);
+      margin-bottom: 22px;
+    }
+
+    .nota-fuente {
+      margin-top: 40px;
+      padding: 16px 20px;
+      background: white;
+      border-radius: 4px;
+      border-left: 3px solid var(--verde-medio);
+      font-size: 12px;
+      color: var(--gris-medio);
+    }
+    .nota-fuente strong { color: var(--gris-oscuro); }
+    .nota-fuente a { color: var(--verde-medio); }
+
+    .divider-footer {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #ddd, transparent);
+      margin: 48px 0 0;
+    }
+
+    footer {
+      background: #252830;
+      color: rgba(255,255,255,0.5);
+      padding: 32px 20px 20px;
+      text-align: center;
+      margin-top: 0;
+    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 22px; color: white; margin-bottom: 6px; }
+    .footer-logo span { color: #8ab8d4; }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 12px; }
+
+    #loading {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--gris-medio);
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .nota-titulo { font-size: 26px; }
+      .nota-bajada { font-size: 15px; }
+      .nota-cuerpo p { font-size: 15px; }
+      .nota-imagen { height: 220px; }
+      nav a { font-size: 10px; padding: 10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top-bar">
+    <span id="fecha-display">Patagonia Argentina y Chilena</span>
+    <span style="color:#8ab8d4;font-weight:600;">The South. The Story.</span>
+  </div>
+  <div class="header-main">
+    <div class="logo-tagline">The South. The World.</div>
+    <a href="index.html" style="text-decoration:none">
+      <div class="logo">Patagonia<span>GLOBAL</span></div>
+    </a>
+  </div>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="index.html">Noticias</a>
+    <a href="index.html">Deportes</a>
+    <a href="index.html">Turismo</a>
+    <a href="index.html">Pesca</a>
+    <a href="index.html">Historia</a>
+    <a href="index.html">Guías</a>
+  </nav>
+</header>
+
+<div class="container">
+  <a href="index.html" class="volver">← Volver al inicio</a>
+  <div id="loading">Cargando nota...</div>
+  <article id="contenido" style="display:none"></article>
+</div>
+
+<div class="divider-footer"></div>
+<footer>
+  <div class="footer-logo">Patagonia<span>GLOBAL</span></div>
+  <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:4px;">Argentina · Chile · Sin fronteras</div>
+  <div class="footer-copy">© 2026 PatagoniaGLOBAL · patagoniaglobal.ar</div>
+</footer>
+
+<script>
+function getParam(name) {
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+function renderNota(nota, fechaDisplay) {
+  // Fecha en top bar
+  const fechaEl = document.getElementById("fecha-display");
+  if (fechaEl && fechaDisplay) fechaEl.textContent = fechaDisplay + " · Patagonia Argentina y Chilena";
+
+  // Título de pestaña
+  document.title = nota.titulo + " — PatagoniaGLOBAL";
+
+  // Imagen
+  let imgHtml = "";
+  if (nota.imagen) {
+    imgHtml = `<img class="nota-imagen" src="${nota.imagen}" alt="${nota.titulo}" onerror="this.style.display='none'">`;
+  } else {
+    imgHtml = `<div class="nota-imagen-placeholder"></div>`;
+  }
+
+  // Cuerpo: convertir \n\n en párrafos
+  const parrafos = (nota.cuerpo || "").split(/\n\n+/).filter(p => p.trim());
+  const cuerpoHtml = parrafos.map(p => `<p>${p.trim()}</p>`).join("");
+
+  document.getElementById("contenido").innerHTML = `
+    <div class="nota-tag">${nota.tag || "🗞️ Patagonia"}</div>
+    <h1 class="nota-titulo">${nota.titulo}</h1>
+    <div class="nota-bajada">${nota.bajada || ""}</div>
+    <div class="nota-meta">
+      <span>${nota.pais === 'chile' ? '🇨🇱 Chile' : nota.pais === 'ambos' ? '🇦🇷🇨🇱 Argentina · Chile' : nota.pais === 'argentina' ? '🇦🇷 Argentina' : '🌎 Patagonia'}</span>
+      <span>📰 ${nota.fuente || "Medios patagónicos"}</span>
+    </div>
+    ${imgHtml}
+    <div class="nota-cuerpo">${cuerpoHtml}</div>
+    <div class="nota-fuente">
+      <strong>Fuente original:</strong> Esta nota fue elaborada con información de <strong>${nota.fuente || "medios locales"}</strong>.
+      ${nota.url_original ? `<br>Nota original: <a href="${nota.url_original}" target="_blank" rel="noopener">ver en el medio fuente →</a>` : ""}
+    </div>
+  `;
+
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("contenido").style.display = "block";
+}
+
+function buscarNota(data, id) {
+  if (data.tapa && data.tapa.id === id) return data.tapa;
+  for (const arr of ['secundarias', 'noticias', 'historias']) {
+    if (data[arr]) {
+      const n = data[arr].find(n => n.id === id);
+      if (n) return n;
+    }
+  }
+  return null;
+}
+
+const id = getParam("id");
+if (!id) {
+  document.getElementById("loading").textContent = "Nota no encontrada.";
+} else {
+  fetch("noticias.json")
+    .then(r => r.json())
+    .then(data => {
+      const nota = buscarNota(data, id);
+      if (nota) {
+        renderNota(nota, data.fecha_display);
+      } else {
+        document.getElementById("loading").textContent = "Nota no encontrada.";
+      }
+    })
+    .catch(() => {
+      document.getElementById("loading").textContent = "Error al cargar la nota.";
+    });
+}
+</script>
+
+</body>
+</html>
