@@ -256,24 +256,64 @@
       color: white;
       border-radius: 8px;
       padding: 36px 40px;
+    }
+    .contacto-box > p {
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 24px;
       text-align: center;
     }
-    .contacto-box p {
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 20px;
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      padding: 11px 14px;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
     }
-    .contacto-email {
-      display: inline-block;
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--azul-claro); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .form-group select option { background: #1c2d3d; color: white; }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      width: 100%;
+      margin-top: 20px;
       background: var(--azul-claro);
       color: var(--verde);
-      font-weight: 600;
-      padding: 12px 28px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 14px;
+      border: none;
       border-radius: 4px;
-      text-decoration: none;
-      font-size: 15px;
+      cursor: pointer;
       transition: opacity 0.2s;
+      font-family: 'Inter', sans-serif;
     }
-    .contacto-email:hover { opacity: 0.88; }
+    .form-submit:hover { opacity: 0.88; }
+    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .form-mensaje {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      display: none;
+      text-align: center;
+    }
+    .form-mensaje.ok  { background: rgba(122,173,204,0.2); color: var(--azul-claro); border: 1px solid rgba(122,173,204,0.3); }
+    .form-mensaje.err { background: rgba(220,80,80,0.15); color: #f87171; border: 1px solid rgba(220,80,80,0.3); }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
 
     /* FOOTER */
     .divider-footer { height: 1px; background: linear-gradient(to right, transparent, #ddd, transparent); }
@@ -481,9 +521,78 @@
     <h2 class="seccion-titulo">Contacto</h2>
     <div class="contacto-box">
       <p>¿Tenés una historia patagónica para contar? ¿Querés colaborar, anunciarte o simplemente saludar? Escribinos.</p>
-      <a class="contacto-email" href="mailto:ficciontvpatagonia@gmail.com">ficciontvpatagonia@gmail.com</a>
+      <form id="formContacto" onsubmit="enviarFormulario(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fc-nombre">Nombre</label>
+            <input id="fc-nombre" type="text" placeholder="Tu nombre" required />
+          </div>
+          <div class="form-group">
+            <label for="fc-email">Email</label>
+            <input id="fc-email" type="email" placeholder="tu@email.com" required />
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:14px;">
+          <label for="fc-asunto">Asunto</label>
+          <select id="fc-asunto">
+            <option value="Quiero contar una historia">Quiero contar una historia</option>
+            <option value="Propuesta de colaboración">Propuesta de colaboración</option>
+            <option value="Consulta de publicidad">Consulta de publicidad</option>
+            <option value="Corrección de nota">Corrección de nota</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fc-mensaje">Mensaje</label>
+          <textarea id="fc-mensaje" placeholder="Contanos de qué se trata..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="fc-btn">Enviar mensaje</button>
+        <div class="form-mensaje" id="fc-respuesta"></div>
+      </form>
     </div>
   </div>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbytck0AZOajdiY1RZOTsbCtpyJpnc4iWo40F_goMDQpbUiuCw2PMf_6fbsOMWOgzRoXeg/exec";
+
+    async function enviarFormulario(e) {
+      e.preventDefault();
+      const btn = document.getElementById("fc-btn");
+      const respDiv = document.getElementById("fc-respuesta");
+      btn.disabled = true;
+      btn.textContent = "Enviando...";
+      respDiv.style.display = "none";
+
+      const datos = {
+        nombre:  document.getElementById("fc-nombre").value.trim(),
+        email:   document.getElementById("fc-email").value.trim(),
+        asunto:  document.getElementById("fc-asunto").value,
+        mensaje: document.getElementById("fc-mensaje").value.trim()
+      };
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: "POST",
+          body: JSON.stringify(datos)
+        });
+        const json = await res.json();
+        if (json.ok) {
+          respDiv.className = "form-mensaje ok";
+          respDiv.textContent = "¡Mensaje enviado! Te respondemos a la brevedad.";
+          document.getElementById("formContacto").reset();
+        } else {
+          throw new Error(json.mensaje || "Error desconocido");
+        }
+      } catch (err) {
+        respDiv.className = "form-mensaje err";
+        respDiv.textContent = "No se pudo enviar el mensaje. Intentá de nuevo o escribinos directamente.";
+      }
+
+      respDiv.style.display = "block";
+      btn.disabled = false;
+      btn.textContent = "Enviar mensaje";
+    }
+  </script>
 
 </div>
 
