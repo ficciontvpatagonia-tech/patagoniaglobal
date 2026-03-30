@@ -119,21 +119,23 @@
 
     .nota-titulo {
       font-family: 'Playfair Display', serif;
-      font-size: 38px;
-      font-weight: 700;
-      line-height: 1.2;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 900;
+      line-height: 1.15;
       color: var(--gris-oscuro);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
     }
 
     .nota-bajada {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 400;
       color: var(--gris-medio);
-      line-height: 1.6;
+      line-height: 1.65;
       margin-bottom: 24px;
-      border-left: 3px solid #8ab8d4;
-      padding-left: 16px;
+      border-left: 4px solid #8ab8d4;
+      padding-left: 18px;
+      font-style: italic;
     }
 
     .nota-meta {
@@ -145,6 +147,9 @@
       display: flex;
       align-items: center;
       gap: 16px;
+      flex-wrap: wrap;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e0ddd8;
     }
     .nota-meta span { display: flex; align-items: center; gap: 5px; }
 
@@ -263,20 +268,46 @@
     }
 
     .nota-cuerpo p {
-      font-size: 17px;
+      font-size: 17.5px;
+      line-height: 1.85;
+      color: #2a2a2a;
+      margin-bottom: 24px;
+    }
+
+    .nota-cuerpo p:first-of-type {
+      font-size: 19px;
       line-height: 1.8;
       color: var(--gris-oscuro);
-      margin-bottom: 22px;
     }
 
     .nota-cuerpo h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 20px;
+      font-size: clamp(20px, 3vw, 28px);
       font-weight: 700;
       color: var(--verde);
-      margin: 36px 0 12px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--azul-claro);
+      margin: 48px 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--azul-claro);
+      line-height: 1.2;
+    }
+
+    .foto-inline {
+      margin: 36px -10px;
+      width: calc(100% + 20px);
+    }
+    .foto-inline img {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+    .foto-inline figcaption {
+      font-size: 12px;
+      color: var(--gris-medio);
+      padding: 8px 4px 0;
+      font-style: italic;
+      letter-spacing: 0.3px;
     }
 
     .datos-clave {
@@ -392,7 +423,10 @@
       .container { padding: 0 14px; }
       .nota-titulo { font-size: 24px; line-height: 1.25; }
       .nota-bajada { font-size: 15px; }
-      .nota-cuerpo p { font-size: 15px; line-height: 1.7; }
+      .nota-cuerpo p { font-size: 16px; line-height: 1.75; }
+      .nota-cuerpo p:first-of-type { font-size: 17px; }
+      .nota-cuerpo h3 { font-size: 22px; margin: 36px 0 12px; }
+      .foto-inline { margin: 28px 0; width: 100%; }
       .nota-imagen { max-height: 260px; }
       .nota-imagen-wrap { max-height: 260px; }
       .nota-imagen-placeholder { height: 200px; }
@@ -538,19 +572,48 @@ function renderNota(nota, fechaDisplay, data) {
     imgHtml = `<div class="nota-imagen-placeholder"></div>`;
   }
 
-  // Cuerpo — detecta subtítulos (línea corta sin punto final) y los renderiza como h3
+  // Cuerpo — detecta subtítulos y los renderiza como h3, intercalando fotos de galería
   const parrafos = (nota.cuerpo || "").split(/\n\n+/).filter(p => p.trim());
-  const cuerpoHtml = parrafos.map(p => {
-    const t = p.trim();
-    const esSubtitulo = t.length < 80 && !t.endsWith('.') && !t.endsWith(',') && !t.endsWith('?') && !t.startsWith('"') && !t.match(/^\d/);
-    return esSubtitulo ? `<h3>${t}</h3>` : `<p>${t}</p>`;
-  }).join("");
+  const fotos = nota.galeria || [];
+  let fotoIdx = 0;
 
-  // Galería de fotos adicionales
+  // Agrupar por secciones (cada h3 inicia una nueva sección)
+  let secciones = [];
+  let secActual = [];
+  parrafos.forEach(p => {
+    const t = p.trim();
+    const esH3 = t.length < 90 && !t.endsWith('.') && !t.endsWith(',') && !t.endsWith('?') && !t.startsWith('"') && !t.match(/^\d/);
+    if (esH3 && secActual.length > 0) {
+      secciones.push(secActual);
+      secActual = [{ tipo: 'h3', texto: t }];
+    } else {
+      secActual.push({ tipo: esH3 ? 'h3' : 'p', texto: t });
+    }
+  });
+  if (secActual.length) secciones.push(secActual);
+
+  // Calcular cada cuántas secciones intercalar una foto
+  const intervalo = fotos.length > 0 ? Math.max(1, Math.floor(secciones.length / (fotos.length + 1))) : 999;
+
+  let cuerpoHtml = "";
+  secciones.forEach((sec, i) => {
+    sec.forEach(item => {
+      cuerpoHtml += item.tipo === 'h3' ? `<h3>${item.texto}</h3>` : `<p>${item.texto}</p>`;
+    });
+    // Intercalar foto después de la sección correspondiente (no al final)
+    if (fotoIdx < fotos.length && (i + 1) % intervalo === 0 && i < secciones.length - 1) {
+      cuerpoHtml += `<figure class="foto-inline"><img src="${fotos[fotoIdx]}" loading="lazy" alt="${nota.titulo}" onerror="this.parentElement.style.display='none'"></figure>`;
+      fotoIdx++;
+    }
+  });
+
+  // Fotos restantes al final si no se intercalaron todas
   let galeriaHtml = "";
-  if (nota.galeria && nota.galeria.length) {
-    const imgs = nota.galeria.map(src => `<img src="${src}" alt="${nota.titulo}" loading="lazy" onerror="this.style.display='none'">`).join("");
-    galeriaHtml = `<div class="nota-galeria">${imgs}</div>`;
+  if (fotoIdx < fotos.length) {
+    const restantes = fotos.slice(fotoIdx).map(src =>
+      `<img src="${src}" alt="${nota.titulo}" loading="lazy" onerror="this.style.display='none'">`
+    ).join("");
+    galeriaHtml = `<div class="nota-galeria">${restantes}</div>`;
   }
 
   // Datos clave destacados
