@@ -348,9 +348,13 @@ def fotos_propias_disponibles():
 
 
 def buscar_foto_propia(nota, fotos):
-    texto = (nota.get("titulo","") + " " + nota.get("imagen_keywords","") + " " + nota.get("categoria","")).lower()
+    # Solo matchea contra imagen_keywords (campo específico que Claude genera para la foto)
+    # No usa el título para evitar falsos positivos por palabras comunes como "neuquén" o "historia"
+    keywords_nota = nota.get("imagen_keywords", "").lower()
+    if not keywords_nota:
+        return None
     for foto in fotos:
-        if any(kw in texto for kw in foto.get("keywords",[])):
+        if any(kw in keywords_nota for kw in foto.get("keywords", [])):
             return f"fotos/{foto['archivo']}"
     return None
 
