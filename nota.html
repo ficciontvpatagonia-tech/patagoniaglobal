@@ -495,7 +495,6 @@ function renderNota(nota, fechaDisplay, data) {
     <div class="nota-cuerpo">${cuerpoHtml}</div>
     <div class="nota-fuente">
       <strong>Fuente original:</strong> Esta nota fue elaborada con información de <strong>${nota.fuente || "medios locales"}</strong>.
-      ${nota.url_original ? `<br>Nota original: <a href="${nota.url_original}" target="_blank" rel="noopener">ver en el medio fuente →</a>` : ""}
     </div>
     ${compartirHtml}
     ${renderRelacionadas(data, nota.id)}
