@@ -39,53 +39,78 @@ UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY", "")
 
 FUENTES_RSS = [
     # ── Argentina · Regionales ──
-    {"nombre": "Diario Río Negro",      "url": "https://www.rionegro.com.ar/feed/",                  "region": "Río Negro"},
-    {"nombre": "El Patagónico",         "url": "https://www.elpatagonico.com/rss/portada.xml",       "region": "Chubut"},
-    {"nombre": "Jornada Patagonia",     "url": "https://www.diariojornada.com.ar/rss/",              "region": "Chubut"},
-    {"nombre": "ADN Sur",               "url": "https://www.adnsur.com.ar/feed/",                    "region": "Patagonia"},
-    {"nombre": "El Cordillerano",       "url": "https://www.elcordillerano.com.ar/rss/home.xml",     "region": "Río Negro"},
-    {"nombre": "Bariloche2000",         "url": "https://www.bariloche2000.com/feed/",                "region": "Bariloche"},
-    {"nombre": "InfoFueguina",          "url": "https://www.infofueguina.com/rss",                   "region": "Tierra del Fuego"},
+    {"nombre": "Diario Río Negro",        "url": "https://www.rionegro.com.ar/feed/",                    "region": "Río Negro"},
+    {"nombre": "La Opinión Austral",      "url": "https://laopinionaustral.com.ar/feed/",                "region": "Santa Cruz"},
+    {"nombre": "El Patagónico",           "url": "https://www.elpatagonico.com/rss/portada.xml",         "region": "Chubut"},
+    {"nombre": "Jornada Patagonia",       "url": "https://www.diariojornada.com.ar/rss/",                "region": "Chubut"},
+    {"nombre": "ADN Sur",                 "url": "https://www.adnsur.com.ar/feed/",                      "region": "Patagonia"},
+    {"nombre": "El Cordillerano",         "url": "https://www.elcordillerano.com.ar/rss/home.xml",       "region": "Río Negro"},
+    {"nombre": "Bariloche2000",           "url": "https://www.bariloche2000.com/feed/",                  "region": "Bariloche"},
+    {"nombre": "InfoFueguina",            "url": "https://www.infofueguina.com/rss",                     "region": "Tierra del Fuego"},
+    {"nombre": "Neuquén Informa",         "url": "https://www.neuqueninforma.gob.ar/feed/",              "region": "Neuquén"},
+    {"nombre": "LMNeuquén",              "url": "https://www.lmneuquen.com/rss/",                       "region": "Neuquén"},
     # ── Argentina · Nacional ──
-    {"nombre": "La Nación",             "url": "https://www.lanacion.com.ar/arc/outboundfeeds/rss/", "region": "Nacional"},
-    {"nombre": "Infobae",               "url": "https://www.infobae.com/feeds/rss/",                 "region": "Nacional"},
-    {"nombre": "Clarín",                "url": "https://www.clarin.com/rss/lo-ultimo/",              "region": "Nacional"},
+    {"nombre": "La Nación",               "url": "https://www.lanacion.com.ar/arc/outboundfeeds/rss/",   "region": "Nacional"},
+    {"nombre": "Infobae",                 "url": "https://www.infobae.com/feeds/rss/",                   "region": "Nacional"},
+    {"nombre": "Clarín",                  "url": "https://www.clarin.com/rss/lo-ultimo/",                "region": "Nacional"},
     # ── Chile · Regionales ──
-    {"nombre": "La Prensa Austral",     "url": "https://laprensaaustral.cl/feed/",                   "region": "Magallanes"},
-    {"nombre": "El Divisadero",         "url": "https://www.eldivisadero.cl/feed/",                  "region": "Aysén"},
-    {"nombre": "El Llanquihue",         "url": "https://www.elllanquihue.cl/feed/",                  "region": "Los Lagos"},
+    {"nombre": "La Prensa Austral",       "url": "https://laprensaaustral.cl/feed/",                     "region": "Magallanes"},
+    {"nombre": "El Divisadero",           "url": "https://www.eldivisadero.cl/feed/",                    "region": "Aysén"},
+    {"nombre": "El Llanquihue",           "url": "https://www.elllanquihue.cl/feed/",                    "region": "Los Lagos"},
+    {"nombre": "El Pingüino",             "url": "https://www.elpinguino.com/feed/",                     "region": "Magallanes"},
 ]
 
 PALABRAS_CLAVE = [
     # Provincias y regiones
     "patagonia", "neuquén", "neuquen", "río negro", "rio negro", "chubut",
     "santa cruz", "tierra del fuego",
-    # Ciudades
+    # Ciudades Argentina
     "bariloche", "ushuaia", "calafate", "chaltén", "chalten", "comodoro",
     "madryn", "trelew", "esquel", "zapala", "viedma", "bolsón", "bolson",
     "san martín de los andes", "junín de los andes", "río gallegos",
     "cipolletti", "general roca", "villa la angostura", "puerto madryn",
+    "río colorado", "neuquén capital", "las heras", "perito moreno",
+    "puerto deseado", "caleta olivia", "pico truncado", "chos malal",
+    "plottier", "piedra buena", "comandante piedra buena", "los antiguos",
     # Chile
     "magallanes", "punta arenas", "puerto natales", "torres del paine",
     "coyhaique", "aysén", "aysen", "puerto montt", "chiloé", "chiloe",
-    "valdivia", "osorno", "pucón", "pucon",
-    # Medio ambiente — PRIORIDAD
-    "glaciar", "glaciares", "ley de glaciares", "minería", "minero",
-    "sobrepesca", "pesca ilegal", "incendio", "incendio forestal",
-    "contaminación", "derrame", "parque nacional", "reserva natural",
-    "huemul", "cóndor", "ballena", "lobo marino", "fauna",
-    # Deportes y aventura
-    "fitz roy", "nahuel huapi", "patagónico", "patagonico", "ruta 40",
-    "mapuche", "tehuelche", "kawésqar", "trekking", "trail running",
-    "canotaje", "kayak", "escalada", "andinismo", "pesca", "trucha",
-    "esquí", "esqui", "snowboard", "expedición",
+    "valdivia", "osorno", "pucón", "pucon", "villa o'higgins",
+    "cochrane", "caleta tortel", "puerto williams", "cabo de hornos",
+    # Medio ambiente — PRIORIDAD MÁXIMA
+    "glaciar", "glaciares", "ley de glaciares", "periglacial",
+    "minería", "minero", "sobrepesca", "pesca ilegal", "zona económica exclusiva",
+    "incendio", "incendio forestal", "contaminación", "derrame",
+    "parque nacional", "reserva natural", "área protegida",
+    "huemul", "cóndor", "ballena", "lobo marino", "puma", "guanaco",
+    "macá tobiano", "fauna patagónica", "especie invasora", "jabalí",
+    "microplástico", "cambio climático", "recurso hídrico",
+    # Pueblos Originarios
+    "mapuche", "tehuelche", "aonikenk", "kawésqar", "kawesqar",
+    "selknam", "ona", "yagán", "yagan", "pueblo originario",
+    "comunidad indígena", "territorio ancestral",
+    # Deportes patagónicos
+    "fitz roy", "cerro torre", "nahuel huapi",
+    "trail running", "ultra trail", "patagonia run", "ultra fiord",
+    "final frontier", "canotaje", "kayak", "escalada", "andinismo",
+    "esquí", "esqui", "snowboard", "ski", "cerro catedral",
+    "expedición", "trekking", "mountain bike", "ciclismo de montaña",
     "canapino", "turismo carretera", "automovilismo", "rally",
-    # Servicios e infraestructura — temas de la vida cotidiana patagónica
-    "estado de la ruta", "ruta cortada", "ruta 3", "ruta 22", "ruta 40",
+    # Producción y economía regional
+    "langostino", "merluza", "pesca artesanal", "golfo san jorge",
+    "vaca muerta", "petróleo", "gas patagónico", "energía eólica",
+    "frutilla", "cereza", "fruta fina", "vitivinicultura",
+    "ganadería patagónica", "oveja", "lana", "carne de guanaco",
+    "conicet", "paleontología", "dinosaurio", "hallazgo fósil",
+    # Conectividad e infraestructura
+    "ruta 3", "ruta 22", "ruta 40", "paso fronterizo",
     "aeropuerto", "vuelo", "aerolíneas", "lade", "jetsmart", "flybondi",
-    "precio del pasaje", "pasaje aéreo", "conectividad aérea",
+    "conectividad aérea", "puente patagónico",
+    # Cultura e historia
+    "historia patagónica", "pionero", "inmigrante patagónico",
+    "fiesta regional", "festival", "artista patagónico",
+    # Servicios cotidianos
     "clima", "alerta meteorológica", "viento", "nevada", "temporal",
-    "precio de la nafta", "combustible", "corte de luz", "agua potable",
 ]
 
 MAX_HISTORIAL = 50   # artículos máximos a guardar
@@ -229,37 +254,51 @@ URL: {n['url']}
 
     hoy = datetime.now().strftime('%Y%m%d-%H%M')
 
-    prompt = f"""Sos el editor jefe de PatagoniaGLOBAL, el primer medio digital panpatagónico que cubre Argentina y Chile sin fronteras.
+    prompt = f"""Sos el editor jefe de PatagoniaGLOBAL, el primer medio digital panpatagónico. Slogan: "Sur Global, principio de todo." Cobertura: Argentina y Chile sin fronteras.
 
-LÍNEA EDITORIAL:
+IDENTIDAD EDITORIAL:
+- La Patagonia no es periferia — es el comienzo. Escribís desde adentro, no desde Buenos Aires ni Santiago.
 - Voz: directa, contextual, apasionada por la región, rigurosa. Nunca alarmista, nunca partidaria.
-- Perspectiva regional: preguntate siempre qué significa este hecho para la Patagonia y si conecta con Chile.
-- Cada nota tiene diagnóstico propio: contexto, antecedentes, qué viene después.
+- Cada nota tiene perspectiva propia: qué significa para la Patagonia binacional, antecedentes, qué viene después.
+- Si el hecho cruza la frontera Argentina-Chile, marcarlo siempre.
 - NUNCA copiés párrafos de la fuente. Reescribí con voz propia.
 
-PRIORIDADES EDITORIALES — orden estricto:
-1. MEDIO AMBIENTE CRÍTICO: ley de glaciares, minería en zonas protegidas, sobrepesca, pesca ilegal, incendios forestales, contaminación de ríos, especies en peligro → TAPA AUTOMÁTICA si hay algo de esto.
-2. DEPORTES Y AVENTURA ÚNICOS: premios en competencias internacionales, expediciones históricas, primeras ascensiones, trail running, escalada, canotaje, automovilismo, esquí.
-3. TURISMO Y SERVICIOS: novedades, rutas, clima, aeropuertos, vuelos, precios, destinos.
-4. INTERÉS SOCIAL: comunidades, pueblos originarios, salud, educación con impacto regional.
-5. POLÍTICA: SOLO si hay una decisión de gobierno con impacto directo y concreto en la vida de los patagónicos. Evitar política partidaria, declaraciones, disputas internas.
-6. POLICIAL: SOLO si el hecho involucra incendios, naturaleza, medio ambiente o deportes. O si es un caso de impacto regional excepcional. DESCARTAR todo lo que sea crónica roja, robos, accidentes de tránsito comunes, violencia urbana cotidiana.
+CRITERIO DE SELECCIÓN — solo entran notas con anclaje patagónico real:
+✓ Medio Ambiente: glaciares, agua, fauna, ecosistemas, legislación ambiental, especies invasoras, contaminación
+✓ Pueblos Originarios: Mapuche, Tehuelche, Kawésqar, Selknam — territorio, derechos, cultura viva
+✓ Deportes Patagónicos: trail, escalada, kayak, ski, triatlón, expediciones, carreras aventura
+✓ Desarrollo & Producción: economía regional, pesca, ganadería, energía, infraestructura, conectividad
+✓ Cultura: arte, música, identidad, historia, gastronomía, fiestas regionales, pioneros
+✓ Ciencia & Tecnología: hallazgos CONICET, paleontología, innovación aplicada al territorio
+✓ Turismo & Guías: destinos, temporadas, premios internacionales a Patagonia
+✓ Bienestar: salud, comunidad, calidad de vida con impacto regional concreto
 
-REGLA CLAVE: Ante la duda entre una nota política y una de turismo, naturaleza o deportes — elegí siempre la segunda. El lector de PatagoniaGLOBAL viene a leer la Patagonia, no la política.
+PRIORIDADES EDITORIALES — orden estricto:
+1. MEDIO AMBIENTE CRÍTICO: glaciares, pesca ilegal en ZEE, incendios, especies en peligro, contaminación → TAPA AUTOMÁTICA.
+2. PUEBLOS ORIGINARIOS: cualquier nota sobre comunidades originarias patagónicas con hecho concreto.
+3. DEPORTES ÚNICOS: premios internacionales, expediciones históricas, trail, escalada, ski.
+4. PRODUCCIÓN CON IDENTIDAD: historia de productor patagónico, producto único de la región, primer hito económico local.
+5. TURISMO & CULTURA: destinos, fiestas regionales, artistas, premiaciones.
+6. DESARROLLO: infraestructura, conectividad, energía con impacto concreto.
+7. POLÍTICA: SOLO decisión de gobierno con impacto territorial directo y concreto. Sin política partidaria.
+
+DESCARTAR SIEMPRE: policiales, accidentes de tránsito, crónica roja, economía nacional sin anclaje patagónico, política porteña o santiaguina sin efecto en el territorio.
+
+REGLA DE ORO: el lector viene a leer la Patagonia. Ante la duda, elegí la nota que habla de territorio, naturaleza, gente o cultura.
 
 Tenés estas noticias nuevas disponibles hoy:
 {listado}
 
 Tu tarea:
-1. Elegí LA MEJOR para la tapa del día (según prioridades — medio ambiente va primero)
-2. Elegí entre 1 y 3 noticias adicionales para el feed del día (las más relevantes)
+1. Elegí LA MEJOR para la tapa del día (medio ambiente y pueblos originarios tienen prioridad automática)
+2. Elegí entre 1 y 3 noticias adicionales para el feed del día
 3. Escribí el artículo completo de cada una con voz propia de PatagoniaGLOBAL
-4. Generá 5 titulares breves para el ticker
+4. Generá 5 titulares breves para el ticker (hechos concretos, sin clickbait)
 
 Estructura del artículo (campo "cuerpo"):
-- Párrafo de entrada: el hecho central con ángulo propio
-- 2-3 párrafos: contexto regional, qué significa para la Patagonia, antecedentes
-- Párrafo de cierre: diagnóstico editorial, qué se espera
+- Párrafo de entrada: el hecho central con ángulo patagónico propio
+- 2-3 párrafos: contexto regional, qué significa para la Patagonia, antecedentes, conexión binacional si aplica
+- Párrafo de cierre: diagnóstico editorial, qué se espera o qué está en juego
 - Separar párrafos con \\n\\n — entre 350 y 500 palabras
 
 Respondé SOLO con este JSON válido (sin texto adicional):
@@ -271,18 +310,18 @@ Respondé SOLO con este JSON válido (sin texto adicional):
     "bajada": "Bajada con contexto y ángulo propio (2-3 oraciones)",
     "cuerpo": "Artículo completo con párrafos separados por \\n\\n",
     "tag": "emoji + categoría",
-    "categoria": "medio ambiente|aventura|deportes|turismo|social|policial|política|economía|historia|pesca|general",
+    "categoria": "medio ambiente|pueblos originarios|deportes|turismo|cultura|ciencia|producción|conectividad|bienestar|pesca|historia|general",
     "fuente": "Nombre del medio original",
     "url_original": "url completa",
     "pais": "argentina|chile|ambos",
     "imagen": null,
-    "imagen_keywords": "2-3 palabras en inglés para buscar foto (ej: glacier patagonia, wildfire forest, trail running)"
+    "imagen_keywords": "2-3 palabras en inglés para buscar foto (ej: glacier patagonia, indigenous patagonia, trail running mountains)"
   }},
   "nuevas": [
     {{
       "id": "{hoy}-1",
       "titulo": "Título (máx 12 palabras)",
-      "bajada": "Una oración de contexto",
+      "bajada": "Una oración de contexto con dato concreto",
       "cuerpo": "Artículo completo con párrafos separados por \\n\\n",
       "tag": "· Categoría ·",
       "categoria": "...",
