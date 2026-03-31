@@ -531,8 +531,8 @@ def cargar_historias_permanentes():
 
 def cargar_propios():
     """Carga las notas propias (PatagoniaGLOBAL / J. Martineau) desde propios.json.
-    Este archivo NUNCA es sobreescrito por el script — es el archivo permanente
-    de notas de producción propia. Agregar aquí cada nota nueva que publiquemos."""
+    Este archivo es el archivo permanente de notas de producción propia.
+    El script AGREGA notas nuevas pero NUNCA borra las existentes."""
     ruta = os.path.join(os.path.dirname(__file__), "propios.json")
     if not os.path.exists(ruta):
         return []
@@ -541,6 +541,24 @@ def cargar_propios():
             return json.load(f)
     except Exception:
         return []
+
+
+def auto_archivar_propios(historial):
+    """Detecta notas propias en el historial y las archiva en propios.json
+    si aún no están. Garantiza que ninguna nota de J. Martineau se pierda."""
+    ruta = os.path.join(os.path.dirname(__file__), "propios.json")
+    archivados = cargar_propios()
+    ids_archivados = {a.get("id") for a in archivados}
+
+    nuevos = [a for a in historial if es_propio(a) and a.get("id") not in ids_archivados]
+    if not nuevos:
+        return
+
+    archivados = nuevos + archivados  # los más recientes al frente
+    with open(ruta, "w", encoding="utf-8") as f:
+        json.dump(archivados, f, ensure_ascii=False, indent=2)
+    titulos = [n.get("titulo", "")[:50] for n in nuevos]
+    print(f"  ★ Archivadas {len(nuevos)} nota(s) propia(s) en propios.json: {titulos}")
 
 
 def es_propio(articulo):
@@ -778,6 +796,9 @@ def main():
     # 1. Cargar historial
     historial = cargar_historial()
     print(f"\n  Historial actual: {len(historial)} artículos publicados")
+
+    # 1b. Archivar automáticamente cualquier nota propia en historial
+    auto_archivar_propios(historial)
 
     # 2. Obtener noticias crudas de RSS
     noticias_crudas = fetch_noticias_crudas()
