@@ -388,6 +388,57 @@ def fotos_propias_disponibles():
         return []
 
 
+def extraer_og_image(url_articulo, nota_id):
+    """Descarga la og:image del artículo fuente y la guarda en fotos/."""
+    if not url_articulo:
+        return None
+    try:
+        import re
+        req = urllib.request.Request(url_articulo, headers={
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        })
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            html = resp.read().decode("utf-8", errors="ignore")
+
+        # Buscar og:image en ambos órdenes de atributos
+        match = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']', html)
+        if not match:
+            match = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']', html)
+        if not match:
+            return None
+
+        img_url = match.group(1).strip()
+        if not img_url.startswith("http"):
+            return None
+
+        # Determinar extensión
+        ext = img_url.split("?")[0].rsplit(".", 1)[-1].lower()
+        if ext not in ("jpg", "jpeg", "png", "webp"):
+            ext = "jpg"
+
+        filename = f"foto-{nota_id}.{ext}"
+        ruta_local = os.path.join(os.path.dirname(__file__), "fotos", filename)
+
+        # No descargar si ya existe
+        if os.path.exists(ruta_local):
+            return f"fotos/{filename}"
+
+        img_req = urllib.request.Request(img_url, headers={
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        })
+        with urllib.request.urlopen(img_req, timeout=10) as resp:
+            contenido = resp.read()
+
+        with open(ruta_local, "wb") as f:
+            f.write(contenido)
+
+        return f"fotos/{filename}"
+
+    except Exception as e:
+        print(f"(og:image error: {e})")
+        return None
+
+
 def buscar_foto_propia(nota, fotos):
     # Solo matchea contra imagen_keywords (campo específico que Claude genera para la foto)
     # No usa el título para evitar falsos positivos por palabras comunes como "neuquén" o "historia"
@@ -429,20 +480,30 @@ def buscar_imagen_unsplash(keywords):
 
 
 def resolver_imagen(nota, fotos_propias, fotos_usadas):
-    """RSS > foto propia (1 uso) > Unsplash."""
+    """RSS > og:image fuente > foto propia > Unsplash."""
     # 1. Imagen del RSS
     if nota.get("imagen") and str(nota["imagen"]).startswith("http"):
-        print(f"    [{nota['id']}] imagen del medio fuente ✓")
+        print(f"    [{nota['id']}] imagen RSS ✓")
         return nota["imagen"]
 
-    # 2. Foto propia por keywords (sin repetir)
+    # 2. og:image de la URL original del artículo
+    url_original = nota.get("url_original", "")
+    if url_original:
+        print(f"    [{nota['id']}] og:image fuente...", end=" ", flush=True)
+        og_img = extraer_og_image(url_original, nota["id"])
+        if og_img:
+            print(f"OK → {og_img}")
+            return og_img
+        print("no encontrada")
+
+    # 3. Foto propia por keywords (sin repetir)
     foto_propia = buscar_foto_propia(nota, fotos_propias)
     if foto_propia and foto_propia not in fotos_usadas:
         fotos_usadas.add(foto_propia)
         print(f"    [{nota['id']}] foto propia: {foto_propia} ✓")
         return foto_propia
 
-    # 3. Unsplash
+    # 4. Unsplash
     keywords = nota.get("imagen_keywords", "patagonia landscape")
     print(f"    [{nota['id']}] Unsplash: '{keywords}' ...", end=" ", flush=True)
     url = buscar_imagen_unsplash(keywords)
