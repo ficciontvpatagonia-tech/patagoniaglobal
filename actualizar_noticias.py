@@ -596,8 +596,8 @@ def construir_noticias_json(tapa, historial, ticker):
         titulos = [a.get('titulo','')[:40] for a in propios_semana]
         print(f"  ★ {len(propios_semana)} nota(s) propia(s) fijada(s) en Noticias de la Semana: {titulos}")
 
-    secundarias   = feed_completo[:2]
-    noticias_cards = feed_completo[2:]
+    secundarias    = feed_completo[:2]
+    noticias_cards = feed_completo[2:10]  # máximo 8 en Noticias de la Semana
 
     historias = cargar_historias_permanentes()
 
