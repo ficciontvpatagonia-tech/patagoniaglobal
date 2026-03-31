@@ -561,6 +561,134 @@ def guardar_json(datos):
     return ruta
 
 
+# ── Agenda ────────────────────────────────────────────────
+
+PALABRAS_EVENTO = [
+    "festival", "carrera", "maratón", "maratón", "trail", "ultratrail",
+    "muestra", "exposición", "feria", "fiesta regional", "fiesta nacional",
+    "congreso", "encuentro", "torneo", "campeonato", "competencia",
+    "convocatoria abierta", "ciclo de cine", "ciclo cultural",
+    "regata", "travesía", "expedición", "kayak", "ski", "snowboard",
+    "semana de", "aniversario", "celebración",
+]
+
+
+def cargar_agenda():
+    ruta = os.path.join(os.path.dirname(__file__), "agenda.json")
+    if not os.path.exists(ruta):
+        return []
+    try:
+        with open(ruta, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return []
+
+
+def guardar_agenda(eventos):
+    ruta = os.path.join(os.path.dirname(__file__), "agenda.json")
+    with open(ruta, "w", encoding="utf-8") as f:
+        json.dump(eventos, f, ensure_ascii=False, indent=2)
+
+
+def es_evento(titulo, resumen):
+    texto = (titulo + " " + resumen).lower()
+    return any(kw in texto for kw in PALABRAS_EVENTO) and es_patagonica(titulo, resumen)
+
+
+def actualizar_agenda(noticias_crudas):
+    """Purga eventos vencidos y busca nuevos en las noticias del día."""
+    agenda = cargar_agenda()
+    hoy = datetime.now().strftime("%Y-%m-%d")
+
+    # 1. Purgar eventos vencidos
+    antes = len(agenda)
+    agenda = [e for e in agenda if (e.get("fecha_fin") or e.get("fecha", "")) >= hoy]
+    purgados = antes - len(agenda)
+    if purgados:
+        print(f"  Agenda: {purgados} evento(s) vencido(s) eliminado(s)")
+
+    # 2. Filtrar noticias que parecen eventos
+    ids_existentes = {e.get("id", "") for e in agenda}
+    candidatos = [n for n in noticias_crudas if es_evento(n["titulo_original"], n["resumen_original"])]
+
+    if not candidatos:
+        print(f"  Agenda: sin eventos nuevos detectados en RSS")
+        guardar_agenda(agenda)
+        return
+
+    print(f"  Agenda: {len(candidatos)} posible(s) evento(s) encontrado(s) en RSS")
+
+    listado = ""
+    for i, n in enumerate(candidatos[:8]):
+        listado += f"""
+--- Candidato {i+1} ---
+Fuente: {n['fuente']} ({n['region']})
+Título: {n['titulo_original']}
+Resumen: {n['resumen_original']}
+URL: {n['url']}
+"""
+
+    client = anthropic.Anthropic(api_key=API_KEY)
+    prompt = f"""Sos el editor de agenda de PatagoniaGLOBAL. Hoy es {hoy}.
+
+Analizá estas noticias y extraé SOLO las que corresponden a un evento futuro concreto (festival, carrera, muestra, fiesta, torneo, congreso, etc.) con fecha definida en la Patagonia argentina o chilena. Ignorá inauguraciones de obras, nombramientos, noticias sin fecha de evento.
+
+Noticias candidatas:
+{listado}
+
+Para cada evento válido generá un objeto JSON con estos campos exactos:
+- id: slug único (ej: "festival-kayak-bariloche-2026")
+- titulo: nombre del evento
+- fecha: "YYYY-MM-DD" (primer día)
+- fecha_fin: "YYYY-MM-DD" o null si es un solo día
+- fecha_display: texto legible en español (ej: "8 al 12 de abril" o "15 de mayo")
+- lugar: ciudad/lugar específico
+- region: "Provincia/Región, País"
+- pais: "AR" o "CL"
+- categoria: "deportes" | "cultura" | "gastronomia" | "desarrollo" | "naturaleza"
+- emoji: un emoji representativo
+- descripcion: 1-2 oraciones descriptivas
+
+Respondé SOLO con un array JSON válido. Si no hay eventos válidos respondé [].
+"""
+
+    try:
+        response = client.messages.create(
+            model="claude-opus-4-6",
+            max_tokens=2000,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        texto = response.content[0].text.strip()
+        # Limpiar markdown
+        if "```" in texto:
+            for parte in texto.split("```"):
+                p = parte.strip()
+                if p.startswith("json"):
+                    texto = p[4:].strip(); break
+                elif p.startswith("[") or p.startswith("{"):
+                    texto = p; break
+        inicio = texto.find("[")
+        fin = texto.rfind("]") + 1
+        if inicio >= 0 and fin > inicio:
+            texto = texto[inicio:fin]
+        nuevos = json.loads(texto)
+
+        agregados = 0
+        for e in nuevos:
+            if e.get("id") and e["id"] not in ids_existentes and e.get("fecha", "") >= hoy:
+                agenda.append(e)
+                ids_existentes.add(e["id"])
+                agregados += 1
+
+        print(f"  Agenda: {agregados} evento(s) nuevo(s) agregado(s)")
+    except Exception as ex:
+        print(f"  Agenda: error procesando con Claude ({ex})")
+
+    # Ordenar por fecha
+    agenda.sort(key=lambda e: e.get("fecha", ""))
+    guardar_agenda(agenda)
+
+
 # ── Main ───────────────────────────────────────────────────
 
 def main():
@@ -606,6 +734,11 @@ def main():
     guardar_json(datos)
 
     print(f"\n  Feed visible: tapa + {len(datos['secundarias'])} secundarias + {len(datos['noticias'])} cards")
+
+    # 7. Actualizar agenda (purgar vencidos + buscar nuevos)
+    print(f"\n  Actualizando agenda...")
+    actualizar_agenda(noticias_crudas)
+
     print(f"\n  Listo. Publicá en Netlify.")
     print(f"{'='*55}\n")
 

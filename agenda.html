@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PatagoniaGLOBAL — Agenda Patagónica</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="canonical" href="https://patagoniaglobal.org/agenda.html"/>
+  <meta name="description" content="Eventos, festivales y competencias en la Patagonia argentina y chilena."/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5FP2F41BZG');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap"/>
+  <style>
+    :root {
+      --azul:    #1c2d3d;
+      --azul-cl: #7aadcc;
+      --arena:   #f0ede8;
+      --gris:    #6b7280;
+      --texto:   #1a202c;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:#fff; color:var(--texto); font-family:'Inter',sans-serif; }
+
+    /* ── HEADER ── */
+    header {
+      position:sticky; top:0; z-index:100;
+      background:var(--azul);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 40px; height:64px;
+    }
+    .header-logo {
+      font-family:'Playfair Display',serif; font-size:24px; font-weight:900;
+      color:white; text-decoration:none; letter-spacing:-0.5px;
+    }
+    .header-logo span { color:var(--azul-cl); }
+    .header-nav a {
+      color:rgba(255,255,255,0.7); text-decoration:none; font-size:13px; font-weight:500;
+      transition:color 0.2s;
+    }
+    .header-nav a:hover { color:white; }
+
+    /* ── HERO BANDA ── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--azul) 0%, #2d4a6b 100%);
+      padding: 52px 40px 44px;
+    }
+    .page-hero h1 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(28px,5vw,44px); font-weight:900; color:white;
+      margin-bottom:8px;
+    }
+    .page-hero p { font-size:15px; color:rgba(255,255,255,0.6); max-width:520px; }
+
+    /* ── FILTROS ── */
+    .filtros-wrap {
+      background:var(--arena); padding:20px 40px; border-bottom:1px solid #e5e0d9;
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+    }
+    .filtro-label { font-size:12px; font-weight:600; color:var(--gris); letter-spacing:0.5px; margin-right:4px; }
+    .agenda-filtro {
+      background:white; border:1px solid #ddd; border-radius:20px;
+      padding:7px 16px; font-size:13px; font-family:'Inter',sans-serif;
+      cursor:pointer; color:#4a5568; transition:all 0.2s;
+    }
+    .agenda-filtro:hover, .agenda-filtro.active {
+      background:var(--azul); color:white; border-color:var(--azul);
+    }
+
+    /* ── GRID ── */
+    .agenda-wrap { max-width:1200px; margin:0 auto; padding:40px 40px 80px; }
+    #agenda-count { font-size:13px; color:var(--gris); margin-bottom:24px; }
+    #agenda-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(320px,1fr));
+      gap:20px;
+    }
+
+    /* ── CARD ── */
+    .agenda-card {
+      background:white; border-radius:10px; padding:22px;
+      border-top:3px solid var(--azul-cl);
+      box-shadow:0 1px 4px rgba(0,0,0,0.06);
+      display:flex; flex-direction:column; gap:10px;
+      transition:box-shadow 0.2s, transform 0.2s;
+    }
+    .agenda-card:hover { box-shadow:0 6px 20px rgba(0,0,0,0.1); transform:translateY(-2px); }
+    .card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+    .card-emoji { font-size:24px; flex-shrink:0; }
+    .card-pais {
+      font-size:11px; background:var(--arena); padding:3px 9px;
+      border-radius:10px; color:var(--gris); white-space:nowrap;
+    }
+    .card-fecha { font-size:12px; font-weight:700; color:var(--azul-cl); letter-spacing:0.5px; text-transform:uppercase; }
+    .card-titulo { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--azul); line-height:1.3; }
+    .card-lugar { font-size:12px; color:var(--gris); }
+    .card-desc { font-size:13px; color:#4a5568; line-height:1.65; margin-top:2px; }
+    .card-cat {
+      font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--azul-cl); margin-top:4px;
+    }
+
+    /* ── EMPTY ── */
+    .empty { text-align:center; padding:60px 20px; color:var(--gris); font-size:15px; grid-column:1/-1; }
+
+    /* ── FOOTER ── */
+    footer {
+      background:var(--azul); color:rgba(255,255,255,0.5);
+      text-align:center; padding:28px 20px; font-size:12px;
+    }
+    footer a { color:rgba(255,255,255,0.6); text-decoration:none; margin:0 8px; }
+    footer a:hover { color:white; }
+
+    @media (max-width:768px) {
+      header { padding:0 16px; }
+      .page-hero { padding:36px 20px 32px; }
+      .filtros-wrap { padding:16px 20px; }
+      .agenda-wrap { padding:24px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="header-logo">Patagonia<span>GLOBAL</span></a>
+  <div class="header-nav">
+    <a href="index.html">← Inicio</a>
+  </div>
+</header>
+
+<div class="page-hero">
+  <h1>Agenda Patagónica</h1>
+  <p>Eventos, festivales y competencias en ambos lados de la cordillera</p>
+</div>
+
+<div class="filtros-wrap">
+  <span class="filtro-label">Filtrar:</span>
+  <button class="agenda-filtro active" data-cat="todos">Todos</button>
+  <button class="agenda-filtro" data-cat="deportes">🏃 Deportes</button>
+  <button class="agenda-filtro" data-cat="cultura">🎭 Cultura</button>
+  <button class="agenda-filtro" data-cat="gastronomia">🍽️ Gastronomía</button>
+  <button class="agenda-filtro" data-cat="desarrollo">🏭 Desarrollo</button>
+  <button class="agenda-filtro" data-cat="naturaleza">🌿 Naturaleza</button>
+</div>
+
+<div class="agenda-wrap">
+  <div id="agenda-count"></div>
+  <div id="agenda-grid"><div class="empty">Cargando agenda...</div></div>
+</div>
+
+<footer>
+  <a href="index.html">Inicio</a>
+  <a href="acerca.html">Acerca de</a>
+  <a href="privacidad.html">Privacidad</a>
+  <br><br>© 2026 PatagoniaGLOBAL · patagoniaglobal.org
+</footer>
+
+<script>
+const BANDERAS = { AR:'🇦🇷', CL:'🇨🇱' };
+let todosEventos = [];
+let catActiva = 'todos';
+
+function hoyISO() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function render() {
+  const hoy = hoyISO();
+  // Solo eventos futuros (fecha o fecha_fin >= hoy)
+  const vigentes = todosEventos.filter(e => (e.fecha_fin || e.fecha) >= hoy);
+  const filtrados = catActiva === 'todos' ? vigentes : vigentes.filter(e => e.categoria === catActiva);
+
+  const count = document.getElementById('agenda-count');
+  count.textContent = `${filtrados.length} evento${filtrados.length !== 1 ? 's' : ''} próximo${filtrados.length !== 1 ? 's' : ''}`;
+
+  const grid = document.getElementById('agenda-grid');
+  if (!filtrados.length) {
+    grid.innerHTML = '<div class="empty">No hay eventos en esta categoría próximamente.</div>';
+    return;
+  }
+  grid.innerHTML = filtrados.map(e => `
+    <div class="agenda-card" data-cat="${e.categoria}">
+      <div class="card-top">
+        <span class="card-emoji">${e.emoji}</span>
+        <span class="card-pais">${BANDERAS[e.pais]||''} ${e.region}</span>
+      </div>
+      <div class="card-fecha">${e.fecha_display.toUpperCase()}</div>
+      <div class="card-titulo">${e.titulo}</div>
+      <div class="card-lugar">📍 ${e.lugar}</div>
+      <div class="card-desc">${e.descripcion}</div>
+      <div class="card-cat">${e.categoria}</div>
+    </div>
+  `).join('');
+}
+
+fetch('agenda.json')
+  .then(r => r.json())
+  .then(data => {
+    todosEventos = data;
+    render();
+  })
+  .catch(() => {
+    document.getElementById('agenda-grid').innerHTML = '<div class="empty">No se pudo cargar la agenda.</div>';
+  });
+
+document.querySelectorAll('.agenda-filtro').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.agenda-filtro').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    catActiva = btn.dataset.cat;
+    render();
+  });
+});
+</script>
+
+</body>
+</html>
