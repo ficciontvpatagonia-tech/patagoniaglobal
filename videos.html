@@ -46,6 +46,11 @@
       font-weight: 500; transition: color 0.2s;
     }
     .header-nav a:hover, .header-nav a.active { color: white; }
+    .header-center {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700;
+      color: rgba(255,255,255,0.85); letter-spacing: 0.3px; pointer-events: none;
+    }
     .header-back {
       color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px;
       display: flex; align-items: center; gap: 6px; transition: color 0.2s;
@@ -148,14 +153,26 @@
     .filas { padding: 0 40px 60px; }
 
     .fila { margin-bottom: 40px; }
-    .fila-titulo {
-      font-size: 16px; font-weight: 600; color: white;
-      margin-bottom: 12px; letter-spacing: 0.3px;
+    .fila-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px;
     }
+    .fila-titulo {
+      font-size: 16px; font-weight: 600; color: white; letter-spacing: 0.3px;
+    }
+    .fila-arrows { display: flex; gap: 6px; }
+    .fila-arrow {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      color: white; width: 30px; height: 30px; border-radius: 50%;
+      font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; line-height: 1;
+    }
+    .fila-arrow:hover { background: rgba(255,255,255,0.28); }
     .fila-scroll {
       display: flex; gap: 8px;
       overflow-x: auto; padding-bottom: 8px;
       scrollbar-width: none;
+      scroll-behavior: smooth;
     }
     .fila-scroll::-webkit-scrollbar { display: none; }
 
@@ -276,6 +293,7 @@
 
 <header id="main-header">
   <a href="index.html" class="header-logo">Patagonia<span>GLOBAL</span></a>
+  <div class="header-center">Cinemateca Patagónica</div>
   <div class="header-nav">
     <a href="index.html">← Inicio</a>
   </div>
@@ -456,7 +474,12 @@ fetch("videos.json").then(r => r.json()).then(videos => {
   }
 
   carouselVideos = videos;
-  buildCarousel(videos);
+  // Carrusel: Rescatistas fijo + últimas 6 subidas (excluida Rescatistas)
+  const pinned = videos.find(v => v.id === "rescatistas-ep01");
+  const resto  = videos.filter(v => v.id !== "rescatistas-ep01");
+  const ultimas6 = resto.slice(-6);
+  const enCarrusel = pinned ? [pinned, ...ultimas6] : ultimas6;
+  buildCarousel(enCarrusel);
 
   // FILAS por categoría
   const porCat = {};
@@ -467,26 +490,35 @@ fetch("videos.json").then(r => r.json()).then(videos => {
 
   const filasEl = document.getElementById("filas");
 
+  function crearFila(titulo, vids) {
+    const fila = document.createElement("div");
+    fila.className = "fila";
+    fila.innerHTML = `
+      <div class="fila-header">
+        <div class="fila-titulo">${titulo}</div>
+        <div class="fila-arrows">
+          <button class="fila-arrow arr-prev">&#8249;</button>
+          <button class="fila-arrow arr-next">&#8250;</button>
+        </div>
+      </div>
+      <div class="fila-scroll"></div>`;
+    const scroll = fila.querySelector(".fila-scroll");
+    vids.forEach(v => scroll.appendChild(renderCard(v)));
+    fila.querySelector(".arr-prev").addEventListener("click", () => scroll.scrollBy({ left: -480, behavior: "smooth" }));
+    fila.querySelector(".arr-next").addEventListener("click", () => scroll.scrollBy({ left: 480, behavior: "smooth" }));
+    return fila;
+  }
+
   // Filas en orden definido
   CAT_ORDER.forEach(cat => {
     const vids = porCat[cat];
     if (!vids || vids.length < 1) return;
-    const fila = document.createElement("div");
-    fila.className = "fila";
-    fila.innerHTML = `<div class="fila-titulo">${CATS[cat]||cat}</div><div class="fila-scroll"></div>`;
-    filasEl.appendChild(fila);
-    const scroll = fila.querySelector(".fila-scroll");
-    vids.forEach(v => scroll.appendChild(renderCard(v)));
+    filasEl.appendChild(crearFila(CATS[cat]||cat, vids));
   });
 
   // Todo el catálogo al final
   if (videos.length > 1) {
-    const filaAll = document.createElement("div");
-    filaAll.className = "fila";
-    filaAll.innerHTML = `<div class="fila-titulo">Todo el catálogo</div><div class="fila-scroll"></div>`;
-    filasEl.appendChild(filaAll);
-    const scrollAll = filaAll.querySelector(".fila-scroll");
-    videos.forEach(v => scrollAll.appendChild(renderCard(v)));
+    filasEl.appendChild(crearFila("Todo el catálogo", videos));
   }
 
 }).catch(() => {
