@@ -1,9 +1,10 @@
 name: Actualizar Noticias
 
 on:
-  schedule:
-    - cron: '45 10 * * *'  # Todos los días a las 7:45 AM hora Argentina (UTC-3)
-  workflow_dispatch:         # También permite correrlo manualmente desde GitHub
+  # PAUSADO — descomentar schedule para reactivar
+  # schedule:
+  #   - cron: '45 10 * * *'  # Todos los días a las 7:45 AM hora Argentina (UTC-3)
+  workflow_dispatch:         # Solo manual desde GitHub
 
 permissions:
   contents: write
