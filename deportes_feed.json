@@ -1,0 +1,30 @@
+{
+  "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
+  "principal": {
+    "id": "trail-monte-leon-2026",
+    "titulo": "Cuatro podios patagónicos: atletas de El Calafate brillaron en el Desafío Monte León",
+    "meta": "30 de marzo de 2026 · Monte León, Santa Cruz",
+    "imagen": "fotos/trail-monte-leon-2026.webp",
+    "badge_text": "🏃 Trail Running",
+    "badge_bg": "#3a5a7a",
+    "badge_color": "white"
+  },
+  "secundarias": [
+    {
+      "id": "rescate-chalten-marzo-2026",
+      "titulo": "Dos turistas rescatados en El Chaltén en menos de 24 horas: una mexicana en Laguna de los Tres y un holandés perdido toda la noche",
+      "imagen": "fotos/rescate-chalten-01.webp",
+      "badge_text": "🆘 Rescate",
+      "badge_bg": "#b03a2e",
+      "badge_color": "white"
+    },
+    {
+      "id": null,
+      "titulo": "Tres alpinistas cordobeses alcanzan la cima del Fitz Roy por nueva variante",
+      "imagen": "https://images.unsplash.com/photo-1531761535209-180857e963b9?w=600&q=80&fit=crop&crop=center",
+      "badge_text": "🏔️ Cumbre",
+      "badge_bg": "#7aadcc",
+      "badge_color": "#1c2d3d"
+    }
+  ]
+}
