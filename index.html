@@ -427,7 +427,7 @@
     }
 
     .informe-principal .inf-img {
-      height: 200px;
+      height: 260px;
       background: linear-gradient(135deg, #0d1820, #1c2d3d, #3a5a7a);
       display: flex;
       align-items: center;
@@ -435,7 +435,7 @@
       font-size: 48px;
     }
 
-    .informe-principal .inf-body { padding: 20px; }
+    .informe-principal .inf-body { padding: 20px; text-align: center; }
 
     .inf-label {
       font-size: 9px;
@@ -1537,7 +1537,7 @@ function renderInformes(propios) {
   const resto = propios.slice(1, 4);
 
   const bg = principal.imagen
-    ? `background-image:url('${principal.imagen}');background-size:cover;background-position:center;`
+    ? `background-image:url('${principal.imagen}');background-size:cover;background-position:center 35%;`
     : "background:linear-gradient(135deg,#0d1820,#1c2d3d,#3a5a7a);";
 
   let html = `
