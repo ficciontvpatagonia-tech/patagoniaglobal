@@ -640,12 +640,22 @@ def cargar_propios():
 
 def auto_archivar_propios(historial):
     """Detecta notas propias en el historial y las archiva en propios.json
-    si aún no están. Garantiza que ninguna nota de J. Martineau se pierda."""
+    si aún no están. Garantiza que ninguna nota de J. Martineau se pierda.
+    EXCLUYE las notas de historias.json: esas tienen su propia sección
+    permanente (Cultura Patagónica) y no deben aparecer también en INFORMES."""
     ruta = os.path.join(os.path.dirname(__file__), "propios.json")
     archivados = cargar_propios()
     ids_archivados = {a.get("id") for a in archivados}
 
-    nuevos = [a for a in historial if es_propio(a) and a.get("id") not in ids_archivados]
+    # IDs de historias.json → nunca archivar en propios.json (evita duplicados)
+    ids_historias = {a.get("id") for a in cargar_historias_permanentes()}
+
+    nuevos = [
+        a for a in historial
+        if es_propio(a)
+        and a.get("id") not in ids_archivados
+        and a.get("id") not in ids_historias
+    ]
     if not nuevos:
         return
 
@@ -681,60 +691,38 @@ def dias_desde_id(articulo_id):
 def construir_noticias_json(tapa, historial, ticker):
     """Arma noticias.json con tapa + feed.
 
-    REGLA ARTÍCULOS PROPIOS (PatagoniaGLOBAL / J. Martineau):
-      - 0-6 días  → ocupan la TAPA (tienen prioridad sobre la selección automática)
-      - 7-30 días → permanecen en Noticias de la Semana (no rotan fuera del feed)
-      - +30 días  → pasan a archivo junto con el resto
-
-    Los artículos propios se leen desde propios.json (archivo permanente) y también
-    desde historial (por si alguno fue ingresado por otro medio).
+    REGLAS:
+    - Los artículos propios (J. Martineau / PatagoniaGLOBAL) van EXCLUSIVAMENTE
+      a INFORMES (propios.json). NUNCA aparecen en tapa ni en el feed de noticias.
+    - INFORMES solo se renueva cuando se agrega una nota nueva manualmente.
+    - No puede haber el mismo artículo dos veces en el feed (deduplicación por ID).
     """
     hoy = datetime.now()
 
-    # ── Cargar propios desde propios.json (fuente permanente) ──
-    propios_archivo = cargar_propios()
-    # Mezclar con historial evitando duplicados por ID
-    ids_historial = {a.get("id") for a in historial}
-    propios_extra  = [a for a in propios_archivo if a.get("id") not in ids_historial]
-    fuente_completa = propios_extra + historial
+    # ── IDs a excluir del feed ──────────────────────────────────
+    # Propios (van a INFORMES) + historias permanentes (tienen su sección propia)
+    ids_propios   = {a.get("id") for a in cargar_propios()}
+    ids_historias = {a.get("id") for a in cargar_historias_permanentes()}
+    ids_excluir   = ids_propios | ids_historias
 
-    # ── Clasificar artículos propios ─────────────────────────────
-    propios_tapa   = []   # < 7 días
-    propios_semana = []   # 7-30 días
-
-    for a in fuente_completa:
-        if not es_propio(a):
-            continue
-        dias = dias_desde_id(a.get("id", ""))
-        if dias < 7:
-            propios_tapa.append(a)
-        elif dias <= 30:
-            propios_semana.append(a)
-
-    # ── Decidir tapa ────────────────────────────────────────────
+    # ── Tapa ────────────────────────────────────────────────────
+    # La tapa es siempre la que eligió Claude; los propios nunca la ocupan.
     tapa_final = tapa
-    if propios_tapa:
-        # El propio más reciente tiene prioridad como tapa
-        candidato = propios_tapa[0]
-        if candidato.get("id") != tapa.get("id"):
-            print(f"  ★ Tapa PROPIA activada: [{candidato['id']}] {candidato.get('titulo','')[:60]}")
-            tapa_final = candidato
 
-    # ── Construir feed ──────────────────────────────────────────
-    # Excluir la tapa del feed
-    feed_base = [a for a in fuente_completa if a.get("id") != tapa_final.get("id")]
+    # ── Feed: historial sin propios ni historias, sin duplicados ─
+    ids_vistos = {tapa_final.get("id")}
+    feed = []
+    for a in historial:
+        aid = a.get("id")
+        if aid in ids_vistos or aid in ids_excluir or es_propio(a):
+            continue
+        ids_vistos.add(aid)
+        feed.append(a)
+        if len(feed) >= MAX_FEED:
+            break
 
-    # Los propios de semana deben aparecer en el feed aunque excedan MAX_FEED
-    ids_propios_semana = {a["id"] for a in propios_semana}
-    feed_normal   = [a for a in feed_base if a["id"] not in ids_propios_semana][:MAX_FEED]
-    feed_completo = propios_semana + feed_normal
-
-    if propios_semana:
-        titulos = [a.get('titulo','')[:40] for a in propios_semana]
-        print(f"  ★ {len(propios_semana)} nota(s) propia(s) fijada(s) en Noticias de la Semana: {titulos}")
-
-    secundarias    = feed_completo[:2]
-    noticias_cards = feed_completo[2:10]  # máximo 8 en Noticias de la Semana
+    secundarias    = feed[:2]
+    noticias_cards = feed[2:10]  # máximo 8 en Noticias de la Semana
 
     historias = cargar_historias_permanentes()
 
