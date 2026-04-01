@@ -276,6 +276,131 @@
     /* ── EMPTY ── */
     .empty { text-align: center; padding: 80px 20px; color: rgba(255,255,255,0.25); font-size: 14px; }
 
+    /* ── SERIE CARD badge ── */
+    .serie-badge-thumb {
+      position: absolute; bottom: 8px; left: 8px;
+      background: var(--azul); color: #1c2d3d;
+      font-size: 9px; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 2px;
+    }
+
+    /* ── SERIE DETAIL PANEL ── */
+    #serie-detail {
+      display: none;
+      position: fixed; inset: 0; z-index: 9998;
+      background: #0d0d0d;
+      overflow-y: auto;
+    }
+    #serie-detail.open { display: block; animation: sdFadeIn 0.25s ease; }
+    @keyframes sdFadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    #sd-close-btn {
+      position: fixed; top: 18px; right: 22px; z-index: 10;
+      background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.18);
+      color: white; font-size: 20px; width: 42px; height: 42px;
+      border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    #sd-close-btn:hover { background: rgba(255,255,255,0.28); }
+
+    #sd-hero {
+      position: relative; height: 62vh; min-height: 400px;
+      display: flex; align-items: flex-end;
+      padding: 0 60px 52px;
+    }
+    #sd-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center top;
+    }
+    #sd-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, #0d0d0d 0%, rgba(13,13,13,0.55) 45%, transparent 100%),
+                  linear-gradient(to right, rgba(13,13,13,0.88) 0%, transparent 58%);
+    }
+    #sd-info { position: relative; max-width: 540px; }
+    #sd-badge {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--azul); margin-bottom: 14px;
+    }
+    #sd-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4.5vw, 52px); font-weight: 900;
+      line-height: 1.1; margin-bottom: 18px;
+    }
+    #sd-desc {
+      font-size: 15px; line-height: 1.75;
+      color: rgba(255,255,255,0.72); margin-bottom: 20px; max-width: 490px;
+    }
+    #sd-meta {
+      font-size: 12px; color: rgba(255,255,255,0.4);
+      margin-bottom: 26px; display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    #sd-play-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; color: #141414;
+      border: none; border-radius: 4px;
+      padding: 13px 30px; font-size: 15px; font-weight: 700;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    #sd-play-btn:hover { background: rgba(255,255,255,0.85); }
+
+    /* Episodes list */
+    #sd-episodios { padding: 36px 60px 80px; background: #0d0d0d; }
+    .sd-ep-label {
+      font-size: 18px; font-weight: 600; color: white;
+      margin-bottom: 4px; letter-spacing: 0.3px;
+    }
+    .sd-ep-sep {
+      width: 40px; height: 3px; background: var(--azul);
+      margin-bottom: 24px; border-radius: 2px;
+    }
+    #sd-ep-lista { display: flex; flex-direction: column; gap: 2px; }
+
+    .ep-row {
+      display: grid;
+      grid-template-columns: 36px 200px 1fr 48px;
+      gap: 18px; align-items: center;
+      padding: 10px 14px; border-radius: 6px;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .ep-row:hover { background: rgba(255,255,255,0.07); }
+    .ep-num {
+      font-size: 20px; font-weight: 700;
+      color: rgba(255,255,255,0.22); text-align: center;
+    }
+    .ep-thumb {
+      position: relative; border-radius: 4px; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .ep-thumb img {
+      width: 200px; height: 112px; object-fit: cover; display: block;
+    }
+    .ep-thumb-play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.45); opacity: 0; transition: opacity 0.2s;
+      font-size: 22px; color: white;
+    }
+    .ep-row:hover .ep-thumb-play { opacity: 1; }
+    .ep-body { min-width: 0; }
+    .ep-titulo {
+      font-size: 14px; font-weight: 700; color: white;
+      margin-bottom: 7px; line-height: 1.3;
+    }
+    .ep-desc {
+      font-size: 12px; color: rgba(255,255,255,0.48);
+      line-height: 1.55;
+      display: -webkit-box; -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .ep-dur {
+      font-size: 12px; color: rgba(255,255,255,0.3);
+      white-space: nowrap; text-align: right;
+    }
+
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       header { padding: 0 16px; height: 56px; }
@@ -322,6 +447,26 @@
   </div>
 </div>
 
+<!-- SERIE DETAIL PANEL -->
+<div id="serie-detail">
+  <button id="sd-close-btn" onclick="cerrarSerie()">✕</button>
+  <div id="sd-hero">
+    <div id="sd-bg"></div>
+    <div id="sd-info">
+      <div id="sd-badge"></div>
+      <h2 id="sd-titulo"></h2>
+      <p id="sd-desc"></p>
+      <div id="sd-meta"></div>
+      <button id="sd-play-btn">▶ Ver desde el inicio</button>
+    </div>
+  </div>
+  <div id="sd-episodios">
+    <div class="sd-ep-label">Episodios</div>
+    <div class="sd-ep-sep"></div>
+    <div id="sd-ep-lista"></div>
+  </div>
+</div>
+
 <script>
 const CATS = {
   ficcion:          "Ficción",
@@ -329,82 +474,192 @@ const CATS = {
   documental:       "Documentales",
   serie_documental: "Series Documentales"
 };
-
 const CAT_ORDER = ["ficcion", "serie_ficcion", "documental", "serie_documental"];
 
-function thumb(id) { return `https://img.youtube.com/vi/${id}/hqdefault.jpg`; }
+function thumb(id)   { return `https://img.youtube.com/vi/${id}/hqdefault.jpg`; }
 function thumbHD(id) { return `https://img.youtube.com/vi/${id}/maxresdefault.jpg`; }
 
+// ── LIGHTBOX (video individual) ──
 function abrirVideo(v) {
   document.getElementById("lb-iframe").src = `https://www.youtube.com/embed/${v.youtube_id}?autoplay=1`;
   document.getElementById("lb-titulo").textContent = v.titulo;
   document.getElementById("lb-desc").textContent = v.descripcion || "";
-  const meta = [v.lugar, v.año, v.duracion].filter(Boolean).join(" · ");
-  document.getElementById("lb-meta").textContent = meta;
+  document.getElementById("lb-meta").textContent = [v.lugar, v.año, v.duracion].filter(Boolean).join(" · ");
   document.getElementById("lightbox").classList.add("open");
   document.body.style.overflow = "hidden";
 }
-
 function cerrar() {
   document.getElementById("lb-iframe").src = "";
   document.getElementById("lightbox").classList.remove("open");
   document.body.style.overflow = "";
 }
-
 document.getElementById("lightbox").addEventListener("click", e => { if (e.target === e.currentTarget) cerrar(); });
-document.addEventListener("keydown", e => { if (e.key === "Escape") cerrar(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") { cerrar(); cerrarSerie(); } });
+
+// ── SERIE DETAIL PANEL ──
+function abrirSerie(s) {
+  document.getElementById("sd-bg").style.backgroundImage = `url(${thumbHD(s.youtube_id)})`;
+  document.getElementById("sd-badge").textContent = `${CATS[s.categoria]||'Serie'} · ${s.episodios.length} episodios`;
+  document.getElementById("sd-titulo").textContent = s.titulo;
+  document.getElementById("sd-desc").textContent = s.descripcion || "";
+  document.getElementById("sd-meta").textContent = [s.año, s.lugar, s.produccion].filter(Boolean).join(" · ");
+
+  const ep1 = s.episodios[0];
+  document.getElementById("sd-play-btn").onclick = () => abrirVideo(ep1);
+
+  const lista = document.getElementById("sd-ep-lista");
+  lista.innerHTML = "";
+  s.episodios.forEach((ep, i) => {
+    const epTitulo = ep.titulo.replace(/^[^—–]+[—–]\s*/, "");
+    const row = document.createElement("div");
+    row.className = "ep-row";
+    row.innerHTML = `
+      <div class="ep-num">${ep.episodio || (i + 1)}</div>
+      <div class="ep-thumb">
+        <img src="${thumb(ep.youtube_id)}" loading="lazy" alt="${epTitulo}">
+        <div class="ep-thumb-play">▶</div>
+      </div>
+      <div class="ep-body">
+        <div class="ep-titulo">${epTitulo}</div>
+        <div class="ep-desc">${ep.descripcion || ""}</div>
+      </div>
+      <div class="ep-dur">${ep.duracion || ""}</div>`;
+    row.addEventListener("click", () => abrirVideo(ep));
+    lista.appendChild(row);
+  });
+
+  document.getElementById("serie-detail").classList.add("open");
+  document.getElementById("serie-detail").scrollTop = 0;
+  document.body.style.overflow = "hidden";
+}
+function cerrarSerie() {
+  document.getElementById("serie-detail").classList.remove("open");
+  document.body.style.overflow = "";
+}
+document.getElementById("serie-detail").addEventListener("click", e => {
+  if (e.target === document.getElementById("serie-detail")) cerrarSerie();
+});
 
 // Header scroll
 window.addEventListener("scroll", () => {
   document.getElementById("main-header").classList.toggle("scrolled", window.scrollY > 50);
 });
 
-// Render card
-function renderCard(v) {
+// ── AGRUPAR SERIES ──
+// Agrupa episodios con el mismo campo `serie` en un único objeto, preservando orden
+function agruparSeries(videos) {
+  const seriesMap = {};
+  const result = [];
+  const seen = new Set();
+
+  videos.forEach(v => {
+    if (v.serie) {
+      if (!seriesMap[v.serie]) {
+        seriesMap[v.serie] = {
+          _isSerie: true,
+          titulo: v.serie,
+          youtube_id: v.youtube_id, // primer encontrado = mejor thumbnail (ya ordenado en JSON)
+          descripcion: v.serie_descripcion || v.descripcion,
+          año: v.año,
+          categoria: v.categoria,
+          pais: v.pais,
+          lugar: v.lugar,
+          episodios: []
+        };
+      }
+      seriesMap[v.serie].episodios.push(v);
+    }
+  });
+
+  // Ordenar episodios por número
+  Object.values(seriesMap).forEach(s => {
+    s.episodios.sort((a, b) => (a.episodio || 0) - (b.episodio || 0));
+  });
+
+  // Reconstruir lista: una sola entrada por serie, en el lugar donde aparece la primera
+  videos.forEach(v => {
+    if (v.serie) {
+      if (!seen.has(v.serie)) {
+        seen.add(v.serie);
+        result.push(seriesMap[v.serie]);
+      }
+    } else {
+      result.push(v);
+    }
+  });
+  return result;
+}
+
+// ── CARDS ──
+function renderCard(item) {
+  if (item._isSerie) return renderSerieCard(item);
   const el = document.createElement("div");
   el.className = "vcard";
   el.innerHTML = `
     <div class="vcard-thumb">
-      <img src="${thumb(v.youtube_id)}" alt="${v.titulo}" loading="lazy">
+      <img src="${thumb(item.youtube_id)}" alt="${item.titulo}" loading="lazy">
     </div>
     <div class="vcard-info">
-      <div class="vcard-cat">${CATS[v.categoria]||v.categoria}</div>
-      <div class="vcard-titulo">${v.titulo}</div>
-      <div class="vcard-desc">${v.descripcion||""}</div>
+      <div class="vcard-cat">${CATS[item.categoria]||item.categoria}</div>
+      <div class="vcard-titulo">${item.titulo}</div>
+      <div class="vcard-desc">${item.descripcion||""}</div>
       <div class="vcard-meta">
-        ${v.lugar?`<span>📍 ${v.lugar}</span>`:""}
-        ${v.duracion?`<span>⏱ ${v.duracion}</span>`:""}
-        ${v.año?`<span>${v.año}</span>`:""}
+        ${item.lugar?`<span>📍 ${item.lugar}</span>`:""}
+        ${item.duracion?`<span>⏱ ${item.duracion}</span>`:""}
+        ${item.año?`<span>${item.año}</span>`:""}
       </div>
     </div>`;
-  el.addEventListener("click", () => abrirVideo(v));
+  el.addEventListener("click", () => abrirVideo(item));
+  return el;
+}
+
+function renderSerieCard(s) {
+  const el = document.createElement("div");
+  el.className = "vcard";
+  el.innerHTML = `
+    <div class="vcard-thumb">
+      <img src="${thumb(s.youtube_id)}" alt="${s.titulo}" loading="lazy">
+      <div class="serie-badge-thumb">SERIE · ${s.episodios.length} ep.</div>
+    </div>
+    <div class="vcard-info">
+      <div class="vcard-cat">${CATS[s.categoria]||s.categoria}</div>
+      <div class="vcard-titulo">${s.titulo}</div>
+      <div class="vcard-desc">${s.descripcion||""}</div>
+      <div class="vcard-meta">
+        ${s.lugar?`<span>📍 ${s.lugar}</span>`:""}
+        ${s.año?`<span>${s.año}</span>`:""}
+        <span>${s.episodios.length} episodios</span>
+      </div>
+    </div>`;
+  el.addEventListener("click", () => abrirSerie(s));
   return el;
 }
 
 // ── CARRUSEL ──
-let carouselVideos = [];
 let currentSlide = 0;
 let carouselTimer = null;
 
-function buildSlide(v) {
-  const vJson = JSON.stringify(v).replace(/"/g,'&quot;');
+function buildSlide(item) {
+  const isSerie = item._isSerie;
   const el = document.createElement("div");
   el.className = "carousel-slide";
   el.innerHTML = `
-    <div class="slide-bg" style="background-image:url(${thumbHD(v.youtube_id)})"></div>
+    <div class="slide-bg" style="background-image:url(${thumbHD(item.youtube_id)})"></div>
     <div class="slide-content">
-      <div class="hero-badge">${CATS[v.categoria]||v.categoria}</div>
-      <h1 class="hero-titulo">${v.titulo}</h1>
-      <p class="hero-desc">${v.descripcion||""}</p>
+      <div class="hero-badge">${isSerie ? `${CATS[item.categoria]||'Serie'} · ${item.episodios.length} ep.` : (CATS[item.categoria]||item.categoria)}</div>
+      <h1 class="hero-titulo">${item.titulo}</h1>
+      <p class="hero-desc">${item.descripcion||""}</p>
       <div class="hero-meta">
-        ${v.lugar?`<span>📍 ${v.lugar}</span>`:""}
-        ${v.año?`<span>${v.año}</span>`:""}
-        ${v.duracion?`<span>⏱ ${v.duracion}</span>`:""}
+        ${item.lugar?`<span>📍 ${item.lugar}</span>`:""}
+        ${item.año?`<span>${item.año}</span>`:""}
+        ${!isSerie && item.duracion?`<span>⏱ ${item.duracion}</span>`:""}
       </div>
       <div class="hero-btns">
-        <button class="btn-play" onclick="abrirVideo(JSON.parse(decodeURIComponent('${encodeURIComponent(JSON.stringify(v))}')))" >▶ Reproducir</button>
+        <button class="btn-play" id="hero-btn-${item.titulo.replace(/\s/g,'')}">▶ ${isSerie ? 'Ver serie' : 'Reproducir'}</button>
       </div>
     </div>`;
+  const btn = el.querySelector(".btn-play");
+  btn.addEventListener("click", () => isSerie ? abrirSerie(item) : abrirVideo(item));
   return el;
 }
 
@@ -417,35 +672,26 @@ function goToSlide(n) {
   slides[currentSlide].classList.add("active");
   if (dots[currentSlide]) dots[currentSlide].classList.add("active");
 }
-
 function startTimer() {
   clearInterval(carouselTimer);
   carouselTimer = setInterval(() => goToSlide(currentSlide + 1), 6000);
 }
-
-function buildCarousel(videos) {
+function buildCarousel(items) {
   const container = document.getElementById("carousel");
   container.innerHTML = "";
-
-  videos.forEach(v => container.appendChild(buildSlide(v)));
-
-  // Flechas (solo si > 1 video)
-  if (videos.length > 1) {
+  items.forEach(item => container.appendChild(buildSlide(item)));
+  if (items.length > 1) {
     const prev = document.createElement("button");
     prev.className = "carousel-arrow prev"; prev.innerHTML = "&#8249;";
     prev.addEventListener("click", () => { goToSlide(currentSlide - 1); startTimer(); });
-
     const next = document.createElement("button");
     next.className = "carousel-arrow next"; next.innerHTML = "&#8250;";
     next.addEventListener("click", () => { goToSlide(currentSlide + 1); startTimer(); });
-
     container.appendChild(prev);
     container.appendChild(next);
-
-    // Dots
     const dotsEl = document.createElement("div");
     dotsEl.className = "carousel-dots";
-    videos.forEach((_, i) => {
+    items.forEach((_, i) => {
       const d = document.createElement("div");
       d.className = "dot";
       d.addEventListener("click", () => { goToSlide(i); startTimer(); });
@@ -453,44 +699,41 @@ function buildCarousel(videos) {
     });
     container.appendChild(dotsEl);
   }
-
-  // Activar primer slide
   document.querySelectorAll(".carousel-slide")[0].classList.add("active");
   const firstDot = document.querySelector(".dot");
   if (firstDot) firstDot.classList.add("active");
-
-  // Pausar al hover
   container.addEventListener("mouseenter", () => clearInterval(carouselTimer));
   container.addEventListener("mouseleave", startTimer);
-
-  if (videos.length > 1) startTimer();
+  if (items.length > 1) startTimer();
 }
 
-// Cargar y renderizar
+// ── MAIN ──
 fetch("videos.json").then(r => r.json()).then(videos => {
   if (!videos.length) {
     document.getElementById("carousel").innerHTML = '<div class="empty">Próximamente...</div>';
     return;
   }
 
-  carouselVideos = videos;
-  // Carrusel: Rescatistas fijo + últimas 6 subidas (excluida Rescatistas)
-  const pinned = videos.find(v => v.id === "rescatistas-ep01");
-  const resto  = videos.filter(v => v.id !== "rescatistas-ep01");
-  const ultimas6 = resto.slice(-6);
-  const enCarrusel = pinned ? [pinned, ...ultimas6] : ultimas6;
+  const agrupados = agruparSeries(videos);
+
+  // Carrusel: Rescatistas fijo (ahora como serie) + últimas 5 agrupadas
+  const pinned = agrupados.find(v => v.titulo === "Rescatistas" || v.id === "rescatistas-ep01");
+  const resto  = agrupados.filter(v => v !== pinned);
+  const ultimas5 = resto.slice(-5);
+  const enCarrusel = pinned ? [pinned, ...ultimas5] : ultimas5.slice(-6);
   buildCarousel(enCarrusel);
 
-  // FILAS por categoría
+  // Filas por categoría (usando items agrupados)
   const porCat = {};
-  videos.forEach(v => {
-    if (!porCat[v.categoria]) porCat[v.categoria] = [];
-    porCat[v.categoria].push(v);
+  agrupados.forEach(item => {
+    const cat = item.categoria;
+    if (!porCat[cat]) porCat[cat] = [];
+    porCat[cat].push(item);
   });
 
   const filasEl = document.getElementById("filas");
 
-  function crearFila(titulo, vids) {
+  function crearFila(titulo, items) {
     const fila = document.createElement("div");
     fila.className = "fila";
     fila.innerHTML = `
@@ -503,23 +746,20 @@ fetch("videos.json").then(r => r.json()).then(videos => {
       </div>
       <div class="fila-scroll"></div>`;
     const scroll = fila.querySelector(".fila-scroll");
-    vids.forEach(v => scroll.appendChild(renderCard(v)));
+    items.forEach(item => scroll.appendChild(renderCard(item)));
     fila.querySelector(".arr-prev").addEventListener("click", () => scroll.scrollBy({ left: -480, behavior: "smooth" }));
     fila.querySelector(".arr-next").addEventListener("click", () => scroll.scrollBy({ left: 480, behavior: "smooth" }));
     return fila;
   }
 
-  // Filas en orden definido
   CAT_ORDER.forEach(cat => {
-    const vids = porCat[cat];
-    if (!vids || vids.length < 1) return;
-    filasEl.appendChild(crearFila(CATS[cat]||cat, vids));
+    const items = porCat[cat];
+    if (!items || !items.length) return;
+    filasEl.appendChild(crearFila(CATS[cat]||cat, items));
   });
 
-  // Todo el catálogo al final
-  if (videos.length > 1) {
-    filasEl.appendChild(crearFila("Todo el catálogo", videos));
-  }
+  // Todo el catálogo
+  if (agrupados.length > 1) filasEl.appendChild(crearFila("Todo el catálogo", agrupados));
 
 }).catch(() => {
   document.getElementById("carousel").innerHTML = '<div class="empty">No se pudieron cargar los videos.</div>';
