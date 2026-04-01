@@ -473,12 +473,18 @@ def extraer_galeria_articulo(url_articulo, nota_id):
                 url = base + url
             if not url.startswith("http"):
                 continue
-            # Saltar gifs, thumbnails, logos, iconos, tracking pixels
+            # Saltar gifs, thumbnails, logos, iconos, tracking pixels y banners promo
             url_lower = url.lower()
             if any(x in url_lower for x in [
                 ".gif", "miniatura", "thumbnail", "thumb", "logo",
                 "favicon", "icon", "avatar", "pixel", "static/custom",
-                "data:,", "1x1", "spacer"
+                "data:,", "1x1", "spacer",
+                # Banners publicitarios y elementos de medio (TV, radio, señal online)
+                "radio", "-tv", "tv-", "senal-online", "señal-online",
+                "publicidad", "banner", "promo", "newsletter", "popup",
+                "sidebar", "portada-diario", "tapa-diario", "tapa_diario",
+                "portada_diario", "anuncio", "advertisement", "ads/",
+                "/ad-", "widget", "plugin", "share", "social-icon",
             ]):
                 continue
             # Solo imágenes reales
