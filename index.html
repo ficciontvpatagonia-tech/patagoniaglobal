@@ -1221,42 +1221,6 @@
 
   <div class="divider" style="margin:32px 0;"></div>
 
-  <!-- ══ CULTURA — grilla 2×3 dinámica desde cultura.json ══ -->
-  <div id="sec-cultura" class="section-header">
-    <div class="section-title">Cultura & Arte</div>
-    <div class="section-line"></div>
-    <div class="section-badge badge-dorado">Semanal</div>
-  </div>
-
-  <div id="cultura-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:4px;"></div>
-  <script>
-  (function(){
-    fetch('cultura.json?v=' + Date.now())
-      .then(r => r.json())
-      .then(items => {
-        const grid = document.getElementById('cultura-grid');
-        if (!items || !items.length) { grid.style.display='none'; return; }
-        grid.innerHTML = items.slice(0,6).map(c => {
-          const href = c.id ? `nota.html?id=${c.id}` : '#';
-          const bandera = c.pais === 'chile' ? '🇨🇱' : c.pais === 'ambos' ? '🇦🇷🇨🇱' : '🇦🇷';
-          return `<a href="${href}" style="text-decoration:none;color:inherit;">
-            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-top:2px solid #a07840;border-radius:6px;overflow:hidden;transition:background 0.18s,transform 0.18s;" onmouseover="this.style.background='rgba(160,120,64,0.12)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.transform='translateY(0)'">
-              ${c.imagen ? `<div style="height:120px;background-image:url('${c.imagen}');background-size:cover;background-position:center;"></div>` : ''}
-              <div style="padding:14px;">
-                <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#c9a060;margin-bottom:6px;">${c.tag || '🎭 Cultura'}</div>
-                <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:white;line-height:1.35;margin-bottom:6px;">${c.titulo}</div>
-                <div style="font-size:10px;color:rgba(255,255,255,0.38);">${bandera} ${c.meta || ''}</div>
-              </div>
-            </div>
-          </a>`;
-        }).join('');
-      })
-      .catch(() => { document.getElementById('cultura-grid').style.display='none'; });
-  })();
-  </script>
-
-  <div class="divider" style="margin:32px 0;"></div>
-
   <!-- ══ HISTORIA & CULTURA ══ -->
   <div id="sec-historia" class="section-header">
     <div class="section-title">Cultura Patagónica & Pueblos Originarios</div>
