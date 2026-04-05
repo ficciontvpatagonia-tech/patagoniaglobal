@@ -64,8 +64,7 @@
       padding: 20px 40px 14px;
     }
     .logo-tagline { font-size: 11px; color: #8ab8d4; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 4px; }
-    .logo { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: white; letter-spacing: 1px; line-height: 1; }
-    .logo span { color: #8ab8d4; font-weight: 400; font-style: italic; letter-spacing: 2px; }
+    .logo-img { height: 60px; width: auto; display: block; }
     nav {
       background: var(--verde);
       display: flex;
@@ -414,7 +413,7 @@
       .top-bar { padding: 5px 12px; font-size: 10px; }
       .top-bar span:last-child { display: none; }
       .header-main { padding: 14px 16px 10px; }
-      .logo { font-size: 34px; }
+      .logo-img { height: 46px; }
 
       nav { justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
       nav::-webkit-scrollbar { display: none; }
@@ -436,7 +435,7 @@
     }
 
     @media (max-width: 480px) {
-      .logo { font-size: 28px; }
+      .logo-img { height: 38px; }
       .nota-titulo { font-size: 21px; }
       .nota-meta { font-size: 11px; gap: 10px; flex-wrap: wrap; }
       .relacionadas-grid { grid-template-columns: 1fr; }
@@ -454,7 +453,7 @@
   <div class="header-main">
     <div class="logo-tagline">Sur Global, principio de todo.</div>
     <a href="index.html" style="text-decoration:none">
-      <div class="logo"><span>global</span>PATAGONIA</div>
+      <img src="logo-globalpatagonia.png" alt="globalPATAGONIA" class="logo-img">
     </a>
   </div>
   <nav>
