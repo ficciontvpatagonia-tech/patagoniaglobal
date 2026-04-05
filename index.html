@@ -1471,20 +1471,17 @@ function renderTurismo(turismo) {
     ? `background-image:url('${principal.imagen}');background-size:cover;background-position:center;`
     : "background:#1c2d3d;";
 
-  const abrirPrincipal = principal.url_original
-    ? `onclick="window.open('${principal.url_original}','_blank')" style="cursor:pointer;"`
-    : `style="cursor:default;"`;
+  const hrefPrincipal = principal.id ? `nota.html?id=${principal.id}` : '#';
 
   let secsHtml = "";
   secs.forEach((s, i) => {
     const bg = s.imagen
       ? `background-image:url('${s.imagen}');background-size:cover;background-position:center;`
       : `background:#${i===0?'2a4a6a':'3a2a1a'};`;
-    const abrir = s.url_original
-      ? `onclick="window.open('${s.url_original}','_blank')" style="cursor:pointer;"`
-      : `style="cursor:default;"`;
+    const hrefSec = s.id ? `nota.html?id=${s.id}` : '#';
     secsHtml += `
-    <div class="turismo-sec" ${abrir}>
+    <a href="${hrefSec}" style="text-decoration:none;color:inherit;">
+    <div class="turismo-sec">
       <div class="ts-img-fallback" style="${bg}">
         <div class="turismo-tipo">${s.badge || '🌿 Turismo'}</div>
       </div>
@@ -1492,12 +1489,14 @@ function renderTurismo(turismo) {
         <h4>${s.titulo}</h4>
         <p>${s.bajada ? s.bajada.substring(0,100)+'…' : ''}</p>
       </div>
-    </div>`;
+    </div>
+    </a>`;
   });
 
   container.innerHTML = `
   <div class="turismo-top">
-    <div class="turismo-principal" ${abrirPrincipal}>
+    <a href="${hrefPrincipal}" style="text-decoration:none;color:inherit;">
+    <div class="turismo-principal">
       <div class="tp-img-fallback" style="${bgPrincipal}">
         <div class="turismo-tipo">${principal.badge || '🌿 Turismo'}</div>
       </div>
@@ -1507,6 +1506,7 @@ function renderTurismo(turismo) {
         ${principal.meta ? `<div class="tp-meta"><span>${principal.meta}</span></div>` : ''}
       </div>
     </div>
+    </a>
     <div class="turismo-secundarias">${secsHtml}</div>
   </div>`;
 }
