@@ -104,8 +104,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 28px 40px 16px;
+      padding: 24px 20px 16px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .logo-tagline {
@@ -119,10 +121,8 @@
     .logo-img {
       height: 72px;
       width: auto;
+      max-width: 100%;
       display: block;
-      /* recorta márgenes laterales del JPEG */
-      object-fit: cover;
-      object-position: center;
     }
 
     .logo-sub {
