@@ -703,12 +703,18 @@ if (!id) {
     if (!nota && Array.isArray(propios)) {
       nota = propios.find(n => n.id === id) || null;
     }
-    if (!nota && Array.isArray(turismo)) {
-      nota = turismo.find(n => n.id === id) || null;
-    }
     // Último recurso: buscar en historial completo (notas de deportes, manuales, etc.)
     if (!nota && Array.isArray(historial)) {
       nota = historial.find(n => n.id === id) || null;
+    }
+    // turismo.json solo tiene resúmenes — usar solo si historial tampoco tiene la nota
+    if (!nota && Array.isArray(turismo)) {
+      nota = turismo.find(n => n.id === id) || null;
+    }
+    // Si se encontró pero sin cuerpo, buscar versión completa en historial
+    if (nota && !nota.cuerpo && Array.isArray(historial)) {
+      const completa = historial.find(n => n.id === id);
+      if (completa && completa.cuerpo) nota = completa;
     }
     if (nota) {
       renderNota(nota, noticias.fecha_display, { ...noticias, historias: historias.notas || [] });
