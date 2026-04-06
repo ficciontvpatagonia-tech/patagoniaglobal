@@ -2,49 +2,113 @@
   {
     "id": "guia-chalten",
     "destino": "El Chaltén",
+    "tagline": "La capital del trekking patagónico",
     "imagen": "fotos/fitz-roy-chalten-nevada.jpg",
+    "descripcion": "El Chaltén es un pueblo de 2.000 habitantes al pie del Fitz Roy, en el extremo norte del Parque Nacional Los Glaciares. Nació como estrategia geopolítica en 1985 y se convirtió en el destino de trekking más importante de la Patagonia argentina. El parque no cobra entrada y los senderos son de acceso libre.",
+    "cuando_ir": "Noviembre a marzo para días largos y senderos abiertos. El pico es enero y febrero — lleno de turistas. La temporada ideal es noviembre–diciembre o marzo: menos gente, igual de hermoso. En invierno el pueblo casi no tiene actividad y muchos senderos están cerrados por nieve.",
+    "como_llegar": "Bus desde El Calafate: 3 horas por ruta 40. No hay aeropuerto propio — el más cercano es El Calafate (FTE), con vuelos desde Buenos Aires, Ushuaia y Bariloche. En temporada alta los buses salen a las 8 AM y 18 PM aproximadamente.",
+    "que_hacer": [
+      { "titulo": "Laguna de los Tres", "descripcion": "El clásico del Chaltén. Sendero de 19 km ida y vuelta, 8 hs promedio. La subida final al mirador es exigente pero la vista del Fitz Roy desde arriba es única. Salir antes de las 7 AM para evitar el viento de la tarde." },
+      { "titulo": "Laguna Torre", "descripcion": "Más tranquila que los Tres, menos turistas. Sendero de 18 km, 6-7 hs. Vista al Cerro Torre y al glaciar Grande. Recomendable para quien busca menos multitudes." },
+      { "titulo": "Mirador del Cóndor", "descripcion": "Caminata corta desde el pueblo (2 hs ida y vuelta). Ideal para aclimatarse el primer día o para familias. Vista panorámica del valle del Fitz Roy." },
+      { "titulo": "Loma del Pliegue Tumbado", "descripcion": "El más exigente y el menos concurrido. 22 km, 9 hs. Vista 360° de glaciares, lagos y montañas. Solo para caminadores con experiencia." }
+    ],
     "consejos": [
-      "Mejor época: nov–marzo (días largos y senderos abiertos)",
-      "Laguna de los Tres: salir antes de las 7 AM para evitar viento",
-      "Laguna Torre: más tranquila, vistas igual de impresionantes",
-      "Sin entrada al parque ni permisos — trekking libre",
-      "Llevá efectivo: el pueblo no tiene cajero confiable"
+      "Sin entrada al parque ni permisos — trekking completamente libre",
+      "Llevá efectivo: el pueblo tiene un solo cajero, poco confiable",
+      "El viento arrecia después de las 14 hs — planificá salidas tempranas",
+      "Calzado de trekking impermeable es indispensable",
+      "El camping libre está permitido en algunos puntos — consultá en el centro de visitantes"
+    ],
+    "donde_comer": [
+      "Cervecería El Chaltén — artesanal propia, buenas hamburguesas",
+      "La Tapera — parrilla con vista al río, carta clásica patagónica",
+      "Ruca Mahuida — cocina de autor, precios altos pero vale",
+      "Panadería Josh Aike — desayunos y panes caseros, colas largas"
     ]
   },
   {
     "id": "guia-ushuaia",
     "destino": "Ushuaia",
+    "tagline": "La ciudad más austral del mundo",
     "imagen": "fotos/ushuaia-ciudad-montana.jpg",
+    "descripcion": "Ushuaia está ubicada a orillas del Canal Beagle, rodeada de montañas nevadas y bosques de lenga. Capital de Tierra del Fuego, es la ciudad más austral del planeta y punto de partida de los cruceros a la Antártida. Combina naturaleza extrema, historia de presidio y una vida urbana sorprendentemente activa.",
+    "cuando_ir": "Diciembre a febrero para trekking, navegación y días largos (hasta las 23 hs con luz). Junio a agosto para ski en Cerro Castor. Octubre y noviembre arrancan los cruceros antárticos. Evitar mayo y septiembre — temporada baja casi total, muchos lugares cerrados.",
+    "como_llegar": "Vuelos desde Buenos Aires (3 hs), Bariloche, El Calafate y otras ciudades. También bus desde Punta Arenas cruzando a Chile (6-8 hs según pasos). El aeropuerto Malvinas Argentinas está a 4 km del centro, no hay transporte público — remís o taxi obligatorio.",
+    "que_hacer": [
+      { "titulo": "Parque Nacional Tierra del Fuego", "descripcion": "El único parque nacional argentino con costa marítima. Acceso caminando desde la ciudad (8 km) o en bus. Senderos entre bosques de lenga y lagos del glaciar. La Bahía Lapataia, al final de la Ruta Nacional 3, es el kilómetro cero del continente." },
+      { "titulo": "Glaciar Martial", "descripcion": "A 7 km del centro por camino de montaña. Aerosilla hasta la mitad (opcional) y sendero de 45 minutos al glaciar. Vista panorámica de la ciudad y el Canal Beagle. Impresionante al amanecer." },
+      { "titulo": "Navegación por el Canal Beagle", "descripcion": "Excursión de 3-4 horas. Se ven lobos marinos, cormoranes, pingüinos de Magallanes y el Faro Les Eclaireurs. Media jornada alcanza — la navegación completa (Estancia Harberton) es para quien tiene tiempo extra." },
+      { "titulo": "Museo del Presidio", "descripcion": "El antiguo penal de Ushuaia convertido en museo. Historia fascinante de los presos que construyeron la ciudad. Vale la visita aunque solo sea por el edificio." }
+    ],
     "consejos": [
-      "Parque Nacional Tierra del Fuego: entrar caminando desde la ciudad",
-      "Glaciar Martial: subida corta, vistas panorámicas del Canal Beagle",
-      "Navegación por el canal: media jornada alcanza",
-      "Clima impredecible — llevar ropa para 4 estaciones",
-      "Mejor en verano (dic–feb) o invierno para ski en Cerro Castor"
+      "Llevar ropa para 4 estaciones en la misma mochila — el clima cambia en horas",
+      "El impuesto provincial hace todo más barato que en Buenos Aires — buen lugar para comprar electrónica",
+      "Los restaurantes del centro tienen precios altos — alejarse dos cuadras y los precios bajan",
+      "Los pingüinos están en la Isla Martillo (oct–mar) — excursión aparte desde el centro",
+      "Reservar alojamiento con meses de anticipación en temporada alta (dic–feb)"
+    ],
+    "donde_comer": [
+      "Chez Manu — cocina francesa con vista al Canal Beagle, imperdible",
+      "La Estancia — parrilla tradicional, gran variedad de cortes",
+      "María Laucha — cocina casera, precios razonables, muy concurrido por locales",
+      "Lomitos Martinica — el local de lomitos histórico de Ushuaia, para comer rápido y bien"
     ]
   },
   {
     "id": "guia-esquel",
     "destino": "Esquel",
+    "tagline": "Comarca andina y tren patagónico",
     "imagen": "fotos/la-trochita.jpg",
+    "descripcion": "Esquel es la puerta de entrada a la Comarca Andina del Chubut. Ciudad tranquila con fuerte identidad galesa, a los pies de la cordillera y a 70 km del Parque Nacional Los Alerces — uno de los parques más pristinos de la Patagonia, declarado Patrimonio de la Humanidad en 2017. Menos turismo masivo que Bariloche, más carácter propio.",
+    "cuando_ir": "Diciembre a marzo para senderismo, pesca y navegación en Los Alerces. Julio y agosto para ski en La Hoya. Semana Santa es el mejor momento para La Trochita — el tren corre con frecuencia especial y Trevelin arma festivales galeses.",
+    "como_llegar": "Vuelos desde Buenos Aires con Aerolíneas (escala en Bariloche a veces). Bus desde Bariloche: 4 horas por ruta 258. También desde Trelew y Comodoro Rivadavia. El aeropuerto Brigadier Antonio Parodi está a 20 minutos del centro.",
+    "que_hacer": [
+      { "titulo": "La Trochita", "descripcion": "El tren más austral del mundo en operación regular. Vía angosta de 75 cm, locomotoras a vapor de 1922. Sale de Esquel hacia El Maitén (4 hs) o en excursiones cortas (2 hs). Paul Theroux la inmortalizó en 'El viejo expreso de la Patagonia'. Reservar con anticipación en temporada alta." },
+      { "titulo": "Parque Nacional Los Alerces", "descripcion": "70 km desde Esquel. Alberga alerces milenarios de hasta 2.600 años de antigüedad. La excursión en lancha al alerce El Abuelo (60 m de altura, 2.200 años) es imperdible. Lagos Futalaufquen y Menéndez de un azul extraordinario." },
+      { "titulo": "Trevelin", "descripcion": "Pueblo galés a 24 km de Esquel. Descendientes de los colonos del Chubut (llegaron en 1865) mantienen viva la tradición del té. Casa de té Nain Magu: tortas galesas, mermeladas caseras, en una casona histórica." },
+      { "titulo": "Cerro La Hoya", "descripcion": "Centro de ski a 13 km de Esquel. Menos concurrido y más barato que Bariloche y Las Leñas. 28 pistas, telesillas modernos, vista al Lago Rosario. En verano opera como centro de trekking." }
+    ],
     "consejos": [
-      "La Trochita: el tren más austral del mundo, salidas regulares",
-      "Parque Nacional Los Alerces: bosques milenarios y lagos vírgenes",
-      "Trevelin: pueblo galés a 24 km, té con tortas caseras",
-      "Mejor base para explorar la comarca andina del Chubut",
-      "Ski en La Hoya: menos turistas y mejores precios que Bariloche"
+      "Esquel dijo NO a la mina en 2003 — el primer plebiscito antiminero de Argentina, parte de su identidad",
+      "Los campings en Los Alerces se reservan online con meses de anticipación",
+      "La pesca de truchas en el río Percy y el lago Futalaufquen es de las mejores del país",
+      "Llevar pesos — muchos lugares no aceptan tarjeta fuera del centro",
+      "El cóndor andino se avista regularmente en el camino al parque"
+    ],
+    "donde_comer": [
+      "Touring Club — el bar histórico de Esquel (1940), nada cambió, hay que ir",
+      "La Española — cocina de campo, cazuela de cordero y trucha del río",
+      "Don Chiquino — pizzas y pastas, favorito de los locales",
+      "Casa de Té Nain Magu (Trevelin) — el té galés más auténtico de la Patagonia"
     ]
   },
   {
     "id": "guia-bariloche",
     "destino": "Bariloche",
+    "tagline": "Lagos, montañas y la capital del ski patagónico",
     "imagen": "fotos/bariloche-lago-nahuel-huapi.jpg",
+    "descripcion": "Bariloche es la capital turística de la Patagonia Norte. Sobre el Lago Nahuel Huapi, con arquitectura de estilo alpino y el Parque Nacional más visitado de Argentina. Combina montaña, lagos de color turquesa y un circuito de chocolate artesanal que la hizo famosa en todo el país.",
+    "cuando_ir": "Junio a septiembre para ski en Cerro Catedral (el más grande de Sudamérica). Diciembre a marzo para trekking, navegación, bicicleta y circuitos panorámicos. Evitar enero: turistas al máximo y precios duplicados. Los mejores meses son diciembre y marzo.",
+    "como_llegar": "Vuelos directos desde Buenos Aires, Córdoba, Rosario y otras ciudades. El aeropuerto Teniente Luis Candelaria está a 15 km del centro — taxi o remís. Bus desde Buenos Aires: 20 horas (hay camas cama que salen por la noche). También conexiones desde Mendoza, Neuquén y otras ciudades patagónicas.",
+    "que_hacer": [
+      { "titulo": "Cerro Catedral", "descripcion": "El centro de ski más grande de Sudamérica: 120 km de pistas, 34 medios de elevación. En verano (dic–mar) opera como área de trekking y mountain bike con vistas al Nahuel Huapi." },
+      { "titulo": "Circuito Chico", "descripcion": "Recorrido de 65 km en auto o bici (hay bicicleterías). Pasa por el Cerro Otto, la Bahía López y el Llao Llao (el hotel más famoso de la Patagonia). Medio día alcanza." },
+      { "titulo": "Ruta de los Siete Lagos", "descripcion": "130 km desde Bariloche hasta San Martín de los Andes, cruzando siete lagos de colores imposibles. Hacerla en auto propio o en lancha (la diferencia visual es total). No en micro de turismo — pierde toda la magia." },
+      { "titulo": "Cerro Tronador", "descripcion": "El volcán nevado en la frontera con Chile. 80 km desde Bariloche. En el camino se ve el glaciar Negro. La ruta de acceso cierra a las 14 hs — salir temprano." }
+    ],
     "consejos": [
-      "Circuito Chico: recorrido clásico en bici o auto, medio día",
-      "Siete Lagos: hacerla en lancha, no en bus (la diferencia es total)",
-      "Cerro Catedral: ski en invierno, trekking en verano",
-      "Evitar enero — turistas al máximo y precios duplicados",
-      "Chocolate artesanal: mejores en Rapanui y Del Turista"
+      "El chocolate artesanal más reconocido: Rapanui y Del Turista — evitar las cadenas",
+      "El Llao Llao se puede visitar tomando un café aunque no seas huésped",
+      "Para Cerro Catedral en invierno: reservar forfait online, mucho más barato",
+      "Los miradores más espectaculares no cobran entrada — Cerro Campanario es uno de los mejores del mundo según National Geographic",
+      "La ruta 40 al sur empieza acá — si se va a El Chaltén, planificar paradas en Perito Moreno y Los Antiguos"
+    ],
+    "donde_comer": [
+      "Cassis — alta cocina patagónica, la mesa más importante de Bariloche",
+      "La Marmite — fondue y raclette en un chalet alpino, clásico de invierno",
+      "Días de Zapata — mexicano sorprendentemente bueno, siempre lleno",
+      "El Boliche de Alberto — parrilla clásica, cordero patagónico, sin reserva no hay lugar"
     ]
   }
 ]

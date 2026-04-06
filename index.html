@@ -724,69 +724,78 @@
     }
 
     .destino-card {
-      border-radius: 6px;
+      border-radius: 8px;
       overflow: hidden;
       cursor: pointer;
       color: white;
       display: flex;
       flex-direction: column;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
     }
+    .destino-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
 
     .destino-header {
-      height: 130px;
+      height: 180px;
       background-size: cover;
       background-position: center;
       position: relative;
       display: flex;
       align-items: flex-end;
     }
-
-    .destino-chalten  { background: linear-gradient(160deg, #1a3a2a, #3a7a5a); }
-    .destino-ushuaia  { background: linear-gradient(160deg, #0e1e30, #2a4a6a); }
-    .destino-esquel   { background: linear-gradient(160deg, #2a1a0e, #6a4a2a); }
-    .destino-bariloche{ background: linear-gradient(160deg, #1a1a2e, #4a4a8a); }
+    .destino-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.65) 100%);
+    }
 
     .destino-nombre {
       font-family: 'Playfair Display', serif;
-      font-size: 18px; font-weight: 900;
-      padding: 10px 14px 8px;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-      line-height: 1;
+      font-size: 20px; font-weight: 900;
+      padding: 12px 14px 10px;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+      line-height: 1.1;
+      position: relative;
+      z-index: 1;
     }
 
     .destino-body {
       background: var(--gris-oscuro);
-      padding: 14px;
+      padding: 14px 16px 16px;
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .destino-label {
-      font-size: 8px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: var(--verde-claro);
-      margin-bottom: 8px;
+    .destino-tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.45;
+      font-style: italic;
     }
 
-    .destino-body ul {
-      list-style: none;
-      padding: 0; margin: 0;
-    }
-
-    .destino-body ul li {
-      font-size: 11px;
-      color: rgba(255,255,255,0.72);
-      line-height: 1.5;
-      padding: 3px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding-left: 12px;
-      position: relative;
-    }
-
-    .destino-body ul li::before {
-      content: '›';
-      position: absolute; left: 0;
-      color: var(--verde-claro);
+    .destino-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
       font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--verde-claro);
+      margin-top: auto;
+    }
+
+    @media (max-width: 700px) {
+      .destinos-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .destino-header { height: 160px; }
+      .destino-nombre { font-size: 18px; }
+    }
+    @media (max-width: 380px) {
+      .destinos-grid { grid-template-columns: 1fr; }
     }
 
     /* ── EL DATO & LUGAR DESCONOCIDO ── */
@@ -1562,7 +1571,7 @@ fetch("turismo.json")
   .then(turismo => renderTurismo(turismo))
   .catch(() => {});
 
-// ── GUIAS: carga desde guias.json — máx 4, el más nuevo primero ──
+// ── GUIAS: carga desde guias.json — máx 4 ──
 function renderGuias(guias) {
   const container = document.getElementById("guias-container");
   if (!container || !guias || !guias.length) return;
@@ -1571,17 +1580,16 @@ function renderGuias(guias) {
     const bg = g.imagen
       ? `background-image:url('${g.imagen}');background-size:cover;background-position:center;`
       : "background:linear-gradient(135deg,#1c2d3d,#3a5a7a);";
-    const items = (g.consejos || []).map(c => `<li>${c}</li>`).join("");
     return `
-      <div class="destino-card">
+      <a href="guia.html?id=${g.id}" class="destino-card">
         <div class="destino-header" style="${bg}">
           <div class="destino-nombre">${g.destino}</div>
         </div>
         <div class="destino-body">
-          <div class="destino-label">Plan + Consejos</div>
-          <ul>${items}</ul>
+          <div class="destino-tagline">${g.tagline || ''}</div>
+          <div class="destino-cta">Ver guía completa →</div>
         </div>
-      </div>`;
+      </a>`;
   }).join("");
 }
 
