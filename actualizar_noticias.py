@@ -440,8 +440,9 @@ def extraer_og_image(url_articulo, nota_id):
 
 
 def extraer_galeria_articulo(url_articulo, nota_id):
-    """Descarga las fotos del interior del artículo fuente y las guarda en fotos/.
-    Retorna lista de rutas locales (máx. 4 fotos, excluyendo thumbnails y gifs)."""
+    """Descarga fotos del cuerpo del artículo fuente. Solo busca dentro del contenedor
+    principal del artículo para evitar imágenes de sidebar, relacionadas y publicidades.
+    Retorna lista de rutas locales (máx. 4 fotos)."""
     if not url_articulo:
         return []
     try:
@@ -452,55 +453,60 @@ def extraer_galeria_articulo(url_articulo, nota_id):
         with urllib.request.urlopen(req, timeout=12) as resp:
             html = resp.read().decode("utf-8", errors="ignore")
 
-        # Recolectar URLs desde data-src y src en img tags
+        # ── Aislar el cuerpo del artículo ──────────────────────────────────────
+        # Intentar extraer solo el bloque HTML del contenido principal.
+        # Si no se encuentra ningún contenedor conocido, no descargar galería
+        # (mejor no mostrar nada que mostrar imágenes fuera de contexto).
+        CONTENEDORES = [
+            r'<article\b[^>]*>(.*?)</article>',
+            r'<div[^>]+class=["\'][^"\']*(?:article-body|article-content|nota-cuerpo|'
+            r'nota-body|entry-content|post-content|single-content|'
+            r'news-content|td-post-content|article__body|story-body|'
+            r'content-body|body-content|article_body)[^"\']*["\'][^>]*>(.*?)</div>',
+        ]
+        cuerpo_html = None
+        for patron in CONTENEDORES:
+            m = re.search(patron, html, re.DOTALL | re.IGNORECASE)
+            if m:
+                cuerpo_html = m.group(m.lastindex)
+                break
+
+        if not cuerpo_html:
+            return []  # sin contenedor identificado → no arriesgar imágenes fuera de lugar
+
+        # ── Extraer URLs de imagen del cuerpo ─────────────────────────────────
         candidatas = []
-
-        # data-src (lazy loading — más confiable para imágenes reales del artículo)
-        for m in re.finditer(r'data-src=["\']([^"\']+)["\']', html):
+        for m in re.finditer(r'data-src=["\']([^"\']+)["\']', cuerpo_html):
+            candidatas.append(m.group(1))
+        for m in re.finditer(r'<img[^>]+src=["\']([^"\']+)["\']', cuerpo_html):
             candidatas.append(m.group(1))
 
-        # src convencional como fallback
-        for m in re.finditer(r'<img[^>]+src=["\']([^"\']+)["\']', html):
-            candidatas.append(m.group(1))
-
-        # Filtrar y deduplicar
         base = url_articulo.split("/")[0] + "//" + url_articulo.split("/")[2]
         vistas = set()
         urls_limpias = []
         for url in candidatas:
-            # Completar URLs relativas
             if url.startswith("/"):
                 url = base + url
             if not url.startswith("http"):
                 continue
-            # Saltar gifs, thumbnails, logos, iconos, tracking pixels y banners promo
             url_lower = url.lower()
             if any(x in url_lower for x in [
                 ".gif", "miniatura", "thumbnail", "thumb", "logo",
-                "favicon", "icon", "avatar", "pixel", "static/custom",
-                "data:,", "1x1", "spacer",
-                # Banners publicitarios y elementos de medio (TV, radio, señal online)
-                "radio", "-tv", "tv-", "senal-online", "señal-online",
-                "publicidad", "banner", "promo", "newsletter", "popup",
-                "sidebar", "portada-diario", "tapa-diario", "tapa_diario",
-                "portada_diario", "anuncio", "advertisement", "ads/",
-                "/ad-", "widget", "plugin", "share", "social-icon",
+                "favicon", "icon", "avatar", "pixel", "1x1", "spacer",
+                "publicidad", "banner", "promo", "ads/", "/ad-", "widget",
             ]):
                 continue
-            # Solo imágenes reales
-            ext_match = re.search(r'\.(jpg|jpeg|png|webp)(\?|$)', url_lower)
-            if not ext_match:
+            if not re.search(r'\.(jpg|jpeg|png|webp)(\?|$)', url_lower):
                 continue
-            # Deduplicar por URL limpia (sin query string)
             url_base = url.split("?")[0]
             if url_base in vistas:
                 continue
             vistas.add(url_base)
             urls_limpias.append(url)
-            if len(urls_limpias) >= 6:  # tomar más candidatas para filtrar después
+            if len(urls_limpias) >= 6:
                 break
 
-        # Descargar hasta 4 fotos (saltando la primera si ya es la og:image)
+        # ── Descargar hasta 4 fotos ────────────────────────────────────────────
         fotos_dir = os.path.join(os.path.dirname(__file__), "fotos")
         galeria = []
         descargadas = 0
@@ -523,11 +529,11 @@ def extraer_galeria_articulo(url_articulo, nota_id):
                 })
                 with urllib.request.urlopen(img_req, timeout=10) as resp:
                     contenido = resp.read()
-                # Saltar imágenes muy pequeñas (< 10 KB = probablemente ícono)
                 if len(contenido) < 10_000:
                     continue
                 with open(ruta_local, "wb") as f:
                     f.write(contenido)
+                _recortar_banner(ruta_local)
                 galeria.append(f"fotos/{filename}")
                 descargadas += 1
             except Exception:
