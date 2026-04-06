@@ -580,6 +580,40 @@ def buscar_imagen_unsplash(keywords):
     return _unsplash_query("patagonia landscape argentina")
 
 
+def _recortar_banner(ruta_local):
+    """Detecta y elimina banners de diarios pegados al borde de la imagen.
+    Detecta franjas sólidas de color (rojo, naranja, negro, blanco) en el borde inferior.
+    Usa PIL si está disponible; si no, omite sin error."""
+    try:
+        from PIL import Image
+        import numpy as np
+        img = Image.open(ruta_local).convert("RGB")
+        arr = np.array(img)
+        h, w = arr.shape[:2]
+        if h < 100:
+            return  # imagen demasiado pequeña, no tocar
+        # Buscar banner desde abajo: fila sólida = >70% de píxeles con color uniforme
+        # Detección: rojo (R>160,G<80,B<80), blanco (todos>220), negro (todos<40), naranja (R>200,G>80,G<160,B<60)
+        def es_banner(fila):
+            r, g, b = fila[:,0], fila[:,1], fila[:,2]
+            rojo    = np.mean((r > 160) & (g < 80)  & (b < 80))   > 0.7
+            blanco  = np.mean((r > 220) & (g > 220) & (b > 220))  > 0.7
+            negro   = np.mean((r < 40)  & (g < 40)  & (b < 40))   > 0.7
+            naranja = np.mean((r > 200) & (g > 80)  & (g < 160) & (b < 60)) > 0.7
+            return rojo or blanco or negro or naranja
+
+        corte = h
+        for i in range(h - 1, h - int(h * 0.25) - 1, -1):  # revisar hasta 25% inferior
+            if not es_banner(arr[i]):
+                corte = i + 1
+                break
+
+        if corte < h:
+            img.crop((0, 0, w, corte)).save(ruta_local, quality=90)
+    except Exception:
+        pass  # si PIL no está o falla, continuar sin recortar
+
+
 def _descargar_imagen_externa(url_http, nota_id, sufijo=""):
     """Descarga una URL de imagen externa y la guarda en fotos/. Retorna ruta local o None."""
     if not url_http or not url_http.startswith("http"):
@@ -601,6 +635,7 @@ def _descargar_imagen_externa(url_http, nota_id, sufijo=""):
             return None
         with open(ruta_local, "wb") as f:
             f.write(contenido)
+        _recortar_banner(ruta_local)
         return f"fotos/{filename}"
     except Exception:
         return None
