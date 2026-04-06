@@ -686,28 +686,29 @@ const id = getParam("id");
 if (!id) {
   document.getElementById("loading").textContent = "Nota no encontrada.";
 } else {
-  // Busca en noticias.json, historias.json, propios.json y turismo.json en paralelo
+  // Busca en noticias.json, historias.json, propios.json, turismo.json y historial.json
   Promise.all([
     fetch("noticias.json").then(r => r.json()).catch(() => ({})),
     fetch("historias.json").then(r => r.json()).catch(() => ({})),
     fetch("propios.json").then(r => r.json()).catch(() => ([])),
-    fetch("turismo.json").then(r => r.json()).catch(() => ([]))
-  ]).then(([noticias, historias, propios, turismo]) => {
-    // Primero busca en noticias.json
+    fetch("turismo.json").then(r => r.json()).catch(() => ([])),
+    fetch("historial.json").then(r => r.json()).catch(() => ([]))
+  ]).then(([noticias, historias, propios, turismo, historial]) => {
     let nota = buscarNota(noticias, id);
     let data = noticias;
-    // Si no está, busca en historias.json
     if (!nota && historias.notas) {
       nota = historias.notas.find(n => n.id === id) || null;
       if (nota) data = { ...noticias, historias: historias.notas };
     }
-    // Si no está, busca en propios.json
     if (!nota && Array.isArray(propios)) {
       nota = propios.find(n => n.id === id) || null;
     }
-    // Si no está, busca en turismo.json
     if (!nota && Array.isArray(turismo)) {
       nota = turismo.find(n => n.id === id) || null;
+    }
+    // Último recurso: buscar en historial completo (notas de deportes, manuales, etc.)
+    if (!nota && Array.isArray(historial)) {
+      nota = historial.find(n => n.id === id) || null;
     }
     if (nota) {
       renderNota(nota, noticias.fecha_display, { ...noticias, historias: historias.notas || [] });

@@ -820,12 +820,31 @@ def construir_noticias_json(tapa, historial, ticker):
     # La tapa es siempre la que eligió Claude; los propios nunca la ocupan.
     tapa_final = tapa
 
-    # ── Feed: historial sin propios ni historias, sin duplicados ─
+    # ── IDs en deportes_feed.json → excluir del feed de noticias ──
+    try:
+        ruta_dep = os.path.join(os.path.dirname(__file__), "deportes_feed.json")
+        with open(ruta_dep, encoding="utf-8") as f:
+            dep = json.load(f)
+        ids_deportes = set()
+        for item in [dep.get("principal", {})] + dep.get("secundarias", []) + dep.get("row_cards", []):
+            if item.get("id"):
+                ids_deportes.add(item["id"])
+    except Exception:
+        ids_deportes = set()
+
+    # ── Feed: historial sin propios ni historias ni deportes, sin duplicados,
+    #          sin excluir_feed=true, máx 7 días de antigüedad ──────────────
     ids_vistos = {tapa_final.get("id")}
     feed = []
     for a in historial:
         aid = a.get("id")
         if aid in ids_vistos or aid in ids_excluir or es_propio(a):
+            continue
+        if aid in ids_deportes:
+            continue
+        if a.get("excluir_feed"):
+            continue
+        if dias_desde_id(aid) > 7:
             continue
         ids_vistos.add(aid)
         feed.append(a)
