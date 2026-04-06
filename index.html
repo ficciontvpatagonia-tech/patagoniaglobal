@@ -1157,72 +1157,8 @@
     <div class="section-badge badge-azul">Planes & Consejos</div>
   </div>
 
-  <div class="destinos-grid">
-
-    <div class="destino-card">
-      <div class="destino-header destino-chalten" style="background-image:url('fotos/fitz-roy-chalten-nevada.jpg');background-size:cover;background-position:center;">
-        <div class="destino-nombre">El Chaltén</div>
-      </div>
-      <div class="destino-body">
-        <div class="destino-label">Plan + Consejos</div>
-        <ul>
-          <li>Mejor época: nov–marzo (días largos y senderos abiertos)</li>
-          <li>Laguna de los Tres: salir antes de las 7 AM para evitar viento</li>
-          <li>Laguna Torre: más tranquila, vistas igual de impresionantes</li>
-          <li>Sin entrada al parque ni permisos — trekking libre</li>
-          <li>Llevá efectivo: el pueblo no tiene cajero confiable</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="destino-card">
-      <div class="destino-header destino-ushuaia" style="background-image:url('fotos/ushuaia-ciudad-montana.jpg');background-size:cover;background-position:center;">
-        <div class="destino-nombre">Ushuaia</div>
-      </div>
-      <div class="destino-body">
-        <div class="destino-label">Plan + Consejos</div>
-        <ul>
-          <li>Parque Nacional Tierra del Fuego: entrar caminando desde la ciudad</li>
-          <li>Glaciar Martial: subida corta, vistas panorámicas del Canal Beagle</li>
-          <li>Navegación por el canal: media jornada alcanza</li>
-          <li>Clima impredecible — llevar ropa para 4 estaciones</li>
-          <li>Mejor en verano (dic–feb) o invierno para ski en Cerro Castor</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="destino-card">
-      <div class="destino-header destino-esquel" style="background-image:url('fotos/la-trochita.jpg');background-size:cover;background-position:center;">
-        <div class="destino-nombre">Esquel</div>
-      </div>
-      <div class="destino-body">
-        <div class="destino-label">Plan + Consejos</div>
-        <ul>
-          <li>La Trochita: el tren más austral del mundo, salidas regulares</li>
-          <li>Parque Nacional Los Alerces: bosques milenarios y lagos vírgenes</li>
-          <li>Trevelin: pueblo galés a 24 km, té con tortas caseras</li>
-          <li>Mejor base para explorar la comarca andina del Chubut</li>
-          <li>Ski en La Hoya: menos turistas y mejores precios que Bariloche</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="destino-card">
-      <div class="destino-header destino-bariloche" style="background-image:url('fotos/bariloche-lago-nahuel-huapi.jpg');background-size:cover;background-position:center top;">
-        <div class="destino-nombre">Bariloche</div>
-      </div>
-      <div class="destino-body">
-        <div class="destino-label">Plan + Consejos</div>
-        <ul>
-          <li>Circuito Chico: recorrido clásico en bici o auto, medio día</li>
-          <li>Siete Lagos: hacerla en lancha, no en bus (la diferencia es total)</li>
-          <li>Cerro Catedral: ski en invierno, trekking en verano</li>
-          <li>Evitar enero — turistas al máximo y precios duplicados</li>
-          <li>Chocolate artesanal: mejores en Rapanui y Del Turista</li>
-        </ul>
-      </div>
-    </div>
-
+  <div class="destinos-grid" id="guias-container">
+    <!-- Se rellena dinámicamente desde guias.json -->
   </div>
 
   <div class="divider" style="margin:32px 0;"></div>
@@ -1545,6 +1481,34 @@ fetch("noticias.json")
 fetch("turismo.json")
   .then(r => r.json())
   .then(turismo => renderTurismo(turismo))
+  .catch(() => {});
+
+// ── GUIAS: carga desde guias.json — máx 4, el más nuevo primero ──
+function renderGuias(guias) {
+  const container = document.getElementById("guias-container");
+  if (!container || !guias || !guias.length) return;
+  const visibles = guias.slice(0, 4);
+  container.innerHTML = visibles.map(g => {
+    const bg = g.imagen
+      ? `background-image:url('${g.imagen}');background-size:cover;background-position:center;`
+      : "background:linear-gradient(135deg,#1c2d3d,#3a5a7a);";
+    const items = (g.consejos || []).map(c => `<li>${c}</li>`).join("");
+    return `
+      <div class="destino-card">
+        <div class="destino-header" style="${bg}">
+          <div class="destino-nombre">${g.destino}</div>
+        </div>
+        <div class="destino-body">
+          <div class="destino-label">Plan + Consejos</div>
+          <ul>${items}</ul>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+fetch("guias.json")
+  .then(r => r.json())
+  .then(data => renderGuias(data))
   .catch(() => {});
 
 // ── INFORMES: carga desde propios.json (no afectado por el script diario) ──

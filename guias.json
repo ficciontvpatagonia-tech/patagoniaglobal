@@ -1,0 +1,50 @@
+[
+  {
+    "id": "guia-chalten",
+    "destino": "El Chaltén",
+    "imagen": "fotos/fitz-roy-chalten-nevada.jpg",
+    "consejos": [
+      "Mejor época: nov–marzo (días largos y senderos abiertos)",
+      "Laguna de los Tres: salir antes de las 7 AM para evitar viento",
+      "Laguna Torre: más tranquila, vistas igual de impresionantes",
+      "Sin entrada al parque ni permisos — trekking libre",
+      "Llevá efectivo: el pueblo no tiene cajero confiable"
+    ]
+  },
+  {
+    "id": "guia-ushuaia",
+    "destino": "Ushuaia",
+    "imagen": "fotos/ushuaia-ciudad-montana.jpg",
+    "consejos": [
+      "Parque Nacional Tierra del Fuego: entrar caminando desde la ciudad",
+      "Glaciar Martial: subida corta, vistas panorámicas del Canal Beagle",
+      "Navegación por el canal: media jornada alcanza",
+      "Clima impredecible — llevar ropa para 4 estaciones",
+      "Mejor en verano (dic–feb) o invierno para ski en Cerro Castor"
+    ]
+  },
+  {
+    "id": "guia-esquel",
+    "destino": "Esquel",
+    "imagen": "fotos/la-trochita.jpg",
+    "consejos": [
+      "La Trochita: el tren más austral del mundo, salidas regulares",
+      "Parque Nacional Los Alerces: bosques milenarios y lagos vírgenes",
+      "Trevelin: pueblo galés a 24 km, té con tortas caseras",
+      "Mejor base para explorar la comarca andina del Chubut",
+      "Ski en La Hoya: menos turistas y mejores precios que Bariloche"
+    ]
+  },
+  {
+    "id": "guia-bariloche",
+    "destino": "Bariloche",
+    "imagen": "fotos/bariloche-lago-nahuel-huapi.jpg",
+    "consejos": [
+      "Circuito Chico: recorrido clásico en bici o auto, medio día",
+      "Siete Lagos: hacerla en lancha, no en bus (la diferencia es total)",
+      "Cerro Catedral: ski en invierno, trekking en verano",
+      "Evitar enero — turistas al máximo y precios duplicados",
+      "Chocolate artesanal: mejores en Rapanui y Del Turista"
+    ]
+  }
+]
