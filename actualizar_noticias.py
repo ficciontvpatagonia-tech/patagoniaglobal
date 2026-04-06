@@ -317,7 +317,7 @@ Respondé SOLO con este JSON válido (sin texto adicional):
     "url_original": "url completa",
     "pais": "argentina|chile|ambos",
     "imagen": null,
-    "imagen_keywords": "2-3 palabras en inglés para buscar foto (ej: glacier patagonia, indigenous patagonia, trail running mountains)"
+    "imagen_keywords": "2-3 palabras en español para buscar foto (ej: glaciar patagonia, pueblos originarios, trail running montaña, pesca ilegal, antártida krill, prefectura mar)"
   }},
   "nuevas": [
     {{
@@ -331,7 +331,7 @@ Respondé SOLO con este JSON válido (sin texto adicional):
       "url_original": "url completa",
       "pais": "argentina|chile|ambos",
       "imagen": null,
-      "imagen_keywords": "2-3 palabras en inglés"
+      "imagen_keywords": "2-3 palabras en español"
     }}
   ]
 }}"""
