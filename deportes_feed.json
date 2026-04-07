@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260407-1029-sec2",
-    "tag": "🏊 Deportes",
-    "titulo": "Iara Arias, la nadadora de Viedma que hace podio en aguas heladas",
-    "bajada": "La deportista rionegrina compite en natación en aguas abiertas a temperaturas cercanas a los 0 grados y se destaca a nivel internacional.",
-    "imagen": "fotos/foto-20260407-1029-sec2.jpeg",
-    "meta": "Hoy · Diario Río Negro"
+    "id": "20260407-1050-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "Ariela Mansilla, campeona magallánica en la Vuelta de Calama",
+    "bajada": "La ciclista de Punta Arenas se impuso en las cuatro etapas de la 56ª Vuelta Internacional de Calama, una de las pruebas de ruta más tradicionales del ciclismo chileno.",
+    "imagen": "fotos/foto-20260407-1050-dep.jpg",
+    "meta": "Hoy · El Pingüino"
   },
   "secundarias": [
+    {
+      "id": "20260407-1029-sec2",
+      "tag": "🏊 Deportes",
+      "titulo": "Iara Arias, la nadadora de Viedma que hace podio en aguas heladas",
+      "bajada": "La deportista rionegrina compite en natación en aguas abiertas a temperaturas cercanas a los 0 grados y se destaca a nivel internacional.",
+      "imagen": "fotos/foto-20260407-1029-sec2.jpeg",
+      "meta": "Hoy · Diario Río Negro"
+    },
     {
       "id": "gran-fondo-calle-calle-2026",
       "titulo": "34 nadadores desafiaron la lluvia y el frío en el Gran Fondo del Calle Calle",
@@ -17,7 +25,9 @@
       "badge_text": "🏊 Aguas Abiertas",
       "badge_bg": "#1c2d3d",
       "badge_color": "white"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "trail-monte-leon-2026",
       "titulo": "Cuatro podios patagónicos: atletas de El Calafate brillaron en el Desafío Monte León",
@@ -25,9 +35,7 @@
       "badge_text": "🏃 Trail Running",
       "badge_bg": "#3a5a7a",
       "badge_color": "white"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "rescate-chalten-marzo-2026",
       "titulo": "Dos turistas rescatados en El Chaltén en menos de 24 horas: una mexicana en Laguna de los Tres y un holandés perdido toda la noche",
@@ -48,13 +56,6 @@
       "tag": "🏊 Deportes",
       "titulo": "Médica magallánica conquista la Triple Corona de Hielo internacional",
       "imagen": "fotos/foto-20260405-2021-1.jpg",
-      "meta": "Hoy · La Prensa Austral"
-    },
-    {
-      "id": "20260401-1454-3",
-      "tag": "🏀 Deportes",
-      "titulo": "Básquetbol femenino en Magallanes coronó a sus campeonas",
-      "imagen": "fotos/foto-20260401-1454-3.jpg",
       "meta": "Hoy · La Prensa Austral"
     }
   ]
