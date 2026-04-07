@@ -728,6 +728,42 @@ def resolver_imagen(nota, fotos_propias, fotos_usadas):
 #  NOTICIAS.JSON — CONSTRUCCIÓN CON ROTACIÓN
 # ══════════════════════════════════════════════════════════
 
+def ids_publicados_en_secciones():
+    """Recolecta todos los IDs ya publicados en cualquier sección del sitio.
+    Usado para evitar duplicados cross-sección en cualquier rotación."""
+    base = os.path.dirname(__file__)
+
+    def _ids(archivo, *campos):
+        ids = set()
+        try:
+            with open(os.path.join(base, archivo), encoding="utf-8") as f:
+                d = json.load(f)
+            if isinstance(d, list):
+                for x in d:
+                    ids.add(x.get("id"))
+            else:
+                for campo in campos:
+                    v = d.get(campo)
+                    if isinstance(v, dict):
+                        ids.add(v.get("id"))
+                    elif isinstance(v, list):
+                        for x in v:
+                            ids.add(x.get("id"))
+        except Exception:
+            pass
+        return ids - {None}
+
+    return (
+        _ids("noticias.json",      "tapa", "secundarias", "noticias", "historias") |
+        _ids("deportes_feed.json", "principal", "secundarias", "row_cards") |
+        _ids("negocios.json") |
+        _ids("turismo.json") |
+        _ids("cultura.json") |
+        _ids("historias.json",     "notas") |
+        _ids("propios.json")
+    )
+
+
 def cargar_noticias_previas():
     """Carga noticias.json del día anterior para extraer tapa y secundarias."""
     ruta = os.path.join(os.path.dirname(__file__), "noticias.json")
@@ -951,13 +987,7 @@ def rotar_deportes(historial, excluir_ids=None):
     except Exception:
         return
 
-    ids_en_feed = (
-        {feed.get("principal", {}).get("id")}
-        | {s.get("id") for s in feed.get("secundarias", [])}
-        | {c.get("id") for c in feed.get("row_cards", [])}
-    ) - {None}
-
-    ids_excluir = ids_en_feed | (excluir_ids or set())
+    ids_excluir = ids_publicados_en_secciones() | (excluir_ids or set())
 
     cats_deportes = ("deportes", "aventura", "escalada", "trail", "ski", "kayak")
     nueva = None
@@ -1060,13 +1090,12 @@ def rotar_cultura(historial):
     except Exception:
         cultura_actual = []
 
-    ids_en_cultura = {c["id"] for c in cultura_actual}
-    ids_historias  = {a.get("id") for a in cargar_historias_permanentes()}
+    ids_excluir = ids_publicados_en_secciones()
 
     cats_cultura = ("cultura", "historia", "pueblos originarios")
     nueva = None
     for art in historial:
-        if art.get("id") in ids_en_cultura or art.get("id") in ids_historias:
+        if art.get("id") in ids_excluir:
             continue
         if es_propio(art):
             continue
@@ -1110,11 +1139,11 @@ def rotar_turismo(historial):
     except Exception:
         turismo_actual = []
 
-    ids_en_turismo = {t["id"] for t in turismo_actual}
+    ids_excluir = ids_publicados_en_secciones()
 
     nueva = None
     for art in historial:
-        if art.get("id") in ids_en_turismo or es_propio(art):
+        if art.get("id") in ids_excluir or es_propio(art):
             continue
         cat = art.get("categoria", "").lower()
         if cat in ("turismo", "turismo y guías", "guías"):
