@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>globalPATAGONIA — Sur Global, principio de todo.</title>
+  <title>GLOBALpatagonia — Sur Global, principio de todo.</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-  <meta name="description" content="Noticias de la Patagonia argentina y chilena — globalPATAGONIA"/>
-  <meta property="og:site_name" content="globalPATAGONIA"/>
+  <meta name="description" content="Noticias de la Patagonia argentina y chilena — GLOBALpatagonia"/>
+  <meta property="og:site_name" content="GLOBALpatagonia"/>
   <meta property="og:type" content="article"/>
   <meta property="og:image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -17,7 +17,7 @@
     "@type": "NewsArticle",
     "publisher": {
       "@type": "NewsMediaOrganization",
-      "name": "globalPATAGONIA",
+      "name": "GLOBALpatagonia",
       "url": "https://globalpatagonia.org/"
     }
   }
@@ -453,7 +453,7 @@
   <div class="header-main">
     <div class="logo-tagline">Sur Global, principio de todo.</div>
     <a href="index.html" style="text-decoration:none">
-      <img src="logo-globalpatagonia.png" alt="globalPATAGONIA" class="logo-img">
+      <img src="logo-globalpatagonia.png" alt="GLOBALpatagonia" class="logo-img">
     </a>
   </div>
   <nav>
@@ -475,7 +475,7 @@
 <footer>
   <div class="footer-logo"><span>global</span>PATAGONIA</div>
   <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:4px;">Argentina · Chile · Sin fronteras</div>
-  <div class="footer-copy">© 2026 globalPATAGONIA · globalpatagonia.org</div>
+  <div class="footer-copy">© 2026 GLOBALpatagonia · globalpatagonia.org</div>
 </footer>
 
 <script>
@@ -534,9 +534,9 @@ function renderNota(nota, fechaDisplay, data) {
   if (fechaEl && fechaDisplay) fechaEl.textContent = fechaDisplay + " · Patagonia Argentina y Chilena";
 
   // Título de pestaña y OG dinámico
-  document.title = nota.titulo + " — globalPATAGONIA";
+  document.title = nota.titulo + " — GLOBALpatagonia";
   const setMeta = (sel, val) => { const el = document.querySelector(sel); if (el && val) el.setAttribute("content", val); };
-  setMeta('meta[property="og:title"]', nota.titulo + " — globalPATAGONIA");
+  setMeta('meta[property="og:title"]', nota.titulo + " — GLOBALpatagonia");
   setMeta('meta[property="og:description"]', nota.bajada || nota.titulo);
   if (nota.imagen) setMeta('meta[property="og:image"]', nota.imagen);
   setMeta('meta[name="description"]', nota.bajada || nota.titulo);
@@ -554,11 +554,11 @@ function renderNota(nota, fechaDisplay, data) {
       "image": nota.imagen || "https://globalpatagonia.org/fotos/torres-del-paine.webp",
       "publisher": {
         "@type": "NewsMediaOrganization",
-        "name": "globalPATAGONIA",
+        "name": "GLOBALpatagonia",
         "url": "https://globalpatagonia.org/",
         "logo": { "@type": "ImageObject", "url": "https://globalpatagonia.org/favicon.svg" }
       },
-      "author": { "@type": "Organization", "name": nota.fuente || "globalPATAGONIA" }
+      "author": { "@type": "Organization", "name": nota.fuente || "GLOBALpatagonia" }
     };
     jsonld.textContent = JSON.stringify(schema);
   }
@@ -657,7 +657,7 @@ function renderNota(nota, fechaDisplay, data) {
     ${datosHtml}
     ${nota.propio
       ? `<div class="nota-fuente" style="border-left:3px solid #1c2d3d;background:#f0ede8;">
-           <strong>Por ${nota.autor || "globalPATAGONIA"}</strong> · Nota de producción propia · <strong>globalPATAGONIA</strong>
+           <strong>Por ${nota.autor || "GLOBALpatagonia"}</strong> · Nota de producción propia · <strong>GLOBALpatagonia</strong>
          </div>`
       : `<div class="nota-fuente">
            <strong>Fuente original:</strong> Esta nota fue elaborada con información de <strong>${nota.fuente || "medios locales"}</strong>.

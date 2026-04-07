@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-globalPATAGONIA — Actualizador de Noticias
+GLOBALpatagonia — Actualizador de Noticias
 Diagramación fija (DIAGRAMACION.pdf):
   TAPA            → 1 principal + 2 secundarias (diario, Claude elige la más cubierta)
   NOTICIAS SEMANA → 8 cards: [tapa ayer + 2 sec ayer] + [5 sobrevivientes] (rotación)
@@ -205,7 +205,7 @@ def urls_ya_publicadas(historial):
 def fetch_noticias_crudas():
     noticias = []
     print(f"\n{'='*55}")
-    print(f"  globalPATAGONIA — Actualizando noticias")
+    print(f"  GLOBALpatagonia — Actualizando noticias")
     print(f"  {fecha_display()}")
     print(f"{'='*55}\n")
 
@@ -315,7 +315,7 @@ URL: {n['url']}
   "cultura": null,
   "turismo": null,"""
 
-    prompt = f"""Sos el editor jefe de globalPATAGONIA, el primer medio digital panpatagónico. Slogan: "Sur Global, principio de todo." Cobertura: Argentina y Chile sin fronteras.
+    prompt = f"""Sos el editor jefe de GLOBALpatagonia, el primer medio digital panpatagónico. Slogan: "Sur Global, principio de todo." Cobertura: Argentina y Chile sin fronteras.
 
 IDENTIDAD EDITORIAL:
 - La Patagonia no es periferia — es el comienzo. Escribís desde adentro, no desde Buenos Aires ni Santiago.
@@ -992,7 +992,7 @@ URL: {n['url']}
 """
 
     client = anthropic.Anthropic(api_key=API_KEY)
-    prompt = f"""Sos el editor de agenda de globalPATAGONIA. Hoy es {hoy}.
+    prompt = f"""Sos el editor de agenda de GLOBALpatagonia. Hoy es {hoy}.
 
 Analizá estas noticias y extraé SOLO las que corresponden a un evento futuro concreto (festival, carrera, muestra, fiesta, torneo, congreso, recital, certamen deportivo, etc.) con fecha definida en la Patagonia argentina o chilena. Ignorá inauguraciones de obras, nombramientos, noticias sin fecha de evento.
 
@@ -1054,13 +1054,13 @@ Respondé SOLO con un array JSON válido. Si no hay eventos válidos respondé [
 # ══════════════════════════════════════════════════════════
 
 def es_propio(articulo):
-    """Artículo de globalPATAGONIA / J. Martineau — excluir de rotaciones automáticas."""
+    """Artículo de GLOBALpatagonia / J. Martineau — excluir de rotaciones automáticas."""
     fuente = articulo.get("fuente", "") or ""
     autor  = articulo.get("autor", "")  or ""
     return (
-        "globalPATAGONIA" in fuente or
+        "GLOBALpatagonia" in fuente or
         "Martineau" in autor or
-        "globalPATAGONIA" in autor or
+        "GLOBALpatagonia" in autor or
         articulo.get("propio") is True
     )
 
@@ -1145,13 +1145,13 @@ def rotar_negocios(nota):
         "cuerpo":          nota.get("cuerpo", ""),
         "tag":             nota.get("tag", "💼 Economía"),
         "categoria":       nota.get("categoria", "economia"),
-        "fuente":          nota.get("fuente", "globalPATAGONIA"),
-        "autor":           "Redacción globalPATAGONIA",
+        "fuente":          nota.get("fuente", "GLOBALpatagonia"),
+        "autor":           "Redacción GLOBALpatagonia",
         "pais":            nota.get("pais", "argentina"),
         "imagen":          nota.get("imagen", ""),
         "imagen_keywords": nota.get("imagen_keywords", ""),
         "url_original":    nota.get("url_original", ""),
-        "meta":            f"Hoy · globalPATAGONIA",
+        "meta":            f"Hoy · GLOBALpatagonia",
         "excluir_feed":    True,
     }
 
@@ -1273,7 +1273,7 @@ def main():
     for nota in notas_con_imagen:
         nota["imagen"] = resolver_imagen(nota, fotos_propias, fotos_usadas)
         if "meta" not in nota:
-            nota["meta"] = f"Hoy · {nota.get('fuente','globalPATAGONIA')}"
+            nota["meta"] = f"Hoy · {nota.get('fuente','GLOBALpatagonia')}"
 
     # 4b. Descargar galerías internas
     print("\n  Descargando galerías...")
@@ -1406,7 +1406,7 @@ def publicar_telegram(tapa):
         f"<b>{titulo}</b>\n\n"
         f"{bajada}\n\n"
         f'<a href="{link}">Leer nota completa →</a>\n\n'
-        f"<i>globalPATAGONIA · Sur Global, principio de todo.</i>"
+        f"<i>GLOBALpatagonia · Sur Global, principio de todo.</i>"
     )
 
     ruta_img = os.path.join(os.path.dirname(__file__), imagen) if imagen else ""
