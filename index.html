@@ -6,6 +6,12 @@
   <title>globalPATAGONIA — Noticias de la Patagonia Argentina y Chilena</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="canonical" href="https://globalpatagonia.org/"/>
+  <!-- Preconnect para recursos externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <!-- Google Fonts (no @import — evita render-blocking) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap">
   <meta name="description" content="globalPATAGONIA: el primer medio digital que cubre la Patagonia argentina y chilena sin fronteras. Noticias de medio ambiente, deportes, cultura, pueblos originarios y turismo patagónico."/>
   <meta name="google-site-verification" content="pM-c0VRSYbfDfdcGwDFycDHJdpF7CTjpzTLy1EzrHgo" />
   <meta name="keywords" content="patagonia, noticias patagonia, patagonia argentina, patagonia chilena, glaciares, pueblos originarios patagonia, trail running patagonia, turismo patagonia, medio ambiente patagonia, santa cruz, neuquén, río negro, chubut, tierra del fuego, magallanes, bariloche, ushuaia, el calafate, torres del paine, fitz roy"/>
@@ -56,7 +62,6 @@
   <meta name="twitter:description" content="El primer medio digital panpatagónico. Medio ambiente, deportes, cultura y pueblos originarios de la Patagonia sin fronteras."/>
   <meta name="twitter:image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
 
     :root {
       --verde: #1c2d3d;
@@ -1052,7 +1057,10 @@
   <div class="header-main">
     <h1 class="sr-only">globalPATAGONIA — Noticias de la Patagonia Argentina y Chilena</h1>
     <div class="logo-tagline">Sur Global, principio de todo.</div>
-    <img src="logo-globalpatagonia.png" alt="globalPATAGONIA" class="logo-img">
+    <picture>
+      <source srcset="logo-globalpatagonia.webp" type="image/webp">
+      <img src="logo-globalpatagonia.png" alt="globalPATAGONIA" class="logo-img" width="1440" height="321" fetchpriority="high">
+    </picture>
     <div class="logo-sub">Argentina · Chile · Sin fronteras</div>
   </div>
   <nav>
