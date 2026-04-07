@@ -1,15 +1,23 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "gran-fondo-calle-calle-2026",
-    "titulo": "34 nadadores desafiaron la lluvia y el frío en el Gran Fondo del Calle Calle",
-    "meta": "30 de marzo de 2026 · Valdivia, Chile",
-    "imagen": "fotos/gran-fondo-calle-calle-2026.jpg",
-    "badge_text": "🏊 Aguas Abiertas",
-    "badge_bg": "#1c2d3d",
-    "badge_color": "white"
+    "id": "20260407-1029-sec2",
+    "tag": "🏊 Deportes",
+    "titulo": "Iara Arias, la nadadora de Viedma que hace podio en aguas heladas",
+    "bajada": "La deportista rionegrina compite en natación en aguas abiertas a temperaturas cercanas a los 0 grados y se destaca a nivel internacional.",
+    "imagen": "fotos/foto-20260407-1029-sec2.jpeg",
+    "meta": "Hoy · Diario Río Negro"
   },
   "secundarias": [
+    {
+      "id": "gran-fondo-calle-calle-2026",
+      "titulo": "34 nadadores desafiaron la lluvia y el frío en el Gran Fondo del Calle Calle",
+      "meta": "30 de marzo de 2026 · Valdivia, Chile",
+      "imagen": "fotos/gran-fondo-calle-calle-2026.jpg",
+      "badge_text": "🏊 Aguas Abiertas",
+      "badge_bg": "#1c2d3d",
+      "badge_color": "white"
+    },
     {
       "id": "trail-monte-leon-2026",
       "titulo": "Cuatro podios patagónicos: atletas de El Calafate brillaron en el Desafío Monte León",
@@ -17,7 +25,9 @@
       "badge_text": "🏃 Trail Running",
       "badge_bg": "#3a5a7a",
       "badge_color": "white"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "rescate-chalten-marzo-2026",
       "titulo": "Dos turistas rescatados en El Chaltén en menos de 24 horas: una mexicana en Laguna de los Tres y un holandés perdido toda la noche",
@@ -25,9 +35,7 @@
       "badge_text": "🆘 Rescate",
       "badge_bg": "#b03a2e",
       "badge_color": "white"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "isla-estados-arqueologia-2026",
       "tag": "🧭 Expedición",
@@ -48,13 +56,6 @@
       "titulo": "Básquetbol femenino en Magallanes coronó a sus campeonas",
       "imagen": "fotos/foto-20260401-1454-3.jpg",
       "meta": "Hoy · La Prensa Austral"
-    },
-    {
-      "id": "20260331-1450-3",
-      "tag": "🎾 Deportes",
-      "titulo": "Primer torneo Patagónico de Tenis reunirá a cuatro regiones en Punta Arenas",
-      "imagen": "fotos/foto-20260331-1450-3.jpg",
-      "meta": "Hoy · El Pingüino"
     }
   ]
 }
