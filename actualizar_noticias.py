@@ -1285,10 +1285,15 @@ def main():
                 nota["galeria"] = galeria
                 print(f"    [{nota['id']}] galería: {len(galeria)} foto(s)")
 
-    # 5. Agregar al historial solo tapa + secundarias (las de sección van directo a su JSON)
-    historial = [tapa] + secundarias + historial
+    # 5. Agregar al historial: tapa + secundarias + notas de sección (con cuerpo)
+    extras = []
+    for nota_sec in [deportes, negocios, cultura, turismo]:
+        if nota_sec and nota_sec.get("cuerpo"):
+            nota_sec["excluir_feed"] = True
+            extras.append(nota_sec)
+    historial = [tapa] + secundarias + extras + historial
     guardar_historial(historial)
-    print(f"\n  Artículos nuevos en historial: {1 + len(secundarias)}")
+    print(f"\n  Artículos nuevos en historial: {1 + len(secundarias) + len(extras)}")
 
     # 6. Rotaciones — cada sección recibe su nota fresca de Claude
     rotar_deportes(deportes)
