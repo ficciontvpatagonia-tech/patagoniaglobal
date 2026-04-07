@@ -1,18 +1,21 @@
 #!/usr/bin/env python3
 """
 globalPATAGONIA — Actualizador de Noticias
-Obtiene noticias de fuentes RSS, filtra las patagónicas y las reescribe con Claude.
-Acumula artículos en historial.json (1-3 nuevos por corrida).
-Genera noticias.json que el sitio web carga automáticamente.
-
-Uso:
-    python3 actualizar_noticias.py
+Diagramación fija (DIAGRAMACION.pdf):
+  TAPA            → 1 principal + 2 secundarias (diario, Claude elige la más cubierta)
+  NOTICIAS SEMANA → 8 cards: [tapa ayer + 2 sec ayer] + [5 sobrevivientes] (rotación)
+  DEPORTES        → 7 slots en cascada diaria (principal + 2 sec + 4 row)
+  NEGOCIOS        → 6 slots, +1 diario, –1 más antigua
+  TURISMO         → 3 slots, +1 semanal (domingos)
+  CULTURA         → 6 slots, +1 semanal (domingos)
+  GUIAS           → manual, script no toca
+  INFORMES        → manual, script no toca
+  AGENDA          → purga vencidos + detecta nuevos en RSS
 """
 
 import json
 import sys
 import os
-import random
 import urllib.request
 import urllib.parse
 from datetime import datetime
@@ -24,7 +27,6 @@ import anthropic
 #  CONFIGURACIÓN
 # ══════════════════════════════════════════════════════════
 
-# Carga las claves desde el archivo .env si existe
 _env_path = os.path.join(os.path.dirname(__file__), ".env")
 if os.path.exists(_env_path):
     with open(_env_path) as _f:
@@ -34,7 +36,7 @@ if os.path.exists(_env_path):
                 _k, _v = _line.split("=", 1)
                 os.environ.setdefault(_k.strip(), _v.strip())
 
-API_KEY          = os.environ.get("ANTHROPIC_API_KEY", "")
+API_KEY             = os.environ.get("ANTHROPIC_API_KEY", "")
 UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY", "")
 
 FUENTES_RSS = [
@@ -79,7 +81,7 @@ PALABRAS_CLAVE = [
     "puerto montt", "chiloé", "chiloe",
     "valdivia", "osorno", "pucón", "pucon", "villa o'higgins",
     "cochrane", "caleta tortel", "puerto williams", "cabo de hornos",
-    # Medio ambiente — PRIORIDAD MÁXIMA
+    # Medio ambiente
     "glaciar", "glaciares", "ley de glaciares", "periglacial",
     "minería", "minero", "sobrepesca", "pesca ilegal", "zona económica exclusiva",
     "incendio", "incendio forestal", "contaminación", "derrame",
@@ -115,14 +117,11 @@ PALABRAS_CLAVE = [
     "clima", "alerta meteorológica", "viento", "nevada", "temporal",
 ]
 
-MAX_HISTORIAL = 50   # artículos máximos a guardar
-MAX_FEED      = 15   # artículos máximos a mostrar en el feed
+MAX_HISTORIAL = 50   # artículos en historial.json
 
-# ══════════════════════════════════════════════════════════
-
-DIAS_ES   = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
-MESES_ES  = ["","Enero","Febrero","Marzo","Abril","Mayo","Junio",
-             "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
+DIAS_ES  = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
+MESES_ES = ["","Enero","Febrero","Marzo","Abril","Mayo","Junio",
+            "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
 
 
 def fecha_display():
@@ -149,7 +148,9 @@ def obtener_imagen_rss(entry):
     return None
 
 
-# ── Historial ──────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════
+#  HISTORIAL
+# ══════════════════════════════════════════════════════════
 
 def cargar_historial():
     path = os.path.join(os.path.dirname(__file__), "historial.json")
@@ -164,17 +165,16 @@ def cargar_historial():
 
 def guardar_historial(articulos):
     """Guarda los últimos MAX_HISTORIAL artículos. Los que salen van a archivo.json."""
-    path = os.path.join(os.path.dirname(__file__), "historial.json")
+    path         = os.path.join(os.path.dirname(__file__), "historial.json")
     archivo_path = os.path.join(os.path.dirname(__file__), "archivo.json")
 
-    # Notas que quedan fuera del historial → van al archivo
     descartadas = articulos[MAX_HISTORIAL:]
     if descartadas:
         try:
             with open(archivo_path, encoding="utf-8") as f:
                 archivo = json.load(f)
         except Exception:
-            archivo = {"_info": "Notas que rotaron del feed principal. Base del buscador.", "notas": []}
+            archivo = {"_info": "Notas que rotaron del feed principal.", "notas": []}
         ids_existentes = {n.get("id") for n in archivo.get("notas", [])}
         nuevas = [n for n in descartadas if n.get("id") not in ids_existentes]
         archivo["notas"] = archivo.get("notas", []) + nuevas
@@ -190,7 +190,9 @@ def urls_ya_publicadas(historial):
     return {a.get("url_original", "") for a in historial if a.get("url_original")}
 
 
-# ── RSS ────────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════
+#  RSS
+# ══════════════════════════════════════════════════════════
 
 def fetch_noticias_crudas():
     noticias = []
@@ -227,9 +229,18 @@ def fetch_noticias_crudas():
     return noticias[:30]
 
 
-# ── Claude ─────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════
+#  CLAUDE — REESCRITURA EDITORIAL
+# ══════════════════════════════════════════════════════════
 
 def reescribir_con_claude(noticias_crudas, historial):
+    """
+    Claude elige y reescribe:
+      - 1 tapa (la historia con más cobertura / mayor impacto patagónico)
+      - exactamente 2 secundarias
+      - 1 nota de economía/empresas para la sección Negocios
+      - 5 titulares ticker
+    """
     if not noticias_crudas:
         print("  ⚠ No se encontraron noticias patagónicas.")
         return None
@@ -244,6 +255,7 @@ def reescribir_con_claude(noticias_crudas, historial):
         print("  ⚠ No hay noticias nuevas para agregar hoy.")
         return None
 
+    # Agrupar por título similar para detectar cobertura múltiple
     listado = ""
     for i, n in enumerate(noticias_nuevas):
         listado += f"""
@@ -265,7 +277,7 @@ IDENTIDAD EDITORIAL:
 - Si el hecho cruza la frontera Argentina-Chile, marcarlo siempre.
 - NUNCA copiés párrafos de la fuente. Reescribí con voz propia.
 
-CRITERIO DE SELECCIÓN — solo entran notas con anclaje patagónico real:
+CRITERIO DE SELECCIÓN:
 ✓ Medio Ambiente: glaciares, agua, fauna, ecosistemas, legislación ambiental, especies invasoras, contaminación
 ✓ Pueblos Originarios: Mapuche, Tehuelche, Kawésqar, Selknam — territorio, derechos, cultura viva
 ✓ Deportes Patagónicos: trail, escalada, kayak, ski, triatlón, expediciones, carreras aventura
@@ -273,58 +285,57 @@ CRITERIO DE SELECCIÓN — solo entran notas con anclaje patagónico real:
 ✓ Cultura: arte, música, identidad, historia, gastronomía, fiestas regionales, pioneros
 ✓ Ciencia & Tecnología: hallazgos CONICET, paleontología, innovación aplicada al territorio
 ✓ Turismo & Guías: destinos, temporadas, premios internacionales a Patagonia
-✓ Bienestar: salud, comunidad, calidad de vida con impacto regional concreto
 
-PRIORIDADES EDITORIALES — orden estricto:
+PRIORIDADES para la TAPA — orden estricto:
 1. MEDIO AMBIENTE CRÍTICO: glaciares, pesca ilegal en ZEE, incendios, especies en peligro, contaminación → TAPA AUTOMÁTICA.
 2. PUEBLOS ORIGINARIOS: cualquier nota sobre comunidades originarias patagónicas con hecho concreto.
-3. DEPORTES ÚNICOS: premios internacionales, expediciones históricas, trail, escalada, ski.
-4. PRODUCCIÓN CON IDENTIDAD: historia de productor patagónico, producto único de la región, primer hito económico local.
+3. DEPORTES ÚNICOS: premios internacionales, expediciones históricas.
+4. PRODUCCIÓN CON IDENTIDAD: historia de productor patagónico, primer hito económico local.
 5. TURISMO & CULTURA: destinos, fiestas regionales, artistas, premiaciones.
 6. DESARROLLO: infraestructura, conectividad, energía con impacto concreto.
-7. POLÍTICA: SOLO decisión de gobierno con impacto territorial directo y concreto. Sin política partidaria.
 
-DESCARTAR SIEMPRE: policiales, accidentes de tránsito, crónica roja, economía nacional sin anclaje patagónico, política porteña o santiaguina sin efecto en el territorio.
+CRITERIO DE RELEVANCIA PARA TAPA: elegí la historia que aparece en más fuentes distintas o que tiene mayor impacto regional. Si la misma historia aparece en múltiples medios, es señal de alta relevancia.
 
-REGLA DE ORO: el lector viene a leer la Patagonia. Ante la duda, elegí la nota que habla de territorio, naturaleza, gente o cultura.
+DESCARTAR SIEMPRE: policiales, accidentes de tránsito, crónica roja, economía nacional sin anclaje patagónico, política porteña sin efecto territorial.
 
 Tenés estas noticias nuevas disponibles hoy:
 {listado}
 
-Tu tarea:
-1. Elegí LA MEJOR para la tapa del día (medio ambiente y pueblos originarios tienen prioridad automática)
-2. Elegí entre 1 y 3 noticias adicionales para el feed del día
-3. Escribí el artículo completo de cada una con voz propia de globalPATAGONIA
-4. Generá 5 titulares breves para el ticker (hechos concretos, sin clickbait)
-
-Estructura del artículo (campo "cuerpo"):
-- Párrafo de entrada: el hecho central con ángulo patagónico propio
-- 2-3 párrafos: contexto regional, qué significa para la Patagonia, antecedentes, conexión binacional si aplica
-- Párrafo de cierre: diagnóstico editorial, qué se espera o qué está en juego
-- Separar párrafos con \\n\\n — entre 350 y 500 palabras
-
-Respondé SOLO con este JSON válido (sin texto adicional):
+Tu tarea — devolvé EXACTAMENTE este JSON (sin texto adicional):
 {{
   "ticker": ["titular corto 1", "titular corto 2", "titular corto 3", "titular corto 4", "titular corto 5"],
   "tapa": {{
     "id": "{hoy}-tapa",
-    "titulo": "Título reescrito atractivo (máx 15 palabras)",
+    "titulo": "Título reescrito (máx 15 palabras)",
     "bajada": "Bajada con contexto y ángulo propio (2-3 oraciones)",
-    "cuerpo": "Artículo completo con párrafos separados por \\n\\n",
+    "cuerpo": "Artículo completo con párrafos separados por \\n\\n (350-500 palabras)",
     "tag": "emoji + categoría",
     "categoria": "medio ambiente|pueblos originarios|deportes|turismo|cultura|ciencia|producción|conectividad|bienestar|pesca|historia|general",
     "fuente": "Nombre del medio original",
     "url_original": "url completa",
     "pais": "argentina|chile|ambos",
     "imagen": null,
-    "imagen_keywords": "2-3 palabras en español para buscar foto (ej: glaciar patagonia, pueblos originarios, trail running montaña, pesca ilegal, antártida krill, prefectura mar)"
+    "imagen_keywords": "2-3 palabras en español para buscar foto (ej: glaciar patagonia, trail running montaña)"
   }},
-  "nuevas": [
+  "secundarias": [
     {{
-      "id": "{hoy}-1",
+      "id": "{hoy}-sec1",
       "titulo": "Título (máx 12 palabras)",
-      "bajada": "Una oración de contexto con dato concreto",
-      "cuerpo": "Artículo completo con párrafos separados por \\n\\n",
+      "bajada": "Una oración con dato concreto",
+      "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
+      "tag": "· Categoría ·",
+      "categoria": "...",
+      "fuente": "...",
+      "url_original": "url completa",
+      "pais": "argentina|chile|ambos",
+      "imagen": null,
+      "imagen_keywords": "2-3 palabras en español"
+    }},
+    {{
+      "id": "{hoy}-sec2",
+      "titulo": "Título (máx 12 palabras)",
+      "bajada": "Una oración con dato concreto",
+      "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
       "tag": "· Categoría ·",
       "categoria": "...",
       "fuente": "...",
@@ -333,26 +344,42 @@ Respondé SOLO con este JSON válido (sin texto adicional):
       "imagen": null,
       "imagen_keywords": "2-3 palabras en español"
     }}
-  ]
-}}"""
+  ],
+  "negocios": {{
+    "id": "{hoy}-neg",
+    "titulo": "Título sobre economía/empresas patagónicas (máx 12 palabras)",
+    "bajada": "Una oración con dato económico concreto",
+    "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
+    "tag": "💼 Economía",
+    "categoria": "economia",
+    "fuente": "...",
+    "url_original": "url completa",
+    "pais": "argentina|chile|ambos",
+    "imagen": null,
+    "imagen_keywords": "2-3 palabras en español",
+    "excluir_feed": true
+  }}
+}}
+
+REGLA NEGOCIOS: la nota de negocios debe ser sobre empresas, producción, pesca, energía, comercio, turismo de negocios, o economía regional de la Patagonia. Debe ser distinta a la tapa y las secundarias. Si no hay ninguna nota de economía/empresas en el listado, poné null en "negocios".
+
+REGLA SECUNDARIAS: deben ser EXACTAMENTE 2, distintas a la tapa y entre sí. Categorías diferentes si es posible."""
 
     print("  Enviando a Claude para reescritura editorial...", end=" ", flush=True)
     try:
         response = client.messages.create(
             model="claude-opus-4-6",
-            max_tokens=8000,
+            max_tokens=10000,
             messages=[{"role": "user", "content": prompt}]
         )
         texto = response.content[0].text.strip()
         if "```" in texto:
-            partes = texto.split("```")
-            for parte in partes:
-                if parte.startswith("json"):
-                    texto = parte[4:].strip()
-                    break
-                elif parte.strip().startswith("{"):
-                    texto = parte.strip()
-                    break
+            for parte in texto.split("```"):
+                p = parte.strip()
+                if p.startswith("json"):
+                    texto = p[4:].strip(); break
+                elif p.strip().startswith("{"):
+                    texto = p.strip(); break
         inicio = texto.find("{")
         fin    = texto.rfind("}") + 1
         if inicio >= 0 and fin > inicio:
@@ -375,7 +402,9 @@ Respondé SOLO con este JSON válido (sin texto adicional):
         return None
 
 
-# ── Imágenes ───────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════
+#  IMÁGENES
+# ══════════════════════════════════════════════════════════
 
 def fotos_propias_disponibles():
     indice_path = os.path.join(os.path.dirname(__file__), "fotos", "index.json")
@@ -400,7 +429,6 @@ def extraer_og_image(url_articulo, nota_id):
         with urllib.request.urlopen(req, timeout=10) as resp:
             html = resp.read().decode("utf-8", errors="ignore")
 
-        # Buscar og:image en ambos órdenes de atributos
         match = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']', html)
         if not match:
             match = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']', html)
@@ -411,15 +439,13 @@ def extraer_og_image(url_articulo, nota_id):
         if not img_url.startswith("http"):
             return None
 
-        # Determinar extensión
         ext = img_url.split("?")[0].rsplit(".", 1)[-1].lower()
         if ext not in ("jpg", "jpeg", "png", "webp"):
             ext = "jpg"
 
-        filename = f"foto-{nota_id}.{ext}"
+        filename   = f"foto-{nota_id}.{ext}"
         ruta_local = os.path.join(os.path.dirname(__file__), "fotos", filename)
 
-        # No descargar si ya existe
         if os.path.exists(ruta_local):
             return f"fotos/{filename}"
 
@@ -440,9 +466,7 @@ def extraer_og_image(url_articulo, nota_id):
 
 
 def extraer_galeria_articulo(url_articulo, nota_id):
-    """Descarga fotos del cuerpo del artículo fuente. Solo busca dentro del contenedor
-    principal del artículo para evitar imágenes de sidebar, relacionadas y publicidades.
-    Retorna lista de rutas locales (máx. 4 fotos)."""
+    """Descarga fotos del cuerpo del artículo fuente (máx 4)."""
     if not url_articulo:
         return []
     try:
@@ -453,10 +477,6 @@ def extraer_galeria_articulo(url_articulo, nota_id):
         with urllib.request.urlopen(req, timeout=12) as resp:
             html = resp.read().decode("utf-8", errors="ignore")
 
-        # ── Aislar el cuerpo del artículo ──────────────────────────────────────
-        # Intentar extraer solo el bloque HTML del contenido principal.
-        # Si no se encuentra ningún contenedor conocido, no descargar galería
-        # (mejor no mostrar nada que mostrar imágenes fuera de contexto).
         CONTENEDORES = [
             r'<article\b[^>]*>(.*?)</article>',
             r'<div[^>]+class=["\'][^"\']*(?:article-body|article-content|nota-cuerpo|'
@@ -472,9 +492,8 @@ def extraer_galeria_articulo(url_articulo, nota_id):
                 break
 
         if not cuerpo_html:
-            return []  # sin contenedor identificado → no arriesgar imágenes fuera de lugar
+            return []
 
-        # ── Extraer URLs de imagen del cuerpo ─────────────────────────────────
         candidatas = []
         for m in re.finditer(r'data-src=["\']([^"\']+)["\']', cuerpo_html):
             candidatas.append(m.group(1))
@@ -506,9 +525,8 @@ def extraer_galeria_articulo(url_articulo, nota_id):
             if len(urls_limpias) >= 6:
                 break
 
-        # ── Descargar hasta 4 fotos ────────────────────────────────────────────
         fotos_dir = os.path.join(os.path.dirname(__file__), "fotos")
-        galeria = []
+        galeria   = []
         descargadas = 0
         for i, img_url in enumerate(urls_limpias):
             if descargadas >= 4:
@@ -517,7 +535,7 @@ def extraer_galeria_articulo(url_articulo, nota_id):
             ext = ext.group(1) if ext else "jpg"
             if ext == "jpeg":
                 ext = "jpg"
-            filename = f"foto-{nota_id}-g{i+1}.{ext}"
+            filename   = f"foto-{nota_id}-g{i+1}.{ext}"
             ruta_local = os.path.join(fotos_dir, filename)
             if os.path.exists(ruta_local):
                 galeria.append(f"fotos/{filename}")
@@ -547,8 +565,6 @@ def extraer_galeria_articulo(url_articulo, nota_id):
 
 
 def buscar_foto_propia(nota, fotos):
-    # Solo matchea contra imagen_keywords (campo específico que Claude genera para la foto)
-    # No usa el título para evitar falsos positivos por palabras comunes como "neuquén" o "historia"
     keywords_nota = nota.get("imagen_keywords", "").lower()
     if not keywords_nota:
         return None
@@ -587,9 +603,7 @@ def buscar_imagen_unsplash(keywords):
 
 
 def _recortar_banner(ruta_local):
-    """Detecta y elimina banners de diarios pegados al borde de la imagen.
-    Detecta franjas sólidas de color (rojo, naranja, negro, blanco) en el borde inferior.
-    Usa PIL si está disponible; si no, omite sin error."""
+    """Detecta y elimina banners de diarios pegados al borde de la imagen."""
     try:
         from PIL import Image
         import numpy as np
@@ -597,9 +611,8 @@ def _recortar_banner(ruta_local):
         arr = np.array(img)
         h, w = arr.shape[:2]
         if h < 100:
-            return  # imagen demasiado pequeña, no tocar
-        # Buscar banner desde abajo: fila sólida = >70% de píxeles con color uniforme
-        # Detección: rojo (R>160,G<80,B<80), blanco (todos>220), negro (todos<40), naranja (R>200,G>80,G<160,B<60)
+            return
+
         def es_banner(fila):
             r, g, b = fila[:,0], fila[:,1], fila[:,2]
             rojo    = np.mean((r > 160) & (g < 80)  & (b < 80))   > 0.7
@@ -609,7 +622,7 @@ def _recortar_banner(ruta_local):
             return rojo or blanco or negro or naranja
 
         corte = h
-        for i in range(h - 1, h - int(h * 0.25) - 1, -1):  # revisar hasta 25% inferior
+        for i in range(h - 1, h - int(h * 0.25) - 1, -1):
             if not es_banner(arr[i]):
                 corte = i + 1
                 break
@@ -617,18 +630,17 @@ def _recortar_banner(ruta_local):
         if corte < h:
             img.crop((0, 0, w, corte)).save(ruta_local, quality=90)
     except Exception:
-        pass  # si PIL no está o falla, continuar sin recortar
+        pass
 
 
 def _descargar_imagen_externa(url_http, nota_id, sufijo=""):
-    """Descarga una URL de imagen externa y la guarda en fotos/. Retorna ruta local o None."""
     if not url_http or not url_http.startswith("http"):
         return None
     try:
         ext = url_http.split("?")[0].rsplit(".", 1)[-1].lower()
         if ext not in ("jpg", "jpeg", "png", "webp"):
             ext = "jpg"
-        filename = f"foto-{nota_id}{sufijo}.{ext}"
+        filename   = f"foto-{nota_id}{sufijo}.{ext}"
         ruta_local = os.path.join(os.path.dirname(__file__), "fotos", filename)
         if os.path.exists(ruta_local):
             return f"fotos/{filename}"
@@ -637,7 +649,7 @@ def _descargar_imagen_externa(url_http, nota_id, sufijo=""):
         })
         with urllib.request.urlopen(req, timeout=12) as resp:
             contenido = resp.read()
-        if len(contenido) < 5_000:   # descarte imágenes insignificantes
+        if len(contenido) < 5_000:
             return None
         with open(ruta_local, "wb") as f:
             f.write(contenido)
@@ -647,8 +659,7 @@ def _descargar_imagen_externa(url_http, nota_id, sufijo=""):
         return None
 
 
-def _foto_fallback(fotos_propias, fotos_usadas):
-    """Devuelve una foto genérica de patagonia del repositorio como último recurso."""
+def _foto_fallback(fotos_usadas):
     fallbacks = [
         "fotos/fitz-roy-chalten-nevada.jpg",
         "fotos/ruta-estepa-patagonica.jpg",
@@ -661,7 +672,6 @@ def _foto_fallback(fotos_propias, fotos_usadas):
         if os.path.exists(f) and f not in fotos_usadas:
             fotos_usadas.add(f)
             return f
-    # Si todas están usadas, reusar la primera disponible
     for f in fallbacks:
         if os.path.exists(f):
             return f
@@ -669,11 +679,9 @@ def _foto_fallback(fotos_propias, fotos_usadas):
 
 
 def resolver_imagen(nota, fotos_propias, fotos_usadas):
-    """Siempre retorna una ruta local fotos/... — nunca una URL externa.
-    Jerarquía: RSS (descargada) > og:image (descargada) > foto propia > Unsplash (descargada) > fallback."""
+    """Jerarquía: RSS > og:image > foto propia > Unsplash > fallback. Siempre ruta local."""
     nota_id = nota.get("id", "sin-id")
 
-    # 1. Imagen del RSS → descargar localmente
     rss_url = nota.get("imagen", "")
     if rss_url and str(rss_url).startswith("http"):
         print(f"    [{nota_id}] imagen RSS...", end=" ", flush=True)
@@ -683,7 +691,6 @@ def resolver_imagen(nota, fotos_propias, fotos_usadas):
             return local
         print("falló descarga")
 
-    # 2. og:image de la URL original del artículo (ya descarga internamente)
     url_original = nota.get("url_original", "")
     if url_original:
         print(f"    [{nota_id}] og:image fuente...", end=" ", flush=True)
@@ -693,14 +700,12 @@ def resolver_imagen(nota, fotos_propias, fotos_usadas):
             return og_img
         print("no encontrada")
 
-    # 3. Foto propia por keywords (sin repetir)
     foto_propia = buscar_foto_propia(nota, fotos_propias)
     if foto_propia and foto_propia not in fotos_usadas:
         fotos_usadas.add(foto_propia)
         print(f"    [{nota_id}] foto propia: {foto_propia} ✓")
         return foto_propia
 
-    # 4. Unsplash → descargar localmente
     keywords = nota.get("imagen_keywords", "patagonia landscape")
     print(f"    [{nota_id}] Unsplash: '{keywords}' ...", end=" ", flush=True)
     url = buscar_imagen_unsplash(keywords)
@@ -711,8 +716,7 @@ def resolver_imagen(nota, fotos_propias, fotos_usadas):
             return local
     print("sin resultado")
 
-    # 5. Fallback: foto genérica del repositorio
-    fallback = _foto_fallback(fotos_propias, fotos_usadas)
+    fallback = _foto_fallback(fotos_usadas)
     if fallback:
         print(f"    [{nota_id}] fallback: {fallback}")
         return fallback
@@ -720,10 +724,23 @@ def resolver_imagen(nota, fotos_propias, fotos_usadas):
     return None
 
 
-# ── JSON de salida ─────────────────────────────────────────
+# ══════════════════════════════════════════════════════════
+#  NOTICIAS.JSON — CONSTRUCCIÓN CON ROTACIÓN
+# ══════════════════════════════════════════════════════════
+
+def cargar_noticias_previas():
+    """Carga noticias.json del día anterior para extraer tapa y secundarias."""
+    ruta = os.path.join(os.path.dirname(__file__), "noticias.json")
+    if not os.path.exists(ruta):
+        return {}
+    try:
+        with open(ruta, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
 
 def cargar_historias_permanentes():
-    """Carga las notas permanentes desde historias.json (nunca se sobreescribe)."""
     ruta = os.path.join(os.path.dirname(__file__), "historias.json")
     if not os.path.exists(ruta):
         return []
@@ -735,136 +752,35 @@ def cargar_historias_permanentes():
         return []
 
 
-def cargar_propios():
-    """Carga las notas propias (globalPATAGONIA / J. Martineau) desde propios.json.
-    Este archivo es el archivo permanente de notas de producción propia.
-    El script AGREGA notas nuevas pero NUNCA borra las existentes."""
-    ruta = os.path.join(os.path.dirname(__file__), "propios.json")
-    if not os.path.exists(ruta):
-        return []
-    try:
-        with open(ruta, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return []
-
-
-def auto_archivar_propios(historial):
-    """Detecta notas propias en el historial y las archiva en propios.json
-    si aún no están. Garantiza que ninguna nota de J. Martineau se pierda.
-    EXCLUYE las notas de historias.json: esas tienen su propia sección
-    permanente (Cultura Patagónica) y no deben aparecer también en INFORMES."""
-    ruta = os.path.join(os.path.dirname(__file__), "propios.json")
-    archivados = cargar_propios()
-    ids_archivados = {a.get("id") for a in archivados}
-
-    # IDs de historias.json → nunca archivar en propios.json (evita duplicados)
-    ids_historias = {a.get("id") for a in cargar_historias_permanentes()}
-
-    nuevos = [
-        a for a in historial
-        if es_propio(a)
-        and a.get("id") not in ids_archivados
-        and a.get("id") not in ids_historias
-    ]
-    if not nuevos:
-        return
-
-    archivados = nuevos + archivados  # los más recientes al frente
-    with open(ruta, "w", encoding="utf-8") as f:
-        json.dump(archivados, f, ensure_ascii=False, indent=2)
-    titulos = [n.get("titulo", "")[:50] for n in nuevos]
-    print(f"  ★ Archivadas {len(nuevos)} nota(s) propia(s) en propios.json: {titulos}")
-
-
-def es_propio(articulo):
-    """Artículo escrito por globalPATAGONIA / J. Martineau."""
-    fuente = articulo.get("fuente", "") or ""
-    autor  = articulo.get("autor", "")  or ""
-    return (
-        "globalPATAGONIA" in fuente or
-        "Martineau" in autor or
-        "globalPATAGONIA" in autor or
-        articulo.get("propio") is True
-    )
-
-
-def dias_desde_id(articulo_id):
-    """Extrae la fecha del ID (YYYYMMDD-...) y devuelve días transcurridos."""
-    try:
-        fecha_str = str(articulo_id)[:8]
-        fecha_art = datetime.strptime(fecha_str, "%Y%m%d")
-        return (datetime.now() - fecha_art).days
-    except Exception:
-        return 999
-
-
-def construir_noticias_json(tapa, historial, ticker):
-    """Arma noticias.json con tapa + feed.
-
-    REGLAS:
-    - Los artículos propios (J. Martineau / globalPATAGONIA) van EXCLUSIVAMENTE
-      a INFORMES (propios.json). NUNCA aparecen en tapa ni en el feed de noticias.
-    - INFORMES solo se renueva cuando se agrega una nota nueva manualmente.
-    - No puede haber el mismo artículo dos veces en el feed (deduplicación por ID).
+def construir_noticias_json(tapa, secundarias, prev_tapa, prev_secundarias, prev_noticias, ticker):
+    """
+    TAPA: tapa (principal) + secundarias[0] + secundarias[1]
+    NOTICIAS DE LA SEMANA (8 cards):
+      - [prev_tapa, prev_sec0, prev_sec1] = las 3 de ayer → pasan a posiciones 4,5,6
+      - + prev_noticias[:5] → posiciones 7 al 11
+      - Se eliminan las que estaban en posiciones 9,10,11 (las más antiguas)
     """
     hoy = datetime.now()
 
-    # ── IDs a excluir del feed ──────────────────────────────────
-    # Propios (van a INFORMES) + historias permanentes (tienen su sección propia)
-    ids_propios   = {a.get("id") for a in cargar_propios()}
-    ids_historias = {a.get("id") for a in cargar_historias_permanentes()}
-    ids_excluir   = ids_propios | ids_historias
-
-    # ── Tapa ────────────────────────────────────────────────────
-    # La tapa es siempre la que eligió Claude; los propios nunca la ocupan.
-    tapa_final = tapa
-
-    # ── IDs en deportes_feed.json → excluir del feed de noticias ──
-    try:
-        ruta_dep = os.path.join(os.path.dirname(__file__), "deportes_feed.json")
-        with open(ruta_dep, encoding="utf-8") as f:
-            dep = json.load(f)
-        ids_deportes = set()
-        for item in [dep.get("principal", {})] + dep.get("secundarias", []) + dep.get("row_cards", []):
-            if item.get("id"):
-                ids_deportes.add(item["id"])
-    except Exception:
-        ids_deportes = set()
-
-    # ── Feed: historial sin propios ni historias ni deportes, sin duplicados,
-    #          sin excluir_feed=true, máx 7 días de antigüedad ──────────────
-    ids_vistos = {tapa_final.get("id")}
-    feed = []
-    for a in historial:
-        aid = a.get("id")
-        if aid in ids_vistos or aid in ids_excluir or es_propio(a):
-            continue
-        if aid in ids_deportes:
-            continue
-        if a.get("excluir_feed"):
-            continue
-        if dias_desde_id(aid) > 7:
-            continue
-        ids_vistos.add(aid)
-        feed.append(a)
-        if len(feed) >= MAX_FEED:
+    noticias_semana = []
+    if prev_tapa:
+        noticias_semana.append(prev_tapa)
+    for s in (prev_secundarias or [])[:2]:
+        noticias_semana.append(s)
+    for n in (prev_noticias or []):
+        if len(noticias_semana) >= 8:
             break
-
-    secundarias    = feed[:2]
-    noticias_cards = feed[2:10]  # 8 tarjetas en Noticias de la Semana
+        noticias_semana.append(n)
 
     historias = cargar_historias_permanentes()
-
-    # Nota: turismo.json es manual (se actualiza los domingos) — el script no lo toca.
 
     return {
         "generado":      hoy.isoformat(),
         "fecha_display": fecha_display(),
         "ticker":        ticker,
-        "tapa":          tapa_final,
-        "secundarias":   secundarias,
-        "noticias":      noticias_cards,
+        "tapa":          tapa,
+        "secundarias":   secundarias[:2],
+        "noticias":      noticias_semana[:8],
         "historias":     historias,
     }
 
@@ -874,10 +790,11 @@ def guardar_json(datos):
     with open(ruta, "w", encoding="utf-8") as f:
         json.dump(datos, f, ensure_ascii=False, indent=2)
     print(f"\n  ✓ noticias.json guardado")
-    return ruta
 
 
-# ── Agenda ────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════
+#  AGENDA
+# ══════════════════════════════════════════════════════════
 
 PALABRAS_EVENTO = [
     "festival", "carrera", "maratón", "maratón", "trail", "ultratrail",
@@ -885,7 +802,7 @@ PALABRAS_EVENTO = [
     "congreso", "encuentro", "torneo", "campeonato", "competencia",
     "convocatoria abierta", "ciclo de cine", "ciclo cultural",
     "regata", "travesía", "expedición", "kayak", "ski", "snowboard",
-    "semana de", "aniversario", "celebración",
+    "semana de", "aniversario", "celebración", "recital", "concierto",
 ]
 
 
@@ -912,27 +829,25 @@ def es_evento(titulo, resumen):
 
 
 def actualizar_agenda(noticias_crudas):
-    """Purga eventos vencidos y busca nuevos en las noticias del día."""
+    """Purga eventos vencidos y detecta nuevos en RSS."""
     agenda = cargar_agenda()
-    hoy = datetime.now().strftime("%Y-%m-%d")
+    hoy    = datetime.now().strftime("%Y-%m-%d")
 
-    # 1. Purgar eventos vencidos
-    antes = len(agenda)
+    antes  = len(agenda)
     agenda = [e for e in agenda if (e.get("fecha_fin") or e.get("fecha", "")) >= hoy]
     purgados = antes - len(agenda)
     if purgados:
         print(f"  Agenda: {purgados} evento(s) vencido(s) eliminado(s)")
 
-    # 2. Filtrar noticias que parecen eventos
     ids_existentes = {e.get("id", "") for e in agenda}
     candidatos = [n for n in noticias_crudas if es_evento(n["titulo_original"], n["resumen_original"])]
 
     if not candidatos:
-        print(f"  Agenda: sin eventos nuevos detectados en RSS")
+        print("  Agenda: sin eventos nuevos detectados en RSS")
         guardar_agenda(agenda)
         return
 
-    print(f"  Agenda: {len(candidatos)} posible(s) evento(s) encontrado(s) en RSS")
+    print(f"  Agenda: {len(candidatos)} posible(s) evento(s) encontrado(s)")
 
     listado = ""
     for i, n in enumerate(candidatos[:8]):
@@ -947,7 +862,7 @@ URL: {n['url']}
     client = anthropic.Anthropic(api_key=API_KEY)
     prompt = f"""Sos el editor de agenda de globalPATAGONIA. Hoy es {hoy}.
 
-Analizá estas noticias y extraé SOLO las que corresponden a un evento futuro concreto (festival, carrera, muestra, fiesta, torneo, congreso, etc.) con fecha definida en la Patagonia argentina o chilena. Ignorá inauguraciones de obras, nombramientos, noticias sin fecha de evento.
+Analizá estas noticias y extraé SOLO las que corresponden a un evento futuro concreto (festival, carrera, muestra, fiesta, torneo, congreso, recital, certamen deportivo, etc.) con fecha definida en la Patagonia argentina o chilena. Ignorá inauguraciones de obras, nombramientos, noticias sin fecha de evento.
 
 Noticias candidatas:
 {listado}
@@ -965,8 +880,7 @@ Para cada evento válido generá un objeto JSON con estos campos exactos:
 - emoji: un emoji representativo
 - descripcion: 1-2 oraciones descriptivas
 
-Respondé SOLO con un array JSON válido. Si no hay eventos válidos respondé [].
-"""
+Respondé SOLO con un array JSON válido. Si no hay eventos válidos respondé []."""
 
     try:
         response = client.messages.create(
@@ -975,7 +889,6 @@ Respondé SOLO con un array JSON válido. Si no hay eventos válidos respondé [
             messages=[{"role": "user", "content": prompt}]
         )
         texto = response.content[0].text.strip()
-        # Limpiar markdown
         if "```" in texto:
             for parte in texto.split("```"):
                 p = parte.strip()
@@ -984,7 +897,7 @@ Respondé SOLO con un array JSON válido. Si no hay eventos válidos respondé [
                 elif p.startswith("[") or p.startswith("{"):
                     texto = p; break
         inicio = texto.find("[")
-        fin = texto.rfind("]") + 1
+        fin    = texto.rfind("]") + 1
         if inicio >= 0 and fin > inicio:
             texto = texto[inicio:fin]
         nuevos = json.loads(texto)
@@ -1000,16 +913,36 @@ Respondé SOLO con un array JSON válido. Si no hay eventos válidos respondé [
     except Exception as ex:
         print(f"  Agenda: error procesando con Claude ({ex})")
 
-    # Ordenar por fecha
     agenda.sort(key=lambda e: e.get("fecha", ""))
     guardar_agenda(agenda)
 
 
-# ── Rotación diaria de Deportes ────────────────────────────
+# ══════════════════════════════════════════════════════════
+#  ROTACIONES DE SECCIONES
+# ══════════════════════════════════════════════════════════
+
+def es_propio(articulo):
+    """Artículo de globalPATAGONIA / J. Martineau — excluir de rotaciones automáticas."""
+    fuente = articulo.get("fuente", "") or ""
+    autor  = articulo.get("autor", "")  or ""
+    return (
+        "globalPATAGONIA" in fuente or
+        "Martineau" in autor or
+        "globalPATAGONIA" in autor or
+        articulo.get("propio") is True
+    )
+
 
 def rotar_deportes(historial):
-    """Cada día: agrega la nota de deportes más reciente del historial
-    al frente de row_cards en deportes_feed.json. Mantiene máximo 4 entradas."""
+    """
+    Cascada diaria — 7 posiciones:
+      nueva → principal
+      old principal → secundarias[0]
+      old secundarias[0] → secundarias[1]
+      old secundarias[1] → row_cards[0]
+      old row_cards[0..2] → row_cards[1..3]
+      old row_cards[3] → eliminado
+    """
     ruta = os.path.join(os.path.dirname(__file__), "deportes_feed.json")
     try:
         with open(ruta, encoding="utf-8") as f:
@@ -1017,15 +950,14 @@ def rotar_deportes(historial):
     except Exception:
         return
 
-    row_cards = feed.get("row_cards", [])
     ids_en_feed = (
         {feed.get("principal", {}).get("id")}
         | {s.get("id") for s in feed.get("secundarias", [])}
-        | {c.get("id") for c in row_cards}
-    )
+        | {c.get("id") for c in feed.get("row_cards", [])}
+    ) - {None}
 
-    nueva = None
     cats_deportes = ("deportes", "aventura", "escalada", "trail", "ski", "kayak")
+    nueva = None
     for art in historial:
         if art.get("id") in ids_en_feed or es_propio(art):
             continue
@@ -1034,28 +966,88 @@ def rotar_deportes(historial):
             break
 
     if not nueva:
+        print("  Deportes: sin nota nueva para rotar hoy.")
         return
 
-    nueva_card = {
-        "id":     nueva["id"],
-        "tag":    nueva.get("tag", "🏃 Deportes"),
-        "titulo": nueva["titulo"],
-        "imagen": nueva.get("imagen", ""),
-        "meta":   nueva.get("meta", ""),
-    }
-    feed["row_cards"] = [nueva_card] + row_cards[:3]
+    def to_card(art):
+        return {
+            "id":     art.get("id", ""),
+            "tag":    art.get("tag", "🏃 Deportes"),
+            "titulo": art.get("titulo", ""),
+            "bajada": art.get("bajada", ""),
+            "imagen": art.get("imagen", ""),
+            "meta":   art.get("meta", ""),
+        }
+
+    old_principal   = feed.get("principal", {})
+    old_secundarias = feed.get("secundarias", [])
+    old_row         = feed.get("row_cards", [])
+
+    # Nueva nota entra como principal
+    feed["principal"] = to_card(nueva)
+
+    # Construcción de nuevas secundarias
+    new_sec = []
+    if old_principal.get("id"):
+        new_sec.append(old_principal)
+    if old_secundarias:
+        new_sec.append(old_secundarias[0])
+    feed["secundarias"] = new_sec[:2]
+
+    # Construcción de nueva fila (max 4)
+    new_row = []
+    if len(old_secundarias) > 1:
+        new_row.append(old_secundarias[1])
+    new_row += old_row[:3]
+    feed["row_cards"] = new_row[:4]
 
     with open(ruta, "w", encoding="utf-8") as f:
         json.dump(feed, f, ensure_ascii=False, indent=2)
     print(f"  Deportes rotado: [{nueva['id']}] '{nueva['titulo'][:55]}…'")
 
 
-# ── Rotación semanal de Cultura ───────────────────────────
+def rotar_negocios(nota):
+    """
+    Agrega nota al frente de negocios.json. Mantiene máximo 6 (posiciones 1,2,3,5,6,7).
+    Se llama cada vez que el script corre con una nota de economía/empresas.
+    """
+    ruta = os.path.join(os.path.dirname(__file__), "negocios.json")
+    try:
+        with open(ruta, encoding="utf-8") as f:
+            actual = json.load(f)
+    except Exception:
+        actual = []
+
+    hoy_str = datetime.now().strftime("%d de %B de %Y")
+    entrada = {
+        "id":              nota.get("id", ""),
+        "titulo":          nota.get("titulo", ""),
+        "bajada":          nota.get("bajada", ""),
+        "cuerpo":          nota.get("cuerpo", ""),
+        "tag":             nota.get("tag", "💼 Economía"),
+        "categoria":       nota.get("categoria", "economia"),
+        "fuente":          nota.get("fuente", "globalPATAGONIA"),
+        "autor":           "Redacción globalPATAGONIA",
+        "pais":            nota.get("pais", "argentina"),
+        "imagen":          nota.get("imagen", ""),
+        "imagen_keywords": nota.get("imagen_keywords", ""),
+        "url_original":    nota.get("url_original", ""),
+        "meta":            f"Hoy · globalPATAGONIA",
+        "excluir_feed":    True,
+    }
+
+    nuevo = [entrada] + actual[:5]   # max 6
+    with open(ruta, "w", encoding="utf-8") as f:
+        json.dump(nuevo, f, ensure_ascii=False, indent=2)
+    print(f"  Negocios rotado: [{nota.get('id')}] '{nota.get('titulo','')[:55]}…'")
+
 
 def rotar_cultura(historial):
-    """Los sábados: agrega la nota de cultura/historia más reciente del historial
-    al frente de cultura.json. Mantiene máximo 6 entradas (grilla 2×3)."""
-    if datetime.now().weekday() != 5:   # 5 = sábado
+    """
+    Domingos: agrega nota de cultura/pueblos originarios al frente de cultura.json.
+    Mantiene máximo 6 (posiciones 1,2,3,5,6,7).
+    """
+    if datetime.now().weekday() != 6:   # 6 = domingo
         return
 
     ruta = os.path.join(os.path.dirname(__file__), "cultura.json")
@@ -1068,9 +1060,7 @@ def rotar_cultura(historial):
     ids_en_cultura = {c["id"] for c in cultura_actual}
     ids_historias  = {a.get("id") for a in cargar_historias_permanentes()}
 
-    # Categorías consideradas "cultura"
     cats_cultura = ("cultura", "historia", "pueblos originarios")
-
     nueva = None
     for art in historial:
         if art.get("id") in ids_en_cultura or art.get("id") in ids_historias:
@@ -1082,7 +1072,7 @@ def rotar_cultura(historial):
             break
 
     if not nueva:
-        print("  Cultura: sin nota nueva para rotar este sábado.")
+        print("  Cultura: sin nota nueva para rotar este domingo.")
         return
 
     entrada = {
@@ -1096,20 +1086,17 @@ def rotar_cultura(historial):
         "pais":      nueva.get("pais", "argentina"),
     }
 
-    # Insertar al frente, mantener máximo 6
-    cultura_nuevo = [entrada] + cultura_actual[:5]
-
+    cultura_nuevo = [entrada] + cultura_actual[:5]   # max 6
     with open(ruta, "w", encoding="utf-8") as f:
         json.dump(cultura_nuevo, f, ensure_ascii=False, indent=2)
+    print(f"  Cultura rotada (domingo): [{nueva['id']}] '{nueva['titulo'][:60]}…'")
 
-    print(f"  Cultura rotada (sábado): [{nueva['id']}] '{nueva['titulo'][:60]}…'")
-
-
-# ── Rotación semanal de Turismo ────────────────────────────
 
 def rotar_turismo(historial):
-    """Los domingos: agrega la mejor nota de turismo de la semana al frente
-    de turismo.json y descarta la última. El archivo siempre mantiene 3 entradas."""
+    """
+    Domingos: agrega nota de turismo al frente de turismo.json.
+    Mantiene máximo 3 (posiciones 1, 2, 3).
+    """
     if datetime.now().weekday() != 6:   # 6 = domingo
         return
 
@@ -1122,7 +1109,6 @@ def rotar_turismo(historial):
 
     ids_en_turismo = {t["id"] for t in turismo_actual}
 
-    # Buscar la nota de turismo más reciente en historial que no esté ya en turismo.json
     nueva = None
     for art in historial:
         if art.get("id") in ids_en_turismo or es_propio(art):
@@ -1137,112 +1123,113 @@ def rotar_turismo(historial):
         return
 
     entrada = {
-        "id":     nueva["id"],
-        "badge":  "TURISMO",
-        "titulo": nueva["titulo"],
-        "bajada": nueva.get("bajada", ""),
-        "imagen": nueva.get("imagen", ""),
-        "meta":   nueva.get("meta", ""),
+        "id":           nueva["id"],
+        "badge":        "TURISMO",
+        "titulo":       nueva["titulo"],
+        "bajada":       nueva.get("bajada", ""),
+        "imagen":       nueva.get("imagen", ""),
+        "meta":         nueva.get("meta", ""),
         "url_original": nueva.get("url_original", ""),
     }
 
-    # Insertar al frente, mantener máximo 3
-    turismo_nuevo = [entrada] + turismo_actual[:2]
-
+    turismo_nuevo = [entrada] + turismo_actual[:2]   # max 3
     with open(ruta, "w", encoding="utf-8") as f:
         json.dump(turismo_nuevo, f, ensure_ascii=False, indent=2)
-
     print(f"  Turismo rotado (domingo): [{nueva['id']}] '{nueva['titulo'][:60]}…'")
 
 
-# ── Main ───────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════
+#  MAIN
+# ══════════════════════════════════════════════════════════
 
 def main():
-    # 1. Cargar historial
-    historial = cargar_historial()
-    print(f"\n  Historial actual: {len(historial)} artículos publicados")
+    # 1. Cargar historial y noticias previas (para rotación)
+    historial     = cargar_historial()
+    noticias_prev = cargar_noticias_previas()
 
-    # 1b. Archivar automáticamente cualquier nota propia en historial
-    auto_archivar_propios(historial)
+    prev_tapa       = noticias_prev.get("tapa")
+    prev_secundarias = noticias_prev.get("secundarias", [])
+    prev_noticias   = noticias_prev.get("noticias", [])
+
+    print(f"\n  Historial actual: {len(historial)} artículos")
 
     # 2. Obtener noticias crudas de RSS
     noticias_crudas = fetch_noticias_crudas()
 
-    # 3. Reescribir con Claude (solo noticias nuevas)
+    # 3. Claude elige y reescribe: tapa + 2 secundarias + 1 negocios + ticker
     resultado = reescribir_con_claude(noticias_crudas, historial)
     if not resultado:
         print("\n  ✗ No se generaron artículos nuevos.\n")
         sys.exit(1)
 
-    tapa   = resultado.get("tapa", {})
-    nuevas = resultado.get("nuevas", [])
-    ticker = resultado.get("ticker", [])
+    tapa       = resultado.get("tapa", {})
+    secundarias = resultado.get("secundarias", [])[:2]
+    negocios   = resultado.get("negocios")
+    ticker     = resultado.get("ticker", [])
 
-    todos_nuevos = [tapa] + nuevas
+    # 4. Resolver imágenes (tapa + secundarias + negocios si existe)
+    notas_con_imagen = [tapa] + secundarias
+    if negocios:
+        notas_con_imagen.append(negocios)
 
-    # 4. Resolver imágenes
     fotos_propias = fotos_propias_disponibles()
     if fotos_propias:
         print(f"\n  Fotos propias en biblioteca: {len(fotos_propias)}")
     print("\n  Resolviendo imágenes...")
     fotos_usadas = set()
-    for nota in todos_nuevos:
+    for nota in notas_con_imagen:
         nota["imagen"] = resolver_imagen(nota, fotos_propias, fotos_usadas)
-        # Agregar meta si no tiene
         if "meta" not in nota:
             nota["meta"] = f"Hoy · {nota.get('fuente','globalPATAGONIA')}"
 
-    # 4b. Descargar galería de fotos internas del artículo fuente
-    print("\n  Descargando galería de fotos internas...")
-    for nota in todos_nuevos:
-        url_original = nota.get("url_original", "")
-        if not url_original or not url_original.startswith("http"):
-            continue
-        galeria = extraer_galeria_articulo(url_original, nota["id"])
-        if galeria:
-            nota["galeria"] = galeria
-            print(f"    [{nota['id']}] galería: {len(galeria)} foto(s) descargada(s)")
+    # 4b. Descargar galerías internas
+    print("\n  Descargando galerías...")
+    for nota in notas_con_imagen:
+        url = nota.get("url_original", "")
+        if url and url.startswith("http"):
+            galeria = extraer_galeria_articulo(url, nota["id"])
+            if galeria:
+                nota["galeria"] = galeria
+                print(f"    [{nota['id']}] galería: {len(galeria)} foto(s)")
 
-    # 5. Agregar al historial (nuevos van al frente)
-    historial = todos_nuevos + historial
+    # 5. Agregar tapa + secundarias al historial
+    historial = [tapa] + secundarias + historial
     guardar_historial(historial)
-    print(f"\n  Artículos nuevos agregados: {len(todos_nuevos)}")
-    print(f"  Total en historial: {min(len(historial), MAX_HISTORIAL)}")
+    print(f"\n  Artículos nuevos en historial: {2 + len(secundarias)}")
 
-    # 5b. Rotación diaria de deportes_feed.json
-    rotar_deportes(historial)
+    # 6. Rotaciones de secciones
+    rotar_deportes(historial)         # diario — cascada 7 posiciones
+    rotar_negocios(negocios) if negocios else print("  Negocios: sin nota nueva hoy.")
+    rotar_cultura(historial)          # solo domingos — max 6
+    rotar_turismo(historial)          # solo domingos — max 3
 
-    # 5c. Rotación semanal de cultura.json (solo sábados)
-    rotar_cultura(historial)
+    # 7. Construir noticias.json con rotación de tapa
+    datos = construir_noticias_json(
+        tapa, secundarias,
+        prev_tapa, prev_secundarias, prev_noticias,
+        ticker
+    )
 
-    # 5d. Rotación semanal de turismo.json (solo domingos)
-    rotar_turismo(historial)
-
-    # 6. Construir y guardar noticias.json
-    datos = construir_noticias_json(tapa, historial, ticker)
-
-    # 6b. Garantía final: ningún artículo en el feed puede tener imagen inexistente
+    # 7b. Verificar que todas las notas en feed tienen imagen existente
     fotos_usadas_final = set()
-    todos_en_feed = [datos["tapa"]] + datos["secundarias"] + datos["noticias"]
-    for art in todos_en_feed:
+    for art in [datos["tapa"]] + datos["secundarias"] + datos["noticias"]:
         img = art.get("imagen", "")
         if not img or not os.path.exists(img):
-            fb = _foto_fallback([], fotos_usadas_final)
+            fb = _foto_fallback(fotos_usadas_final)
             if fb:
-                print(f"  ⚠ Sin foto: [{art.get('id')}] → asignando fallback {fb}")
+                print(f"  ⚠ Sin foto: [{art.get('id')}] → fallback {fb}")
                 art["imagen"] = fb
         else:
             fotos_usadas_final.add(img)
 
     guardar_json(datos)
+    print(f"  Feed: tapa + {len(datos['secundarias'])} sec + {len(datos['noticias'])} noticias semana")
 
-    print(f"\n  Feed visible: tapa + {len(datos['secundarias'])} secundarias + {len(datos['noticias'])} cards")
-
-    # 7. Actualizar agenda (purgar vencidos + buscar nuevos)
+    # 8. Agenda
     print(f"\n  Actualizando agenda...")
     actualizar_agenda(noticias_crudas)
 
-    print(f"\n  Listo. Publicá en Netlify.")
+    print(f"\n  ✓ Listo — {fecha_display()}")
     print(f"{'='*55}\n")
 
 

@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "INPUT=$(cat); PROMPT=$(echo \"$INPUT\" | jq -r '.prompt // \"\"'); if [ \"$PROMPT\" = \"gp\" ]; then CONTEXT=$(cat /Users/jm/Desktop/CLAUDCODE/MEMORIA/project_patagoniaglobal.md /Users/jm/Desktop/CLAUDCODE/MEMORIA/project_patagoniaglobal_perfil_editorial.md /Users/jm/Desktop/CLAUDCODE/MEMORIA/feedback_workflow.md /Users/jm/Desktop/CLAUDCODE/PatagoniaGLOBAL/CLAUDE.md); echo \"{}\" | jq --arg ctx \"$CONTEXT\" '{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":$ctx}}'; fi",
+            "statusMessage": "Cargando contexto PatagoniaGLOBAL..."
+          }
+        ]
+      }
+    ]
+  }
+}
