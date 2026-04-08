@@ -405,11 +405,45 @@
     .tip-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--azul-claro); margin-bottom: 8px; }
     .tip-texto { font-size: 14px; line-height: 1.65; color: #3a3a3a; }
 
+    /* Flights */
+    .airline-group { margin-bottom: 20px; }
+    .airline-group-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--azul-claro); margin-bottom: 10px; }
+    .airline-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .airline-card { background: white; border-radius: 6px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .airline-nombre { font-weight: 600; color: var(--verde); font-size: 14px; margin-bottom: 4px; }
+    .airline-nombre a { color: var(--verde); text-decoration: none; border-bottom: 1px dotted var(--azul-claro); }
+    .airline-nombre a:hover { color: var(--azul-claro); }
+    .airline-desc { font-size: 13px; line-height: 1.6; color: #4a4a4a; }
+    /* Parks */
+    .parks-pais { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--azul-claro); margin: 18px 0 10px; }
+    .parks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+    .park-card { background: white; border-radius: 6px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-left: 3px solid var(--azul-claro); }
+    .park-nombre { font-weight: 600; font-size: 14px; color: var(--verde); display: block; margin-bottom: 5px; text-decoration: none; border-bottom: 1px dotted var(--azul-claro); }
+    .park-nombre:hover { color: var(--azul-claro); }
+    .park-desc { font-size: 12.5px; line-height: 1.6; color: #4a4a4a; }
+    /* Rentals */
+    .rental-group { margin-bottom: 22px; }
+    .rental-group-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--azul-claro); margin-bottom: 10px; }
+    .rental-tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .rental-tip { background: #fff8f0; border-radius: 6px; padding: 14px 16px; border-left: 3px solid #8c6b4a; }
+    .rental-tip-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #8c6b4a; margin-bottom: 5px; }
+    .rental-tip-texto { font-size: 13px; line-height: 1.6; color: #4a4a4a; }
+    .rental-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .rental-card { background: white; border-radius: 6px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .rental-nombre { font-weight: 600; font-size: 14px; color: var(--verde); margin-bottom: 4px; }
+    .rental-nombre a { color: var(--verde); text-decoration: none; border-bottom: 1px dotted var(--azul-claro); }
+    .rental-nombre a:hover { color: var(--azul-claro); }
+    .rental-desc { font-size: 13px; line-height: 1.6; color: #4a4a4a; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .ruta-card { grid-template-columns: 1fr; }
       .crossings-grid { grid-template-columns: 1fr; }
       .tips-grid { grid-template-columns: 1fr; }
+      .airline-cards { grid-template-columns: 1fr; }
+      .parks-grid { grid-template-columns: 1fr; }
+      .rental-tips-grid { grid-template-columns: 1fr; }
+      .rental-cards { grid-template-columns: 1fr; }
     }
       .top-bar { display: none; }
       .header-main { padding: 16px 20px 12px; }
@@ -657,6 +691,59 @@
           html += `<div class="tip-card"><div class="tip-label">${t.label}</div><div class="tip-texto">${t.texto}</div></div>`;
         });
         html += `</div>`;
+      }
+
+      // Flights / Airlines
+      if (sec.aerolineas) {
+        sec.aerolineas.forEach(grp => {
+          html += `<div class="airline-group"><div class="airline-group-title">${grp.grupo}</div><div class="airline-cards">`;
+          grp.items.forEach(item => {
+            const nombre = item.url
+              ? `<a href="${item.url}" target="_blank" rel="noopener">${item.nombre}</a>`
+              : item.nombre;
+            html += `<div class="airline-card"><div class="airline-nombre">${nombre}</div><div class="airline-desc">${item.descripcion}</div></div>`;
+          });
+          html += `</div></div>`;
+        });
+      }
+
+      // Parks
+      if (sec.parques) {
+        sec.parques.forEach(pais => {
+          html += `<div class="parks-pais">${pais.pais}</div><div class="parks-grid">`;
+          pais.lista.forEach(p => {
+            const nombre = p.url
+              ? `<a class="park-nombre" href="${p.url}" target="_blank" rel="noopener">${p.nombre}</a>`
+              : `<span class="park-nombre">${p.nombre}</span>`;
+            html += `<div class="park-card">${nombre}<div class="park-desc">${p.descripcion}</div></div>`;
+          });
+          html += `</div>`;
+        });
+      }
+
+      // Rentals
+      if (sec.alquiler) {
+        sec.alquiler.forEach(grp => {
+          html += `<div class="rental-group"><div class="rental-group-title">${grp.grupo}</div>`;
+          const isTips = grp.items[0] && grp.items[0].label;
+          if (isTips) {
+            html += `<div class="rental-tips-grid">`;
+            grp.items.forEach(item => {
+              html += `<div class="rental-tip"><div class="rental-tip-label">${item.label}</div><div class="rental-tip-texto">${item.texto}</div></div>`;
+            });
+            html += `</div>`;
+          } else {
+            html += `<div class="rental-cards">`;
+            grp.items.forEach(item => {
+              const nombre = item.url
+                ? `<a href="${item.url}" target="_blank" rel="noopener">${item.nombre}</a>`
+                : item.nombre;
+              html += `<div class="rental-card"><div class="rental-nombre">${nombre}</div><div class="rental-desc">${item.descripcion}</div></div>`;
+            });
+            html += `</div>`;
+          }
+          html += `</div>`;
+        });
       }
 
       html += `</div>`;
