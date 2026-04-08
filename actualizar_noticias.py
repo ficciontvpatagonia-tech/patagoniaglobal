@@ -1352,12 +1352,17 @@ def main():
     actualizar_agenda(noticias_crudas)
 
     # 9. Publicar en Telegram y Facebook
+    notas_tapa = _seleccionar_notas_binacionales(tapa, secundarias)
+
     print(f"\n  Publicando en Telegram...")
-    publicar_telegram(tapa)
+    for nota in notas_tapa:
+        publicar_telegram(nota)
     publicar_telegram_informe_nuevo()
 
     print(f"\n  Publicando en Facebook...")
-    publicar_facebook(tapa)
+    for nota in notas_tapa:
+        publicar_facebook(nota)
+    publicar_facebook_informe_nuevo()
 
     print(f"\n  ✓ Listo — {fecha_display()}")
     print(f"{'='*55}\n")
@@ -1539,6 +1544,20 @@ def publicar_telegram_informe_nuevo():
         print(f"  Telegram informe falló: {e}")
 
 
+def _seleccionar_notas_binacionales(tapa, secundarias):
+    """De tapa + secundarias, devuelve [nota_argentina, nota_chilena].
+    Si no hay una de cada país, devuelve las dos primeras disponibles."""
+    todas = [n for n in ([tapa] + list(secundarias)) if n]
+    ar = next((n for n in todas if n.get("pais") == "argentina"), None)
+    cl = next((n for n in todas if n.get("pais") == "chile"), None)
+
+    # Si hay una de cada país, publicar ambas
+    if ar and cl:
+        return [ar, cl]
+    # Si solo hay de un país, publicar las dos primeras disponibles
+    return todas[:2] if len(todas) >= 2 else todas
+
+
 def publicar_facebook(tapa):
     """Publica la tapa del día en la página de Facebook con foto y link."""
     page_id    = os.environ.get("FACEBOOK_PAGE_ID", "")
@@ -1613,6 +1632,102 @@ def publicar_facebook(tapa):
 
     except Exception as e:
         print(f"  Facebook falló: {e}")
+
+
+def publicar_facebook_informe_nuevo():
+    """Publica en Facebook el informe más reciente de propios.json si es nuevo."""
+    page_id    = os.environ.get("FACEBOOK_PAGE_ID", "")
+    page_token = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
+    if not page_id or not page_token:
+        return
+
+    base_dir     = os.path.dirname(__file__)
+    state_path   = os.path.join(base_dir, "telegram_state.json")
+    propios_path = os.path.join(base_dir, "propios.json")
+
+    try:
+        with open(propios_path, encoding="utf-8") as f:
+            propios = json.load(f)
+    except Exception:
+        return
+
+    if not propios:
+        return
+
+    informe    = propios[0]
+    informe_id = informe.get("id", "")
+
+    try:
+        with open(state_path, encoding="utf-8") as f:
+            state = json.load(f)
+    except Exception:
+        state = {}
+
+    if state.get("ultimo_informe_facebook") == informe_id:
+        return  # Ya publicado
+
+    titulo = informe.get("titulo", "")
+    bajada = informe.get("bajada", "")
+    imagen = informe.get("imagen", "")
+    tag    = informe.get("tag", "📋 Informe")
+    link   = f"https://globalpatagonia.org/nota.html?id={informe_id}"
+
+    mensaje = (
+        f"{tag} {titulo}\n\n"
+        f"{bajada}\n\n"
+        f"🔗 {link}\n\n"
+        f"GLOBALpatagonia · Sur Global, principio de todo.\n"
+        f"globalpatagonia.org"
+    )
+
+    ruta_img = os.path.join(base_dir, imagen) if imagen else ""
+    ruta_img = ruta_img if os.path.exists(ruta_img) else ""
+
+    try:
+        api_url = f"https://graph.facebook.com/v19.0/{page_id}"
+
+        if ruta_img:
+            boundary = "----PatagoniaGLOBAL"
+            with open(ruta_img, "rb") as img_file:
+                body = (
+                    f"--{boundary}\r\n"
+                    f'Content-Disposition: form-data; name="message"\r\n\r\n'
+                    f"{mensaje}\r\n"
+                    f"--{boundary}\r\n"
+                    f'Content-Disposition: form-data; name="access_token"\r\n\r\n'
+                    f"{page_token}\r\n"
+                    f"--{boundary}\r\n"
+                    f'Content-Disposition: form-data; name="source"; filename="foto.jpg"\r\n'
+                    f"Content-Type: image/jpeg\r\n\r\n"
+                ).encode() + img_file.read() + f"\r\n--{boundary}--\r\n".encode()
+
+                req = urllib.request.Request(
+                    f"{api_url}/photos",
+                    data=body,
+                    headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
+                    method="POST"
+                )
+        else:
+            data = urllib.parse.urlencode({
+                "message":      mensaje,
+                "link":         link,
+                "access_token": page_token,
+            }).encode()
+            req = urllib.request.Request(f"{api_url}/feed", data=data, method="POST")
+
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            resultado = json.loads(resp.read().decode())
+
+        if resultado.get("id"):
+            state["ultimo_informe_facebook"] = informe_id
+            with open(state_path, "w", encoding="utf-8") as f:
+                json.dump(state, f, ensure_ascii=False, indent=2)
+            print(f"  Facebook informe OK ✓ [{informe_id}]")
+        else:
+            print(f"  Facebook informe error: {resultado}")
+
+    except Exception as e:
+        print(f"  Facebook informe falló: {e}")
 
 
 if __name__ == "__main__":
