@@ -576,6 +576,7 @@
       document.getElementById('hero-tagline').textContent = guia.tagline || '';
 
       if (guia.tipo === 'extended') {
+        document.querySelector('.hero-badge').innerHTML = 'Travel Guide &nbsp;<span style="opacity:0.75;font-weight:400;letter-spacing:1px">· EN</span>';
         renderExtended(guia, guias);
       } else {
         renderStandard(guia, guias);
