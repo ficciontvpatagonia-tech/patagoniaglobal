@@ -84,31 +84,94 @@
     ]
   },
   {
-    "id": "guia-bariloche",
-    "destino": "Bariloche",
-    "tagline": "Lagos, montañas y la capital del ski patagónico",
-    "imagen": "fotos/bariloche-lago-nahuel-huapi.jpg",
-    "descripcion": "Bariloche es la capital turística de la Patagonia Norte. Sobre el Lago Nahuel Huapi, con arquitectura de estilo alpino y el Parque Nacional más visitado de Argentina. Combina montaña, lagos de color turquesa y un circuito de chocolate artesanal que la hizo famosa en todo el país.",
-    "cuando_ir": "Junio a septiembre para ski en Cerro Catedral (el más grande de Sudamérica). Diciembre a marzo para trekking, navegación, bicicleta y circuitos panorámicos. Evitar enero: turistas al máximo y precios duplicados. Los mejores meses son diciembre y marzo.",
-    "como_llegar": "Vuelos directos desde Buenos Aires, Córdoba, Rosario y otras ciudades. El aeropuerto Teniente Luis Candelaria está a 15 km del centro — taxi o remís. Bus desde Buenos Aires: 20 horas (hay camas cama que salen por la noche). También conexiones desde Mendoza, Neuquén y otras ciudades patagónicas.",
-    "que_hacer": [
-      { "titulo": "Cerro Catedral", "descripcion": "El centro de ski más grande de Sudamérica: 120 km de pistas, 34 medios de elevación. En verano (dic–mar) opera como área de trekking y mountain bike con vistas al Nahuel Huapi." },
-      { "titulo": "Circuito Chico", "descripcion": "Recorrido de 65 km en auto o bici (hay bicicleterías). Pasa por el Cerro Otto, la Bahía López y el Llao Llao (el hotel más famoso de la Patagonia). Medio día alcanza." },
-      { "titulo": "Ruta de los Siete Lagos", "descripcion": "130 km desde Bariloche hasta San Martín de los Andes, cruzando siete lagos de colores imposibles. Hacerla en auto propio o en lancha (la diferencia visual es total). No en micro de turismo — pierde toda la magia." },
-      { "titulo": "Cerro Tronador", "descripcion": "El volcán nevado en la frontera con Chile. 80 km desde Bariloche. En el camino se ve el glaciar Negro. La ruta de acceso cierra a las 14 hs — salir temprano." }
-    ],
-    "consejos": [
-      "El chocolate artesanal más reconocido: Rapanui y Del Turista — evitar las cadenas",
-      "El Llao Llao se puede visitar tomando un café aunque no seas huésped",
-      "Para Cerro Catedral en invierno: reservar forfait online, mucho más barato",
-      "Los miradores más espectaculares no cobran entrada — Cerro Campanario es uno de los mejores del mundo según National Geographic",
-      "La ruta 40 al sur empieza acá — si se va a El Chaltén, planificar paradas en Perito Moreno y Los Antiguos"
-    ],
-    "donde_comer": [
-      "Cassis — alta cocina patagónica, la mesa más importante de Bariloche",
-      "La Marmite — fondue y raclette en un chalet alpino, clásico de invierno",
-      "Días de Zapata — mexicano sorprendentemente bueno, siempre lleno",
-      "El Boliche de Alberto — parrilla clásica, cordero patagónico, sin reserva no hay lugar"
+    "id": "guia-patagonia-argentina-chile",
+    "destino": "Patagonia Argentina & Chile",
+    "tagline": "How to Visit Both Countries in One Trip",
+    "imagen": "fotos/guia-patagonia-fitz-roy-andes.webp",
+    "tipo": "extended",
+    "seo": {
+      "titulo": "Patagonia Argentina Chile Travel: How to Visit Both Countries in One Trip (2026 Guide)",
+      "meta_description": "Plan the ultimate Patagonia Argentina Chile travel route. Learn border crossings, itineraries, and tips to explore both countries in one unforgettable trip.",
+      "slug": "patagonia-argentina-chile-travel-guide",
+      "focus": "Patagonia Argentina Chile travel",
+      "keywords": [
+        "Patagonia itinerary Argentina Chile",
+        "Patagonia border crossing Argentina Chile",
+        "Patagonia travel guide South America",
+        "Torres del Paine to El Chaltén itinerary",
+        "Patagonia road trip Argentina Chile",
+        "how to travel Patagonia both countries",
+        "how to travel Patagonia Argentina and Chile in one trip",
+        "best route Patagonia Argentina Chile itinerary",
+        "border crossings Patagonia Argentina Chile requirements"
+      ]
+    },
+    "secciones": [
+      {
+        "id": "why",
+        "h2": "Why Travel Patagonia Argentina and Chile Together?",
+        "contenido": "Patagonia is not two destinations. It is one vast, untamed region shared by Argentina and Chile.\n\nTravelers who plan their journey across both countries experience more diversity without increasing long-haul travel costs. On one side, Argentina offers wide steppe landscapes and iconic peaks like Mount Fitz Roy. On the other, Chile delivers fjords and dramatic national parks like Torres del Paine National Park.\n\nCombining both creates the ultimate Patagonia experience."
+      },
+      {
+        "id": "routes",
+        "h2": "Best Patagonia Argentina Chile Itinerary Routes",
+        "rutas": [
+          {
+            "h3": "Lake District Route",
+            "badge": "Easy + Scenic",
+            "puntos": ["San Carlos de Bariloche", "Cross into Chile via Cardenal Samoré Pass", "End in Puerto Varas"],
+            "best_for": "First-time visitors",
+            "duracion": "7–10 days",
+            "imagenes": ["fotos/bariloche-lago-nahuel-huapi.jpg", "", ""]
+          },
+          {
+            "h3": "Glacier & Trekking Route",
+            "badge": "Most Popular",
+            "puntos": ["El Chaltén", "El Calafate", "Cross border → Torres del Paine National Park"],
+            "best_for": "Hikers and photographers",
+            "duracion": "10–14 days",
+            "imagenes": ["fotos/fitz-roy-chalten-nevada.jpg", "", ""]
+          },
+          {
+            "h3": "Southern Patagonia & Carretera Austral",
+            "badge": "For Advanced Travelers",
+            "puntos": ["Ushuaia", "Explore Tierra del Fuego", "Combine with Carretera Austral"],
+            "best_for": "Advanced travelers",
+            "duracion": "2–3 weeks",
+            "imagenes": ["fotos/ushuaia-ciudad-montana.jpg", "", ""]
+          }
+        ]
+      },
+      {
+        "id": "border",
+        "h2": "Patagonia Border Crossings (Argentina to Chile)",
+        "imagen": "fotos/guia-patagonia-frontera-argentina-chile.webp",
+        "intro": "Traveling between Argentina and Chile in Patagonia is straightforward if you plan ahead.",
+        "crossings": [
+          { "nombre": "Cardenal Samoré", "zona": "North — Bariloche to Puerto Montt" },
+          { "nombre": "Río Don Guillermo", "zona": "South — near Torres del Paine" }
+        ],
+        "requirements": [
+          "Valid passport",
+          "Visa (if required for your nationality)",
+          "No fresh food when entering Chile — strict phytosanitary controls"
+        ]
+      },
+      {
+        "id": "tips",
+        "h2": "Practical Travel Tips for Patagonia (2026)",
+        "tips": [
+          { "label": "Transport", "texto": "Renting a car gives maximum flexibility — distances are vast and public transport is limited in remote areas." },
+          { "label": "Currency", "texto": "Argentine peso vs Chilean peso — carry both. Card acceptance varies widely outside cities." },
+          { "label": "Connectivity", "texto": "Limited internet in remote areas. Download offline maps before leaving urban centers." },
+          { "label": "Best time to visit", "texto": "November to March for trekking and wildlife. June–August for ski season in both countries." }
+        ]
+      },
+      {
+        "id": "plan",
+        "h2": "Plan Your Patagonia Argentina Chile Trip",
+        "contenido": "Planning a binational Patagonia trip can be complex due to logistics, distances, and border crossings.\n\nGLOBALpatagonia.org helps travelers simplify the process with integrated itineraries, updated border crossing information, and route planning tools."
+      }
     ]
   }
 ]

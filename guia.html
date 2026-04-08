@@ -322,8 +322,66 @@
     .footer-nav a:hover { color: #8ab8d4; }
     .footer-copy { font-size: 11px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; margin-top: 4px; }
 
+    /* ── EXTENDED GUIDE ── */
+    .ext-section { margin-bottom: 48px; }
+    .ext-h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 700;
+      color: var(--verde);
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--azul-claro);
+    }
+    .ext-p { font-size: 16px; line-height: 1.85; color: #3a3a3a; margin-bottom: 16px; }
+    /* Routes */
+    .rutas-container { display: flex; flex-direction: column; gap: 18px; margin-top: 8px; }
+    .ruta-card {
+      background: white; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: grid; grid-template-columns: 220px 1fr;
+    }
+    .ruta-img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 160px; }
+    .ruta-img-placeholder { width: 100%; min-height: 160px; background: var(--verde); opacity: 0.25; }
+    .ruta-body { padding: 20px 24px; }
+    .ruta-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+    .ruta-h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--verde); }
+    .ruta-badge {
+      font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      background: var(--azul-claro); color: var(--verde); padding: 3px 10px; border-radius: 20px;
+    }
+    .ruta-puntos { list-style: none; margin-bottom: 14px; }
+    .ruta-puntos li {
+      font-size: 14px; color: #3a3a3a; padding: 5px 0 5px 20px;
+      position: relative; border-bottom: 1px solid #f0ede8;
+    }
+    .ruta-puntos li::before { content: '→'; position: absolute; left: 0; color: var(--azul-claro); font-weight: 700; }
+    .ruta-meta { display: flex; gap: 20px; font-size: 13px; color: #5a6070; flex-wrap: wrap; }
+    /* Border crossings */
+    .ext-full-img { width: 100%; max-height: 260px; object-fit: cover; border-radius: 6px; margin-bottom: 20px; display: block; }
+    .crossings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+    .crossing-card { background: white; border-radius: 6px; padding: 16px 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-left: 4px solid var(--azul-claro); }
+    .crossing-nombre { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--verde); margin-bottom: 4px; }
+    .crossing-zona { font-size: 13px; color: #5a6070; }
+    .ext-requirements { list-style: none; margin-top: 14px; }
+    .ext-requirements li {
+      font-size: 14px; color: #3a3a3a; padding: 10px 16px 10px 36px;
+      position: relative; background: white; margin-bottom: 8px;
+      border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .ext-requirements li::before { content: '✓'; position: absolute; left: 12px; color: var(--azul-claro); font-weight: 700; }
+    /* Tips */
+    .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .tip-card { background: white; border-radius: 6px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .tip-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--azul-claro); margin-bottom: 8px; }
+    .tip-texto { font-size: 14px; line-height: 1.65; color: #3a3a3a; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
+      .ruta-card { grid-template-columns: 1fr; }
+      .crossings-grid { grid-template-columns: 1fr; }
+      .tips-grid { grid-template-columns: 1fr; }
+    }
       .top-bar { display: none; }
       .header-main { padding: 16px 20px 12px; }
       .hero { height: 280px; }
@@ -446,11 +504,7 @@
       const guia = guias.find(g => g.id === id);
       if (!guia) { document.body.innerHTML = '<p style="padding:40px">Guía no encontrada.</p>'; return; }
 
-      // Meta
-      document.getElementById('page-title').textContent = `Guía ${guia.destino} — GLOBALpatagonia`;
-      document.getElementById('meta-desc').setAttribute('content', guia.tagline);
-
-      // Hero
+      // Hero (común a ambos tipos)
       if (guia.imagen) {
         document.getElementById('hero-img').src = guia.imagen;
         document.getElementById('hero-img').alt = guia.destino;
@@ -458,58 +512,140 @@
       document.getElementById('hero-titulo').textContent = guia.destino;
       document.getElementById('hero-tagline').textContent = guia.tagline || '';
 
-      // Descripción
-      document.getElementById('guia-descripcion').textContent = guia.descripcion || '';
-
-      // Cuándo ir
-      document.getElementById('guia-cuando').textContent = guia.cuando_ir || '';
-
-      // Cómo llegar
-      document.getElementById('guia-como-llegar').textContent = guia.como_llegar || '';
-
-      // Qué hacer
-      const actGrid = document.getElementById('guia-actividades');
-      (guia.que_hacer || []).forEach(a => {
-        actGrid.innerHTML += `
-          <div class="actividad-card">
-            <div class="actividad-nombre">${a.titulo}</div>
-            <div class="actividad-desc">${a.descripcion}</div>
-          </div>`;
-      });
-
-      // Consejos
-      const cList = document.getElementById('guia-consejos');
-      (guia.consejos || []).forEach(c => {
-        cList.innerHTML += `<li>${c}</li>`;
-      });
-
-      // Dónde comer
-      const dList = document.getElementById('guia-comer');
-      (guia.donde_comer || []).forEach(r => {
-        const partes = r.split(' — ');
-        dList.innerHTML += `
-          <li>
-            <div class="comer-nombre">${partes[0]}</div>
-            ${partes[1] ? `<div>${partes[1]}</div>` : ''}
-          </li>`;
-      });
-
-      // Otras guías
-      const otrasGrid = document.getElementById('otras-guias');
-      guias.filter(g => g.id !== id).forEach(g => {
-        otrasGrid.innerHTML += `
-          <a href="guia.html?id=${g.id}" class="otra-card">
-            ${g.imagen ? `<img class="otra-img" src="${g.imagen}" alt="${g.destino}" loading="lazy"/>` : '<div class="otra-img"></div>'}
-            <div class="otra-body">
-              <div class="otra-destino">${g.destino}</div>
-              <div class="otra-tagline">${g.tagline || ''}</div>
-            </div>
-          </a>`;
-      });
+      if (guia.tipo === 'extended') {
+        renderExtended(guia, guias);
+      } else {
+        renderStandard(guia, guias);
+      }
     })
     .catch(() => {
       document.body.innerHTML = '<p style="padding:40px">Error cargando la guía.</p>';
     });
+
+  function renderStandard(guia, guias) {
+    const seo = guia.seo || {};
+    document.getElementById('page-title').textContent = seo.titulo || `Guía ${guia.destino} — GLOBALpatagonia`;
+    document.getElementById('meta-desc').setAttribute('content', seo.meta_description || guia.tagline);
+
+    document.getElementById('guia-descripcion').textContent = guia.descripcion || '';
+    document.getElementById('guia-cuando').textContent = guia.cuando_ir || '';
+    document.getElementById('guia-como-llegar').textContent = guia.como_llegar || '';
+
+    const actGrid = document.getElementById('guia-actividades');
+    (guia.que_hacer || []).forEach(a => {
+      actGrid.innerHTML += `<div class="actividad-card"><div class="actividad-nombre">${a.titulo}</div><div class="actividad-desc">${a.descripcion}</div></div>`;
+    });
+
+    const cList = document.getElementById('guia-consejos');
+    (guia.consejos || []).forEach(c => { cList.innerHTML += `<li>${c}</li>`; });
+
+    const dList = document.getElementById('guia-comer');
+    (guia.donde_comer || []).forEach(r => {
+      const partes = r.split(' — ');
+      dList.innerHTML += `<li><div class="comer-nombre">${partes[0]}</div>${partes[1] ? `<div>${partes[1]}</div>` : ''}</li>`;
+    });
+
+    renderOtras(guias, guia.id);
+  }
+
+  function renderExtended(guia, guias) {
+    const seo = guia.seo || {};
+    document.getElementById('page-title').textContent = seo.titulo || guia.destino + ' — GLOBALpatagonia';
+    document.getElementById('meta-desc').setAttribute('content', seo.meta_description || guia.tagline);
+
+    // Ocultar secciones estándar y reemplazar container
+    const container = document.querySelector('.container');
+    let html = `<a href="index.html#sec-guias" class="volver">← Back to guides</a>`;
+
+    (guia.secciones || []).forEach(sec => {
+      html += `<div class="ext-section" id="ext-${sec.id}"><h2 class="ext-h2">${sec.h2}</h2>`;
+
+      // Imagen de sección (ej: frontera)
+      if (sec.imagen) {
+        html += `<img class="ext-full-img" src="${sec.imagen}" alt="${sec.h2}" loading="lazy"/>`;
+      }
+
+      // Texto libre
+      if (sec.contenido) {
+        sec.contenido.split('\n\n').forEach(p => { html += `<p class="ext-p">${p}</p>`; });
+      }
+
+      // Intro de sección
+      if (sec.intro) { html += `<p class="ext-p">${sec.intro}</p>`; }
+
+      // Rutas
+      if (sec.rutas) {
+        html += `<div class="rutas-container">`;
+        sec.rutas.forEach(ruta => {
+          const img = ruta.imagenes && ruta.imagenes[0];
+          html += `<div class="ruta-card">
+            ${img ? `<img class="ruta-img" src="${img}" alt="${ruta.h3}" loading="lazy"/>` : '<div class="ruta-img-placeholder"></div>'}
+            <div class="ruta-body">
+              <div class="ruta-header">
+                <h3 class="ruta-h3">${ruta.h3}</h3>
+                ${ruta.badge ? `<span class="ruta-badge">${ruta.badge}</span>` : ''}
+              </div>
+              <ul class="ruta-puntos">${ruta.puntos.map(p => `<li>${p}</li>`).join('')}</ul>
+              <div class="ruta-meta">
+                <span>🎯 Best for: <strong>${ruta.best_for}</strong></span>
+                <span>⏱ Duration: <strong>${ruta.duracion}</strong></span>
+              </div>
+            </div>
+          </div>`;
+        });
+        html += `</div>`;
+      }
+
+      // Pasos fronterizos
+      if (sec.crossings) {
+        html += `<div class="crossings-grid">`;
+        sec.crossings.forEach(c => {
+          html += `<div class="crossing-card"><div class="crossing-nombre">${c.nombre}</div><div class="crossing-zona">${c.zona}</div></div>`;
+        });
+        html += `</div>`;
+        if (sec.requirements) {
+          html += `<ul class="ext-requirements">`;
+          sec.requirements.forEach(r => { html += `<li>${r}</li>`; });
+          html += `</ul>`;
+        }
+      }
+
+      // Tips
+      if (sec.tips) {
+        html += `<div class="tips-grid">`;
+        sec.tips.forEach(t => {
+          html += `<div class="tip-card"><div class="tip-label">${t.label}</div><div class="tip-texto">${t.texto}</div></div>`;
+        });
+        html += `</div>`;
+      }
+
+      html += `</div>`;
+    });
+
+    html += `<div class="otras-guias"><div class="otras-titulo">More Patagonia guides</div><div class="otras-grid" id="otras-guias-ext"></div></div>`;
+    container.innerHTML = html;
+
+    // Otras guías
+    const otrasGrid = document.getElementById('otras-guias-ext');
+    guias.filter(g => g.id !== guia.id).forEach(g => {
+      otrasGrid.innerHTML += `
+        <a href="guia.html?id=${g.id}" class="otra-card">
+          ${g.imagen ? `<img class="otra-img" src="${g.imagen}" alt="${g.destino}" loading="lazy"/>` : '<div class="otra-img"></div>'}
+          <div class="otra-body"><div class="otra-destino">${g.destino}</div><div class="otra-tagline">${g.tagline || ''}</div></div>
+        </a>`;
+    });
+  }
+
+  function renderOtras(guias, idActual) {
+    const otrasGrid = document.getElementById('otras-guias');
+    guias.filter(g => g.id !== idActual).forEach(g => {
+      otrasGrid.innerHTML += `
+        <a href="guia.html?id=${g.id}" class="otra-card">
+          ${g.imagen ? `<img class="otra-img" src="${g.imagen}" alt="${g.destino}" loading="lazy"/>` : '<div class="otra-img"></div>'}
+          <div class="otra-body"><div class="otra-destino">${g.destino}</div><div class="otra-tagline">${g.tagline || ''}</div></div>
+        </a>`;
+    });
+  }
 </script>
 
 </body>
