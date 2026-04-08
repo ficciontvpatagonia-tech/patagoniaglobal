@@ -420,12 +420,13 @@
     .airline-nombre a:hover { color: var(--azul-claro); }
     .airline-desc { font-size: 13px; line-height: 1.6; color: #4a4a4a; }
     /* Parks */
-    .parks-pais { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--azul-claro); margin: 18px 0 10px; }
+    .parks-pais { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--azul-claro); margin: 22px 0 10px; }
     .parks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
-    .park-card { background: white; border-radius: 6px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-left: 3px solid var(--azul-claro); }
-    .park-nombre { font-weight: 600; font-size: 14px; color: var(--verde); display: block; margin-bottom: 5px; text-decoration: none; border-bottom: 1px dotted var(--azul-claro); }
+    .park-card { background: var(--verde); border-radius: 6px; padding: 16px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+    .park-card.chile { background: #1a3020; }
+    .park-nombre { font-weight: 700; font-size: 14px; color: white; display: block; margin-bottom: 7px; text-decoration: none; padding-bottom: 7px; border-bottom: 1px solid rgba(255,255,255,0.2); }
     .park-nombre:hover { color: var(--azul-claro); }
-    .park-desc { font-size: 12.5px; line-height: 1.6; color: #4a4a4a; }
+    .park-desc { font-size: 12.5px; line-height: 1.65; color: rgba(255,255,255,0.78); }
     /* Rentals */
     .rental-group { margin-bottom: 22px; }
     .rental-group-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--azul-claro); margin-bottom: 10px; }
@@ -716,12 +717,13 @@
       // Parks
       if (sec.parques) {
         sec.parques.forEach(pais => {
+          const cls = pais.pais === 'Chile' ? 'park-card chile' : 'park-card';
           html += `<div class="parks-pais">${pais.pais}</div><div class="parks-grid">`;
           pais.lista.forEach(p => {
             const nombre = p.url
               ? `<a class="park-nombre" href="${p.url}" target="_blank" rel="noopener">${p.nombre}</a>`
               : `<span class="park-nombre">${p.nombre}</span>`;
-            html += `<div class="park-card">${nombre}<div class="park-desc">${p.descripcion}</div></div>`;
+            html += `<div class="${cls}">${nombre}<div class="park-desc">${p.descripcion}</div></div>`;
           });
           html += `</div>`;
         });
