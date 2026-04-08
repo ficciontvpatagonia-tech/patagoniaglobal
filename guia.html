@@ -411,12 +411,10 @@
     .tip-texto { font-size: 14px; line-height: 1.65; color: #3a3a3a; }
 
     /* Section image gallery */
-    .sec-gallery { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 24px 0; }
-    .sec-gallery.two { grid-template-columns: 1fr 1fr; }
+    .sec-gallery { display: flex; flex-direction: column; gap: 20px; margin: 28px 0; }
     .sec-gallery figure { margin: 0; border-radius: 8px; overflow: hidden; }
-    .sec-gallery img { width: 100%; height: 280px; object-fit: cover; display: block; }
-    .sec-gallery figcaption { font-size: 11px; color: #888; padding: 6px 8px; background: white; font-style: italic; }
-    @media (max-width: 640px) { .sec-gallery.two { grid-template-columns: 1fr; } }
+    .sec-gallery img { width: 100%; height: 420px; object-fit: cover; display: block; }
+    .sec-gallery figcaption { font-size: 11px; color: #888; padding: 7px 10px; background: white; font-style: italic; }
 
     /* Flights */
     .airline-group { margin-bottom: 20px; }
@@ -650,8 +648,7 @@
         parrafos.forEach((p, i) => {
           html += `<p class="ext-p">${p}</p>`;
           if (i === mitad - 1 && sec.imagenes && sec.imagenes.length) {
-            const cols = sec.imagenes.length >= 2 ? 'two' : '';
-            html += `<div class="sec-gallery ${cols}">`;
+            html += `<div class="sec-gallery">`;
             sec.imagenes.forEach(img => {
               html += `<figure><img src="${img.src}" alt="${img.caption || ''}" loading="lazy"/>${img.caption ? `<figcaption>${img.caption}</figcaption>` : ''}</figure>`;
             });
