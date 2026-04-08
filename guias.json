@@ -119,7 +119,38 @@
           {
             "h3": "Lake District Route",
             "badge": "Easy + Scenic",
-            "puntos": ["San Carlos de Bariloche", "Cross into Chile via Cardenal Samoré Pass", "End in Puerto Varas"],
+            "puntos": [
+              {
+                "label": "San Carlos de Bariloche",
+                "detalle": {
+                  "pais": "Argentina", "region": "Río Negro",
+                  "hechos": { "Founded": "1902", "Population": "≈140,000", "Elevation": "~893 m", "Known for": "Skiing, lakes, hiking, chocolate, alpine architecture" },
+                  "descripcion": "Commonly known as Bariloche, it is a major tourist destination in Argentina's Río Negro Province, located in the Andes foothills beside Lake Nahuel Huapi. It serves as the gateway to Patagonia's lake district.",
+                  "info": [
+                    { "titulo": "Geography & setting", "texto": "Bariloche sits within the Nahuel Huapi National Park, on the southern shore of glacial Lake Nahuel Huapi, framed by snowcapped peaks. The area combines Andean forests, lakes, and volcanic landscapes. Its setting fosters diverse outdoor recreation year-round and supports significant biodiversity." },
+                    { "titulo": "Tourism & economy", "texto": "Tourism is the city's main economic driver. Bariloche hosts Cerro Catedral, South America's largest ski resort, and serves as a hub for hiking, mountain biking, and lake excursions. Its European-influenced downtown — wooden chalets and chocolate boutiques — earned it the nickname 'Argentina's Switzerland'." },
+                    { "titulo": "History & culture", "texto": "Founded officially in 1902, the city developed from trade between Chile and Argentina. Migration from Switzerland, Germany, and northern Italy shaped its alpine architectural style. Bariloche gained prominence after the construction of Nahuel Huapi National Park (1934) and improved transport links in the mid-20th century." },
+                    { "titulo": "Climate", "texto": "Cool oceanic to alpine climate, with cold, snowy winters and mild, windy summers. Average temperatures range from −1 °C in July to 15 °C in January, making it a year-round destination for snow sports and nature tourism." }
+                  ],
+                  "imagenes": ["https://upload.wikimedia.org/wikipedia/commons/6/68/Basecat.JPG"]
+                }
+              },
+              { "label": "Cross into Chile via Cardenal Samoré Pass" },
+              {
+                "label": "Puerto Varas",
+                "detalle": {
+                  "pais": "Chile", "region": "Los Lagos",
+                  "hechos": { "Founded": "1853", "Population": "≈38,000", "Notable for": "Lake Llanquihue, Osorno Volcano, German colonial heritage" },
+                  "descripcion": "A scenic city on the shores of Lake Llanquihue, known for its German-influenced architecture and spectacular views of the Osorno and Calbuco volcanoes. A major hub for Chilean Patagonia tourism.",
+                  "info": [
+                    { "titulo": "Geography & setting", "texto": "Puerto Varas lies about 20 km north of Puerto Montt, facing Lake Llanquihue, Chile's second-largest lake. The city offers clear vistas of the snowcapped Osorno and Calbuco volcanoes. Its proximity to Vicente Pérez Rosales National Park makes it a hub for nature tourism and outdoor sports." },
+                    { "titulo": "History & heritage", "texto": "Founded during Chile's mid-19th-century German colonization program, Puerto Varas retains strong Germanic influences in its architecture, cuisine, and festivals. Timber-framed houses and churches reflect this heritage. The city grew as an agricultural and trade center before becoming tourism-focused in the 20th century." },
+                    { "titulo": "Tourism & culture", "texto": "Popular activities include kayaking, hiking, skiing on Osorno Volcano, and visiting nearby lakes and waterfalls. Known as 'La Ciudad de las Rosas', the city hosts events such as the Semana Musical de Frutillar and local food and beer festivals celebrating its European roots." }
+                  ],
+                  "imagenes": []
+                }
+              }
+            ],
             "best_for": "First-time visitors",
             "duracion": "7–10 days",
             "imagenes": ["fotos/bariloche-lago-nahuel-huapi.jpg", "", ""]
@@ -135,7 +166,39 @@
           {
             "h3": "Southern Patagonia & Carretera Austral",
             "badge": "For Advanced Travelers",
-            "puntos": ["Ushuaia", "Explore Tierra del Fuego", "Combine with Carretera Austral"],
+            "puntos": [
+              {
+                "label": "Ushuaia",
+                "detalle": {
+                  "pais": "Argentina", "region": "Tierra del Fuego",
+                  "hechos": { "Founded": "1884", "Population": "≈80,000", "Coordinates": "54°48′S, 68°18′W", "Known as": "The End of the World" },
+                  "descripcion": "A port city on the southern coast of Argentina's Tierra del Fuego archipelago. Known as the world's southernmost city, it serves as the gateway to Antarctic expeditions and Patagonia's subpolar wilderness.",
+                  "info": [
+                    { "titulo": "Geography & climate", "texto": "Ushuaia sits on a narrow strip of land framed by mountains and sea, facing the Beagle Channel. Its climate is subpolar oceanic, characterized by cool summers, snowy winters, and frequent winds. Despite its latitude, the surrounding mountains produce a relatively mild polar environment." },
+                    { "titulo": "History", "texto": "Originally inhabited by the Yámana (Yaghan) people, Ushuaia became a missionary outpost in the late 19th century. Argentina established a penal colony there in 1884, marking the city's formal founding. The prison's closure in 1947 paved the way for tourism and industry." },
+                    { "titulo": "Tourism & economy", "texto": "Tourism dominates Ushuaia's economy, fueled by Antarctic cruises, hiking, skiing, and wildlife excursions. Nearby attractions include Tierra del Fuego National Park, the End of the World Train, and the Beagle Channel's penguin colonies." },
+                    { "titulo": "Culture & identity", "texto": "Ushuaia's identity blends indigenous heritage, pioneer history, and frontier symbolism. Its nickname 'El Fin del Mundo' is a defining cultural brand, attracting travelers seeking remote landscapes and scientific expeditions to the Antarctic." }
+                  ],
+                  "imagenes": ["fotos/ushuaia-ciudad-montana.jpg"]
+                }
+              },
+              { "label": "Explore Tierra del Fuego National Park" },
+              {
+                "label": "Carretera Austral",
+                "detalle": {
+                  "pais": "Chile", "region": "Los Lagos & Aysén",
+                  "hechos": { "Length": "≈1,240 km (770 mi)", "Route": "CH-7", "Endpoints": "Puerto Montt → Villa O'Higgins", "Construction began": "1976" },
+                  "descripcion": "A 1,240-km scenic highway traversing fjords, forests, rivers, and glaciers — the only continuous land route through northern Patagonia. Renowned worldwide for its pristine landscapes and outdoor adventure.",
+                  "info": [
+                    { "titulo": "History & development", "texto": "Begun in 1976, the highway was conceived to connect isolated Patagonian communities and strengthen national integration. Built through rugged terrain of glaciers and dense temperate rainforest, it required decades of work by military engineers and contractors." },
+                    { "titulo": "Key stops", "texto": "Highlights include Parque Nacional Pumalín Douglas Tompkins, Parque Nacional Queulat with its hanging glacier, Reserva Nacional Cerro Castillo, the turquoise Lago General Carrera and its Marble Chapels, the rafting mecca Futaleufú, and the stilt-boardwalk village Caleta Tortel." },
+                    { "titulo": "Travel & climate", "texto": "Accessible mainly by 4×4, motorcycle, or bicycle. The route includes several ferry crossings over fjords. Summer (December–March) offers mild temperatures and long daylight. Services — fuel, lodging, stores — are sparse beyond Coyhaique." },
+                    { "titulo": "Ecology & culture", "texto": "The Carretera Austral supports small settler towns, showcases Mapuche and gaucho heritage, and grants access to one of the world's last great temperate wildernesses — home to the endangered huemul (Andean deer) and vast protected forests." }
+                  ],
+                  "imagenes": []
+                }
+              }
+            ],
             "best_for": "Advanced travelers",
             "duracion": "2–3 weeks",
             "imagenes": ["fotos/ushuaia-ciudad-montana.jpg", "", ""]
