@@ -1354,6 +1354,7 @@ def main():
     # 9. Publicar en Telegram
     print(f"\n  Publicando en Telegram...")
     publicar_telegram(tapa)
+    publicar_telegram_informe_nuevo()
 
     print(f"\n  ✓ Listo — {fecha_display()}")
     print(f"{'='*55}\n")
@@ -1457,6 +1458,82 @@ def publicar_telegram(tapa):
             print(f"  Telegram error: {resultado.get('description')}")
     except Exception as e:
         print(f"  Telegram falló: {e}")
+
+
+def publicar_telegram_informe_nuevo():
+    """Publica en Telegram el informe más reciente de propios.json si es nuevo."""
+    token   = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+    channel = os.environ.get("TELEGRAM_CHANNEL_ID", "")
+    if not token or not channel:
+        return
+
+    base_dir   = os.path.dirname(__file__)
+    state_path = os.path.join(base_dir, "telegram_state.json")
+    propios_path = os.path.join(base_dir, "propios.json")
+
+    try:
+        with open(propios_path, encoding="utf-8") as f:
+            propios = json.load(f)
+    except Exception:
+        return
+
+    if not propios:
+        return
+
+    informe = propios[0]
+    informe_id = informe.get("id", "")
+
+    # Leer último informe publicado
+    try:
+        with open(state_path, encoding="utf-8") as f:
+            state = json.load(f)
+    except Exception:
+        state = {}
+
+    if state.get("ultimo_informe_telegram") == informe_id:
+        return  # Ya publicado
+
+    titulo = informe.get("titulo", "")
+    bajada = informe.get("bajada", "")
+    imagen = informe.get("imagen", "")
+    tag    = informe.get("tag", "📋 Informe")
+    link   = f"https://globalpatagonia.org/nota.html?id={informe_id}"
+
+    caption = (
+        f"{tag}\n\n"
+        f"<b>{titulo}</b>\n\n"
+        f"{bajada}\n\n"
+        f'<a href="{link}">Leer informe completo →</a>\n\n'
+        f"<i>GLOBALpatagonia · Sur Global, principio de todo.</i>"
+    )
+
+    ruta_img = os.path.join(base_dir, imagen) if imagen else ""
+    ruta_img = ruta_img if os.path.exists(ruta_img) else ""
+
+    try:
+        if ruta_img:
+            resultado = _telegram_request(token, "sendPhoto", {
+                "chat_id":    channel,
+                "caption":    caption,
+                "parse_mode": "HTML",
+            }, file_path=ruta_img)
+        else:
+            resultado = _telegram_request(token, "sendMessage", {
+                "chat_id":    channel,
+                "text":       caption,
+                "parse_mode": "HTML",
+                "disable_web_page_preview": "false",
+            })
+
+        if resultado.get("ok"):
+            state["ultimo_informe_telegram"] = informe_id
+            with open(state_path, "w", encoding="utf-8") as f:
+                json.dump(state, f, ensure_ascii=False, indent=2)
+            print(f"  Telegram informe OK ✓ [{informe_id}]")
+        else:
+            print(f"  Telegram informe error: {resultado.get('description')}")
+    except Exception as e:
+        print(f"  Telegram informe falló: {e}")
 
 
 if __name__ == "__main__":
