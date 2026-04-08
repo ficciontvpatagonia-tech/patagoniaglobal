@@ -540,7 +540,7 @@ def extraer_og_image(url_articulo, nota_id):
         with open(ruta_local, "wb") as f:
             f.write(contenido)
 
-        _recortar_banner(ruta_local)
+        _recortar_banner(ruta_local, url_articulo)
         ruta_final = _convertir_a_webp(ruta_local)
         return f"fotos/{os.path.basename(ruta_final)}"
 
@@ -635,7 +635,7 @@ def extraer_galeria_articulo(url_articulo, nota_id):
                     continue
                 with open(ruta_local, "wb") as f:
                     f.write(contenido)
-                _recortar_banner(ruta_local)
+                _recortar_banner(ruta_local, url_articulo)
                 galeria.append(f"fotos/{filename}")
                 descargadas += 1
             except Exception:
@@ -686,8 +686,10 @@ def buscar_imagen_unsplash(keywords):
     return _unsplash_query("patagonia landscape argentina")
 
 
-def _recortar_banner(ruta_local):
-    """Detecta y elimina banners de diarios pegados al borde de la imagen."""
+def _recortar_banner(ruta_local, url_fuente=""):
+    """Detecta y elimina banners de diarios pegados al borde inferior de la imagen.
+    Para Tiempo Sur: recorte específico del banner rojo corporativo (#E3001B aprox).
+    Para otros medios: detección genérica por color de fila."""
     try:
         from PIL import Image
         import numpy as np
@@ -697,7 +699,14 @@ def _recortar_banner(ruta_local):
         if h < 100:
             return
 
-        def es_banner(fila):
+        es_tiemposur = "tiemposur" in url_fuente.lower()
+
+        def es_banner_tiemposur(fila):
+            """Banner rojo TiempoSur: rojo vivo (#E3001B), umbral estricto."""
+            r, g, b = fila[:,0], fila[:,1], fila[:,2]
+            return np.mean((r > 180) & (g < 60) & (b < 60)) > 0.5
+
+        def es_banner_generico(fila):
             r, g, b = fila[:,0], fila[:,1], fila[:,2]
             rojo    = np.mean((r > 160) & (g < 80)  & (b < 80))   > 0.7
             blanco  = np.mean((r > 220) & (g > 220) & (b > 220))  > 0.7
@@ -705,8 +714,11 @@ def _recortar_banner(ruta_local):
             naranja = np.mean((r > 200) & (g > 80)  & (g < 160) & (b < 60)) > 0.7
             return rojo or blanco or negro or naranja
 
+        es_banner = es_banner_tiemposur if es_tiemposur else es_banner_generico
+        zona = int(h * 0.20) if es_tiemposur else int(h * 0.25)
+
         corte = h
-        for i in range(h - 1, h - int(h * 0.25) - 1, -1):
+        for i in range(h - 1, h - zona - 1, -1):
             if not es_banner(arr[i]):
                 corte = i + 1
                 break
