@@ -1351,10 +1351,13 @@ def main():
     print(f"\n  Actualizando agenda...")
     actualizar_agenda(noticias_crudas)
 
-    # 9. Publicar en Telegram
+    # 9. Publicar en Telegram y Facebook
     print(f"\n  Publicando en Telegram...")
     publicar_telegram(tapa)
     publicar_telegram_informe_nuevo()
+
+    print(f"\n  Publicando en Facebook...")
+    publicar_facebook(tapa)
 
     print(f"\n  ✓ Listo — {fecha_display()}")
     print(f"{'='*55}\n")
@@ -1534,6 +1537,82 @@ def publicar_telegram_informe_nuevo():
             print(f"  Telegram informe error: {resultado.get('description')}")
     except Exception as e:
         print(f"  Telegram informe falló: {e}")
+
+
+def publicar_facebook(tapa):
+    """Publica la tapa del día en la página de Facebook con foto y link."""
+    page_id    = os.environ.get("FACEBOOK_PAGE_ID", "")
+    page_token = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
+    if not page_id or not page_token:
+        print("  Facebook: sin credenciales, se omite.")
+        return
+
+    titulo  = tapa.get("titulo", "")
+    bajada  = tapa.get("bajada", "")
+    nota_id = tapa.get("id", "")
+    imagen  = tapa.get("imagen", "")
+    pais    = tapa.get("pais", "")
+
+    banderas = {"argentina": "🇦🇷", "chile": "🇨🇱", "ambos": "🇦🇷🇨🇱", "malvinas": "🗺️"}
+    bandera  = banderas.get(pais, "")
+    link     = f"https://globalpatagonia.org/nota.html?id={nota_id}"
+
+    mensaje = (
+        f"{bandera} {titulo}\n\n"
+        f"{bajada}\n\n"
+        f"🔗 {link}\n\n"
+        f"GLOBALpatagonia · Sur Global, principio de todo.\n"
+        f"globalpatagonia.org"
+    )
+
+    ruta_img = os.path.join(os.path.dirname(__file__), imagen) if imagen else ""
+    ruta_img = ruta_img if os.path.exists(ruta_img) else ""
+
+    try:
+        api_url = f"https://graph.facebook.com/v19.0/{page_id}"
+
+        if ruta_img:
+            # Publicar con foto
+            with open(ruta_img, "rb") as img_file:
+                import io
+                boundary = "----PatagoniaGLOBAL"
+                body = (
+                    f"--{boundary}\r\n"
+                    f'Content-Disposition: form-data; name="message"\r\n\r\n'
+                    f"{mensaje}\r\n"
+                    f"--{boundary}\r\n"
+                    f'Content-Disposition: form-data; name="access_token"\r\n\r\n'
+                    f"{page_token}\r\n"
+                    f"--{boundary}\r\n"
+                    f'Content-Disposition: form-data; name="source"; filename="foto.jpg"\r\n'
+                    f"Content-Type: image/jpeg\r\n\r\n"
+                ).encode() + img_file.read() + f"\r\n--{boundary}--\r\n".encode()
+
+                req = urllib.request.Request(
+                    f"{api_url}/photos",
+                    data=body,
+                    headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
+                    method="POST"
+                )
+        else:
+            # Publicar solo texto + link
+            data = urllib.parse.urlencode({
+                "message":      mensaje,
+                "link":         link,
+                "access_token": page_token,
+            }).encode()
+            req = urllib.request.Request(f"{api_url}/feed", data=data, method="POST")
+
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            resultado = json.loads(resp.read().decode())
+
+        if resultado.get("id"):
+            print(f"  Facebook OK ✓ [{nota_id}]")
+        else:
+            print(f"  Facebook error: {resultado}")
+
+    except Exception as e:
+        print(f"  Facebook falló: {e}")
 
 
 if __name__ == "__main__":
