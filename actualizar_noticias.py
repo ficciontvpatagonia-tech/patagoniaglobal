@@ -1588,7 +1588,7 @@ def publicar_facebook(tapa):
     ruta_img = ruta_img if os.path.exists(ruta_img) else ""
 
     try:
-        api_url = f"https://graph.facebook.com/v19.0/{page_id}"
+        api_url = f"https://graph.facebook.com/v21.0/{page_id}"
 
         if ruta_img:
             # Publicar con foto
@@ -1622,13 +1622,16 @@ def publicar_facebook(tapa):
             }).encode()
             req = urllib.request.Request(f"{api_url}/feed", data=data, method="POST")
 
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            resultado = json.loads(resp.read().decode())
-
-        if resultado.get("id"):
-            print(f"  Facebook OK ✓ [{nota_id}]")
-        else:
-            print(f"  Facebook error: {resultado}")
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                resultado = json.loads(resp.read().decode())
+            if resultado.get("id"):
+                print(f"  Facebook OK ✓ [{nota_id}]")
+            else:
+                print(f"  Facebook error: {resultado}")
+        except urllib.error.HTTPError as http_err:
+            detalle = http_err.read().decode("utf-8", errors="replace")
+            print(f"  Facebook falló {http_err.code}: {detalle}")
 
     except Exception as e:
         print(f"  Facebook falló: {e}")
@@ -1684,7 +1687,7 @@ def publicar_facebook_informe_nuevo():
     ruta_img = ruta_img if os.path.exists(ruta_img) else ""
 
     try:
-        api_url = f"https://graph.facebook.com/v19.0/{page_id}"
+        api_url = f"https://graph.facebook.com/v21.0/{page_id}"
 
         if ruta_img:
             boundary = "----PatagoniaGLOBAL"
@@ -1715,16 +1718,19 @@ def publicar_facebook_informe_nuevo():
             }).encode()
             req = urllib.request.Request(f"{api_url}/feed", data=data, method="POST")
 
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            resultado = json.loads(resp.read().decode())
-
-        if resultado.get("id"):
-            state["ultimo_informe_facebook"] = informe_id
-            with open(state_path, "w", encoding="utf-8") as f:
-                json.dump(state, f, ensure_ascii=False, indent=2)
-            print(f"  Facebook informe OK ✓ [{informe_id}]")
-        else:
-            print(f"  Facebook informe error: {resultado}")
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                resultado = json.loads(resp.read().decode())
+            if resultado.get("id"):
+                state["ultimo_informe_facebook"] = informe_id
+                with open(state_path, "w", encoding="utf-8") as f:
+                    json.dump(state, f, ensure_ascii=False, indent=2)
+                print(f"  Facebook informe OK ✓ [{informe_id}]")
+            else:
+                print(f"  Facebook informe error: {resultado}")
+        except urllib.error.HTTPError as http_err:
+            detalle = http_err.read().decode("utf-8", errors="replace")
+            print(f"  Facebook informe falló {http_err.code}: {detalle}")
 
     except Exception as e:
         print(f"  Facebook informe falló: {e}")
