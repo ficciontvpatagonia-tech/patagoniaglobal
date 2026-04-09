@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260409-1727-dep",
+    "id": "20260409-1733-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Liga Promesas: el básquet patagónico binacional se juega en Río Gallegos",
-    "bajada": "Equipos de Santa Cruz y Punta Arenas se enfrentan en la tercera fecha de la Liga Promesas de la Patagonia, con protagonismo de las categorías juveniles femeninas.",
-    "imagen": "fotos/foto-20260409-1727-dep.webp",
+    "titulo": "Vóley Sub-18 femenino se disputa en Gobernador Gregores",
+    "bajada": "Nueve equipos santacruceños compiten desde mañana en un torneo provincial organizado por la Federación de Vóley.",
+    "imagen": "fotos/foto-20260409-1733-dep.webp",
     "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260409-1727-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Liga Promesas: el básquet patagónico binacional se juega en Río Gallegos",
+      "bajada": "Equipos de Santa Cruz y Punta Arenas se enfrentan en la tercera fecha de la Liga Promesas de la Patagonia, con protagonismo de las categorías juveniles femeninas.",
+      "imagen": "fotos/foto-20260409-1727-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20260409-1708-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La ciudad rionegrina recibe la segunda fecha del Rally Regional con múltiples tramos especiales y una nutrida grilla de competidores.",
       "imagen": "fotos/foto-20260409-1708-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260409-1210-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La historia de una corredora que encontró en el trail patagónico una forma de sanar heridas y reconstruir su vida.",
       "imagen": "fotos/foto-20260409-1210-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260407-1050-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "imagen": "fotos/gran-fondo-calle-calle-2026.jpg",
       "badge_text": "🏊 Aguas Abiertas",
       "badge_bg": "#1c2d3d",
-      "badge_color": "white"
-    },
-    {
-      "id": "trail-monte-leon-2026",
-      "titulo": "Cuatro podios patagónicos: atletas de El Calafate brillaron en el Desafío Monte León",
-      "imagen": "fotos/trail-monte-leon-2026.webp",
-      "badge_text": "🏃 Trail Running",
-      "badge_bg": "#3a5a7a",
       "badge_color": "white"
     }
   ]
