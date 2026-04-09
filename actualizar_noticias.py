@@ -705,10 +705,11 @@ def _recortar_banner(ruta_local, url_fuente=""):
 
         es_tiemposur = "tiemposur" in url_fuente.lower()
 
-        def es_banner_tiemposur(fila):
-            """Banner rojo TiempoSur: rojo vivo (#E3001B), umbral estricto."""
-            r, g, b = fila[:,0], fila[:,1], fila[:,2]
-            return np.mean((r > 180) & (g < 60) & (b < 60)) > 0.5
+        # TiempoSur: siempre recortar el 15% inferior (banner fijo)
+        if es_tiemposur:
+            corte = int(h * 0.85)
+            img.crop((0, 0, w, corte)).save(ruta_local, quality=90)
+            return
 
         def es_banner_generico(fila):
             r, g, b = fila[:,0], fila[:,1], fila[:,2]
@@ -718,12 +719,10 @@ def _recortar_banner(ruta_local, url_fuente=""):
             naranja = np.mean((r > 200) & (g > 80)  & (g < 160) & (b < 60)) > 0.7
             return rojo or blanco or negro or naranja
 
-        es_banner = es_banner_tiemposur if es_tiemposur else es_banner_generico
-        zona = int(h * 0.20) if es_tiemposur else int(h * 0.25)
-
+        zona = int(h * 0.25)
         corte = h
         for i in range(h - 1, h - zona - 1, -1):
-            if not es_banner(arr[i]):
+            if not es_banner_generico(arr[i]):
                 corte = i + 1
                 break
 
