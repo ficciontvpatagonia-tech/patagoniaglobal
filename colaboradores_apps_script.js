@@ -35,6 +35,11 @@ const USUARIOS = {
     nombre: "B. Ortega",
     email:  "",      // completar cuando confirmen
     pass:   "GP2026bo"
+  },
+  "msubira": {
+    nombre: "M. Subirá",
+    email:  "ficciontvpatagonia@gmail.com",
+    pass:   "GP2026ms"
   }
 };
 
@@ -46,7 +51,7 @@ const SECCIONES = {
   "deportes":       "Deportes & Aventura",
   "negocios":       "Economía & Empresas",
   "historia":       "Cultura Patagónica & Historia",
-  "medioambiente":  "Medio Ambiente"
+  "medioambiente":  "Ambiente"
 };
 
 // ─── ENTRADA PRINCIPAL ──────────────────────────────────────────────────────
@@ -209,7 +214,7 @@ Respondé EXCLUSIVAMENTE en este formato JSON (sin markdown, sin explicaciones):
     });
 
     const data = JSON.parse(response.getContentText());
-    const texto = data.content[0].text.trim();
+    const texto = data.content[0].text.trim().replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '');
     return JSON.parse(texto);
 
   } catch (err) {
