@@ -652,10 +652,14 @@ def buscar_foto_propia(nota, fotos):
     keywords_nota = nota.get("imagen_keywords", "").lower()
     if not keywords_nota:
         return None
+    mejor = None
+    mejor_score = 0
     for foto in fotos:
-        if any(kw in keywords_nota for kw in foto.get("keywords", [])):
-            return f"fotos/{foto['archivo']}"
-    return None
+        score = sum(1 for kw in foto.get("keywords", []) if kw in keywords_nota)
+        if score > mejor_score:
+            mejor_score = score
+            mejor = foto
+    return f"fotos/{mejor['archivo']}" if mejor else None
 
 
 def _unsplash_query(keywords):
