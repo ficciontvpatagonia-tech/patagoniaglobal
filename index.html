@@ -564,30 +564,40 @@
     }
 
     .turismo-principal .tp-img-fallback {
-      height: 240px;
+      height: 300px;
       background: linear-gradient(135deg, #1b2e42, #5a98c0);
       position: relative;
+      overflow: hidden;
+    }
+    .turismo-principal .tp-img-fallback::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.55) 100%);
+      pointer-events: none;
     }
 
     .turismo-tipo {
       position: absolute;
-      top: 12px; left: 12px;
-      background: rgba(0,0,0,0.72);
-      color: white;
-      font-size: 9px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      padding: 3px 8px; border-radius: 2px;
+      top: 14px; left: 14px;
+      background: #7aadcc;
+      color: #fff;
+      font-size: 9px; font-weight: 800;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 2px;
+      z-index: 1;
     }
 
-    .turismo-principal .tp-body { padding: 18px; }
+    .turismo-principal .tp-body { padding: 20px 18px 18px; }
     .turismo-principal h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 20px; font-weight: 700;
-      color: var(--gris-oscuro); line-height: 1.3;
-      margin-bottom: 7px;
+      font-size: 22px; font-weight: 800;
+      color: var(--gris-oscuro); line-height: 1.25;
+      margin-bottom: 9px;
+      letter-spacing: -0.3px;
     }
-    .turismo-principal p { font-size: 13px; color: #777; line-height: 1.5; }
-    .tp-meta { display:flex; gap:12px; margin-top:10px; font-size:10px; color:#aaa; }
+    .turismo-principal p { font-size: 13px; color: #666; line-height: 1.6; }
+    .tp-meta { display:flex; gap:12px; margin-top:12px; font-size:10px; color:#aaa; letter-spacing:0.5px; }
 
     .turismo-secundarias {
       display: flex;

@@ -6,10 +6,18 @@
   <title>GLOBALpatagonia — Sur Global, principio de todo.</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <meta name="description" content="Noticias de la Patagonia argentina y chilena — GLOBALpatagonia"/>
+  <link rel="canonical" href="https://globalpatagonia.org/nota.html"/>
   <meta property="og:site_name" content="GLOBALpatagonia"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://globalpatagonia.org/nota.html"/>
   <meta property="og:image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
+  <meta property="og:title" content="GLOBALpatagonia"/>
+  <meta property="og:description" content=""/>
   <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@PatagoniaGLOBAL"/>
+  <meta name="twitter:title" content="GLOBALpatagonia"/>
+  <meta name="twitter:description" content=""/>
+  <meta name="twitter:image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
   <!-- JSON-LD base (se sobreescribe dinámicamente al cargar la nota) -->
   <script type="application/ld+json" id="jsonld-nota">
   {
@@ -274,9 +282,13 @@
     }
 
     .nota-cuerpo p:first-of-type {
-      font-size: 19px;
+      font-size: 20px;
       line-height: 1.8;
-      color: var(--gris-oscuro);
+      color: #1c2d3d;
+      font-weight: 400;
+      border-left: 4px solid #7aadcc;
+      padding-left: 20px;
+      margin-bottom: 32px;
     }
 
     .nota-cuerpo h3 {
@@ -536,22 +548,37 @@ function renderNota(nota, fechaDisplay, data) {
   // Título de pestaña y OG dinámico
   document.title = nota.titulo + " — GLOBALpatagonia";
   const setMeta = (sel, val) => { const el = document.querySelector(sel); if (el && val) el.setAttribute("content", val); };
+  // Imagen absoluta para SEO
+  const imgAbsoluta = nota.imagen
+    ? (nota.imagen.startsWith('http') ? nota.imagen : 'https://globalpatagonia.org/' + nota.imagen)
+    : 'https://globalpatagonia.org/fotos/torres-del-paine.webp';
+
   setMeta('meta[property="og:title"]', nota.titulo + " — GLOBALpatagonia");
   setMeta('meta[property="og:description"]', nota.bajada || nota.titulo);
-  if (nota.imagen) setMeta('meta[property="og:image"]', nota.imagen);
+  setMeta('meta[property="og:image"]', imgAbsoluta);
+  setMeta('meta[property="og:url"]', window.location.href);
   setMeta('meta[name="description"]', nota.bajada || nota.titulo);
+  setMeta('meta[name="twitter:title"]', nota.titulo + " — GLOBALpatagonia");
+  setMeta('meta[name="twitter:description"]', nota.bajada || nota.titulo);
+  setMeta('meta[name="twitter:image"]', imgAbsoluta);
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.href = window.location.href;
 
   // JSON-LD dinámico para Google
   const jsonld = document.getElementById("jsonld-nota");
   if (jsonld) {
     const schema = {
       "@context": "https://schema.org",
-      "@type": "NewsArticle",
+      "@type": nota.categoria === 'turismo' ? "TravelAction" : "NewsArticle",
       "headline": nota.titulo,
       "description": nota.bajada || nota.titulo,
       "url": window.location.href,
-      "datePublished": fechaDisplay || "",
-      "image": nota.imagen || "https://globalpatagonia.org/fotos/torres-del-paine.webp",
+      "datePublished": nota.fecha || new Date().toISOString().split('T')[0],
+      "dateModified": nota.fecha || new Date().toISOString().split('T')[0],
+      "inLanguage": "es-AR",
+      "image": { "@type": "ImageObject", "url": imgAbsoluta },
+      "articleSection": nota.categoria || "general",
+      "keywords": ["patagonia", nota.categoria, nota.tag, "GLOBALpatagonia"].filter(Boolean).join(", "),
       "publisher": {
         "@type": "NewsMediaOrganization",
         "name": "GLOBALpatagonia",
