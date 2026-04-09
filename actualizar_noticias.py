@@ -703,10 +703,11 @@ def _recortar_banner(ruta_local, url_fuente=""):
         if h < 100:
             return
 
-        es_tiemposur = "tiemposur" in url_fuente.lower()
+        medios_con_banner = ["tiemposur", "elpinguino", "laprensaaustral", "pingüino"]
+        tiene_banner_fijo = any(m in url_fuente.lower() for m in medios_con_banner)
 
-        # TiempoSur: siempre recortar el 22% inferior (banner rojo fijo)
-        if es_tiemposur:
+        # Medios con banner fijo: siempre recortar el 22% inferior
+        if tiene_banner_fijo:
             corte = int(h * 0.78)
             img.crop((0, 0, w, corte)).save(ruta_local, quality=90)
             return
