@@ -1792,7 +1792,7 @@ def publicar_facebook_informe_nuevo():
 def publicar_instagram(tapa):
     """Publica la tapa del día en Instagram Business via Graph API (2 pasos: container → publish)."""
     ig_user_id   = os.environ.get("INSTAGRAM_BUSINESS_ACCOUNT_ID", "")
-    access_token = os.environ.get("INSTAGRAM_ACCESS_TOKEN", "")
+    access_token = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
     if not ig_user_id or not access_token:
         print("  Instagram: sin credenciales, se omite.")
         return
@@ -1865,7 +1865,7 @@ def publicar_instagram(tapa):
 def publicar_instagram_informe_nuevo():
     """Publica en Instagram el informe más reciente de propios.json si es nuevo."""
     ig_user_id   = os.environ.get("INSTAGRAM_BUSINESS_ACCOUNT_ID", "")
-    access_token = os.environ.get("INSTAGRAM_ACCESS_TOKEN", "")
+    access_token = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
     if not ig_user_id or not access_token:
         return
 
