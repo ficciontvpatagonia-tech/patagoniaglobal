@@ -1376,6 +1376,10 @@ def main():
         publicar_facebook(nota)
     publicar_facebook_informe_nuevo()
 
+    print(f"\n  Publicando en Instagram...")
+    publicar_instagram(tapa)
+    publicar_instagram_informe_nuevo()
+
     print(f"\n  ✓ Listo — {fecha_display()}")
     print(f"{'='*55}\n")
 
@@ -1779,6 +1783,178 @@ def publicar_facebook_informe_nuevo():
 
     except Exception as e:
         print(f"  Facebook informe falló: {e}")
+
+
+# ══════════════════════════════════════════════════════════
+#  INSTAGRAM
+# ══════════════════════════════════════════════════════════
+
+def publicar_instagram(tapa):
+    """Publica la tapa del día en Instagram Business via Graph API (2 pasos: container → publish)."""
+    ig_user_id   = os.environ.get("INSTAGRAM_BUSINESS_ACCOUNT_ID", "")
+    access_token = os.environ.get("INSTAGRAM_ACCESS_TOKEN", "")
+    if not ig_user_id or not access_token:
+        print("  Instagram: sin credenciales, se omite.")
+        return
+
+    titulo  = tapa.get("titulo", "")
+    bajada  = tapa.get("bajada", "")
+    nota_id = tapa.get("id", "")
+    imagen  = tapa.get("imagen", "")
+    pais    = tapa.get("pais", "")
+
+    if not imagen:
+        print("  Instagram: sin imagen, se omite.")
+        return
+
+    banderas  = {"argentina": "🇦🇷", "chile": "🇨🇱", "ambos": "🇦🇷🇨🇱", "malvinas": "🗺️"}
+    bandera   = banderas.get(pais, "")
+    image_url = f"https://globalpatagonia.org/{imagen}"
+
+    caption = (
+        f"{bandera} {titulo}\n\n"
+        f"{bajada}\n\n"
+        f"🔗 Nota completa en bio\n\n"
+        f"#Patagonia #PatagoniaGlobal #Noticias #SurGlobal #GLOBALpatagonia"
+    )
+
+    try:
+        api_base = f"https://graph.facebook.com/v21.0/{ig_user_id}"
+
+        # Paso 1: crear media container
+        data = urllib.parse.urlencode({
+            "image_url":    image_url,
+            "caption":      caption,
+            "access_token": access_token,
+        }).encode()
+        req = urllib.request.Request(f"{api_base}/media", data=data, method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                resultado = json.loads(resp.read().decode())
+        except urllib.error.HTTPError as http_err:
+            detalle = http_err.read().decode("utf-8", errors="replace")
+            print(f"  Instagram container falló {http_err.code}: {detalle}")
+            return
+
+        creation_id = resultado.get("id")
+        if not creation_id:
+            print(f"  Instagram container error: {resultado}")
+            return
+
+        # Paso 2: publicar el container
+        data = urllib.parse.urlencode({
+            "creation_id":  creation_id,
+            "access_token": access_token,
+        }).encode()
+        req = urllib.request.Request(f"{api_base}/media_publish", data=data, method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                resultado = json.loads(resp.read().decode())
+            if resultado.get("id"):
+                print(f"  Instagram OK ✓ [{nota_id}]")
+            else:
+                print(f"  Instagram publish error: {resultado}")
+        except urllib.error.HTTPError as http_err:
+            detalle = http_err.read().decode("utf-8", errors="replace")
+            print(f"  Instagram publish falló {http_err.code}: {detalle}")
+
+    except Exception as e:
+        print(f"  Instagram falló: {e}")
+
+
+def publicar_instagram_informe_nuevo():
+    """Publica en Instagram el informe más reciente de propios.json si es nuevo."""
+    ig_user_id   = os.environ.get("INSTAGRAM_BUSINESS_ACCOUNT_ID", "")
+    access_token = os.environ.get("INSTAGRAM_ACCESS_TOKEN", "")
+    if not ig_user_id or not access_token:
+        return
+
+    base_dir     = os.path.dirname(__file__)
+    state_path   = os.path.join(base_dir, "telegram_state.json")
+    propios_path = os.path.join(base_dir, "propios.json")
+
+    try:
+        with open(propios_path, encoding="utf-8") as f:
+            propios = json.load(f)
+    except Exception:
+        return
+
+    if not propios:
+        return
+
+    informe    = propios[0]
+    informe_id = informe.get("id", "")
+
+    try:
+        with open(state_path, encoding="utf-8") as f:
+            state = json.load(f)
+    except Exception:
+        state = {}
+
+    if state.get("ultimo_informe_instagram") == informe_id:
+        return  # Ya publicado
+
+    titulo = informe.get("titulo", "")
+    bajada = informe.get("bajada", "")
+    imagen = informe.get("imagen", "")
+    tag    = informe.get("tag", "📋 Informe")
+
+    if not imagen:
+        return
+
+    image_url = f"https://globalpatagonia.org/{imagen}"
+    caption = (
+        f"{tag} {titulo}\n\n"
+        f"{bajada}\n\n"
+        f"🔗 Nota completa en bio\n\n"
+        f"#Patagonia #PatagoniaGlobal #Informe #SurGlobal #GLOBALpatagonia"
+    )
+
+    try:
+        api_base = f"https://graph.facebook.com/v21.0/{ig_user_id}"
+
+        # Paso 1: crear container
+        data = urllib.parse.urlencode({
+            "image_url":    image_url,
+            "caption":      caption,
+            "access_token": access_token,
+        }).encode()
+        req = urllib.request.Request(f"{api_base}/media", data=data, method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                resultado = json.loads(resp.read().decode())
+        except urllib.error.HTTPError as http_err:
+            detalle = http_err.read().decode("utf-8", errors="replace")
+            print(f"  Instagram informe container falló {http_err.code}: {detalle}")
+            return
+
+        creation_id = resultado.get("id")
+        if not creation_id:
+            print(f"  Instagram informe container error: {resultado}")
+            return
+
+        # Paso 2: publicar
+        data = urllib.parse.urlencode({
+            "creation_id":  creation_id,
+            "access_token": access_token,
+        }).encode()
+        req = urllib.request.Request(f"{api_base}/media_publish", data=data, method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                resultado = json.loads(resp.read().decode())
+            if resultado.get("id"):
+                state["ultimo_informe_instagram"] = informe_id
+                with open(state_path, "w", encoding="utf-8") as f:
+                    json.dump(state, f, ensure_ascii=False, indent=2)
+                print(f"  Instagram informe OK ✓ [{informe_id}]")
+            else:
+                print(f"  Instagram informe publish error: {resultado}")
+        except urllib.error.HTTPError as http_err:
+            detalle = http_err.read().decode("utf-8", errors="replace")
+            print(f"  Instagram informe publish falló {http_err.code}: {detalle}")
+
+    except Exception as e:
+        print(f"  Instagram informe falló: {e}")
 
 
 if __name__ == "__main__":
