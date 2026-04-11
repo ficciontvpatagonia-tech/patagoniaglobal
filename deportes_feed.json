@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260411-0435-dep",
+    "id": "20260411-1059-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Alexis Bull, de El Calafate, lidera la clasificación en Concordia",
-    "bajada": "El piloto santacruceño dominó las dos tandas de entrenamientos y la primera clasificación de la tercera fecha del Campeonato Argentino de Clase 1 de Turismo Pista.",
-    "imagen": "fotos/foto-20260411-0435-dep.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "titulo": "Maxi Morales: de multicampeón del Tetra a guardián del tiempo en Patagonia Run",
+    "bajada": "El corredor que dominó el Tetratlón Chapelco ahora controla los cronómetros de una de las carreras de trail más importantes de Sudamérica.",
+    "imagen": "fotos/foto-20260411-1059-dep.webp",
+    "meta": "Hoy · Diario Río Negro"
   },
   "secundarias": [
+    {
+      "id": "20260411-0435-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Alexis Bull, de El Calafate, lidera la clasificación en Concordia",
+      "bajada": "El piloto santacruceño dominó las dos tandas de entrenamientos y la primera clasificación de la tercera fecha del Campeonato Argentino de Clase 1 de Turismo Pista.",
+      "imagen": "fotos/foto-20260411-0435-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20260411-0415-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Los ultramaratonistas partieron desde San Martín de los Andes hacia la montaña en la prueba reina del evento más convocante del trail patagónico.",
       "imagen": "fotos/foto-20260411-0415-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260410-1426-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Los puestos de asistencia son refugios vitales para los corredores de ultra trail en medio de la cordillera neuquina.",
       "imagen": "fotos/foto-20260410-1426-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260410-1205-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Equipos de Santa Cruz y Punta Arenas se enfrentan en la tercera fecha de la Liga Promesas de la Patagonia, con protagonismo de las categorías juveniles femeninas.",
       "imagen": "fotos/foto-20260409-1727-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20260409-1708-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "El rally regional ruge en General Roca con su segunda fecha",
-      "bajada": "La ciudad rionegrina recibe la segunda fecha del Rally Regional con múltiples tramos especiales y una nutrida grilla de competidores.",
-      "imagen": "fotos/foto-20260409-1708-dep.webp",
-      "meta": "Hoy · Diario Río Negro"
     }
   ]
 }
