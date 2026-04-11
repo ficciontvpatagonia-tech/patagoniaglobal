@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260411-0415-dep",
+    "id": "20260411-0435-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Largaron las 100 millas de la Patagonia Run 2026",
-    "bajada": "Los ultramaratonistas partieron desde San Martín de los Andes hacia la montaña en la prueba reina del evento más convocante del trail patagónico.",
-    "imagen": "fotos/foto-20260411-0415-dep.webp",
-    "meta": "Hoy · Diario Río Negro"
+    "titulo": "Alexis Bull, de El Calafate, lidera la clasificación en Concordia",
+    "bajada": "El piloto santacruceño dominó las dos tandas de entrenamientos y la primera clasificación de la tercera fecha del Campeonato Argentino de Clase 1 de Turismo Pista.",
+    "imagen": "fotos/foto-20260411-0435-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260411-0415-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Largaron las 100 millas de la Patagonia Run 2026",
+      "bajada": "Los ultramaratonistas partieron desde San Martín de los Andes hacia la montaña en la prueba reina del evento más convocante del trail patagónico.",
+      "imagen": "fotos/foto-20260411-0415-dep.webp",
+      "meta": "Hoy · Diario Río Negro"
+    },
     {
       "id": "20260410-1426-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Los puestos de asistencia son refugios vitales para los corredores de ultra trail en medio de la cordillera neuquina.",
       "imagen": "fotos/foto-20260410-1426-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260410-1205-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El atleta participó en tres distancias del Patagonia Run y explica por qué la montaña se convierte en un vicio inevitable.",
       "imagen": "fotos/foto-20260410-1205-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260409-1733-dep",
       "tag": "🏃 Deportes",
@@ -49,14 +57,6 @@
       "titulo": "El rally regional ruge en General Roca con su segunda fecha",
       "bajada": "La ciudad rionegrina recibe la segunda fecha del Rally Regional con múltiples tramos especiales y una nutrida grilla de competidores.",
       "imagen": "fotos/foto-20260409-1708-dep.webp",
-      "meta": "Hoy · Diario Río Negro"
-    },
-    {
-      "id": "20260409-1210-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Paula y el Patagonia Run: correr para volver a casa",
-      "bajada": "La historia de una corredora que encontró en el trail patagónico una forma de sanar heridas y reconstruir su vida.",
-      "imagen": "fotos/foto-20260409-1210-dep.webp",
       "meta": "Hoy · Diario Río Negro"
     }
   ]
