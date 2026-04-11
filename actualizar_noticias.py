@@ -725,7 +725,17 @@ def _recortar_banner(ruta_local, url_fuente=""):
                 break
 
         if corte < h:
-            img.crop((0, 0, w, corte)).save(ruta_local, quality=90)
+            img = img.crop((0, 0, w, corte))
+            img.save(ruta_local, quality=90)
+
+        # Forzar ratio máximo Instagram (1.91:1)
+        img2 = Image.open(ruta_local).convert("RGB")
+        w2, h2 = img2.size
+        if h2 > 0 and w2 / h2 > 1.91:
+            new_w = int(h2 * 1.91)
+            left  = (w2 - new_w) // 2
+            img2.crop((left, 0, left + new_w, h2)).save(ruta_local, quality=90)
+
     except Exception:
         pass
 
@@ -1841,6 +1851,28 @@ def publicar_instagram(tapa):
             print(f"  Instagram container error: {resultado}")
             return
 
+        # Esperar a que el container esté listo (poll de status)
+        import time
+        for intento in range(12):
+            time.sleep(5)
+            try:
+                poll_url = (f"https://graph.facebook.com/v21.0/{creation_id}"
+                            f"?fields=status_code&access_token={access_token}")
+                req_poll = urllib.request.Request(poll_url)
+                with urllib.request.urlopen(req_poll, timeout=15) as rp:
+                    status_data = json.loads(rp.read().decode())
+                status_code = status_data.get("status_code", "")
+                if status_code == "FINISHED":
+                    break
+                if status_code == "ERROR":
+                    print(f"  Instagram container ERROR de procesamiento")
+                    return
+            except Exception:
+                pass
+        else:
+            print(f"  Instagram container timeout (no FINISHED)")
+            return
+
         # Paso 2: publicar el container
         data = urllib.parse.urlencode({
             "creation_id":  creation_id,
@@ -1933,6 +1965,28 @@ def publicar_instagram_informe_nuevo():
             print(f"  Instagram informe container error: {resultado}")
             return
 
+        # Esperar a que el container esté listo
+        import time
+        for intento in range(12):
+            time.sleep(5)
+            try:
+                poll_url = (f"https://graph.facebook.com/v21.0/{creation_id}"
+                            f"?fields=status_code&access_token={access_token}")
+                req_poll = urllib.request.Request(poll_url)
+                with urllib.request.urlopen(req_poll, timeout=15) as rp:
+                    status_data = json.loads(rp.read().decode())
+                status_code = status_data.get("status_code", "")
+                if status_code == "FINISHED":
+                    break
+                if status_code == "ERROR":
+                    print(f"  Instagram informe container ERROR")
+                    return
+            except Exception:
+                pass
+        else:
+            print(f"  Instagram informe container timeout")
+            return
+
         # Paso 2: publicar
         data = urllib.parse.urlencode({
             "creation_id":  creation_id,
@@ -1957,5 +2011,26 @@ def publicar_instagram_informe_nuevo():
         print(f"  Instagram informe falló: {e}")
 
 
+def solo_instagram():
+    """Modo post-push: lee noticias.json y publica en Instagram."""
+    base_dir      = os.path.dirname(__file__)
+    noticias_path = os.path.join(base_dir, "noticias.json")
+    try:
+        with open(noticias_path, encoding="utf-8") as f:
+            noticias = json.load(f)
+    except Exception as e:
+        print(f"  Instagram (post-push): no se pudo leer noticias.json — {e}")
+        return
+    tapa = noticias.get("tapa", {})
+    print("\n  Publicando tapa en Instagram (post-push)…")
+    publicar_instagram(tapa)
+    print("\n  Publicando informe en Instagram (post-push)…")
+    publicar_instagram_informe_nuevo()
+    print("\n  ✓ Instagram post-push listo")
+
+
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == "--solo-instagram":
+        solo_instagram()
+    else:
+        main()
