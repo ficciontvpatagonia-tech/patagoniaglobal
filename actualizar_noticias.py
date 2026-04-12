@@ -1622,6 +1622,31 @@ def _seleccionar_notas_binacionales(tapa, secundarias):
     return todas[:2] if len(todas) >= 2 else todas
 
 
+def _renovar_token_facebook(token):
+    """Intercambia el token actual por uno nuevo de 60 días usando App ID + App Secret."""
+    app_id     = os.environ.get("FACEBOOK_APP_ID", "")
+    app_secret = os.environ.get("FACEBOOK_APP_SECRET", "")
+    if not app_id or not app_secret or not token:
+        return token
+    try:
+        params = urllib.parse.urlencode({
+            "grant_type":        "fb_exchange_token",
+            "client_id":         app_id,
+            "client_secret":     app_secret,
+            "fb_exchange_token": token,
+        })
+        url = f"https://graph.facebook.com/oauth/access_token?{params}"
+        with urllib.request.urlopen(url, timeout=15) as resp:
+            data = json.loads(resp.read().decode())
+        nuevo = data.get("access_token", "")
+        if nuevo:
+            print("  Facebook: token renovado automáticamente ✓")
+            return nuevo
+    except Exception as e:
+        print(f"  Facebook: no se pudo renovar el token ({e}), se usa el existente.")
+    return token
+
+
 def publicar_facebook(tapa):
     """Publica la tapa del día en la página de Facebook con foto y link."""
     page_id    = os.environ.get("FACEBOOK_PAGE_ID", "")
@@ -1629,6 +1654,7 @@ def publicar_facebook(tapa):
     if not page_id or not page_token:
         print("  Facebook: sin credenciales, se omite.")
         return
+    page_token = _renovar_token_facebook(page_token)
 
     titulo  = tapa.get("titulo", "")
     bajada  = tapa.get("bajada", "")
@@ -1724,6 +1750,7 @@ def publicar_facebook_informe_nuevo():
     page_token = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
     if not page_id or not page_token:
         return
+    page_token = _renovar_token_facebook(page_token)
 
     base_dir     = os.path.dirname(__file__)
     state_path   = os.path.join(base_dir, "telegram_state.json")
