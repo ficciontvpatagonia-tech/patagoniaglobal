@@ -896,18 +896,38 @@ def ids_publicados_en_secciones():
 
 
 def cargar_noticias_previas():
-    """Carga noticias.json solo si fue generado AYER o antes (no hoy)."""
-    ruta = os.path.join(os.path.dirname(__file__), "noticias.json")
-    if not os.path.exists(ruta):
+    """
+    Gestiona noticias_ayer.json: la PRIMERA vez que corre en el día copia
+    noticias.json (= estado de ayer) a noticias_ayer.json y lo marca con la
+    fecha. Re-runs del mismo día reusan noticias_ayer.json sin re-copiarlo,
+    evitando que el segundo run borre la acumulación de tarjetas.
+    """
+    base         = os.path.dirname(__file__)
+    ruta_actual  = os.path.join(base, "noticias.json")
+    ruta_ayer    = os.path.join(base, "noticias_ayer.json")
+    hoy          = datetime.now().strftime("%Y-%m-%d")
+
+    # Si ya existe noticias_ayer.json copiado HOY → usarlo directamente
+    if os.path.exists(ruta_ayer):
+        try:
+            with open(ruta_ayer, encoding="utf-8") as f:
+                ayer = json.load(f)
+            if ayer.get("_copiado_el", "") == hoy:
+                return ayer
+        except Exception:
+            pass
+
+    # Primera corrida del día: copiar noticias.json → noticias_ayer.json
+    if not os.path.exists(ruta_actual):
         return {}
     try:
-        with open(ruta, encoding="utf-8") as f:
-            data = json.load(f)
-        generado = data.get("generado", "")
-        hoy = datetime.now().strftime("%Y-%m-%d")
-        if generado.startswith(hoy):
-            return {}  # Mismo día: no usar como "anterior"
-        return data
+        with open(ruta_actual, encoding="utf-8") as f:
+            actual = json.load(f)
+        actual["_copiado_el"] = hoy
+        with open(ruta_ayer, "w", encoding="utf-8") as f:
+            json.dump(actual, f, ensure_ascii=False, indent=2)
+        print(f"  ✓ noticias_ayer.json guardado ({hoy})")
+        return actual
     except Exception:
         return {}
 
