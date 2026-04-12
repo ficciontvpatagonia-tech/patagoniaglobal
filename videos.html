@@ -713,12 +713,22 @@ fetch("videos.json").then(r => r.json()).then(videos => {
 
   const agrupados = agruparSeries(videos);
 
-  // Carrusel: Rescatistas fijo (ahora como serie) + últimas 5 agrupadas
-  const pinned = agrupados.find(v => v.titulo === "Rescatistas" || v.id === "rescatistas-ep01");
-  const resto  = agrupados.filter(v => v !== pinned);
-  const ultimas5 = resto.slice(-5);
-  const enCarrusel = pinned ? [pinned, ...ultimas5] : ultimas5.slice(-6);
-  buildCarousel(enCarrusel);
+  // Carrusel: orden fijo definido editorialmente
+  const CARRUSEL_IDS = [
+    "el-aura-2005",
+    "un-lugar-en-el-mundo-1992",
+    "rescatistas-ep01",
+    "iluminados-por-el-fuego-2005",
+    "patagonia-rebelde-1974",
+    "nacido-y-criado-2006"
+  ];
+  const enCarrusel = CARRUSEL_IDS
+    .map(id => agrupados.find(v =>
+      v.id === id ||
+      (v._isSerie && v.episodios && v.episodios.some(ep => ep.id === id))
+    ))
+    .filter(Boolean);
+  buildCarousel(enCarrusel.length ? enCarrusel : agrupados.slice(-6));
 
   // Filas por categoría (usando items agrupados)
   const porCat = {};
