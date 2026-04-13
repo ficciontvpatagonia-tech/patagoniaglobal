@@ -1,44 +1,5 @@
 [
   {
-    "id": "patagonia-run-2026",
-    "titulo": "Patagonia Run 2026",
-    "fecha": "2026-04-08",
-    "fecha_fin": "2026-04-12",
-    "fecha_display": "8 al 12 de abril",
-    "lugar": "San Martín de los Andes, Neuquén",
-    "region": "Neuquén, Argentina",
-    "pais": "AR",
-    "categoria": "deportes",
-    "emoji": "🏃",
-    "descripcion": "El festival de trail y ultratrail running más grande de América Latina. Distancias de 10K, 21K, 42K, 70K, 110K y 160K en la cordillera patagónica."
-  },
-  {
-    "id": "pampafest-2026",
-    "titulo": "PampaDocFest 2026",
-    "fecha": "2026-04-09",
-    "fecha_fin": "2026-04-12",
-    "fecha_display": "9 al 12 de abril",
-    "lugar": "Colonia Santa Teresa, La Pampa",
-    "region": "La Pampa, Argentina",
-    "pais": "AR",
-    "categoria": "cultura",
-    "emoji": "🎬",
-    "descripcion": "Festival internacional de cine documental. Una ventana al mundo desde la llanura pampeana, con producciones nacionales e internacionales."
-  },
-  {
-    "id": "festival-nam-santiago-2026",
-    "titulo": "Festival Ñam Santiago 2026 - Participación de Magallanes",
-    "fecha": "2026-04-10",
-    "fecha_fin": "2026-04-12",
-    "fecha_display": "10 al 12 de abril",
-    "lugar": "Parque Padre Hurtado, Santiago",
-    "region": "Región Metropolitana, Chile",
-    "pais": "CL",
-    "categoria": "gastronomia",
-    "emoji": "🍽️",
-    "descripcion": "El Festival Ñam Santiago 2026 reúne a 30 emprendimientos de Agricultura Familiar Campesina de 13 regiones de Chile, incluyendo Magallanes, que representará al mundo rural patagónico con su oferta gastronómica identitaria y territorial."
-  },
-  {
     "id": "patagonia-run-2026-san-martin-andes",
     "titulo": "Patagonia Run 2026 - 100 Millas",
     "fecha": "2026-04-11",
@@ -89,6 +50,19 @@
     "categoria": "deportes",
     "emoji": "🏎️",
     "descripcion": "Segunda fecha del campeonato local de karting en Río Gallegos, con pruebas comunitarias el sábado y clasificación, series y finales el domingo."
+  },
+  {
+    "id": "conciertos-solidarios-teatro-colon-rio-gallegos-2026",
+    "titulo": "Conciertos Solidarios de Músicos del Teatro Colón en Santa Cruz",
+    "fecha": "2026-04-14",
+    "fecha_fin": null,
+    "fecha_display": "14 de abril",
+    "lugar": "Hospital Regional Río Gallegos",
+    "region": "Santa Cruz, Argentina",
+    "pais": "AR",
+    "categoria": "cultura",
+    "emoji": "🎻",
+    "descripcion": "Músicos del Teatro Colón brindarán conciertos solidarios a partir de las 10:00 horas en el Hospital Regional de Río Gallegos, destinados a pacientes, personal sanitario y la comunidad. También se presentarán en Comandante Luis Piedra Buena y Puerto San Julián."
   },
   {
     "id": "nodo-industrial-2026",
