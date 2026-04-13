@@ -16,14 +16,6 @@
       // Canonical siempre apunta a la URL sin ?lang= (versión española canónica)
       var canonicalUrl = 'https://globalpatagonia.org/nota.html?id=' + encodeURIComponent(id);
       document.getElementById('canonical-tag').href = canonicalUrl;
-      // hreflang: agregar dinámicamente si hay versiones multiidioma
-      var lang = params.get('lang');
-      var base = 'https://globalpatagonia.org/nota.html?id=' + encodeURIComponent(id);
-      var head = document.head;
-      var hES = document.createElement('link'); hES.rel='alternate'; hES.hreflang='es'; hES.href=base; head.appendChild(hES);
-      var hEN = document.createElement('link'); hEN.rel='alternate'; hEN.hreflang='en'; hEN.href=base+'&lang=en'; head.appendChild(hEN);
-      var hPT = document.createElement('link'); hPT.rel='alternate'; hPT.hreflang='pt'; hPT.href=base+'&lang=pt'; head.appendChild(hPT);
-      var hDef = document.createElement('link'); hDef.rel='alternate'; hDef.hreflang='x-default'; hDef.href=base; head.appendChild(hDef);
     })();
   </script>
   <meta property="og:site_name" content="GLOBALpatagonia"/>
@@ -478,9 +470,9 @@
 
     /* LANG SWITCHER */
     .lang-switcher { display: flex; gap: 6px; margin-bottom: 20px; }
-    .lang-btn { padding: 5px 16px; border-radius: 3px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: 2px solid #1c2d3d; cursor: pointer; background: transparent; color: #1c2d3d; transition: all 0.15s; }
-    .lang-btn.active { background: #1c2d3d; color: white; }
-    .lang-btn:hover:not(.active) { background: #e8e4de; }
+    .lang-btn { padding: 4px 10px; border-radius: 4px; font-size: 20px; line-height: 1; border: 2px solid transparent; cursor: pointer; background: transparent; transition: all 0.15s; opacity: 0.5; filter: grayscale(0.3); }
+    .lang-btn.active { border-color: #1c2d3d; opacity: 1; filter: none; background: rgba(28,45,61,0.06); }
+    .lang-btn:hover:not(.active) { opacity: 0.85; filter: none; }
 
     /* SKI TABLES */
     .ski-table { width: 100%; border-collapse: collapse; margin: 24px 0 8px; font-size: 14px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
@@ -798,12 +790,25 @@ function renderNota(nota, fechaDisplay, data) {
       <button class="btn-compartir btn-copy" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='¡Copiado!'">Copiar enlace</button>
     </div>`;
 
-  const hasMultilang = nota.titulo_en || nota.titulo_pt;
+  const hasEN = !!nota.titulo_en;
+  const hasPT = !!nota.titulo_pt;
+  const hasMultilang = hasEN || hasPT;
+
+  // hreflang: solo los idiomas disponibles en esta nota
+  if (hasMultilang) {
+    const _base = 'https://globalpatagonia.org/nota.html?id=' + encodeURIComponent(getParam('id') || '');
+    const _addHL = (hl, href) => { const l=document.createElement('link'); l.rel='alternate'; l.hreflang=hl; l.href=href; document.head.appendChild(l); };
+    _addHL('es', _base);
+    _addHL('x-default', _base);
+    if (hasEN) _addHL('en', _base + '&lang=en');
+    if (hasPT) _addHL('pt', _base + '&lang=pt');
+  }
+
   const langSwitcherHtml = hasMultilang ? `
     <div class="lang-switcher">
-      <button class="lang-btn ${lang==='es'?'active':''}" onclick="switchLang('es')">ES</button>
-      <button class="lang-btn ${lang==='en'?'active':''}" onclick="switchLang('en')">EN</button>
-      <button class="lang-btn ${lang==='pt'?'active':''}" onclick="switchLang('pt')">PT</button>
+      <button class="lang-btn ${lang==='es'?'active':''}" onclick="switchLang('es')" title="Español">🇦🇷</button>
+      ${hasEN ? `<button class="lang-btn ${lang==='en'?'active':''}" onclick="switchLang('en')" title="English">🇬🇧</button>` : ''}
+      ${hasPT ? `<button class="lang-btn ${lang==='pt'?'active':''}" onclick="switchLang('pt')" title="Português">🇧🇷</button>` : ''}
     </div>` : '';
 
   document.getElementById("contenido").innerHTML = `

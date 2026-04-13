@@ -5,9 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title id="page-title">Guía — GLOBALpatagonia</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-  <meta name="description" id="meta-desc" content="Guía de viaje patagónica — GLOBALpatagonia"/>
+  <link rel="canonical" id="guia-canonical"/>
+  <script>
+    (function() {
+      var id = new URLSearchParams(window.location.search).get('id');
+      if (!id) { window.location.replace('/'); return; }
+      document.getElementById('guia-canonical').href = 'https://globalpatagonia.org/guia.html?id=' + encodeURIComponent(id);
+    })();
+  </script>
+  <meta name="description" id="meta-desc" content="Patagonia travel guide — GLOBALpatagonia"/>
   <meta property="og:site_name" content="GLOBALpatagonia"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:title" id="og-title" content=""/>
+  <meta property="og:description" id="og-desc" content=""/>
+  <meta property="og:url" id="og-url" content=""/>
+  <meta property="og:image" id="og-image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@GLOBALpatagonia"/>
+  <meta name="twitter:title" id="tw-title" content=""/>
+  <meta name="twitter:description" id="tw-desc" content=""/>
+  <meta name="twitter:image" id="tw-image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
+  <script type="application/ld+json" id="jsonld-guia"></script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
   <script>
@@ -586,6 +604,58 @@
       }
       document.getElementById('hero-titulo').textContent = guia.destino;
       document.getElementById('hero-tagline').textContent = guia.tagline || '';
+
+      // ── SEO dinámico ──────────────────────────────────────
+      const seoMeta = guia.seo || {};
+      const guiaCanonical = 'https://globalpatagonia.org/guia.html?id=' + encodeURIComponent(id);
+      const guiaImg = guia.imagen
+        ? (guia.imagen.startsWith('http') ? guia.imagen : 'https://globalpatagonia.org/' + guia.imagen)
+        : 'https://globalpatagonia.org/fotos/torres-del-paine.webp';
+      const guiaTitulo = seoMeta.titulo || guia.destino + ' Travel Guide — GLOBALpatagonia';
+      const guiaDesc   = seoMeta.meta_description || guia.tagline || '';
+      document.getElementById('guia-canonical').href = guiaCanonical;
+      document.getElementById('og-title').content  = guiaTitulo;
+      document.getElementById('og-desc').content   = guiaDesc;
+      document.getElementById('og-url').content    = guiaCanonical;
+      document.getElementById('og-image').content  = guiaImg;
+      document.getElementById('tw-title').content  = guiaTitulo;
+      document.getElementById('tw-desc').content   = guiaDesc;
+      document.getElementById('tw-image').content  = guiaImg;
+      document.getElementById('meta-desc').content = guiaDesc;
+      document.getElementById('page-title').textContent = guiaTitulo;
+      // hreflang — guías extendidas están en inglés
+      const isEN = guia.tipo === 'extended';
+      const _hl = (lang, href) => { const l=document.createElement('link'); l.rel='alternate'; l.hreflang=lang; l.href=href; document.head.appendChild(l); };
+      if (isEN) {
+        _hl('en', guiaCanonical);
+        _hl('x-default', guiaCanonical);
+        document.documentElement.lang = 'en';
+      } else {
+        _hl('es', guiaCanonical);
+        _hl('x-default', guiaCanonical);
+      }
+      // JSON-LD
+      const jsonldEl = document.getElementById('jsonld-guia');
+      if (jsonldEl) {
+        jsonldEl.textContent = JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "TouristDestination",
+          "name": guiaTitulo,
+          "description": guiaDesc,
+          "url": guiaCanonical,
+          "image": guiaImg,
+          "inLanguage": isEN ? "en" : "es",
+          "touristType": { "@type": "Audience", "audienceType": "Travelers" },
+          "publisher": {
+            "@type": "Organization",
+            "name": "GLOBALpatagonia",
+            "url": "https://globalpatagonia.org/",
+            "logo": { "@type": "ImageObject", "url": "https://globalpatagonia.org/favicon.svg" }
+          },
+          ...(seoMeta.keywords ? { "keywords": seoMeta.keywords.join(", ") } : {})
+        });
+      }
+      // ── fin SEO ───────────────────────────────────────────
 
       if (guia.tipo === 'extended') {
         document.querySelector('.hero-badge').innerHTML = 'Travel Guide &nbsp;<span style="opacity:0.75;font-weight:400;letter-spacing:1px">· EN</span>';
