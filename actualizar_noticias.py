@@ -2061,29 +2061,37 @@ def _generar_imagen_ig(ruta_local, titulo, tag=""):
                 if _os.path.exists(p):
                     try: return ImageFont.truetype(p, size)
                     except Exception: pass
-            return ImageFont.load_default()
+            return ImageFont.load_default(size=size)
 
-        font_logo_bold = _fuente([
+        # Paths: Ubuntu/GitHub Actions primero, macOS como fallback
+        _sans_bold = [
             "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
             "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-        ], 38)
-        font_logo_reg = _fuente([
+            "/Library/Fonts/Arial Bold.ttf",
+            "/System/Library/Fonts/Helvetica.ttc",
+            "/Library/Fonts/Arial.ttf",
+        ]
+        _sans_reg = [
             "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
             "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-        ], 38)
-        font_titulo = _fuente([
+            "/Library/Fonts/Arial.ttf",
+            "/System/Library/Fonts/Helvetica.ttc",
+        ]
+        _serif_bold = [
             "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf",
             "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf",
             "/usr/share/fonts/truetype/freefont/FreeSerifBold.ttf",
-        ], 82)
-        font_tag = _fuente([
-            "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
-            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-        ], 34)
-        font_cta = _fuente([
-            "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
-            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-        ], 38)
+            "/Library/Fonts/Georgia Bold.ttf",
+            "/Library/Fonts/Times New Roman Bold.ttf",
+            "/System/Library/Fonts/Times.ttc",
+            "/Library/Fonts/Arial Bold.ttf",
+        ]
+
+        font_logo_bold = _fuente(_sans_bold, 38)
+        font_logo_reg  = _fuente(_sans_reg,  38)
+        font_titulo    = _fuente(_serif_bold, 82)
+        font_tag       = _fuente(_sans_bold,  34)
+        font_cta       = _fuente(_sans_bold,  38)
 
         # ── Header: "GLOBALpatagonia" centrado ───────────────────────────────────
         bb_g    = draw.textbbox((0, 0), "GLOBAL",     font=font_logo_bold)
