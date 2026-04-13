@@ -1396,13 +1396,18 @@ def main():
     # 9. Publicar en Telegram, Facebook e Instagram
     notas_tapa = _seleccionar_notas_binacionales(tapa, secundarias)
 
-    # Generar imágenes con overlay de texto para Instagram
+    # Generar imágenes con overlay de texto para Instagram (tapa + secciones + informes)
     print(f"\n  Generando imágenes para Instagram...")
     _base_dir = os.path.dirname(__file__)
     for _nota_ig in notas_tapa:
         _img_local = os.path.join(_base_dir, _nota_ig.get("imagen", ""))
         if os.path.exists(_img_local):
             _generar_imagen_ig(_img_local, _nota_ig.get("titulo", ""), _nota_ig.get("tag", ""))
+    # Secciones automáticas
+    for _nota_sec_ig in [n for n in [deportes, negocios, cultura, turismo] if n]:
+        _img_sec_ig = os.path.join(_base_dir, _nota_sec_ig.get("imagen", ""))
+        if os.path.exists(_img_sec_ig):
+            _generar_imagen_ig(_img_sec_ig, _nota_sec_ig.get("titulo", ""), _nota_sec_ig.get("tag", ""))
     try:
         with open(os.path.join(_base_dir, "propios.json"), encoding="utf-8") as _fp:
             _propios_ig = json.load(_fp)
@@ -1427,6 +1432,41 @@ def main():
     print(f"\n  Publicando en Instagram...")
     publicar_instagram(tapa)
     publicar_instagram_informe_nuevo()
+
+    # 9b. Publicar secciones automáticas (deportes / negocios / turismo / cultura)
+    _sec_state_path = os.path.join(_base_dir, "telegram_state.json")
+    try:
+        with open(_sec_state_path, encoding="utf-8") as _f:
+            _sec_state = json.load(_f)
+    except Exception:
+        _sec_state = {}
+
+    _secciones_hoy = [
+        (deportes, "deportes"),
+        (negocios, "negocios"),
+        (cultura,  "cultura"),
+        (turismo,  "turismo"),
+    ]
+    for _ns, _clave in _secciones_hoy:
+        if not _ns:
+            continue
+        _ns_id = _ns.get("id", "")
+        if not _ns_id:
+            continue
+        if _sec_state.get(f"ultimo_{_clave}_telegram") != _ns_id:
+            print(f"\n  Publicando {_clave} en Telegram...")
+            publicar_telegram(_ns)
+            _sec_state[f"ultimo_{_clave}_telegram"] = _ns_id
+        if _sec_state.get(f"ultimo_{_clave}_facebook") != _ns_id:
+            print(f"  Publicando {_clave} en Facebook...")
+            publicar_facebook(_ns)
+            _sec_state[f"ultimo_{_clave}_facebook"] = _ns_id
+
+    with open(_sec_state_path, "w", encoding="utf-8") as _f:
+        json.dump(_sec_state, _f, ensure_ascii=False, indent=2)
+
+    # 9c. Publicar notas manuales nuevas (cualquier nota con "postear_redes": true no posteada aún)
+    publicar_notas_manuales_nuevas()
 
     print(f"\n  Actualizando sitemap...")
     actualizar_sitemap()
@@ -2343,6 +2383,75 @@ def publicar_instagram_informe_nuevo():
         print(f"  Instagram informe falló: {e}")
 
 
+def publicar_notas_manuales_nuevas():
+    """Publica en Telegram y Facebook notas manuales con campo 'postear_redes': true que aún no fueron posteadas."""
+    base_dir   = os.path.dirname(__file__)
+    state_path = os.path.join(base_dir, "telegram_state.json")
+    try:
+        with open(state_path, encoding="utf-8") as f:
+            state = json.load(f)
+    except Exception:
+        state = {}
+
+    manuales_posteadas = set(state.get("manuales_posteadas", []))
+
+    # JSONs de sección donde pueden aparecer notas manuales
+    fuentes_manuales = [
+        "turismo.json",
+        "deportes_feed.json",
+        "negocios.json",
+        "cultura.json",
+        "guias.json",
+        "historias.json",
+    ]
+
+    nuevas = []
+    for archivo in fuentes_manuales:
+        path = os.path.join(base_dir, archivo)
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                datos = json.load(f)
+        except Exception:
+            continue
+        # Normalizar a lista de notas
+        if isinstance(datos, dict):
+            notas_candidatas = [datos.get("principal")] + datos.get("secundarias", []) + datos.get("row_cards", [])
+        else:
+            notas_candidatas = datos
+        for nota in notas_candidatas:
+            if not nota:
+                continue
+            if not nota.get("postear_redes"):
+                continue
+            nota_id = nota.get("id", "")
+            if nota_id and nota_id not in manuales_posteadas:
+                nuevas.append(nota)
+
+    if not nuevas:
+        return
+
+    print(f"\n  Notas manuales a publicar: {len(nuevas)}")
+    for nota in nuevas:
+        nota_id = nota.get("id", "")
+        # Generar _ig.jpg
+        img_local = os.path.join(base_dir, nota.get("imagen", ""))
+        if os.path.exists(img_local):
+            _generar_imagen_ig(img_local, nota.get("titulo", ""), nota.get("tag", ""))
+        # Telegram
+        print(f"  Manual Telegram: [{nota_id}]...")
+        publicar_telegram(nota)
+        # Facebook
+        print(f"  Manual Facebook: [{nota_id}]...")
+        publicar_facebook(nota)
+        manuales_posteadas.add(nota_id)
+
+    state["manuales_posteadas"] = list(manuales_posteadas)
+    with open(state_path, "w", encoding="utf-8") as f:
+        json.dump(state, f, ensure_ascii=False, indent=2)
+
+
 def solo_instagram():
     """Modo post-push: lee noticias.json y publica en Instagram."""
     base_dir      = os.path.dirname(__file__)
@@ -2364,6 +2473,73 @@ def solo_instagram():
 
     print("\n  Publicando informe en Instagram (post-push)…")
     publicar_instagram_informe_nuevo()
+
+    # Secciones automáticas
+    state_path = os.path.join(base_dir, "telegram_state.json")
+    try:
+        with open(state_path, encoding="utf-8") as f:
+            ig_state = json.load(f)
+    except Exception:
+        ig_state = {}
+
+    secciones_archivos = [
+        ("deportes_feed.json", "deportes",  lambda d: d.get("principal")),
+        ("negocios.json",      "negocios",  lambda d: d[0] if d else None),
+        ("cultura.json",       "cultura",   lambda d: d[0] if d else None),
+        ("turismo.json",       "turismo",   lambda d: d[0] if d else None),
+    ]
+    for archivo, clave, extractor in secciones_archivos:
+        sec_path = os.path.join(base_dir, archivo)
+        if not os.path.exists(sec_path):
+            continue
+        try:
+            with open(sec_path, encoding="utf-8") as f:
+                sec_data = json.load(f)
+        except Exception:
+            continue
+        nota_sec = extractor(sec_data)
+        if not nota_sec:
+            continue
+        sec_id = nota_sec.get("id", "")
+        if not sec_id:
+            continue
+        if ig_state.get(f"ultimo_{clave}_instagram") == sec_id:
+            continue
+        print(f"\n  Publicando {clave} en Instagram (post-push)…")
+        publicar_instagram(nota_sec)
+        ig_state[f"ultimo_{clave}_instagram"] = sec_id
+
+    # Notas manuales en Instagram
+    manuales_ig_posteadas = set(ig_state.get("manuales_ig_posteadas", []))
+    fuentes_manuales_ig = [
+        ("turismo.json",       lambda d: d if isinstance(d, list) else []),
+        ("deportes_feed.json", lambda d: [d.get("principal")] + d.get("secundarias", []) + d.get("row_cards", [])),
+        ("negocios.json",      lambda d: d if isinstance(d, list) else []),
+        ("cultura.json",       lambda d: d if isinstance(d, list) else []),
+        ("guias.json",         lambda d: d if isinstance(d, list) else []),
+        ("historias.json",     lambda d: d if isinstance(d, list) else []),
+    ]
+    for archivo, extractor_m in fuentes_manuales_ig:
+        path_m = os.path.join(base_dir, archivo)
+        if not os.path.exists(path_m):
+            continue
+        try:
+            with open(path_m, encoding="utf-8") as f:
+                datos_m = json.load(f)
+        except Exception:
+            continue
+        for nota_m in extractor_m(datos_m):
+            if not nota_m or not nota_m.get("postear_redes"):
+                continue
+            mid = nota_m.get("id", "")
+            if mid and mid not in manuales_ig_posteadas:
+                print(f"\n  Manual Instagram: [{mid}]…")
+                publicar_instagram(nota_m)
+                manuales_ig_posteadas.add(mid)
+
+    ig_state["manuales_ig_posteadas"] = list(manuales_ig_posteadas)
+    with open(state_path, "w", encoding="utf-8") as f:
+        json.dump(ig_state, f, ensure_ascii=False, indent=2)
 
     print("\n  ✓ Instagram post-push listo")
 
