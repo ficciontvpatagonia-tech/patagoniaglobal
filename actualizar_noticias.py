@@ -2003,64 +2003,111 @@ def publicar_facebook_informe_nuevo():
 
 
 def _generar_imagen_ig(ruta_local, titulo, tag=""):
-    """Genera imagen cuadrada 1080×1080 con overlay de texto para Instagram.
+    """Genera imagen portrait 4:5 (1080×1350) con diseño GLOBALpatagonia para Instagram.
+    Layout: header con logo | foto grande | sección oscura con tag + título + CTA.
     Guarda como {base}_ig.jpg junto al original. Retorna la ruta o None si falla."""
     try:
         from PIL import Image, ImageDraw, ImageFont
-        import textwrap as tw_mod, os as _os, numpy as np
+        import os as _os, numpy as np
 
-        # ── Cargar y recortar a cuadrado 1:1 ────────────────────────────────────────────────
+        # ── Dimensiones ───────────────────────────────────────────────────────────
+        ANCHO    = 1080
+        ALTO     = 1350
+        H_HEADER = 65
+        H_FOTO   = 780   # foto: y=65 → y=845
+        Y_DARK   = 845   # sección oscura: y=845 → y=1350
+
+        # ── Paleta GLOBALpatagonia ────────────────────────────────────────────────
+        C_DARK   = (28,  45,  61)    # #1c2d3d azul oscuro
+        C_TEAL   = (122, 173, 204)   # #7aadcc azul glacial
+        C_BLANCO = (255, 255, 255)
+        C_CREMA  = (240, 237, 232)   # #f0ede8
+        C_SHADOW = (10,  20,  30)
+
+        # ── Canvas oscuro base ────────────────────────────────────────────────────
+        canvas = Image.new("RGB", (ANCHO, ALTO), C_DARK)
+        draw   = ImageDraw.Draw(canvas)
+
+        # ── Foto: recortar en ratio 1080:780 y pegar ─────────────────────────────
         img = Image.open(ruta_local).convert("RGB")
         w, h = img.size
-        lado = min(w, h)
-        left = (w - lado) // 2
-        top  = (h - lado) // 2
-        img  = img.crop((left, top, left + lado, top + lado))
-        img  = img.resize((1080, 1080), Image.LANCZOS)
+        target_ratio = ANCHO / H_FOTO   # 1080/780 ≈ 1.385
+        img_ratio    = w / h
+        if img_ratio > target_ratio:
+            new_w = int(h * target_ratio)
+            left  = (w - new_w) // 2
+            img   = img.crop((left, 0, left + new_w, h))
+        else:
+            new_h = int(w / target_ratio)
+            top   = (h - new_h) // 3    # ligero sesgo hacia arriba para retratos
+            img   = img.crop((0, top, w, top + new_h))
+        img = img.resize((ANCHO, H_FOTO), Image.LANCZOS)
+        canvas.paste(img, (0, H_HEADER))
 
-        # ── Gradiente oscuro en mitad inferior ────────────────────────────────────────────
-        arr = np.array(img, dtype=np.float32)
-        grad_start = 480
-        azul = np.array([28, 45, 61], dtype=np.float32)
-        for y in range(grad_start, 1080):
-            t     = (y - grad_start) / (1080 - grad_start)
-            alpha = t * 0.85
-            arr[y] = arr[y] * (1 - alpha) + azul * alpha
-        img  = Image.fromarray(arr.clip(0, 255).astype(np.uint8))
-        draw = ImageDraw.Draw(img)
+        # ── Gradiente suave al pie de la foto (transición foto→sección oscura) ───
+        arr        = np.array(canvas, dtype=np.float32)
+        grad_start = H_HEADER + H_FOTO - 120   # últimos 120px de la foto
+        azul_np    = np.array(C_DARK,  dtype=np.float32)
+        for y in range(grad_start, H_HEADER + H_FOTO):
+            t       = (y - grad_start) / 120
+            alpha   = t * 0.75
+            arr[y]  = arr[y] * (1 - alpha) + azul_np * alpha
+        canvas = Image.fromarray(arr.clip(0, 255).astype(np.uint8))
+        draw   = ImageDraw.Draw(canvas)
 
-        # ── Colores paleta GLOBALpatagonia ──────────────────────────────────────────
-        C_TITULO = (240, 237, 232)   # #f0ede8 crema
-        C_TAG    = (122, 173, 204)   # #7aadcc azul glacial
-        C_MARCA  = (180, 177, 172)   # crema suave para watermark
-        C_SHADOW = (10,  20,  30)    # sombra casi negra
-
-        # ── Fuentes (disponibles en Ubuntu/GitHub Actions) ──────────────────────
+        # ── Fuentes ───────────────────────────────────────────────────────────────
         def _fuente(paths, size):
             for p in paths:
                 if _os.path.exists(p):
-                    try:
-                        return ImageFont.truetype(p, size)
-                    except Exception:
-                        pass
+                    try: return ImageFont.truetype(p, size)
+                    except Exception: pass
             return ImageFont.load_default()
 
+        font_logo_bold = _fuente([
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        ], 38)
+        font_logo_reg = _fuente([
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        ], 38)
         font_titulo = _fuente([
             "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf",
             "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf",
             "/usr/share/fonts/truetype/freefont/FreeSerifBold.ttf",
-        ], 66)
+        ], 82)
         font_tag = _fuente([
             "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
             "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
         ], 34)
-        font_marca = _fuente([
-            "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
-            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-        ], 26)
+        font_cta = _fuente([
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        ], 38)
 
-        # ── Wrap dinámico del título (max 3 líneas, ~950px ancho) ────────────────────────
-        MAX_PX   = 940
+        # ── Header: "GLOBALpatagonia" centrado ───────────────────────────────────
+        bb_g    = draw.textbbox((0, 0), "GLOBAL",     font=font_logo_bold)
+        bb_p    = draw.textbbox((0, 0), "patagonia",  font=font_logo_reg)
+        total_w = (bb_g[2] - bb_g[0]) + (bb_p[2] - bb_p[0])
+        x0      = (ANCHO - total_w) // 2
+        y0      = (H_HEADER - (bb_g[3] - bb_g[1])) // 2
+        draw.text((x0,                      y0), "GLOBAL",    font=font_logo_bold, fill=C_TEAL)
+        draw.text((x0 + bb_g[2] - bb_g[0], y0), "patagonia", font=font_logo_reg,  fill=C_BLANCO)
+
+        # ── Badge de tag (al inicio de la sección oscura, sobre la foto) ─────────
+        PADDING = 60
+        if tag:
+            tag_txt = f"- {tag.strip().lstrip('- ').rstrip(' -')} -"
+            bb_tag  = draw.textbbox((0, 0), tag_txt, font=font_tag)
+            tag_w   = (bb_tag[2] - bb_tag[0]) + 44
+            tag_h   = (bb_tag[3] - bb_tag[1]) + 18
+            tag_x   = PADDING
+            tag_y   = Y_DARK - tag_h - 18
+            draw.rectangle([(tag_x, tag_y), (tag_x + tag_w, tag_y + tag_h)], fill=C_TEAL)
+            draw.text((tag_x + 22, tag_y + 9), tag_txt, font=font_tag, fill=C_DARK)
+
+        # ── Título (sección oscura) ───────────────────────────────────────────────
+        MAX_PX   = ANCHO - PADDING * 2
         titulo_s = titulo.replace("\n", " ").strip()
         words    = titulo_s.split()
         lines    = []
@@ -2074,15 +2121,13 @@ def _generar_imagen_ig(ruta_local, titulo, tag=""):
                 if current:
                     lines.append(current)
                 if len(lines) >= 2:
-                    # Línea 3: juntar todas las palabras restantes
-                    remaining = word + " " + " ".join(words[idx_w+1:])
-                    current = remaining.strip()
+                    remaining = word + " " + " ".join(words[idx_w + 1:])
+                    current   = remaining.strip()
                     break
                 current = word
         if current:
             lines.append(current)
         lines = lines[:3]
-        # Truncar última línea con ellipsis si sobrepasa el ancho
         if lines:
             last = lines[-1]
             bb   = draw.textbbox((0, 0), last, font=font_titulo)
@@ -2094,38 +2139,20 @@ def _generar_imagen_ig(ruta_local, titulo, tag=""):
                         break
                 lines[-1] = last + "…"
 
-        # ── Calcular posición del bloque de texto ──────────────────────────────────────────────────────
-        LINE_H   = 82
-        total_h  = len(lines) * LINE_H
-        tag_area = 58 if tag else 0
-        texto_y  = 1080 - 52 - total_h - tag_area
-
-        # ── Badge de tag ─────────────────────────────────────────────────────────────────────
-        if tag:
-            tag_txt  = tag.strip()
-            bb_tag   = draw.textbbox((0, 0), tag_txt, font=font_tag)
-            tag_w    = bb_tag[2] - bb_tag[0] + 30
-            tag_h    = bb_tag[3] - bb_tag[1] + 14
-            tag_x, tag_y = 48, texto_y - tag_h - 12
-            draw.rectangle([(tag_x, tag_y), (tag_x + tag_w, tag_y + tag_h)], fill=C_TAG)
-            draw.text((tag_x + 15, tag_y + 7), tag_txt, font=font_tag, fill=(28, 45, 61))
-
-        # ── Título ───────────────────────────────────────────────────────────────────────────────
+        LINE_H  = 100
+        y_txt   = Y_DARK + 42
         for linea in lines:
-            draw.text((50, texto_y + 2), linea, font=font_titulo, fill=C_SHADOW)
-            draw.text((48, texto_y),     linea, font=font_titulo, fill=C_TITULO)
-            texto_y += LINE_H
+            draw.text((PADDING + 2, y_txt + 2), linea, font=font_titulo, fill=C_SHADOW)
+            draw.text((PADDING,     y_txt),     linea, font=font_titulo, fill=C_CREMA)
+            y_txt += LINE_H
 
-        # ── Marca GLOBALpatagonia (esquina inferior derecha) ────────────────────────────────────────────────────────
-        marca   = "GLOBALpatagonia"
-        bb_m    = draw.textbbox((0, 0), marca, font=font_marca)
-        marca_w = bb_m[2] - bb_m[0]
-        draw.text((1080 - marca_w - 30, 1080 - 40), marca, font=font_marca, fill=C_MARCA)
+        # ── CTA "ver nota completa" ───────────────────────────────────────────────
+        draw.text((PADDING, ALTO - 60), "ver nota completa", font=font_cta, fill=C_TEAL)
 
-        # ── Guardar _ig.jpg ──────────────────────────────────────────────────────────────────────────────────
+        # ── Guardar _ig.jpg ───────────────────────────────────────────────────────
         base    = ruta_local.rsplit(".", 1)[0]
         ruta_ig = base + "_ig.jpg"
-        img.save(ruta_ig, "JPEG", quality=92)
+        canvas.save(ruta_ig, "JPEG", quality=92)
         print(f"  IG overlay → {_os.path.basename(ruta_ig)}")
         return ruta_ig
 
