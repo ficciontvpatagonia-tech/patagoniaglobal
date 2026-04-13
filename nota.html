@@ -22,6 +22,7 @@
   <meta name="twitter:description" content=""/>
   <meta name="twitter:image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
   <!-- JSON-LD base (se sobreescribe dinámicamente al cargar la nota) -->
+  <script type="application/ld+json" id="jsonld-breadcrumb"></script>
   <script type="application/ld+json" id="jsonld-nota">
   {
     "@context": "https://schema.org",
@@ -113,6 +114,9 @@
       transition: color 0.2s;
     }
     .volver:hover { color: var(--verde); }
+    #breadcrumb a { color: #7aadcc; text-decoration: none; }
+    #breadcrumb a:hover { text-decoration: underline; }
+    #breadcrumb span { color: #444; }
 
     .nota-tag {
       display: inline-block;
@@ -511,15 +515,15 @@
   </div>
   <nav>
     <a href="index.html">Inicio</a>
-    <a href="index.html">Noticias</a>
-    <a href="index.html">Deportes & Actividades</a>
-    <a href="index.html">Turismo & Guías</a>
-    <a href="index.html">Cultura Patagónica</a>
+    <a href="index.html#sec-noticias">Noticias</a>
+    <a href="index.html#sec-deportes">Deportes & Actividades</a>
+    <a href="index.html#sec-turismo">Turismo & Guías</a>
+    <a href="index.html#sec-historia">Cultura Patagónica</a>
   </nav>
 </header>
 
 <div class="container">
-  <a href="index.html" class="volver">← Volver al inicio</a>
+  <nav id="breadcrumb" aria-label="breadcrumb" style="font-size:12px;color:#666;margin:10px 0 4px;line-height:1.4;"></nav>
   <div id="loading">Cargando nota...</div>
   <article id="contenido" style="display:none"></article>
 </div>
@@ -559,15 +563,21 @@ function bandera(pais) {
   return '🌎 Patagonia';
 }
 
-function renderRelacionadas(data, idActual) {
-  const todas = [
+function renderRelacionadas(data, idActual, categoriaActual) {
+  const pool = [
     data.tapa,
     ...(data.secundarias || []),
     ...(data.noticias || []),
-    ...(data.historias || [])
-  ].filter(n => n && n.id !== idActual);
+    ...(data.historias || []),
+    ...(data.historial || [])
+  ].filter(n => n && n.id && n.id !== idActual && n.titulo);
 
-  const elegidas = todas.sort(() => Math.random() - 0.5).slice(0, 3);
+  // Primero notas de la misma categoría, luego el resto
+  const mismaCategoria = pool.filter(n => n.categoria === categoriaActual || n.tag === categoriaActual);
+  const otras = pool.filter(n => n.categoria !== categoriaActual && n.tag !== categoriaActual);
+  const ordenadas = [...mismaCategoria.sort(() => Math.random() - 0.5),
+                     ...otras.sort(() => Math.random() - 0.5)];
+  const elegidas = ordenadas.slice(0, 3);
   if (!elegidas.length) return "";
 
   const cards = elegidas.map(n => {
@@ -575,13 +585,13 @@ function renderRelacionadas(data, idActual) {
       ? `<img class="rel-img" src="${n.imagen}" alt="${n.titulo}" onerror="this.style.display='none'">`
       : `<div class="rel-img"></div>`;
     return `
-      <div class="rel-card" onclick="location.href='nota.html?id=${n.id}'">
+      <a class="rel-card" href="nota.html?id=${n.id}" style="text-decoration:none;color:inherit;display:block;">
         ${img}
         <div class="rel-body">
           <div class="rel-tag">${normTag(n.tag) || "Patagonia"}</div>
           <div class="rel-titulo">${n.titulo}</div>
         </div>
-      </div>`;
+      </a>`;
   }).join("");
 
   return `
@@ -598,6 +608,13 @@ function renderNota(nota, fechaDisplay, data) {
 
   // Título de pestaña y OG dinámico
   document.title = nota.titulo + " — GLOBALpatagonia";
+  // GA4: re-enviar page_view con título real (el inicial dispara con título genérico)
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'page_view', {
+      page_title: nota.titulo + " — GLOBALpatagonia",
+      page_location: window.location.href
+    });
+  }
   const setMeta = (sel, val) => { const el = document.querySelector(sel); if (el && val) el.setAttribute("content", val); };
   // Imagen absoluta para SEO
   const imgAbsoluta = nota.imagen
@@ -639,6 +656,34 @@ function renderNota(nota, fechaDisplay, data) {
       "author": { "@type": "Organization", "name": nota.fuente || "GLOBALpatagonia" }
     };
     jsonld.textContent = JSON.stringify(schema);
+  }
+
+  // Breadcrumb JSON-LD
+  const seccionNombre = normTag(nota.tag) || nota.categoria || "Noticias";
+  const seccionAnchors = {
+    "deportes": "sec-deportes", "aventura": "sec-deportes",
+    "turismo": "sec-turismo", "guías": "sec-turismo",
+    "cultura": "sec-historia", "economía": "sec-negocios", "negocios": "sec-negocios"
+  };
+  const anchorKey = Object.keys(seccionAnchors).find(k => seccionNombre.toLowerCase().includes(k));
+  const seccionUrl = "https://globalpatagonia.org/index.html#" + (seccionAnchors[anchorKey] || "sec-noticias");
+  const breadcrumbEl = document.getElementById("jsonld-breadcrumb");
+  if (breadcrumbEl) {
+    breadcrumbEl.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://globalpatagonia.org/" },
+        { "@type": "ListItem", "position": 2, "name": seccionNombre, "item": seccionUrl },
+        { "@type": "ListItem", "position": 3, "name": nota.titulo, "item": window.location.href }
+      ]
+    });
+  }
+
+  // Breadcrumb visible
+  const bcEl = document.getElementById("breadcrumb");
+  if (bcEl) {
+    bcEl.innerHTML = `<a href="index.html">Inicio</a> › <a href="${seccionUrl}">${seccionNombre}</a> › <span>${nota.titulo}</span>`;
   }
 
   // Imagen
@@ -765,7 +810,7 @@ function renderNota(nota, fechaDisplay, data) {
          </div>`
     }
     ${compartirHtml}
-    ${renderRelacionadas(data, nota.id)}
+    ${renderRelacionadas(data, nota.id, nota.categoria || nota.tag)}
   `;
 
   document.getElementById("loading").style.display = "none";
@@ -822,7 +867,7 @@ if (!id) {
       if (completa && completa.cuerpo) nota = completa;
     }
     if (nota) {
-      renderNota(nota, noticias.fecha_display, { ...noticias, historias: historias.notas || [] });
+      renderNota(nota, noticias.fecha_display, { ...noticias, historias: historias.notas || [], historial: historial || [] });
     } else {
       document.getElementById("loading").textContent = "Nota no encontrada.";
     }
