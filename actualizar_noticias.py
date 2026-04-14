@@ -2660,8 +2660,45 @@ def solo_instagram():
     print("\n  ✓ Instagram post-push listo")
 
 
+def solo_facebook():
+    """Postea las notas del día a Facebook sin correr el script completo."""
+    base_dir = os.path.dirname(__file__)
+    try:
+        with open(os.path.join(base_dir, "noticias.json"), encoding="utf-8") as f:
+            noticias = json.load(f)
+    except Exception as e:
+        print(f"  Error leyendo noticias.json: {e}")
+        return
+
+    tapa        = noticias.get("tapa", {})
+    secundarias = noticias.get("secundarias", [])
+    notas       = [n for n in [tapa] + secundarias if n]
+
+    print(f"\n  Publicando {len(notas)} notas de tapa en Facebook...")
+    for nota in notas:
+        print(f"  → [{nota.get('id','')}] {nota.get('titulo','')[:60]}")
+        publicar_facebook(nota)
+
+    # Negocios
+    neg_path = os.path.join(base_dir, "negocios.json")
+    try:
+        with open(neg_path, encoding="utf-8") as f:
+            negocios_data = json.load(f)
+        if negocios_data:
+            neg = negocios_data[0]
+            print(f"\n  Publicando negocios en Facebook...")
+            print(f"  → [{neg.get('id','')}] {neg.get('titulo','')[:60]}")
+            publicar_facebook(neg)
+    except Exception as e:
+        print(f"  Error en negocios: {e}")
+
+    print("\n  ✓ Facebook manual listo")
+
+
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--solo-instagram":
         solo_instagram()
+    elif len(sys.argv) > 1 and sys.argv[1] == "--solo-facebook":
+        solo_facebook()
     else:
         main()
