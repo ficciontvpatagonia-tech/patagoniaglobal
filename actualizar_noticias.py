@@ -1437,12 +1437,13 @@ def main():
     actualizar_agenda(noticias_crudas)
 
     # 9. Publicar en Telegram, Facebook e Instagram
-    notas_tapa = _seleccionar_notas_binacionales(tapa, secundarias)
+    # Las 3 notas de tapa van a todas las redes
+    notas_tapa_redes = [n for n in [tapa] + secundarias if n]
 
     # Generar imágenes con overlay de texto para Instagram (tapa + secciones + informes)
     print(f"\n  Generando imágenes para Instagram...")
     _base_dir = os.path.dirname(__file__)
-    for _nota_ig in notas_tapa:
+    for _nota_ig in notas_tapa_redes:
         _img_local = os.path.join(_base_dir, _nota_ig.get("imagen", ""))
         if os.path.exists(_img_local):
             _generar_imagen_ig(_img_local, _nota_ig.get("titulo", ""), _nota_ig.get("tag", ""), nota_id=_nota_ig.get("id", ""))
@@ -1463,12 +1464,12 @@ def main():
         pass
 
     print(f"\n  Publicando en Telegram...")
-    for nota in notas_tapa:
+    for nota in notas_tapa_redes:
         publicar_telegram(nota)
     publicar_telegram_informe_nuevo()
 
     print(f"\n  Publicando en Facebook...")
-    for nota in notas_tapa:
+    for nota in notas_tapa_redes:
         publicar_facebook(nota)
     publicar_facebook_informe_nuevo()
 
@@ -2565,23 +2566,31 @@ def solo_instagram():
         return
     tapa        = noticias.get("tapa", {})
     secundarias = noticias.get("secundarias", [])
-    notas_ig    = _seleccionar_notas_binacionales(tapa, secundarias)
+    # Las 3 notas de tapa van a Instagram (misma regla que Telegram/Facebook)
+    notas_ig    = [n for n in [tapa] + secundarias if n]
 
-    for nota_ig in notas_ig:
-        pais_ig = nota_ig.get("pais", "")
-        print(f"\n  Publicando nota ({pais_ig}) en Instagram (post-push)…")
-        publicar_instagram(nota_ig)
-
-    print("\n  Publicando informe en Instagram (post-push)…")
-    publicar_instagram_informe_nuevo()
-
-    # Secciones automáticas
     state_path = os.path.join(base_dir, "telegram_state.json")
     try:
         with open(state_path, encoding="utf-8") as f:
             ig_state = json.load(f)
     except Exception:
         ig_state = {}
+
+    tapa_ig_posteadas = set(ig_state.get("tapa_ig_posteadas", []))
+    for nota_ig in notas_ig:
+        nid = nota_ig.get("id", "")
+        if nid in tapa_ig_posteadas:
+            continue
+        print(f"\n  Publicando tapa en Instagram (post-push)…")
+        publicar_instagram(nota_ig)
+        if nid:
+            tapa_ig_posteadas.add(nid)
+    ig_state["tapa_ig_posteadas"] = list(tapa_ig_posteadas)
+
+    print("\n  Publicando informe en Instagram (post-push)…")
+    publicar_instagram_informe_nuevo()
+
+    # Secciones automáticas (ig_state ya cargado arriba)
 
     secciones_archivos = [
         ("deportes_feed.json", "deportes",  lambda d: d.get("principal")),
