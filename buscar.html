@@ -359,16 +359,16 @@ async function cargarIndice() {
   (noticias.secundarias || []).forEach(agregar);
   (noticias.noticias || []).forEach(agregar);
   if (historias.notas) historias.notas.forEach(agregar);
-  propios.forEach ? propios.forEach(agregar) : null;
-  turismo.forEach ? turismo.forEach(agregar) : null;
-  negocios.forEach ? negocios.forEach(agregar) : null;
-  deportes.forEach ? deportes.forEach(agregar) : null;
-  guias.forEach ? guias.forEach(agregar) : null;
-  historial.forEach ? historial.forEach(agregar) : null;
-  cultura.forEach ? cultura.forEach(agregar) : null;
-  deportesHist.forEach ? deportesHist.forEach(agregar) : null;
-  guiasHist.forEach ? guiasHist.forEach(agregar) : null;
-  propiosHist.forEach ? propiosHist.forEach(agregar) : null;
+  (propios || []).forEach(agregar);
+  (turismo || []).forEach(agregar);
+  (negocios || []).forEach(agregar);
+  (deportes || []).forEach(agregar);
+  (guias || []).forEach(agregar);
+  (historial || []).forEach(agregar);
+  (cultura || []).forEach(agregar);
+  (deportesHist || []).forEach(agregar);
+  (guiasHist || []).forEach(agregar);
+  (propiosHist || []).forEach(agregar);
   const archNotas = Array.isArray(archivo?.notas) ? archivo.notas : (Array.isArray(archivo) ? archivo : []);
   archNotas.forEach(agregar);
 
@@ -389,25 +389,21 @@ async function cargarIndice() {
 }
 
 function renderResultados(resultados, query) {
-  const header = document.getElementById('results-header');
-  const grid = document.getElementById('results-grid');
-  const inicial = document.getElementById('estado-inicial');
-
-  inicial.style.display = 'none';
-  header.style.display = 'block';
+  elInicial.style.display = 'none';
+  elHeader.style.display = 'block';
 
   if (!resultados.length) {
-    header.innerHTML = `Sin resultados para <strong>"${query}"</strong>`;
-    grid.innerHTML = `<div class="no-results" style="grid-column:1/-1">
+    elHeader.innerHTML = `Sin resultados para <strong>"${query}"</strong>`;
+    elGrid.innerHTML = `<div class="no-results" style="grid-column:1/-1">
       <p>No encontramos notas con ese término.</p>
       <small>Probá con palabras más cortas o términos relacionados.</small>
     </div>`;
     return;
   }
 
-  header.innerHTML = `<strong>${resultados.length}</strong> resultado${resultados.length !== 1 ? 's' : ''} para <strong>"${query}"</strong>`;
+  elHeader.innerHTML = `<strong>${resultados.length}</strong> resultado${resultados.length !== 1 ? 's' : ''} para <strong>"${query}"</strong>`;
 
-  grid.innerHTML = resultados.map(n => {
+  elGrid.innerHTML = resultados.map(n => {
     const img = n.imagen
       ? `<img class="result-img" src="${n.imagen}" alt="${n.titulo}" loading="lazy" onerror="this.style.display='none'">`
       : `<div class="result-img"></div>`;
@@ -426,27 +422,32 @@ function renderResultados(resultados, query) {
   }).join('');
 }
 
+const elInput = document.getElementById('search-input');
+const elSpinner = document.getElementById('spinner');
+const elGrid = document.getElementById('results-grid');
+const elHeader = document.getElementById('results-header');
+const elInicial = document.getElementById('estado-inicial');
+
 async function buscar(query) {
-  query = (query || document.getElementById('search-input').value || '').trim();
+  query = (query || elInput.value || '').trim();
   if (!query) return;
 
-  document.getElementById('search-input').value = query;
+  elInput.value = query;
 
-  // Actualizar URL sin recargar
   const url = new URL(window.location.href);
   url.searchParams.set('q', query);
   history.replaceState(null, '', url.toString());
 
-  document.getElementById('spinner').style.display = 'block';
-  document.getElementById('results-grid').innerHTML = '';
-  document.getElementById('results-header').style.display = 'none';
-  document.getElementById('estado-inicial').style.display = 'none';
+  elSpinner.style.display = 'block';
+  elGrid.innerHTML = '';
+  elHeader.style.display = 'none';
+  elInicial.style.display = 'none';
 
   if (!fuseIndex) {
     await cargarIndice();
   }
 
-  document.getElementById('spinner').style.display = 'none';
+  elSpinner.style.display = 'none';
 
   const resultados = fuseIndex.search(query).map(r => r.item);
   renderResultados(resultados, query);
@@ -457,18 +458,24 @@ async function buscar(query) {
 }
 
 // Enter y botón
-document.getElementById('search-input').addEventListener('keydown', e => {
+elInput.addEventListener('keydown', e => {
   if (e.key === 'Enter') buscar();
 });
 document.getElementById('search-btn').addEventListener('click', () => buscar());
 
+// Debounce al tipear
+let _debounce;
+elInput.addEventListener('input', e => {
+  clearTimeout(_debounce);
+  if (e.target.value.trim()) {
+    _debounce = setTimeout(() => buscar(), 300);
+  }
+});
+
 // Si viene con ?q= en la URL, buscar al cargar
 (async () => {
   const q = new URLSearchParams(window.location.search).get('q');
-  if (q) {
-    await cargarIndice();
-    buscar(q);
-  }
+  if (q) buscar(q);
 })();
 </script>
 
