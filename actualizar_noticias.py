@@ -1653,10 +1653,11 @@ def main():
         pass
     try:
         with open(os.path.join(os.path.dirname(__file__), "historias.json"), encoding="utf-8") as _f:
-            _notas_og += json.load(_f)
+            _hist = json.load(_f)
+            _notas_og += _hist["notas"] if isinstance(_hist, dict) else _hist
     except Exception:
         pass
-    _notas_og_filtradas = [n for n in _notas_og if n]
+    _notas_og_filtradas = [n for n in _notas_og if isinstance(n, dict)]
     generar_paginas_og(_notas_og_filtradas)
 
     print(f"\n  Actualizando archivo estático en index.html...")
