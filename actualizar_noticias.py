@@ -16,9 +16,22 @@ Diagramación fija (DIAGRAMACION.pdf):
 import json
 import sys
 import os
+import re
+import unicodedata
 import urllib.request
 import urllib.parse
 from datetime import datetime
+
+
+def slugify(text, max_len=55):
+    text = unicodedata.normalize('NFKD', str(text)).encode('ascii', 'ignore').decode()
+    text = re.sub(r'[^\w\s-]', '', text.lower())
+    text = re.sub(r'[-\s]+', '-', text).strip('-')
+    if len(text) > max_len:
+        cut = text[:max_len]
+        last_dash = cut.rfind('-')
+        text = cut[:last_dash] if last_dash > max_len // 2 else cut
+    return text
 
 import feedparser
 import anthropic
@@ -1467,6 +1480,18 @@ def main():
     cultura     = resultado.get("cultura") if es_domingo else None
     turismo     = resultado.get("turismo") if es_domingo else None
     ticker      = resultado.get("ticker", [])
+
+    # Slugificar IDs de notas auto-generadas
+    hoy_slug = datetime.now().strftime('%Y%m%d')
+    _slug_sufijos = {'tapa': 'tapa', 'sec1': 'sec1', 'sec2': 'sec2',
+                     'dep': 'dep', 'neg': 'neg', 'cul': 'cul', 'tur': 'tur'}
+    for sufijo, nota in [('tapa', tapa), ('dep', deportes), ('neg', negocios),
+                         ('cul', cultura), ('tur', turismo)]:
+        if nota and nota.get('titulo'):
+            nota['id'] = f"{hoy_slug}-{slugify(nota['titulo'])}-{sufijo}"
+    for i, nota in enumerate(secundarias, 1):
+        if nota and nota.get('titulo'):
+            nota['id'] = f"{hoy_slug}-{slugify(nota['titulo'])}-sec{i}"
 
     # Normalizar tag: "Medio Ambiente" → "Ambiente"
     for nota in [tapa, deportes, negocios, cultura, turismo] + secundarias:
