@@ -1678,19 +1678,14 @@
     status.textContent = "Enviando…";
     fetch(NEWSLETTER_ENDPOINT, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email })
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "email=" + encodeURIComponent(email)
     })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (data.ok) {
-        status.style.color = "#7aadcc";
-        status.textContent = data.mensaje || "¡Suscripción exitosa!";
-        document.getElementById("newsletter-form").style.display = "none";
-      } else {
-        status.style.color = "#e07070";
-        status.textContent = data.mensaje || "Error al suscribir. Intentá de nuevo.";
-      }
+    .then(function() {
+      status.style.color = "#7aadcc";
+      status.textContent = "¡Suscripción exitosa!";
+      document.getElementById("newsletter-form").style.display = "none";
     })
     .catch(function() {
       status.style.color = "#e07070";

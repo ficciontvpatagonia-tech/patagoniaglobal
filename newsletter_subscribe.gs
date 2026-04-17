@@ -13,8 +13,13 @@ const BREVO_LIST_ID = 3;
 
 function doPost(e) {
   try {
-    const datos = JSON.parse(e.postData.contents);
-    const email = (datos.email || "").trim().toLowerCase();
+    // Acepta tanto form-encoded (no-cors) como JSON
+    let email = "";
+    if (e.parameter && e.parameter.email) {
+      email = e.parameter.email.trim().toLowerCase();
+    } else if (e.postData && e.postData.contents) {
+      try { email = (JSON.parse(e.postData.contents).email || "").trim().toLowerCase(); } catch(ex) {}
+    }
     if (!email || !email.includes("@")) {
       return respuesta(400, { ok: false, mensaje: "Email inválido." });
     }
