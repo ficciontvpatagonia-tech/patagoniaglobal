@@ -819,7 +819,6 @@ function renderNota(nota, fechaDisplay, data) {
     <div class="nota-bajada">${nota.bajada || ""}</div>
     <div class="nota-meta">
       <span>${bandera(nota.pais)}</span>
-      ${nota.url_original ? `<span>📰 ${nota.fuente || "Medios patagónicos"}</span>` : ''}
       ${nota.autor ? `<span>✍️ ${nota.autor}</span>` : ""}
       <span>⏱ ${tiempoLectura(nota.cuerpo)}</span>
     </div>
