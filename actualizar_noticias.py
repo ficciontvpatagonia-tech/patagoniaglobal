@@ -77,6 +77,10 @@ FUENTES_RSS = [
     {"nombre": "El Llanquihue",           "url": "https://www.elllanquihue.cl/feed/",                    "region": "Los Lagos"},
     {"nombre": "El Pingüino",             "url": "https://www.elpinguino.com/feed/",                     "region": "Magallanes"},
     {"nombre": "Diario de Valdivia",      "url": "https://www.diariodevaldivia.cl/feed/",                "region": "Los Ríos"},
+    {"nombre": "El Magallánico",          "url": "https://www.elmagallanico.com/feed/",                  "region": "Magallanes"},
+    {"nombre": "Diálogo Sur",             "url": "https://dialogosur.cl/feed/",                          "region": "Magallanes"},
+    # ── Chile · Antártica ──
+    {"nombre": "INACH",                   "url": "https://www.inach.cl/feed/",                           "region": "Antártica Chile"},
     # ── Islas Malvinas / Falkland Islands ──
     {"nombre": "Penguin News",            "url": "https://penguin-news.com/feed/",                        "region": "Malvinas", "idioma": "en"},
 ]
@@ -140,10 +144,15 @@ PALABRAS_CLAVE = [
     "georgias del sur", "sandwich del sur", "aurora austral",
     "islas del atlántico sur", "territorio antártico",
     "dirección nacional del antártico", "dna antártida",
+    "inach", "instituto antártico chileno",
     "rompehielos", "buque oceanográfico", "buque patrulla",
     "soberanía antártica", "tratado antártico",
     "isla de los estados", "isla grande de tierra del fuego",
     "canal beagle", "paso drake", "cabo de hornos",
+    # Islas disputadas / soberanía austral
+    "isla decepción", "islas orcadas", "orcadas del sur", "base orcadas",
+    "isla picton", "isla lenox", "isla nueva", "picton lenox nueva",
+    "islas del pacífico sur", "isla diego ramírez",
     # Servicios cotidianos
     "clima", "alerta meteorológica", "viento", "nevada", "temporal",
 ]
@@ -462,7 +471,7 @@ CRITERIO DE SELECCIÓN:
 ✓ Ciencia & Tecnología: hallazgos CONICET, paleontología, innovación aplicada al territorio
 ✓ Turismo & Guías: destinos, temporadas, premios internacionales a Patagonia
 ✓ Negocios: empresas, producción, pesca comercial, energía, comercio, economía regional
-✓ Atlántico Sur & Antártida: Malvinas, Georgias del Sur, Sándwich del Sur, base antártica, soberanía, expediciones, tratado antártico, buques, paso Drake, canal Beagle, isla de los Estados
+✓ Atlántico Sur & Antártida: Malvinas, Georgias del Sur, Sándwich del Sur, Orcadas del Sur, isla Decepción, islas Picton/Lenox/Nueva, base antártica, soberanía, expediciones, tratado antártico, buques, paso Drake, canal Beagle, isla de los Estados. INACH (Instituto Antártico Chileno): sus notas son de alta prioridad — investigación científica, expediciones, biodiversidad antártica.
 
 PRIORIDADES para la TAPA — orden estricto:
 1. MEDIO AMBIENTE CRÍTICO: glaciares, pesca ilegal en ZEE, incendios, especies en peligro → TAPA AUTOMÁTICA.
