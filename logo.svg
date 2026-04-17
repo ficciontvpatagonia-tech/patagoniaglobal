@@ -2,12 +2,12 @@
      viewBox="0 0 1100 150" width="1100" height="150">
 
   <!-- Ícono: mix-blend-mode screen hace invisibles las áreas oscuras sobre fondo oscuro -->
-  <image href="logo-icono.png" x="-20" y="-8" width="260" height="166"
+  <image href="logo-icono.png" x="-20" y="5" width="221" height="141"
          style="mix-blend-mode:screen"/>
 
   <!-- Texto: GLOBAL bold azul glacial -->
   <text y="106" font-size="80">
-    <tspan x="208"
+    <tspan x="244"
            font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
            font-weight="900"
            fill="#8ab8d4"
@@ -19,7 +19,7 @@
   </text>
 
   <!-- Línea separadora -->
-  <line x1="208" y1="120" x2="1090" y2="120"
+  <line x1="244" y1="120" x2="1090" y2="120"
         stroke="#8ab8d4" stroke-width="1.2" stroke-opacity="0.4"/>
 
 </svg>
