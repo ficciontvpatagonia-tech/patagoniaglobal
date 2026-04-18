@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior:smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Publicidad — GLOBALpatagonia</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap">
+  <meta name="robots" content="noindex"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f0ede8; color: #1c2d3d; }
+
+    /* ── HEADER ── */
+    header { background: #1c2d3d; }
+    .top-bar { background: #111c27; padding: 6px 20px; font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: .5px; text-align:center; }
+    .header-main { text-align: center; padding: 16px 20px 10px; }
+    .logo-tagline { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+    .logo-img { max-width: 320px; width: 100%; height: auto; }
+    .logo-sub { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
+    nav { background: #1c2d3d; border-top: 1px solid rgba(255,255,255,0.08); padding: 0 20px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; padding: 10px 4px; font-weight: 500; }
+    nav a:hover { color: #7aadcc; }
+
+    /* ── HERO ── */
+    .pub-hero { position: relative; overflow: hidden; max-height: 340px; }
+    .pub-hero video { width: 100%; height: 340px; object-fit: cover; display: block; }
+    .pub-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(28,45,61,0.35) 0%, rgba(28,45,61,0.7) 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; padding: 20px;
+    }
+    .pub-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 48px);
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .pub-hero-sub {
+      font-size: 15px; color: rgba(255,255,255,0.85); text-align: center; max-width: 480px;
+    }
+
+    /* ── CONTENIDO ── */
+    .pub-wrap { max-width: 900px; margin: 0 auto; padding: 48px 20px 64px; }
+
+    .pub-intro { font-size: 17px; line-height: 1.7; color: #2c3e50; margin-bottom: 40px; max-width: 680px; }
+    .pub-intro strong { color: #1c2d3d; }
+
+    /* Formatos */
+    .pub-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; color: #1c2d3d; margin-bottom: 20px;
+      border-left: 4px solid #7aadcc; padding-left: 14px;
+    }
+    .formatos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 48px; }
+    .formato-card {
+      background: #fff; border-radius: 10px; padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      border-top: 3px solid #7aadcc;
+    }
+    .formato-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #1c2d3d; }
+    .formato-card p { font-size: 13px; color: #555; line-height: 1.6; }
+
+    /* Formulario */
+    .form-wrap {
+      background: #fff; border-radius: 14px;
+      padding: 36px 40px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+      max-width: 620px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: #1c2d3d; margin-bottom: 6px; letter-spacing: .3px; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid #ddd; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 14px; color: #1c2d3d;
+      background: #fafafa; transition: border-color .2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: #7aadcc; background: #fff; }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .btn-enviar {
+      width: 100%; padding: 14px;
+      background: #1c2d3d; color: #fff;
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+      border: none; border-radius: 8px; cursor: pointer;
+      transition: background .2s, transform .15s;
+      letter-spacing: .5px;
+    }
+    .btn-enviar:hover { background: #7aadcc; transform: translateY(-1px); }
+    .form-nota { font-size: 12px; color: #999; margin-top: 12px; text-align: center; }
+
+    /* Mensaje éxito */
+    .form-success {
+      display: none; text-align: center; padding: 32px 20px;
+      background: #eafaf1; border-radius: 10px; margin-top: 16px;
+    }
+    .form-success h3 { color: #1c6b3a; font-size: 20px; margin-bottom: 8px; }
+    .form-success p { color: #2d7a4f; font-size: 14px; }
+
+    /* ── FOOTER ── */
+    footer { background: #1c2d3d; color: rgba(255,255,255,0.6); text-align: center; padding: 32px 20px; font-size: 12px; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: white; margin-bottom: 6px; }
+    .footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 12px 0; }
+    .footer-nav a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px; }
+    .footer-nav a:hover { color: #7aadcc; }
+    .footer-copy { font-size: 11px; opacity: .5; margin-top: 8px; }
+
+    @media (max-width: 600px) {
+      .form-wrap { padding: 24px 18px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top-bar">Patagonia Argentina y Chilena · globalpatagonia.org</div>
+  <div class="header-main">
+    <div class="logo-tagline">Sur Global, principio de todo.</div>
+    <picture>
+      <source srcset="logo-globalpatagonia.webp" type="image/webp">
+      <img src="logo-globalpatagonia.png" alt="GLOBALpatagonia" class="logo-img" width="1440" height="321">
+    </picture>
+    <div class="logo-sub">Argentina · Chile · Sin fronteras</div>
+  </div>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="index.html#sec-noticias">Noticias</a>
+    <a href="index.html#sec-turismo">Turismo</a>
+    <a href="index.html#sec-guias">Guías</a>
+    <a href="index.html#sec-negocios">Economía</a>
+    <a href="acerca.html">Acerca de</a>
+  </nav>
+</header>
+
+<!-- HERO CON VIDEO -->
+<div class="pub-hero">
+  <video autoplay muted loop playsinline>
+    <source src="Banner_PG.mp4" type="video/mp4">
+  </video>
+  <div class="pub-hero-overlay">
+    <h1 class="pub-hero-title">Tu marca en toda la Patagonia</h1>
+    <p class="pub-hero-sub">El primer medio digital que cubre Argentina y Chile sin fronteras</p>
+  </div>
+</div>
+
+<div class="pub-wrap">
+
+  <p class="pub-intro">
+    <strong>GLOBALpatagonia</strong> es el único medio digital panpatagónico: cubrimos noticias, turismo, cultura, deportes y economía de la Patagonia argentina y chilena en un solo lugar.<br><br>
+    Si tu marca quiere llegar a esa audiencia, hablemos. Cada campaña se trabaja de forma personalizada.
+  </p>
+
+  <!-- FORMATOS -->
+  <h2 class="pub-section-title">Formatos disponibles</h2>
+  <div class="formatos-grid">
+    <div class="formato-card">
+      <h3>Banner en home</h3>
+      <p>Video o imagen animada entre secciones. Alta visibilidad, impacto inmediato.</p>
+    </div>
+    <div class="formato-card">
+      <h3>Nota patrocinada</h3>
+      <p>Artículo editorial sobre tu empresa, producto o servicio. Integrado al flujo de lectura.</p>
+    </div>
+    <div class="formato-card">
+      <h3>Mención en newsletter</h3>
+      <p>Presencia en el boletín semanal que llega directo al inbox de nuestros lectores.</p>
+    </div>
+    <div class="formato-card">
+      <h3>Presencia combinada</h3>
+      <p>Paquete a medida: banner + nota + redes sociales. Cobertura total.</p>
+    </div>
+  </div>
+
+  <!-- FORMULARIO -->
+  <h2 class="pub-section-title">Consultanos</h2>
+  <div class="form-wrap">
+    <form id="pub-form" action="https://formspree.io/f/REEMPLAZAR_CON_TU_ID" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre *</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label for="empresa">Empresa / Marca</label>
+          <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required placeholder="tu@email.com">
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono / WhatsApp</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="+54 9 ...">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="interes">¿Qué te interesa?</label>
+        <select id="interes" name="interes">
+          <option value="">— Seleccioná una opción —</option>
+          <option value="banner">Banner en home</option>
+          <option value="nota">Nota patrocinada</option>
+          <option value="newsletter">Mención en newsletter</option>
+          <option value="combinado">Paquete combinado</option>
+          <option value="otro">Otro / No sé todavía</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" placeholder="Contanos sobre tu marca, producto o campaña..."></textarea>
+      </div>
+      <button type="submit" class="btn-enviar">Enviar consulta</button>
+      <p class="form-nota">Te respondemos a la brevedad. Sin compromiso.</p>
+    </form>
+    <div class="form-success" id="form-success">
+      <h3>¡Consulta recibida!</h3>
+      <p>Te contactamos pronto. Gracias por tu interés en GLOBALpatagonia.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">GLOBAL<span style="color:#8ab8d4">patagonia</span></div>
+  <div class="footer-nav">
+    <a href="index.html">Inicio</a>
+    <a href="acerca.html">Acerca de</a>
+    <a href="privacidad.html">Privacidad</a>
+    <a href="colaboradores.html">Colaboradores</a>
+  </div>
+  <div class="footer-copy">© 2026 GLOBALpatagonia · globalpatagonia.org · Argentina · Chile</div>
+</footer>
+
+<script>
+  const form = document.getElementById('pub-form');
+  const success = document.getElementById('form-success');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      form.style.display = 'none';
+      success.style.display = 'block';
+    } else {
+      alert('Hubo un error al enviar. Por favor intentá de nuevo.');
+    }
+  });
+
+  // Fecha en top bar
+  const tb = document.querySelector('.top-bar');
+  if (tb) {
+    const d = new Date();
+    const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+    const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    tb.textContent = `${dias[d.getDay()]}, ${d.getDate()} de ${meses[d.getMonth()]} de ${d.getFullYear()} · Patagonia Argentina y Chilena`;
+  }
+</script>
+
+</body>
+</html>

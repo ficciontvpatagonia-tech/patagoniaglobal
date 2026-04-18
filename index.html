@@ -1160,6 +1160,23 @@
       background: linear-gradient(to right, transparent, #ddd, transparent);
       margin: 8px 0;
     }
+    .banner-pub-link {
+      display: block;
+      margin: 32px 0 0;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .banner-pub-link:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.22); }
+    .banner-pub-video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 250px;
+      object-fit: cover;
+    }
 
     /* ── BADGE FECHA ── */
     .fecha-badge {
@@ -1498,6 +1515,13 @@
   <div class="destinos-grid" id="guias-container">
     <!-- Se rellena dinámicamente desde guias.json -->
   </div>
+
+  <!-- ══ BANNER PUBLICIDAD ══ -->
+  <a href="publicidad.html" class="banner-pub-link" aria-label="Promocioná tu marca en GLOBALpatagonia">
+    <video class="banner-pub-video" autoplay muted loop playsinline>
+      <source src="Banner_PG.mp4" type="video/mp4">
+    </video>
+  </a>
 
   <div class="divider" style="margin:32px 0;"></div>
 
