@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apoyanos — GLOBALpatagonia</title>
+  <meta name="description" content="GLOBALpatagonia es periodismo independiente del sur. Sin accionistas ni anunciantes que condicionen nuestra agenda. Apoyanos para seguir contando la Patagonia.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5FP2F41BZG');</script>
+  <style>
+    :root {
+      --azul: #1c2d3d;
+      --glacial: #7aadcc;
+      --gris: #252830;
+      --arcilla: #8c6b4a;
+      --fondo: #f0ede8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, sans-serif;
+      background: var(--fondo);
+      color: var(--azul);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--azul);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-link {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: #f0ede8;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .logo-link span { color: var(--glacial); }
+    .back-link {
+      font-size: 0.82rem;
+      color: rgba(240,237,232,0.6);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--glacial); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--azul);
+      color: #f0ede8;
+      text-align: center;
+      padding: 72px 24px 60px;
+      border-bottom: 3px solid var(--arcilla);
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--glacial);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      max-width: 760px;
+      margin: 0 auto 24px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--glacial);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(240,237,232,0.75);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── CONTENIDO ── */
+    .content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    .pitch-block {
+      margin-bottom: 48px;
+    }
+    .pitch-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+    .pitch-block p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #3a4a58;
+      margin-bottom: 12px;
+    }
+
+    /* ── PUNTOS ── */
+    .puntos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin: 40px 0 52px;
+    }
+    .punto {
+      background: white;
+      border-left: 3px solid var(--arcilla);
+      padding: 20px 22px;
+      border-radius: 0 6px 6px 0;
+    }
+    .punto-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .punto h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: 6px;
+    }
+    .punto p {
+      font-size: 0.88rem;
+      color: #5a6a78;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── SEPARADOR ── */
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(28,45,61,0.12);
+      margin: 48px 0;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--azul);
+      border-radius: 10px;
+      padding: 48px 36px;
+      text-align: center;
+      color: #f0ede8;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .cta-section p {
+      font-size: 0.95rem;
+      color: rgba(240,237,232,0.7);
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+    .cta-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 7px;
+      font-family: Inter, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+    .cta-btn:hover { transform: translateY(-1px); }
+    .cta-btn.primary {
+      background: var(--arcilla);
+      color: #f0ede8;
+    }
+    .cta-btn.primary:hover { background: #a07a58; }
+    .cta-btn.secondary {
+      background: rgba(255,255,255,0.1);
+      color: #f0ede8;
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+    .cta-btn.secondary:hover { background: rgba(255,255,255,0.18); }
+    .cta-label {
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(240,237,232,0.45);
+      margin-top: 18px;
+      font-style: italic;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--gris);
+      text-align: center;
+      padding: 28px 20px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--glacial); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 52px 20px 44px; }
+      .content { padding: 40px 20px 60px; }
+      .cta-section { padding: 36px 20px; }
+      .cta-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo-link">GLOBAL<span>patagonia</span></a>
+  <a href="index.html" class="back-link">
+    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+    Volver al inicio
+  </a>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Periodismo independiente del sur</div>
+  <h1>¿Quién es dueño de GLOBALpatagonia?<br><em>Nuestros lectores.</em></h1>
+  <p class="hero-sub">No tenemos accionistas, ni corporaciones, ni anunciantes que condicionen nuestra agenda. Somos independientes porque vos nos sostenés.</p>
+</div>
+
+<div class="content">
+
+  <div class="pitch-block">
+    <h2>La Patagonia merece periodismo propio</h2>
+    <p>Argentina y Chile comparten una de las regiones más extraordinarias del planeta: la Patagonia. Pero los grandes medios la cubren desde lejos, con corresponsales ocasionales y una mirada que no es la del sur.</p>
+    <p>GLOBALpatagonia nació para cambiar eso. Cubrimos la región sin fronteras — desde Neuquén y Río Negro hasta Magallanes y Aysén — con la misma profundidad con que lo haría alguien que vive acá.</p>
+  </div>
+
+  <div class="puntos">
+    <div class="punto">
+      <div class="punto-icon">🏔️</div>
+      <h3>Sin fronteras</h3>
+      <p>Argentina y Chile. La Patagonia como unidad geográfica, cultural y ambiental.</p>
+    </div>
+    <div class="punto">
+      <div class="punto-icon">📰</div>
+      <h3>Sin agenda corporativa</h3>
+      <p>Nuestras noticias las elige la realidad patagónica, no los intereses de quien paga.</p>
+    </div>
+    <div class="punto">
+      <div class="punto-icon">🆓</div>
+      <h3>Acceso libre</h3>
+      <p>Todo el contenido es gratuito. Tu apoyo nos permite que siga siendo así.</p>
+    </div>
+    <div class="punto">
+      <div class="punto-icon">🌱</div>
+      <h3>Periodismo sustentable</h3>
+      <p>Queremos crecer con una redacción real. Tu apoyo hace eso posible.</p>
+    </div>
+  </div>
+
+  <div class="pitch-block">
+    <h2>¿Cómo se usa tu apoyo?</h2>
+    <p>Cada peso y cada dólar que recibimos va directamente a sostener y mejorar GLOBALpatagonia: producción de contenido, desarrollo del sitio, cobertura en terreno y las herramientas que hacen posible publicar todos los días.</p>
+    <p>No hay intermediarios. No hay estructura administrativa inflada. Solo periodismo.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="cta-section">
+    <h2>Elegí tu forma de apoyar</h2>
+    <p>Muy pronto habilitamos los medios de pago. Dejanos tu email en el newsletter y te avisamos cuando estén disponibles.<br>Tu apoyo, por más pequeño que sea, hace una diferencia real.</p>
+    <div class="cta-options">
+      <a href="index.html#sec-newsletter" class="cta-btn primary">
+        ✉️ Suscribite al newsletter
+      </a>
+      <a href="index.html" class="cta-btn secondary">
+        ← Volver a las noticias
+      </a>
+    </div>
+    <p class="cta-label">Medios de pago próximamente · Cafecito · Patreon · PayPal</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 GLOBALpatagonia · <a href="index.html">Inicio</a> · <a href="acerca.html">Acerca de</a></p>
+  <p style="margin-top:6px;">Sur Global, principio de todo.</p>
+</footer>
+
+</body>
+</html>
