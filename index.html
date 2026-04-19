@@ -1539,6 +1539,58 @@
 
   <div class="divider" style="margin:32px 0;"></div>
 
+  <!-- ── EFEMÉRIDE DEL DÍA ── -->
+<section id="sec-efemeride" style="display:none">
+  <div class="efem-cerrado">
+    <span class="efem-pregunta" id="efem-pregunta"></span>
+    <button class="efem-btn" id="efem-btn">Respuesta →</button>
+  </div>
+  <div class="efem-abierto" id="efem-abierto">
+    <p class="efem-respuesta" id="efem-respuesta"></p>
+    <div class="efem-foto" id="efem-foto" style="display:none">
+      <img id="efem-img" src="" alt="">
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const hoy = new Date();
+  const mm  = String(hoy.getMonth() + 1).padStart(2, '0');
+  const dd  = String(hoy.getDate()).padStart(2, '0');
+  const clave = `${mm}-${dd}`;
+
+  fetch('efemerides.json')
+    .then(r => r.json())
+    .then(data => {
+      const e = data[clave];
+      if (!e) return;
+
+      const dia = parseInt(dd);
+      const mes = meses[hoy.getMonth()];
+      document.getElementById('efem-pregunta').textContent =
+        `¿Sabés qué pasó en la Patagonia un ${dia} de ${mes} de ${e.año}?`;
+      document.getElementById('sec-efemeride').style.display = 'block';
+
+      document.getElementById('efem-btn').addEventListener('click', function() {
+        document.getElementById('efem-respuesta').textContent = e.respuesta;
+        const abierto = document.getElementById('efem-abierto');
+        abierto.style.display = 'flex';
+        this.style.display = 'none';
+        if (e.imagen) {
+          document.getElementById('efem-img').src = e.imagen;
+          document.getElementById('efem-img').alt = e.titulo;
+          document.getElementById('efem-foto').style.display = 'block';
+        }
+      });
+    })
+    .catch(() => {});
+})();
+</script>
+
+  <div class="divider" style="margin:32px 0;"></div>
+
   <!-- ══ HISTORIA & CULTURA ══ -->
   <div id="sec-historia" class="section-header">
     <h2 class="section-title">Cultura Patagónica & Pueblos Originarios</h2>
@@ -1694,56 +1746,6 @@
       status.textContent = "Error de conexión. Intentá de nuevo.";
     });
   });
-})();
-</script>
-
-<!-- ── EFEMÉRIDE DEL DÍA ── -->
-<section id="sec-efemeride" style="display:none">
-  <div class="efem-cerrado">
-    <span class="efem-pregunta" id="efem-pregunta"></span>
-    <button class="efem-btn" id="efem-btn">Respuesta →</button>
-  </div>
-  <div class="efem-abierto" id="efem-abierto">
-    <p class="efem-respuesta" id="efem-respuesta"></p>
-    <div class="efem-foto" id="efem-foto" style="display:none">
-      <img id="efem-img" src="" alt="">
-    </div>
-  </div>
-</section>
-
-<script>
-(function() {
-  const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-  const hoy = new Date();
-  const mm  = String(hoy.getMonth() + 1).padStart(2, '0');
-  const dd  = String(hoy.getDate()).padStart(2, '0');
-  const clave = `${mm}-${dd}`;
-
-  fetch('efemerides.json')
-    .then(r => r.json())
-    .then(data => {
-      const e = data[clave];
-      if (!e) return;
-
-      const dia = parseInt(dd);
-      const mes = meses[hoy.getMonth()];
-      document.getElementById('efem-pregunta').textContent =
-        `¿Sabés qué pasó en la Patagonia un ${dia} de ${mes} de ${e.año}?`;
-      document.getElementById('sec-efemeride').style.display = 'block';
-
-      document.getElementById('efem-btn').addEventListener('click', function() {
-        document.getElementById('efem-respuesta').textContent = e.respuesta;
-        const abierto = document.getElementById('efem-abierto');
-        abierto.style.display = 'flex';
-        this.style.display = 'none';
-        if (e.imagen) {
-          document.getElementById('efem-img').src = e.imagen;
-          document.getElementById('efem-img').alt = e.titulo;
-          document.getElementById('efem-foto').style.display = 'block';
-        }
-      });
-    })
-    .catch(() => {});
 })();
 </script>
 
