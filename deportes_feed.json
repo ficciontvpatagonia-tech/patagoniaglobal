@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260417-los-xvii-juegos-paraepade-cerraron-con-350-deportistas-dep",
+    "id": "20260419-los-pumas-7s-se-repusieron-y-estan-en-semifinales-en-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Los XVII Juegos PARAEPADE cerraron con 350 deportistas patagónicos",
-    "bajada": "Atletas de seis provincias del sur argentino compitieron en Chubut en una edición que reafirmó el crecimiento del deporte adaptado en la región.",
-    "imagen": "fotos/foto-20260417-los-xvii-juegos-paraepade-cerraron-con-350-deportistas-dep.jpg",
-    "meta": "Hoy · GLOBALpatagonia"
+    "titulo": "Los Pumas 7s se repusieron y están en semifinales en Hong Kong",
+    "bajada": "Tras una dura caída ante Sudáfrica, el seleccionado argentino venció a Fiji 27-17 y avanzó a semis del SVNS World Championship.",
+    "imagen": "fotos/foto-20260419-los-pumas-7s-se-repusieron-y-estan-en-semifinales-en-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260417-los-xvii-juegos-paraepade-cerraron-con-350-deportistas-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Los XVII Juegos PARAEPADE cerraron con 350 deportistas patagónicos",
+      "bajada": "Atletas de seis provincias del sur argentino compitieron en Chubut en una edición que reafirmó el crecimiento del deporte adaptado en la región.",
+      "imagen": "fotos/foto-20260417-los-xvii-juegos-paraepade-cerraron-con-350-deportistas-dep.jpg",
+      "meta": "Hoy · GLOBALpatagonia"
+    },
     {
       "id": "20260415-1205-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El cerro barilochense ofrece un pase de temporada a $160.000 con el objetivo de posicionarse como destino accesible para el mercado de Brasil.",
       "imagen": "fotos/foto-20260415-1205-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260412-1105-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Miles de corredores de distintos países protagonizaron una edición épica de la carrera de montaña más emblemática de la región, entre bosques de lengas y vistas al volcán Lanín.",
       "imagen": "fotos/foto-20260412-1105-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260411-1059-dep",
       "tag": "🏃 Deportes",
@@ -49,14 +57,6 @@
       "titulo": "Largaron las 100 millas de la Patagonia Run 2026",
       "bajada": "Los ultramaratonistas partieron desde San Martín de los Andes hacia la montaña en la prueba reina del evento más convocante del trail patagónico.",
       "imagen": "fotos/foto-20260411-0415-dep.webp",
-      "meta": "Hoy · Diario Río Negro"
-    },
-    {
-      "id": "20260410-1426-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Patagonia Run: la vida interior de un puesto de asistencia en montaña",
-      "bajada": "Los puestos de asistencia son refugios vitales para los corredores de ultra trail en medio de la cordillera neuquina.",
-      "imagen": "fotos/foto-20260410-1426-dep.webp",
       "meta": "Hoy · Diario Río Negro"
     }
   ]
