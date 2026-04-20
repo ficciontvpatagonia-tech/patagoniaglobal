@@ -1684,6 +1684,9 @@ def main():
     print(f"\n  Actualizando archivo estático en index.html...")
     actualizar_archivo_en_index(_notas_og_filtradas)
 
+    print(f"\n  Generando páginas de temas...")
+    generar_paginas_temas(_notas_og_filtradas)
+
     print(f"\n  Actualizando sitemap...")
     actualizar_sitemap()
 
@@ -1898,6 +1901,205 @@ def generar_paginas_og(notas):
 
 
 # ══════════════════════════════════════════════════════════
+#  PÁGINAS DE TEMAS (SEO navegación por categoría)
+# ══════════════════════════════════════════════════════════
+
+_TEMA_LABELS = {
+    "medio-ambiente":     "Medio Ambiente",
+    "economia":           "Economía",
+    "produccion":         "Producción",
+    "cultura":            "Cultura",
+    "ciencia":            "Ciencia",
+    "deportes":           "Deportes & Aventura",
+    "turismo":            "Turismo",
+    "conectividad":       "Conectividad",
+    "historia":           "Historia",
+    "pueblos-originarios":"Pueblos Originarios",
+    "bienestar":          "Bienestar",
+    "sociedad":           "Sociedad",
+}
+
+def _slug_categoria(cat):
+    import unicodedata
+    cat = cat.strip().lower()
+    cat = unicodedata.normalize("NFD", cat)
+    cat = "".join(c for c in cat if unicodedata.category(c) != "Mn")
+    cat = cat.replace(" ", "-")
+    return cat
+
+
+def generar_paginas_temas(notas_all):
+    """Genera temas/[slug].html — una página indexable por Google por cada categoría."""
+    import html as htmllib
+
+    def e(s):  return htmllib.escape(str(s or ""))
+    def ea(s): return htmllib.escape(str(s or ""), quote=True)
+
+    base      = os.path.dirname(__file__)
+    temas_dir = os.path.join(base, "temas")
+    os.makedirs(temas_dir, exist_ok=True)
+
+    # Agrupar notas por slug de categoría (normalizado)
+    por_tema = {}
+    for nota in notas_all:
+        if not isinstance(nota, dict):
+            continue
+        cat_raw = nota.get("categoria", "").strip()
+        if not cat_raw or cat_raw == "general":
+            continue
+        slug = _slug_categoria(cat_raw)
+        if slug not in _TEMA_LABELS:
+            continue
+        por_tema.setdefault(slug, [])
+        nid = nota.get("id", "")
+        if nid and not any(n.get("id") == nid for n in por_tema[slug]):
+            por_tema[slug].append(nota)
+
+    # Ordenar cada tema por fecha descendente
+    for slug in por_tema:
+        por_tema[slug].sort(key=lambda n: str(n.get("fecha", n.get("meta", ""))), reverse=True)
+
+    generadas = 0
+    for slug, notas in por_tema.items():
+        if len(notas) < 2:
+            continue
+        label    = _TEMA_LABELS[slug]
+        tema_url = f"https://globalpatagonia.org/temas/{slug}.html"
+        desc_seo = f"Todas las noticias de {label} en la Patagonia argentina y chilena — GLOBALpatagonia"
+
+        # Generar cards de notas
+        cards_html = ""
+        for nota in notas[:30]:
+            nid     = nota.get("id", "")
+            titulo  = nota.get("titulo", "")
+            bajada  = nota.get("bajada", "")
+            imagen  = nota.get("imagen", "")
+            fecha   = str(nota.get("fecha", nota.get("meta", "")))[:10]
+            fuente  = nota.get("fuente", "")
+            img_url = (f"https://globalpatagonia.org/{imagen}"
+                       if imagen else "https://globalpatagonia.org/fotos/torres-del-paine.webp")
+            nota_url = f"../notas/{nid}.html"
+            cards_html += f"""
+  <article class="tema-card">
+    <a href="{ea(nota_url)}" class="card-img-wrap">
+      <img src="{ea(img_url)}" alt="{ea(titulo)}" loading="lazy"/>
+    </a>
+    <div class="card-body">
+      <h2 class="card-titulo"><a href="{ea(nota_url)}">{e(titulo)}</a></h2>
+      {f'<p class="card-bajada">{e(bajada)}</p>' if bajada else ''}
+      <div class="card-meta">{e(fuente)}{f" · {fecha}" if fecha else ""}</div>
+    </div>
+  </article>"""
+
+        html_out = f"""<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{e(label)} en la Patagonia — GLOBALpatagonia</title>
+  <meta name="description" content="{ea(desc_seo)}"/>
+  <link rel="canonical" href="{ea(tema_url)}"/>
+  <meta property="og:site_name" content="GLOBALpatagonia"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="{ea(tema_url)}"/>
+  <meta property="og:title" content="{ea(label)} en la Patagonia — GLOBALpatagonia"/>
+  <meta property="og:description" content="{ea(desc_seo)}"/>
+  <meta property="og:image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-5FP2F41BZG');</script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+    :root{{--verde:#1c2d3d;--azul-claro:#8ab8d4;--gris-oscuro:#252830;--gris-medio:#5a6070;--crema:#f0ede8;}}
+    *{{margin:0;padding:0;box-sizing:border-box;}}
+    body{{font-family:'Inter',sans-serif;background:var(--crema);color:var(--gris-oscuro);}}
+    header{{background:var(--verde);}}
+    .top-bar{{background:#252830;display:flex;justify-content:space-between;align-items:center;padding:6px 40px;font-size:11px;color:#aaa;}}
+    .header-main{{display:flex;flex-direction:column;align-items:center;padding:20px 40px 14px;}}
+    .logo-tagline{{font-size:11px;color:#8ab8d4;letter-spacing:4px;text-transform:uppercase;margin-bottom:4px;}}
+    .logo-img{{height:60px;width:auto;max-width:100%;display:block;}}
+    nav{{background:var(--verde);display:flex;justify-content:center;gap:0;border-top:1px solid rgba(255,255,255,0.08);}}
+    nav a{{color:rgba(255,255,255,0.75);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:12px 18px;border-bottom:3px solid transparent;transition:all 0.2s;}}
+    nav a:hover{{color:#8ab8d4;border-bottom-color:#8ab8d4;}}
+    .container{{max-width:1100px;margin:0 auto;padding:0 20px;}}
+    .page-header{{padding:40px 0 32px;border-bottom:2px solid #d8d4ce;margin-bottom:36px;}}
+    .page-tag{{display:inline-block;background:var(--verde);color:#8ab8d4;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:14px;}}
+    .page-titulo{{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:900;line-height:1.1;color:var(--gris-oscuro);margin-bottom:10px;}}
+    .page-desc{{font-size:15px;color:var(--gris-medio);}}
+    .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px;padding-bottom:60px;}}
+    .tema-card{{background:white;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.07);transition:transform 0.2s,box-shadow 0.2s;}}
+    .tema-card:hover{{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,0.12);}}
+    .card-img-wrap{{display:block;height:180px;overflow:hidden;background:#1c2d3d;}}
+    .card-img-wrap img{{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}}
+    .tema-card:hover .card-img-wrap img{{transform:scale(1.03);}}
+    .card-body{{padding:18px 20px 20px;}}
+    .card-titulo{{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;line-height:1.3;margin-bottom:10px;}}
+    .card-titulo a{{color:var(--gris-oscuro);text-decoration:none;}}
+    .card-titulo a:hover{{color:var(--verde);}}
+    .card-bajada{{font-size:13px;color:var(--gris-medio);line-height:1.6;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}}
+    .card-meta{{font-size:11px;color:#aaa;letter-spacing:0.5px;text-transform:uppercase;}}
+    .volver{{display:inline-flex;align-items:center;gap:6px;margin:28px 0;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#3a5a7a;text-decoration:none;}}
+    .volver:hover{{color:var(--verde);}}
+    .divider-footer{{height:2px;background:linear-gradient(90deg,#1c2d3d,#7aadcc,#1c2d3d);}}
+    footer{{background:#1c2d3d;color:rgba(255,255,255,0.6);text-align:center;padding:32px 20px;}}
+    .footer-logo{{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:white;letter-spacing:1px;margin-bottom:6px;}}
+    .footer-logo span{{color:#8ab8d4;font-weight:400;font-style:italic;}}
+    .footer-copy{{font-size:11px;letter-spacing:1px;margin-top:12px;color:rgba(255,255,255,0.35);}}
+    @media(max-width:600px){{.top-bar{{padding:6px 16px;}}.logo-img{{height:46px;}}nav a{{padding:10px 10px;font-size:10px;}}.grid{{grid-template-columns:1fr;}}}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="top-bar">
+    <span>Patagonia Argentina y Chilena</span>
+    <span style="color:#8ab8d4;font-weight:600;">Sur Global, principio de todo.</span>
+  </div>
+  <div class="header-main">
+    <div class="logo-tagline">Sur Global, principio de todo.</div>
+    <a href="../index.html" style="text-decoration:none">
+      <img src="../logo-globalpatagonia.png" alt="GLOBALpatagonia" class="logo-img"/>
+    </a>
+  </div>
+  <nav>
+    <a href="../index.html">Inicio</a>
+    <a href="../index.html#sec-noticias">Noticias</a>
+    <a href="../index.html#sec-deportes">Deportes &amp; Actividades</a>
+    <a href="../index.html#sec-turismo">Turismo &amp; Guías</a>
+    <a href="../index.html#sec-historia">Cultura Patagónica</a>
+    <a href="../buscar.html">Buscar</a>
+  </nav>
+</header>
+
+<div class="container">
+  <a href="../index.html" class="volver">← Inicio</a>
+  <div class="page-header">
+    <div class="page-tag">Tema</div>
+    <h1 class="page-titulo">{e(label)}</h1>
+    <p class="page-desc">Noticias de {e(label)} en la Patagonia argentina y chilena</p>
+  </div>
+  <div class="grid">
+{cards_html}
+  </div>
+</div>
+
+<div class="divider-footer"></div>
+<footer>
+  <div class="footer-logo"><span>global</span>PATAGONIA</div>
+  <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:4px;">Argentina · Chile · Sin fronteras</div>
+  <div class="footer-copy">© 2026 GLOBALpatagonia · globalpatagonia.org</div>
+</footer>
+</body>
+</html>"""
+
+        ruta = os.path.join(temas_dir, f"{slug}.html")
+        with open(ruta, "w", encoding="utf-8") as f:
+            f.write(html_out)
+        generadas += 1
+
+    print(f"  Páginas de temas generadas: {generadas}")
+
+
+# ══════════════════════════════════════════════════════════
 #  ARCHIVO ESTÁTICO EN INDEX.HTML (crawl budget)
 # ══════════════════════════════════════════════════════════
 
@@ -2060,6 +2262,18 @@ def actualizar_sitemap():
                   f"    <lastmod>{fecha}</lastmod>",
                   f"    <changefreq>{freq}</changefreq>",
                   f"    <priority>{prio}</priority>", f"  </url>"]
+
+    # Páginas de temas navegables
+    temas_dir = os.path.join(base, "temas")
+    if os.path.isdir(temas_dir):
+        for fname in sorted(os.listdir(temas_dir)):
+            if fname.endswith(".html"):
+                slug = fname[:-5]
+                lines += [f"  <url>",
+                          f"    <loc>https://globalpatagonia.org/temas/{slug}.html</loc>",
+                          f"    <lastmod>{today}</lastmod>",
+                          f"    <changefreq>daily</changefreq>",
+                          f"    <priority>0.7</priority>", f"  </url>"]
 
     lines.append("</urlset>")
 
