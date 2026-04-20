@@ -2253,5 +2253,18 @@ fetch("propios.json")
     });
   }
 </script>
+
+<script type="speculationrules">
+{
+  "prerender": [{
+    "where": { "href_matches": "/notas/*" },
+    "eagerness": "moderate"
+  }],
+  "prefetch": [{
+    "where": { "href_matches": "/*.html" },
+    "eagerness": "conservative"
+  }]
+}
+</script>
 </body>
 </html>

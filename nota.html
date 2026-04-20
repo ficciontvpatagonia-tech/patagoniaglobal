@@ -929,5 +929,17 @@ if (!id) {
 }
 </script>
 
+<script type="speculationrules">
+{
+  "prerender": [{
+    "where": { "href_matches": "/notas/*" },
+    "eagerness": "moderate"
+  }],
+  "prefetch": [{
+    "where": { "href_matches": "/nota.html*" },
+    "eagerness": "conservative"
+  }]
+}
+</script>
 </body>
 </html>
