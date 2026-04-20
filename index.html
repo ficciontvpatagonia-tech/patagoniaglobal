@@ -11,7 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://images.unsplash.com">
   <!-- Google Fonts (no @import — evita render-blocking) -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap"></noscript>
   <meta name="description" content="GLOBALpatagonia: el primer medio digital que cubre la Patagonia argentina y chilena sin fronteras. Noticias de medio ambiente, deportes, cultura, pueblos originarios y turismo patagónico."/>
   <meta name="google-site-verification" content="pM-c0VRSYbfDfdcGwDFycDHJdpF7CTjpzTLy1EzrHgo" />
   <meta name="google-adsense-account" content="ca-pub-1924505291132800">
@@ -1919,6 +1920,11 @@ function renderTapa(data) {
 
   const tapaCls = t.imagen ? "img-cover" : "img-placeholder";
   const tapaBg  = t.imagen ? `background-image:url('${t.imagen}');background-size:cover;background-position:center;` : "background:linear-gradient(160deg,#0e1a26 0%,#1c2d3d 45%,#4a7a9a 100%);";
+  if (t.imagen) {
+    const pre = document.createElement('link');
+    pre.rel = 'preload'; pre.as = 'image'; pre.href = t.imagen;
+    document.head.appendChild(pre);
+  }
 
   let html = `
     <div class="nota-tapa" onclick="irANota('${t.id||'tapa'}')">
