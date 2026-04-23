@@ -87,10 +87,7 @@ FUENTES_RSS = [
     {"nombre": "Penguin News",            "url": "https://penguin-news.com/feed/",                        "region": "Malvinas", "idioma": "en"},
     # ── Deportes de aventura patagónicos ──
     {"nombre": "Club Andino Bariloche",   "url": "https://clubandino.org/feed/",                         "region": "Bariloche"},
-    {"nombre": "Patagonia Run",           "url": "https://patagoniarun.com/feed/",                        "region": "Patagonia"},
     {"nombre": "Catedral Alta Patagonia", "url": "https://www.catedralaltapatagonia.com/feed/",           "region": "Bariloche"},
-    {"nombre": "Al Aire Libre Chile",     "url": "https://www.alairelibre.cl/feed/",                      "region": "Chile"},
-    {"nombre": "Cumbres Mountain Mag",    "url": "https://cumbresmountainmagazine.com/feed/",             "region": "Patagonia"},
 ]
 
 PALABRAS_CLAVE = [
