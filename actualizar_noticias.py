@@ -954,6 +954,19 @@ def _descargar_imagen_externa(url_http, nota_id, sufijo=""):
             f.write(contenido)
         _recortar_banner(ruta_local)
         ruta_final = _convertir_a_webp(ruta_local)
+        # Descartar imágenes demasiado pequeñas (píxeles insuficientes para lucir bien)
+        try:
+            from PIL import Image as _PilChk
+            with _PilChk.open(ruta_final) as _im:
+                w, h = _im.size
+            if w < 600 or h < 400:
+                print(f"muy pequeña ({w}×{h}), descartada")
+                for _f in (ruta_final, ruta_local):
+                    try: os.remove(_f)
+                    except FileNotFoundError: pass
+                return None
+        except Exception:
+            pass
         return f"fotos/{os.path.basename(ruta_final)}"
     except Exception:
         return None
@@ -989,7 +1002,7 @@ def resolver_imagen(nota, fotos_propias, fotos_usadas):
         if local:
             print(f"OK → {local}")
             return local
-        print("falló descarga")
+        print("falló/descartada → buscando alternativa")
 
     url_original = nota.get("url_original", "")
     if url_original:
