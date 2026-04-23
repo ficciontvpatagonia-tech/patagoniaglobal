@@ -362,7 +362,14 @@ async function cargarIndice() {
   (propios || []).forEach(agregar);
   (turismo || []).forEach(agregar);
   (negocios || []).forEach(agregar);
-  (deportes || []).forEach(agregar);
+  // deportes_feed.json puede ser array o {principal, secundarias, row_cards}
+  if (Array.isArray(deportes)) {
+    deportes.forEach(agregar);
+  } else if (deportes) {
+    if (deportes.principal) agregar(deportes.principal);
+    (deportes.secundarias || []).forEach(agregar);
+    (deportes.row_cards || []).forEach(agregar);
+  }
   (guias || []).forEach(agregar);
   (historial || []).forEach(agregar);
   (cultura || []).forEach(agregar);
