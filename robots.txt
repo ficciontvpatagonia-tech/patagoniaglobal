@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# Renderizadores JS — el contenido canónico está en /notas/*.html
+Disallow: /nota.html
+Disallow: /guia.html
+Disallow: /buscar.html
+
 Sitemap: https://globalpatagonia.org/sitemap.xml
