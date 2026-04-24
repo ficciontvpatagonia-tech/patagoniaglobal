@@ -172,6 +172,8 @@
       border-bottom: 1px solid #e0ddd8;
     }
     .nota-meta span { display: flex; align-items: center; gap: 5px; }
+    .autor-avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1.5px solid #7aadcc; flex-shrink: 0; }
+    .nota-fuente-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #1c2d3d; flex-shrink: 0; }
 
     /* COMPARTIR */
     .compartir {
@@ -805,6 +807,10 @@ function renderNota(nota, fechaDisplay, data) {
     if (hasPT) _addHL('pt', _base + '&lang=pt');
   }
 
+  const AUTORES_AVATAR = {
+    "J. Martineau": "fotos/avatar-j-martineau.webp"
+  };
+
   const langSwitcherHtml = hasMultilang ? `
     <div class="lang-switcher">
       <button class="lang-btn ${lang==='es'?'active':''}" onclick="switchLang('es')" title="Español">🇦🇷</button>
@@ -819,7 +825,7 @@ function renderNota(nota, fechaDisplay, data) {
     <div class="nota-bajada">${nota.bajada || ""}</div>
     <div class="nota-meta">
       <span>${bandera(nota.pais)}</span>
-      ${nota.autor ? `<span>✍️ ${nota.autor}</span>` : ""}
+      ${nota.autor ? `<span>${AUTORES_AVATAR[nota.autor] ? `<img class="autor-avatar" src="${AUTORES_AVATAR[nota.autor]}" alt="${nota.autor}">` : "✍️"} ${nota.autor}</span>` : ""}
       <span>⏱ ${tiempoLectura(nota.cuerpo)}</span>
     </div>
     ${imgHtml}
@@ -827,8 +833,9 @@ function renderNota(nota, fechaDisplay, data) {
     ${galeriaHtml}
     ${datosHtml}
     ${nota.propio
-      ? `<div class="nota-fuente" style="border-left:3px solid #1c2d3d;background:#f0ede8;">
-           <strong>Por ${nota.autor || "GLOBALpatagonia"}</strong> · Nota de producción propia · <strong>GLOBALpatagonia</strong>
+      ? `<div class="nota-fuente" style="border-left:3px solid #1c2d3d;background:#f0ede8;display:flex;align-items:center;gap:12px;">
+           ${AUTORES_AVATAR[nota.autor] ? `<img class="nota-fuente-avatar" src="${AUTORES_AVATAR[nota.autor]}" alt="${nota.autor}">` : ""}
+           <div><strong>Por ${nota.autor || "GLOBALpatagonia"}</strong> · Nota de producción propia · <strong>GLOBALpatagonia</strong></div>
          </div>`
       : nota.url_original
         ? `<div class="nota-fuente">
