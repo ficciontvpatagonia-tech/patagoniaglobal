@@ -827,7 +827,7 @@ function renderNota(nota, fechaDisplay, data) {
     <div class="nota-bajada">${nota.bajada || ""}</div>
     <div class="nota-meta">
       <span>${bandera(nota.pais)}</span>
-      ${nota.autor ? `<span>${AUTORES_AVATAR[nota.autor] ? `<img class="autor-avatar" src="${AUTORES_AVATAR[nota.autor]}" alt="${nota.autor}">` : "✍️"} ${nota.autor}</span>` : ""}
+      ${nota.autor && !nota.propio ? `<span>${AUTORES_AVATAR[nota.autor] ? `<img class="autor-avatar" src="${AUTORES_AVATAR[nota.autor]}" alt="${nota.autor}">` : "✍️"} ${nota.autor}</span>` : ""}
       <span>⏱ ${tiempoLectura(nota.cuerpo)}</span>
     </div>
     ${imgHtml}

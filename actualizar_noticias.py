@@ -1838,6 +1838,8 @@ def generar_paginas_og(notas):
     .nota-titulo{{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);font-weight:900;line-height:1.15;color:var(--gris-oscuro);margin-bottom:20px;letter-spacing:-0.5px;}}
     .nota-bajada{{font-size:19px;font-weight:400;color:var(--gris-medio);line-height:1.65;margin-bottom:24px;border-left:4px solid #8ab8d4;padding-left:18px;font-style:italic;}}
     .nota-meta{{font-size:11px;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid #e0ddd8;}}
+    .nota-fuente{{margin-top:40px;padding:16px 20px;background:white;border-radius:4px;border-left:3px solid #5a6070;font-size:12px;color:#5a6070;}}
+    .nota-fuente strong{{color:#252830;}}
     .nota-imagen-wrap{{width:100%;background:#0e1a26;border-radius:4px;margin-bottom:32px;display:flex;justify-content:center;align-items:center;overflow:hidden;max-height:480px;}}
     .nota-imagen{{width:100%;max-height:480px;object-fit:contain;display:block;}}
     .nota-imagen-placeholder{{width:100%;height:320px;background:linear-gradient(160deg,#0e1a26 0%,#1c2d3d 45%,#4a7a9a 100%);border-radius:4px;margin-bottom:32px;}}
@@ -1883,12 +1885,12 @@ def generar_paginas_og(notas):
     <h1 class="nota-titulo">{e(titulo)}</h1>
     {f'<p class="nota-bajada">{e(bajada)}</p>' if bajada else ''}
     <div class="nota-meta">
-      <span>📰 {e(fuente)}</span>
       {f'<span>🌎 {e(pais_label)}</span>' if pais else ''}
       <span>{fecha_iso}</span>
     </div>
     {imagen_block}
     <div class="nota-cuerpo">{cuerpo_html}</div>
+    <div class="nota-fuente"><strong>Fuente original:</strong> Esta nota fue elaborada con información de <strong>{e(fuente)}</strong>.</div>
     <a href="../" class="ver-completo">← Más noticias en GLOBALpatagonia</a>
   </article>
 </div>
