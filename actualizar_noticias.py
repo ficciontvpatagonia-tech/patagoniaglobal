@@ -1767,8 +1767,8 @@ def generar_paginas_og(notas):
             if m:
                 fecha_iso = m.group(1)
 
-        pais_label = {"argentina": "Argentina", "chile": "Chile",
-                      "ambos": "Argentina y Chile", "malvinas": "Malvinas"}.get(pais, "Patagonia")
+        pais_label = {"argentina": "🇦🇷 Argentina", "chile": "🇨🇱 Chile",
+                      "ambos": "🇦🇷🇨🇱 Argentina · Chile", "malvinas": "🇬🇧 Malvinas"}.get(pais, "🌎 Patagonia")
 
         jsonld = _json.dumps({
             "@context": "https://schema.org",
@@ -1887,7 +1887,7 @@ def generar_paginas_og(notas):
     <h1 class="nota-titulo">{e(titulo)}</h1>
     {f'<p class="nota-bajada">{e(bajada)}</p>' if bajada else ''}
     <div class="nota-meta">
-      {f'<span>🌎 {e(pais_label)}</span>' if pais else ''}
+      {f'<span>{e(pais_label)}</span>' if pais else ''}
       <span>{fecha_iso}</span>
     </div>
     {imagen_block}
