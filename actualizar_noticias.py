@@ -1907,10 +1907,10 @@ def generar_paginas_og(notas):
 </html>"""
 
         ruta = os.path.join(notas_dir, f"{nid}.html")
-        # Notas de producción propia: si el HTML ya existe, no sobreescribir.
-        # Se identifican por campo "autor" o por "-propio-" en el ID.
-        es_propia = bool(nota.get("autor")) or "-propio-" in nid
-        if es_propia and os.path.exists(ruta):
+        # Si el archivo ya existe, nunca sobreescribir — protege notas manuales,
+        # colaboradores, guías y cualquier página con contenido enriquecido.
+        # El Action solo crea HTMLs nuevos para notas que aún no los tienen.
+        if os.path.exists(ruta):
             continue
         with open(ruta, "w", encoding="utf-8") as f:
             f.write(html_out)
