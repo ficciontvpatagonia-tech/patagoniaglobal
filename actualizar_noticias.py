@@ -345,8 +345,13 @@ def urls_ya_publicadas(historial):
 #  RSS
 # ══════════════════════════════════════════════════════════
 
+REGIONES_CHILE = {
+    "Nacional Chile", "Magallanes", "Aysén", "Los Lagos", "Los Ríos",
+    "Antártica Chile", "Malvinas",
+}
+
 def fetch_noticias_crudas():
-    noticias = []
+    ar, cl = [], []
     print(f"\n{'='*55}")
     print(f"  GLOBALpatagonia — Actualizando noticias")
     print(f"  {fecha_display()}")
@@ -363,21 +368,28 @@ def fetch_noticias_crudas():
                 if not titulo:
                     continue
                 if es_patagonica(titulo, resumen):
-                    noticias.append({
+                    articulo = {
                         "fuente":           fuente["nombre"],
                         "region":           fuente["region"],
                         "titulo_original":  titulo,
                         "resumen_original": resumen[:500] if resumen else "",
                         "url":              entry.get("link", ""),
                         "imagen_rss":       obtener_imagen_rss(entry),
-                    })
+                    }
+                    if fuente["region"] in REGIONES_CHILE:
+                        cl.append(articulo)
+                    else:
+                        ar.append(articulo)
                     encontradas += 1
             print(f"{encontradas} patagónicas")
         except Exception as e:
             print(f"error ({e})")
 
-    print(f"\n  Total encontradas: {len(noticias)} noticias patagónicas\n")
-    return noticias[:30]
+    # Pool balanceado: hasta 22 AR + hasta 12 CL (garantía mínima de cobertura chilena)
+    pool = ar[:22] + cl[:12]
+    print(f"\n  Total encontradas: {len(ar)+len(cl)} ({len(ar)} AR · {len(cl)} CL)")
+    print(f"  Pool para Claude: {len(pool)} ({min(len(ar),22)} AR · {min(len(cl),12)} CL)\n")
+    return pool
 
 
 # ══════════════════════════════════════════════════════════
@@ -569,6 +581,7 @@ Devolvé EXACTAMENTE este JSON (sin texto adicional):
 }}
 
 REGLAS CRÍTICAS:
+- COBERTURA BINACIONAL (OBLIGATORIO): al menos UNA de las dos secundarias debe ser de fuente chilena (región: Magallanes, Aysén, Los Lagos, Los Ríos, Nacional Chile, Antártica Chile). Si la tapa ya es chilena, igual una secundaria debe ser chilena. GLOBALpatagonia es panpatagónico — sin presencia chilena diaria no cumple su identidad editorial. Si no hay noticias chilenas disponibles hoy, indicarlo en "pais" igual.
 - TAPA y SECUNDARIAS: nunca deportes, aventura, trail, escalada, ski, kayak, natación — esos van solo a "deportes".
 - DEPORTES — criterio excluyente: la nota debe ser sobre un deporte que se practica EN la Patagonia o es identitario de la región: trail running, escalada en roca/hielo, kayak de mar o río, ski/snowboard en cerros patagónicos, mountainbike de montaña, triatlón, carreras de aventura, andinismo, trekking, surf costero, natación en lagos/ríos/mar patagónico. VETO ABSOLUTO (poné null si solo hay estas): rugby (incluyendo Los Pumas, Los Pumas 7s, URBA, selección argentina de rugby), fútbol (cualquier liga, cualquier equipo, cualquier selección), básquet, tenis, atletismo de pista, selecciones nacionales de cualquier deporte, torneos nacionales/internacionales de deportes convencionales (SVNS, Hong Kong Sevens, Sudamericano de atletismo, etc.). Un deporte es patagónico si el EVENTO o el ATLETA es de una ciudad o provincia de la Patagonia — no alcanza con que el deportista sea "argentino". Si la nota de deportes no cumple este criterio, poné null aunque haya notas disponibles.
 - Cada sección debe usar una noticia DISTINTA (URLs diferentes).
