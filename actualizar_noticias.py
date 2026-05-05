@@ -1649,7 +1649,7 @@ def rotar_cultura(nota):
 def rotar_turismo(nota):
     """
     Domingos: agrega la nota fresca de Claude al frente de turismo.json.
-    Mantiene máximo 3 (posiciones 1, 2, 3).
+    Mantiene máximo 7 (1 principal + 2 secundarias + 4 fichas inferiores).
     """
     if not nota:
         return
@@ -1671,7 +1671,7 @@ def rotar_turismo(nota):
         "url_original": nota.get("url_original", ""),
     }
 
-    turismo_nuevo = [entrada] + turismo_actual[:2]   # max 3
+    turismo_nuevo = [entrada] + turismo_actual[:6]   # max 7
     with open(ruta, "w", encoding="utf-8") as f:
         json.dump(turismo_nuevo, f, ensure_ascii=False, indent=2)
     print(f"  Turismo rotado (domingo): [{nota['id']}] '{nota['titulo'][:60]}…'")
