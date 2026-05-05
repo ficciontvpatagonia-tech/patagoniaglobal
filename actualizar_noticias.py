@@ -718,10 +718,15 @@ def extraer_og_image(url_articulo, nota_id):
         match = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']', html)
         if not match:
             match = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']', html)
-        if not match:
-            return None
 
-        img_url = match.group(1).strip()
+        if match:
+            img_url = match.group(1).strip()
+        else:
+            # Sitios sin og:image (ej. INACH): buscar primera foto del artículo
+            m = re.search(r'<img[^>]+src=["\']([^"\']+/uploads/[^"\']+\.(?:jpg|jpeg|png|webp))["\']', html, re.IGNORECASE)
+            if not m:
+                return None
+            img_url = m.group(1).strip()
         if not img_url.startswith("http"):
             return None
 
