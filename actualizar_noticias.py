@@ -874,7 +874,12 @@ def buscar_foto_propia(nota, fotos):
     import re as _re
 
     def _tokenize(s):
-        return set(_re.findall(r'[a-záéíóúüñ]+', s.lower())) if s else set()
+        if not s:
+            return set()
+        import unicodedata as _ud
+        s = _ud.normalize("NFD", s.lower())
+        s = "".join(c for c in s if _ud.category(c) != "Mn")
+        return set(_re.findall(r'[a-z]+', s))
 
     kw_img   = nota.get("imagen_keywords", "").lower()
     titulo   = nota.get("titulo", "").lower()
@@ -1053,20 +1058,7 @@ def _descargar_imagen_externa(url_http, nota_id, sufijo=""):
 
 
 def _foto_fallback(fotos_usadas):
-    fallbacks = [
-        "fotos/fitz-roy-chalten-nevada.webp",
-        "fotos/ruta-estepa-patagonica.jpg",
-        "fotos/Calafate.jpg",
-        "fotos/porvenir.jpg",
-        "fotos/punta-arenas.jpg",
-    ]
-    for f in fallbacks:
-        if os.path.exists(f) and f not in fotos_usadas:
-            fotos_usadas.add(f)
-            return f
-    for f in fallbacks:
-        if os.path.exists(f):
-            return f
+    return "logo-globalpatagonia.webp"
     return None
 
 
