@@ -1049,9 +1049,8 @@ def _descargar_imagen_externa(url_http, nota_id, sufijo=""):
 
 def _foto_fallback(fotos_usadas):
     fallbacks = [
-        "fotos/fitz-roy-chalten-nevada.jpg",
+        "fotos/fitz-roy-chalten-nevada.webp",
         "fotos/ruta-estepa-patagonica.jpg",
-        "fotos/bariloche-lago-nahuel-huapi.jpg",
         "fotos/Calafate.jpg",
         "fotos/porvenir.jpg",
         "fotos/punta-arenas.jpg",
