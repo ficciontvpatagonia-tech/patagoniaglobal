@@ -654,7 +654,7 @@ REGLAS CRÍTICAS:
     print("  Enviando a Claude para reescritura editorial...", end=" ", flush=True)
     try:
         response = client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-sonnet-4-6",
             max_tokens=10000,
             messages=[{"role": "user", "content": prompt}]
         )
@@ -1459,7 +1459,7 @@ Respondé SOLO con un array JSON válido. Si no hay eventos válidos respondé [
 
     try:
         response = client.messages.create(
-            model="claude-opus-4-6",
+            model="claude-sonnet-4-6",
             max_tokens=2000,
             messages=[{"role": "user", "content": prompt}]
         )
