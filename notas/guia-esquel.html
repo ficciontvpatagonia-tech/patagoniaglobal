@@ -56,7 +56,8 @@
     .guia-item-body{padding:20px 24px;}
     .guia-item h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--verde);margin-bottom:8px;}
     .guia-item p{font-size:16px;line-height:1.75;color:#3a3a3a;margin:0;}
-    .guia-item-img{width:100%;height:auto;aspect-ratio:790/494;object-fit:cover;display:block;}
+    .foto-ratio{position:relative;width:100%;padding-bottom:62.53%;overflow:hidden;}
+    .foto-ratio img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;}
     .guia-item-noimg{padding:20px 24px;}
     .guia-item-noimg h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--verde);margin-bottom:8px;}
     .guia-item-noimg p{font-size:16px;line-height:1.75;color:#3a3a3a;margin:0;}
@@ -84,7 +85,8 @@
     .comer-item p{font-size:13px;line-height:1.55;color:#4a4a4a;margin:0;}
     .comer-item-img{width:100%;aspect-ratio:790/494;object-fit:cover;display:block;}
     .comer-foto-wrap{margin-bottom:20px;border-radius:6px;overflow:hidden;}
-    .comer-foto-wrap img{width:100%;height:auto;aspect-ratio:790/494;object-fit:cover;display:block;}
+    .comer-foto-wrap{position:relative;width:100%;padding-bottom:62.53%;overflow:hidden;margin-bottom:20px;border-radius:6px;}
+    .comer-foto-wrap img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;}
     .consejo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
     .consejo-item{background:white;border-radius:6px;padding:16px 18px;box-shadow:0 2px 6px rgba(0,0,0,0.06);font-size:14px;line-height:1.6;color:#2a2a2a;}
     .consejo-item::before{content:"✓ ";color:#8ab8d4;font-weight:700;}
@@ -220,7 +222,7 @@
     <h2>Qué hacer</h2>
 
     <div class="guia-item">
-      <img src="../fotos/esquel-trochita-nieve.jpg" alt="La Trochita — locomotoras Baldwin de 1922 saliendo de la estación de Esquel bajo la nieve" class="guia-item-img" loading="lazy"/>
+      <div class="foto-ratio"><img src="../fotos/esquel-trochita-nieve.jpg" alt="La Trochita — locomotoras Baldwin de 1922 saliendo de la estación de Esquel bajo la nieve" loading="lazy"/></div>
       <div class="guia-item-body">
         <h3>La Trochita: el Viejo Expreso Patagónico</h3>
         <p>Locomotoras Baldwin de 1922 y vagones de madera. Recorrido regular Esquel–Nahuelpan (2.5 a 3 horas) con parada en una feria artesanal. Paul Theroux la inmortalizó en "El viejo expreso de la Patagonia". Reservar con anticipación en temporada alta.</p>
@@ -228,7 +230,7 @@
     </div>
 
     <div class="guia-item">
-      <img src="../fotos/esquel-los-alerces-rio.webp" alt="Río de aguas turquesas en el Parque Nacional Los Alerces, rodeado de bosque andino" class="guia-item-img" loading="lazy"/>
+      <div class="foto-ratio"><img src="../fotos/esquel-los-alerces-rio.webp" alt="Río de aguas turquesas en el Parque Nacional Los Alerces, rodeado de bosque andino" loading="lazy"/></div>
       <div class="guia-item-body">
         <h3>Parque Nacional Los Alerces</h3>
         <p>A 70 km de Esquel. Bosques milenarios de alerces de hasta 2.600 años. La excursión en lancha al alerce "El Abuelo" (60 m de altura, 2.200 años) es imperdible. Lagos Futalaufquen y Menéndez de un azul extraordinario. Para más aventura: navegación y trekking al Glaciar Torrecillas.</p>
@@ -236,7 +238,7 @@
     </div>
 
     <div class="guia-item">
-      <img src="../fotos/esquel-la-hoya-ski.webp" alt="Esquiadores en Cerro La Hoya — pistas y remonte en un día soleado de agosto" class="guia-item-img" loading="lazy"/>
+      <div class="foto-ratio"><img src="../fotos/esquel-la-hoya-ski.webp" alt="Esquiadores en Cerro La Hoya — pistas y remonte en un día soleado de agosto" loading="lazy"/></div>
       <div class="guia-item-body">
         <h3>Cerro La Hoya</h3>
         <p>Centro de esquí a 13 km del centro. 30 pistas y 8 medios de elevación. Menos concurrido y más accesible que Bariloche. En verano, las aerosillas suben a caminantes para trekking con vistas al lago Rosario. La base está a 2.100 m s.n.m. — tomarlo con calma el primer día si no estás aclimatado.</p>
@@ -244,7 +246,7 @@
     </div>
 
     <div class="guia-item">
-      <img src="../fotos/esquel-te-gales-trevelin.jpg" alt="Té galés con tortas y mermelada en Trevelin — tradición centenaria a 24 km de Esquel" class="guia-item-img" loading="lazy"/>
+      <div class="foto-ratio"><img src="../fotos/esquel-te-gales-trevelin.jpg" alt="Té galés con tortas y mermelada en Trevelin — tradición centenaria a 24 km de Esquel" loading="lazy"/></div>
       <div class="guia-item-body">
         <h3>Trevelin — el pueblo galés</h3>
         <p>A 24 km de Esquel. Descendientes de los colonos del Chubut (llegaron en 1865) mantienen viva la tradición del té. Imperdible la <strong>Casa de Té Nain Maggie</strong>: tortas, scones y dulces de recetas centenarias.</p>
@@ -252,7 +254,7 @@
     </div>
 
     <div class="guia-item">
-      <img src="../fotos/esquel-tulipanes-trevelin.jpg" alt="Campo de tulipanes multicolores con los Andes nevados de fondo, Trevelin" class="guia-item-img" loading="lazy" style="object-position:center 40%;"/>
+      <div class="foto-ratio"><img src="../fotos/esquel-tulipanes-trevelin.jpg" alt="Campo de tulipanes multicolores con los Andes nevados de fondo, Trevelin" loading="lazy" style="object-position:center 35%;"/></div>
       <div class="guia-item-body">
         <h3>Campo de Tulipanes (Trevelin, primavera)</h3>
         <p>Florece entre principios de octubre y principios de noviembre, a 13 km de Trevelin. Un mar multicolor con los Andes de fondo. Paseos, confitería con pastelería galesa, feria artesanal y vuelos en globo (clima mediante). Lo apodan la "Keukenhof argentina". Solo abierto en temporada de floración — consultar antes de ir.</p>
@@ -260,7 +262,7 @@
     </div>
 
     <div class="guia-item">
-      <img src="../fotos/esquel-piedra-parada.jpg" alt="Piedra Parada — domo volcánico de más de 200 m en el cañadón del río Chubut, al atardecer" class="guia-item-img" loading="lazy"/>
+      <div class="foto-ratio"><img src="../fotos/esquel-piedra-parada.jpg" alt="Piedra Parada — domo volcánico de más de 200 m en el cañadón del río Chubut, al atardecer" loading="lazy"/></div>
       <div class="guia-item-body">
         <h3>Piedra Parada</h3>
         <p>Área natural protegida a 125 km de Esquel. Un domo volcánico de más de 200 m en medio de un cañadón. Ideal para trekking y escalada. Un paisaje marciano que pocas guías mencionan.</p>
@@ -268,7 +270,7 @@
     </div>
 
     <div class="guia-item">
-      <img src="../fotos/esquel-lago-helado-gazebo.jpg" alt="Laguna La Zeta — lago con gazebo de madera y vista al Cordón Nahuelpan, Esquel" class="guia-item-img" loading="lazy" style="object-position:center 55%;"/>
+      <div class="foto-ratio"><img src="../fotos/esquel-lago-helado-gazebo.jpg" alt="Laguna La Zeta — lago con gazebo de madera y vista al Cordón Nahuelpan, Esquel" loading="lazy" style="object-position:center 55%;"/></div>
       <div class="guia-item-body">
         <h3>Laguna La Zeta</h3>
         <p>Reserva natural urbana a 4 km del centro. Senderos y miradores con vista a la ciudad y al Cordón Nahuelpan. Ideal para una escapada rápida o para ver el atardecer sin moverse de la ciudad.</p>
