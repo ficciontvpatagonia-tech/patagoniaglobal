@@ -77,10 +77,12 @@
     .guia-list li::before{content:"→ ";color:#8ab8d4;font-weight:700;}
     .guia-list li:last-child{border-bottom:none;}
     .comer-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-    .comer-item{background:white;border-radius:6px;padding:16px 18px;box-shadow:0 2px 6px rgba(0,0,0,0.06);}
+    .comer-item{background:white;border-radius:6px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.06);}
+    .comer-item-body{padding:16px 18px;}
     .comer-item h4{font-size:15px;font-weight:700;color:var(--verde);margin-bottom:4px;}
     .comer-item .comer-dir{font-size:11px;color:#8ab8d4;font-weight:600;letter-spacing:0.5px;margin-bottom:6px;}
     .comer-item p{font-size:13px;line-height:1.55;color:#4a4a4a;margin:0;}
+    .comer-item-img{width:100%;aspect-ratio:790/494;object-fit:cover;display:block;}
     .comer-foto-wrap{margin-bottom:20px;border-radius:6px;overflow:hidden;}
     .comer-foto-wrap img{width:100%;aspect-ratio:790/494;object-fit:cover;display:block;}
     .consejo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -282,29 +284,40 @@
     </div>
     <div class="comer-grid">
       <div class="comer-item">
-        <h4>El Argentino Bar</h4>
-        <div class="comer-dir">25 de Mayo 862</div>
-        <p>Clásico esquelense, ambientado con antigüedades. Pool, música y buena barra. El lugar donde va la gente del pueblo.</p>
+        <div class="comer-item-body">
+          <h4>El Argentino Bar</h4>
+          <div class="comer-dir">25 de Mayo 862</div>
+          <p>Clásico esquelense, ambientado con antigüedades. Pool, música y buena barra. El lugar donde va la gente del pueblo.</p>
+        </div>
       </div>
       <div class="comer-item">
-        <h4>Blest</h4>
-        <div class="comer-dir">Av. Alvear 1025</div>
-        <p>Cervecería artesanal con platos de fondo: ojo de bife, hamburguesas. Buena opción para los días de nieve.</p>
+        <div class="comer-item-body">
+          <h4>Blest</h4>
+          <div class="comer-dir">Av. Alvear 1025</div>
+          <p>Cervecería artesanal con platos de fondo: ojo de bife, hamburguesas. Buena opción para los días de nieve.</p>
+        </div>
       </div>
       <div class="comer-item">
-        <h4>Don Chiquino</h4>
-        <div class="comer-dir">Centro</div>
-        <p>Favorito de los locales. Pastas caseras, precio justo y atención rápida. Pedí el menú del día.</p>
+        <img src="../fotos/esquel-don-chiquino.jpg" alt="Interior de Don Chiquino — ambiente cálido con barrica, manteles a cuadros y decoración típica esquelense" class="comer-item-img" loading="lazy"/>
+        <div class="comer-item-body">
+          <h4>Don Chiquino</h4>
+          <div class="comer-dir">Centro</div>
+          <p>Favorito de los locales. Pastas caseras, precio justo y atención rápida. Pedí el menú del día.</p>
+        </div>
       </div>
       <div class="comer-item">
-        <h4>La Española</h4>
-        <div class="comer-dir">Parrilla</div>
-        <p>Cocina de campo con sabores intensos. Cazuela de cordero, trucha del río y cortes de parrilla clásicos.</p>
+        <div class="comer-item-body">
+          <h4>La Española</h4>
+          <div class="comer-dir">Parrilla</div>
+          <p>Cocina de campo con sabores intensos. Cazuela de cordero, trucha del río y cortes de parrilla clásicos.</p>
+        </div>
       </div>
       <div class="comer-item" style="grid-column:1/-1;">
-        <h4>Casa de Té Nain Maggie</h4>
-        <div class="comer-dir">Trevelin (24 km)</div>
-        <p>La experiencia galesa auténtica. Dulces caseros, torta negra, scons con mermelada de rosa mosqueta. Una visita obligada antes de volver.</p>
+        <div class="comer-item-body">
+          <h4>Casa de Té Nain Maggie</h4>
+          <div class="comer-dir">Trevelin (24 km)</div>
+          <p>La experiencia galesa auténtica. Dulces caseros, torta negra, scons con mermelada de rosa mosqueta. Una visita obligada antes de volver.</p>
+        </div>
       </div>
     </div>
   </div>
