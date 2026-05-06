@@ -2607,18 +2607,27 @@ def actualizar_sitemap():
 
     # Escanear notas/ directamente — captura todo HTML no incluido en los JSONs
     notas_dir = os.path.join(base, "notas")
-    OMITIR_SUFIJOS = ("-en.html", "-pt.html", "-zh.html", "-timeout-2026.html")
+
+    def _es_redirect_stub(fpath):
+        """Detecta páginas que son solo redirect (meta-refresh o JS a nota.html)."""
+        try:
+            with open(fpath, encoding="utf-8") as fh:
+                head = fh.read(1500)
+            return ('http-equiv="refresh"' in head or
+                    ('window.location.replace' in head and 'nota.html' in head))
+        except Exception:
+            return False
+
     if os.path.isdir(notas_dir):
-        import time
         for fname in sorted(os.listdir(notas_dir)):
             if not fname.endswith(".html"):
                 continue
-            if any(fname.endswith(s) for s in OMITIR_SUFIJOS):
+            fpath = os.path.join(notas_dir, fname)
+            if _es_redirect_stub(fpath):
                 continue
             nid = fname[:-5]  # quitar .html
             if nid not in ids:
                 # inferir fecha de modificación del archivo
-                fpath = os.path.join(notas_dir, fname)
                 mtime = os.path.getmtime(fpath)
                 ids[nid] = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d")
 
