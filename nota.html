@@ -203,8 +203,10 @@
       transition: opacity 0.2s;
     }
     .btn-compartir:hover { opacity: 0.85; }
-    .btn-wa  { background: #25D366; color: white; }
-    .btn-x   { background: #000; color: white; }
+    .btn-wa   { background: #25D366; color: white; }
+    .btn-x    { background: #000; color: white; }
+    .btn-fb   { background: #1877F2; color: white; }
+    .btn-mail { background: #555; color: white; }
     .btn-copy { background: var(--verde); color: white; }
 
     /* NOTAS RELACIONADAS */
@@ -781,11 +783,15 @@ function renderNota(nota, fechaDisplay, data) {
   // Compartir
   const url = encodeURIComponent(window.location.href);
   const titulo = encodeURIComponent(nota.titulo);
+  const mailSubject = encodeURIComponent(nota.titulo);
+  const mailBody = encodeURIComponent(nota.titulo + '\n' + window.location.href);
   const compartirHtml = `
     <div class="compartir">
       <span class="compartir-label">Compartir</span>
       <a class="btn-compartir btn-wa" href="https://wa.me/?text=${titulo}%20${url}" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn-compartir btn-x" href="https://twitter.com/intent/tweet?text=${titulo}&url=${url}" target="_blank" rel="noopener">X / Twitter</a>
+      <a class="btn-compartir btn-x" href="https://twitter.com/intent/tweet?text=${titulo}&url=${url}" target="_blank" rel="noopener">X</a>
+      <a class="btn-compartir btn-fb" href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn-compartir btn-mail" href="mailto:?subject=${mailSubject}&body=${mailBody}">Email</a>
       <button class="btn-compartir btn-copy" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='¡Copiado!'">Copiar enlace</button>
     </div>`;
 
