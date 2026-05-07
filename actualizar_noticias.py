@@ -485,6 +485,16 @@ def reescribir_con_claude(noticias_crudas, historial, es_domingo=False):
         print("  ⚠ No hay noticias nuevas para agregar hoy.")
         return None
 
+    # Títulos de los últimos 3 días para que Claude no repita temas
+    titulos_recientes = [
+        n["titulo"] for n in historial[:20]
+        if isinstance(n, dict) and n.get("titulo") and not n.get("excluir_feed")
+    ]
+    bloque_recientes = ""
+    if titulos_recientes:
+        bloque_recientes = "\n\nTEMAS YA CUBIERTOS (últimos 3 días — NO repetir aunque sea un artículo distinto sobre el mismo hecho):\n"
+        bloque_recientes += "\n".join(f"- {t}" for t in titulos_recientes)
+
     listado = ""
     for i, n in enumerate(noticias_nuevas):
         listado += f"""
@@ -566,7 +576,7 @@ DESCARTAR SIEMPRE: policiales, accidentes de tránsito, crónica roja, economía
 FUENTES EN INGLÉS (Penguin News — Malvinas/Falkland Islands): las notas pueden llegar en inglés. Traducí y reescribí en español con voz propia. El campo "pais" para estas notas es "malvinas".
 
 Tenés estas noticias NUEVAS de hoy disponibles:
-{listado}
+{listado}{bloque_recientes}
 
 Tu tarea — elegí notas DISTINTAS para cada sección (sin repetir la misma URL en dos secciones).
 Devolvé EXACTAMENTE este JSON (sin texto adicional):
