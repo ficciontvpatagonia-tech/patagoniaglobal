@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260506-catedral-alta-patagonia-elegido-mejor-centro-de-esqui-dep",
+    "id": "20260507-cerro-catedral-abre-sus-remontes-gratis-para-los-dep",
     "tag": "🏔️ Deportes",
-    "titulo": "Catedral Alta Patagonia, elegido mejor centro de esquí en Brasil",
-    "bajada": "El cerro barilochense recibió en Río de Janeiro el premio O Melhor de Viagem & Turismo, el reconocimiento más importante del sector turístico brasileño.",
-    "imagen": "fotos/foto-20260506-catedral-alta-patagonia-elegido-mejor-centro-de-esqui-dep.webp",
-    "meta": "Hoy · Catedral Alta Patagonia (Bariloche)"
+    "titulo": "Cerro Catedral abre sus remontes gratis para los barilochenses en marzo",
+    "bajada": "Del 9 al 13 de marzo, los residentes de Bariloche podrán subir sin costo al Cerro Catedral mediante la telecabina, en la edición 2026 de la Semana Residentes.",
+    "imagen": "fotos/foto-20260507-cerro-catedral-abre-sus-remontes-gratis-para-los-dep.webp",
+    "meta": "Hoy · Catedral Alta Patagonia"
   },
   "secundarias": [
+    {
+      "id": "20260506-catedral-alta-patagonia-elegido-mejor-centro-de-esqui-dep",
+      "tag": "🏔️ Deportes",
+      "titulo": "Catedral Alta Patagonia, elegido mejor centro de esquí en Brasil",
+      "bajada": "El cerro barilochense recibió en Río de Janeiro el premio O Melhor de Viagem & Turismo, el reconocimiento más importante del sector turístico brasileño.",
+      "imagen": "fotos/foto-20260506-catedral-alta-patagonia-elegido-mejor-centro-de-esqui-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia (Bariloche)"
+    },
     {
       "id": "20260505-el-gan-del-club-andino-sale-en-mountainbike-por-los-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El Grupo de Acondicionamiento Nórdico organiza una salida de MTB este sábado como preparación física para la temporada de invierno.",
       "imagen": "fotos/foto-20260505-el-gan-del-club-andino-sale-en-mountainbike-por-los-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260430-deportistas-magallanicos-haran-el-primer-cruce-a-nado-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El 2 de mayo, nadadores del Club Delfines de Punta Arenas desafiarán las aguas gélidas que conectan los senos Otway y Skyring, un hito sin precedentes en la natación de aguas abiertas patagónica.",
       "imagen": "fotos/foto-20260430-deportistas-magallanicos-haran-el-primer-cruce-a-nado-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260429-vanessa-garrido-sudamericano-master-dep",
       "tag": "🏊 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El atleta aysenino ganó la categoría Long Trail (81 km, 5.078 m de desnivel) en Samaipata con un tiempo de 9h 03m 20s. Era su primera vez representando a Chile.",
       "imagen": "fotos/foto-20260419-bopp-trail-dep.jpg",
       "meta": "19 abr · Diario Regional Aysén"
-    },
-    {
-      "id": "20260417-los-xvii-juegos-paraepade-cerraron-con-350-deportistas-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Los XVII Juegos PARAEPADE cerraron con 350 deportistas patagónicos",
-      "bajada": "Atletas de seis provincias del sur argentino compitieron en Chubut en una edición que reafirmó el crecimiento del deporte adaptado en la región.",
-      "imagen": "fotos/foto-20260417-los-xvii-juegos-paraepade-cerraron-con-350-deportistas-dep.webp",
-      "meta": "Hoy · GLOBALpatagonia"
     }
   ]
 }
