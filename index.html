@@ -2082,11 +2082,11 @@ fetch("turismo.json")
   .then(turismo => renderTurismo(turismo))
   .catch(() => {});
 
-// ── GUIAS: carga desde guias.json — máx 4 ──
+// ── GUIAS: carga desde guias.json — máx 8 ──
 function renderGuias(guias) {
   const container = document.getElementById("guias-container");
   if (!container || !guias || !guias.length) return;
-  const visibles = guias.slice(0, 4);
+  const visibles = guias.slice(0, 8);
   container.innerHTML = visibles.map(g => {
     const bg = g.imagen
       ? `background-image:url('${g.imagen}');background-size:cover;background-position:center;`
