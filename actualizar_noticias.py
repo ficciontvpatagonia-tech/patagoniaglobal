@@ -17,6 +17,7 @@ import json
 import sys
 import os
 import re
+import time
 import unicodedata
 import urllib.request
 import urllib.parse
@@ -651,14 +652,7 @@ REGLAS CRÍTICAS:
 - Si no hay nota de economía/empresas, poné null en "negocios".
 {"- HOY ES DOMINGO: completar cultura y turismo con notas del RSS de hoy." if es_domingo else "- Hoy no es domingo: cultura y turismo van en null."}"""
 
-    print("  Enviando a Claude para reescritura editorial...", end=" ", flush=True)
-    try:
-        response = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=10000,
-            messages=[{"role": "user", "content": prompt}]
-        )
-        texto = response.content[0].text.strip()
+    def _extraer_json(texto):
         if "```" in texto:
             for parte in texto.split("```"):
                 p = parte.strip()
@@ -670,22 +664,49 @@ REGLAS CRÍTICAS:
         fin    = texto.rfind("}") + 1
         if inicio >= 0 and fin > inicio:
             texto = texto[inicio:fin]
-        datos = json.loads(texto)
-        print("OK")
-        return datos
-    except json.JSONDecodeError as e:
-        print(f"error parseando JSON: {e}")
-        debug_path = os.path.join(os.path.dirname(__file__), "debug_claude_response.txt")
+        return texto
+
+    ultimo_error = None
+    ultimo_texto = ""
+    for intento in range(1, 4):
+        sufijo = f" (intento {intento}/3)" if intento > 1 else ""
+        print(f"  Enviando a Claude para reescritura editorial...{sufijo}", end=" ", flush=True)
         try:
-            with open(debug_path, "w") as f:
-                f.write(texto)
-            print(f"  Respuesta guardada en {debug_path}")
-        except Exception:
-            pass
-        return None
-    except Exception as e:
-        print(f"error: {e}")
-        return None
+            mensajes = [{"role": "user", "content": prompt}]
+            if intento > 1 and ultimo_texto:
+                mensajes.append({"role": "assistant", "content": ultimo_texto})
+                mensajes.append({"role": "user", "content":
+                    "Tu respuesta anterior no era JSON válido. "
+                    "Devolvé ÚNICAMENTE el objeto JSON pedido, sin texto antes ni después, "
+                    "asegurándote de escapar correctamente comillas y saltos de línea dentro de las strings."
+                })
+            response = client.messages.create(
+                model="claude-sonnet-4-6",
+                max_tokens=10000,
+                messages=mensajes
+            )
+            ultimo_texto = response.content[0].text.strip()
+            texto = _extraer_json(ultimo_texto)
+            datos = json.loads(texto)
+            print("OK")
+            return datos
+        except json.JSONDecodeError as e:
+            ultimo_error = e
+            print(f"error parseando JSON: {e}")
+            if intento == 1:
+                debug_path = os.path.join(os.path.dirname(__file__), "debug_claude_response.txt")
+                try:
+                    with open(debug_path, "w") as f:
+                        f.write(ultimo_texto)
+                    print(f"  Respuesta guardada en {debug_path}")
+                except Exception:
+                    pass
+            if intento < 3:
+                time.sleep(3)
+        except Exception as e:
+            print(f"error: {e}")
+            return None
+    return None
 
 
 # ══════════════════════════════════════════════════════════
