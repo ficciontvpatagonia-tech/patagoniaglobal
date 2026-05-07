@@ -485,16 +485,6 @@ def reescribir_con_claude(noticias_crudas, historial, es_domingo=False):
         print("  ⚠ No hay noticias nuevas para agregar hoy.")
         return None
 
-    # Títulos de los últimos 3 días para que Claude no repita temas
-    titulos_recientes = [
-        n["titulo"] for n in historial[:20]
-        if isinstance(n, dict) and n.get("titulo") and not n.get("excluir_feed")
-    ]
-    bloque_recientes = ""
-    if titulos_recientes:
-        bloque_recientes = "\n\nTEMAS YA CUBIERTOS (últimos 3 días — NO repetir aunque sea un artículo distinto sobre el mismo hecho):\n"
-        bloque_recientes += "\n".join(f"- {t}" for t in titulos_recientes)
-
     listado = ""
     for i, n in enumerate(noticias_nuevas):
         listado += f"""
@@ -576,7 +566,7 @@ DESCARTAR SIEMPRE: policiales, accidentes de tránsito, crónica roja, economía
 FUENTES EN INGLÉS (Penguin News — Malvinas/Falkland Islands): las notas pueden llegar en inglés. Traducí y reescribí en español con voz propia. El campo "pais" para estas notas es "malvinas".
 
 Tenés estas noticias NUEVAS de hoy disponibles:
-{listado}{bloque_recientes}
+{listado}
 
 Tu tarea — elegí notas DISTINTAS para cada sección (sin repetir la misma URL en dos secciones).
 Devolvé EXACTAMENTE este JSON (sin texto adicional):
@@ -1240,15 +1230,21 @@ def construir_noticias_json(tapa, secundarias, prev_tapa, prev_secundarias, prev
     """
     hoy = datetime.now()
 
+    ids_portada = {tapa.get("id")} | {s.get("id") for s in secundarias}
+    def _no_duplica(n):
+        return n.get("id") not in ids_portada
+
     noticias_semana = []
-    if prev_tapa:
+    if prev_tapa and _no_duplica(prev_tapa):
         noticias_semana.append(prev_tapa)
     for s in (prev_secundarias or [])[:2]:
-        noticias_semana.append(s)
+        if _no_duplica(s):
+            noticias_semana.append(s)
     for n in (prev_noticias or []):
         if len(noticias_semana) >= 8:
             break
-        noticias_semana.append(n)
+        if _no_duplica(n):
+            noticias_semana.append(n)
 
     historias = cargar_historias_permanentes()
 
