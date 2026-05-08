@@ -2008,6 +2008,21 @@ def generar_paginas_og(notas):
         pais_label = {"argentina": "🇦🇷 Argentina", "chile": "🇨🇱 Chile",
                       "ambos": "🇦🇷🇨🇱 Argentina · Chile", "malvinas": "🇬🇧 Malvinas"}.get(pais, "🌎 Patagonia")
 
+        hreflang_tags = ""
+        if nota.get("titulo_en"):
+            en_url = f"https://globalpatagonia.org/notas/{nid}-en.html"
+            hreflang_tags += f'<link rel="alternate" hreflang="en" href="{ea(en_url)}"/>\n  '
+        if nota.get("titulo_pt"):
+            pt_url = f"https://globalpatagonia.org/notas/{nid}-pt.html"
+            hreflang_tags += f'<link rel="alternate" hreflang="pt" href="{ea(pt_url)}"/>\n  '
+        if nota.get("titulo_zh"):
+            zh_url = f"https://globalpatagonia.org/notas/{nid}-zh.html"
+            hreflang_tags += f'<link rel="alternate" hreflang="zh-Hans" href="{ea(zh_url)}"/>\n  '
+        if hreflang_tags:
+            hreflang_tags = (f'<link rel="alternate" hreflang="es" href="{ea(static_url)}"/>\n  '
+                             + hreflang_tags)
+            hreflang_tags += f'<link rel="alternate" hreflang="x-default" href="{ea(static_url)}"/>\n  '
+
         jsonld = _json.dumps({
             "@context": "https://schema.org",
             "@type": "NewsArticle",
@@ -2042,7 +2057,7 @@ def generar_paginas_og(notas):
   <title>{e(titulo)} — GLOBALpatagonia</title>
   <meta name="description" content="{ea(bajada)}"/>
   <link rel="canonical" href="{ea(static_url)}"/>
-  <meta property="og:site_name" content="GLOBALpatagonia"/>
+  {hreflang_tags}<meta property="og:site_name" content="GLOBALpatagonia"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="{ea(static_url)}"/>
   <meta property="og:title" content="{ea(titulo)} — GLOBALpatagonia"/>
@@ -2509,7 +2524,7 @@ def generar_feed_rss():
     import html as htmllib
     for n in notas:
         nid  = n.get("id", "")
-        url  = f"https://globalpatagonia.org/nota.html?id={nid}"
+        url  = f"https://globalpatagonia.org/notas/{nid}.html"
         titulo  = htmllib.escape(n.get("titulo", ""))
         bajada  = htmllib.escape(n.get("bajada", n.get("titulo", "")))
         pub     = fecha_rfc2822(nid)
@@ -2553,6 +2568,15 @@ def actualizar_sitemap():
     base = os.path.dirname(__file__)
     today = datetime.now().strftime("%Y-%m-%d")
 
+    def _fecha_de_id(nid):
+        """Infiere la fecha de publicación desde el ID (formato YYYYMMDD-...)."""
+        try:
+            if len(nid) >= 8 and nid[:8].isdigit():
+                return datetime.strptime(nid[:8], "%Y%m%d").strftime("%Y-%m-%d")
+        except Exception:
+            pass
+        return today
+
     fuentes = [
         "historial.json", "noticias.json", "historias.json",
         "turismo.json", "guias.json", "deportes_feed.json", "propios.json",
@@ -2580,7 +2604,7 @@ def actualizar_sitemap():
                 if isinstance(nota, dict) and nota.get("id"):
                     nid = nota["id"]
                     if nid not in ids:
-                        ids[nid] = nota.get("fecha", today) or today
+                        ids[nid] = nota.get("fecha") or _fecha_de_id(nid)
                     if es_historias:
                         historias_ids.add(nid)
         except Exception:
@@ -2597,7 +2621,7 @@ def actualizar_sitemap():
                     for nota in json.load(f):
                         nid = nota.get("id")
                         if nid and nid not in ids:
-                            ids[nid] = nota.get("fecha", today) or today
+                            ids[nid] = nota.get("fecha") or _fecha_de_id(nid)
             except Exception:
                 pass
 
@@ -2610,7 +2634,7 @@ def actualizar_sitemap():
             for nota in data.get("notas", []):
                 nid = nota.get("id")
                 if nid and nid not in ids:
-                    ids[nid] = nota.get("fecha", today) or today
+                    ids[nid] = nota.get("fecha") or _fecha_de_id(nid)
         except Exception:
             pass
 

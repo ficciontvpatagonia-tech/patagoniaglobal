@@ -11,8 +11,16 @@
   <link rel="canonical" id="canonical-tag"/>
   <script>
     (function() {
-      var slug = (window.location.pathname.split('/notas/')[1] || '').replace('.html', '')
-                 || new URLSearchParams(window.location.search).get('id');
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get('id');
+      // Redirect nota.html?id=X → /notas/X.html (SEO: evita duplicate content)
+      if (id) {
+        var lang = params.get('lang');
+        var target = '/notas/' + id + (lang ? '-' + lang : '') + '.html';
+        window.location.replace(target);
+        return;
+      }
+      var slug = (window.location.pathname.split('/notas/')[1] || '').replace('.html', '');
       if (!slug) { window.location.replace('/'); return; }
       document.getElementById('canonical-tag').href = 'https://globalpatagonia.org/notas/' + slug + '.html';
     })();
