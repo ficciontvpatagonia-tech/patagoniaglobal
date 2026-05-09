@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GLOBALpatagonia — Agenda Patagónica</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1c2d3d">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://globalpatagonia.org/agenda.html"/>
   <meta name="description" content="Eventos, festivales y competencias en la Patagonia argentina y chilena."/>
   <meta property="og:title" content="Agenda Patagónica — GLOBALpatagonia"/>
@@ -306,6 +309,6 @@ document.querySelectorAll('.agenda-filtro').forEach(btn => {
   });
 });
 </script>
-
+<script>navigator.serviceWorker?.register('/OneSignalSDKWorker.js')</script>
 </body>
 </html>
