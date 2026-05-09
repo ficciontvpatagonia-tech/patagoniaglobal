@@ -1538,28 +1538,24 @@
 
         /* Flyer newsletter animado — completa el 4to slot */
         const nlCard = document.createElement('div');
-        nlCard.style.cssText = 'cursor:pointer;border-radius:4px;overflow:hidden;position:relative;box-shadow:0 2px 8px rgba(0,0,0,0.15);';
+        nlCard.style.cssText = 'cursor:pointer;border-radius:4px;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(0,0,0,0.15);';
         nlCard.innerHTML = `
-          <!-- fondo degradado GP -->
           <div style="position:absolute;inset:0;background:linear-gradient(145deg,#1c2d3d 0%,#253b50 60%,#1a2a38 100%);"></div>
-          <!-- línea superior azul glacial -->
           <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7aadcc,#8c6b4a,#7aadcc);background-size:200%;animation:nl-bar 6s linear infinite;"></div>
-          <!-- barrido de luz -->
           <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
-            <div style="position:absolute;top:0;bottom:0;width:40%;background:linear-gradient(90deg,transparent,rgba(122,173,204,0.07),transparent);animation:nl-sweep 5s ease-in-out infinite;"></div>
+            <div style="position:absolute;top:0;bottom:0;width:40%;background:linear-gradient(90deg,transparent,rgba(122,173,204,0.08),transparent);animation:nl-sweep 5s ease-in-out infinite;"></div>
           </div>
-          <!-- contenido -->
-          <div style="position:relative;z-index:1;padding:18px 14px 16px;min-height:160px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
-            <div style="font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(122,173,204,0.65);margin-bottom:10px;animation:nl-fade .7s ease forwards;">
-              GLOBALpatagonia
+          <div style="position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px 16px;box-sizing:border-box;gap:10px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(122,173,204,0.6);animation:nl-fade .7s ease forwards;">
+              📩 Newsletter
             </div>
-            <div style="font-family:'Playfair Display',serif;font-size:21px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:10px;opacity:0;animation:nl-fade .8s ease .5s forwards;">
-              Toda la Patagonia<br>en un solo lugar
+            <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#fff;line-height:1.15;opacity:0;animation:nl-fade .8s ease .5s forwards;">
+              Toda la<br>Patagonia<br>en un solo lugar
             </div>
-            <div style="font-size:12px;color:rgba(122,173,204,0.9);font-weight:500;margin-bottom:16px;line-height:1.4;opacity:0;animation:nl-fade .8s ease 1.2s forwards;">
-              Suscribite a nuestro newsletter
+            <div style="font-size:12px;color:rgba(122,173,204,0.9);opacity:0;animation:nl-fade .8s ease 1.2s forwards;">
+              Suscribite gratis
             </div>
-            <div style="background:#7aadcc;color:#1c2d3d;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:8px 16px;border-radius:3px;opacity:0;animation:nl-fade .8s ease 1.9s forwards;">
+            <div style="background:#7aadcc;color:#1c2d3d;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:9px 20px;border-radius:3px;opacity:0;animation:nl-fade .8s ease 1.9s forwards;">
               Suscribite →
             </div>
           </div>`;
