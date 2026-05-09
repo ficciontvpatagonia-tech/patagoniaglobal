@@ -398,6 +398,111 @@ def urls_ya_publicadas(historial):
 
 
 # ══════════════════════════════════════════════════════════
+#  Anti-duplicados temáticos
+# ══════════════════════════════════════════════════════════
+
+_STOPWORDS = {
+    'para', 'como', 'entre', 'sobre', 'desde', 'hasta', 'cada', 'todo',
+    'pero', 'muy', 'mas', 'los', 'las', 'una', 'uno', 'del', 'que', 'por',
+    'con', 'sin', 'fue', 'era', 'han', 'sus', 'the', 'and', 'for', 'from',
+    'tras', 'tres', 'esta', 'este', 'hace', 'tiene', 'ser', 'dos', 'vez',
+    'mas', 'all', 'not', 'los', 'las', 'le', 'les', 'donde', 'cuando',
+}
+
+
+def _tokenizar_titulo(titulo):
+    """Extrae palabras significativas de un título, usando prefijos (5 chars)
+    para absorber variaciones de plural/singular (ej: antártico/antárticos)."""
+    tokens = {w for w in re.findall(r'[a-záéíóúñ]{4,}', titulo.lower())
+              if w not in _STOPWORDS}
+    return {t[:5] for t in tokens}  # Prefix para unificar sing/plural
+
+
+def verificar_duplicado_tematico(nota, historial, dias=5):
+    """Detecta si una nota cubre el mismo tema que otra ya publicada.
+    Retorna (True, id_conflicto, similitud) o False."""
+    from datetime import timedelta
+
+    if not nota or not nota.get("titulo") or not nota.get("fuente"):
+        return False
+
+    tokens_nuevos = _tokenizar_titulo(nota["titulo"])
+    if len(tokens_nuevos) < 2:
+        return False
+
+    fuente_nueva = nota["fuente"].lower()
+    hace_n_dias = (datetime.now() - timedelta(days=dias)).strftime('%Y%m%d')
+
+    for art in historial:
+        art_id = art.get("id", "")
+        art_fecha = art_id[:8] if len(art_id) >= 8 else ""
+        if art_fecha < hace_n_dias:
+            continue
+        if not art.get("titulo"):
+            continue
+
+        # Misma fuente
+        if art.get("fuente", "").lower() != fuente_nueva:
+            continue
+
+        tokens_art = _tokenizar_titulo(art["titulo"])
+        if len(tokens_art) < 2:
+            continue
+
+        inter = tokens_nuevos & tokens_art
+        union = tokens_nuevos | tokens_art
+        sim = len(inter) / len(union) if union else 0
+
+        if sim >= 0.35:
+            return (True, art["id"], sim)
+
+    return False
+
+
+def buscar_reemplazo_en_historial(historial, ids_excluidos, dias=7):
+    """Busca una nota de calidad en el historial para reemplazar una duplicada.
+    Prioriza ex-tapas, luego por fecha más reciente."""
+    from datetime import timedelta
+
+    hace_n_dias = (datetime.now() - timedelta(days=dias)).strftime('%Y%m%d')
+    ids_set = set(ids_excluidos)
+
+    candidatas = []
+    for art in historial:
+        art_id = art.get("id", "")
+        art_fecha = art_id[:8] if len(art_id) >= 8 else ""
+        if art_fecha < hace_n_dias:
+            continue
+        if art_id in ids_set:
+            continue
+        if not art.get("titulo") or not art.get("cuerpo"):
+            continue
+        es_tapa = art_id.endswith("-tapa") if art_id else False
+        candidatas.append((es_tapa, art_fecha, art))
+
+    if not candidatas:
+        # Ampliar a 14 días
+        hace_14 = (datetime.now() - timedelta(days=14)).strftime('%Y%m%d')
+        for art in historial:
+            art_id = art.get("id", "")
+            art_fecha = art_id[:8] if len(art_id) >= 8 else ""
+            if art_fecha < hace_14 or art_fecha >= hace_n_dias:
+                continue
+            if art_id in ids_set:
+                continue
+            if art.get("titulo") and art.get("cuerpo"):
+                es_tapa = art_id.endswith("-tapa") if art_id else False
+                candidatas.append((es_tapa, art_fecha, art))
+
+    if not candidatas:
+        return None
+
+    # Priorizar ex-tapas, luego más recientes
+    candidatas.sort(key=lambda x: (not x[0], x[1]), reverse=True)
+    return candidatas[0][2]
+
+
+# ══════════════════════════════════════════════════════════
 #  RSS
 # ══════════════════════════════════════════════════════════
 
@@ -1754,16 +1859,46 @@ def main():
     turismo     = resultado.get("turismo") if es_domingo else None
     ticker      = resultado.get("ticker", [])
 
+    # ══ Verificar duplicados temáticos contra historial reciente ══
+    ids_portada = set()
+    for n in [tapa] + secundarias:
+        if n and n.get("id"):
+            ids_portada.add(n.get("id"))
+
+    for nombre, nota in [("Tapa", tapa)] + [(f"Secundaria {i+1}", s) for i, s in enumerate(secundarias)]:
+        if not nota or not nota.get("titulo"):
+            continue
+        dup = verificar_duplicado_tematico(nota, historial)
+        if dup:
+            dup_id, sim = dup[1], dup[2]
+            print(f"\n  ⚠ DUPLICADO TEMÁTICO: {nombre}")
+            print(f"     \"{nota['titulo'][:80]}...\"")
+            print(f"     Similitud {sim:.0%} con: {dup_id}")
+            print(f"     Misma fuente: {nota.get('fuente')}")
+
+            reemplazo = buscar_reemplazo_en_historial(historial, ids_portada)
+            if reemplazo:
+                print(f"     → Reemplazando con: {reemplazo['titulo'][:80]}...")
+                for k in ('titulo', 'bajada', 'cuerpo', 'tag', 'categoria', 'fuente',
+                          'url_original', 'pais', 'imagen', 'imagen_keywords', 'meta', 'galeria'):
+                    if k in reemplazo:
+                        nota[k] = reemplazo[k]
+                nota['id'] = reemplazo['id']
+                nota['_reemplazo_por_dup'] = True
+                ids_portada.add(reemplazo['id'])
+            else:
+                print(f"     ⚠ Sin reemplazo disponible — se mantiene (revisar manualmente)")
+
     # Slugificar IDs de notas auto-generadas
     hoy_slug = datetime.now().strftime('%Y%m%d')
     _slug_sufijos = {'tapa': 'tapa', 'sec1': 'sec1', 'sec2': 'sec2',
                      'dep': 'dep', 'neg': 'neg', 'cul': 'cul', 'tur': 'tur'}
     for sufijo, nota in [('tapa', tapa), ('dep', deportes), ('neg', negocios),
                          ('cul', cultura), ('tur', turismo)]:
-        if nota and nota.get('titulo'):
+        if nota and nota.get('titulo') and not nota.get('_reemplazo_por_dup'):
             nota['id'] = f"{hoy_slug}-{slugify(nota['titulo'])}-{sufijo}"
     for i, nota in enumerate(secundarias, 1):
-        if nota and nota.get('titulo'):
+        if nota and nota.get('titulo') and not nota.get('_reemplazo_por_dup'):
             nota['id'] = f"{hoy_slug}-{slugify(nota['titulo'])}-sec{i}"
 
     # Normalizar tag: "Medio Ambiente" → "Ambiente"
@@ -1799,14 +1934,18 @@ def main():
                 print(f"    [{nota['id']}] galería: {len(galeria)} foto(s)")
 
     # 5. Agregar al historial: tapa + secundarias + notas de sección (con cuerpo)
+    # Las notas de reemplazo (_reemplazo_por_dup) ya están en historial, no se duplican
     extras = []
     for nota_sec in [deportes, negocios, cultura, turismo]:
         if nota_sec and nota_sec.get("cuerpo"):
             nota_sec["excluir_feed"] = True
             extras.append(nota_sec)
-    historial = [tapa] + secundarias + extras + historial
+    nuevas = [n for n in [tapa] + secundarias + extras if not n.get('_reemplazo_por_dup')]
+    for n in [tapa] + secundarias + extras:
+        n.pop('_reemplazo_por_dup', None)
+    historial = nuevas + historial
     guardar_historial(historial)
-    print(f"\n  Artículos nuevos en historial: {1 + len(secundarias) + len(extras)}")
+    print(f"\n  Artículos nuevos en historial: {len(nuevas)}")
 
     # 6. Rotaciones — cada sección recibe su nota fresca de Claude
     rotar_deportes(deportes)
