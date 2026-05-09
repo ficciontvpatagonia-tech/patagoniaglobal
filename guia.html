@@ -9,9 +9,16 @@
   <link rel="canonical" id="guia-canonical"/>
   <script>
     (function() {
-      var id = new URLSearchParams(window.location.search).get('id');
-      if (!id) { window.location.replace('/'); return; }
-      document.getElementById('guia-canonical').href = 'https://globalpatagonia.org/notas/' + id + '.html';
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get('id');
+      // Redirect guia.html?id=X → /notas/X.html (SEO: evita duplicate content)
+      if (id) {
+        var lang = params.get('lang');
+        var target = '/notas/' + id + (lang ? '-' + lang : '') + '.html';
+        window.location.replace(target);
+        return;
+      }
+      window.location.replace('/');
     })();
   </script>
   <meta name="description" id="meta-desc" content="Patagonia travel guide — GLOBALpatagonia"/>
