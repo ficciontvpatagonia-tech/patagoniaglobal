@@ -145,6 +145,18 @@
       .galeria-moderna{grid-template-columns:1fr 1fr;}
       .hero-imagen{max-height:300px;}
     }
+  
+    .relacionadas{margin-top:48px;padding-top:24px;border-top:2px solid #e0ddd8;}
+    .relacionadas-titulo{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#5a6070;margin-bottom:20px;}
+    .relacionadas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .rel-card{cursor:pointer;border-radius:4px;overflow:hidden;background:white;transition:transform 0.2s;text-decoration:none;color:inherit;display:block;}
+    .rel-card:hover{transform:translateY(-2px);}
+    .rel-img{width:100%;height:100px;object-fit:cover;display:block;background:linear-gradient(160deg,#0e1a26,#1c2d3d);}
+    .rel-body{padding:10px 12px 12px;}
+    .rel-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#3a7a5a;margin-bottom:4px;}
+    .rel-titulo{font-size:13px;font-weight:600;line-height:1.35;color:#252830;}
+    @media(max-width:600px){.relacionadas-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:480px){.relacionadas-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
@@ -291,6 +303,10 @@
     </div>
 
     <div class="nota-fuente"><strong>Fuente original:</strong> Esta nota fue elaborada con información de <strong>GLOBALpatagonia</strong>.</div>
+    <div class="relacionadas">
+      <div class="relacionadas-titulo">También te puede interesar</div>
+      <div class="relacionadas-grid"><a class="rel-card" href="/notas/historia-perito-moreno.html"><img class="rel-img" src="https://globalpatagonia.org/fotos/perito-moreno.webp" alt="El viaje de Perito Moreno al Nahuel Huapi: 147 años del primer registro científico de la Patagonia andina" onerror="this.style.display='none'"><div class="rel-body"><div class="rel-tag">Historia</div><div class="rel-titulo">El viaje de Perito Moreno al Nahuel Huapi: 147 años del primer registro científico de la Patagonia andina</div></div></a><a class="rel-card" href="/notas/20260503-tras-jubilarse-reconstruyo-una-chacra-y-hallo-su-neg.html"><img class="rel-img" src="https://globalpatagonia.org/fotos/foto-20260503-tras-jubilarse-reconstruyo-una-chacra-y-hallo-su-neg.webp" alt="Tras jubilarse reconstruyó una chacra y halló su destino entre lavandas" onerror="this.style.display='none'"><div class="rel-body"><div class="rel-tag">Economía</div><div class="rel-titulo">Tras jubilarse reconstruyó una chacra y halló su destino entre lavandas</div></div></a><a class="rel-card" href="/notas/20260420-propio-malvinas-alimentos.html"><img class="rel-img" src="https://globalpatagonia.org/fotos/malvinas_stanley_dock.webp" alt="Crisis alimentaria en las Islas Malvinas" onerror="this.style.display='none'"><div class="rel-body"><div class="rel-tag">Soberanía</div><div class="rel-titulo">Crisis alimentaria en las Islas Malvinas</div></div></a></div>
+    </div>
     <a href="../" class="ver-completo">← Más noticias en GLOBALpatagonia</a>
     <div class="compartir-bloque" id="compartir-bloque"></div>
   </article>
