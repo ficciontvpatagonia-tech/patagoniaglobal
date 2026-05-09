@@ -7,6 +7,14 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="canonical" href="https://globalpatagonia.org/agenda.html"/>
   <meta name="description" content="Eventos, festivales y competencias en la Patagonia argentina y chilena."/>
+  <meta property="og:title" content="Agenda Patagónica — GLOBALpatagonia"/>
+  <meta property="og:description" content="Eventos, festivales y competencias en la Patagonia argentina y chilena."/>
+  <meta property="og:image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
+  <meta property="og:url" content="https://globalpatagonia.org/agenda.html"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Agenda Patagónica — GLOBALpatagonia"/>
+  <meta name="twitter:description" content="Eventos, festivales y competencias en la Patagonia argentina y chilena."/>
+  <meta name="twitter:image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5FP2F41BZG');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -264,6 +272,26 @@ fetch('agenda.json')
   .then(data => {
     todosEventos = data;
     render();
+    // JSON-LD Event schema
+    const eventosLD = data.map(e => ({
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": e.titulo,
+      "description": e.descripcion || "",
+      "startDate": e.fecha + (e.fecha_fin ? "" : "T00:00"),
+      "endDate": (e.fecha_fin || e.fecha) + "T23:59",
+      "location": {
+        "@type": "Place",
+        "name": e.lugar,
+        "address": e.region
+      },
+      "eventStatus": "https://schema.org/EventScheduled",
+      "organizer": { "@type": "Organization", "name": "GLOBALpatagonia", "url": "https://globalpatagonia.org/" }
+    }));
+    const scriptLD = document.createElement("script");
+    scriptLD.type = "application/ld+json";
+    scriptLD.textContent = JSON.stringify(eventosLD, null, 0);
+    document.head.appendChild(scriptLD);
   })
   .catch(() => {
     document.getElementById('agenda-grid').innerHTML = '<div class="empty">No se pudo cargar la agenda.</div>';

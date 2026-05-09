@@ -811,6 +811,36 @@ fetch("videos.json").then(r => r.json()).then(videos => {
   // Todo el catálogo
   if (agrupados.length > 1) filasEl.appendChild(crearFila("Todo el catálogo", agrupados));
 
+  // JSON-LD VideoObject schema (un item por video individual, no duplicados de serie)
+  const vistosLD = new Set();
+  const videosLD = [];
+  videos.forEach(v => {
+    if (!v.youtube_id || vistosLD.has(v.youtube_id)) return;
+    vistosLD.add(v.youtube_id);
+    const durMin = parseInt(v.duracion) || 0;
+    videosLD.push({
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": v.titulo,
+      "description": v.descripcion || "",
+      "thumbnailUrl": v.thumbnail
+        ? (v.thumbnail.startsWith("http") ? v.thumbnail : `https://globalpatagonia.org/${v.thumbnail}`)
+        : "",
+      "duration": durMin ? `PT${durMin}M` : "",
+      "embedUrl": `https://www.youtube.com/embed/${v.youtube_id}`,
+      "contentUrl": `https://www.youtube.com/watch?v=${v.youtube_id}`,
+      "uploadDate": v.año ? `${v.año}-01-01` : "2026-01-01",
+      "genre": v.categoria || "",
+      "publisher": { "@type": "Organization", "name": "GLOBALpatagonia", "url": "https://globalpatagonia.org/" }
+    });
+  });
+  if (videosLD.length) {
+    const scriptLD = document.createElement("script");
+    scriptLD.type = "application/ld+json";
+    scriptLD.textContent = JSON.stringify(videosLD, null, 0);
+    document.head.appendChild(scriptLD);
+  }
+
 }).catch(() => {
   document.getElementById("carousel").innerHTML = '<div class="empty">No se pudieron cargar los videos.</div>';
 });
