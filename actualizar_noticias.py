@@ -495,6 +495,24 @@ Resumen: {n['resumen_original']}
 URL: {n['url']}
 """
 
+    # Títulos publicados en los últimos 5 días para que Claude evite repetir temas
+    from datetime import timedelta
+    hace_5_dias = (datetime.now() - timedelta(days=5)).strftime('%Y%m%d')
+    titulos_recientes = []
+    for art in historial:
+        art_id = art.get("id", "")
+        art_fecha = art_id[:8] if len(art_id) >= 8 else ""
+        if art_fecha >= hace_5_dias and art.get("titulo"):
+            titulos_recientes.append(f"- {art.get('titulo')}")
+    temas_recientes_bloque = ""
+    if titulos_recientes:
+        temas_recientes_bloque = (
+            "\nTEMAS YA CUBIERTOS en los últimos 5 días "
+            "(NO elegir notas sobre el mismo tema aunque la URL sea diferente):\n"
+            + "\n".join(titulos_recientes[:40])
+            + "\n"
+        )
+
     hoy = datetime.now().strftime('%Y%m%d-%H%M')
 
     seccion_domingo = ""
@@ -650,7 +668,8 @@ REGLAS CRÍTICAS:
 - Cada sección debe usar una noticia DISTINTA (URLs diferentes).
 - Si no hay nota de deportes patagónicos disponible hoy, poné null en "deportes".
 - Si no hay nota de economía/empresas, poné null en "negocios".
-{"- HOY ES DOMINGO: completar cultura y turismo con notas del RSS de hoy." if es_domingo else "- Hoy no es domingo: cultura y turismo van en null."}"""
+{"- HOY ES DOMINGO: completar cultura y turismo con notas del RSS de hoy." if es_domingo else "- Hoy no es domingo: cultura y turismo van en null."}
+{temas_recientes_bloque}"""
 
     def _extraer_json(texto):
         if "```" in texto:
