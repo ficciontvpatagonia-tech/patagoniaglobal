@@ -1503,6 +1503,11 @@
   </script>
 
   <!-- Fila noticias aventura rápidas — dinámico desde deportes_feed.json -->
+  <style>
+    @keyframes dep-shimmer { 0%,100%{transform:translateX(-100%)} 50%{transform:translateX(100%)} }
+    @keyframes dep-bar { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+    @keyframes dep-pulse { 0%,100%{opacity:.7} 50%{opacity:1} }
+  </style>
   <div id="deportes-row" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:4px;"></div>
   <script>
   (function(){
@@ -1530,6 +1535,28 @@
             </div>
           </a>`;
         }).join('');
+
+        /* Cuadro newsletter — completa el slot vacío */
+        const ad = document.createElement('a');
+        ad.href = '#sec-newsletter';
+        ad.style.cssText = 'text-decoration:none;color:inherit;';
+        ad.innerHTML = `
+          <div style="background:#1c2d3d;border-radius:4px;border-left:3px solid #7aadcc;box-shadow:0 2px 8px rgba(0,0,0,0.18);overflow:hidden;position:relative;height:100%;min-height:148px;display:flex;flex-direction:column;">
+            <!-- shimmer -->
+            <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
+              <div style="position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(122,173,204,0.10) 50%,transparent 65%);animation:dep-shimmer 4s ease-in-out infinite;"></div>
+            </div>
+            <!-- cuerpo -->
+            <div style="padding:16px 14px 12px;flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;">
+              <div style="font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7aadcc;margin-bottom:10px;animation:dep-pulse 3s ease-in-out infinite;">📩 Newsletter</div>
+              <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;line-height:1.3;color:#fff;margin-bottom:8px;">La Patagonia<br>en tu bandeja</div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.5);line-height:1.5;margin-bottom:14px;">Novedades semanales del sur del mundo</div>
+              <div style="background:#7aadcc;color:#1c2d3d;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border-radius:3px;display:inline-block;width:fit-content;transition:background .2s;">Suscribite →</div>
+            </div>
+            <!-- barra animada -->
+            <div style="height:3px;background:linear-gradient(90deg,#7aadcc,#8c6b4a,#1c2d3d,#7aadcc);background-size:300% 100%;animation:dep-bar 5s linear infinite;flex-shrink:0;"></div>
+          </div>`;
+        row.appendChild(ad);
       })
       .catch(() => {});
   })();
