@@ -1513,6 +1513,14 @@ def inyectar_tapa_en_index(datos):
         nuevo, flags=re.DOTALL
     )
 
+    # ── Inyectar fb:pages meta tag ───────────────────────────────────────────
+    fb_page_id = os.environ.get("FACEBOOK_PAGE_ID", "")
+    if fb_page_id:
+        nuevo = nuevo.replace(
+            "<!-- FB-PAGES-META -->",
+            f'<meta property="fb:pages" content="{fb_page_id}"/>'
+        )
+
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(nuevo)
     print(f"  Tapa inyectada en index.html ✓ ({len(noticias)} noticias semana)")
@@ -2094,6 +2102,9 @@ def main():
     print(f"\n  Actualizando sitemap...")
     actualizar_sitemap()
 
+    print(f"\n  Generando news sitemap...")
+    generar_news_sitemap()
+
     print(f"\n  ✓ Listo — {fecha_display()}")
     print(f"{'='*55}\n")
 
@@ -2226,6 +2237,10 @@ def generar_paginas_og(notas):
   <meta name="twitter:title" content="{ea(titulo)} — GLOBALpatagonia"/>
   <meta name="twitter:description" content="{ea(bajada)}"/>
   <meta name="twitter:image" content="{ea(imagen_abs)}"/>
+  <meta property="article:published_time" content="{ea(fecha_iso)}"/>
+  <meta property="article:author" content="https://www.facebook.com/PatagoniaGLOBAL"/>
+  {f'<meta property="article:section" content="{ea(tag)}"/>' if tag else ''}
+  {f'<meta property="fb:pages" content="{ea(os.environ.get("FACEBOOK_PAGE_ID", ""))}"/>' if os.environ.get("FACEBOOK_PAGE_ID") else ''}
   <script type="application/ld+json">{jsonld}</script>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
   <!-- Google Analytics -->
@@ -2869,6 +2884,120 @@ def actualizar_sitemap():
         f.write("\n".join(lines))
 
     print(f"    Sitemap OK — {len(ids)} notas + {len(static)} páginas estáticas")
+
+
+# ══════════════════════════════════════════════════════════
+#  GOOGLE NEWS SITEMAP
+# ══════════════════════════════════════════════════════════
+
+def generar_news_sitemap():
+    """Genera news-sitemap.xml con artículos de las últimas 48h — Google News."""
+    from datetime import timezone, timedelta
+
+    base = os.path.dirname(__file__)
+    ahora = datetime.now(timezone.utc)
+    hace_48h = ahora - timedelta(hours=48)
+
+    def fecha_w3c(nota_id):
+        """Convierte ID YYYYMMDD a fecha W3C con timezone Argentina (UTC−3)."""
+        try:
+            yyyymmdd = nota_id[:8]
+            dt = datetime.strptime(yyyymmdd, "%Y%m%d").replace(
+                hour=9, minute=0, second=0, tzinfo=timezone(timedelta(hours=-3))
+            )
+            return dt.isoformat()
+        except Exception:
+            return ahora.astimezone(timezone(timedelta(hours=-3))).isoformat()
+
+    def fecha_de_id_a_datetime(nota_id):
+        try:
+            return datetime.strptime(nota_id[:8], "%Y%m%d").replace(tzinfo=timezone.utc)
+        except Exception:
+            return ahora
+
+    # Recolectar notas de noticias.json (tapa + secundarias + ticker)
+    vistas = set()
+    notas = []
+
+    def agregar(n, fuente_json="noticias.json"):
+        nid = n.get("id", "")
+        if not nid or nid in vistas:
+            return
+        dt = fecha_de_id_a_datetime(nid)
+        if dt < hace_48h:
+            return
+        vistas.add(nid)
+        notas.append((n, dt))
+
+    try:
+        with open(os.path.join(base, "noticias.json"), encoding="utf-8") as f:
+            nj = json.load(f)
+        tapa = nj.get("tapa") or {}
+        if tapa.get("id"):
+            agregar(tapa)
+        for n in (nj.get("secundarias") or []):
+            agregar(n)
+        for n in (nj.get("ticker") or []):
+            agregar(n)
+    except Exception:
+        pass
+
+    # También incluir propios de las últimas 48h
+    try:
+        with open(os.path.join(base, "propios.json"), encoding="utf-8") as f:
+            propios = json.load(f)
+        for n in (propios if isinstance(propios, list) else propios.get("notas", [])):
+            agregar(n)
+    except Exception:
+        pass
+
+    if not notas:
+        print("  News Sitemap: sin artículos en las últimas 48h, se omite.")
+        return
+
+    import html as htmllib
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+        '        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">',
+    ]
+
+    for n, _ in sorted(notas, key=lambda x: x[0].get("id", ""), reverse=True):
+        nid = n.get("id", "")
+        url = f"https://globalpatagonia.org/notas/{nid}.html"
+        titulo = htmllib.escape(n.get("titulo", "GLOBALpatagonia"))
+        pub_date = fecha_w3c(nid)
+        lang = n.get("lang", "es")
+        if lang == "en":
+            news_lang = "en"
+        elif lang == "pt":
+            news_lang = "pt"
+        elif lang == "zh":
+            news_lang = "zh-Hans"
+        else:
+            news_lang = "es"
+
+        lines += [
+            "  <url>",
+            f"    <loc>{url}</loc>",
+            "    <news:news>",
+            "      <news:publication>",
+            "        <news:name>GLOBALpatagonia</news:name>",
+            f"        <news:language>{news_lang}</news:language>",
+            "      </news:publication>",
+            f"      <news:publication_date>{pub_date}</news:publication_date>",
+            f"      <news:title>{titulo}</news:title>",
+            "    </news:news>",
+            "  </url>",
+        ]
+
+    lines.append("</urlset>")
+
+    sitemap_path = os.path.join(base, "news-sitemap.xml")
+    with open(sitemap_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+
+    print(f"  News Sitemap OK — {len(notas)} artículos (últimas 48h)")
 
 
 # ══════════════════════════════════════════════════════════
