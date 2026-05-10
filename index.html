@@ -1540,34 +1540,7 @@
           </a>`;
         }).join('');
 
-        /* Flyer newsletter animado — completa el 4to slot */
-        const nlCard = document.createElement('div');
-        nlCard.style.cssText = 'cursor:pointer;border-radius:4px;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(0,0,0,0.15);';
-        nlCard.innerHTML = `
-          <div style="position:absolute;inset:0;background:linear-gradient(145deg,#1c2d3d 0%,#253b50 60%,#1a2a38 100%);"></div>
-          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7aadcc,#8c6b4a,#7aadcc);background-size:200%;animation:nl-bar 6s linear infinite;"></div>
-          <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
-            <div style="position:absolute;top:0;bottom:0;width:40%;background:linear-gradient(90deg,transparent,rgba(122,173,204,0.08),transparent);animation:nl-sweep 5s ease-in-out infinite;"></div>
-          </div>
-          <div style="position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px 16px;box-sizing:border-box;gap:10px;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(122,173,204,0.6);animation:nl-fade .7s ease forwards;">
-              📩 Newsletter
-            </div>
-            <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#fff;line-height:1.15;opacity:0;animation:nl-fade .8s ease .5s forwards;">
-              Toda la<br>Patagonia<br>en un solo lugar
-            </div>
-            <div style="font-size:12px;color:rgba(122,173,204,0.9);opacity:0;animation:nl-fade .8s ease 1.2s forwards;">
-              Suscribite gratis
-            </div>
-            <div style="background:#7aadcc;color:#1c2d3d;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:9px 20px;border-radius:3px;opacity:0;animation:nl-fade .8s ease 1.9s forwards;">
-              Suscribite →
-            </div>
-          </div>`;
-        nlCard.addEventListener('click', () => {
-          const m = document.getElementById('nl-modal');
-          if (m) { m.style.display = 'flex'; document.getElementById('nl-modal-email').focus(); }
-        });
-        row.appendChild(nlCard);
+        llenarHuecos(row, cards.length, 4, 'row');
       })
       .catch(() => {});
   })();
@@ -2078,6 +2051,7 @@ function renderTurismo(turismo) {
 
   const rowEl = document.getElementById("turismo-row");
   if (rowEl) {
+    const maxRow = 4;
     if (!rowCards.length) { rowEl.style.display = 'none'; return; }
     const ACCENT = ['#3a7a6a','#7aadcc','#8c6b4a','#2a6a4a'];
     rowEl.innerHTML = rowCards.map((c, i) => {
@@ -2094,6 +2068,7 @@ function renderTurismo(turismo) {
         </div>
       </a>`;
     }).join('');
+    llenarHuecos(rowEl, rowCards.length, maxRow, 'row');
   }
 }
 
@@ -2124,11 +2099,73 @@ fetch("turismo.json")
   .then(turismo => renderTurismo(turismo))
   .catch(() => {});
 
+// ── Sistema de tarjetas filler — ocupan slots vacíos (máx 1 de cada tipo por sección) ──
+const FILLER_TIPOS = ['cinemateca', 'newsletter'];
+
+function fillerCardHTML(tipo, context) {
+  if (tipo === 'cinemateca') {
+    const img = 'fotos/ad-cinemateca.png';
+    if (context === 'guia') {
+      return `<a href="videos.html" class="destino-card" style="text-decoration:none;">
+        <div class="destino-header" style="background-image:url('${img}');background-size:cover;background-position:center;">
+          <div class="destino-nombre">Cinemateca Patagónica</div>
+        </div>
+        <div class="destino-body">
+          <div class="destino-tagline">Cine, series y documentales del sur del mundo</div>
+          <div class="destino-cta">Ver colección →</div>
+        </div>
+      </a>`;
+    }
+    return `<a href="videos.html" style="text-decoration:none;color:inherit;display:block;">
+      <div style="background:white;border-radius:4px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.08);cursor:pointer;transition:transform 0.2s;height:100%;">
+        <div style="background-image:url('${img}');background-size:cover;background-position:center;height:120px;"></div>
+        <div style="padding:12px 14px;text-align:center;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#7aadcc;margin-bottom:5px;">🎬 Cinemateca</div>
+          <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#252830;line-height:1.3;">Cine, series y documentales del sur</div>
+        </div>
+      </div>
+    </a>`;
+  }
+  if (tipo === 'newsletter') {
+    return `<div class="filler-nl-card" style="cursor:pointer;border-radius:4px;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+      <div style="position:absolute;inset:0;background:linear-gradient(145deg,#1c2d3d 0%,#253b50 60%,#1a2a38 100%);"></div>
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7aadcc,#8c6b4a,#7aadcc);background-size:200%;animation:nl-bar 6s linear infinite;"></div>
+      <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
+        <div style="position:absolute;top:0;bottom:0;width:40%;background:linear-gradient(90deg,transparent,rgba(122,173,204,0.08),transparent);animation:nl-sweep 5s ease-in-out infinite;"></div>
+      </div>
+      <div style="position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px 16px;box-sizing:border-box;gap:10px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(122,173,204,0.6);animation:nl-fade .7s ease forwards;">📩 Newsletter</div>
+        <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#fff;line-height:1.15;opacity:0;animation:nl-fade .8s ease .5s forwards;">Toda la<br>Patagonia<br>en un solo lugar</div>
+        <div style="font-size:12px;color:rgba(122,173,204,0.9);opacity:0;animation:nl-fade .8s ease 1.2s forwards;">Suscribite gratis</div>
+        <div style="background:#7aadcc;color:#1c2d3d;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:9px 20px;border-radius:3px;opacity:0;animation:nl-fade .8s ease 1.9s forwards;">Suscribite →</div>
+      </div>
+    </div>`;
+  }
+  return '';
+}
+
+function llenarHuecos(container, cantidadActual, maxSlots, context) {
+  const cuantos = Math.min(maxSlots - cantidadActual, FILLER_TIPOS.length);
+  for (let i = 0; i < cuantos; i++) {
+    container.insertAdjacentHTML('beforeend', fillerCardHTML(FILLER_TIPOS[i], context));
+  }
+}
+
+// Click handler global para tarjetas filler de newsletter
+document.addEventListener('click', function(e) {
+  const card = e.target.closest('.filler-nl-card');
+  if (card) {
+    const m = document.getElementById('nl-modal');
+    if (m) { m.style.display = 'flex'; document.getElementById('nl-modal-email').focus(); }
+  }
+});
+
 // ── GUIAS: carga desde guias.json — máx 8 ──
 function renderGuias(guias) {
   const container = document.getElementById("guias-container");
   if (!container || !guias || !guias.length) return;
-  const visibles = guias.slice(0, 8);
+  const maxSlots = 8;
+  const visibles = guias.slice(0, maxSlots);
   container.innerHTML = visibles.map(g => {
     const bg = g.imagen
       ? `background-image:url('${g.imagen}');background-size:cover;background-position:center;`
@@ -2144,6 +2181,7 @@ function renderGuias(guias) {
         </div>
       </a>`;
   }).join("");
+  llenarHuecos(container, visibles.length, maxSlots, 'guia');
 }
 
 fetch("guias.json")
@@ -2155,7 +2193,8 @@ fetch("guias.json")
 function renderNegocios(arts) {
   const container = document.getElementById("negocios-container");
   if (!container || !arts || !arts.length) return;
-  const visibles = arts.slice(0, 6);
+  const maxSlots = 6;
+  const visibles = arts.slice(0, maxSlots);
   container.innerHTML = visibles.map(a => {
     const bg = a.imagen
       ? `background-image:url('${a.imagen}');background-size:cover;background-position:center;`
@@ -2172,6 +2211,7 @@ function renderNegocios(arts) {
         </div>
       </a>`;
   }).join("");
+  llenarHuecos(container, visibles.length, maxSlots, 'row');
 }
 
 fetch("negocios.json")
@@ -2183,7 +2223,8 @@ fetch("negocios.json")
 function renderCultura(arts) {
   const container = document.getElementById("cultura-container");
   if (!container || !arts || !arts.length) return;
-  const visibles = arts.slice(0, 6);
+  const maxSlots = 6;
+  const visibles = arts.slice(0, maxSlots);
   container.innerHTML = visibles.map(a => {
     const bg = a.imagen
       ? `background-image:url('${a.imagen}');background-size:cover;background-position:center top;`
@@ -2203,6 +2244,7 @@ function renderCultura(arts) {
       </div>
       </a>`;
   }).join("");
+  llenarHuecos(container, visibles.length, maxSlots, 'row');
 }
 
 fetch("cultura.json")
