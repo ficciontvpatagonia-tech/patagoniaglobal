@@ -1540,7 +1540,8 @@
           </a>`;
         }).join('');
 
-        llenarHuecos(row, cards.length, 4, 'row');
+        FILLER_USADOS.add('newsletter');
+        row.insertAdjacentHTML('beforeend', fillerCardHTML('newsletter', 'row'));
       })
       .catch(() => {});
   })();
