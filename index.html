@@ -2051,7 +2051,6 @@ function renderTurismo(turismo) {
 
   const rowEl = document.getElementById("turismo-row");
   if (rowEl) {
-    const maxRow = 4;
     if (!rowCards.length) { rowEl.style.display = 'none'; return; }
     const ACCENT = ['#3a7a6a','#7aadcc','#8c6b4a','#2a6a4a'];
     rowEl.innerHTML = rowCards.map((c, i) => {
@@ -2068,7 +2067,6 @@ function renderTurismo(turismo) {
         </div>
       </a>`;
     }).join('');
-    llenarHuecos(rowEl, rowCards.length, maxRow, 'row');
   }
 }
 
@@ -2099,31 +2097,21 @@ fetch("turismo.json")
   .then(turismo => renderTurismo(turismo))
   .catch(() => {});
 
-// ── Sistema de tarjetas filler — ocupan slots vacíos (máx 1 de cada tipo por sección) ──
-const FILLER_TIPOS = ['cinemateca', 'newsletter'];
+// ── Sistema de tarjetas filler — cada tipo aparece máximo 1 vez en todo el sitio ──
+const FILLER_USADOS = new Set();
 
 function fillerCardHTML(tipo, context) {
   if (tipo === 'cinemateca') {
     const img = 'fotos/ad-cinemateca.png';
     if (context === 'guia') {
       return `<a href="videos.html" class="destino-card" style="text-decoration:none;">
-        <div class="destino-header" style="background-image:url('${img}');background-size:cover;background-position:center;">
-          <div class="destino-nombre">Cinemateca Patagónica</div>
-        </div>
-        <div class="destino-body">
-          <div class="destino-tagline">Cine, series y documentales del sur del mundo</div>
-          <div class="destino-cta">Ver colección →</div>
+        <div style="background-image:url('${img}');background-size:cover;background-position:center;flex:1;position:relative;display:flex;align-items:flex-end;border-radius:8px 8px 0 0;">
+          <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;padding:12px 14px 10px;text-shadow:0 1px 6px rgba(0,0,0,0.6);line-height:1.1;color:white;position:relative;z-index:1;background:linear-gradient(to bottom,transparent 30%,rgba(0,0,0,0.65) 100%);width:100%;">Cinemateca Patagónica</div>
         </div>
       </a>`;
     }
     return `<a href="videos.html" style="text-decoration:none;color:inherit;display:block;">
-      <div style="background:white;border-radius:4px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.08);cursor:pointer;transition:transform 0.2s;height:100%;">
-        <div style="background-image:url('${img}');background-size:cover;background-position:center;height:120px;"></div>
-        <div style="padding:12px 14px;text-align:center;">
-          <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#7aadcc;margin-bottom:5px;">🎬 Cinemateca</div>
-          <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#252830;line-height:1.3;">Cine, series y documentales del sur</div>
-        </div>
-      </div>
+      <div style="background-image:url('${img}');background-size:cover;background-position:center;height:100%;min-height:180px;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.12);cursor:pointer;transition:transform 0.2s;"></div>
     </a>`;
   }
   if (tipo === 'newsletter') {
@@ -2145,9 +2133,11 @@ function fillerCardHTML(tipo, context) {
 }
 
 function llenarHuecos(container, cantidadActual, maxSlots, context) {
-  const cuantos = Math.min(maxSlots - cantidadActual, FILLER_TIPOS.length);
+  const disponibles = ['cinemateca', 'newsletter'].filter(t => !FILLER_USADOS.has(t));
+  const cuantos = Math.min(maxSlots - cantidadActual, disponibles.length);
   for (let i = 0; i < cuantos; i++) {
-    container.insertAdjacentHTML('beforeend', fillerCardHTML(FILLER_TIPOS[i], context));
+    FILLER_USADOS.add(disponibles[i]);
+    container.insertAdjacentHTML('beforeend', fillerCardHTML(disponibles[i], context));
   }
 }
 
@@ -2193,8 +2183,7 @@ fetch("guias.json")
 function renderNegocios(arts) {
   const container = document.getElementById("negocios-container");
   if (!container || !arts || !arts.length) return;
-  const maxSlots = 6;
-  const visibles = arts.slice(0, maxSlots);
+  const visibles = arts.slice(0, 6);
   container.innerHTML = visibles.map(a => {
     const bg = a.imagen
       ? `background-image:url('${a.imagen}');background-size:cover;background-position:center;`
@@ -2211,7 +2200,6 @@ function renderNegocios(arts) {
         </div>
       </a>`;
   }).join("");
-  llenarHuecos(container, visibles.length, maxSlots, 'row');
 }
 
 fetch("negocios.json")
@@ -2223,8 +2211,7 @@ fetch("negocios.json")
 function renderCultura(arts) {
   const container = document.getElementById("cultura-container");
   if (!container || !arts || !arts.length) return;
-  const maxSlots = 6;
-  const visibles = arts.slice(0, maxSlots);
+  const visibles = arts.slice(0, 6);
   container.innerHTML = visibles.map(a => {
     const bg = a.imagen
       ? `background-image:url('${a.imagen}');background-size:cover;background-position:center top;`
@@ -2244,7 +2231,6 @@ function renderCultura(arts) {
       </div>
       </a>`;
   }).join("");
-  llenarHuecos(container, visibles.length, maxSlots, 'row');
 }
 
 fetch("cultura.json")
