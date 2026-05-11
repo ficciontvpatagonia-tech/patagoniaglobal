@@ -88,6 +88,11 @@
     .consejo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
     .consejo-item{background:white;border-radius:6px;padding:16px 18px;box-shadow:0 2px 6px rgba(0,0,0,0.06);font-size:14px;line-height:1.6;color:#2a2a2a;}
     .consejo-item::before{content:"✓ ";color:#8ab8d4;font-weight:700;}
+    .foto-pueblos-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:28px 0;}
+    .foto-pueblos-item{border-radius:6px;overflow:hidden;background:#1c2d3d;}
+    .foto-pueblos-item img{width:100%;height:230px;object-fit:cover;display:block;filter:sepia(10%) contrast(1.05);}
+    .foto-pueblos-caption{font-size:11px;color:rgba(255,255,255,0.65);font-style:italic;padding:8px 12px;background:#1c2d3d;line-height:1.45;}
+    @media(max-width:600px){.foto-pueblos-grid{grid-template-columns:1fr;}}
     .ver-mas{display:inline-flex;align-items:center;gap:8px;margin:32px 0;padding:12px 24px;background:var(--verde);color:white;text-decoration:none;border-radius:3px;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
     .ver-mas:hover{opacity:0.85;}
     .divider-footer{height:2px;background:linear-gradient(90deg,#1c2d3d,#7aadcc,#1c2d3d);}
@@ -182,9 +187,30 @@
   <!-- HISTORIA -->
   <div class="guia-seccion">
     <h2>Historia: el fin del mundo no era un lugar vacío</h2>
-    <p><strong>Los yaganes vivieron aquí 7.000 años.</strong> Sin ropa —cubrían el cuerpo con grasa de lobo marino y encendían fuego dentro de las canoas— soportaban temperaturas bajo cero mientras navegaban por los canales cazando lobos marinos y recolectando mariscos. Cuando Charles Darwin los observó en 1833 durante el viaje del HMS Beagle, los describió como los seres más "miserables" que jamás había visto. Se equivocó profundamente: su adaptación al ambiente era extraordinaria, y su cultura —con un idioma de enorme complejidad— llevaba milenios en estas costas.</p>
-    <p>El Capitán FitzRoy, comandante del Beagle, había llevado tres jóvenes yaganes a Inglaterra en el viaje anterior: York Minster, Fuegia Basket y Jemmy Button. Los presentó ante el Rey Jorge IV, los enseñó a vestirse y a hablar inglés, y los devolvió al Canal Beagle con la idea de "civilizarlos". El experimento fracasó: volvieron a su vida yagana en semanas. Darwin nunca olvidó la experiencia —influyó directamente en su pensamiento sobre la evolución. La última hablante nativa del yagán, <strong>Cristina Calderón</strong>, murió en febrero de 2022 en Puerto Williams, Chile, al otro lado del Canal Beagle, a pocos kilómetros de donde todo empezó.</p>
-    <p><strong>El presidio que construyó una ciudad.</strong> En 1884, el Comodoro Augusto Lasserre fundó oficialmente Ushuaia. Décadas después, entre 1902 y 1920, el Estado argentino edificó la cárcel que definiría el destino del lugar: los propios presos talaron los bosques, construyeron el ferrocarril, el edificio y prácticamente la infraestructura de la ciudad. El presidio albergó a los criminales más peligrosos del país. Dos de sus reclusos más famosos: <strong>Simón Radowitzky</strong>, el anarquista ucraniano que en 1909 asesinó al Jefe de Policía de Buenos Aires —quien había masacrado obreros en una protesta— y cumplió 21 años de condena aquí antes de ser liberado por presión popular; y <strong>Cayetano Santos Godino</strong>, "El Petiso Orejudo", uno de los primeros asesinos en serie documentados de Argentina, que murió en Ushuaia en 1944 sin haber salido jamás. El presidio cerró en 1947. Muchos expresos y guardias se quedaron a vivir —la ciudad que existe hoy la construyeron, en buena parte, ellos.</p>
+    <p><strong>Los yaganes vivieron en estas costas por más de 7.000 años.</strong> Pueblo del mar y de los canales, cazaban lobos marinos y recolectaban mariscos navegando en canoas de corteza a través de aguas heladas. No usaban ropa: cubrían el cuerpo con grasa de lobo marino y encendían fuego adentro de las canoas. Cuando Charles Darwin los observó en 1833 durante el viaje del HMS Beagle, los describió como los seres más "miserables" que jamás había visto. Se equivocó profundamente: su adaptación al ambiente era extraordinaria, y el yagán era —y es— uno de los idiomas más complejos de los que se tiene registro.</p>
+    <p><strong>Los selknam</strong> habitaron el interior de la isla —cazadores de guanaco que recorrían los bosques y la estepa fueguina con arcos y lanzas. Su ceremonia del Hain (Kloketen) es una de las más documentadas y enigmáticas de Sudamérica: figuras pintadas de negro con manchas blancas y máscaras cónicas encarnan a espíritus que, según la tradición, dominaban a las mujeres del pueblo. El etnógrafo austríaco Martin Gusinde, que vivió entre los selknam en los años 1920 y fotografió la ceremonia, reveló que los "espíritus" eran hombres disfrazados —el Hain era un elaborado teatro para mantener el orden social. Gusinde fue también el último testigo externo de una cultura en extinción: la colonización y las cacerías promovidas por los estancieros habían diezmado a los selknam en pocas décadas.</p>
+
+    <div class="foto-pueblos-grid">
+      <div class="foto-pueblos-item">
+        <img src="../fotos/ushuaia-selknam-hain-ceremonia.jpg" alt="Figura selknam en la ceremonia del Hain — cuerpo pintado de negro con manchas blancas y máscara cónica, Tierra del Fuego c. 1923" loading="lazy"/>
+        <div class="foto-pueblos-caption">Ceremonia del Hain (Kloketen) selknam. Fotografía de Martin Gusinde, c. 1923.</div>
+      </div>
+      <div class="foto-pueblos-item">
+        <img src="../fotos/ushuaia-selknam-familia.jpg" alt="Familia selknam con capas de guanaco y pintura facial blanca — Tierra del Fuego, inicios del siglo XX" loading="lazy"/>
+        <div class="foto-pueblos-caption">Familia selknam con pieles de guanaco y pintura facial. Tierra del Fuego, inicios del siglo XX.</div>
+      </div>
+      <div class="foto-pueblos-item">
+        <img src="../fotos/ushuaia-selknam-cazadores.jpg" alt="Dos cazadores selknam con capas de guanaco y arcos — retrato etnográfico de Tierra del Fuego" loading="lazy"/>
+        <div class="foto-pueblos-caption">Cazadores selknam con arcos y capas de piel de guanaco. Archivo etnográfico, siglo XIX.</div>
+      </div>
+      <div class="foto-pueblos-item">
+        <img src="../fotos/ushuaia-yagan-ninos.jpg" alt="Tres niños yaganes — retrato etnográfico en los bosques de Tierra del Fuego, inicios del siglo XX" loading="lazy"/>
+        <div class="foto-pueblos-caption">Niños yaganes en los bosques del Canal Beagle. Tierra del Fuego, inicios del siglo XX.</div>
+      </div>
+    </div>
+
+    <p>El Capitán FitzRoy, comandante del Beagle, había llevado tres jóvenes yaganes a Inglaterra en el viaje anterior: York Minster, Fuegia Basket y Jemmy Button. Los presentó ante el Rey Jorge IV, los enseñó a vestirse y a hablar inglés, y los devolvió al Canal Beagle con la idea de "civilizarlos". El experimento fracasó en semanas. Darwin nunca olvidó la experiencia —influyó directamente en su pensamiento sobre la evolución y la unidad de la especie humana. La última hablante nativa del yagán, <strong>Cristina Calderón</strong>, murió en febrero de 2022 en Puerto Williams, Chile, al otro lado del Canal Beagle.</p>
+    <p><strong>El presidio que construyó una ciudad.</strong> En 1884 el Comodoro Augusto Lasserre fundó oficialmente Ushuaia. Décadas después, entre 1902 y 1920, el Estado argentino edificó la cárcel que definiría el destino del lugar: los propios presos talaron los bosques, construyeron el ferrocarril y prácticamente la infraestructura de la ciudad. El presidio albergó a los criminales más peligrosos del país. Entre sus reclusos más famosos: <strong>Simón Radowitzky</strong>, el anarquista que en 1909 asesinó al Jefe de Policía de Buenos Aires —quien había masacrado obreros en una protesta— y cumplió 21 años aquí antes de ser liberado por presión popular; y <strong>Cayetano Santos Godino</strong>, "El Petiso Orejudo", uno de los primeros asesinos en serie documentados de Argentina, que murió en Ushuaia en 1944 sin haber salido jamás. El presidio cerró en 1947. Muchos expresos y guardias se quedaron a vivir: la ciudad que existe hoy la construyeron, en buena parte, ellos.</p>
   </div>
 
   <!-- ¿CUÁNDO IR? -->
