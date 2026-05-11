@@ -122,7 +122,17 @@
     }
 
     .top-bar .fecha { color: #ccc; }
-    .top-bar .clima { color: #8ab8d4; font-weight: 600; }
+    .top-bar .clima-btn {
+      color: #8ab8d4; font-weight: 600; text-decoration: none;
+      background: rgba(122,173,204,0.1);
+      border: 1px solid rgba(122,173,204,0.22);
+      border-radius: 20px;
+      padding: 3px 12px 3px 10px;
+      display: inline-flex; align-items: center; gap: 5px;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .top-bar .clima-btn:hover { background: rgba(122,173,204,0.22); color: #fff; border-color: rgba(122,173,204,0.45); }
 
     .header-main {
       display: flex;
@@ -1219,7 +1229,7 @@
 
       /* Header */
       .top-bar { padding: 5px 12px; font-size: 10px; }
-      .top-bar .clima { display: none; }
+      .top-bar .clima-btn { display: none; }
       .header-main { padding: 16px 16px 12px; }
       .logo-img { max-height: 110px; height: auto; }
       .logo-sub { font-size: 10px; letter-spacing: 2px; }
@@ -1290,7 +1300,7 @@
 <header>
   <div class="top-bar">
     <span class="fecha" id="fecha-display">Sábado, 2 de Mayo de 2026 · Patagonia Argentina y Chilena</span>
-    <a href="clima.html" class="clima" style="text-decoration:none">🌤 Bariloche 12° · Neuquén 18° · Punta Arenas 8° · Puerto Montt 14°</a>
+    <a href="clima.html" class="clima-btn" id="topbar-clima-strip">🌤 <span id="topbar-temps">Bariloche · Neuquén · Pta. Arenas · Pto. Montt</span> ▸</a>
   </div>
   <div class="header-main">
     <h1 class="sr-only">GLOBALpatagonia — Noticias de la Patagonia Argentina y Chilena</h1>
@@ -2400,6 +2410,47 @@ fetch("propios.json")
   }
   document.getElementById('nl-modal-btn').addEventListener('click', nlSubmit);
   document.getElementById('nl-modal-email').addEventListener('keydown', e => { if (e.key === 'Enter') nlSubmit(); });
+})();
+</script>
+<script>
+(function() {
+  const KEY = 'gp_topbar_v1', TTL = 30 * 60 * 1000;
+  const cities = [
+    { name:'Bariloche',   lat:-41.133, lon:-71.310 },
+    { name:'Neuquén',     lat:-38.952, lon:-68.059 },
+    { name:'Pta. Arenas', lat:-53.164, lon:-70.917 },
+    { name:'Pto. Montt',  lat:-41.469, lon:-72.942 },
+  ];
+  function emoji(c) {
+    if (c===0) return '☀️'; if (c<=2) return '🌤'; if (c===3) return '☁️';
+    if (c<=48) return '🌫'; if (c<=67) return '🌧'; if (c<=77) return '❄️';
+    if (c<=82) return '🌦'; if (c>=95) return '⛈'; return '🌡';
+  }
+  function update(data) {
+    const el = document.getElementById('topbar-temps');
+    if (!el) return;
+    el.textContent = data.map(d => `${d.emoji} ${d.name} ${Math.round(d.t)}°`).join(' · ');
+  }
+  window.addEventListener('load', async () => {
+    try {
+      const cached = localStorage.getItem(KEY);
+      if (cached) {
+        const { ts, data } = JSON.parse(cached);
+        if (Date.now() - ts < TTL) { update(data); return; }
+      }
+      const results = await Promise.all(cities.map(c =>
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lon}&current_weather=true&timezone=auto`)
+          .then(r => r.json())
+      ));
+      const data = results.map((r, i) => ({
+        name:  cities[i].name,
+        t:     r.current_weather.temperature,
+        emoji: emoji(r.current_weather.weathercode),
+      }));
+      localStorage.setItem(KEY, JSON.stringify({ ts: Date.now(), data }));
+      update(data);
+    } catch(e) { /* falla silenciosa, queda el texto por defecto */ }
+  });
 })();
 </script>
 </body>
