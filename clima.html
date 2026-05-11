@@ -328,6 +328,7 @@
     <div class="country-tabs">
       <button class="country-tab active" id="tab-ar" onclick="switchCountry('ar')">🇦🇷 Argentina</button>
       <button class="country-tab" id="tab-cl" onclick="switchCountry('cl')">🇨🇱 Chile</button>
+      <button class="country-tab" id="tab-ant" onclick="switchCountry('ant')">❄️ Antártida</button>
     </div>
     <div class="city-grid" id="city-grid"></div>
   </div>
@@ -499,13 +500,23 @@ const CITIES = {
     { id:'comodoro',   name:'Comodoro Rivadavia',     lat:-45.864, lon:-67.496, region:'Chubut' },
     { id:'gallegos',   name:'Río Gallegos',           lat:-51.623, lon:-69.217, region:'Santa Cruz' },
     { id:'ushuaia',    name:'Ushuaia',                lat:-54.802, lon:-68.303, region:'Tierra del Fuego' },
+    { id:'malvinas',   name:'Islas Malvinas',         lat:-51.693, lon:-57.853, region:'Malvinas' },
   ],
   cl: [
     { id:'puertomontt', name:'Puerto Montt',  lat:-41.469, lon:-72.942, region:'Los Lagos' },
     { id:'coyhaique',   name:'Coyhaique',     lat:-45.571, lon:-72.068, region:'Aysén' },
     { id:'natales',     name:'Puerto Natales',lat:-51.726, lon:-72.500, region:'Magallanes' },
     { id:'puntaarenas', name:'Punta Arenas',  lat:-53.164, lon:-70.917, region:'Magallanes' },
-  ]
+  ],
+  ant: [
+    { id:'esperanza',  name:'Base Esperanza',    lat:-63.400, lon:-56.990, region:'Antártida Argentina — Península' },
+    { id:'marambio',   name:'Base Marambio',      lat:-64.237, lon:-56.630, region:'Antártida Argentina — Isla Seymour' },
+    { id:'carlini',    name:'Base Carlini',       lat:-62.237, lon:-58.667, region:'Antártida Argentina — Isla 25 de Mayo' },
+    { id:'belgrano2',  name:'Base Belgrano II',   lat:-77.873, lon:-34.628, region:'Antártida Argentina — Polo' },
+    { id:'orcadas',    name:'Base Orcadas',       lat:-60.740, lon:-44.740, region:'Antártida Argentina — Islas Orcadas' },
+    { id:'frei',       name:'Base Pres. Frei (CL)',lat:-62.200, lon:-58.966, region:'Antártida Chilena — Isla Rey Jorge' },
+    { id:'onais',      name:'Villa Las Estrellas (CL)',lat:-62.193, lon:-58.963, region:'Antártida Chilena — asentamiento civil' },
+  ],
 };
 
 // ── WMO CODES ────────────────────────────────────────────────────────────────
@@ -566,7 +577,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(location.search);
   const ciudadParam = params.get('ciudad') || 'bariloche';
   const paisParam   = params.get('pais')   || 'ar';
-  currentCountry = (paisParam === 'cl') ? 'cl' : 'ar';
+  currentCountry = paisParam === 'cl' ? 'cl' : paisParam === 'ant' ? 'ant' : 'ar';
 
   renderCityGrid();
   const city = [...CITIES.ar, ...CITIES.cl].find(c => c.id === ciudadParam) || CITIES.ar[0];
@@ -596,6 +607,7 @@ function switchCountry(cc) {
   currentCountry = cc;
   document.getElementById('tab-ar').classList.toggle('active', cc==='ar');
   document.getElementById('tab-cl').classList.toggle('active', cc==='cl');
+  document.getElementById('tab-ant').classList.toggle('active', cc==='ant');
   renderCityGrid();
 }
 
@@ -613,20 +625,18 @@ function renderCityGrid() {
 
 function selectCity(city) {
   currentCity = city;
+  // detect country
+  const cc = CITIES.cl.find(c=>c.id===city.id) ? 'cl'
+           : CITIES.ant.find(c=>c.id===city.id) ? 'ant'
+           : 'ar';
   // update URL
-  history.replaceState(null,'',`?ciudad=${city.id}&pais=${city.id in Object.fromEntries(CITIES.cl.map(c=>[c.id,1])) ? 'cl':'ar'}`);
-  // update buttons
-  document.querySelectorAll('.city-btn').forEach(b => b.classList.toggle('active', b.textContent === city.name));
-  // switch to correct tab
-  if (CITIES.cl.find(c=>c.id===city.id)) {
-    currentCountry='cl';
-    document.getElementById('tab-ar').classList.remove('active');
-    document.getElementById('tab-cl').classList.add('active');
-    renderCityGrid();
-  } else {
-    currentCountry='ar';
-    document.getElementById('tab-ar').classList.add('active');
-    document.getElementById('tab-cl').classList.remove('active');
+  history.replaceState(null,'',`?ciudad=${city.id}&pais=${cc}`);
+  // switch tab if needed
+  if (cc !== currentCountry) {
+    currentCountry = cc;
+    document.getElementById('tab-ar').classList.toggle('active', cc==='ar');
+    document.getElementById('tab-cl').classList.toggle('active', cc==='cl');
+    document.getElementById('tab-ant').classList.toggle('active', cc==='ant');
     renderCityGrid();
   }
   document.querySelectorAll('.city-btn').forEach(b => b.classList.toggle('active', b.textContent === city.name));
