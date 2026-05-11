@@ -774,6 +774,8 @@ REGLAS CRÍTICAS:
 - Si no hay nota de deportes patagónicos disponible hoy, poné null en "deportes".
 - Si no hay nota de economía/empresas, poné null en "negocios".
 {"- HOY ES DOMINGO: completar cultura y turismo con notas del RSS de hoy." if es_domingo else "- Hoy no es domingo: cultura y turismo van en null."}
+- IMÁGENES — imagen_keywords: describí siempre el HECHO FÍSICO o el LUGAR, nunca a un político ni a una declaración institucional. Ejemplos correctos: "incendio edificio noche", "bomberos rescate", "glaciar patagonia", "ballena atlántico sur". Ejemplos incorrectos: "gobernador santa cruz", "ministro conferencia prensa".
+- IMÁGENES — skip_og_image: si la url_original es principalmente sobre reacciones o declaraciones de políticos (gobernador, ministro, intendente, diputado, senador, presidente) ante un hecho noticioso, agregá `"skip_og_image": true` a la nota. Esto le dice al sistema que ignore la foto del artículo fuente (que suele mostrar al político) y busque en Unsplash usando imagen_keywords.
 {temas_recientes_bloque}"""
 
     def _extraer_json(texto):
@@ -1221,13 +1223,15 @@ def resolver_imagen(nota, fotos_propias, fotos_usadas):
         print("falló/descartada → buscando alternativa")
 
     url_original = nota.get("url_original", "")
-    if url_original:
+    if url_original and not nota.get("skip_og_image"):
         print(f"    [{nota_id}] og:image fuente...", end=" ", flush=True)
         og_img = extraer_og_image(url_original, nota_id)
         if og_img:
             print(f"OK → {og_img}")
             return og_img
         print("no encontrada")
+    elif nota.get("skip_og_image"):
+        print(f"    [{nota_id}] og:image omitida (fuente política) → Unsplash directo")
 
     foto_propia, foto_score = buscar_foto_propia(nota, fotos_propias)
     if foto_propia:
