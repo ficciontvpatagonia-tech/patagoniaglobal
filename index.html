@@ -2087,7 +2087,7 @@ function renderTurismo(turismo) {
     }).join('');
     if (rowCards.length < 4 && !FILLER_USADOS.has('clima')) {
       FILLER_USADOS.add('clima');
-      rowEl.insertAdjacentHTML('beforeend', fillerCardHTML('clima', 'row'));
+      rowEl.insertAdjacentHTML('beforeend', fillerCardHTML('clima', 'row', 4 - rowCards.length));
     }
   }
 }
@@ -2122,7 +2122,7 @@ fetch("turismo.json")
 // ── Sistema de tarjetas filler — cada tipo aparece máximo 1 vez en todo el sitio ──
 const FILLER_USADOS = new Set();
 
-function fillerCardHTML(tipo, context) {
+function fillerCardHTML(tipo, context, span) {
   if (tipo === 'cinemateca') {
     const img = 'fotos/ad-cinemateca.png';
     if (context === 'guia') {
@@ -2137,7 +2137,8 @@ function fillerCardHTML(tipo, context) {
   if (tipo === 'clima') {
     const isRow = (context === 'row');
     if (isRow) {
-      return `<a href="clima.html" style="text-decoration:none;color:inherit;display:block;grid-column:span 2;height:100%;">
+      const colSpan = (span && span > 1) ? `grid-column:span ${span};` : '';
+      return `<a href="clima.html" style="text-decoration:none;color:inherit;display:block;${colSpan}height:100%;">
         <div style="cursor:pointer;border-radius:4px;overflow:hidden;position:relative;background:linear-gradient(145deg,#0b1d2e 0%,#122d46 55%,#0c2137 100%);box-shadow:0 1px 6px rgba(0,0,0,0.2);display:flex;flex-direction:column;justify-content:center;height:100%;min-height:172px;box-sizing:border-box;">
           <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
             <div style="position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;top:18%;left:22%;animation:cl-twinkle 3s ease-in-out infinite;"></div>
