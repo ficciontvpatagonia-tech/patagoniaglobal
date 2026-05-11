@@ -2118,8 +2118,8 @@ function fillerCardHTML(tipo, context) {
   if (tipo === 'cinemateca') {
     const img = 'fotos/ad-cinemateca.png';
     if (context === 'guia') {
-      return `<a href="videos.html" class="destino-card" style="text-decoration:none;">
-        <div style="background-image:url('${img}');background-size:cover;background-position:center;flex:1;"></div>
+      return `<a href="videos.html" class="destino-card" style="text-decoration:none;grid-column:span 2;">
+        <div style="background-image:url('${img}');background-size:cover;background-position:center;flex:1;min-height:180px;"></div>
       </a>`;
     }
     return `<a href="videos.html" style="text-decoration:none;color:inherit;display:block;">
