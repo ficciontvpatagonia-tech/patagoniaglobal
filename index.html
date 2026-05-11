@@ -1557,8 +1557,6 @@
           </a>`;
         }).join('');
 
-        FILLER_USADOS.add('newsletter');
-        row.insertAdjacentHTML('beforeend', fillerCardHTML('newsletter', 'row'));
       })
       .catch(() => {});
   })();
@@ -2208,7 +2206,8 @@ function fillerCardHTML(tipo, context, span) {
     </a>`;
   }
   if (tipo === 'newsletter') {
-    return `<div class="filler-nl-card" style="cursor:pointer;border-radius:4px;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+    const nlMinHeight = (context === 'guia') ? 'min-height:220px;' : '';
+    return `<div class="filler-nl-card" style="cursor:pointer;border-radius:4px;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(0,0,0,0.15);${nlMinHeight}">
       <div style="position:absolute;inset:0;background:linear-gradient(145deg,#1c2d3d 0%,#253b50 60%,#1a2a38 100%);"></div>
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7aadcc,#8c6b4a,#7aadcc);background-size:200%;animation:nl-bar 6s linear infinite;"></div>
       <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
@@ -2226,7 +2225,7 @@ function fillerCardHTML(tipo, context, span) {
 }
 
 function llenarHuecos(container, cantidadActual, maxSlots, context) {
-  const disponibles = ['cinemateca'].filter(t => !FILLER_USADOS.has(t));
+  const disponibles = ['cinemateca', 'newsletter'].filter(t => !FILLER_USADOS.has(t));
   const cuantos = Math.min(maxSlots - cantidadActual, disponibles.length);
   for (let i = 0; i < cuantos; i++) {
     FILLER_USADOS.add(disponibles[i]);
