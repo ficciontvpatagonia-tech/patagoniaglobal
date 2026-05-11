@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior:smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>El Tiempo en la Patagonia — GLOBALpatagonia</title>
+  <meta name="description" content="Pronóstico del tiempo para Bariloche, Ushuaia, El Chaltén, Neuquén y toda la Patagonia. Datos profesionales para escaladores, esquiadores y aventureros."/>
+  <link rel="canonical" href="https://globalpatagonia.org/clima.html"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1c2d3d">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:title" content="El Tiempo en la Patagonia — GLOBALpatagonia"/>
+  <meta property="og:description" content="Pronóstico extendido para toda la Patagonia. Datos para escaladores, esquiadores y aventureros."/>
+  <meta property="og:url" content="https://globalpatagonia.org/clima.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'G-5FP2F41BZG');
+    });
+  </script>
+  <style>
+    :root {
+      --verde: #1c2d3d;
+      --verde-medio: #3a5a7a;
+      --verde-claro: #7aadcc;
+      --gris-oscuro: #252830;
+      --crema: #f0ede8;
+      --dorado: #8c6b4a;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; background:var(--crema); color:var(--gris-oscuro); }
+
+    /* ── HEADER (idéntico a index.html) ── */
+    header { background:var(--verde); padding:0; }
+    .top-bar { background:var(--gris-oscuro); display:flex; justify-content:space-between; align-items:center; padding:6px 40px; font-size:11px; color:#777; letter-spacing:.5px; }
+    .top-bar .fecha { color:#ccc; }
+    .top-bar .clima-link { color:#8ab8d4; font-weight:600; text-decoration:none; transition:color .2s; }
+    .top-bar .clima-link:hover { color:#fff; }
+    .header-main { display:flex; flex-direction:column; align-items:center; padding:24px 20px 16px; border-bottom:1px solid rgba(255,255,255,.1); }
+    .logo-tagline { font-size:11px; color:#8ab8d4; letter-spacing:4px; text-transform:uppercase; margin-bottom:4px; }
+    .logo-img { height:auto; max-height:136px; width:auto; max-width:90%; display:block; }
+    .logo-sub { font-size:12px; color:rgba(255,255,255,.75); letter-spacing:3px; text-transform:uppercase; margin-top:6px; }
+    nav { background:var(--verde); display:flex; justify-content:center; border-top:1px solid rgba(255,255,255,.08); }
+    nav a { color:rgba(255,255,255,.75); text-decoration:none; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; padding:14px 18px; transition:all .2s; border-bottom:3px solid transparent; }
+    nav a:hover, nav a.active { color:#8ab8d4; border-bottom-color:#8ab8d4; background:rgba(255,255,255,.04); }
+    .nav-search-btn { background:none; border:none; cursor:pointer; color:rgba(255,255,255,.75); padding:14px 16px; display:flex; align-items:center; transition:color .2s; text-decoration:none; }
+    .nav-search-btn:hover { color:#8ab8d4; }
+    .nav-search-btn svg { width:16px; height:16px; }
+    .hamburger { display:none; flex-direction:column; justify-content:center; gap:5px; background:none; border:none; cursor:pointer; padding:10px 16px; margin-left:auto; }
+    .hamburger span { display:block; width:22px; height:2px; background:rgba(255,255,255,.85); border-radius:2px; transition:all .25s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .nav-links { display:flex; }
+
+    /* ── FOOTER ── */
+    footer { background:var(--verde); padding:40px 20px 28px; text-align:center; margin-top:60px; }
+    .footer-logo { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:white; letter-spacing:1px; }
+    .footer-tagline { font-size:11px; color:rgba(255,255,255,.5); letter-spacing:3px; text-transform:uppercase; margin:8px 0 20px; }
+    .footer-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:4px 20px; margin-bottom:20px; }
+    .footer-nav a { color:rgba(255,255,255,.5); text-decoration:none; font-size:11px; letter-spacing:.5px; transition:color .2s; }
+    .footer-nav a:hover { color:#8ab8d4; }
+    .footer-copy { font-size:11px; color:rgba(255,255,255,.25); }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+    /* ── PÁGINA CLIMA ── */
+    .clima-hero {
+      background: linear-gradient(135deg, var(--verde) 0%, #2a4a68 100%);
+      padding: 36px 20px 28px;
+      text-align: center;
+      border-bottom: 3px solid #7aadcc;
+    }
+    .clima-hero h1 { font-family:'Playfair Display',serif; font-size:32px; color:#fff; font-weight:700; margin-bottom:6px; }
+    .clima-hero p { font-size:13px; color:rgba(255,255,255,.65); letter-spacing:.5px; }
+
+    /* ── CONTAINER ── */
+    .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+
+    /* ── SELECTOR ── */
+    .selector-section { background:#fff; border-bottom:1px solid #ddd; padding:20px; position:sticky; top:0; z-index:50; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+    .selector-inner { max-width:1200px; margin:0 auto; }
+    .country-tabs { display:flex; gap:8px; margin-bottom:14px; }
+    .country-tab { background:none; border:2px solid #ddd; color:#888; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; padding:7px 18px; border-radius:3px; cursor:pointer; transition:all .2s; }
+    .country-tab.active { background:var(--verde); border-color:var(--verde); color:#fff; }
+    .country-tab:hover:not(.active) { border-color:var(--verde); color:var(--verde); }
+    .city-grid { display:flex; flex-wrap:wrap; gap:7px; }
+    .city-btn { background:none; border:1px solid #ccc; color:#444; font-size:12px; font-weight:500; padding:6px 14px; border-radius:3px; cursor:pointer; transition:all .2s; white-space:nowrap; }
+    .city-btn:hover:not(.active) { border-color:#7aadcc; color:var(--verde); }
+    .city-btn.active { background:var(--verde); border-color:var(--verde); color:#fff; font-weight:600; }
+
+    /* ── LOADING ── */
+    .loading-state { text-align:center; padding:80px 20px; }
+    .spinner { width:40px; height:40px; border:3px solid #ddd; border-top-color:#7aadcc; border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .loading-state p { color:#888; font-size:14px; }
+
+    /* ── ERROR ── */
+    .error-state { text-align:center; padding:60px 20px; color:#b03a2e; }
+
+    /* ── CURRENT CONDITIONS ── */
+    .current-section { padding:32px 0 0; }
+    .current-card {
+      background:#fff;
+      border-radius:6px;
+      box-shadow:0 2px 12px rgba(0,0,0,.08);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:0;
+    }
+    .cc-main { padding:28px 32px; border-right:1px solid #f0ede8; }
+    .cc-location { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8ab8d4; margin-bottom:8px; }
+    .cc-temp { font-size:72px; font-weight:300; color:var(--verde); line-height:1; }
+    .cc-temp sup { font-size:32px; vertical-align:super; }
+    .cc-apparent { font-size:13px; color:#888; margin-top:4px; }
+    .cc-desc { font-size:18px; margin-top:12px; color:var(--gris-oscuro); font-weight:500; }
+    .cc-emoji { font-size:36px; display:block; margin-bottom:4px; }
+    .cc-details { padding:28px 24px; display:flex; flex-direction:column; justify-content:center; gap:12px; border-right:1px solid #f0ede8; }
+    .cc-detail-row { display:flex; align-items:center; gap:10px; }
+    .cc-detail-icon { font-size:18px; width:24px; text-align:center; }
+    .cc-detail-label { font-size:11px; color:#888; letter-spacing:.5px; text-transform:uppercase; }
+    .cc-detail-value { font-size:15px; font-weight:600; color:var(--verde); }
+    .cc-wind { padding:28px 24px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:#fafafa; }
+    .cc-wind-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8ab8d4; margin-bottom:12px; }
+    .cc-wind-speed { font-size:52px; font-weight:300; color:var(--verde); line-height:1; }
+    .cc-wind-unit { font-size:14px; color:#888; }
+    .cc-wind-arrow { font-size:40px; line-height:1; display:inline-block; transition:transform .5s; color:#7aadcc; }
+    .cc-wind-dir { font-size:13px; font-weight:600; color:var(--gris-oscuro); margin-top:4px; }
+    .cc-wind-gust { font-size:12px; color:#b03a2e; margin-top:8px; font-weight:500; }
+
+    /* ── 7-DAY FORECAST ── */
+    .forecast-section { padding:28px 0 0; }
+    .section-label { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--dorado); margin-bottom:14px; }
+    .forecast-strip { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; }
+    .fc-card {
+      background:#fff;
+      border-radius:6px;
+      padding:14px 10px;
+      text-align:center;
+      box-shadow:0 1px 6px rgba(0,0,0,.06);
+      transition:transform .15s, box-shadow .15s;
+    }
+    .fc-card:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.1); }
+    .fc-day { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#888; }
+    .fc-emoji { font-size:28px; margin:8px 0; display:block; }
+    .fc-temps { font-size:14px; color:var(--verde); font-weight:600; }
+    .fc-tmin { color:#888; font-weight:400; }
+    .fc-wind { font-size:11px; color:#5a8db5; margin-top:6px; font-weight:500; }
+    .fc-precip { font-size:11px; color:#4a7aa0; margin-top:3px; }
+    .fc-snow { font-size:11px; color:#7aadcc; margin-top:3px; }
+    .fc-uv { font-size:10px; color:#888; margin-top:3px; }
+
+    /* ── PRO SECTION ── */
+    .pro-section { padding:36px 0 0; }
+    .pro-header { display:flex; align-items:center; gap:16px; margin-bottom:20px; }
+    .pro-badge { background:var(--verde); color:#8ab8d4; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:5px 12px; border-radius:3px; white-space:nowrap; }
+    .pro-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--verde); }
+    .pro-line { flex:1; height:2px; background:linear-gradient(to right,#7aadcc,transparent); }
+    .pro-subtitle { font-size:12px; color:#888; margin-bottom:20px; }
+
+    /* ── METEOGRAM ── */
+    .meteogram-card {
+      background:var(--verde);
+      border-radius:6px;
+      padding:24px 20px 16px;
+      margin-bottom:20px;
+      overflow:hidden;
+    }
+    .meteogram-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8ab8d4; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .meteogram-legend { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px; }
+    .legend-item { display:flex; align-items:center; gap:6px; font-size:11px; color:rgba(255,255,255,.65); }
+    .legend-dot { width:12px; height:3px; border-radius:2px; }
+    .legend-dot.temp { background:#f4845a; }
+    .legend-dot.wind10 { background:#7aadcc; }
+    .legend-dot.wind80 { background:#5a8db5; border-top:2px dashed #5a8db5; height:0; }
+    .legend-dot.precip { background:rgba(80,140,210,.8); width:10px; height:12px; border-radius:2px; }
+    .chart-wrapper { position:relative; }
+    .chart-wrapper canvas { max-width:100%; }
+
+    /* ── PRO METRICS GRID ── */
+    .metrics-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:20px; }
+    .metric-card {
+      background:#fff;
+      border-radius:6px;
+      padding:18px 16px;
+      box-shadow:0 1px 6px rgba(0,0,0,.06);
+      border-top:3px solid var(--verde-claro);
+    }
+    .metric-card.alert-amarillo { border-top-color:#e8a020; }
+    .metric-card.alert-rojo { border-top-color:#b03a2e; }
+    .metric-icon { font-size:22px; margin-bottom:8px; }
+    .metric-label { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#888; margin-bottom:4px; }
+    .metric-value { font-size:24px; font-weight:700; color:var(--verde); line-height:1.1; }
+    .metric-unit { font-size:12px; font-weight:400; color:#888; }
+    .metric-sub { font-size:11px; color:#888; margin-top:4px; }
+
+    /* ── RIESGO ASSESSMENT ── */
+    .risk-card {
+      border-radius:6px;
+      padding:20px 24px;
+      display:flex;
+      align-items:center;
+      gap:20px;
+      margin-bottom:20px;
+    }
+    .risk-card.verde { background:#eaf7ee; border-left:5px solid #2ecc71; }
+    .risk-card.amarillo { background:#fef9e8; border-left:5px solid #e8a020; }
+    .risk-card.rojo { background:#fdf0ee; border-left:5px solid #b03a2e; }
+    .risk-dot { width:48px; height:48px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:22px; }
+    .risk-dot.verde { background:#2ecc71; }
+    .risk-dot.amarillo { background:#e8a020; }
+    .risk-dot.rojo { background:#b03a2e; }
+    .risk-title { font-size:15px; font-weight:700; color:var(--verde); margin-bottom:4px; }
+    .risk-reasons { font-size:12px; color:#555; line-height:1.6; }
+
+    /* ── WIND ALTITUDE TABLE ── */
+    .altitude-card {
+      background:#fff;
+      border-radius:6px;
+      padding:20px;
+      box-shadow:0 1px 6px rgba(0,0,0,.06);
+      margin-bottom:20px;
+    }
+    .alt-table { width:100%; border-collapse:collapse; font-size:13px; }
+    .alt-table th { text-align:left; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#888; padding:8px 12px; border-bottom:2px solid #f0ede8; }
+    .alt-table td { padding:10px 12px; border-bottom:1px solid #f7f5f2; color:var(--gris-oscuro); }
+    .alt-table tr:last-child td { border-bottom:none; }
+    .alt-table .alt-name { font-weight:600; color:var(--verde); }
+    .wind-bar-cell { min-width:140px; }
+    .wind-bar-bg { background:#f0ede8; border-radius:3px; height:8px; overflow:hidden; }
+    .wind-bar-fill { background:linear-gradient(to right,#7aadcc,#1c6a8e); height:100%; border-radius:3px; transition:width .5s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:900px) {
+      .current-card { grid-template-columns:1fr 1fr; }
+      .cc-wind { grid-column:1/-1; border-top:1px solid #f0ede8; }
+      .metrics-grid { grid-template-columns:repeat(2,1fr); }
+      .forecast-strip { grid-template-columns:repeat(4,1fr); }
+      .fc-card:nth-child(n+5) { display:none; }
+    }
+    @media (max-width:640px) {
+      .clima-hero h1 { font-size:24px; }
+      .top-bar { padding:5px 12px; font-size:10px; }
+      .top-bar .clima-link { display:none; }
+      .header-main { padding:16px 16px 12px; }
+      .logo-img { max-height:110px; }
+      nav { flex-wrap:wrap; justify-content:flex-start; position:relative; }
+      .hamburger { display:flex; }
+      .nav-links { display:none; flex-direction:column; width:100%; background:var(--verde); border-top:1px solid rgba(255,255,255,.1); }
+      .nav-links.open { display:flex; }
+      .nav-links a { font-size:13px; padding:14px 20px; border-bottom:1px solid rgba(255,255,255,.07); }
+      .current-card { grid-template-columns:1fr; }
+      .cc-main { border-right:none; border-bottom:1px solid #f0ede8; }
+      .cc-details { border-right:none; border-bottom:1px solid #f0ede8; }
+      .forecast-strip { grid-template-columns:repeat(4,1fr); gap:4px; overflow-x:auto; }
+      .fc-card:nth-child(n+5) { display:block; }
+      .metrics-grid { grid-template-columns:repeat(2,1fr); }
+      .city-grid { gap:5px; }
+      .city-btn { font-size:11px; padding:5px 10px; }
+      .selector-section { padding:14px; }
+      .pro-title { font-size:17px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top-bar">
+    <span class="fecha" id="fecha-display"></span>
+    <a href="clima.html" class="clima-link" id="topbar-clima">🌤 El Tiempo en la Patagonia</a>
+  </div>
+  <div class="header-main">
+    <h1 class="sr-only">GLOBALpatagonia — El Tiempo en la Patagonia</h1>
+    <div class="logo-tagline">Sur Global, principio de todo.</div>
+    <picture>
+      <source srcset="logo-globalpatagonia.webp" type="image/webp">
+      <img src="logo-globalpatagonia.png" alt="GLOBALpatagonia" class="logo-img" width="1440" height="321" fetchpriority="high">
+    </picture>
+    <div class="logo-sub">Argentina · Chile · Sin fronteras</div>
+  </div>
+  <nav>
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="index.html#sec-noticias">Noticias</a>
+      <a href="index.html#sec-deportes">Deportes & Aventura</a>
+      <a href="index.html#sec-turismo">Turismo en Patagonia</a>
+      <a href="index.html#sec-guias">Guías</a>
+      <a href="index.html#sec-negocios">Economía</a>
+      <a href="index.html#sec-historia">Cultura Patagónica</a>
+      <a href="agenda.html">Agenda</a>
+      <a href="clima.html" class="active">Clima</a>
+      <a href="videos.html">Cinemateca</a>
+    </div>
+    <a href="buscar.html" class="nav-search-btn" aria-label="Buscar">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+    </a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="clima-hero">
+  <h1>El Tiempo en la Patagonia</h1>
+  <p>Pronóstico 7 días · Datos profesionales para el terreno · Open-Meteo ECMWF/GFS</p>
+</div>
+
+<!-- SELECTOR (sticky) -->
+<div class="selector-section">
+  <div class="selector-inner">
+    <div class="country-tabs">
+      <button class="country-tab active" id="tab-ar" onclick="switchCountry('ar')">🇦🇷 Argentina</button>
+      <button class="country-tab" id="tab-cl" onclick="switchCountry('cl')">🇨🇱 Chile</button>
+    </div>
+    <div class="city-grid" id="city-grid"></div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- LOADING -->
+  <div class="loading-state" id="loading">
+    <div class="spinner"></div>
+    <p id="loading-text">Cargando datos meteorológicos...</p>
+  </div>
+
+  <!-- ERROR -->
+  <div class="error-state" id="error-state" style="display:none">
+    <p>⚠️ No se pudieron obtener datos. Verificá tu conexión e intentá de nuevo.</p>
+  </div>
+
+  <!-- CURRENT CONDITIONS -->
+  <section class="current-section" id="current-section" style="display:none">
+    <div class="section-label">Condiciones actuales</div>
+    <div class="current-card">
+      <div class="cc-main">
+        <div class="cc-location" id="cc-location"></div>
+        <span class="cc-emoji" id="cc-emoji"></span>
+        <div class="cc-temp" id="cc-temp"></div>
+        <div class="cc-apparent" id="cc-apparent"></div>
+        <div class="cc-desc" id="cc-desc"></div>
+      </div>
+      <div class="cc-details">
+        <div class="cc-detail-row">
+          <span class="cc-detail-icon">💧</span>
+          <div>
+            <div class="cc-detail-label">Humedad</div>
+            <div class="cc-detail-value" id="cc-humidity"></div>
+          </div>
+        </div>
+        <div class="cc-detail-row">
+          <span class="cc-detail-icon">📊</span>
+          <div>
+            <div class="cc-detail-label">Presión</div>
+            <div class="cc-detail-value" id="cc-pressure"></div>
+          </div>
+        </div>
+        <div class="cc-detail-row">
+          <span class="cc-detail-icon">🌡️</span>
+          <div>
+            <div class="cc-detail-label">Punto de rocío</div>
+            <div class="cc-detail-value" id="cc-dewpoint"></div>
+          </div>
+        </div>
+        <div class="cc-detail-row">
+          <span class="cc-detail-icon">👁️</span>
+          <div>
+            <div class="cc-detail-label">Visibilidad</div>
+            <div class="cc-detail-value" id="cc-visibility"></div>
+          </div>
+        </div>
+      </div>
+      <div class="cc-wind">
+        <div class="cc-wind-label">Viento</div>
+        <div class="cc-wind-arrow" id="cc-wind-arrow">↑</div>
+        <div class="cc-wind-speed" id="cc-wind-speed"></div>
+        <div class="cc-wind-unit">km/h</div>
+        <div class="cc-wind-dir" id="cc-wind-dir"></div>
+        <div class="cc-wind-gust" id="cc-wind-gust"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7-DAY FORECAST -->
+  <section class="forecast-section" id="forecast-section" style="display:none">
+    <div class="section-label">Pronóstico 7 días</div>
+    <div class="forecast-strip" id="forecast-strip"></div>
+  </section>
+
+  <!-- PRO SECTION -->
+  <section class="pro-section" id="pro-section" style="display:none">
+    <div class="pro-header">
+      <span class="pro-badge">⛰ Datos para el Terreno</span>
+      <div class="pro-title">Pronóstico Profesional</div>
+      <div class="pro-line"></div>
+    </div>
+    <p class="pro-subtitle">Variables avanzadas para escaladores, esquiadores y expedicionarios — próximas 48 horas</p>
+
+    <!-- Risk Assessment -->
+    <div id="risk-card"></div>
+
+    <!-- Meteogram -->
+    <div class="meteogram-card">
+      <div class="meteogram-title">
+        📈 Meteograma — Próximas 48 horas
+      </div>
+      <div class="meteogram-legend">
+        <span class="legend-item"><span class="legend-dot temp"></span> Temperatura (°C)</span>
+        <span class="legend-item"><span class="legend-dot wind10"></span> Viento 10m (km/h)</span>
+        <span class="legend-item" style="align-items:flex-start"><span style="display:flex;align-items:center;gap:4px"><span style="width:16px;height:2px;background:#5a8db5;border-top:2px dashed #7aadcc;display:inline-block"></span></span> Viento 80m</span>
+        <span class="legend-item"><span style="width:10px;height:14px;background:rgba(80,140,210,.75);border-radius:2px;display:inline-block"></span> Precipitación (mm)</span>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="meteogram-chart" height="200"></canvas>
+      </div>
+      <div style="margin-top:12px">
+        <canvas id="precip-chart" height="80"></canvas>
+      </div>
+    </div>
+
+    <!-- Altitude Wind Table -->
+    <div class="altitude-card">
+      <div class="section-label" style="margin-bottom:12px">Viento por altitud — Próximas 6 horas</div>
+      <table class="alt-table">
+        <thead>
+          <tr>
+            <th>Nivel</th>
+            <th>Referencia</th>
+            <th>Velocidad</th>
+            <th class="wind-bar-cell">Intensidad</th>
+            <th>Ráfaga</th>
+          </tr>
+        </thead>
+        <tbody id="alt-table-body"></tbody>
+      </table>
+    </div>
+
+    <!-- Metrics Grid -->
+    <div class="section-label">Indicadores clave — Próximas 48 horas</div>
+    <div class="metrics-grid" id="metrics-grid"></div>
+
+  </section>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="footer-logo" style="color:white">GLOBAL<span style="color:#8ab8d4">patagonia</span></div>
+  <div class="footer-tagline">Argentina · Chile · Sin fronteras</div>
+  <div class="footer-nav">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#sec-noticias">Noticias</a>
+    <a href="index.html#sec-turismo">Turismo en Patagonia</a>
+    <a href="index.html#sec-deportes">Deportes & Aventura</a>
+    <a href="agenda.html">Agenda</a>
+    <a href="clima.html">Clima</a>
+    <a href="acerca.html">Acerca de</a>
+    <a href="privacidad.html">Privacidad</a>
+  </div>
+  <div class="footer-copy">© 2026 GLOBALpatagonia · globalpatagonia.org · Argentina · Chile</div>
+</footer>
+
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+OneSignalDeferred.push(async function(OneSignal) {
+  await OneSignal.init({ appId: "d351217a-5fe8-4af2-bb35-fffdafb5e30f", notifyButton: { enable: true } });
+});
+</script>
+
+<script>
+// ── CIUDADES ──────────────────────────────────────────────────────────────────
+const CITIES = {
+  ar: [
+    { id:'bariloche',  name:'Bariloche',              lat:-41.133, lon:-71.310, region:'Río Negro' },
+    { id:'neuquen',    name:'Neuquén',                lat:-38.952, lon:-68.059, region:'Neuquén' },
+    { id:'sanmartin',  name:'San Martín de los Andes',lat:-40.157, lon:-71.355, region:'Neuquén' },
+    { id:'esquel',     name:'Esquel',                 lat:-42.908, lon:-71.318, region:'Chubut' },
+    { id:'chalten',    name:'El Chaltén',             lat:-49.332, lon:-72.886, region:'Santa Cruz' },
+    { id:'calafate',   name:'El Calafate',            lat:-50.338, lon:-72.265, region:'Santa Cruz' },
+    { id:'madryn',     name:'Puerto Madryn',          lat:-42.769, lon:-65.038, region:'Chubut' },
+    { id:'comodoro',   name:'Comodoro Rivadavia',     lat:-45.864, lon:-67.496, region:'Chubut' },
+    { id:'gallegos',   name:'Río Gallegos',           lat:-51.623, lon:-69.217, region:'Santa Cruz' },
+    { id:'ushuaia',    name:'Ushuaia',                lat:-54.802, lon:-68.303, region:'Tierra del Fuego' },
+  ],
+  cl: [
+    { id:'puertomontt', name:'Puerto Montt',  lat:-41.469, lon:-72.942, region:'Los Lagos' },
+    { id:'coyhaique',   name:'Coyhaique',     lat:-45.571, lon:-72.068, region:'Aysén' },
+    { id:'natales',     name:'Puerto Natales',lat:-51.726, lon:-72.500, region:'Magallanes' },
+    { id:'puntaarenas', name:'Punta Arenas',  lat:-53.164, lon:-70.917, region:'Magallanes' },
+  ]
+};
+
+// ── WMO CODES ────────────────────────────────────────────────────────────────
+const WMO = {
+  0:  { desc:'Despejado',              emoji:'☀️' },
+  1:  { desc:'Mayormente despejado',   emoji:'🌤️' },
+  2:  { desc:'Parcialmente nublado',   emoji:'⛅' },
+  3:  { desc:'Nublado',                emoji:'☁️' },
+  45: { desc:'Niebla',                 emoji:'🌫️' },
+  48: { desc:'Niebla con escarcha',    emoji:'🌫️' },
+  51: { desc:'Llovizna ligera',        emoji:'🌦️' },
+  53: { desc:'Llovizna',               emoji:'🌦️' },
+  55: { desc:'Llovizna intensa',       emoji:'🌧️' },
+  61: { desc:'Lluvia ligera',          emoji:'🌧️' },
+  63: { desc:'Lluvia moderada',        emoji:'🌧️' },
+  65: { desc:'Lluvia intensa',         emoji:'🌧️' },
+  71: { desc:'Nieve ligera',           emoji:'🌨️' },
+  73: { desc:'Nevada moderada',        emoji:'❄️' },
+  75: { desc:'Nevada intensa',         emoji:'❄️' },
+  77: { desc:'Granizo',                emoji:'🌨️' },
+  80: { desc:'Chubascos ligeros',      emoji:'🌦️' },
+  81: { desc:'Chubascos moderados',    emoji:'🌧️' },
+  82: { desc:'Chubascos fuertes',      emoji:'🌧️' },
+  85: { desc:'Nevada con viento',      emoji:'🌨️' },
+  86: { desc:'Tormenta de nieve',      emoji:'❄️' },
+  95: { desc:'Tormenta eléctrica',     emoji:'⛈️' },
+  96: { desc:'Tormenta con granizo',   emoji:'⛈️' },
+  99: { desc:'Tormenta severa',        emoji:'⛈️' },
+};
+function wmo(code) {
+  // find closest key
+  const keys = Object.keys(WMO).map(Number).sort((a,b)=>a-b);
+  let k = keys[0];
+  for (const kk of keys) { if (kk <= code) k = kk; else break; }
+  return WMO[k] || { desc:'Variable', emoji:'🌡️' };
+}
+
+// ── CARDINAL ─────────────────────────────────────────────────────────────────
+const DIRS = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
+function degToCardinal(d) { return DIRS[Math.round(d/22.5)%16]; }
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let currentCountry = 'ar';
+let currentCity = null;
+let chart1 = null;
+let chart2 = null;
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // fecha
+  const now = new Date();
+  const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  document.getElementById('fecha-display').textContent =
+    `${dias[now.getDay()]}, ${now.getDate()} de ${meses[now.getMonth()]} de ${now.getFullYear()} · Patagonia Argentina y Chilena`;
+
+  // URL param
+  const params = new URLSearchParams(location.search);
+  const ciudadParam = params.get('ciudad') || 'bariloche';
+  const paisParam   = params.get('pais')   || 'ar';
+  currentCountry = (paisParam === 'cl') ? 'cl' : 'ar';
+
+  renderCityGrid();
+  const city = [...CITIES.ar, ...CITIES.cl].find(c => c.id === ciudadParam) || CITIES.ar[0];
+  selectCity(city);
+
+  // hamburger
+  const btn = document.getElementById('hamburger-btn');
+  const nav = document.getElementById('nav-links');
+  if (btn && nav) {
+    btn.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', e => {
+      if (!btn.contains(e.target) && !nav.contains(e.target)) {
+        nav.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+});
+
+// ── SELECTOR ─────────────────────────────────────────────────────────────────
+function switchCountry(cc) {
+  currentCountry = cc;
+  document.getElementById('tab-ar').classList.toggle('active', cc==='ar');
+  document.getElementById('tab-cl').classList.toggle('active', cc==='cl');
+  renderCityGrid();
+}
+
+function renderCityGrid() {
+  const grid = document.getElementById('city-grid');
+  grid.innerHTML = '';
+  CITIES[currentCountry].forEach(city => {
+    const btn = document.createElement('button');
+    btn.className = 'city-btn' + (currentCity && currentCity.id === city.id ? ' active' : '');
+    btn.textContent = city.name;
+    btn.onclick = () => selectCity(city);
+    grid.appendChild(btn);
+  });
+}
+
+function selectCity(city) {
+  currentCity = city;
+  // update URL
+  history.replaceState(null,'',`?ciudad=${city.id}&pais=${city.id in Object.fromEntries(CITIES.cl.map(c=>[c.id,1])) ? 'cl':'ar'}`);
+  // update buttons
+  document.querySelectorAll('.city-btn').forEach(b => b.classList.toggle('active', b.textContent === city.name));
+  // switch to correct tab
+  if (CITIES.cl.find(c=>c.id===city.id)) {
+    currentCountry='cl';
+    document.getElementById('tab-ar').classList.remove('active');
+    document.getElementById('tab-cl').classList.add('active');
+    renderCityGrid();
+  } else {
+    currentCountry='ar';
+    document.getElementById('tab-ar').classList.add('active');
+    document.getElementById('tab-cl').classList.remove('active');
+    renderCityGrid();
+  }
+  document.querySelectorAll('.city-btn').forEach(b => b.classList.toggle('active', b.textContent === city.name));
+  loadWeather(city);
+}
+
+// ── FETCH ─────────────────────────────────────────────────────────────────────
+async function loadWeather(city) {
+  showLoading(`Cargando ${city.name}...`);
+  try {
+    const params = new URLSearchParams({
+      latitude:       city.lat,
+      longitude:      city.lon,
+      hourly:         'temperature_2m,apparent_temperature,precipitation_probability,precipitation,snowfall,weathercode,cloudcover,cloudcover_low,cloudcover_mid,cloudcover_high,visibility,windspeed_10m,windspeed_80m,windspeed_120m,windgusts_10m,cape,freezinglevel_height,relativehumidity_2m,surface_pressure,dewpoint_2m,winddirection_10m',
+      daily:          'weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,snowfall_sum',
+      current_weather: true,
+      timezone:       'auto',
+      wind_speed_unit:'kmh',
+      forecast_days:   7,
+    });
+    const res = await fetch(`https://api.open-meteo.com/v1/forecast?${params}`);
+    if (!res.ok) throw new Error('API error');
+    const data = await res.json();
+    renderAll(city, data);
+  } catch(e) {
+    showError();
+  }
+}
+
+function showLoading(msg) {
+  document.getElementById('loading').style.display='block';
+  document.getElementById('loading-text').textContent = msg || 'Cargando...';
+  document.getElementById('error-state').style.display='none';
+  document.getElementById('current-section').style.display='none';
+  document.getElementById('forecast-section').style.display='none';
+  document.getElementById('pro-section').style.display='none';
+}
+function showError() {
+  document.getElementById('loading').style.display='none';
+  document.getElementById('error-state').style.display='block';
+}
+function showData() {
+  document.getElementById('loading').style.display='none';
+  document.getElementById('error-state').style.display='none';
+  document.getElementById('current-section').style.display='block';
+  document.getElementById('forecast-section').style.display='block';
+  document.getElementById('pro-section').style.display='block';
+}
+
+// ── RENDER ALL ────────────────────────────────────────────────────────────────
+function renderAll(city, data) {
+  const cw = data.current_weather;
+  const cwIdx = Math.max(0, data.hourly.time.indexOf(cw.time));
+
+  renderCurrent(city, data, cwIdx);
+  renderForecast(data);
+  renderMeteogram(data, cwIdx);
+  renderAltitudeTable(data, cwIdx);
+  renderMetrics(data, cwIdx);
+  renderRisk(data, cwIdx);
+  showData();
+}
+
+// ── CURRENT ───────────────────────────────────────────────────────────────────
+function renderCurrent(city, data, idx) {
+  const cw = data.current_weather;
+  const h = data.hourly;
+  const w = wmo(cw.weathercode);
+
+  document.getElementById('cc-location').textContent  = `${city.name} · ${city.region}`;
+  document.getElementById('cc-emoji').textContent      = w.emoji;
+  document.getElementById('cc-temp').innerHTML         = `${Math.round(cw.temperature)}<sup>°C</sup>`;
+  document.getElementById('cc-apparent').textContent   = `Sensación: ${Math.round(h.apparent_temperature[idx])}°C`;
+  document.getElementById('cc-desc').textContent       = w.desc;
+  document.getElementById('cc-humidity').textContent   = `${h.relativehumidity_2m[idx]}%`;
+  document.getElementById('cc-pressure').textContent   = `${Math.round(h.surface_pressure[idx])} hPa ${pressureTrend(h.surface_pressure, idx)}`;
+  document.getElementById('cc-dewpoint').textContent   = `${Math.round(h.dewpoint_2m[idx])}°C`;
+  const vis = h.visibility[idx];
+  document.getElementById('cc-visibility').textContent = vis >= 10000 ? '>10 km' : `${(vis/1000).toFixed(1)} km`;
+
+  const wd = cw.winddirection;
+  const arrowRot = (wd + 180) % 360;
+  document.getElementById('cc-wind-arrow').style.transform = `rotate(${arrowRot}deg)`;
+  document.getElementById('cc-wind-speed').textContent = Math.round(cw.windspeed);
+  document.getElementById('cc-wind-dir').textContent   = `Desde el ${degToCardinal(wd)}`;
+  const gust = h.windgusts_10m[idx];
+  document.getElementById('cc-wind-gust').textContent  = gust > cw.windspeed + 5 ? `Ráfagas hasta ${Math.round(gust)} km/h` : '';
+}
+
+function pressureTrend(pressures, idx) {
+  if (idx < 3) return '';
+  const diff = pressures[idx] - pressures[idx-3];
+  if (diff > 2) return '↑';
+  if (diff < -2) return '↓';
+  return '→';
+}
+
+// ── FORECAST 7D ───────────────────────────────────────────────────────────────
+function renderForecast(data) {
+  const d = data.daily;
+  const strip = document.getElementById('forecast-strip');
+  strip.innerHTML = '';
+  const diasCortos = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  d.time.forEach((t, i) => {
+    const date = new Date(t + 'T12:00:00');
+    const dayName = i === 0 ? 'HOY' : i === 1 ? 'MÑN' : diasCortos[date.getDay()];
+    const w = wmo(d.weathercode[i]);
+    const precip = d.precipitation_probability_max[i] || 0;
+    const snow = d.snowfall_sum[i] > 0.5;
+    const uv = d.uv_index_max[i];
+    const card = document.createElement('div');
+    card.className = 'fc-card';
+    card.innerHTML = `
+      <div class="fc-day">${dayName}</div>
+      <span class="fc-emoji">${w.emoji}</span>
+      <div class="fc-temps">${Math.round(d.temperature_2m_max[i])}° <span class="fc-tmin">/ ${Math.round(d.temperature_2m_min[i])}°</span></div>
+      <div class="fc-wind">💨 ${Math.round(d.windspeed_10m_max[i])} km/h</div>
+      ${precip > 20 ? `<div class="fc-precip">💧 ${precip}%</div>` : ''}
+      ${snow ? `<div class="fc-snow">❄️ ${d.snowfall_sum[i].toFixed(1)} cm</div>` : ''}
+      ${uv >= 4 ? `<div class="fc-uv">UV ${Math.round(uv)}</div>` : ''}
+    `;
+    strip.appendChild(card);
+  });
+}
+
+// ── METEOGRAM ─────────────────────────────────────────────────────────────────
+function renderMeteogram(data, cwIdx) {
+  const h = data.hourly;
+  const N = 48;
+  const start = cwIdx;
+  const slice = (arr) => arr.slice(start, start + N);
+
+  const times   = slice(h.time);
+  const temps   = slice(h.temperature_2m);
+  const wind10  = slice(h.windspeed_10m);
+  const wind80  = slice(h.windspeed_80m);
+  const precips = slice(h.precipitation);
+  const clouds  = slice(h.cloudcover);
+
+  // labels: "Hoy 15h" style
+  const now = new Date();
+  const labels = times.map(t => {
+    const dt = new Date(t);
+    const hh = dt.getHours();
+    const d = dt.getDate();
+    const todayD = now.getDate();
+    const prefix = d === todayD ? 'Hoy' : d === todayD+1 ? 'Mañ' : dt.toLocaleDateString('es-AR',{weekday:'short'});
+    return (hh === 0 || hh === 6 || hh === 12 || hh === 18) ? `${prefix} ${hh}h` : '';
+  });
+
+  // destroy previous charts
+  if (chart1) { chart1.destroy(); chart1=null; }
+  if (chart2) { chart2.destroy(); chart2=null; }
+
+  // Cloud cover background plugin
+  const cloudPlugin = {
+    id: 'cloudBg',
+    beforeDraw(chart) {
+      const { ctx, chartArea: ca, scales } = chart;
+      if (!ca) return;
+      clouds.forEach((cc, i) => {
+        const x0 = scales.x.getPixelForValue(i);
+        const x1 = i < clouds.length-1 ? scales.x.getPixelForValue(i+1) : ca.right;
+        const alpha = (cc||0) / 100 * 0.22;
+        ctx.fillStyle = `rgba(170,200,220,${alpha})`;
+        ctx.fillRect(x0, ca.top, x1-x0, ca.bottom-ca.top);
+      });
+    }
+  };
+
+  // CHART 1: temp + wind lines
+  const ctx1 = document.getElementById('meteogram-chart').getContext('2d');
+  const maxWind = Math.max(...wind10, ...wind80.filter(v=>v!=null)) * 1.15 || 60;
+  chart1 = new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Temp °C',
+          data: temps,
+          borderColor: '#f4845a',
+          backgroundColor: 'rgba(244,132,90,0.08)',
+          borderWidth: 2.5,
+          pointRadius: 0,
+          tension: 0.35,
+          yAxisID: 'yTemp',
+          fill: true,
+        },
+        {
+          label: 'Viento 10m km/h',
+          data: wind10,
+          borderColor: '#7aadcc',
+          backgroundColor: 'rgba(122,173,204,0.12)',
+          borderWidth: 2,
+          pointRadius: 0,
+          tension: 0.3,
+          yAxisID: 'yWind',
+          fill: true,
+        },
+        {
+          label: 'Viento 80m km/h',
+          data: wind80,
+          borderColor: '#5a8db5',
+          backgroundColor: 'transparent',
+          borderWidth: 1.5,
+          borderDash: [5,4],
+          pointRadius: 0,
+          tension: 0.3,
+          yAxisID: 'yWind',
+        },
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      interaction: { mode:'index', intersect:false },
+      plugins: {
+        legend: { display:false },
+        tooltip: {
+          backgroundColor: 'rgba(28,45,61,0.95)',
+          titleColor: '#8ab8d4',
+          bodyColor: '#eee',
+          padding: 12,
+          callbacks: {
+            title: (items) => {
+              const i = items[0].dataIndex;
+              return times[i] ? new Date(times[i]).toLocaleString('es-AR',{weekday:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) : '';
+            },
+            label: (item) => {
+              const u = item.datasetIndex===0 ? '°C' : ' km/h';
+              return ` ${item.dataset.label.split(' ')[0]}: ${Math.round(item.raw)}${u}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color:'rgba(255,255,255,.55)',
+            font:{ size:10 },
+            maxRotation:0,
+            autoSkip:false,
+          },
+          grid: { color:'rgba(255,255,255,.07)' },
+        },
+        yTemp: {
+          type:'linear', position:'left',
+          ticks: { color:'#f4845a', font:{size:10}, callback:v=>`${v}°` },
+          grid: { color:'rgba(255,255,255,.07)' },
+          title: { display:true, text:'°C', color:'#f4845a', font:{size:10} },
+        },
+        yWind: {
+          type:'linear', position:'right',
+          min:0, max: maxWind,
+          ticks: { color:'#7aadcc', font:{size:10}, callback:v=>`${v}` },
+          grid: { display:false },
+          title: { display:true, text:'km/h', color:'#7aadcc', font:{size:10} },
+        },
+      }
+    },
+    plugins: [cloudPlugin]
+  });
+
+  // CHART 2: precipitation bars
+  const ctx2 = document.getElementById('precip-chart').getContext('2d');
+  const maxPrecip = Math.max(...precips) || 1;
+  chart2 = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Precip mm',
+        data: precips,
+        backgroundColor: precips.map(v => v > 5 ? 'rgba(50,100,200,0.85)' : 'rgba(80,140,210,0.65)'),
+        borderWidth: 0,
+        borderRadius: 2,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display:false },
+        tooltip: {
+          backgroundColor:'rgba(28,45,61,0.95)',
+          titleColor:'#8ab8d4',
+          bodyColor:'#eee',
+          padding:8,
+          callbacks: {
+            title:(items)=>{
+              const i=items[0].dataIndex;
+              return times[i] ? new Date(times[i]).toLocaleString('es-AR',{weekday:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) : '';
+            },
+            label:(item)=>` Lluvia: ${item.raw.toFixed(1)} mm`
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color:'rgba(255,255,255,.45)', font:{size:9}, maxRotation:0, autoSkip:false },
+          grid: { color:'rgba(255,255,255,.05)' },
+        },
+        y: {
+          min:0,
+          suggestedMax: Math.max(maxPrecip*1.3, 3),
+          ticks: { color:'rgba(255,255,255,.5)', font:{size:9}, callback:v=>`${v}mm` },
+          grid: { color:'rgba(255,255,255,.05)' },
+          title: { display:true, text:'mm', color:'rgba(255,255,255,.5)', font:{size:9} },
+        }
+      }
+    }
+  });
+}
+
+// ── ALTITUDE TABLE ────────────────────────────────────────────────────────────
+function renderAltitudeTable(data, cwIdx) {
+  const h = data.hourly;
+  const n6 = Math.min(6, data.hourly.time.length - cwIdx);
+  const avg = (arr, from, len) => {
+    const vals = arr.slice(from, from+len).filter(v=>v!=null);
+    return vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
+  };
+  const maxOf = (arr, from, len) => {
+    const vals = arr.slice(from, from+len).filter(v=>v!=null);
+    return vals.length ? Math.max(...vals) : null;
+  };
+
+  const levels = [
+    { name:'10 m', ref:'Superficie', windKey:'windspeed_10m', gustKey:'windgusts_10m', color:'#7aadcc' },
+    { name:'80 m', ref:'~Arbolado / pasos montañosos', windKey:'windspeed_80m', gustKey:null, color:'#5a8db5' },
+    { name:'120 m', ref:'Crestas expuestas / vuelo', windKey:'windspeed_120m', gustKey:null, color:'#3a6d95' },
+  ];
+  const maxWind = Math.max(
+    ...levels.map(l => avg(h[l.windKey], cwIdx, n6) || 0)
+  ) || 1;
+
+  const tbody = document.getElementById('alt-table-body');
+  tbody.innerHTML = '';
+  levels.forEach(l => {
+    const spd = avg(h[l.windKey], cwIdx, n6);
+    const gust = l.gustKey ? maxOf(h[l.gustKey], cwIdx, n6) : null;
+    const pct = spd ? Math.min(100, (spd/maxWind)*100) : 0;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="alt-name">${l.name}</td>
+      <td style="color:#888;font-size:11px">${l.ref}</td>
+      <td><strong style="color:${spd>80?'#b03a2e':spd>50?'#e8a020':l.color}">${spd!=null?Math.round(spd)+' km/h':'—'}</strong></td>
+      <td class="wind-bar-cell">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:${pct}%;background:${l.color}"></div></div>
+      </td>
+      <td style="color:#888;font-size:12px">${gust!=null?'≤ '+Math.round(gust)+' km/h':'—'}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ── METRICS GRID ──────────────────────────────────────────────────────────────
+function renderMetrics(data, cwIdx) {
+  const h = data.hourly;
+  const d48 = Math.min(48, h.time.length - cwIdx);
+  const d24 = Math.min(24, d48);
+
+  const slice48 = (k) => h[k].slice(cwIdx, cwIdx+d48).filter(v=>v!=null);
+  const slice24 = (k) => h[k].slice(cwIdx, cwIdx+d24).filter(v=>v!=null);
+  const maxArr = (arr) => arr.length ? Math.max(...arr) : null;
+  const minArr = (arr) => arr.length ? Math.min(...arr) : null;
+  const sumArr = (arr) => arr.reduce((a,b)=>a+b,0);
+
+  const maxGust    = maxArr(slice48('windgusts_10m'));
+  const maxCAPE    = maxArr(slice48('cape'));
+  const freezeH    = h.freezinglevel_height[cwIdx];
+  const minVis     = minArr(slice24('visibility'));
+  const totalPrecip= sumArr(slice48('precipitation'));
+  const totalSnow  = sumArr(slice48('snowfall'));
+  const uvMax      = maxArr(data.daily.uv_index_max ? [data.daily.uv_index_max[0]] : [0]);
+  const maxWind80  = maxArr(slice48('windspeed_80m'));
+
+  const metrics = [
+    {
+      icon:'💨', label:'Ráfaga máx. (48h)',
+      value: maxGust!=null ? Math.round(maxGust) : '—',
+      unit:'km/h',
+      sub: maxGust>80?'⚠️ Viento extremo':maxGust>50?'Viento fuerte':'Normal',
+      alert: maxGust>80?'rojo':maxGust>50?'amarillo':''
+    },
+    {
+      icon:'🏔️', label:'Viento en altura (80m)',
+      value: maxWind80!=null ? Math.round(maxWind80) : '—',
+      unit:'km/h',
+      sub:'Máximo 48h en cresta',
+      alert: maxWind80>80?'rojo':maxWind80>50?'amarillo':''
+    },
+    {
+      icon:'🧊', label:'Nivel de congelamiento',
+      value: freezeH!=null ? Math.round(freezeH) : '—',
+      unit:'m',
+      sub:'Isoterma 0°C actual',
+      alert:''
+    },
+    {
+      icon:'⚡', label:'CAPE máx. (48h)',
+      value: maxCAPE!=null ? Math.round(maxCAPE) : '—',
+      unit:'J/kg',
+      sub: maxCAPE>1500?'⚠️ Alto riesgo convectivo':maxCAPE>500?'Potencial tormenta':'Estable',
+      alert: maxCAPE>1500?'amarillo':''
+    },
+    {
+      icon:'🌧️', label:'Precipitación total (48h)',
+      value: totalPrecip.toFixed(1),
+      unit:'mm',
+      sub: totalPrecip>30?'Lluvia intensa':totalPrecip>10?'Lluvia moderada':'Escasa',
+      alert: totalPrecip>30?'amarillo':''
+    },
+    {
+      icon:'❄️', label:'Nieve total (48h)',
+      value: totalSnow>0 ? totalSnow.toFixed(1) : '0',
+      unit:'cm',
+      sub: totalSnow>20?'⚠️ Nevada intensa':totalSnow>5?'Nevada moderada':'Sin nieve',
+      alert: totalSnow>20?'amarillo':''
+    },
+    {
+      icon:'👁️', label:'Visibilidad mín. (24h)',
+      value: minVis!=null ? (minVis<10000?(minVis/1000).toFixed(1):'>10') : '—',
+      unit:'km',
+      sub: minVis<1000?'⚠️ Muy reducida':minVis<5000?'Reducida':'Buena',
+      alert: minVis<1000?'rojo':minVis<5000?'amarillo':''
+    },
+    {
+      icon:'☀️', label:'UV máx. hoy',
+      value: uvMax!=null ? Math.round(uvMax) : '—',
+      unit:'índice',
+      sub: uvMax>=8?'Muy alto':uvMax>=6?'Alto':uvMax>=3?'Moderado':'Bajo',
+      alert:''
+    },
+  ];
+
+  const grid = document.getElementById('metrics-grid');
+  grid.innerHTML = '';
+  metrics.forEach(m => {
+    const card = document.createElement('div');
+    card.className = 'metric-card' + (m.alert?' alert-'+m.alert:'');
+    card.innerHTML = `
+      <div class="metric-icon">${m.icon}</div>
+      <div class="metric-label">${m.label}</div>
+      <div class="metric-value">${m.value} <span class="metric-unit">${m.unit}</span></div>
+      <div class="metric-sub">${m.sub}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ── RISK ASSESSMENT ───────────────────────────────────────────────────────────
+function renderRisk(data, cwIdx) {
+  const h = data.hourly;
+  const d48 = Math.min(48, h.time.length - cwIdx);
+  const d24 = Math.min(24, d48);
+
+  const maxGust = Math.max(...h.windgusts_10m.slice(cwIdx,cwIdx+d48).filter(v=>v!=null), 0);
+  const minVis  = Math.min(...h.visibility.slice(cwIdx,cwIdx+d24).filter(v=>v!=null), 99999);
+  const maxCAPE = Math.max(...h.cape.slice(cwIdx,cwIdx+d48).filter(v=>v!=null), 0);
+  const tempMin = Math.min(...h.temperature_2m.slice(cwIdx,cwIdx+d48).filter(v=>v!=null), 99);
+  const totalSnow = h.snowfall.slice(cwIdx,cwIdx+d48).filter(v=>v!=null).reduce((a,b)=>a+b,0);
+
+  let level = 'verde';
+  const reasons = [];
+
+  if (maxGust > 100) { level='rojo'; reasons.push(`Ráfagas extremas: ${Math.round(maxGust)} km/h — condiciones de huracán patagónico`); }
+  else if (maxGust > 70) { if(level!=='rojo') level='rojo'; reasons.push(`Viento muy fuerte: ${Math.round(maxGust)} km/h en ráfagas`); }
+  else if (maxGust > 50) { if(level==='verde') level='amarillo'; reasons.push(`Viento fuerte: ${Math.round(maxGust)} km/h en ráfagas`); }
+
+  if (minVis < 500) { level='rojo'; reasons.push(`Visibilidad prácticamente nula: ${Math.round(minVis)} m`); }
+  else if (minVis < 2000) { if(level!=='rojo') level='rojo'; reasons.push(`Visibilidad muy reducida: ${(minVis/1000).toFixed(1)} km`); }
+  else if (minVis < 5000) { if(level==='verde') level='amarillo'; reasons.push(`Visibilidad reducida: ${(minVis/1000).toFixed(1)} km`); }
+
+  if (totalSnow > 25) { if(level!=='rojo') level='rojo'; reasons.push(`Nevada intensa: ${totalSnow.toFixed(0)} cm en 48h`); }
+  else if (totalSnow > 10) { if(level==='verde') level='amarillo'; reasons.push(`Nevada moderada: ${totalSnow.toFixed(1)} cm`); }
+
+  if (maxCAPE > 1500) { if(level==='verde') level='amarillo'; reasons.push(`Alto potencial convectivo: CAPE ${Math.round(maxCAPE)} J/kg`); }
+
+  if (tempMin < -5 && maxGust > 30) { if(level==='verde') level='amarillo'; reasons.push(`Riesgo de tormenta de nieve y congelamiento`); }
+
+  const msgs = {
+    verde:    { title:'Condiciones favorables', emoji:'✅', sub:'Sin alertas para las próximas 48 horas.' },
+    amarillo: { title:'Precaución recomendada', emoji:'⚠️', sub:'' },
+    rojo:     { title:'Condiciones adversas', emoji:'🔴', sub:'' },
+  };
+  const msg = msgs[level];
+
+  const el = document.getElementById('risk-card');
+  el.innerHTML = `
+    <div class="risk-card ${level}">
+      <div class="risk-dot ${level}">${msg.emoji}</div>
+      <div>
+        <div class="risk-title">${msg.title}</div>
+        <div class="risk-reasons">${reasons.length ? reasons.join(' · ') : msg.sub}</div>
+      </div>
+    </div>
+  `;
+}
+
+// ── SERVICE WORKER ─────────────────────────────────────────────────────────────
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
