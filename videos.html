@@ -495,13 +495,96 @@ const CAT_ORDER = ["ficcion", "serie_ficcion", "documental", "serie_documental",
 function thumb(item)   { return item.thumbnail || (item.youtube_id ? `https://img.youtube.com/vi/${item.youtube_id}/hqdefault.jpg` : ''); }
 function thumbHD(item) { return item.thumbnail || (item.youtube_id ? `https://img.youtube.com/vi/${item.youtube_id}/maxresdefault.jpg` : ''); }
 
+// ── TRACKING GA4 (Cinemateca) ──
+(function(){
+  var s = document.createElement('script');
+  s.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(s);
+})();
+
+var _ytPlayer = null;
+var _ytReady  = false;
+var _trackVid = null;
+var _watchStart = null;
+var _watchAcum  = 0;
+var _milestones = new Set();
+
+function onYouTubeIframeAPIReady() { _ytReady = true; }
+
+function _ytStateChange(e) {
+  if (e.data === YT.PlayerState.PLAYING) {
+    if (!_watchStart) _watchStart = Date.now();
+  } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
+    if (_watchStart) { _watchAcum += (Date.now() - _watchStart) / 1000; _watchStart = null; }
+    if (e.data === YT.PlayerState.ENDED) _fireWatch('completado');
+    _checkMilestones();
+  }
+}
+
+function _checkMilestones() {
+  if (!_ytPlayer || !_trackVid) return;
+  try {
+    const dur = _ytPlayer.getDuration(), cur = _ytPlayer.getCurrentTime();
+    if (dur > 0) [25, 50, 75].forEach(p => {
+      if (cur / dur >= p / 100 && !_milestones.has(p)) {
+        _milestones.add(p);
+        gtag('event', 'cinemateca_progreso', {
+          video_titulo: _trackVid.titulo,
+          video_id:     _trackVid.youtube_id || _trackVid.id,
+          porcentaje:   p
+        });
+      }
+    });
+  } catch(e) {}
+}
+
+function _fireWatch(tipo) {
+  if (!_trackVid) return;
+  const seg = Math.round(_watchAcum + (_watchStart ? (Date.now() - _watchStart) / 1000 : 0));
+  if (seg < 3) return;
+  gtag('event', 'cinemateca_watch', {
+    video_titulo:   _trackVid.titulo,
+    video_categoria: _trackVid.categoria,
+    video_id:       _trackVid.youtube_id || _trackVid.id,
+    segundos_vistos: seg,
+    tipo:           tipo
+  });
+}
+
 // ── LIGHTBOX (video individual) ──
 function getEmbedUrl(v) {
   if (v.embed_url) return v.embed_url;
-  return `https://www.youtube.com/embed/${v.youtube_id}?autoplay=1`;
+  return `https://www.youtube.com/embed/${v.youtube_id}?autoplay=1&enablejsapi=1&origin=https%3A%2F%2Fglobalpatagonia.org`;
 }
 function abrirVideo(v) {
-  document.getElementById("lb-iframe").src = getEmbedUrl(v);
+  _trackVid   = v;
+  _watchStart = null;
+  _watchAcum  = 0;
+  _milestones = new Set();
+
+  gtag('event', 'cinemateca_click', {
+    video_titulo:   v.titulo,
+    video_categoria: v.categoria,
+    video_id:       v.youtube_id || v.id,
+    video_año:      String(v.año || ''),
+    desde_serie:    v.serie || ''
+  });
+
+  const iframe = document.getElementById("lb-iframe");
+  if (v.youtube_id) {
+    if (_ytPlayer) {
+      _ytPlayer.loadVideoById(v.youtube_id);
+    } else {
+      iframe.src = getEmbedUrl(v);
+      if (_ytReady) {
+        _ytPlayer = new YT.Player('lb-iframe', { events: { onStateChange: _ytStateChange } });
+      }
+    }
+  } else {
+    if (_ytPlayer) { try { _ytPlayer.destroy(); } catch(e) {} _ytPlayer = null; }
+    iframe.src = v.embed_url || '';
+  }
+
   document.getElementById("lb-titulo").textContent = v.titulo;
   document.getElementById("lb-desc").textContent = v.descripcion || "";
   document.getElementById("lb-meta").textContent = [v.lugar, v.año, v.duracion].filter(Boolean).join(" · ");
@@ -509,6 +592,9 @@ function abrirVideo(v) {
   document.body.style.overflow = "hidden";
 }
 function cerrar() {
+  _fireWatch('cerrado');
+  if (_ytPlayer) { try { _ytPlayer.destroy(); } catch(e) {} _ytPlayer = null; }
+  _trackVid = null;
   document.getElementById("lb-iframe").src = "";
   document.getElementById("lightbox").classList.remove("open");
   document.body.style.overflow = "";
@@ -543,6 +629,13 @@ function renderEpisodios(episodios) {
 }
 
 function abrirSerie(s) {
+  gtag('event', 'cinemateca_click', {
+    video_titulo:    s.titulo,
+    video_categoria: s.categoria,
+    video_id:        s.titulo,
+    desde_serie:     s.titulo,
+    tipo:            'detalle_serie'
+  });
   _serieActual = s;
   document.getElementById("sd-bg").style.backgroundImage = `url(${thumbHD(s)})`;
   document.getElementById("sd-badge").textContent = `${CATS[s.categoria]||'Serie'} · ${s.episodios.length} episodios`;
