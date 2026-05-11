@@ -705,22 +705,19 @@ function selectCity(city) {
 async function loadWeather(city) {
   showLoading(`Cargando ${city.name}...`);
   try {
-    const params = new URLSearchParams({
-      latitude:       city.lat,
-      longitude:      city.lon,
-      hourly:         'temperature_2m,apparent_temperature,precipitation_probability,precipitation,snowfall,weathercode,cloudcover,cloudcover_low,cloudcover_mid,cloudcover_high,visibility,windspeed_10m,windspeed_80m,windspeed_120m,windgusts_10m,cape,freezinglevel_height,relativehumidity_2m,surface_pressure,dewpoint_2m,winddirection_10m',
-      daily:          'weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,snowfall_sum',
-      current_weather: true,
-      timezone:       'auto',
-      wind_speed_unit:'kmh',
-      forecast_days:   7,
-    });
-    const res = await fetch(`https://api.open-meteo.com/v1/forecast?${params}`);
-    if (!res.ok) throw new Error('API error');
+    const hourly = 'temperature_2m,apparent_temperature,precipitation_probability,precipitation,snowfall,weathercode,cloudcover,cloudcover_low,cloudcover_mid,cloudcover_high,visibility,windspeed_10m,windspeed_80m,windspeed_120m,windgusts_10m,cape,freezinglevel_height,relativehumidity_2m,surface_pressure,dewpoint_2m,winddirection_10m';
+    const daily  = 'weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,snowfall_sum';
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&hourly=${hourly}&daily=${daily}&current_weather=true&timezone=auto&wind_speed_unit=kmh&forecast_days=7`;
+    const res = await fetch(url);
+    if (!res.ok) {
+      const err = await res.json().catch(()=>({}));
+      throw new Error(err.reason || `HTTP ${res.status}`);
+    }
     const data = await res.json();
     renderAll(city, data);
   } catch(e) {
-    showError();
+    console.error('Open-Meteo error:', e.message);
+    showError(e.message);
   }
 }
 
@@ -732,9 +729,11 @@ function showLoading(msg) {
   document.getElementById('forecast-section').style.display='none';
   document.getElementById('pro-section').style.display='none';
 }
-function showError() {
+function showError(msg) {
   document.getElementById('loading').style.display='none';
-  document.getElementById('error-state').style.display='block';
+  const el = document.getElementById('error-state');
+  el.innerHTML = `⚠️ No se pudieron obtener datos. Verificá tu conexión e intentá de nuevo.${msg ? `<br><small style="opacity:.5">${msg}</small>` : ''}`;
+  el.style.display='block';
 }
 function showData() {
   document.getElementById('loading').style.display='none';
