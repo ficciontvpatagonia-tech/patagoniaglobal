@@ -2226,7 +2226,7 @@ function fillerCardHTML(tipo, context) {
 }
 
 function llenarHuecos(container, cantidadActual, maxSlots, context) {
-  const disponibles = ['cinemateca', 'clima'].filter(t => !FILLER_USADOS.has(t));
+  const disponibles = ['cinemateca'].filter(t => !FILLER_USADOS.has(t));
   const cuantos = Math.min(maxSlots - cantidadActual, disponibles.length);
   for (let i = 0; i < cuantos; i++) {
     FILLER_USADOS.add(disponibles[i]);
