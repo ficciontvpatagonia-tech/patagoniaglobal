@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#1c2d3d">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta name="description" content="Noticias de la Patagonia argentina y chilena — GLOBALpatagonia"/>
-  <meta name="robots" content="noindex, follow"/>
+  <meta name="robots" id="robots-meta" content="noindex, follow"/>
   <link rel="alternate" type="application/rss+xml" title="GLOBALpatagonia — Feed de noticias" href="https://globalpatagonia.org/feed.xml"/>
   <link rel="canonical" id="canonical-tag"/>
   <script>
@@ -20,11 +20,18 @@
       if (id) {
         var lang = params.get('lang');
         var target = '/notas/' + id + (lang ? '-' + lang : '') + '.html';
+        var canonicalUrl = 'https://globalpatagonia.org/notas/' + id + (lang ? '-' + lang : '') + '.html';
+        document.getElementById('canonical-tag').href = canonicalUrl;
+        // Fallback no-JS: muestra enlace visible al contenido canónico (evita soft 404)
+        var loadingEl = document.getElementById('loading');
+        if (loadingEl) loadingEl.innerHTML = 'Redirigiendo a <a href="' + target + '">' + canonicalUrl + '</a>...';
         window.location.replace(target);
         return;
       }
       var slug = (window.location.pathname.split('/notas/')[1] || '').replace('.html', '');
       if (!slug) { window.location.replace('/'); return; }
+      // Página de contenido real → indexable
+      document.getElementById('robots-meta').setAttribute('content', 'index, follow');
       document.getElementById('canonical-tag').href = 'https://globalpatagonia.org/notas/' + slug + '.html';
     })();
   </script>
@@ -631,7 +638,7 @@ function renderNota(nota, fechaDisplay, data) {
 
   // Título de pestaña y OG dinámico
   document.title = nota.titulo + " — GLOBALpatagonia";
-  // GA4: re-enviar page_view con título real (el inicial dispara con título genérico)
+  document.getElementById('robots-meta').setAttribute('content', 'index, follow');
   if (typeof gtag !== 'undefined') {
     gtag('event', 'page_view', {
       page_title: nota.titulo + " — GLOBALpatagonia",
