@@ -430,34 +430,32 @@
     </div>
     <p class="pro-subtitle">Variables avanzadas para escaladores, esquiadores y expedicionarios — próximas 48 horas</p>
 
-    <!-- Risk Assessment -->
+    <!-- 1. Risk Assessment -->
     <div id="risk-card"></div>
 
-    <!-- Windy Map -->
-    <div class="windy-card">
-      <div class="windy-header">
-        <div class="windy-header-left">
-          <span class="windy-title">🗺 Mapa en vivo</span>
-        </div>
-        <div class="windy-layers">
-          <button class="windy-layer-btn active" onclick="setWindyLayer('wind',this)">💨 Viento</button>
-          <button class="windy-layer-btn" onclick="setWindyLayer('rain',this)">🌧 Lluvia</button>
-          <button class="windy-layer-btn" onclick="setWindyLayer('temp',this)">🌡 Temperatura</button>
-          <button class="windy-layer-btn" onclick="setWindyLayer('clouds',this)">☁️ Nubes</button>
-          <button class="windy-layer-btn" onclick="setWindyLayer('snow',this)">❄️ Nieve</button>
-          <button class="windy-layer-btn" onclick="setWindyLayer('pressure',this)">📊 Presión</button>
-        </div>
-      </div>
-      <div class="windy-iframe-wrap">
-        <iframe id="windy-iframe" allowfullscreen loading="lazy"
-          src="https://embed.windy.com/embed2.html?lat=-45&lon=-70&zoom=4&level=surface&overlay=wind&product=ecmwf&menu=&message=true&marker=true&metricWind=km%2Fh&metricTemp=%C2%B0C">
-        </iframe>
-      </div>
-      <div class="windy-credit">Mapa: <a href="https://www.windy.com" target="_blank" rel="noopener">Windy.com</a> · Modelo ECMWF</div>
+    <!-- 2. Altitude Wind Table -->
+    <div class="altitude-card">
+      <div class="section-label" style="margin-bottom:12px">Viento por altitud — Próximas 6 horas</div>
+      <table class="alt-table">
+        <thead>
+          <tr>
+            <th>Nivel</th>
+            <th>Referencia</th>
+            <th>Velocidad</th>
+            <th class="wind-bar-cell">Intensidad</th>
+            <th>Ráfaga</th>
+          </tr>
+        </thead>
+        <tbody id="alt-table-body"></tbody>
+      </table>
     </div>
 
-    <!-- Meteogram -->
-    <div class="meteogram-card">
+    <!-- 3. Metrics Grid -->
+    <div class="section-label">Indicadores clave — Próximas 48 horas</div>
+    <div class="metrics-grid" id="metrics-grid"></div>
+
+    <!-- 4. Meteogram -->
+    <div class="meteogram-card" style="margin-top:20px">
       <div class="meteogram-title">
         📈 Meteograma — Próximas 48 horas
       </div>
@@ -475,26 +473,28 @@
       </div>
     </div>
 
-    <!-- Altitude Wind Table -->
-    <div class="altitude-card">
-      <div class="section-label" style="margin-bottom:12px">Viento por altitud — Próximas 6 horas</div>
-      <table class="alt-table">
-        <thead>
-          <tr>
-            <th>Nivel</th>
-            <th>Referencia</th>
-            <th>Velocidad</th>
-            <th class="wind-bar-cell">Intensidad</th>
-            <th>Ráfaga</th>
-          </tr>
-        </thead>
-        <tbody id="alt-table-body"></tbody>
-      </table>
+    <!-- 5. Windy Map (last) -->
+    <div class="windy-card" style="margin-top:20px">
+      <div class="windy-header">
+        <div class="windy-header-left">
+          <span class="windy-title">🗺 Mapa en vivo · Isobaras activas</span>
+        </div>
+        <div class="windy-layers">
+          <button class="windy-layer-btn active" onclick="setWindyLayer('wind',this)">💨 Viento</button>
+          <button class="windy-layer-btn" onclick="setWindyLayer('rain',this)">🌧 Lluvia</button>
+          <button class="windy-layer-btn" onclick="setWindyLayer('temp',this)">🌡 Temperatura</button>
+          <button class="windy-layer-btn" onclick="setWindyLayer('clouds',this)">☁️ Nubes</button>
+          <button class="windy-layer-btn" onclick="setWindyLayer('snow',this)">❄️ Nieve</button>
+          <button class="windy-layer-btn" onclick="setWindyLayer('pressure',this)">📊 Presión</button>
+        </div>
+      </div>
+      <div class="windy-iframe-wrap">
+        <iframe id="windy-iframe" allowfullscreen loading="lazy"
+          src="https://embed.windy.com/embed2.html?lat=-45&lon=-70&zoom=4&level=surface&overlay=wind&product=ecmwf&isolines=pressure&menu=&message=true&marker=true&metricWind=km%2Fh&metricTemp=%C2%B0C">
+        </iframe>
+      </div>
+      <div class="windy-credit">Mapa: <a href="https://www.windy.com" target="_blank" rel="noopener">Windy.com</a> · Modelo ECMWF · Isobaras de presión</div>
     </div>
-
-    <!-- Metrics Grid -->
-    <div class="section-label">Indicadores clave — Próximas 48 horas</div>
-    <div class="metrics-grid" id="metrics-grid"></div>
 
   </section>
 
@@ -619,7 +619,7 @@ function updateWindyMap(city) {
   const iframe = document.getElementById('windy-iframe');
   if (!iframe) return;
   const zoom = city.lat < -65 ? 4 : city.lat < -50 ? 5 : 6;
-  iframe.src = `https://embed.windy.com/embed2.html?lat=${city.lat}&lon=${city.lon}&detailLat=${city.lat}&detailLon=${city.lon}&zoom=${zoom}&level=surface&overlay=${windyLayer}&product=ecmwf&menu=&message=true&marker=true&metricWind=km%2Fh&metricTemp=%C2%B0C`;
+  iframe.src = `https://embed.windy.com/embed2.html?lat=${city.lat}&lon=${city.lon}&detailLat=${city.lat}&detailLon=${city.lon}&zoom=${zoom}&level=surface&overlay=${windyLayer}&product=ecmwf&isolines=pressure&menu=&message=true&marker=true&metricWind=km%2Fh&metricTemp=%C2%B0C`;
 }
 
 // ── INIT ─────────────────────────────────────────────────────────────────────
