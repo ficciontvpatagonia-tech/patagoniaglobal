@@ -119,8 +119,9 @@ PALABRAS_CLAVE = [
     "macá tobiano", "fauna patagónica", "especie invasora", "jabalí",
     "microplástico", "cambio climático", "recurso hídrico",
     # Pueblos Originarios
-    "mapuche", "tehuelche", "aonikenk", "kawésqar", "kawesqar",
-    "selknam", "ona", "yagán", "yagan", "pueblo originario",
+    "mapuche", "tehuelche", "aonikenk", "aónikenk", "kawésqar", "kawesqar",
+    "selknam", "selk'nam", "ona", "yagán", "yagan", "yámana", "yamana",
+    "haush", "manekenk", "pueblo originario",
     "comunidad indígena", "territorio ancestral",
     # Deportes patagónicos
     "fitz roy", "cerro torre", "nahuel huapi",
@@ -185,8 +186,9 @@ def es_patagonica(titulo, resumen):
 _PALABRAS_PRIORITARIAS = frozenset([
     "glaciar", "glaciares", "ley de glaciares", "pesca ilegal",
     "incendio forestal", "incendio", "derrame", "contaminación",
-    "mapuche", "tehuelche", "kawésqar", "kawesqar", "selknam",
-    "yagán", "yagan", "comunidad indígena", "pueblo originario",
+    "mapuche", "tehuelche", "aonikenk", "kawésqar", "kawesqar", "selknam",
+    "yagán", "yagan", "yámana", "yamana", "haush", "manekenk",
+    "comunidad indígena", "pueblo originario",
     "malvinas", "falkland", "falklands", "antártida", "antartida",
     "soberanía", "inach",
 ])
@@ -667,7 +669,7 @@ IDENTIDAD EDITORIAL:
 
 CRITERIO DE SELECCIÓN:
 ✓ Medio Ambiente: glaciares, agua, fauna, ecosistemas, legislación ambiental, especies invasoras, contaminación
-✓ Pueblos Originarios: Mapuche, Tehuelche, Kawésqar, Selknam — territorio, derechos, cultura viva
+✓ Pueblos Originarios: Tehuelche (Aónikenk), Mapuche, Selk'nam (Ona), Kawésqar (Alacalufe), Yagán (Yámana), Haush (Manekenk) — cualquier nota sobre estos pueblos entra siempre: territorio, derechos, lengua, cultura viva, comunidades actuales
 ✓ Deportes Patagónicos: SOLO deportes que se practican en o son distintivos de la Patagonia — trail running, escalada en roca/hielo, kayak de mar/río, ski/snowboard, mountainbike de montaña, triatlón, carreras de aventura, andinismo, trekking de larga distancia, surf en costas patagónicas, natación en aguas frías/lagos. EXCEPCIÓN PRIORITARIA: deportes inclusivos o adaptados para personas con discapacidad en Patagonia — cualquier deporte en formato inclusivo/adaptado entra siempre, independientemente del deporte específico (básquet en silla de ruedas, atletismo adaptado, natación para ciegos, taller deportivo inclusivo, etc.). La inclusión/adaptación es el valor editorial, no el deporte. DESCARTAR: rugby, fútbol, básquet, tenis, athletics, cualquier deporte de equipo nacional o internacional sin anclaje patagónico concreto (ej: Los Pumas, selección argentina, torneos nacionales) — EXCEPTO si son versión inclusiva o adaptada.
 ✓ Desarrollo & Producción: economía regional, pesca, ganadería, energía, infraestructura, conectividad
 ✓ Cultura: arte, música, identidad, historia, gastronomía, fiestas regionales, pioneros
