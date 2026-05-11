@@ -5,6 +5,9 @@ on:
     - cron: '0 12 * * 1'   # Lunes 9:00 AM hora Argentina (UTC-3)
   workflow_dispatch:
 
+permissions:
+  issues: write
+
 jobs:
   auditoria:
     runs-on: ubuntu-latest
@@ -20,5 +23,5 @@ jobs:
 
       - name: Correr auditoría SEO
         env:
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 check_seo.py

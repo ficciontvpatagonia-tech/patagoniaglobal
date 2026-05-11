@@ -3,10 +3,9 @@
 
 import os
 import re
+import json
 import xml.etree.ElementTree as ET
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import urllib.request
 from datetime import datetime
 
 REPO = os.path.dirname(os.path.abspath(__file__))
@@ -14,20 +13,20 @@ SITEMAP_PATH = os.path.join(REPO, 'sitemap.xml')
 NOTAS_DIR = os.path.join(REPO, 'notas')
 ROBOTS_PATH = os.path.join(REPO, 'robots.txt')
 BASE_URL = 'https://globalpatagonia.org'
-EMAIL_DEST = 'ficciontvpatagonia@gmail.com'
+GH_REPO = 'ficciontvpatagonia-tech/patagoniaglobal'
 
 ROBOTS_REQUIRED = ['Disallow: /nota.html', 'Disallow: /buscar.html', 'Sitemap:']
 
 
-def send_email(app_password, subject, html_body):
-    msg = MIMEMultipart('alternative')
-    msg['Subject'] = subject
-    msg['From'] = EMAIL_DEST
-    msg['To'] = EMAIL_DEST
-    msg.attach(MIMEText(html_body, 'html', 'utf-8'))
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as s:
-        s.login(EMAIL_DEST, app_password)
-        s.sendmail(EMAIL_DEST, EMAIL_DEST, msg.as_string())
+def create_github_issue(token, title, body):
+    url = f'https://api.github.com/repos/{GH_REPO}/issues'
+    payload = json.dumps({'title': title, 'body': body, 'labels': ['seo']}).encode()
+    req = urllib.request.Request(url, data=payload, headers={
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github+json',
+    })
+    urllib.request.urlopen(req, timeout=10)
 
 
 def sitemap_notas():
@@ -91,9 +90,9 @@ def audit():
     if missing_from_sitemap:
         issues.append(f'📋 En disco pero NO en sitemap ({len(missing_from_sitemap)}):')
         for f in missing_from_sitemap[:12]:
-            issues.append(f'  · {f}')
+            issues.append(f'  - `{f}`')
         if len(missing_from_sitemap) > 12:
-            issues.append(f'  · … y {len(missing_from_sitemap) - 12} más')
+            issues.append(f'  - … y {len(missing_from_sitemap) - 12} más')
     else:
         ok.append(f'✅ Sitemap completo ({len(sm_files)} notas en sitemap, '
                   f'{len(all_files)} archivos en disco)')
@@ -101,13 +100,13 @@ def audit():
     if missing_from_disk:
         issues.append(f'❌ En sitemap pero NO en disco ({len(missing_from_disk)}):')
         for f in missing_from_disk[:8]:
-            issues.append(f'  · {f}')
+            issues.append(f'  - `{f}`')
     else:
         ok.append('✅ Sin URLs rotas en sitemap')
 
     if redirect_without_noindex:
         for f in redirect_without_noindex:
-            issues.append(f'⚠️ Redirect stub sin noindex: {f}')
+            issues.append(f'⚠️ Redirect stub sin noindex: `{f}`')
     else:
         ok.append('✅ Todos los redirect stubs tienen noindex')
 
@@ -131,15 +130,15 @@ def audit():
     if canonical_missing:
         issues.append(f'🔗 Sin canonical ({len(canonical_missing)}):')
         for f in canonical_missing[:5]:
-            issues.append(f'  · {f}')
+            issues.append(f'  - `{f}`')
         if len(canonical_missing) > 5:
-            issues.append(f'  · … y {len(canonical_missing) - 5} más')
+            issues.append(f'  - … y {len(canonical_missing) - 5} más')
     if canonical_bad:
         issues.append(f'🔗 Canonical incorrecto ({len(canonical_bad)}):')
         for f in canonical_bad[:5]:
-            issues.append(f'  · {f}')
+            issues.append(f'  - `{f}`')
         if len(canonical_bad) > 5:
-            issues.append(f'  · … y {len(canonical_bad) - 5} más')
+            issues.append(f'  - … y {len(canonical_bad) - 5} más')
     if not canonical_missing and not canonical_bad:
         ok.append(f'✅ Canonicals correctos ({checked} páginas verificadas)')
 
@@ -158,7 +157,7 @@ def audit():
         robots_missing = [r for r in ROBOTS_REQUIRED if r not in robots]
         if robots_missing:
             for r in robots_missing:
-                issues.append(f'🤖 robots.txt: falta "{r}"')
+                issues.append(f'🤖 robots.txt: falta `{r}`')
         else:
             ok.append('✅ robots.txt con reglas correctas')
     except FileNotFoundError:
@@ -168,41 +167,36 @@ def audit():
 
 
 def main():
-    app_password = os.environ.get('GMAIL_APP_PASSWORD')
+    token = os.environ.get('GITHUB_TOKEN')
 
     ok, issues = audit()
     date_str = datetime.now().strftime('%d/%m/%Y')
 
     status = '🟢 Sin errores' if not issues else f'⚠️ {len(issues)} problema(s)'
-    subject = f'[GP] Auditoría SEO — {date_str} — {status}'
+    title = f'Auditoría SEO — {date_str} — {status}'
 
-    lines = [
-        '<h2 style="color:#1c2d3d">🔍 Auditoría SEO — GLOBALpatagonia</h2>',
-        f'<p style="color:#666">{date_str}</p>',
-    ]
+    lines = [f'## 🔍 Auditoría SEO — GLOBALpatagonia', f'_{date_str}_', '']
 
     if not issues:
-        lines.append('<p>🟢 <strong>Todo en orden.</strong> Sin errores detectados.</p>')
+        lines.append('🟢 **Todo en orden.** Sin errores detectados.')
+        lines.append('')
 
     if issues:
-        lines.append('<h3 style="color:#c0392b">⚠️ Problemas encontrados:</h3><ul>')
-        for i in issues:
-            lines.append(f'<li>{i}</li>')
-        lines.append('</ul>')
+        lines.append('### ⚠️ Problemas encontrados')
+        lines.extend(issues)
+        lines.append('')
 
     if ok:
-        lines.append('<h3 style="color:#27ae60">Sin problemas:</h3><ul>')
-        for i in ok:
-            lines.append(f'<li>{i}</li>')
-        lines.append('</ul>')
+        lines.append('### ✅ Sin problemas')
+        lines.extend(ok)
 
-    html_body = '\n'.join(lines)
+    body = '\n'.join(lines)
 
-    if app_password:
-        send_email(app_password, subject, html_body)
-        print('Reporte enviado por email.')
+    if token:
+        create_github_issue(token, title, body)
+        print('Issue creado en GitHub.')
     else:
-        print(html_body)
+        print(body)
 
 
 if __name__ == '__main__':
