@@ -4,8 +4,9 @@
 import os
 import re
 import xml.etree.ElementTree as ET
-import json
-import urllib.request
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 
 REPO = os.path.dirname(os.path.abspath(__file__))
@@ -13,21 +14,20 @@ SITEMAP_PATH = os.path.join(REPO, 'sitemap.xml')
 NOTAS_DIR = os.path.join(REPO, 'notas')
 ROBOTS_PATH = os.path.join(REPO, 'robots.txt')
 BASE_URL = 'https://globalpatagonia.org'
+EMAIL_DEST = 'ficciontvpatagonia@gmail.com'
 
 ROBOTS_REQUIRED = ['Disallow: /nota.html', 'Disallow: /buscar.html', 'Sitemap:']
 
 
-def send_telegram(token, chat_id, msg):
-    url = f'https://api.telegram.org/bot{token}/sendMessage'
-    payload = json.dumps({
-        'chat_id': chat_id,
-        'text': msg,
-        'parse_mode': 'HTML',
-        'disable_web_page_preview': True
-    }).encode()
-    req = urllib.request.Request(url, data=payload,
-                                 headers={'Content-Type': 'application/json'})
-    urllib.request.urlopen(req, timeout=10)
+def send_email(app_password, subject, html_body):
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = subject
+    msg['From'] = EMAIL_DEST
+    msg['To'] = EMAIL_DEST
+    msg.attach(MIMEText(html_body, 'html', 'utf-8'))
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as s:
+        s.login(EMAIL_DEST, app_password)
+        s.sendmail(EMAIL_DEST, EMAIL_DEST, msg.as_string())
 
 
 def sitemap_notas():
@@ -168,34 +168,41 @@ def audit():
 
 
 def main():
-    token = os.environ.get('TELEGRAM_BOT_TOKEN')
-    chat_id = os.environ.get('TELEGRAM_ADMIN_CHAT_ID') or os.environ.get('TELEGRAM_CHANNEL_ID')
+    app_password = os.environ.get('GMAIL_APP_PASSWORD')
 
     ok, issues = audit()
     date_str = datetime.now().strftime('%d/%m/%Y')
 
-    lines = ['<b>🔍 Auditoría SEO — GLOBALpatagonia</b>', f'<i>{date_str}</i>', '']
+    status = '🟢 Sin errores' if not issues else f'⚠️ {len(issues)} problema(s)'
+    subject = f'[GP] Auditoría SEO — {date_str} — {status}'
+
+    lines = [
+        '<h2 style="color:#1c2d3d">🔍 Auditoría SEO — GLOBALpatagonia</h2>',
+        f'<p style="color:#666">{date_str}</p>',
+    ]
 
     if not issues:
-        lines.append('🟢 <b>Todo en orden.</b> Sin errores detectados.')
-        lines.append('')
+        lines.append('<p>🟢 <strong>Todo en orden.</strong> Sin errores detectados.</p>')
 
     if issues:
-        lines.append('<b>⚠️ Problemas encontrados:</b>')
-        lines.extend(issues)
-        lines.append('')
+        lines.append('<h3 style="color:#c0392b">⚠️ Problemas encontrados:</h3><ul>')
+        for i in issues:
+            lines.append(f'<li>{i}</li>')
+        lines.append('</ul>')
 
     if ok:
-        lines.append('<b>Sin problemas:</b>')
-        lines.extend(ok)
+        lines.append('<h3 style="color:#27ae60">Sin problemas:</h3><ul>')
+        for i in ok:
+            lines.append(f'<li>{i}</li>')
+        lines.append('</ul>')
 
-    msg = '\n'.join(lines)
+    html_body = '\n'.join(lines)
 
-    if token and chat_id:
-        send_telegram(token, chat_id, msg)
-        print('Reporte enviado a Telegram.')
+    if app_password:
+        send_email(app_password, subject, html_body)
+        print('Reporte enviado por email.')
     else:
-        print(msg)
+        print(html_body)
 
 
 if __name__ == '__main__':
