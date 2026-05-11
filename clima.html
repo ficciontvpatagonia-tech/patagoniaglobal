@@ -48,8 +48,8 @@
     header { background:var(--verde); padding:0; }
     .top-bar { background:var(--gris-oscuro); display:flex; justify-content:space-between; align-items:center; padding:6px 40px; font-size:11px; color:#777; letter-spacing:.5px; }
     .top-bar .fecha { color:#ccc; }
-    .top-bar .clima-link { color:#8ab8d4; font-weight:600; text-decoration:none; transition:color .2s; }
-    .top-bar .clima-link:hover { color:#fff; }
+    .top-bar .clima-btn { color:#8ab8d4; font-weight:600; text-decoration:none; background:rgba(122,173,204,0.1); border:1px solid rgba(122,173,204,0.22); border-radius:20px; padding:3px 12px 3px 10px; display:inline-flex; align-items:center; gap:5px; transition:all .2s; white-space:nowrap; }
+    .top-bar .clima-btn:hover { background:rgba(122,173,204,0.22); color:#fff; border-color:rgba(122,173,204,0.45); }
     .header-main { display:flex; flex-direction:column; align-items:center; padding:24px 20px 16px; border-bottom:1px solid rgba(255,255,255,.1); }
     .logo-tagline { font-size:11px; color:#8ab8d4; letter-spacing:4px; text-transform:uppercase; margin-bottom:4px; }
     .logo-img { height:auto; max-height:136px; width:auto; max-width:90%; display:block; }
@@ -255,7 +255,7 @@
     @media (max-width:640px) {
       .clima-hero h1 { font-size:24px; }
       .top-bar { padding:5px 12px; font-size:10px; }
-      .top-bar .clima-link { display:none; }
+      .top-bar .clima-btn { display:none; }
       .header-main { padding:16px 16px 12px; }
       .logo-img { max-height:110px; }
       nav { flex-wrap:wrap; justify-content:flex-start; position:relative; }
@@ -281,7 +281,7 @@
 <header>
   <div class="top-bar">
     <span class="fecha" id="fecha-display"></span>
-    <a href="clima.html" class="clima-link" id="topbar-clima">🌤 El Tiempo en la Patagonia</a>
+    <a href="clima.html" class="clima-btn" id="topbar-clima-strip">🌤 <span id="topbar-temps">Bariloche · Neuquén · Pta. Arenas · Pto. Montt</span> ▸</a>
   </div>
   <div class="header-main">
     <h1 class="sr-only">GLOBALpatagonia — El Tiempo en la Patagonia</h1>
@@ -1144,6 +1144,38 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').catch(()=>{});
   });
 }
+
+// ── TOP BAR TEMPS ─────────────────────────────────────────────────────────────
+(function() {
+  const KEY = 'gp_topbar_v1', TTL = 30 * 60 * 1000;
+  const cities = [
+    { name:'Bariloche',   lat:-41.133, lon:-71.310 },
+    { name:'Neuquén',     lat:-38.952, lon:-68.059 },
+    { name:'Pta. Arenas', lat:-53.164, lon:-70.917 },
+    { name:'Pto. Montt',  lat:-41.469, lon:-72.942 },
+  ];
+  function emoji(c) {
+    if (c===0) return '☀️'; if (c<=2) return '🌤'; if (c===3) return '☁️';
+    if (c<=48) return '🌫'; if (c<=67) return '🌧'; if (c<=77) return '❄️';
+    if (c<=82) return '🌦'; if (c>=95) return '⛈'; return '🌡';
+  }
+  function update(data) {
+    const el = document.getElementById('topbar-temps');
+    if (el) el.textContent = data.map(d => `${d.emoji} ${d.name} ${Math.round(d.t)}°`).join(' · ');
+  }
+  window.addEventListener('load', async () => {
+    try {
+      const cached = localStorage.getItem(KEY);
+      if (cached) { const { ts, data } = JSON.parse(cached); if (Date.now()-ts < TTL) { update(data); return; } }
+      const results = await Promise.all(cities.map(c =>
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lon}&current_weather=true&timezone=auto`).then(r=>r.json())
+      ));
+      const data = results.map((r,i) => ({ name:cities[i].name, t:r.current_weather.temperature, emoji:emoji(r.current_weather.weathercode) }));
+      localStorage.setItem(KEY, JSON.stringify({ ts:Date.now(), data }));
+      update(data);
+    } catch(e) {}
+  });
+})();
 </script>
 </body>
 </html>
