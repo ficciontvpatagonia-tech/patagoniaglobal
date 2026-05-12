@@ -870,14 +870,47 @@ REGLAS CRÍTICAS:
 # ══════════════════════════════════════════════════════════
 
 def fotos_propias_disponibles():
-    indice_path = os.path.join(os.path.dirname(__file__), "fotos", "index.json")
-    if not os.path.exists(indice_path):
-        return []
+    fotos_dir   = os.path.join(os.path.dirname(__file__), "fotos")
+    indice_path = os.path.join(fotos_dir, "index.json")
+
+    # Cargar index.json (keywords enriquecidos manuales)
+    indexadas = {}
     try:
         with open(indice_path, encoding="utf-8") as f:
-            return json.load(f)
+            for entry in json.load(f):
+                indexadas[entry["archivo"]] = entry
     except Exception:
-        return []
+        pass
+
+    # Auto-descubrir todos los archivos de imagen en fotos/
+    # Ignorar: fotos de artículos (foto-YYYYMMDD-* o YYYYMMDD-*), versiones _ig.jpg
+    import glob as _glob
+    resultado = list(indexadas.values())
+    archivos_indexados = set(indexadas.keys())
+
+    for ext in ("*.jpg", "*.jpeg", "*.webp", "*.png"):
+        for ruta in _glob.glob(os.path.join(fotos_dir, ext)):
+            nombre = os.path.basename(ruta)
+            if nombre in archivos_indexados:
+                continue
+            # Saltar fotos de artículos individuales
+            if re.match(r'(foto-)?\d{8}-', nombre):
+                continue
+            if nombre.endswith("_ig.jpg") or nombre.endswith("_ig.webp"):
+                continue
+            # Generar keywords desde el nombre del archivo
+            slug = re.sub(r'\.(jpg|jpeg|webp|png)$', '', nombre.lower())
+            partes = re.split(r'[-_]+', slug)
+            partes = [p for p in partes if len(p) >= 3]
+            # También agregar frases de 2 palabras consecutivas
+            frases = partes + [f"{partes[i]} {partes[i+1]}" for i in range(len(partes)-1)]
+            resultado.append({
+                "archivo":    nombre,
+                "descripcion": slug.replace("-", " "),
+                "keywords":   frases,
+            })
+
+    return resultado
 
 
 def extraer_og_image(url_articulo, nota_id):
