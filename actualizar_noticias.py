@@ -882,32 +882,34 @@ def fotos_propias_disponibles():
     except Exception:
         pass
 
-    # Auto-descubrir todos los archivos de imagen en fotos/
-    # Ignorar: fotos de artículos (foto-YYYYMMDD-* o YYYYMMDD-*), versiones _ig.jpg
+    # Auto-descubrir todos los archivos de imagen en fotos/ y subcarpetas
+    # Ignorar: fotos de artículos (foto-YYYYMMDD-* o YYYYMMDD-*), versiones _ig, carpeta INSTAGRAM
     import glob as _glob
     resultado = list(indexadas.values())
     archivos_indexados = set(indexadas.keys())
 
     for ext in ("*.jpg", "*.jpeg", "*.webp", "*.png"):
-        for ruta in _glob.glob(os.path.join(fotos_dir, ext)):
-            nombre = os.path.basename(ruta)
-            if nombre in archivos_indexados:
+        for ruta in _glob.glob(os.path.join(fotos_dir, "**", ext), recursive=True):
+            nombre    = os.path.basename(ruta)
+            rel       = os.path.relpath(ruta, fotos_dir)   # e.g. "CIUDADES/bariloche.jpg"
+            if rel in archivos_indexados:
+                continue
+            # Saltar carpeta INSTAGRAM
+            if rel.startswith("INSTAGRAM" + os.sep):
                 continue
             # Saltar fotos de artículos individuales
             if re.match(r'(foto-)?\d{8}-', nombre):
                 continue
-            if nombre.endswith("_ig.jpg") or nombre.endswith("_ig.webp"):
+            if re.search(r'_ig\.(jpg|jpeg|webp|png)$', nombre, re.IGNORECASE):
                 continue
-            # Generar keywords desde el nombre del archivo
-            slug = re.sub(r'\.(jpg|jpeg|webp|png)$', '', nombre.lower())
-            partes = re.split(r'[-_]+', slug)
-            partes = [p for p in partes if len(p) >= 3]
-            # También agregar frases de 2 palabras consecutivas
+            # Generar keywords desde el nombre del archivo (sin extensión, sin subcarpeta)
+            slug   = re.sub(r'\.(jpg|jpeg|webp|png)$', '', nombre.lower(), flags=re.IGNORECASE)
+            partes = [p for p in re.split(r'[-_]+', slug) if len(p) >= 3]
             frases = partes + [f"{partes[i]} {partes[i+1]}" for i in range(len(partes)-1)]
             resultado.append({
-                "archivo":    nombre,
+                "archivo":     rel.replace(os.sep, "/"),
                 "descripcion": slug.replace("-", " "),
-                "keywords":   frases,
+                "keywords":    frases,
             })
 
     return resultado
