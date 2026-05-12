@@ -119,6 +119,29 @@
       border-bottom: 3px solid transparent;
     }
     nav a:hover { color: #8ab8d4; border-bottom-color: #8ab8d4; }
+    .nav-links { display: flex; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px 16px;
+      margin-left: auto;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* CONTENIDO */
     .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
@@ -461,9 +484,18 @@
       .header-main { padding: 14px 16px 10px; }
       .logo-img { height: 46px; }
 
-      nav { justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-      nav::-webkit-scrollbar { display: none; }
-      nav a { font-size: 11px; padding: 12px 14px; white-space: nowrap; flex-shrink: 0; }
+      nav { flex-wrap: wrap; justify-content: flex-start; position: relative; }
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--verde);
+        border-top: 1px solid rgba(255,255,255,0.1);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 13px; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.07); border-bottom-width: 0; }
+      .nav-links a:not(:last-child) { border-bottom-width: 1px; }
 
       .container { padding: 0 14px; }
       .nota-titulo { font-size: 24px; line-height: 1.25; }
@@ -543,12 +575,17 @@
     </a>
   </div>
   <nav>
-    <a href="index.html">Inicio</a>
-    <a href="index.html#sec-noticias">Noticias</a>
-    <a href="index.html#sec-deportes">Deportes & Actividades</a>
-    <a href="index.html#sec-turismo">Turismo & Guías</a>
-    <a href="index.html#sec-historia">Cultura Patagónica</a>
-    <a href="buscar.html">Buscar</a>
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="index.html#sec-noticias">Noticias</a>
+      <a href="index.html#sec-deportes">Deportes & Actividades</a>
+      <a href="index.html#sec-turismo">Turismo & Guías</a>
+      <a href="index.html#sec-historia">Cultura Patagónica</a>
+      <a href="buscar.html">Buscar</a>
+    </div>
   </nav>
 </header>
 
@@ -971,5 +1008,25 @@ if (!id) {
 }
 </script>
 <script>navigator.serviceWorker?.register('/OneSignalSDKWorker.js')</script>
+<script>
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const navLinks = document.getElementById('nav-links');
+  if (hamburgerBtn && navLinks) {
+    hamburgerBtn.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      hamburgerBtn.classList.toggle('open', open);
+      hamburgerBtn.setAttribute('aria-expanded', open);
+      hamburgerBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburgerBtn.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        hamburgerBtn.setAttribute('aria-label', 'Abrir menú');
+      });
+    });
+  }
+</script>
 </body>
 </html>
