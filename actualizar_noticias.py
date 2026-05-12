@@ -18,6 +18,7 @@ import sys
 import os
 import re
 import time
+import calendar
 import unicodedata
 import urllib.request
 import urllib.parse
@@ -395,8 +396,29 @@ def actualizar_search_index():
         print(f"  → Índice de búsqueda sin cambios ({len(indice)} notas)")
 
 
+def cargar_vetadas():
+    """Carga urls_vetadas.json → (set de URLs, lista de frases de título bloqueadas)."""
+    ruta = os.path.join(os.path.dirname(__file__), "urls_vetadas.json")
+    try:
+        with open(ruta, encoding="utf-8") as f:
+            data = json.load(f)
+        urls    = set(data.get("urls", []))
+        titulos = [t.lower() for t in data.get("titulos", [])]
+        if urls or titulos:
+            print(f"  Vetadas: {len(urls)} URLs · {len(titulos)} frases de título")
+        return urls, titulos
+    except FileNotFoundError:
+        return set(), []
+    except Exception as e:
+        print(f"  ⚠ No se pudo leer urls_vetadas.json: {e}")
+        return set(), []
+
+
 def urls_ya_publicadas(historial):
-    return {a.get("url_original", "") for a in historial if a.get("url_original")}
+    urls = {a.get("url_original", "") for a in historial if a.get("url_original")}
+    urls_v, _ = cargar_vetadas()
+    urls.update(urls_v)
+    return urls
 
 
 # ══════════════════════════════════════════════════════════
@@ -432,7 +454,6 @@ def verificar_duplicado_tematico(nota, historial, dias=5):
     if len(tokens_nuevos) < 2:
         return False
 
-    fuente_nueva = nota["fuente"].lower()
     hace_n_dias = (datetime.now() - timedelta(days=dias)).strftime('%Y%m%d')
 
     for art in historial:
@@ -443,10 +464,6 @@ def verificar_duplicado_tematico(nota, historial, dias=5):
         if not art.get("titulo"):
             continue
 
-        # Misma fuente
-        if art.get("fuente", "").lower() != fuente_nueva:
-            continue
-
         tokens_art = _tokenizar_titulo(art["titulo"])
         if len(tokens_art) < 2:
             continue
@@ -455,7 +472,7 @@ def verificar_duplicado_tematico(nota, historial, dias=5):
         union = tokens_nuevos | tokens_art
         sim = len(inter) / len(union) if union else 0
 
-        if sim >= 0.35:
+        if sim >= 0.40:
             return (True, art["id"], sim)
 
     return False
@@ -521,6 +538,7 @@ def fetch_noticias_crudas():
     print(f"{'='*55}\n")
 
     trending_kw = obtener_trending_keywords()
+    _, titulos_vetados = cargar_vetadas()
 
     for fuente in FUENTES_RSS:
         print(f"  Leyendo: {fuente['nombre']} ...", end=" ", flush=True)
@@ -531,6 +549,16 @@ def fetch_noticias_crudas():
                 titulo  = entry.get("title", "")
                 resumen = entry.get("summary", "")
                 if not titulo:
+                    continue
+                # Descartar artículos publicados hace más de 14 días
+                pub = entry.get("published_parsed")
+                if pub:
+                    age_days = (time.time() - calendar.timegm(pub)) / 86400
+                    if age_days > 14:
+                        continue
+                # Descartar artículos con título vetado manualmente
+                titulo_lower = titulo.lower()
+                if any(frase in titulo_lower for frase in titulos_vetados):
                     continue
                 if es_patagonica(titulo, resumen):
                     articulo = {
