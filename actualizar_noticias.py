@@ -1060,9 +1060,8 @@ def buscar_foto_propia(nota, fotos):
 
     kw_img   = nota.get("imagen_keywords", "").lower()
     titulo   = nota.get("titulo", "").lower()
-    fuente   = nota.get("fuente", "").lower()
     pais     = nota.get("pais", "").lower()
-    contexto = f"{kw_img} {titulo} {fuente} {pais}"
+    contexto = f"{kw_img} {titulo} {pais}"
 
     tokens_kw     = _tokenize(kw_img)
     tokens_titulo = _tokenize(titulo)
