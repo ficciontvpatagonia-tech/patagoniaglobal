@@ -495,6 +495,26 @@ const CAT_ORDER = ["ficcion", "serie_ficcion", "documental", "serie_documental",
 function thumb(item)   { return item.thumbnail || (item.youtube_id ? `https://img.youtube.com/vi/${item.youtube_id}/hqdefault.jpg` : ''); }
 function thumbHD(item) { return item.thumbnail || (item.youtube_id ? `https://img.youtube.com/vi/${item.youtube_id}/maxresdefault.jpg` : ''); }
 
+// ── SHEET LOG (Cinemateca) ──
+var _SHEET_URL = 'https://script.google.com/macros/s/AKfycbzvxq5TYK7ejaJBhryTql1H-1uPIZTBR832b39XLkjFtn6QleFcvBuCBhzo9b6Vn09P/exec';
+function _logSheet(v, accion, segundos) {
+  try {
+    fetch(_SHEET_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        titulo:    v.titulo,
+        categoria: v.categoria,
+        id:        v.youtube_id || v.id,
+        año:       String(v.año || ''),
+        serie:     v.serie || '',
+        segundos:  segundos || '',
+        accion:    accion
+      })
+    });
+  } catch(e) {}
+}
+
 // ── TRACKING GA4 (Cinemateca) ──
 (function(){
   var s = document.createElement('script');
@@ -549,6 +569,7 @@ function _fireWatch(tipo) {
     segundos_vistos: seg,
     tipo:           tipo
   });
+  _logSheet(_trackVid, tipo, seg);
 }
 
 // ── LIGHTBOX (video individual) ──
@@ -569,6 +590,7 @@ function abrirVideo(v) {
     video_año:      String(v.año || ''),
     desde_serie:    v.serie || ''
   });
+  _logSheet(v, 'click');
 
   const iframe = document.getElementById("lb-iframe");
   if (v.youtube_id) {
