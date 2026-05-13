@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260512-cerro-catedral-regala-ascensos-gratuitos-a-los-dep",
+    "id": "20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Cerro Catedral regala ascensos gratuitos a los barilochenses antes del invierno",
-    "bajada": "Del 9 al 13 de marzo de 2026, los residentes de Bariloche podrán subir sin costo al Cerro Catedral mediante la Telecabina en la llamada Semana Residentes.",
-    "imagen": "fotos/foto-20260512-cerro-catedral-regala-ascensos-gratuitos-a-los-dep.webp",
-    "meta": "Hoy · Catedral Alta Patagonia"
+    "titulo": "ADN ambiental: la ciencia que lee la vida marina invisible en la Antártida",
+    "bajada": "Investigadores chilenos utilizan técnicas de ADN ambiental para mapear la biodiversidad de metazoos marinos en la península Antártica, una herramienta clave ante el retroceso glaciar acelerado.",
+    "imagen": "fotos/foto-20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep.webp",
+    "meta": "Hoy · INACH"
   },
   "secundarias": [
+    {
+      "id": "20260512-cerro-catedral-regala-ascensos-gratuitos-a-los-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Cerro Catedral regala ascensos gratuitos a los barilochenses antes del invierno",
+      "bajada": "Del 9 al 13 de marzo de 2026, los residentes de Bariloche podrán subir sin costo al Cerro Catedral mediante la Telecabina en la llamada Semana Residentes.",
+      "imagen": "fotos/foto-20260512-cerro-catedral-regala-ascensos-gratuitos-a-los-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia"
+    },
     {
       "id": "20260511-valdivia-talleres-deportivos-inclusivos-dep",
       "tag": "♿ Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El municipio de Valdivia lanza la edición 2026 del programa de Deporte Adaptado con cinco disciplinas para personas con discapacidad física, visual, auditiva y cognitiva.",
       "imagen": "fotos/CIUDADES/deporte_inclusivo.webp",
       "meta": "Hoy · Diario de Valdivia"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260508-rollerski-en-bariloche-entrenamiento-nordico-antes-de-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El Club Andino Bariloche realiza este sábado una jornada de rollerski para perfeccionar técnica nórdica fuera de temporada invernal.",
       "imagen": "fotos/foto-20260508-rollerski-en-bariloche-entrenamiento-nordico-antes-de-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260506-catedral-alta-patagonia-elegido-mejor-centro-de-esqui-dep",
       "tag": "🏔️ Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El 2 de mayo, nadadores del Club Delfines de Punta Arenas desafiarán las aguas gélidas que conectan los senos Otway y Skyring, un hito sin precedentes en la natación de aguas abiertas patagónica.",
       "imagen": "fotos/foto-20260430-deportistas-magallanicos-haran-el-primer-cruce-a-nado-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20260429-vanessa-garrido-sudamericano-master-dep",
-      "tag": "🏊 Deportes",
-      "titulo": "Vanessa Garrido triunfa en el Sudamericano Máster de Brasil: medalla en aguas abiertas para Aysén",
-      "bajada": "La triatleta del Club Koyaike de Coyhaique terminó novena en los 3.000 m en aguas abiertas y ganó la medalla en categoría 45+ en el Campeonato Sudamericano Máster de Recife.",
-      "imagen": "fotos/foto-20260429-vanessa-garrido-sudamericano-master-dep.webp",
-      "meta": "29 abr · Diario Regional Aysén"
     }
   ]
 }
