@@ -413,6 +413,45 @@
       white-space: nowrap; text-align: right;
     }
 
+    /* ── GENRE FILTER BAR ── */
+    #genre-bar {
+      position: sticky; top: 68px; z-index: 50;
+      background: linear-gradient(to bottom, rgba(20,20,20,0.97) 85%, transparent 100%);
+      padding: 10px 40px 14px;
+      display: flex; gap: 8px; flex-wrap: nowrap;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    #genre-bar::-webkit-scrollbar { display: none; }
+    .genre-pill {
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.7);
+      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 20px;
+      cursor: pointer; transition: all 0.18s; white-space: nowrap;
+    }
+    .genre-pill:hover { background: rgba(255,255,255,0.18); color: white; }
+    .genre-pill.active {
+      background: white; border-color: white; color: #141414;
+    }
+
+    /* ── GRID DE RESULTADOS (modo filtro activo) ── */
+    #genre-results { display: none; padding: 0 40px 60px; }
+    #genre-results.visible { display: block; }
+    .genre-results-header {
+      font-size: 13px; color: rgba(255,255,255,0.4);
+      margin-bottom: 20px; letter-spacing: 0.3px;
+    }
+    .genre-results-header strong { color: rgba(255,255,255,0.75); }
+    .genre-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px 10px;
+    }
+    .genre-grid .vcard { width: 100%; }
+
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       header { padding: 0 16px; height: 56px; }
@@ -421,6 +460,9 @@
       .carousel-dots { right: 20px; bottom: 16px; }
       .carousel-arrow { display: none; }
       .filas { padding: 0 12px 40px; }
+      #genre-bar { padding: 8px 12px 12px; top: 56px; }
+      #genre-results { padding: 0 12px 40px; }
+      .genre-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
       .vcard { width: 160px; }
       .vcard:hover { transform: scale(1.1); }
     }
@@ -441,6 +483,15 @@
 <!-- CARRUSEL HERO -->
 <div class="carousel" id="carousel">
   <div class="empty" style="padding:200px 0;text-align:center;">Cargando...</div>
+</div>
+
+<!-- GENRE FILTER BAR -->
+<div id="genre-bar"></div>
+
+<!-- GRID RESULTADOS (modo filtro) -->
+<div id="genre-results">
+  <div class="genre-results-header" id="genre-results-label"></div>
+  <div class="genre-grid" id="genre-grid"></div>
 </div>
 
 <!-- FILAS -->
@@ -874,6 +925,92 @@ function buildCarousel(items) {
   if (items.length > 1) startTimer();
 }
 
+// ── GENRE FILTER ──
+const GENEROS_LABELS = {
+  western:   "Western",
+  accion:    "Acción",
+  thriller:  "Thriller",
+  aventura:  "Aventura",
+  drama:     "Drama",
+  comedia:   "Comedia",
+  historica: "Histórica",
+  belica:    "Bélica",
+  naturaleza:"Naturaleza",
+  documental:"Documental",
+  infantil:  "Infantil",
+  clasicos:  "Clásicos",
+  origenes:  "Orígenes",
+  musica:    "Música",
+};
+const GENEROS_ORDER = ["western","accion","thriller","aventura","drama","comedia","historica","belica","naturaleza","documental","infantil","clasicos","origenes","musica"];
+
+let _generoActivo = null;
+let _agrupados_global = [];
+
+function buildGenreBar() {
+  const bar = document.getElementById("genre-bar");
+  bar.innerHTML = "";
+
+  // Pill "TODO"
+  const todo = document.createElement("button");
+  todo.className = "genre-pill active";
+  todo.textContent = "Todo";
+  todo.dataset.genre = "";
+  todo.addEventListener("click", () => setGenre("", todo));
+  bar.appendChild(todo);
+
+  GENEROS_ORDER.forEach(slug => {
+    const label = GENEROS_LABELS[slug];
+    const pill = document.createElement("button");
+    pill.className = "genre-pill";
+    pill.textContent = label;
+    pill.dataset.genre = slug;
+    pill.addEventListener("click", () => setGenre(slug, pill));
+    bar.appendChild(pill);
+  });
+}
+
+function setGenre(slug, pillEl) {
+  _generoActivo = slug || null;
+
+  // Activar pill
+  document.querySelectorAll(".genre-pill").forEach(p => p.classList.remove("active"));
+  pillEl.classList.add("active");
+
+  const filasEl    = document.getElementById("filas");
+  const resultsEl  = document.getElementById("genre-results");
+  const gridEl     = document.getElementById("genre-grid");
+  const labelEl    = document.getElementById("genre-results-label");
+
+  if (!slug) {
+    // Modo normal
+    filasEl.style.display = "";
+    resultsEl.classList.remove("visible");
+    return;
+  }
+
+  // Modo filtro: ocultar filas, mostrar grid
+  filasEl.style.display = "none";
+  gridEl.innerHTML = "";
+
+  const matches = _agrupados_global.filter(item => {
+    const gs = item._isSerie
+      ? (item.episodios[0]?.generos || [])
+      : (item.generos || []);
+    return gs.includes(slug);
+  });
+
+  labelEl.innerHTML = `<strong>${GENEROS_LABELS[slug]}</strong> · ${matches.length} título${matches.length !== 1 ? "s" : ""}`;
+
+  matches.forEach(item => {
+    const card = renderCard(item);
+    card.style.width = "100%";
+    gridEl.appendChild(card);
+  });
+
+  resultsEl.classList.add("visible");
+}
+
 // ── MAIN ──
 fetch("videos.json").then(r => r.json()).then(videos => {
   if (!videos.length) {
@@ -882,6 +1019,8 @@ fetch("videos.json").then(r => r.json()).then(videos => {
   }
 
   const agrupados = agruparSeries(videos);
+  _agrupados_global = agrupados;
+  buildGenreBar();
 
   // Carrusel: orden fijo definido editorialmente
   const CARRUSEL_IDS = [
