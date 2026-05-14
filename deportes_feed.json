@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep",
+    "id": "20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep",
     "tag": "🏃 Deportes",
-    "titulo": "ADN ambiental: la ciencia que lee la vida marina invisible en la Antártida",
-    "bajada": "Investigadores chilenos utilizan técnicas de ADN ambiental para mapear la biodiversidad de metazoos marinos en la península Antártica, una herramienta clave ante el retroceso glaciar acelerado.",
-    "imagen": "fotos/foto-20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep.webp",
-    "meta": "Hoy · INACH"
+    "titulo": "Catedral lanza pases 2026 desde $160.000: la nieve ya tiene precio en Bariloche",
+    "bajada": "El centro de esquí más grande de Sudamérica abre la preventa de pases diarios para la temporada 2026, exclusivamente en efectivo, mientras la comunidad barilochense se prepara para el invierno.",
+    "imagen": "fotos/foto-20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep.webp",
+    "meta": "Hoy · Catedral Alta Patagonia"
   },
   "secundarias": [
+    {
+      "id": "20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "ADN ambiental: la ciencia que lee la vida marina invisible en la Antártida",
+      "bajada": "Investigadores chilenos utilizan técnicas de ADN ambiental para mapear la biodiversidad de metazoos marinos en la península Antártica, una herramienta clave ante el retroceso glaciar acelerado.",
+      "imagen": "fotos/foto-20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep.webp",
+      "meta": "Hoy · INACH"
+    },
     {
       "id": "20260512-cerro-catedral-regala-ascensos-gratuitos-a-los-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Del 9 al 13 de marzo de 2026, los residentes de Bariloche podrán subir sin costo al Cerro Catedral mediante la Telecabina en la llamada Semana Residentes.",
       "imagen": "fotos/foto-20260512-cerro-catedral-regala-ascensos-gratuitos-a-los-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260511-valdivia-talleres-deportivos-inclusivos-dep",
       "tag": "♿ Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El municipio de Valdivia lanza la edición 2026 del programa de Deporte Adaptado con cinco disciplinas para personas con discapacidad física, visual, auditiva y cognitiva.",
       "imagen": "fotos/CIUDADES/deporte_inclusivo.webp",
       "meta": "Hoy · Diario de Valdivia"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260508-rollerski-en-bariloche-entrenamiento-nordico-antes-de-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El Grupo de Acondicionamiento Nórdico organiza una salida de MTB este sábado como preparación física para la temporada de invierno.",
       "imagen": "fotos/foto-20260505-el-gan-del-club-andino-sale-en-mountainbike-por-los-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260430-deportistas-magallanicos-haran-el-primer-cruce-a-nado-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Deportistas magallánicos harán el primer cruce a nado del Canal Fitz Roy",
-      "bajada": "El 2 de mayo, nadadores del Club Delfines de Punta Arenas desafiarán las aguas gélidas que conectan los senos Otway y Skyring, un hito sin precedentes en la natación de aguas abiertas patagónica.",
-      "imagen": "fotos/foto-20260430-deportistas-magallanicos-haran-el-primer-cruce-a-nado-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
     }
   ]
 }
