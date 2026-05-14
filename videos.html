@@ -413,7 +413,7 @@
       white-space: nowrap; text-align: right;
     }
 
-    /* ── GENRE FILTER BAR ── */
+    /* ── GENRE FILTER BAR (desktop) ── */
     #genre-bar {
       position: sticky; top: 68px; z-index: 50;
       background: linear-gradient(to bottom, rgba(20,20,20,0.97) 85%, transparent 100%);
@@ -433,8 +433,83 @@
       cursor: pointer; transition: all 0.18s; white-space: nowrap;
     }
     .genre-pill:hover { background: rgba(255,255,255,0.18); color: white; }
-    .genre-pill.active {
-      background: white; border-color: white; color: #141414;
+    .genre-pill.active { background: white; border-color: white; color: #141414; }
+
+    /* ── MOBILE GENRE BUTTON ── */
+    #genre-mobile-btn {
+      display: none;
+      position: sticky; top: 56px; z-index: 50;
+      width: 100%;
+      background: rgba(20,20,20,0.97);
+      border: none; border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+    #genre-mobile-btn-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 8px; padding: 10px 16px;
+    }
+    #genre-mobile-label {
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      letter-spacing: 0.5px; color: white;
+      display: flex; align-items: center; gap: 8px;
+    }
+    #genre-mobile-label span.badge {
+      background: var(--azul); color: #1c2d3d;
+      font-size: 10px; font-weight: 800; letter-spacing: 1px;
+      padding: 2px 8px; border-radius: 10px; text-transform: uppercase;
+    }
+    #genre-mobile-chevron {
+      font-size: 18px; color: rgba(255,255,255,0.5);
+      transition: transform 0.2s;
+    }
+    #genre-mobile-chevron.open { transform: rotate(180deg); }
+
+    /* ── MOBILE GENRE PANEL (bottom sheet) ── */
+    #genre-mobile-panel {
+      display: none;
+      position: fixed; inset: 0; z-index: 200;
+    }
+    #genre-mobile-panel.open { display: block; }
+    #genre-mobile-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.7);
+    }
+    #genre-mobile-sheet {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: #1a1a1a;
+      border-radius: 16px 16px 0 0;
+      padding: 0 0 24px;
+      max-height: 80vh; overflow-y: auto;
+      animation: sheetUp 0.25s ease;
+    }
+    @keyframes sheetUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    #genre-mobile-sheet-handle {
+      width: 40px; height: 4px; background: rgba(255,255,255,0.2);
+      border-radius: 2px; margin: 12px auto 16px;
+    }
+    #genre-mobile-sheet-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,0.35);
+      padding: 0 20px 12px;
+    }
+    .genre-sheet-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px;
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      cursor: pointer; transition: background 0.15s;
+      border: none; background: none; width: 100%; text-align: left;
+    }
+    .genre-sheet-item:hover { background: rgba(255,255,255,0.06); }
+    .genre-sheet-item.active {
+      color: white; font-weight: 700;
+    }
+    .genre-sheet-item.active::after {
+      content: "✓";
+      color: var(--azul); font-size: 16px; font-weight: 700;
     }
 
     /* ── GRID DE RESULTADOS (modo filtro activo) ── */
@@ -460,7 +535,8 @@
       .carousel-dots { right: 20px; bottom: 16px; }
       .carousel-arrow { display: none; }
       .filas { padding: 0 12px 40px; }
-      #genre-bar { padding: 8px 12px 12px; top: 56px; }
+      #genre-bar { display: none; }
+      #genre-mobile-btn { display: block; }
       #genre-results { padding: 0 12px 40px; }
       .genre-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
       .vcard { width: 160px; }
@@ -485,8 +561,28 @@
   <div class="empty" style="padding:200px 0;text-align:center;">Cargando...</div>
 </div>
 
-<!-- GENRE FILTER BAR -->
+<!-- GENRE FILTER BAR (desktop) -->
 <div id="genre-bar"></div>
+
+<!-- GENRE BUTTON (mobile) -->
+<button id="genre-mobile-btn" onclick="toggleMobilePanel()">
+  <div id="genre-mobile-btn-inner">
+    <div id="genre-mobile-label">
+      ☰ Géneros — <span id="genre-mobile-active">Todo</span>
+    </div>
+    <div id="genre-mobile-chevron">⌄</div>
+  </div>
+</button>
+
+<!-- MOBILE GENRE PANEL -->
+<div id="genre-mobile-panel">
+  <div id="genre-mobile-backdrop" onclick="closeMobilePanel()"></div>
+  <div id="genre-mobile-sheet">
+    <div id="genre-mobile-sheet-handle"></div>
+    <div id="genre-mobile-sheet-title">Filtrar por género</div>
+    <div id="genre-mobile-list"></div>
+  </div>
+</div>
 
 <!-- GRID RESULTADOS (modo filtro) -->
 <div id="genre-results">
@@ -948,34 +1044,66 @@ let _generoActivo = null;
 let _agrupados_global = [];
 
 function buildGenreBar() {
+  // Desktop pills
   const bar = document.getElementById("genre-bar");
   bar.innerHTML = "";
-
-  // Pill "TODO"
   const todo = document.createElement("button");
   todo.className = "genre-pill active";
   todo.textContent = "Todo";
   todo.dataset.genre = "";
-  todo.addEventListener("click", () => setGenre("", todo));
+  todo.addEventListener("click", () => setGenre(""));
   bar.appendChild(todo);
-
   GENEROS_ORDER.forEach(slug => {
-    const label = GENEROS_LABELS[slug];
     const pill = document.createElement("button");
     pill.className = "genre-pill";
-    pill.textContent = label;
+    pill.textContent = GENEROS_LABELS[slug];
     pill.dataset.genre = slug;
-    pill.addEventListener("click", () => setGenre(slug, pill));
+    pill.addEventListener("click", () => setGenre(slug));
     bar.appendChild(pill);
   });
+
+  // Mobile list
+  const list = document.getElementById("genre-mobile-list");
+  list.innerHTML = "";
+  [{ slug: "", label: "Todo el catálogo" }]
+    .concat(GENEROS_ORDER.map(slug => ({ slug, label: GENEROS_LABELS[slug] })))
+    .forEach(({ slug, label }) => {
+      const btn = document.createElement("button");
+      btn.className = "genre-sheet-item" + (slug === "" ? " active" : "");
+      btn.textContent = label;
+      btn.dataset.genre = slug;
+      btn.addEventListener("click", () => { setGenre(slug); closeMobilePanel(); });
+      list.appendChild(btn);
+    });
 }
 
-function setGenre(slug, pillEl) {
+function toggleMobilePanel() {
+  const panel = document.getElementById("genre-mobile-panel");
+  const chevron = document.getElementById("genre-mobile-chevron");
+  const isOpen = panel.classList.contains("open");
+  if (isOpen) { panel.classList.remove("open"); chevron.classList.remove("open"); }
+  else         { panel.classList.add("open");    chevron.classList.add("open"); }
+}
+
+function closeMobilePanel() {
+  document.getElementById("genre-mobile-panel").classList.remove("open");
+  document.getElementById("genre-mobile-chevron").classList.remove("open");
+}
+
+function setGenre(slug) {
   _generoActivo = slug || null;
 
-  // Activar pill
-  document.querySelectorAll(".genre-pill").forEach(p => p.classList.remove("active"));
-  pillEl.classList.add("active");
+  // Activar pill desktop
+  document.querySelectorAll(".genre-pill").forEach(p =>
+    p.classList.toggle("active", p.dataset.genre === slug)
+  );
+  // Activar ítem mobile
+  document.querySelectorAll(".genre-sheet-item").forEach(p =>
+    p.classList.toggle("active", p.dataset.genre === slug)
+  );
+  // Actualizar label del botón mobile
+  const activeLabel = slug ? GENEROS_LABELS[slug] : "Todo";
+  document.getElementById("genre-mobile-active").textContent = activeLabel;
 
   const filasEl    = document.getElementById("filas");
   const resultsEl  = document.getElementById("genre-results");
