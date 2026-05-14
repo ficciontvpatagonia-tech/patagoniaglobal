@@ -528,14 +528,17 @@ var _trackVid = null;
 var _watchStart = null;
 var _watchAcum  = 0;
 var _milestones = new Set();
+var _pollInterval = null;
 
 function onYouTubeIframeAPIReady() { _ytReady = true; }
 
 function _ytStateChange(e) {
   if (e.data === YT.PlayerState.PLAYING) {
     if (!_watchStart) _watchStart = Date.now();
+    if (!_pollInterval) _pollInterval = setInterval(_checkMilestones, 5000);
   } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
     if (_watchStart) { _watchAcum += (Date.now() - _watchStart) / 1000; _watchStart = null; }
+    clearInterval(_pollInterval); _pollInterval = null;
     if (e.data === YT.PlayerState.ENDED) _fireWatch('completado');
     _checkMilestones();
   }
@@ -553,6 +556,7 @@ function _checkMilestones() {
           video_id:     _trackVid.youtube_id || _trackVid.id,
           porcentaje:   p
         });
+        _logSheet(_trackVid, p + '%', '');
       }
     });
   } catch(e) {}
@@ -614,6 +618,7 @@ function abrirVideo(v) {
   document.body.style.overflow = "hidden";
 }
 function cerrar() {
+  clearInterval(_pollInterval); _pollInterval = null;
   _fireWatch('cerrado');
   if (_ytPlayer) { try { _ytPlayer.destroy(); } catch(e) {} _ytPlayer = null; }
   _trackVid = null;
