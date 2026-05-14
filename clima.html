@@ -374,7 +374,7 @@
 
 <!-- HERO -->
 <div class="clima-hero">
-  <h1>El Tiempo en la Patagonia</h1>
+  <h1 id="clima-h1">El Tiempo en la Patagonia</h1>
   <p>Pronóstico 7 días · Datos profesionales para el terreno · Open-Meteo ECMWF/GFS</p>
 </div>
 
@@ -730,6 +730,21 @@ function selectCity(city) {
            : 'ar';
   // update URL
   history.replaceState(null,'',`?ciudad=${city.id}&pais=${cc}`);
+  // SEO: update title, description, canonical y H1 por ciudad
+  const _countryLabel = cc === 'cl' ? 'Patagonia Chilena' : cc === 'ant' ? 'Antártida' : 'Patagonia Argentina';
+  const _seoTitle = `Clima en ${city.name} hoy — Pronóstico 7 días · GLOBALpatagonia`;
+  const _seoDesc  = `Pronóstico del tiempo en ${city.name} (${city.region}) para hoy y los próximos 7 días. Temperatura actual, viento, nieve, UV y meteograma 48h. ${_countryLabel}.`;
+  const _seoUrl   = `https://globalpatagonia.org/clima.html?ciudad=${city.id}&pais=${cc}`;
+  document.title = _seoTitle;
+  document.querySelector('meta[name="description"]').content = _seoDesc;
+  document.querySelector('link[rel="canonical"]').href = _seoUrl;
+  document.querySelector('meta[property="og:title"]').content = _seoTitle;
+  document.querySelector('meta[property="og:description"]').content = _seoDesc;
+  document.querySelector('meta[property="og:url"]').content = _seoUrl;
+  document.querySelector('meta[name="twitter:title"]').content = _seoTitle;
+  document.querySelector('meta[name="twitter:description"]').content = _seoDesc;
+  const _h1 = document.getElementById('clima-h1');
+  if (_h1) _h1.textContent = `El Tiempo en ${city.name}`;
   // switch tab if needed
   if (cc !== currentCountry) {
     currentCountry = cc;
