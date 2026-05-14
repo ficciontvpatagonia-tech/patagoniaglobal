@@ -38,14 +38,14 @@
   <meta property="og:site_name" content="GLOBALpatagonia"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content=""/>
-  <meta property="og:image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
+  <meta property="og:image" content="https://globalpatagonia.org/fotos/AMBIENTE/torres-del-paine.webp"/>
   <meta property="og:title" content="GLOBALpatagonia"/>
   <meta property="og:description" content=""/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@GLOBALpatagonia"/>
   <meta name="twitter:title" content="GLOBALpatagonia"/>
   <meta name="twitter:description" content=""/>
-  <meta name="twitter:image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
+  <meta name="twitter:image" content="https://globalpatagonia.org/fotos/AMBIENTE/torres-del-paine.webp"/>
   <!-- JSON-LD base (se sobreescribe dinámicamente al cargar la nota) -->
   <script type="application/ld+json" id="jsonld-breadcrumb"></script>
   <script type="application/ld+json" id="jsonld-nota">
@@ -686,7 +686,7 @@ function renderNota(nota, fechaDisplay, data) {
   // Imagen absoluta para SEO
   const imgAbsoluta = nota.imagen
     ? (nota.imagen.startsWith('http') ? nota.imagen : 'https://globalpatagonia.org/' + nota.imagen)
-    : 'https://globalpatagonia.org/fotos/torres-del-paine.webp';
+    : 'https://globalpatagonia.org/fotos/AMBIENTE/torres-del-paine.webp';
 
   setMeta('meta[property="og:title"]', nota.titulo + " — GLOBALpatagonia");
   setMeta('meta[property="og:description"]', nota.bajada || nota.titulo);
