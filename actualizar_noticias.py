@@ -414,10 +414,62 @@ def cargar_vetadas():
         return set(), []
 
 
+def _normalizar_url(url):
+    """Quita parámetros de tracking (UTM, fbclid, etc.) y trailing slash para comparación."""
+    if not url:
+        return ""
+    from urllib.parse import urlparse, urlencode, parse_qs, urlunparse
+    TRACKING = {'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
+                'fbclid', 'gclid', 'mc_cid', 'mc_eid', 'ref', 'source'}
+    try:
+        p = urlparse(url)
+        params = {k: v for k, v in parse_qs(p.query, keep_blank_values=False).items()
+                  if k not in TRACKING}
+        return urlunparse((p.scheme, p.netloc, p.path, p.params,
+                           urlencode(params, doseq=True), '')).rstrip('/')
+    except Exception:
+        return url.rstrip('/')
+
+
+_URLS_PUBLICADAS_PATH = os.path.join(os.path.dirname(__file__), "urls_publicadas.json")
+
+
+def _cargar_urls_publicadas():
+    """Carga el registro persistente de URLs publicadas (sobrevive al rolling de historial)."""
+    try:
+        with open(_URLS_PUBLICADAS_PATH, encoding="utf-8") as f:
+            return {_normalizar_url(u) for u in json.load(f)}
+    except FileNotFoundError:
+        return set()
+    except Exception as e:
+        print(f"  ⚠ No se pudo leer urls_publicadas.json: {e}")
+        return set()
+
+
+def _persistir_urls_nuevas(articulos):
+    """Agrega las URLs de los artículos al registro persistente."""
+    existentes = _cargar_urls_publicadas()
+    nuevas = {_normalizar_url(a.get("url_original", "")) for a in articulos
+              if a.get("url_original")}
+    nuevas.discard("")
+    por_agregar = nuevas - existentes
+    if por_agregar:
+        existentes.update(por_agregar)
+        with open(_URLS_PUBLICADAS_PATH, "w", encoding="utf-8") as f:
+            json.dump(sorted(existentes), f, ensure_ascii=False, indent=2)
+        print(f"  → {len(por_agregar)} URL(s) registradas en urls_publicadas.json")
+
+
 def urls_ya_publicadas(historial):
-    urls = {a.get("url_original", "") for a in historial if a.get("url_original")}
+    # URLs del historial rolling (últimas ~50 notas)
+    urls = {_normalizar_url(a.get("url_original", "")) for a in historial
+            if a.get("url_original")}
+    # URLs históricas persistentes (todas las publicadas alguna vez)
+    urls.update(_cargar_urls_publicadas())
+    # URLs vetadas manualmente
     urls_v, _ = cargar_vetadas()
-    urls.update(urls_v)
+    urls.update({_normalizar_url(u) for u in urls_v})
+    urls.discard("")
     return urls
 
 
@@ -613,7 +665,7 @@ def reescribir_con_claude(noticias_crudas, historial, es_domingo=False):
     client = anthropic.Anthropic(api_key=API_KEY)
 
     ya_publicadas   = urls_ya_publicadas(historial)
-    noticias_nuevas = [n for n in noticias_crudas if n["url"] not in ya_publicadas]
+    noticias_nuevas = [n for n in noticias_crudas if _normalizar_url(n["url"]) not in ya_publicadas]
     print(f"  Noticias nuevas (no publicadas aún): {len(noticias_nuevas)}")
 
     if not noticias_nuevas:
@@ -2021,6 +2073,7 @@ def main():
         n.pop('_reemplazo_por_dup', None)
     historial = nuevas + historial
     guardar_historial(historial)
+    _persistir_urls_nuevas(nuevas)
     print(f"\n  Artículos nuevos en historial: {len(nuevas)}")
 
     # 6. Rotaciones — cada sección recibe su nota fresca de Claude
