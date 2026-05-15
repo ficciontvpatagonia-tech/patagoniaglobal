@@ -524,7 +524,11 @@ def verificar_duplicado_tematico(nota, historial, dias=5):
         union = tokens_nuevos | tokens_art
         sim = len(inter) / len(union) if union else 0
 
-        if sim >= 0.40:
+        # Mismo medio: umbral más bajo para atrapar eventos semanales repetidos
+        misma_fuente = (art.get("fuente", "").lower() == nota.get("fuente", "").lower()
+                        and art.get("fuente", ""))
+        umbral = 0.30 if misma_fuente else 0.40
+        if sim >= umbral:
             return (True, art["id"], sim)
 
     return False
