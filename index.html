@@ -1596,8 +1596,8 @@
 
   <!-- ══ BANNER PUBLICIDAD ══ -->
   <a href="publicidad.html" class="banner-pub-link" aria-label="Promocioná tu marca en GLOBALpatagonia">
-    <video class="banner-pub-video" autoplay muted loop playsinline>
-      <source src="Banner_PG.mp4" type="video/mp4">
+    <video class="banner-pub-video" muted loop playsinline preload="none" data-src="Banner_PG.mp4">
+      <source data-src="Banner_PG.mp4" type="video/mp4">
     </video>
   </a>
 
@@ -2121,7 +2121,7 @@ const FILLER_USADOS = new Set();
 
 function fillerCardHTML(tipo, context, span) {
   if (tipo === 'cinemateca') {
-    const img = 'fotos/ad-cinemateca.png';
+    const img = 'fotos/ad-cinemateca.webp';
     if (context === 'guia') {
       return `<a href="videos.html" class="destino-card" style="text-decoration:none;grid-column:span 1;background:#0f0f0f;">
         <div style="background-image:url('${img}');background-size:contain;background-repeat:no-repeat;background-position:center;flex:1;min-height:180px;"></div>
@@ -2531,6 +2531,25 @@ fetch("propios.json")
       update(data);
     } catch(e) { /* falla silenciosa, queda el texto por defecto */ }
   });
+})();
+</script>
+<script>
+(function(){
+  var vid = document.querySelector('.banner-pub-video');
+  if (!vid) return;
+  var io = new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){
+      var src = vid.dataset.src;
+      if(src){
+        vid.querySelector('source').src = src;
+        vid.src = src;
+        vid.load();
+        vid.play().catch(function(){});
+      }
+      io.disconnect();
+    }
+  }, {rootMargin:'200px'});
+  io.observe(vid);
 })();
 </script>
 </body>

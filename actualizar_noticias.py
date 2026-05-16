@@ -1271,7 +1271,13 @@ def _convertir_a_webp(ruta_original):
         ruta_webp = ruta_original.rsplit(".", 1)[0] + ".webp"
         with Image.open(ruta_original) as img:
             modo = "RGBA" if img.mode in ("RGBA", "LA", "P") else "RGB"
-            img.convert(modo).save(ruta_webp, "WEBP", quality=85, method=4)
+            img_conv = img.convert(modo)
+            # Limitar ancho máximo a 1200px para reducir peso en web
+            if img_conv.width > 1200:
+                ratio = 1200 / img_conv.width
+                new_h = int(img_conv.height * ratio)
+                img_conv = img_conv.resize((1200, new_h), Image.LANCZOS)
+            img_conv.save(ruta_webp, "WEBP", quality=82, method=4)
         os.remove(ruta_original)
         return ruta_webp
     except Exception:
@@ -1305,6 +1311,17 @@ def _descargar_imagen_externa(url_http, nota_id, sufijo=""):
         with open(ruta_local, "wb") as f:
             f.write(contenido)
         _recortar_banner(ruta_local)
+        if ext == "webp":
+            # Redimensionar webps descargados directamente (no pasan por _convertir_a_webp)
+            try:
+                from PIL import Image as _PilR
+                with _PilR.open(ruta_local) as _im:
+                    if _im.width > 1200:
+                        ratio = 1200 / _im.width
+                        _im2 = _im.convert("RGB").resize((1200, int(_im.height * ratio)), _PilR.LANCZOS)
+                        _im2.save(ruta_local, "WEBP", quality=82, method=4)
+            except Exception:
+                pass
         ruta_final = _convertir_a_webp(ruta_local)
         # Descartar imágenes demasiado pequeñas (píxeles insuficientes para lucir bien)
         try:
