@@ -675,7 +675,6 @@ function renderNota(nota, fechaDisplay, data) {
 
   // Título de pestaña y OG dinámico
   document.title = nota.titulo + " — GLOBALpatagonia";
-  document.getElementById('robots-meta').setAttribute('content', 'index, follow');
   if (typeof gtag !== 'undefined') {
     gtag('event', 'page_view', {
       page_title: nota.titulo + " — GLOBALpatagonia",
@@ -697,8 +696,9 @@ function renderNota(nota, fechaDisplay, data) {
   setMeta('meta[name="twitter:title"]', nota.titulo + " — GLOBALpatagonia");
   setMeta('meta[name="twitter:description"]', nota.bajada || nota.titulo);
   setMeta('meta[name="twitter:image"]', imgAbsoluta);
+  // Solo sobreescribir canonical si la IIFE no lo seteó ya (evita borrar el sufijo de idioma)
   const canonical = document.querySelector('link[rel="canonical"]');
-  if (canonical) canonical.href = cleanUrl;
+  if (canonical && !canonical.href) canonical.href = cleanUrl;
 
   // JSON-LD dinámico para Google
   const jsonld = document.getElementById("jsonld-nota");
