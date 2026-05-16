@@ -709,17 +709,32 @@ function renderNota(nota, fechaDisplay, data) {
       "headline": nota.titulo,
       "description": nota.bajada || nota.titulo,
       "url": window.location.href,
-      "datePublished": nota.fecha || new Date().toISOString().split('T')[0],
-      "dateModified": nota.fecha || new Date().toISOString().split('T')[0],
+      "datePublished": (() => {
+        if (nota.fecha) return nota.fecha;
+        const id = nota.id || '';
+        if (id.length >= 8 && /^\d{8}/.test(id)) {
+          return `${id.slice(0,4)}-${id.slice(4,6)}-${id.slice(6,8)}T09:00:00-03:00`;
+        }
+        return new Date().toISOString();
+      })(),
+      "dateModified": (() => {
+        if (nota.fecha) return nota.fecha;
+        const id = nota.id || '';
+        if (id.length >= 8 && /^\d{8}/.test(id)) {
+          return `${id.slice(0,4)}-${id.slice(4,6)}-${id.slice(6,8)}T09:00:00-03:00`;
+        }
+        return new Date().toISOString();
+      })(),
+      "mainEntityOfPage": { "@type": "WebPage", "@id": cleanUrl },
       "inLanguage": "es-AR",
-      "image": { "@type": "ImageObject", "url": imgAbsoluta },
+      "image": { "@type": "ImageObject", "url": imgAbsoluta, "width": 1200, "height": 630 },
       "articleSection": nota.categoria || "general",
       "keywords": ["patagonia", nota.categoria, nota.tag, "GLOBALpatagonia"].filter(Boolean).join(", "),
       "publisher": {
         "@type": "NewsMediaOrganization",
         "name": "GLOBALpatagonia",
         "url": "https://globalpatagonia.org/",
-        "logo": { "@type": "ImageObject", "url": "https://globalpatagonia.org/favicon.svg" }
+        "logo": { "@type": "ImageObject", "url": "https://globalpatagonia.org/favicon.svg", "width": 600, "height": 60 }
       },
       "author": { "@type": "Organization", "name": nota.fuente || "GLOBALpatagonia" }
     };

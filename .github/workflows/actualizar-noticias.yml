@@ -83,16 +83,32 @@ jobs:
           actualizar_noticias.inyectar_tapa_en_index(datos)
           EOF
 
+      - name: Generar News Sitemap
+        run: python3 generar_sitemap_news.py
+
       - name: Publicar cambios
         run: |
           git config user.name "GLOBALpatagonia Bot"
           git config user.email "bot@globalpatagonia.org"
-          git add noticias.json noticias_ayer.json historial.json agenda.json index.html fotos/ propios.json propios_historial.json deportes_feed.json negocios.json turismo.json cultura.json telegram_state.json sitemap.xml feed.xml urls_publicadas.json
+          git add noticias.json noticias_ayer.json historial.json agenda.json index.html fotos/ propios.json propios_historial.json deportes_feed.json negocios.json turismo.json cultura.json telegram_state.json sitemap.xml sitemap-news.xml feed.xml urls_publicadas.json
           git add tapa_forzada.json secundaria_forzada.json 2>/dev/null || true
           git ls-files --others --exclude-standard notas/ | xargs -r git add --
           git add notas/
           git diff --staged --quiet || git commit -m "Noticias actualizadas — $(date +'%d/%m/%Y')"
           git push
+
+      - name: Enviar URLs a IndexNow (Bing/Yandex)
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: python3 submit_indexnow.py
+
+      - name: Verificar PageSpeed (Mobile)
+        run: |
+          SCORE=$(curl -sf "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://globalpatagonia.org&strategy=mobile" | python3 -c "import sys,json; d=json.load(sys.stdin); print(int(d['lighthouseResult']['categories']['performance']['score']*100))" 2>/dev/null || echo "N/A")
+          echo "PageSpeed mobile: $SCORE/100"
+          if [ "$SCORE" != "N/A" ] && [ "$SCORE" -lt 60 ] 2>/dev/null; then
+            echo "::warning::PageSpeed mobile degradado: $SCORE/100"
+          fi
 
       - name: Esperar propagación GitHub Pages
         run: sleep 90
