@@ -1,0 +1,57 @@
+name: Optimizar Imágenes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'fotos/**'          # cualquier imagen subida a fotos/
+  workflow_run:
+    workflows: ["Actualizar Noticias"]
+    types: [completed]      # también después del feed diario
+
+permissions:
+  contents: write
+
+jobs:
+  optimizar:
+    runs-on: ubuntu-latest
+    # No correr si el commit ya viene del propio optimizador (evita loop)
+    if: >
+      github.event_name == 'workflow_run' ||
+      !contains(github.event.head_commit.message, '[img-opt]')
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Python + Pillow
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install Pillow
+
+      - name: Optimizar imágenes
+        id: opt
+        run: python3 optimizar_imagenes.py
+
+      - name: Detectar cambios
+        id: cambios
+        run: |
+          git add fotos/ *.json notas/ 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "hay_cambios=false" >> $GITHUB_OUTPUT
+          else
+            echo "hay_cambios=true" >> $GITHUB_OUTPUT
+            echo "Archivos modificados:"
+            git diff --staged --name-only
+          fi
+
+      - name: Commit y push
+        if: steps.cambios.outputs.hay_cambios == 'true'
+        run: |
+          git config user.name  "GLOBALpatagonia Bot"
+          git config user.email "bot@globalpatagonia.org"
+          git commit -m "perf: auto-optimizar imágenes [img-opt]"
+          git push
