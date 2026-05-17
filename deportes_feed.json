@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep",
+    "id": "20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Catedral lanza pases 2026 desde $160.000: la nieve ya tiene precio en Bariloche",
-    "bajada": "El centro de esquí más grande de Sudamérica abre la preventa de pases diarios para la temporada 2026, exclusivamente en efectivo, mientras la comunidad barilochense se prepara para el invierno.",
-    "imagen": "fotos/foto-20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep.webp",
-    "meta": "Hoy · Catedral Alta Patagonia"
+    "titulo": "Chubut lleva 200 jóvenes a los Juegos EPADE 2026, la olimpiada patagónica",
+    "bajada": "Una delegación de más de 200 deportistas chubutenses se alista para los Juegos EPADE 2026, el evento deportivo juvenil más importante de la Patagonia argentina.",
+    "imagen": "fotos/foto-20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Catedral lanza pases 2026 desde $160.000: la nieve ya tiene precio en Bariloche",
+      "bajada": "El centro de esquí más grande de Sudamérica abre la preventa de pases diarios para la temporada 2026, exclusivamente en efectivo, mientras la comunidad barilochense se prepara para el invierno.",
+      "imagen": "fotos/foto-20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia"
+    },
     {
       "id": "20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Investigadores chilenos utilizan técnicas de ADN ambiental para mapear la biodiversidad de metazoos marinos en la península Antártica, una herramienta clave ante el retroceso glaciar acelerado.",
       "imagen": "fotos/foto-20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep.webp",
       "meta": "Hoy · INACH"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260512-cerro-catedral-regala-ascensos-gratuitos-a-los-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Del 9 al 13 de marzo de 2026, los residentes de Bariloche podrán subir sin costo al Cerro Catedral mediante la Telecabina en la llamada Semana Residentes.",
       "imagen": "fotos/foto-20260512-cerro-catedral-regala-ascensos-gratuitos-a-los-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260511-valdivia-talleres-deportivos-inclusivos-dep",
       "tag": "♿ Deportes",
