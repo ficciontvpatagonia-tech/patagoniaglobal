@@ -423,7 +423,7 @@ function renderResultados(resultados, query) {
     const tag = normTag(n.tag || n.categoria || 'Patagonia');
     const fecha = n.fecha ? `<div class="result-fecha">${n.fecha}</div>` : '';
     return `
-      <a class="result-card" href="nota.html?id=${n.id}">
+      <a class="result-card" href="/notas/${n.id}.html">
         ${img}
         <div class="result-body">
           <div class="result-tag">${tag}</div>
