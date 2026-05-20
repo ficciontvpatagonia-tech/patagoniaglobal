@@ -2301,8 +2301,9 @@ def generar_paginas_og(notas):
         fecha_raw = nota.get("fecha", nota.get("meta", ""))
         pais      = nota.get("pais", "")
         imagen    = nota.get("imagen", "")
-        imagen_abs = (f"https://globalpatagonia.org/{imagen}"
-                      if imagen else "https://globalpatagonia.org/fotos/torres-del-paine.webp")
+        imagen_abs = (imagen if imagen and imagen.startswith("http") else
+                      f"https://globalpatagonia.org/{imagen}" if imagen else
+                      "https://globalpatagonia.org/fotos/torres-del-paine.webp")
         static_url = f"https://globalpatagonia.org/notas/{nid}.html"
         interactive_url = f"https://globalpatagonia.org/nota.html?id={nid}"
 
