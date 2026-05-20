@@ -345,10 +345,11 @@ async function cargarIndice() {
     fetch('deportes_historial.json').then(r => r.json()).catch(() => []),
     fetch('guias_historial.json').then(r => r.json()).catch(() => []),
     fetch('propios_historial.json').then(r => r.json()).catch(() => []),
-    fetch('archivo.json').then(r => r.json()).catch(() => ({}))
+    fetch('archivo.json').then(r => r.json()).catch(() => ({})),
+    fetch('search-index.json').then(r => r.json()).catch(() => [])
   ];
   const [noticias, historias, propios, turismo, negocios, historial, deportes, guias,
-         cultura, deportesHist, guiasHist, propiosHist, archivo] = await Promise.all(fuentes);
+         cultura, deportesHist, guiasHist, propiosHist, archivo, searchIdx] = await Promise.all(fuentes);
 
   const notas = [];
   const vistos = new Set();
@@ -382,6 +383,7 @@ async function cargarIndice() {
   (propiosHist || []).forEach(agregar);
   const archNotas = Array.isArray(archivo?.notas) ? archivo.notas : (Array.isArray(archivo) ? archivo : []);
   archNotas.forEach(agregar);
+  (Array.isArray(searchIdx) ? searchIdx : []).forEach(agregar);
 
   fuseIndex = new Fuse(notas, {
     keys: [
