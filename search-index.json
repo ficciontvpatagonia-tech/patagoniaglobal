@@ -2,10 +2,1546 @@
   {
     "id": "20260510-propio-cerro-catedral",
     "titulo": "Cerro Catedral: de un refugio de montaña a la meca del esquí sudamericano",
-    "bajada": "En 1934 un grupo de pioneros subió a una montaña inhóspita cerca de Bariloche con esquíes de madera. Ochenta años después, ese mismo cerro mueve 6000 personas por hora en sus 38 aerosillas y es el centro de esquí más grande del hemisferio sur.",
+    "bajada": "En 1934 un grupo de pioneros subió a una montaña inhóspita cerca de Bariloche con esquíes de madera. Esta es la historia de cómo una ladera se convirtió en leyenda.",
     "fecha": "2026-05-10",
     "categoria": "Historia",
-    "imagen": "fotos/DEPORTES/CENTROS_SKY/catedral-portada.jpg"
+    "imagen": "fotos/DEPORTES/CENTROS_SKY/catedral-portada.webp"
+  },
+  {
+    "id": "20260429-vanessa-garrido-sudamericano-master-dep",
+    "titulo": "Vanessa Garrido triunfa en el Sudamericano Máster de Brasil: medalla en aguas abiertas para Aysén",
+    "bajada": "La triatleta del Club Koyaike de Coyhaique terminó novena en los 3.000 m en aguas abiertas y ganó la medalla en categoría 45+ en el Campeonato Sudamericano Máster de Recife.",
+    "fecha": "2026-04-29",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260429-vanessa-garrido-sudamericano-master-dep.webp"
+  },
+  {
+    "id": "cultura-uriel-sokolowicz-mar-es-uno",
+    "titulo": "Un buzo en aguas patagónicas retrató el fondo del mar y ganó: Uriel Sokolowicz, premiado en el concurso \"El Mar es Uno\"",
+    "bajada": "El camarógrafo submarino e instructor de buceo logró un 7.° puesto en la categoría Cámara con “Bosque encantado”, imagen tomada en el Parque Interjurisdiccional Marino Isla Pingüino.",
+    "fecha": "2026-04-29",
+    "categoria": "cultura",
+    "imagen": "fotos/uriel-sokolowicz-bosque-encantado.webp"
+  },
+  {
+    "id": "20260520-la-papa-magallanica-llega-a-la-mesa-primera-fiesta-tapa",
+    "titulo": "La papa magallánica llega a la mesa: primera Fiesta gastronómica en Punta Arenas",
+    "bajada": "Del 20 al 31 de mayo, el restaurante AIMA celebra el primer evento dedicado al tubérculo local, con productores de San Gregorio y Punta Arenas como protagonistas. La iniciativa coincide con el Día Internacional de la Papa y pone en valor un ingrediente que la región produce hace décadas sin el reconocimiento que merece.",
+    "fecha": "",
+    "categoria": "cultura",
+    "imagen": "fotos/foto-20260520-la-papa-magallanica-llega-a-la-mesa-primera-fiesta-tapa.webp"
+  },
+  {
+    "id": "20260520-el-tren-de-santa-cruz-suma-personal-y-apunta-a-operar-sec1",
+    "titulo": "El tren de Santa Cruz suma personal y apunta a operar en 2026",
+    "bajada": "El ramal Jaramillo-Fitz Roy avanza en capacitación de agentes ferroviarios y obras de infraestructura, con el objetivo de retomar operaciones en el tramo histórico de Santa Cruz.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/CIUDADES/santa-cruz-vigia-atardecer.webp"
+  },
+  {
+    "id": "20260520-tabsa-y-cabo-de-hornos-conectividad-maritima-para-el-sec2",
+    "titulo": "TABSA y Cabo de Hornos: conectividad marítima para el fin del mundo",
+    "bajada": "La naviera austral y el municipio del extremo sur de Chile presentaron proyectos conjuntos para mejorar la conectividad y el turismo en la zona de Cabo de Hornos, la más remota de la Patagonia chilena.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260520-tabsa-y-cabo-de-hornos-conectividad-maritima-para-el-sec2.webp"
+  },
+  {
+    "id": "20260520-puerto-williams-crecio-75-en-pasajeros-de-cruceros-en-neg",
+    "titulo": "Puerto Williams creció 7,5% en pasajeros de cruceros en la temporada 2025-2026",
+    "bajada": "La Empresa Portuaria Austral presentó el balance de la temporada de cruceros con un alza sostenida en desembarcos en el puerto más austral del mundo.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260520-puerto-williams-crecio-75-en-pasajeros-de-cruceros-en-neg.webp"
+  },
+  {
+    "id": "20260519-el-extrano-pez-pene-que-aparecio-en-costas-de-chubut-y-tapa",
+    "titulo": "El extraño 'pez pene' que apareció en costas de Chubut y desconcertó a todos",
+    "bajada": "Un animal marino poco conocido reapareció en las playas chubutenses y disparó la curiosidad científica y popular. No es un pez, aunque su apodo lo sugiera: se trata de un invertebrado con historia evolutiva propia y presencia en el Atlántico Sur patagónico. Su aparición es una ventana abierta al ecosistema costero que muchas veces pasa desapercibido.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260519-el-extrano-pez-pene-que-aparecio-en-costas-de-chubut-y-tapa.webp"
+  },
+  {
+    "id": "20260519-cabo-de-hornos-refuerza-sanidad-en-el-confin-austral-sec1",
+    "titulo": "Cabo de Hornos refuerza sanidad en el confín austral",
+    "bajada": "La Seremi de Salud de Magallanes inició un despliegue territorial en la Provincia Antártica para fortalecer la respuesta sanitaria en la zona más remota de Chile.",
+    "fecha": "",
+    "categoria": "bienestar",
+    "imagen": "fotos/CIUDADES/cabo-froward-chile.webp"
+  },
+  {
+    "id": "20260519-ola-polar-tres-puntos-de-la-patagonia-norte-lideran-el-sec2",
+    "titulo": "Ola polar: tres puntos de la Patagonia norte lideran el frío argentino",
+    "bajada": "Localidades de Neuquén y Río Negro se ubicaron entre las temperaturas más bajas registradas en todo el país durante el paso de la ola polar de mayo.",
+    "fecha": "",
+    "categoria": "general",
+    "imagen": "fotos/foto-20260519-ola-polar-tres-puntos-de-la-patagonia-norte-lideran-el-sec2.webp"
+  },
+  {
+    "id": "20260519-corfo-magallanes-apuesta-fuerte-por-innovacion-y-neg",
+    "titulo": "Corfo Magallanes apuesta fuerte por innovación y emprendimiento regional",
+    "bajada": "El nuevo director regional de Corfo en Magallanes y la Antártica Chilena presentó su agenda con foco en fortalecer el ecosistema emprendedor y el crecimiento de las empresas locales.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/CIUDADES/punta-arenas.webp"
+  },
+  {
+    "id": "20260518-el-pinguino-papua-era-cuatro-especies-distintas-tapa",
+    "titulo": "El pingüino papúa era cuatro especies distintas: hallazgo que reescribe la ciencia antártica",
+    "bajada": "Un estudio genético publicado en Current Biology reveló que lo que la ciencia consideraba una sola especie era en realidad cuatro linajes evolutivos independientes. El descubrimiento, centrado en una de las aves más emblemáticas de la Antártida y las costas patagónicas, obliga a revisar más de un siglo de taxonomía.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260518-el-pinguino-papua-era-cuatro-especies-distintas-tapa.webp"
+  },
+  {
+    "id": "20260518-puerto-williams-traza-su-futuro-urbano-sin-perder-el-sec1",
+    "titulo": "Puerto Williams traza su futuro urbano sin perder el entorno austral",
+    "bajada": "El nuevo Plan Regulador Comunal de Puerto Williams, presentado ante el Gobierno Regional de Magallanes, busca ordenar el crecimiento de la ciudad más austral del mundo sin sacrificar el paisaje que la define.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260518-puerto-williams-traza-su-futuro-urbano-sin-perder-el-sec1.webp"
+  },
+  {
+    "id": "20260518-una-app-neuquina-lleva-mujeres-al-corazon-del-negocio-sec2",
+    "titulo": "Una app neuquina lleva mujeres al corazón del negocio energético patagónico",
+    "bajada": "PatagónicaSTEM, creada en Neuquén, apunta a incorporar mujeres a los puestos técnicos y profesionales de Vaca Muerta, la formación no convencional más grande de Argentina.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260518-una-app-neuquina-lleva-mujeres-al-corazon-del-negocio-sec2.webp"
+  },
+  {
+    "id": "20260518-viedma-recicla-residuos-y-genera-23-empleos-verdes-en-neg",
+    "titulo": "Viedma recicla residuos y genera 23 empleos verdes en la Patagonia atlántica",
+    "bajada": "En Viedma, una cooperativa de 23 trabajadores sostiene su economía familiar transformando residuos urbanos en materiales con segunda vida, en un modelo que desafía la lógica del descarte.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260518-viedma-recicla-residuos-y-genera-23-empleos-verdes-en-neg.webp"
+  },
+  {
+    "id": "20260517-75-hectareas-regadas-por-el-colorado-el-oasis-tapa",
+    "titulo": "75 hectáreas regadas por el Colorado: el oasis productivo que nace en la Patagonia",
+    "bajada": "Sobre la margen del río Colorado, un proyecto agroproductivo de 75 hectáreas avanza con agua propia y visión de largo plazo. La historia de un desarrollo que apuesta a la tierra patagónica cuando muchos siguen mirando hacia afuera.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260517-75-hectareas-regadas-por-el-colorado-el-oasis-tapa.webp"
+  },
+  {
+    "id": "20260517-zonas-extremas-de-magallanes-nuevo-esquema-de-sec1",
+    "titulo": "Zonas Extremas de Magallanes: nuevo esquema de financiamiento toma forma",
+    "bajada": "El gobernador Jorge Flies y los alcaldes de Magallanes acordaron proyectos concretos para reformular el financiamiento del Plan de Zonas Extremas, instrumento clave para sostener la vida en el sur de Chile.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/CIUDADES/punta-arenas.webp"
+  },
+  {
+    "id": "20260517-rio-gallegos-tendra-su-propio-mercado-concentrador-con-sec2",
+    "titulo": "Río Gallegos tendrá su propio mercado concentrador con producción patagónica",
+    "bajada": "El programa Santa Cruz Puede inaugura el Mercado Concentrador Patagónico en Río Gallegos, combinando abastecimiento desde el Mercado Central con un sector reservado para productores locales.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260517-rio-gallegos-tendra-su-propio-mercado-concentrador-con-sec2.webp"
+  },
+  {
+    "id": "20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep",
+    "titulo": "Chubut lleva 200 jóvenes a los Juegos EPADE 2026, la olimpiada patagónica",
+    "bajada": "Una delegación de más de 200 deportistas chubutenses se alista para los Juegos EPADE 2026, el evento deportivo juvenil más importante de la Patagonia argentina.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep.webp"
+  },
+  {
+    "id": "20260517-el-chef-que-estudio-ingenieria-y-ahora-revoluciona-la-neg",
+    "titulo": "El chef que estudió ingeniería y ahora revoluciona la cocina de Jacobacci",
+    "bajada": "Un cocinero formado en ingeniería regresó a Ingeniero Jacobacci para transformar la propuesta gastronómica de una ciudad patagónica que empezaba a quedarse sin opciones propias.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260517-el-chef-que-estudio-ingenieria-y-ahora-revoluciona-la-neg.webp"
+  },
+  {
+    "id": "20260517-el-estrecho-como-aula-230-estudiantes-navegan-cul",
+    "titulo": "El Estrecho como aula: 230 estudiantes navegan Magallanes en el Mes del Mar",
+    "bajada": "Por tercer año consecutivo, TABSA llevó a más de 230 estudiantes de cinco establecimientos educativos a navegar el Estrecho de Magallanes, convirtiendo el mar austral en experiencia pedagógica.",
+    "fecha": "",
+    "categoria": "cultura",
+    "imagen": "fotos/foto-20260517-el-estrecho-como-aula-230-estudiantes-navegan-cul.webp"
+  },
+  {
+    "id": "20260517-bariloche-cumplio-124-anos-y-el-club-andino-marcho-tur",
+    "titulo": "Bariloche cumplió 124 años y el Club Andino marchó bajo la nieve",
+    "bajada": "El Club Andino Bariloche desfiló por el 124° aniversario de la ciudad junto a vecinos e instituciones, en una jornada que desafió el frío, el viento y la lluvia típicos del otoño patagónico.",
+    "fecha": "",
+    "categoria": "turismo",
+    "imagen": "fotos/foto-20260517-bariloche-cumplio-124-anos-y-el-club-andino-marcho-tur.webp"
+  },
+  {
+    "id": "20260516-lahuan-el-alerce-de-2630-anos-que-desafia-el-tiempo-en-tapa",
+    "titulo": "Lahuán: el alerce de 2.630 años que desafía el tiempo en Chubut",
+    "bajada": "Un árbol patagónico que ya estaba en pie siglos antes de que Europa supiera que América existía acaba de sobrevivir un incendio y vuelve a asombrar a la ciencia. El alerce milenario conocido como Lahuán, en Chubut, no es solo el árbol más viejo de la Argentina: es un archivo vivo de la historia del sur del mundo.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260516-lahuan-el-alerce-de-2630-anos-que-desafia-el-tiempo-en-tapa.webp"
+  },
+  {
+    "id": "20260516-ciencia-chilena-en-el-mar-mas-inhospito-el-cimar1-sec1",
+    "titulo": "Ciencia chilena en el mar más inhóspito: el CIMAR1 llega a la Antártida",
+    "bajada": "El primer Crucero de Investigación Marina en Áreas Remotas, promovido por INACH y el Comité Oceanográfico Nacional, reunió a científicos de múltiples instituciones chilenas a bordo del buque más austral del planeta.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260516-ciencia-chilena-en-el-mar-mas-inhospito-el-cimar1-sec1.webp"
+  },
+  {
+    "id": "20260516-un-escritor-de-villa-la-angostura-gana-premio-sec2",
+    "titulo": "Un escritor de Villa La Angostura gana premio internacional de literatura",
+    "bajada": "Diego Rodríguez Reis, radicado en la ciudad neuquina a orillas del Nahuel Huapi, fue distinguido internacionalmente por su novela 'La Dimensión Conocida', un hito para las letras patagónicas.",
+    "fecha": "",
+    "categoria": "cultura",
+    "imagen": "fotos/foto-20260516-un-escritor-de-villa-la-angostura-gana-premio-sec2.webp"
+  },
+  {
+    "id": "20260516-salmon-magallanico-en-las-escuelas-ocho-anos-de-neg",
+    "titulo": "Salmón magallánico en las escuelas: ocho años de producción local en los platos",
+    "bajada": "Blumar y la Región de Magallanes celebran ocho años de una alianza que hoy lleva salmón producido en aguas australes a miles de estudiantes de la región.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260516-salmon-magallanico-en-las-escuelas-ocho-anos-de-neg.webp"
+  },
+  {
+    "id": "20260515-cerro-bayo-arranca-temporada-2026-sec2",
+    "titulo": "Cerro Bayo estrena aerosilla cuádruple y abre su temporada boutique 2026",
+    "bajada": "Villa La Angostura lanza la temporada de nieve 2026 con una inversión de más de $3.000 millones: nueva aerosilla cuádruple, nieve artificial hasta la base y apertura peatonal el 6 de junio.",
+    "fecha": "",
+    "categoria": "turismo",
+    "imagen": "fotos/foto-20260515-cerro-bayo-arranca-temporada-2026-sec2.webp"
+  },
+  {
+    "id": "20260515-cuatro-buques-7000-millas-y-780-toneladas-el-sur-tapa",
+    "titulo": "Cuatro buques, 7.000 millas y 780 toneladas: el sur cumplió",
+    "bajada": "La Armada de Chile cerró en Punta Arenas su Campaña Antártica Estival 2025-2026 con números que hablan por sí solos: cuatro meses de operaciones continuas, cuatro unidades navales y casi ochocientas toneladas de carga movilizadas hacia el continente blanco. Una logística de precisión que sostiene la soberanía científica de Chile en el extremo del planeta.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260515-cuatro-buques-7000-millas-y-780-toneladas-el-sur-tapa.webp"
+  },
+  {
+    "id": "20260515-drones-sobre-el-incendio-asi-renace-el-suelo-quemado-sec1",
+    "titulo": "Drones sobre el incendio: así renace el suelo quemado de Chubut",
+    "bajada": "La siembra aérea con drones de forraje es la respuesta tecnológica para acelerar la recuperación de las zonas arrasadas por el fuego en Chubut.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260515-drones-sobre-el-incendio-asi-renace-el-suelo-quemado-sec1.webp"
+  },
+  {
+    "id": "20260515-adn-del-mar-antartico-la-tecnologia-que-mapea-vida-sec2",
+    "titulo": "ADN del mar antártico: la tecnología que mapea vida invisible",
+    "bajada": "El INACH lidera una investigación que usa ADN ambiental para registrar la biodiversidad de animales marinos en la Península Antártica, una región bajo presión climática acelerada.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260515-adn-del-mar-antartico-la-tecnologia-que-mapea-vida-sec2.webp"
+  },
+  {
+    "id": "20260515-roll-ski-en-bariloche-entrenamiento-nordico-sobre-dep",
+    "titulo": "Roll ski en Bariloche: entrenamiento nórdico sobre ruedas en otoño",
+    "bajada": "El Club Andino Bariloche organiza jornadas de rollski para perfeccionar la técnica nórdica fuera de temporada de nieve.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260515-roll-ski-en-bariloche-entrenamiento-nordico-sobre-dep.webp"
+  },
+  {
+    "id": "20260515-santa-cruz-y-doce-apuestas-mineras-en-uno-de-sus-neg",
+    "titulo": "Santa Cruz y doce apuestas mineras en uno de sus distritos más ricos",
+    "bajada": "Doce proyectos de exploración minera activos en Santa Cruz consolidan a la provincia como uno de los epicentros del sector en Argentina.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260515-santa-cruz-y-doce-apuestas-mineras-en-uno-de-sus-neg.webp"
+  },
+  {
+    "id": "20260514-surf-antartico-y-activismo-los-gauchos-del-mar-surcan-tapa",
+    "titulo": "Surf antártico y activismo: los Gauchos del Mar surcan el mar más protegido",
+    "bajada": "Los hermanos Azulay surfearon la ola más austral del planeta en la Antártida y llevaron esa gesta al centro de Buenos Aires para exigir protección sobre los mares antárticos. El film 'Antártida-Dominio Uno' combina aventura extrema con una demanda ambiental urgente que resuena directo en la Patagonia binacional. El océano Antártico, frontero natural del Sur Global, está en juego.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/AMBIENTE/faro-cabo-virgenes.webp"
+  },
+  {
+    "id": "20260514-magallanes-lidera-el-hidrogeno-verde-electrolizadores-sec1",
+    "titulo": "Magallanes lidera el hidrógeno verde: electrolizadores llegan a liceos de Punta Arenas",
+    "bajada": "La Región de Magallanes se convierte en la primera de Chile en incorporar electrolizadores para formación técnica en hidrógeno verde, posicionando a Punta Arenas como laboratorio energético del extremo austral.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260514-magallanes-lidera-el-hidrogeno-verde-electrolizadores-sec1.webp"
+  },
+  {
+    "id": "20260514-antonella-y-el-telar-mapuche-maquinchao-teje-identidad-sec2",
+    "titulo": "Antonella y el telar mapuche: Maquinchao teje identidad desde la infancia",
+    "bajada": "Una niña de Maquinchao aprendió las técnicas del telar mapuche en tiempo inusualmente breve, renovando una práctica cultural que resiste como forma de identidad viva en la estepa rionegrina.",
+    "fecha": "",
+    "categoria": "pueblos originarios",
+    "imagen": "fotos/foto-20260514-antonella-y-el-telar-mapuche-maquinchao-teje-identidad-sec2.webp"
+  },
+  {
+    "id": "20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep",
+    "titulo": "Catedral lanza pases 2026 desde $160.000: la nieve ya tiene precio en Bariloche",
+    "bajada": "El centro de esquí más grande de Sudamérica abre la preventa de pases diarios para la temporada 2026, exclusivamente en efectivo, mientras la comunidad barilochense se prepara para el invierno.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep.webp"
+  },
+  {
+    "id": "20260514-mercado-libre-y-aerolineas-unen-fuerzas-para-acortar-neg",
+    "titulo": "Mercado Libre y Aerolíneas unen fuerzas para acortar la Patagonia en 48 horas",
+    "bajada": "La alianza entre Mercado Libre y Aerolíneas Argentinas proyecta 16.000 envíos diarios a Ushuaia, Bariloche, Neuquén y Trelew, reduciendo los tiempos de entrega que históricamente castigaron al consumidor patagónico.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260514-mercado-libre-y-aerolineas-unen-fuerzas-para-acortar-neg.webp"
+  },
+  {
+    "id": "20260513-el-fuego-no-se-apaga-solo-patagonia-frente-al-limite-tapa",
+    "titulo": "El fuego no se apaga solo: Patagonia frente al límite del combate reactivo",
+    "bajada": "Expertos en incendios forestales advierten que la estrategia de combate ya no alcanza para proteger los bosques patagónicos en un contexto de clima cambiante. La prevención, el ordenamiento territorial y la gestión del paisaje son las asignaturas pendientes que definen el futuro de la región. Un debate que cruza la cordillera y obliga a repensar la política forestal en Argentina y Chile.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260513-el-fuego-no-se-apaga-solo-patagonia-frente-al-limite-tapa.webp"
+  },
+  {
+    "id": "20260513-puerto-williams-la-ciudad-mas-austral-del-mundo-como-sec1",
+    "titulo": "Puerto Williams: la ciudad más austral del mundo como laboratorio del clima",
+    "bajada": "La IV Conferencia Internacional CHIC reúne esta semana en Puerto Williams a investigadores de todo el mundo para discutir la crisis climática desde el fin del mundo, con el cochayuyo como símbolo comestible del futuro.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260513-puerto-williams-la-ciudad-mas-austral-del-mundo-como-sec1.webp"
+  },
+  {
+    "id": "20260513-energia-solar-en-manos-mapuche-la-huerta-de-agua-sec2",
+    "titulo": "Energía solar en manos Mapuche: la huerta de Agua Fresca que no depende de la red",
+    "bajada": "La Asociación Mapuche Huilliche Ketrawe Mapu de Magallanes instaló paneles solares para abastecer su producción hortícola, demostrando que autonomía energética e identidad territorial pueden ir de la mano.",
+    "fecha": "",
+    "categoria": "pueblos originarios",
+    "imagen": "fotos/foto-20260513-energia-solar-en-manos-mapuche-la-huerta-de-agua-sec2.webp"
+  },
+  {
+    "id": "20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep",
+    "titulo": "ADN ambiental: la ciencia que lee la vida marina invisible en la Antártida",
+    "bajada": "Investigadores chilenos utilizan técnicas de ADN ambiental para mapear la biodiversidad de metazoos marinos en la península Antártica, una herramienta clave ante el retroceso glaciar acelerado.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep.webp"
+  },
+  {
+    "id": "20260513-agua-mas-cara-en-magallanes-el-recurso-escaso-que-neg",
+    "titulo": "Agua más cara en Magallanes: el recurso escaso que empieza a tener precio real",
+    "bajada": "Aguas Magallanes aplicó desde este martes un aumento del 2,9% en las tarifas de agua potable en toda la región, elevando el metro cúbico en Punta Arenas y localidades conectadas al sistema.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260513-agua-mas-cara-en-magallanes-el-recurso-escaso-que-neg.webp"
+  },
+  {
+    "id": "20260512-18-dias-en-el-sur-del-mundo-hallazgos-del-cretacico-tapa",
+    "titulo": "18 días en el sur del mundo: hallazgos del Cretácico sacuden la Patagonia chilena",
+    "bajada": "Una expedición del INACH y universidades chilenas completó la mayor campaña paleontológica registrada en Cerro Guido y el valle del río de Las Chinas, con restos de fauna y flora de entre 64 y 80 millones de años. El hallazgo reposiciona a la Patagonia magallánica como laboratorio vivo del pasado profundo del planeta. Para la región, es mucho más que ciencia: es soberanía del conocimiento.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260512-18-dias-en-el-sur-del-mundo-hallazgos-del-cretacico-tapa.webp"
+  },
+  {
+    "id": "20260512-vaca-muerta-cruza-el-rio-rio-negro-alista-cinco-sec1",
+    "titulo": "Vaca Muerta cruza el río: Río Negro alista cinco concesiones no convencionales",
+    "bajada": "La provincia avanza en el otorgamiento de cinco nuevas áreas de explotación no convencional, consolidando la expansión del esquema hidrocarburífero más allá de Neuquén.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/CIUDADES/bariloche-lago-nahuel-huapi.webp"
+  },
+  {
+    "id": "20260512-cerro-catedral-regala-ascensos-gratuitos-a-los-dep",
+    "titulo": "Cerro Catedral regala ascensos gratuitos a los barilochenses antes del invierno",
+    "bajada": "Del 9 al 13 de marzo de 2026, los residentes de Bariloche podrán subir sin costo al Cerro Catedral mediante la Telecabina en la llamada Semana Residentes.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260512-cerro-catedral-regala-ascensos-gratuitos-a-los-dep.webp"
+  },
+  {
+    "id": "20260512-puerto-madryn-recibe-8000-millones-para-modernizar-neg",
+    "titulo": "Puerto Madryn recibe $8.000 millones para modernizar infraestructura clave del Atlántico",
+    "bajada": "La provincia de Chubut destina más de $8.000 millones para la eliminación de cargas horizontales en el Sitio 3 del puerto, en una apuesta por mejorar la competitividad exportadora de la región.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260512-puerto-madryn-recibe-8000-millones-para-modernizar-neg.webp"
+  },
+  {
+    "id": "20260511-explosion-en-perito-moreno-cuatro-muertos-y-una-tapa",
+    "titulo": "Explosión en Perito Moreno: cuatro muertos y una comunidad en duelo",
+    "bajada": "Una detonación de origen aún no determinado destruyó un complejo de departamentos en la localidad santacruceña este domingo a la noche, dejando al menos cuatro víctimas fatales —entre ellas un bebé de dos meses— y varios heridos graves trasladados a centros de mayor complejidad. La Municipalidad decretó asueto y el gobernador Claudio Vidal confirmó asistencia provincial integral.",
+    "fecha": "",
+    "categoria": "general",
+    "imagen": "fotos/foto-20260511-explosion-en-perito-moreno-cuatro-muertos-y-una-tapa.webp"
+  },
+  {
+    "id": "20260511-inach-y-senda-construyen-un-ambiente-laboral-mas-sec1",
+    "titulo": "INACH y SENDA construyen un ambiente laboral más saludable en la Antártida",
+    "bajada": "El Instituto Antártico Chileno firmó una alianza con SENDA para instalar cultura preventiva frente al consumo de alcohol y drogas en su espacio de trabajo en Punta Arenas.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260511-inach-y-senda-construyen-un-ambiente-laboral-mas-sec1.webp"
+  },
+  {
+    "id": "20260511-abigeato-interprovincial-mas-de-170-animales-sec2",
+    "titulo": "Abigeato interprovincial: más de 170 animales recuperados en operativo conjunto",
+    "bajada": "Las policías de Santa Cruz y Chubut desarticularon una red de robo de ganado mediante un allanamiento coordinado en un establecimiento rural, con animales y elementos secuestrados.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260511-abigeato-interprovincial-mas-de-170-animales-sec2.webp"
+  },
+  {
+    "id": "20260511-rio-negro-apuesta-a-tecnologia-inedita-para-convertir-neg",
+    "titulo": "Río Negro apuesta a tecnología inédita para convertir basura en recurso",
+    "bajada": "La provincia estudia implementar en el Alto Valle un sistema de gestión de residuos con tecnología que no tiene antecedentes en la Patagonia.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260511-rio-negro-apuesta-a-tecnologia-inedita-para-convertir-neg.webp"
+  },
+  {
+    "id": "perito-moreno-timeout-2026",
+    "titulo": "El Glaciar Perito Moreno, entre los 51 destinos más impactantes del mundo según Time Out",
+    "bajada": "La revista internacional incluyó al emblema de El Calafate en el puesto 45 de su ranking global, destacando su masa de hielo, sus tonalidades azuladas y el espectáculo natural de sus desprendimientos.",
+    "fecha": "",
+    "categoria": "turismo",
+    "imagen": "fotos/PERSONAJES/perito-moreno-timeout-2026.webp"
+  },
+  {
+    "id": "20260510-canon-hidrico-progresivo-santa-cruz-quiere-que-la-tapa",
+    "titulo": "Canon hídrico progresivo: Santa Cruz quiere que la industria pague lo que vale el agua",
+    "bajada": "Un proyecto legislativo en Santa Cruz propone escalar el cobro a industrias, mineras y actividades extractivas según su consumo real de agua. Los fondos irían directo a infraestructura hídrica provincial, en una provincia donde el recurso es escaso, disputado y estratégico.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260510-canon-hidrico-progresivo-santa-cruz-quiere-que-la-tapa.webp"
+  },
+  {
+    "id": "20260510-inach-y-universidades-chilenas-tejen-la-red-antartica-sec1",
+    "titulo": "INACH y universidades chilenas tejen la red antártica del futuro",
+    "bajada": "La Alianza Interuniversitaria Chile Antártico cerró su primera fase con misión, visión y ejes definidos, y proyecta instalar la identidad antártica en la formación profesional de múltiples disciplinas.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260510-inach-y-universidades-chilenas-tejen-la-red-antartica-sec1.webp"
+  },
+  {
+    "id": "cultura-ruben-patagonia",
+    "titulo": "Rubén Patagonia: la voz tehuelche que cantó lo que otros no podían nombrar",
+    "bajada": "A pocos meses de su muerte, en enero de 2026, revisamos la trayectoria de Rubén Chauque, el músico de Comodoro Rivadavia que convirtió la memoria de los pueblos originarios en canciones que llegaron a todo el país.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/PERSONAJES/ruben-patagonia.webp"
+  },
+  {
+    "id": "historia-huelgas-1921",
+    "titulo": "Las huelgas de 1921: cuando los peones rurales de Santa Cruz se enfrentaron al Estado",
+    "bajada": "A 105 años de la masacre, revisamos los hechos que inspiraron la película de Olivera y siguen siendo un capítulo pendiente de la historia argentina. Cerca de 1.500 trabajadores fueron fusilados por el Ejército en las estancias de Santa Cruz.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/PERSONAJES/huelgas-1921-patagonia.webp"
+  },
+  {
+    "id": "historia-perito-moreno",
+    "titulo": "El viaje de Perito Moreno al Nahuel Huapi: 147 años del primer registro científico de la Patagonia andina",
+    "bajada": "Francisco Moreno llegó al lago en enero de 1879 con 26 años, una brújula y un cuaderno. Su bitácora de viaje es una obra maestra de la observación científica y la narración de aventuras. Y su legado, el Parque Nacional Nahuel Huapi, sigue siendo el más grande de la Argentina.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/PERSONAJES/perito-moreno.webp"
+  },
+  {
+    "id": "historia-selknam",
+    "titulo": "Los Selknam: el pueblo que cazaron por una libra esterlina",
+    "bajada": "Los Onas habitaron la Isla Grande de Tierra del Fuego durante al menos ocho mil años. En menos de cincuenta los diezmaron casi por completo. El método: una recompensa pagada por estancieros ovejeros por cada par de orejas o cada par de manos. Esta es la historia del genocidio más documentado y menos juzgado de la Patagonia.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/PERSONAJES/familia-tehuelche-aonikenk.webp"
+  },
+  {
+    "id": "historia-conquista-desierto",
+    "titulo": "La Conquista del Desierto: lo que el mito nacional oculta sobre la Patagonia",
+    "bajada": "En los libros de texto se llamó 'civilización'. En los campamentos tehuelches y mapuches que arrasó el ejército de Roca entre 1878 y 1885, fue otra cosa. A 140 años de la campaña, la Patagonia sigue procesando las consecuencias de lo que oficialmente se celebró durante más de un siglo como hazaña fundacional.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/AMBIENTE/estepa-nevada-ruta-patagonica.webp"
+  },
+  {
+    "id": "cultura-chatwin-patagonia",
+    "titulo": "Bruce Chatwin y la Patagonia: el libro que cambió para siempre cómo el mundo mira el sur",
+    "bajada": "En 1977 un joven periodista inglés publicó un libro sin género claro sobre un viaje al sur de Argentina. 'En la Patagonia' se convirtió en uno de los textos de viaje más influyentes del siglo XX y transformó a la Patagonia en sinónimo de fin del mundo, soledad y misterio para millones de lectores que nunca la habían visto.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/AMBIENTE/ruta-estepa-patagonica.webp"
+  },
+  {
+    "id": "historia-fundacion-punta-arenas",
+    "titulo": "Punta Arenas: la ciudad que sobrevivió al fin del mundo para convertirse en la capital del sur",
+    "bajada": "Fundada como penal y presidio en 1848, azotada por motines y vientos de 150 km/h, abandonada varias veces antes de que alguien decidiera quedarse para siempre. La historia de Punta Arenas es la de una ciudad que no debería existir — y que por eso mismo es extraordinaria.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/CIUDADES/punta-arenas.webp"
+  },
+  {
+    "id": "historia-colonos-galeses-chubut",
+    "titulo": "Los galeses del Chubut: cómo 153 personas construyeron una Gales en la Patagonia",
+    "bajada": "En 1865, un barco llamado Mimosa zarpó de Liverpool con 153 galeses que buscaban un lugar donde hablar su idioma sin que nadie se los prohibiera. Llegaron a un desierto que no esperaban. Lo que construyeron en el valle del Chubut es una de las historias de colonización más singulares del mundo.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/AMBIENTE/estepa-nevada-ruta-patagonica.webp"
+  },
+  {
+    "id": "cultura-mapuche-patagonia",
+    "titulo": "El pueblo Mapuche: la nación que resistió tres siglos de presión y sigue reclamando el sur",
+    "bajada": "Los mapuches son el pueblo originario más numeroso de la Patagonia y el que más activamente reclama derechos territoriales en Argentina y Chile. Su historia es también la historia del sur: de la resistencia al colonialismo español, a las campañas militares del siglo XIX y a la disputa contemporánea por tierras y reconocimiento.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/AMBIENTE/fitz-roy-chalten-nevada.webp"
+  },
+  {
+    "id": "trail-monte-leon-2026",
+    "titulo": "Cuatro podios patagónicos: atletas de El Calafate brillaron en el Desafío Monte León",
+    "bajada": "Once corredores de El Calafate viajaron al Parque Nacional Monte León para competir en el Desafío Destino 2026. Frente a 210 participantes de toda la región, lograron cuatro podios en cuatro categorías distintas. Ayelén Tuller, Gustavo Guajardo, Julián Anchordoqui y Stephen Schroder pusieron a El Calafate en el podio del Atlántico Sur.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/CIUDADES/trail-monte-leon-2026.webp"
+  },
+  {
+    "id": "rescate-chalten-marzo-2026",
+    "titulo": "Dos turistas rescatados en El Chaltén en menos de 24 horas: una mexicana con fractura en Laguna de los Tres y un holandés extraviado toda la noche",
+    "bajada": "El domingo 22 de marzo, dos operativos de rescate se encadenaron en el Parque Nacional Los Glaciares. Una turista mexicana lesionada en el sendero más exigente del pueblo y un turista holandés que pasó la noche perdido en la montaña tras cruzar imprudentemente una tirolesa sobre el río Fitz Roy. Brigadistas, guardaparques y voluntarios de la Comisión de Auxilio trabajaron sin pausa.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/CIUDADES/rescate-chalten-01.webp"
+  },
+  {
+    "id": "guia-calafate-4-dias",
+    "titulo": "Cómo llegar, moverse y disfrutar El Calafate en 4 días",
+    "bajada": "El Calafate es la puerta de entrada al Parque Nacional Los Glaciares, hogar del Perito Moreno y de algunos de los paisajes más impactantes del planeta. Esta guía cubre todo: cómo llegar desde el aeropuerto, qué hacer cada día, dónde comer bien y cómo no perderse nada importante.",
+    "fecha": "",
+    "categoria": "turismo",
+    "imagen": "fotos/CIUDADES/Calafate.webp"
+  },
+  {
+    "id": "historia-kawesqar",
+    "titulo": "Los Kawésqar: los últimos nómades del mar en el canal Beagle y su lucha por la memoria",
+    "bajada": "Quedan menos de 20 personas que hablan el idioma Kawésqar. Esta es la historia de un pueblo que navegó los canales más inhóspitos del planeta durante siglos, sobrevivió al frío que mataría a cualquier europeo y fue diezmado en pocas décadas por el contacto con la civilización occidental.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/PERSONAJES/kawesqar-canal-beagle.webp"
+  },
+  {
+    "id": "20260510-festin-de-sabores-santa-cruz-celebra-el-boom-de-sus-tur",
+    "titulo": "Festín de Sabores: Santa Cruz celebra el boom de sus productores locales",
+    "bajada": "El evento gastronómico más importante de la Patagonia abrió sus puertas en el Predio Ferial de Santa Cruz con clases en vivo, chefs reconocidos y el respaldo de un sector que no para de crecer.",
+    "fecha": "",
+    "categoria": "",
+    "imagen": "fotos/foto-20260510-festin-de-sabores-santa-cruz-celebra-el-boom-de-sus-tur.webp"
+  },
+  {
+    "id": "20260503-la-otra-vida-del-lago-nahuel-huapi-mas-alla-del-tur",
+    "titulo": "La otra vida del lago Nahuel Huapi más allá del turismo clásico",
+    "bajada": "Una mirada al paisaje y las rutas que rodean el gran lago de Bariloche revela facetas menos conocidas de uno de los íconos patagónicos.",
+    "fecha": "",
+    "categoria": "",
+    "imagen": "fotos/foto-20260503-la-otra-vida-del-lago-nahuel-huapi-mas-alla-del-tur.webp"
+  },
+  {
+    "id": "20260503-cabo-froward-parque-nacional-bosques-submarinos-tur",
+    "titulo": "Cabo Froward en camino a Parque Nacional: la nueva frontera verde y azul del extremo sur de América",
+    "bajada": "Más de 120.000 hectáreas de bosque subantártico apuntan a convertirse en el primer parque dentro de Punta Arenas. Mientras el proceso avanza lento, el Megatransecto Patagonia ya bucea 1.200 km de fiordos documentando bosques submarinos únicos en el planeta.",
+    "fecha": "",
+    "categoria": "Naturaleza",
+    "imagen": "fotos/CIUDADES/cabo-froward-chile.webp"
+  },
+  {
+    "id": "20260426-navegar-el-nahuel-huapi-el-paseo-que-nunca-se-repite-tur",
+    "titulo": "Navegar el Nahuel Huapi: el paseo que nunca se repite igual",
+    "bajada": "La navegación por el lago emblema de Bariloche sigue siendo uno de los planes más elegidos por visitantes y locales, con paisajes que cambian con cada estación.",
+    "fecha": "",
+    "categoria": "",
+    "imagen": "fotos/foto-20260426-navegar-el-nahuel-huapi-el-paseo-que-nunca-se-repite-tur.webp"
+  },
+  {
+    "id": "20260511-valdivia-talleres-deportivos-inclusivos-dep",
+    "titulo": "Valdivia abre inscripciones para talleres deportivos inclusivos y adaptados 2026",
+    "bajada": "El municipio de Valdivia lanza la edición 2026 del programa de Deporte Adaptado con cinco disciplinas para personas con discapacidad física, visual, auditiva y cognitiva.",
+    "fecha": "",
+    "categoria": "♿ Deportes",
+    "imagen": "fotos/CIUDADES/deporte_inclusivo.webp"
+  },
+  {
+    "id": "20260508-rollerski-en-bariloche-entrenamiento-nordico-antes-de-dep",
+    "titulo": "Rollerski en Bariloche: entrenamiento nórdico antes de que vuelva la nieve",
+    "bajada": "El Club Andino Bariloche realiza este sábado una jornada de rollerski para perfeccionar técnica nórdica fuera de temporada invernal.",
+    "fecha": "",
+    "categoria": "🏃 Deportes",
+    "imagen": "fotos/foto-20260508-rollerski-en-bariloche-entrenamiento-nordico-antes-de-dep.webp"
+  },
+  {
+    "id": "20260506-catedral-alta-patagonia-elegido-mejor-centro-de-esqui-dep",
+    "titulo": "Catedral Alta Patagonia, elegido mejor centro de esquí en Brasil",
+    "bajada": "El cerro barilochense recibió en Río de Janeiro el premio O Melhor de Viagem & Turismo, el reconocimiento más importante del sector turístico brasileño.",
+    "fecha": "",
+    "categoria": "🏔️ Deportes",
+    "imagen": "fotos/foto-20260506-catedral-alta-patagonia-elegido-mejor-centro-de-esqui-dep.webp"
+  },
+  {
+    "id": "20260426-propio-malvinas-giro-eeuu",
+    "titulo": "Claves para entender qué ocurrió realmente con el giro de EE.UU. sobre la soberanía de las Islas Malvinas y qué implicancias tiene para el reclamo argentino",
+    "bajada": "Un correo interno del Pentágono filtrado a Reuters generó una ola de expectativa en Argentina. ¿Cambió realmente la postura de Washington sobre Malvinas? Análisis de qué ocurrió, qué no ocurrió, y qué implica para el reclamo argentino.",
+    "fecha": "",
+    "categoria": "soberania|malvinas|geopolitica",
+    "imagen": "fotos/INSTITUCIONES/malvinas-telam-ushuaia.webp"
+  },
+  {
+    "id": "20260420-propio-malvinas-alimentos",
+    "titulo": "Crisis alimentaria en las Islas Malvinas",
+    "bajada": "Un informe técnico encargado por el propio gobierno kelper revela que la producción local de alimentos frescos es frágil, costosa y vulnerable al clima, lo que obliga a importar la mayor parte de los productos a muchos kilómetros de distancia. La solución propuesta —un megainvernadero de última generación— no resuelve lo que el archipiélago no puede admitir: que la Patagonia continental está a la vuelta de la esquina.",
+    "fecha": "",
+    "categoria": "soberania|malvinas|economia",
+    "imagen": "fotos/INSTITUCIONES/malvinas_stanley_dock.webp"
+  },
+  {
+    "id": "ski-patagonia-2026",
+    "titulo": "Temporada de Ski PATAGONIA 2026: lo que tenés que saber",
+    "bajada": "La cuenta regresiva para el invierno ya comenzó. Centros, precios y consejos para esquiar en Argentina y Chile en 2026.",
+    "fecha": "",
+    "categoria": "turismo",
+    "imagen": "fotos/DEPORTES/CENTROS_SKY/ESQUI.webp"
+  },
+  {
+    "id": "20260407-propio-malvinas",
+    "titulo": "Preocupación kelper en Malvinas: el diésel sube 36,5% en una colonia cada vez más cara y más sola",
+    "bajada": "El portal de noticias local Penguin News reportó una suba del 36,5% en el precio del diésel. La noticia expone la vulnerabilidad energética del archipiélago, cuya dependencia logística con el Reino Unido –en crisis desde el Brexit– encarece la vida de sus habitantes.",
+    "fecha": "",
+    "categoria": "soberania|malvinas|economia",
+    "imagen": "fotos/INSTITUCIONES/Malvinas02.webp"
+  },
+  {
+    "id": "20260406-propio-ballenas-chiloe",
+    "titulo": "El mayor santuario de ballenas azules del mundo está en Chiloé — y un drone lo está documentando por primera vez",
+    "bajada": "El Centro de Conservación Cetacea lleva su vigésima tercera temporada en el noroeste de Chiloé con una innovación sin precedentes: drones de alta resolución para medir la salud de cada ballena azul sin molestarlas.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/FAUNA/ballena.webp"
+  },
+  {
+    "id": "20260401-propio-tiburones",
+    "titulo": "Tiburones en la Patagonia: una pesca incompatible con su propia biología",
+    "bajada": "Cinco especies conviven en el Golfo San Matías bajo categoría de amenaza. Su destino depende de una ecuación biológica implacable: crecer despacio y reproducirse poco en un mar donde la pesca no da tregua.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/AMBIENTE/PESCA_TIBURON_01.webp"
+  },
+  {
+    "id": "20260318-propio-glaciares",
+    "titulo": "¿De qué hablamos cuando hablamos de la \"nueva\" Ley de Glaciares?",
+    "bajada": "El proyecto que modificaría la Ley 26.639 ya pasó el Senado con 40 votos a favor. Acota la protección, transfiere poder a las provincias mineras y deja fuera del amparo a los glaciares de escombros. Detrás del lobby: Barrick Gold, BHP, Glencore y megaproyectos de cobre y litio que suman más de 40.000 millones de dólares.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/AMBIENTE/LEY_GLACIARES_02.webp"
+  },
+  {
+    "id": "20260310-propio-incendios",
+    "titulo": "Comarca Andina en llamas: lo que el fuego revela sobre la fragilidad del bosque patagónico",
+    "bajada": "Los incendios que arrasaron El Hoyo y el corredor del paralelo 42 no fueron una sorpresa. Fueron la consecuencia anunciada de décadas de cambio climático, urbanización sin planificación y una política de manejo del fuego que llegó siempre tarde.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/AMBIENTE/portada_incendios_patagonia.webp"
+  },
+  {
+    "id": "20260510-conadi-convoca-a-mapuche-selknam-y-kawesqar-para-cul",
+    "titulo": "CONADI convoca a Mapuche, Selknam y Kawésqar para proteger su arte vivo",
+    "bajada": "La convocatoria nacional para fortalecer el arte y la cultura indígena está abierta hasta el 27 de mayo e incluye a las principales naciones originarias de la Patagonia y Tierra del Fuego.",
+    "fecha": "",
+    "categoria": "pueblos originarios",
+    "imagen": "fotos/foto-20260510-conadi-convoca-a-mapuche-selknam-y-kawesqar-para-cul.webp"
+  },
+  {
+    "id": "20260503-corto-rodado-celebra-18-ediciones-integrando-cine-cul",
+    "titulo": "Corto Rodado celebra 18 ediciones integrando cine patagónico binacional",
+    "bajada": "El festival santacruceño de cortometrajes profundiza el corredor cultural Argentina-Chile y abre su convocatoria a la inteligencia artificial como herramienta creativa.",
+    "fecha": "",
+    "categoria": "cultura",
+    "imagen": "fotos/foto-20260503-corto-rodado-celebra-18-ediciones-integrando-cine-cul.webp"
+  },
+  {
+    "id": "20260510-un-sensor-argentino-que-descifra-el-clima-antartico-en-sec2",
+    "titulo": "Un sensor argentino que descifra el clima antártico en tiempo real",
+    "bajada": "El dispositivo Neurus, desarrollado en Argentina, registra variables climáticas clave en la Antártica y permite a los investigadores acceder a datos del ambiente más hostil del planeta.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260510-un-sensor-argentino-que-descifra-el-clima-antartico-en-sec2.webp"
+  },
+  {
+    "id": "20260510-chubut-apuesta-al-bosque-como-motor-economico-con-el-neg",
+    "titulo": "Chubut apuesta al bosque como motor económico con el respaldo del CFI",
+    "bajada": "Un encuentro estratégico convocado por el Consejo Federal de Inversiones posicionó al sector forestal de Chubut como eje de una agenda productiva federal con foco en empleo y desarrollo regional.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260510-chubut-apuesta-al-bosque-como-motor-economico-con-el-neg.webp"
+  },
+  {
+    "id": "20260509-850000-firmas-llegan-a-la-justicia-la-patagonia-tapa",
+    "titulo": "850.000 firmas llegan a la Justicia: la Patagonia defiende sus glaciares",
+    "bajada": "Un amparo colectivo presentado ante la Justicia Federal desafía la reforma a la Ley de Glaciares aprobada en abril, que activistas y comunidades patagónicas denuncian como un retroceso ambiental sin precedentes. La acción judicial reúne el respaldo ciudadano más masivo en la historia de la protección glaciar argentina.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260509-850000-firmas-llegan-a-la-justicia-la-patagonia-tapa.webp"
+  },
+  {
+    "id": "20260509-kayak-locro-y-tehuelche-una-escuela-que-navega-entre-sec2",
+    "titulo": "Kayak, locro y tehuelche: una escuela que navega entre dos culturas",
+    "bajada": "La Escuela de Kayak \"I Yenu Jono\" de Santa Cruz combina deporte, lengua Aonikenk y comunidad en una kermés abierta este domingo para recuperar el idioma tehuelche.",
+    "fecha": "",
+    "categoria": "pueblos originarios",
+    "imagen": "fotos/foto-20260509-kayak-locro-y-tehuelche-una-escuela-que-navega-entre-sec2.webp"
+  },
+  {
+    "id": "20260509-tres-ases-inaugura-el-primer-centro-de-climatizacion-neg",
+    "titulo": "Tres Ases inaugura el primer centro de climatización inteligente de fruta en Patagonia",
+    "bajada": "La empresa rionegrina Tres Ases puso en marcha el primer centro de climatización inteligente de la Patagonia, un hito tecnológico que cambia las reglas de la comercialización frutícola regional.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260509-tres-ases-inaugura-el-primer-centro-de-climatizacion-neg.webp"
+  },
+  {
+    "id": "20260508-el-laboratorio-antartico-de-punta-arenas-que-forma-la-tapa",
+    "titulo": "El laboratorio antártico de Punta Arenas que forma la ciencia del futuro austral",
+    "bajada": "En el edificio 'Embajador Jorge Berguño Barnes' del INACH, investigadores estudian cómo los ecosistemas marinos del sur responden al cambio global. El espacio se ha convertido en un nodo clave para la formación de científicos especializados en el continente blanco, con proyección internacional.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260508-el-laboratorio-antartico-de-punta-arenas-que-forma-la-tapa.webp"
+  },
+  {
+    "id": "20260508-chile-proyecta-identidad-antartica-en-todas-las-sec1",
+    "titulo": "Chile proyecta identidad antártica en todas las carreras universitarias",
+    "bajada": "La Alianza Interuniversitaria Chile Antártico cerró su primera fase con misión y ejes definidos, apuntando a integrar la temática antártica en la formación de profesionales de distintas disciplinas.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260508-chile-proyecta-identidad-antartica-en-todas-las-sec1.webp"
+  },
+  {
+    "id": "20260508-chubut-premiada-esquel-tendra-su-propio-nodo-de-sec2",
+    "titulo": "Chubut premiada: Esquel tendrá su propio nodo de intercambio de internet",
+    "bajada": "La provincia recibió un reconocimiento nacional por concretar la instalación de un Punto de Intercambio de Internet en Esquel, una infraestructura que reducirá la brecha digital en toda la región cordillerana.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260508-chubut-premiada-esquel-tendra-su-propio-nodo-de-sec2.webp"
+  },
+  {
+    "id": "20260508-petroleros-de-santa-cruz-salen-a-buscar-inversores-la-neg",
+    "titulo": "Petroleros de Santa Cruz salen a buscar inversores: la cuenca que quiere dejar de ser comparación",
+    "bajada": "El gremio de petroleros de Santa Cruz inició gestiones para atraer operadoras internacionales a la cuenca austral, apuntando a replicar el dinamismo de Vaca Muerta en el sur.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260508-petroleros-de-santa-cruz-salen-a-buscar-inversores-la-neg.webp"
+  },
+  {
+    "id": "20260507-la-62a-expedicion-antartica-chilena-cierra-con-tapa",
+    "titulo": "La 62ª Expedición Antártica Chilena cierra con cooperación internacional inédita",
+    "bajada": "El rompehielos Almirante Viel repatrió las últimas dotaciones y cerró una temporada estival que marcó un antes y un después en la ciencia polar del sur. Desde Punta Arenas, el INACH consolida a Chile como potencia antártica con presencia en múltiples frentes de investigación simultáneos.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260507-la-62a-expedicion-antartica-chilena-cierra-con-tapa.webp"
+  },
+  {
+    "id": "20260507-el-parque-eolico-mas-austral-del-mundo-ya-genera-sec1",
+    "titulo": "El parque eólico más austral del mundo ya genera energía en Tierra del Fuego",
+    "bajada": "El nuevo parque eólico fueguino marca un hito energético para la Patagonia argentina y posiciona al extremo sur como laboratorio de transición renovable.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260507-el-parque-eolico-mas-austral-del-mundo-ya-genera-sec1.webp"
+  },
+  {
+    "id": "20260507-chile-y-canada-construyen-ciencia-antartica-conjunta-sec2",
+    "titulo": "Chile y Canadá construyen ciencia antártica conjunta desde Punta Arenas",
+    "bajada": "Un seminario binacional celebrado en la sede del INACH coronó semanas de trabajo de campo compartido a bordo del rompehielos Almirante Viel.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260507-chile-y-canada-construyen-ciencia-antartica-conjunta-sec2.webp"
+  },
+  {
+    "id": "20260507-decomisan-carne-de-guanaco-sin-control-sanitario-en-neg",
+    "titulo": "Decomisan carne de guanaco sin control sanitario en ruta de Santa Cruz",
+    "bajada": "Efectivos rurales interceptaron una camioneta en la Ruta 12 con numerosos cortes de fauna silvestre transportados de forma ilegal, en un caso que expone la caza furtiva de guanacos en la estepa patagónica.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260507-decomisan-carne-de-guanaco-sin-control-sanitario-en-neg.webp"
+  },
+  {
+    "id": "20260506-la-62a-expedicion-antartica-chilena-cerro-una-tapa",
+    "titulo": "La 62ª Expedición Antártica chilena cerró una temporada histórica de ciencia y cooperación",
+    "bajada": "El rompehielos Almirante Viel regresó a Punta Arenas con las últimas dotaciones, poniendo fin a la etapa estival más intensa en años del INACH. La expedición reunió equipos de múltiples países y dejó datos científicos clave sobre ecosistemas marinos bajo presión climática.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260506-la-62a-expedicion-antartica-chilena-cerro-una-tapa.webp"
+  },
+  {
+    "id": "20260506-magallanes-lleva-la-voz-de-chile-al-corazon-de-la-sec1",
+    "titulo": "Magallanes lleva la voz de Chile al corazón de la política antártica nacional",
+    "bajada": "La delegada presidencial Ericka Farías integró la mesa estratégica que define la postura chilena ante el mundo en materia antártica, con Magallanes como región motora.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260506-magallanes-lleva-la-voz-de-chile-al-corazon-de-la-sec1.webp"
+  },
+  {
+    "id": "20260506-el-proyecto-portuario-en-malvinas-que-costo-millones-y-sec2",
+    "titulo": "El proyecto portuario en Malvinas que costó millones y no entregó lo prometido",
+    "bajada": "El Comité de Cuentas Públicas de las islas determinó que la obra de BAM Nuttall no representó valor por dinero ni para el gobierno isleño ni para los contribuyentes.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260506-el-proyecto-portuario-en-malvinas-que-costo-millones-y-sec2.webp"
+  },
+  {
+    "id": "20260506-pesca-en-malvinas-una-directora-removida-y-una-empresa-neg",
+    "titulo": "Pesca en Malvinas: una directora removida y una empresa en reconfiguración",
+    "bajada": "Cheryl Roberts fue removida como directora de Consolidated Fisheries Ltd tras una resolución de accionistas en asamblea extraordinaria convocada en febrero.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260506-pesca-en-malvinas-una-directora-removida-y-una-empresa-neg.webp"
+  },
+  {
+    "id": "20260505-comunidad-yagan-y-vecinos-recuperan-el-rio-ukika-en-tapa",
+    "titulo": "Comunidad Yagán y vecinos recuperan el río Ukika en limpieza histórica",
+    "bajada": "En Villa Ukika, el asentamiento yagán más austral del mundo, una alianza entre la comunidad originaria y el municipio retiró años de escombros del río. La acción marca un precedente de gestión ambiental participativa con pueblo originario en Tierra del Fuego.",
+    "fecha": "",
+    "categoria": "pueblos originarios",
+    "imagen": "fotos/foto-20260505-comunidad-yagan-y-vecinos-recuperan-el-rio-ukika-en-tapa.webp"
+  },
+  {
+    "id": "20260505-hidrogeno-renovable-se-prueba-en-base-antartica-sec1",
+    "titulo": "Hidrógeno renovable se prueba en base antártica chilena con apoyo europeo",
+    "bajada": "Un proyecto piloto de la agencia alemana GIZ, cofinanciado por la Unión Europea, valida soluciones energéticas con hidrógeno verde en la base Profesor Julio Escudero del INACH.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/INSTITUCIONES/antartica-base-escudero-chile.jpg"
+  },
+  {
+    "id": "20260505-inteligencia-artificial-monitorea-pinguinos-barbijo-en-sec2",
+    "titulo": "Inteligencia artificial monitorea pingüinos barbijo en la Antártica chilena",
+    "bajada": "El INACH utiliza cámaras trampa y redes neuronales para optimizar el seguimiento del ciclo de vida de colonias de pingüino barbijo en la península Antártica.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/FAUNA/antartica-pinguino-barbijo.jpg"
+  },
+  {
+    "id": "20260505-el-gan-del-club-andino-sale-en-mountainbike-por-los-dep",
+    "titulo": "El GAN del Club Andino sale en mountainbike por los cerros de Bariloche",
+    "bajada": "El Grupo de Acondicionamiento Nórdico organiza una salida de MTB este sábado como preparación física para la temporada de invierno.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260505-el-gan-del-club-andino-sale-en-mountainbike-por-los-dep.webp"
+  },
+  {
+    "id": "20260505-malvinas-explora-invernaderos-de-alta-tecnologia-para-neg",
+    "titulo": "Malvinas explora invernaderos de alta tecnología para producir alimentos propios",
+    "bajada": "Un proyecto de cultivo bajo vidrio con tecnología avanzada busca transformar la seguridad alimentaria de las islas, hoy dependientes casi totalmente de importaciones.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260505-malvinas-explora-invernaderos-de-alta-tecnologia-para-neg.webp"
+  },
+  {
+    "id": "guia-invierno-patagonia-10-destinos",
+    "titulo": "Diez joyas invernales de la Patagonia: una guía para el viajero GLOBAL",
+    "bajada": "De Bariloche a Torres del Paine: los diez destinos más extraordinarios del sur en temporada de nieve, con actividades, gastronomía y consejos prácticos para el viajero internacional.",
+    "fecha": "",
+    "categoria": "turismo",
+    "imagen": "fotos/CIUDADES/bariloche-argentina.jpg"
+  },
+  {
+    "id": "20260504-alerta-sanitaria-investigan-brote-de-hantavirus-en-tapa",
+    "titulo": "Alerta sanitaria: investigan brote de hantavirus en crucero que tocó Tierra del Fuego",
+    "bajada": "Las autoridades fueguinas aguardan un informe oficial de Nación para activar el rastreo epidemiológico. El caso enciende alarmas en una región donde el turismo de cruceros es motor económico y el hantavirus tiene antecedentes estacionales.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260504-alerta-sanitaria-investigan-brote-de-hantavirus-en-tapa.webp"
+  },
+  {
+    "id": "20260504-ciclogenesis-azota-la-patagonia-norte-con-frio-polar-y-sec1",
+    "titulo": "Ciclogénesis azota la Patagonia norte con frío polar y vientos extremos",
+    "bajada": "Neuquén y Río Negro enfrentan una semana de temperaturas bajo cero, ráfagas intensas y lluvias sostenidas por un sistema ciclogenético que avanza desde el Pacífico.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260504-ciclogenesis-azota-la-patagonia-norte-con-frio-polar-y-sec1.webp"
+  },
+  {
+    "id": "20260504-punta-arenas-disena-vias-exclusivas-para-sus-nuevos-sec2",
+    "titulo": "Punta Arenas diseña vías exclusivas para sus nuevos buses eléctricos",
+    "bajada": "La ciudad magallánica proyecta 5,4 kilómetros de pistas segregadas en el centro para modernizar el transporte público con electromovilidad.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260504-punta-arenas-disena-vias-exclusivas-para-sus-nuevos-sec2.jpg"
+  },
+  {
+    "id": "20260504-vaca-muerta-lanza-su-primer-fideicomiso-inmobiliario-neg",
+    "titulo": "Vaca Muerta lanza su primer fideicomiso inmobiliario con oferta pública",
+    "bajada": "El instrumento financiero busca canalizar inversión privada hacia el desarrollo urbano que demanda el boom petrolero neuquino.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260504-vaca-muerta-lanza-su-primer-fideicomiso-inmobiliario-neg.webp"
+  },
+  {
+    "id": "20260504-tres-muertos-hantavirus-crucero-ushuaia-sec1",
+    "titulo": "Tres muertos por hantavirus en un crucero que partió de Ushuaia",
+    "bajada": "Un barco con 170 pasajeros registró seis casos sospechosos durante la travesía. Tres personas murieron, una permanece en terapia intensiva y solo uno fue confirmado por laboratorio. La investigación epidemiológica apunta al contacto previo al embarque en tierra fueguina.",
+    "fecha": "",
+    "categoria": "salud",
+    "imagen": "fotos/VH-destacada.jpg"
+  },
+  {
+    "id": "20260503-glaciar-perito-moreno-retrocede-inedito-tapa",
+    "titulo": "El Perito Moreno perdió en 97 días el 25% de todo lo que retrocedió en 15 años",
+    "bajada": "Entre noviembre de 2025 y febrero de 2026, el glaciar más emblemático de la Patagonia perdió 0,8 km² de superficie: una cifra inédita por su magnitud y velocidad que pone en alerta a El Calafate y al mundo científico.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/AMBIENTE/GLACIAR_PERITO_MORENO.webp"
+  },
+  {
+    "id": "20260503-reino-unido-refuerza-sistemas-de-defensa-aerea-en-tapa",
+    "titulo": "Reino Unido refuerza sistemas de defensa aérea en Malvinas ante tensión internacional",
+    "bajada": "La Fuerza Aérea británica elevó la operatividad de sus dispositivos militares en las islas, calificándolas como punto estratégico innegociable. La medida reaviva el debate sobre la militarización del Atlántico Sur y su impacto en la soberanía regional.",
+    "fecha": "",
+    "categoria": "general",
+    "imagen": "fotos/foto-20260503-reino-unido-refuerza-sistemas-de-defensa-aerea-en-tapa.webp"
+  },
+  {
+    "id": "20260503-santa-cruz-homenajeo-a-los-323-caidos-del-crucero-sec1",
+    "titulo": "Santa Cruz homenajeó a los 323 caídos del crucero Belgrano",
+    "bajada": "En una ceremonia junto a la Armada, la provincia recordó a las víctimas del hundimiento ocurrido el 2 de mayo de 1982 y renovó su compromiso con la causa Malvinas.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/foto-20260503-santa-cruz-homenajeo-a-los-323-caidos-del-crucero-sec1.webp"
+  },
+  {
+    "id": "20260503-chile-invertira-en-recuperar-caminos-rurales-sec2",
+    "titulo": "Chile invertirá en recuperar caminos rurales estratégicos en Magallanes",
+    "bajada": "El Ministerio de Obras Públicas licitó 42 contratos a nivel nacional para rehabilitar 15.000 kilómetros de rutas, con cuatro proyectos específicos para la región más austral.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260503-chile-invertira-en-recuperar-caminos-rurales-sec2.webp"
+  },
+  {
+    "id": "20260503-tras-jubilarse-reconstruyo-una-chacra-y-hallo-su-neg",
+    "titulo": "Tras jubilarse reconstruyó una chacra y halló su destino entre lavandas",
+    "bajada": "Una productora patagónica transformó un campo abandonado en un emprendimiento de lavandas que hoy genera producción artesanal y atrae visitantes.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260503-tras-jubilarse-reconstruyo-una-chacra-y-hallo-su-neg.webp"
+  },
+  {
+    "id": "20260512-antartida-en-las-aulas-chile-construye-la-primera-sec2",
+    "titulo": "Antártida en las aulas: Chile construye la primera generación de profesionales antárticos",
+    "bajada": "La Alianza Interuniversitaria Chile Antártico cerró su primera fase con misión y ejes definidos, y proyecta integrar contenidos antárticos en carreras de todas las disciplinas.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260512-antartida-en-las-aulas-chile-construye-la-primera-sec2.webp"
+  },
+  {
+    "id": "20260502-investigan-compra-de-tierras-patagonicas-con-fondos-de-tapa",
+    "titulo": "Investigan compra de tierras patagónicas con fondos de Emiratos Árabes en Bariloche",
+    "bajada": "La justicia federal de Bariloche tomó la causa que busca esclarecer la adquisición de tierras en la cordillera rionegrina con capitales provenientes de Emiratos Árabes Unidos. El caso reaviva el debate sobre la extranjerización de la tierra en zonas estratégicas de la Patagonia.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260502-investigan-compra-de-tierras-patagonicas-con-fondos-de-tapa.webp"
+  },
+  {
+    "id": "20260502-tierra-del-fuego-elige-constituyentes-el-9-de-agosto-sec1",
+    "titulo": "Tierra del Fuego elige constituyentes el 9 de agosto",
+    "bajada": "El gobernador Melella convocó a elecciones para reformar más de 70 artículos de la Constitución provincial, con cambios de fondo en el sistema político, electoral y judicial.",
+    "fecha": "",
+    "categoria": "general",
+    "imagen": "fotos/foto-20260502-tierra-del-fuego-elige-constituyentes-el-9-de-agosto-sec1.webp"
+  },
+  {
+    "id": "20260502-punta-arenas-pide-terreno-para-nuevo-cesfam-y-cambios-sec2",
+    "titulo": "Punta Arenas pide terreno para nuevo Cesfam y cambios habitacionales",
+    "bajada": "El municipio magallánico envió dos oficios al ministro de Vivienda Poduje solicitando suelo para infraestructura sanitaria y ajustes en la política de vivienda para la zona austral.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260502-punta-arenas-pide-terreno-para-nuevo-cesfam-y-cambios-sec2.webp"
+  },
+  {
+    "id": "20260502-arena-humeda-a-granel-el-sistema-que-busca-abaratar-neg",
+    "titulo": "Arena húmeda a granel: el sistema que busca abaratar Vaca Muerta",
+    "bajada": "Una nueva tecnología de logística de arena promete reducir costos operativos en los pozos no convencionales de la cuenca neuquina.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260502-arena-humeda-a-granel-el-sistema-que-busca-abaratar-neg.webp"
+  },
+  {
+    "id": "20260501-parques-nacionales-abre-concurso-para-sumar-40-tapa",
+    "titulo": "Parques Nacionales abre concurso para sumar 40 guardaparques a áreas protegidas",
+    "bajada": "La convocatoria fue oficializada en el Boletín Oficial y abre inscripción entre el 12 de mayo y el 2 de junio. La medida impacta directamente en los parques patagónicos, que concentran la mayor superficie protegida del país y enfrentan creciente presión turística y ambiental.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260501-parques-nacionales-abre-concurso-para-sumar-40-tapa.webp"
+  },
+  {
+    "id": "20260501-plan-chile-por-chile-busca-unir-la-patagonia-austral-sec1",
+    "titulo": "Plan Chile por Chile busca unir la Patagonia austral por tierra y mar",
+    "bajada": "Los gobiernos regionales de Los Lagos, Aysén y Magallanes acordaron una hoja de ruta para fortalecer la infraestructura terrestre y marítima que conecte el sur del país por territorio nacional.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260501-plan-chile-por-chile-busca-unir-la-patagonia-austral-sec1.webp"
+  },
+  {
+    "id": "20260510-ski-nordico-en-bariloche-ascensos-gratis-para-los-dep",
+    "titulo": "Ski nórdico en Bariloche: ascensos gratis para los vecinos del Catedral",
+    "bajada": "El Cerro Catedral ofrece ascensos sin costo para residentes de Bariloche durante una semana especial, en la antesala de la temporada invernal 2026.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260510-ski-nordico-en-bariloche-ascensos-gratis-para-los-dep.webp"
+  },
+  {
+    "id": "20260501-federaciones-rurales-patagonicas-defienden-la-vigencia-sec2",
+    "titulo": "Federaciones rurales patagónicas defienden la vigencia de la ganadería ovina",
+    "bajada": "Organizaciones del sector rechazan comparaciones de la ganadería con prácticas coloniales y reivindican su valor estratégico para la producción y la identidad de la región.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260501-federaciones-rurales-patagonicas-defienden-la-vigencia-sec2.webp"
+  },
+  {
+    "id": "20260501-ecomin-incorpora-energia-solar-a-su-planta-minera-en-neg",
+    "titulo": "Ecomin incorpora energía solar a su planta minera en Río Negro",
+    "bajada": "La empresa minera rionegrina sumó paneles solares a su operación industrial, apostando a reducir costos energéticos y huella de carbono en la región.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260501-ecomin-incorpora-energia-solar-a-su-planta-minera-en-neg.webp"
+  },
+  {
+    "id": "20260430-magallanes-prohibe-enterrar-mascotas-en-el-borde-tapa",
+    "titulo": "Magallanes prohíbe enterrar mascotas en el borde costero del Estrecho",
+    "bajada": "El Ministerio de Obras Públicas de Chile instaló señalética prohibitiva en la Ruta 9 Sur, al sur de Punta Arenas, donde un cementerio informal de mascotas se expandió sin control sobre la franja costera del estrecho de Magallanes. La medida abre el debate sobre el uso del borde litoral en una de las zonas ambientalmente más sensibles de la Patagonia austral.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260430-magallanes-prohibe-enterrar-mascotas-en-el-borde-tapa.webp"
+  },
+  {
+    "id": "20260430-disenadora-neuquina-lleva-la-identidad-patagonica-a-sec1",
+    "titulo": "Diseñadora neuquina lleva la identidad patagónica a las pasarelas nacionales",
+    "bajada": "Mariela Arocena construye desde Neuquén una propuesta de moda que traduce el paisaje y la cultura regional en piezas de autor con proyección federal.",
+    "fecha": "",
+    "categoria": "cultura",
+    "imagen": "fotos/foto-20260430-disenadora-neuquina-lleva-la-identidad-patagonica-a-sec1.webp"
+  },
+  {
+    "id": "20260430-estudiante-de-punta-arenas-hace-historia-con-ingreso-a-sec2",
+    "titulo": "Estudiante de Punta Arenas hace historia con ingreso a la Universidad de Chile",
+    "bajada": "Víctor Escuti, egresado del Liceo Contardi, es el primer magallánico en acceder a la educación superior mediante el convenio SIPEE, con apoyo económico municipal.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260430-estudiante-de-punta-arenas-hace-historia-con-ingreso-a-sec2.webp"
+  },
+  {
+    "id": "20260509-punta-arenas-forma-la-nueva-generacion-de-cientificos-sec1",
+    "titulo": "Punta Arenas forma la nueva generación de científicos antárticos",
+    "bajada": "El laboratorio Berguño Barnes del INACH investiga cómo los ecosistemas marinos antárticos responden al cambio climático y se convierte en polo de formación científica en el extremo sur del mundo.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260509-punta-arenas-forma-la-nueva-generacion-de-cientificos-sec1.webp"
+  },
+  {
+    "id": "20260509-el-club-andino-bariloche-entrena-en-rollski-para-la-dep",
+    "titulo": "El Club Andino Bariloche entrena en rollski para la temporada nórdica",
+    "bajada": "Este sábado el Club Andino Bariloche realiza una jornada de entrenamiento nórdico con rollski, herramienta clave para preparar la técnica de esquí de fondo fuera de la nieve.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260509-el-club-andino-bariloche-entrena-en-rollski-para-la-dep.webp"
+  },
+  {
+    "id": "20260430-deportistas-magallanicos-haran-el-primer-cruce-a-nado-dep",
+    "titulo": "Deportistas magallánicos harán el primer cruce a nado del Canal Fitz Roy",
+    "bajada": "El 2 de mayo, nadadores del Club Delfines de Punta Arenas desafiarán las aguas gélidas que conectan los senos Otway y Skyring, un hito sin precedentes en la natación de aguas abiertas patagónica.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260430-deportistas-magallanicos-haran-el-primer-cruce-a-nado-dep.webp"
+  },
+  {
+    "id": "20260430-santa-cruz-puede-busca-consolidarse-como-motor-neg",
+    "titulo": "Santa Cruz Puede busca consolidarse como motor productivo provincial",
+    "bajada": "El gobernador Vidal reunió a intendentes, diputados y gabinete para definir el rol estratégico de la empresa estatal en el desarrollo económico de Santa Cruz.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260430-santa-cruz-puede-busca-consolidarse-como-motor-neg.webp"
+  },
+  {
+    "id": "20260429-santa-cruz-prohibe-mineria-en-zonas-glaciares-y-tapa",
+    "titulo": "Santa Cruz prohíbe minería en zonas glaciares y reafirma su política ambiental",
+    "bajada": "La provincia patagónica descartó formalmente proyectos extractivos en áreas de glaciares y ambiente periglacial. La decisión consolida una línea de protección que contrasta con el avance minero en otras jurisdicciones argentinas.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260429-santa-cruz-prohibe-mineria-en-zonas-glaciares-y-tapa.webp"
+  },
+  {
+    "id": "20260429-la-memoria-cultural-que-guia-la-migracion-de-los-sec1",
+    "titulo": "La memoria cultural que guía la migración de los guanacos patagónicos",
+    "bajada": "Un estudio revela que los guanacos no migran por instinto puro: transmiten rutas generación tras generación mediante aprendizaje social, dibujando un mapa invisible sobre la estepa.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260429-la-memoria-cultural-que-guia-la-migracion-de-los-sec1.webp"
+  },
+  {
+    "id": "20260429-santa-cruz-lleva-la-agenda-langostinera-al-consejo-sec2",
+    "titulo": "Santa Cruz lleva la agenda langostinera al Consejo Federal Pesquero",
+    "bajada": "La provincia presentará propuestas centradas en el impacto del esquema pesquero actual sobre sus puertos y la actividad langostinera.",
+    "fecha": "",
+    "categoria": "pesca",
+    "imagen": "fotos/foto-20260429-santa-cruz-lleva-la-agenda-langostinera-al-consejo-sec2.webp"
+  },
+  {
+    "id": "20260429-calcatreu-produce-y-exportara-oro-y-plata-rionegrina-a-neg",
+    "titulo": "Calcatreu produce y exportará oro y plata rionegrina a Canadá",
+    "bajada": "La mina ubicada en la meseta rionegrina comenzó su etapa productiva y concretará su primer embarque de concentrado de oro y plata en mayo con destino a Canadá.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260429-calcatreu-produce-y-exportara-oro-y-plata-rionegrina-a-neg.webp"
+  },
+  {
+    "id": "20260428-maca-tobiano-52-anos-del-hallazgo-del-ave-mas-tapa",
+    "titulo": "Macá tobiano: 52 años del hallazgo del ave más emblemática de la Patagonia austral",
+    "bajada": "Ambiente Sur conmemora medio siglo desde que el naturalista Mauricio Rumboll descubrió esta especie endémica en las mesetas de Santa Cruz. El ave, en peligro crítico de extinción, sigue siendo símbolo de los esfuerzos de conservación en la estepa patagónica.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260428-maca-tobiano-52-anos-del-hallazgo-del-ave-mas-tapa.webp"
+  },
+  {
+    "id": "20260428-chubut-avanza-con-talleres-para-disenar-el-parque-sec1",
+    "titulo": "Chubut avanza con talleres para diseñar el Parque Patagonia Azul",
+    "bajada": "Más de 80 representantes de distintos organismos participaron en jornadas participativas en Camarones y Rawson para definir el plan de manejo del área protegida costera.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260428-chubut-avanza-con-talleres-para-disenar-el-parque-sec1.webp"
+  },
+  {
+    "id": "20260507-cerro-catedral-abre-sus-remontes-gratis-para-los-dep",
+    "titulo": "Cerro Catedral abre sus remontes gratis para los barilochenses en marzo",
+    "bajada": "Del 9 al 13 de marzo, los residentes de Bariloche podrán subir sin costo al Cerro Catedral mediante la telecabina, en la edición 2026 de la Semana Residentes.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260507-cerro-catedral-abre-sus-remontes-gratis-para-los-dep.webp"
+  },
+  {
+    "id": "20260428-chubut-tendra-su-primer-parque-fotovoltaico-en-paso-de-sec2",
+    "titulo": "Chubut tendrá su primer parque fotovoltaico en Paso de Indios para 2027",
+    "bajada": "La provincia anunció la construcción de una planta de energía solar en la meseta central chubutense, una zona históricamente postergada en infraestructura energética.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260428-chubut-tendra-su-primer-parque-fotovoltaico-en-paso-de-sec2.webp"
+  },
+  {
+    "id": "20260428-vaca-muerta-crece-pero-no-encuentra-los-tecnicos-que-neg",
+    "titulo": "Vaca Muerta crece pero no encuentra los técnicos que necesita",
+    "bajada": "La expansión acelerada del yacimiento neuquino choca con la escasez de perfiles especializados en operaciones de campo, perforación y mantenimiento.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260428-vaca-muerta-crece-pero-no-encuentra-los-tecnicos-que-neg.webp"
+  },
+  {
+    "id": "20260427-ambiente-sur-censara-aves-en-los-tres-estuarios-tapa",
+    "titulo": "Ambiente Sur censará aves en los tres estuarios atlánticos de Santa Cruz",
+    "bajada": "Cada invierno, el equipo de conservación de la Asociación Ambiente Sur despliega censos simultáneos en los estuarios de los ríos Gallegos, Coyle y Santa Cruz. El monitoreo es clave para evaluar el estado de las poblaciones de aves playeras migratorias y residentes en la costa patagónica austral.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260427-ambiente-sur-censara-aves-en-los-tres-estuarios-tapa.jpg"
+  },
+  {
+    "id": "20260427-presentan-en-comallo-a-un-coloso-prehistorico-de-la-sec1",
+    "titulo": "Presentan en Comallo a un coloso prehistórico de la Patagonia",
+    "bajada": "El Paleoparque Comallo exhibe la reconstrucción de un megamamífero de hace 12.000 años que habitó la estepa rionegrina.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260427-presentan-en-comallo-a-un-coloso-prehistorico-de-la-sec1.webp"
+  },
+  {
+    "id": "20260427-bomberos-de-santa-cruz-se-entrenan-contra-incendios-sec2",
+    "titulo": "Bomberos de Santa Cruz se entrenan contra incendios forestales",
+    "bajada": "Efectivos provinciales completaron una capacitación intensiva que incluyó un incendio controlado en el Vivero Provincial.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260427-bomberos-de-santa-cruz-se-entrenan-contra-incendios-sec2.webp"
+  },
+  {
+    "id": "20260427-calcatreu-completo-su-campana-de-perforacion-minera-en-neg",
+    "titulo": "Calcatreu completó su campaña de perforación minera en Río Negro",
+    "bajada": "El proyecto aurífero ubicado en la meseta rionegrina finalizó las tres etapas de exploración con perforaciones.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260427-calcatreu-completo-su-campana-de-perforacion-minera-en-neg.webp"
+  },
+  {
+    "id": "20260426-santa-cruz-respalda-la-reforma-de-la-ley-de-glaciares-tapa",
+    "titulo": "Santa Cruz respalda la reforma de la Ley de Glaciares y desafía al Poder Judicial",
+    "bajada": "El gobierno provincial salió a defender la modificación de la norma que protege los cuerpos de hielo, argumentando que la actividad productiva puede convivir con controles ambientales rigurosos. La postura reaviva un debate que atraviesa a toda la Patagonia: cómo equilibrar desarrollo minero y protección de ecosistemas glaciares.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260426-santa-cruz-respalda-la-reforma-de-la-ley-de-glaciares-tapa.jpg"
+  },
+  {
+    "id": "20260426-cientificos-argentinos-y-alemanes-descifran-como-sec1",
+    "titulo": "Científicos argentinos y alemanes descifran cómo proteger los bosques patagónicos",
+    "bajada": "Una investigación conjunta revela claves para la conservación de los ecosistemas forestales de Patagonia norte, combinando trabajo de laboratorio con estudios de campo.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260426-cientificos-argentinos-y-alemanes-descifran-como-sec1.webp"
+  },
+  {
+    "id": "20260426-reactivan-11-equipos-petroleros-en-santa-cruz-pero-el-sec2",
+    "titulo": "Reactivan 11 equipos petroleros en Santa Cruz pero el sindicato advierte insuficiencia",
+    "bajada": "Tras una negociación tensa, las operadoras confirmaron el regreso de equipos de perforación, aunque el gremio petrolero considera que el plan no alcanza para frenar la caída productiva.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260426-reactivan-11-equipos-petroleros-en-santa-cruz-pero-el-sec2.webp"
+  },
+  {
+    "id": "20260426-la-carne-se-convierte-en-lujo-en-tierra-del-fuego-con-neg",
+    "titulo": "La carne se convierte en lujo en Tierra del Fuego con subas del 61%",
+    "bajada": "El precio de los cortes vacunos acumula incrementos de entre 55% y 61% en lo que va del año, muy por encima de la inflación, y hunde el consumo fueguino a pisos históricos.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260426-la-carne-se-convierte-en-lujo-en-tierra-del-fuego-con-neg.webp"
+  },
+  {
+    "id": "20260426-pena-folclorica-a-cielo-abierto-reune-a-la-comunidad-cul",
+    "titulo": "Peña folclórica a cielo abierto reúne a la comunidad santacruceña",
+    "bajada": "La Sociedad Rural de Santa Cruz fue escenario de un encuentro gratuito con ballets de danza, platos típicos y emprendedores regionales.",
+    "fecha": "",
+    "categoria": "cultura",
+    "imagen": "fotos/foto-20260426-pena-folclorica-a-cielo-abierto-reune-a-la-comunidad-cul.webp"
+  },
+  {
+    "id": "20260425-malvinas-argentina-reafirma-soberania-tras-senales-de-tapa",
+    "titulo": "Malvinas: Argentina reafirma soberanía tras señales de un posible giro de EE.UU.",
+    "bajada": "El gobierno argentino respondió a Londres luego de que trascendiera que la administración Trump evalúa retirar el respaldo británico en la disputa por las islas. El canciller Quirno y el presidente Milei reiteraron el reclamo histórico y rechazaron la invocación al principio de autodeterminación.",
+    "fecha": "",
+    "categoria": "general",
+    "imagen": "fotos/monumento-malvinas.webp"
+  },
+  {
+    "id": "20260425-obra-paralizada-en-laguna-azul-rio-gallegos-reclama-sec1",
+    "titulo": "Obra paralizada en Laguna Azul: Río Gallegos reclama respuestas al Consejo Agrario",
+    "bajada": "La Secretaría de Turismo reiteró un pedido de informe sobre el estado de la refuncionalización de la Reserva Geológica Provincial, sin obtener respuesta.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260425-obra-paralizada-en-laguna-azul-rio-gallegos-reclama-sec1.webp"
+  },
+  {
+    "id": "20260425-hito-en-vaca-muerta-prueban-por-primera-vez-arenas-de-sec2",
+    "titulo": "Hito en Vaca Muerta: prueban por primera vez arenas de fractura neuquinas",
+    "bajada": "Es la primera vez que se utilizan arenas extraídas de la propia provincia de Neuquén para operaciones de fractura hidráulica en el megayacimiento.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260425-hito-en-vaca-muerta-prueban-por-primera-vez-arenas-de-sec2.webp"
+  },
+  {
+    "id": "20260425-chef-neuquina-vuelve-al-everest-para-alimentar-a-los-dep",
+    "titulo": "Chef neuquina vuelve al Everest para alimentar a los montañistas",
+    "bajada": "Luz, cocinera radicada en Neuquén, regresó al campamento base del Everest a 5.000 metros de altura para dar soporte gastronómico a expediciones de alta montaña.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260425-chef-neuquina-vuelve-al-everest-para-alimentar-a-los-dep.webp"
+  },
+  {
+    "id": "20260425-nieta-de-pioneros-espanoles-construyo-55000-m2-en-la-neg",
+    "titulo": "Nieta de pioneros españoles construyó 55.000 m² en la Patagonia",
+    "bajada": "Una desarrolladora fundada por la descendiente de inmigrantes llegados desde España acumula decenas de miles de metros cuadrados construidos en la región.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260425-nieta-de-pioneros-espanoles-construyo-55000-m2-en-la-neg.webp"
+  },
+  {
+    "id": "20260424-esquel-invierte-1300-millones-para-gestionar-residuos-tapa",
+    "titulo": "Esquel invierte $1.300 millones para gestionar residuos del Parque Los Alerces y la comarca andina",
+    "bajada": "La provincia de Chubut supervisa la ampliación de la planta de disposición final que sirve a Esquel, Trevelin y el Parque Nacional Los Alerces. Es la primera obra de este tipo en casi veinte años y busca resolver un problema ambiental crónico en la comarca andina.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260424-esquel-invierte-1300-millones-para-gestionar-residuos-tapa.webp"
+  },
+  {
+    "id": "20260424-punta-arenas-unica-ciudad-intermedia-de-chile-con-sec1",
+    "titulo": "Punta Arenas, única ciudad intermedia de Chile con calidad de vida alta",
+    "bajada": "Un estudio que evaluó 99 comunas chilenas ubicó a la capital magallánica entre las 13 con nivel alto, y es la única con menos de 250 mil habitantes en alcanzar esa categoría.",
+    "fecha": "",
+    "categoria": "bienestar",
+    "imagen": "fotos/foto-20260424-punta-arenas-unica-ciudad-intermedia-de-chile-con-sec1.webp"
+  },
+  {
+    "id": "20260424-fibra-optica-austral-interrumpe-servicios-en-sec2",
+    "titulo": "Fibra Óptica Austral interrumpe servicios en Magallanes y Santa Cruz",
+    "bajada": "Trabajos sobre la red de fibra óptica que une la Patagonia austral provocaron cortes de internet y telefonía móvil durante horas en Punta Arenas, afectando a usuarios de Claro.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260424-fibra-optica-austral-interrumpe-servicios-en-sec2.webp"
+  },
+  {
+    "id": "20260424-rio-negro-promociona-su-oferta-turistica-como-la-neg",
+    "titulo": "Río Negro promociona su oferta turística como \"la Patagonia en un solo lugar\"",
+    "bajada": "La provincia rionegrina despliega sus productos turísticos en el mercado nacional buscando posicionarse como destino integral con costa, estepa, cordillera y dinosaurios.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260424-rio-negro-promociona-su-oferta-turistica-como-la-neg.webp"
+  },
+  {
+    "id": "20260423-tierra-del-fuego-prohibe-cultivo-de-salmonidos-en-el-tapa",
+    "titulo": "Tierra del Fuego prohíbe cultivo de salmónidos en el Canal Beagle",
+    "bajada": "La reglamentación de la Ley 1601 de acuicultura establece controles ambientales obligatorios, planificación previa para todo proyecto y confirma de manera terminante la prohibición de criar salmones en el canal. Una decisión que protege uno de los ecosistemas marinos más sensibles de la Patagonia austral, compartido con Chile.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260423-tierra-del-fuego-prohibe-cultivo-de-salmonidos-en-el-tapa.webp"
+  },
+  {
+    "id": "20260423-neuquen-lanza-protocolo-para-medir-emisiones-de-gases-sec1",
+    "titulo": "Neuquén lanza protocolo para medir emisiones de gases en Vaca Muerta",
+    "bajada": "La provincia presenta un sistema de reporte obligatorio de gases de efecto invernadero para la mayor formación de shale de América Latina.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260423-neuquen-lanza-protocolo-para-medir-emisiones-de-gases-sec1.webp"
+  },
+  {
+    "id": "20260423-magallanes-lleva-al-congreso-chileno-la-crisis-del-sec2",
+    "titulo": "Magallanes lleva al Congreso chileno la crisis del agua rural",
+    "bajada": "El gobernador Jorge Flies expuso en Valparaíso la emergencia hídrica de las comunidades rurales y avanzó en la Ley de Rentas Regionales.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260423-magallanes-lleva-al-congreso-chileno-la-crisis-del-sec2.webp"
+  },
+  {
+    "id": "20260423-chubut-capacito-a-mas-de-500-pymes-en-comercio-digital-neg",
+    "titulo": "Chubut capacitó a más de 500 PyMEs en comercio digital",
+    "bajada": "La provincia formó a centenares de pequeñas empresas en herramientas de venta online y presentó el concurso Emprendimiento Argentino 2026.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260423-chubut-capacito-a-mas-de-500-pymes-en-comercio-digital-neg.webp"
+  },
+  {
+    "id": "20260422-chubut-invertira-8400-millones-en-un-parque-tapa",
+    "titulo": "Chubut invertirá $8.400 millones en un parque fotovoltaico en Paso de Indios",
+    "bajada": "La provincia avanza en su transición energética con una planta solar que busca reducir la dependencia de combustibles fósiles en la meseta central. El proyecto promete disminuir emisiones de gases de efecto invernadero y fortalecer el suministro eléctrico en una de las zonas más aisladas de la Patagonia.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/fotovoltaico-paso-indios-chubut.webp"
+  },
+  {
+    "id": "20260422-el-boom-del-gnc-en-punta-arenas-desborda-la-sec1",
+    "titulo": "El boom del GNC en Punta Arenas desborda la infraestructura de carga",
+    "bajada": "Taxistas y particulares hacen filas de más de 50 minutos para cargar gas natural comprimido en la capital magallánica, revelando un cuello de botella logístico.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260422-el-boom-del-gnc-en-punta-arenas-desborda-la-sec1.webp"
+  },
+  {
+    "id": "20260422-el-vinculo-afro-entre-malvinas-y-viedma-patagones-sec2",
+    "titulo": "El vínculo afro entre Malvinas y Viedma-Patagones cumple 247 años",
+    "bajada": "La comarca rionegrino-bonaerense conmemora su aniversario rescatando la poco conocida conexión histórica entre las poblaciones afrodescendientes del fuerte y las islas del Atlántico Sur.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/foto-20260422-el-vinculo-afro-entre-malvinas-y-viedma-patagones-sec2.webp"
+  },
+  {
+    "id": "20260422-pozzo-ardizzi-la-red-de-estaciones-que-crecio-con-neg",
+    "titulo": "Pozzo Ardizzi: la red de estaciones que creció con Viedma",
+    "bajada": "El empresario rionegrino construyó un entramado de estaciones de servicio que acompañó el desarrollo de la capital provincial durante décadas.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260422-pozzo-ardizzi-la-red-de-estaciones-que-crecio-con-neg.webp"
+  },
+  {
+    "id": "20260421-la-armada-completo-la-operacion-mare-nostrum-para-tapa",
+    "titulo": "La Armada completó la operación Mare Nostrum para custodiar el Atlántico Sur",
+    "bajada": "Con buques y aeronaves, concluyó la décima edición del operativo de vigilancia en la Zona Económica Exclusiva Argentina. La presencia naval busca disuadir la pesca ilegal y reafirmar soberanía en aguas patagónicas.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260421-la-armada-completo-la-operacion-mare-nostrum-para-tapa.webp"
+  },
+  {
+    "id": "20260421-basurero-petrolero-en-neuquen-fiscalia-anticipa-mas-sec1",
+    "titulo": "Basurero petrolero en Neuquén: fiscalía anticipa más responsables en la causa",
+    "bajada": "La investigación por contaminación con residuos hidrocarburíferos podría ampliarse a nuevos imputados según adelantó el Ministerio Público Fiscal.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260421-basurero-petrolero-en-neuquen-fiscalia-anticipa-mas-sec1.webp"
+  },
+  {
+    "id": "20260421-despidos-en-el-servicio-meteorologico-alarman-a-toda-sec2",
+    "titulo": "Despidos en el Servicio Meteorológico alarman a toda la Patagonia",
+    "bajada": "Un diputado santacruceño presentó un proyecto legislativo para rechazar los recortes y advirtió sobre el impacto directo en localidades patagónicas.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260421-despidos-en-el-servicio-meteorologico-alarman-a-toda-sec2.webp"
+  },
+  {
+    "id": "20260421-neuquen-licitara-15-nuevas-areas-de-vaca-muerta-en-mayo-neg",
+    "titulo": "Neuquén licitará 15 nuevas áreas de Vaca Muerta en mayo",
+    "bajada": "La provincia abrirá el proceso licitatorio para expandir la frontera productiva del mayor yacimiento no convencional de América Latina.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260421-neuquen-licitara-15-nuevas-areas-de-vaca-muerta-en-mayo-neg.webp"
+  },
+  {
+    "id": "20260420-detectan-buque-extranjero-pescando-ilegalmente-dentro-tapa",
+    "titulo": "Detectan buque extranjero pescando ilegalmente dentro de la Zona Económica Exclusiva Argentina",
+    "bajada": "Prefectura Naval identificó una embarcación de bandera extranjera realizando presuntas tareas de pesca dentro de aguas jurisdiccionales argentinas. El hallazgo reaviva la preocupación por la depredación de recursos marítimos en el Atlántico Sur patagónico.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260420-detectan-buque-extranjero-pescando-ilegalmente-dentro-tapa.webp"
+  },
+  {
+    "id": "20260420-desalojo-fallido-a-dos-comunidades-mapuche-escala-la-sec1",
+    "titulo": "Desalojo fallido a dos comunidades mapuche escala la tensión en Neuquén",
+    "bajada": "El gobierno provincial desmintió que haya faltado personal policial para ejecutar la orden judicial contra dos comunidades mapuche neuquinas.",
+    "fecha": "",
+    "categoria": "pueblos originarios",
+    "imagen": "fotos/foto-20260420-desalojo-fallido-a-dos-comunidades-mapuche-escala-la-sec1.webp"
+  },
+  {
+    "id": "20260420-hallazgos-arqueologicos-en-la-cuenca-del-agrio-sec2",
+    "titulo": "Hallazgos arqueológicos en la cuenca del Agrio reescriben la historia neuquina",
+    "bajada": "Una investigación científica en la cuenca del río Agrio reveló restos arqueológicos que revalorizan el pasado humano de la región cordillerana de Neuquén.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260420-hallazgos-arqueologicos-en-la-cuenca-del-agrio-sec2.webp"
+  },
+  {
+    "id": "20260420-neuquen-activa-su-propio-regimen-de-incentivos-y-suma-neg",
+    "titulo": "Neuquén activa su propio régimen de incentivos y suma más de 100 empresas interesadas",
+    "bajada": "La provincia ya recibió 14 proyectos de inversión bajo su esquema local de promoción, con más de un centenar de compañías en conversaciones.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260420-neuquen-activa-su-propio-regimen-de-incentivos-y-suma-neg.webp"
+  },
+  {
+    "id": "20260419-magallanes-enciende-alarmas-uno-de-cada-cuatro-tapa",
+    "titulo": "Magallanes enciende alarmas: uno de cada cuatro cánceres es digestivo",
+    "bajada": "La región chilena más austral del continente lidera las estadísticas nacionales en tumores de colon y estómago. Un operativo masivo de detección busca torcer una tendencia que preocupa a ambos lados de la cordillera.",
+    "fecha": "",
+    "categoria": "bienestar",
+    "imagen": "fotos/foto-20260419-magallanes-enciende-alarmas-uno-de-cada-cuatro-tapa.webp"
+  },
+  {
+    "id": "20260419-una-familia-que-aposto-por-la-horticultura-patagonica-sec1",
+    "titulo": "Una familia que apostó por la horticultura patagónica y ganó",
+    "bajada": "Con trabajo constante y mirada optimista, un productor del sur argentino consolidó un proyecto hortícola familiar en una región donde el clima no perdona.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260419-una-familia-que-aposto-por-la-horticultura-patagonica-sec1.webp"
+  },
+  {
+    "id": "20260419-punta-arenas-rompe-record-feria-laboral-convoco-a-1800-sec2",
+    "titulo": "Punta Arenas rompe récord: feria laboral convocó a 1.800 personas",
+    "bajada": "La quinta edición de la feria municipal ofreció 700 puestos de trabajo en un contexto de desempleo creciente en la Región de Magallanes.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260419-punta-arenas-rompe-record-feria-laboral-convoco-a-1800-sec2.webp"
+  },
+  {
+    "id": "20260419-los-pumas-7s-se-repusieron-y-estan-en-semifinales-en-dep",
+    "titulo": "Los Pumas 7s se repusieron y están en semifinales en Hong Kong",
+    "bajada": "Tras una dura caída ante Sudáfrica, el seleccionado argentino venció a Fiji 27-17 y avanzó a semis del SVNS World Championship.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260419-los-pumas-7s-se-repusieron-y-estan-en-semifinales-en-dep.webp"
+  },
+  {
+    "id": "20260419-neuquen-lanza-creditos-para-vivienda-sin-pasar-por-neg",
+    "titulo": "Neuquén lanza créditos para vivienda sin pasar por bancos",
+    "bajada": "La provincia pone en marcha un esquema de financiamiento directo para acceder a la casa propia, eliminando la intermediación bancaria tradicional.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260419-neuquen-lanza-creditos-para-vivienda-sin-pasar-por-neg.webp"
+  },
+  {
+    "id": "20260419-heladeria-tito-seis-decadas-de-sabor-en-rio-gallegos-cul",
+    "titulo": "Heladería Tito: seis décadas de sabor en Río Gallegos",
+    "bajada": "El emblemático local de la capital santacruceña celebró 60 años con un reconocimiento nacional a su trayectoria y la receta que nunca cambió.",
+    "fecha": "",
+    "categoria": "cultura",
+    "imagen": "fotos/foto-20260419-heladeria-tito-seis-decadas-de-sabor-en-rio-gallegos-cul.webp"
+  },
+  {
+    "id": "20260419-hualaihue-fiordos-mariscos-y-vida-autentica-en-los-tur",
+    "titulo": "Hualaihué: fiordos, mariscos y vida auténtica en Los Lagos",
+    "bajada": "Esta comuna costera de la Región de Los Lagos se posiciona como un destino donde la gastronomía marina y el paisaje de fiordos ofrecen una experiencia patagónica sin filtros.",
+    "fecha": "",
+    "categoria": "turismo",
+    "imagen": "fotos/torres-del-paine.webp"
+  },
+  {
+    "id": "20260418-camiones-sin-habilitacion-llevaban-agua-a-una-minera-tapa",
+    "titulo": "Camiones sin habilitación llevaban agua a una minera en Santa Cruz",
+    "bajada": "Un operativo conjunto de la Policía provincial y la Secretaría de Recursos Hídricos interceptó vehículos que trasladaban agua sin los permisos correspondientes hacia una explotación minera. El hallazgo reaviva el debate sobre el control del recurso hídrico en la meseta santacruceña.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260418-camiones-sin-habilitacion-llevaban-agua-a-una-minera-tapa.webp"
+  },
+  {
+    "id": "20260418-maruchito-la-historia-del-nino-peon-hecha-cancion-sec1",
+    "titulo": "«Maruchito»: la historia del niño peón hecha canción patagónica",
+    "bajada": "Músicos de toda la región unieron sus voces para convertir en canción la trágica historia de Maruchito, el niño peón que se volvió devoción popular en la estepa rionegrina.",
+    "fecha": "",
+    "categoria": "cultura",
+    "imagen": "fotos/foto-20260418-maruchito-la-historia-del-nino-peon-hecha-cancion-sec1.webp"
+  },
+  {
+    "id": "20260418-chile-refuerza-su-plan-de-reconstruccion-en-magallanes-sec2",
+    "titulo": "Chile refuerza su Plan de Reconstrucción en Magallanes con empleo e inversión",
+    "bajada": "El gobierno de Kast desplegó en la región austral chilena los lineamientos del plan nacional con foco en generación de trabajo e infraestructura productiva.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260418-chile-refuerza-su-plan-de-reconstruccion-en-magallanes-sec2.webp"
+  },
+  {
+    "id": "20260418-el-rigi-redefine-las-fronteras-productivas-de-vaca-neg",
+    "titulo": "El RIGI redefine las fronteras productivas de Vaca Muerta",
+    "bajada": "El Régimen de Incentivo a las Grandes Inversiones transforma las reglas del juego en la cuenca neuquina y abre una nueva etapa para la producción energética patagónica.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260418-el-rigi-redefine-las-fronteras-productivas-de-vaca-neg.webp"
+  },
+  {
+    "id": "turismo-pucheguin-cochamo-2026",
+    "titulo": "Pucheguín: cómo una campaña histórica salvó 133.000 hectáreas en la Patagonia chilena",
+    "bajada": "Una coalición de organizaciones locales e internacionales recaudó 78 millones de dólares para comprar y proteger para siempre uno de los últimos territorios vírgenes del norte de la Patagonia chilena. La historia de una hacienda casi perdida, una presa bloqueada y el corredor biológico más grande de América Latina.",
+    "fecha": "",
+    "categoria": "turismo",
+    "imagen": "fotos/foto-turismo-pucheguin-cochamo-2026.webp"
+  },
+  {
+    "id": "20260417-ajuste-en-el-servicio-meteorologico-nacional-golpea-la-tapa",
+    "titulo": "Ajuste en el Servicio Meteorológico Nacional golpea la cobertura climática en la Patagonia",
+    "bajada": "Despidos y recortes de contratos en el SMN ponen en riesgo la emisión de alertas y pronósticos en una de las regiones más expuestas a fenómenos extremos. Los trabajadores anuncian un paro que podría dejar a aeropuertos y poblaciones patagónicas sin información meteorológica oficial.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260417-ajuste-en-el-servicio-meteorologico-nacional-golpea-la-tapa.webp"
+  },
+  {
+    "id": "20260417-magallanes-movilizo-miles-de-personas-en-simulacro-de-sec1",
+    "titulo": "Magallanes movilizó miles de personas en simulacro de sismo y tsunami",
+    "bajada": "Punta Arenas, Puerto Natales, Porvenir, Cabo de Hornos y Timaukel ensayaron su respuesta ante un escenario sísmico y de maremoto coordinado por Senapred.",
+    "fecha": "",
+    "categoria": "sociedad",
+    "imagen": "fotos/foto-20260417-magallanes-movilizo-miles-de-personas-en-simulacro-de-sec1.webp"
+  },
+  {
+    "id": "20260417-el-primer-refugio-de-montana-de-sudamerica-ya-tiene-sec2",
+    "titulo": "El primer refugio de montaña de Sudamérica ya tiene nombre propio",
+    "bajada": "El histórico refugio de Bariloche, pionero en todo el continente, fue rebautizado en honor a quien lo construyó con sus propias manos.",
+    "fecha": "",
+    "categoria": "cultura",
+    "imagen": "fotos/foto-20260417-el-primer-refugio-de-montana-de-sudamerica-ya-tiene-sec2.webp"
+  },
+  {
+    "id": "20260417-los-xvii-juegos-paraepade-cerraron-con-350-deportistas-dep",
+    "titulo": "Los XVII Juegos PARAEPADE cerraron con 350 deportistas patagónicos",
+    "bajada": "Atletas de seis provincias del sur argentino compitieron en Chubut en una edición que reafirmó el crecimiento del deporte adaptado en la región.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260417-los-xvii-juegos-paraepade-cerraron-con-350-deportistas-dep.webp"
+  },
+  {
+    "id": "20260417-neuquen-capital-proyecta-mas-de-un-millon-de-metros-neg",
+    "titulo": "Neuquén capital proyecta más de un millón de metros cuadrados nuevos",
+    "bajada": "Una zona cotizada de la ciudad podría transformarse con edificios en altura que cambiarían el perfil urbano y la dinámica inmobiliaria regional.",
+    "fecha": "",
+    "categoria": "economía",
+    "imagen": "fotos/foto-20260417-neuquen-capital-proyecta-mas-de-un-millon-de-metros-neg.webp"
   },
   {
     "id": "20260416-1210-tapa",
@@ -45,7 +1581,7 @@
     "bajada": "El fotógrafo de Río Gallegos que llevó la Patagonia a ferias internacionales y a las paredes de la UNESCO habla de su proceso creativo, de la escena fotográfica sureña y del nuevo trabajo que está a punto de mostrar.",
     "fecha": "",
     "categoria": "cultura",
-    "imagen": "fotos/PERSONAJES/rodrigo-binet-foto4.webp"
+    "imagen": "fotos/rodrigo-binet-foto4.webp"
   },
   {
     "id": "20260415-1205-tapa",
@@ -93,7 +1629,7 @@
     "bajada": "El fuego que comenzó en diciembre por un rayo arrasó más de 16.000 hectáreas del Parque Nacional chubutense. El Comando Unificado confirmó que no quedan puntos calientes y cerró una de las peores emergencias forestales en la historia reciente de la Patagonia.",
     "fecha": "",
     "categoria": "medio ambiente",
-    "imagen": "fotos/AMBIENTE/los-alerces.webp"
+    "imagen": "fotos/los-alerces.webp"
   },
   {
     "id": "20260414-1404-sec1",
@@ -125,7 +1661,7 @@
     "bajada": "Cantautores de Río Grande, Río Gallegos, Ushuaia, Viedma, Neuquén y El Calafate se unieron en la Vigilia del 2 de Abril para rendir tributo a los caídos y a los grandes nombres de la música patagónica.",
     "fecha": "",
     "categoria": "cultura",
-    "imagen": "fotos/INSTITUCIONES/foto-cantautores-malvinas.webp"
+    "imagen": "fotos/foto-cantautores-malvinas.webp"
   },
   {
     "id": "cultura-patrimonio-aysen",
@@ -133,7 +1669,7 @@
     "bajada": "El Gobierno Regional y la Universidad de La Frontera presentaron el plan patrimonial más ambicioso de la historia de Aysén, con proyectos que incluyen las iglesias del Padre Ronchi, el Puente Ibáñez y la Carretera Austral.",
     "fecha": "",
     "categoria": "cultura",
-    "imagen": "fotos/AMBIENTE/foto-patrimonio-aysen.webp"
+    "imagen": "fotos/foto-patrimonio-aysen.webp"
   },
   {
     "id": "20260413-1212-tapa",
@@ -144,12 +1680,20 @@
     "imagen": "fotos/foto-20260413-1212-tapa.webp"
   },
   {
+    "id": "20260422-tierra-del-fuego-prohibe-salmonidos-canal-beagle-tapa",
+    "titulo": "Tierra del Fuego prohíbe el cultivo de salmónidos en el Canal Beagle",
+    "bajada": "La Legislatura fueguina aprobó por unanimidad la ley que convierte al Canal Beagle en zona libre de salmonicultura. La decisión protege un ecosistema único habitado por toninas overas, cormoranes y comunidades indígenas que dependen de sus pesquerías.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/SALMONERAS.webp"
+  },
+  {
     "id": "20260413-1212-sec1",
     "titulo": "Bariloche hizo historia: primer remate ganadero de la Región Andina facturó $1300 millones",
     "bajada": "La ciudad rionegrina fue sede de un inédito remate de hacienda que posiciona a la zona cordillerana como polo ganadero con identidad propia.",
     "fecha": "",
     "categoria": "producción",
-    "imagen": "fotos/CIUDADES/bariloche-lago-nahuel-huapi.webp"
+    "imagen": "fotos/bariloche-lago-nahuel-huapi.webp"
   },
   {
     "id": "20260413-1212-sec2",
@@ -206,6 +1750,14 @@
     "fecha": "",
     "categoria": "economia",
     "imagen": "fotos/foto-20260412-1105-neg.webp"
+  },
+  {
+    "id": "20260419-bopp-campeon-sudamericano-trail-dep",
+    "titulo": "Patricio Bopp, de Aysén, campeón sudamericano de trail running en Bolivia",
+    "bajada": "El atleta aysenino ganó la categoría Long Trail (81 km, 5.078 m de desnivel) en Samaipata con un tiempo de 9h 03m 20s. Era su primera vez representando a Chile.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260419-bopp-trail-dep.jpg"
   },
   {
     "id": "20260412-1105-cul",
@@ -269,7 +1821,7 @@
     "bajada": "Una historia que nació al calor del flower power de los años 60 y echó raíces en el sur argentino. Arte, naturaleza y lazos comunitarios como forma de vida en uno de los paisajes más intensos del continente.",
     "fecha": "",
     "categoria": "cultura",
-    "imagen": "fotos/AMBIENTE/ruta-estepa-patagonica.webp"
+    "imagen": "fotos/ruta-estepa-patagonica.jpg"
   },
   {
     "id": "20260411-0435-sec1",
@@ -408,164 +1960,508 @@
     "imagen": "fotos/foto-20260410-1205-sec2.webp"
   },
   {
-    "id": "cultura-ruben-patagonia",
-    "titulo": "Rubén Patagonia: la voz tehuelche que cantó lo que otros no podían nombrar",
-    "bajada": "A pocos meses de su muerte, en enero de 2026, revisamos la trayectoria de Rubén Chauque, el músico de Comodoro Rivadavia que convirtió la memoria de los pueblos originarios en canciones que llegaron a todo el país.",
-    "fecha": "",
-    "categoria": "historia",
-    "imagen": "fotos/PERSONAJES/ruben-patagonia.webp"
-  },
-  {
-    "id": "historia-huelgas-1921",
-    "titulo": "Las huelgas de 1921: cuando los peones rurales de Santa Cruz se enfrentaron al Estado",
-    "bajada": "A 105 años de la masacre, revisamos los hechos que inspiraron la película de Olivera y siguen siendo un capítulo pendiente de la historia argentina. Cerca de 1.500 trabajadores fueron fusilados por el Ejército en las estancias de Santa Cruz.",
-    "fecha": "",
-    "categoria": "historia",
-    "imagen": "fotos/PERSONAJES/huelgas-1921-patagonia.webp"
-  },
-  {
-    "id": "historia-perito-moreno",
-    "titulo": "El viaje de Perito Moreno al Nahuel Huapi: 147 años del primer registro científico de la Patagonia andina",
-    "bajada": "Francisco Moreno llegó al lago en enero de 1879 con 26 años, una brújula y un cuaderno. Su bitácora de viaje es una obra maestra de la observación científica y la narración de aventuras. Y su legado, el Parque Nacional Nahuel Huapi, sigue siendo el más grande de la Argentina.",
-    "fecha": "",
-    "categoria": "historia",
-    "imagen": "fotos/PERSONAJES/perito-moreno.webp"
-  },
-  {
-    "id": "historia-selknam",
-    "titulo": "Los Selknam: el pueblo que cazaron por una libra esterlina",
-    "bajada": "Los Onas habitaron la Isla Grande de Tierra del Fuego durante al menos ocho mil años. En menos de cincuenta los diezmaron casi por completo. El método: una recompensa pagada por estancieros ovejeros por cada par de orejas o cada par de manos. Esta es la historia del genocidio más documentado y menos juzgado de la Patagonia.",
-    "fecha": "",
-    "categoria": "historia",
-    "imagen": "fotos/PERSONAJES/familia-tehuelche-aonikenk.webp"
-  },
-  {
-    "id": "historia-conquista-desierto",
-    "titulo": "La Conquista del Desierto: lo que el mito nacional oculta sobre la Patagonia",
-    "bajada": "En los libros de texto se llamó 'civilización'. En los campamentos tehuelches y mapuches que arrasó el ejército de Roca entre 1878 y 1885, fue otra cosa. A 140 años de la campaña, la Patagonia sigue procesando las consecuencias de lo que oficialmente se celebró durante más de un siglo como hazaña fundacional.",
-    "fecha": "",
-    "categoria": "historia",
-    "imagen": "fotos/AMBIENTE/estepa-nevada-ruta-patagonica.webp"
-  },
-  {
-    "id": "cultura-chatwin-patagonia",
-    "titulo": "Bruce Chatwin y la Patagonia: el libro que cambió para siempre cómo el mundo mira el sur",
-    "bajada": "En 1977 un joven periodista inglés publicó un libro sin género claro sobre un viaje al sur de Argentina. 'En la Patagonia' se convirtió en uno de los textos de viaje más influyentes del siglo XX y transformó a la Patagonia en sinónimo de fin del mundo, soledad y misterio para millones de lectores que nunca la habían visto.",
-    "fecha": "",
-    "categoria": "historia",
-    "imagen": "fotos/AMBIENTE/ruta-estepa-patagonica.webp"
-  },
-  {
-    "id": "historia-fundacion-punta-arenas",
-    "titulo": "Punta Arenas: la ciudad que sobrevivió al fin del mundo para convertirse en la capital del sur",
-    "bajada": "Fundada como penal y presidio en 1848, azotada por motines y vientos de 150 km/h, abandonada varias veces antes de que alguien decidiera quedarse para siempre. La historia de Punta Arenas es la de una ciudad que no debería existir — y que por eso mismo es extraordinaria.",
-    "fecha": "",
-    "categoria": "historia",
-    "imagen": "fotos/CIUDADES/punta-arenas.webp"
-  },
-  {
-    "id": "historia-colonos-galeses-chubut",
-    "titulo": "Los galeses del Chubut: cómo 153 personas construyeron una Gales en la Patagonia",
-    "bajada": "En 1865, un barco llamado Mimosa zarpó de Liverpool con 153 galeses que buscaban un lugar donde hablar su idioma sin que nadie se los prohibiera. Llegaron a un desierto que no esperaban. Lo que construyeron en el valle del Chubut es una de las historias de colonización más singulares del mundo.",
-    "fecha": "",
-    "categoria": "historia",
-    "imagen": "fotos/AMBIENTE/estepa-nevada-ruta-patagonica.webp"
-  },
-  {
-    "id": "cultura-mapuche-patagonia",
-    "titulo": "El pueblo Mapuche: la nación que resistió tres siglos de presión y sigue reclamando el sur",
-    "bajada": "Los mapuches son el pueblo originario más numeroso de la Patagonia y el que más activamente reclama derechos territoriales en Argentina y Chile. Su historia es también la historia del sur: de la resistencia al colonialismo español, a las campañas militares del siglo XIX y a la disputa contemporánea por tierras y reconocimiento.",
-    "fecha": "",
-    "categoria": "historia",
-    "imagen": "fotos/AMBIENTE/fitz-roy-chalten-nevada.webp"
-  },
-  {
-    "id": "trail-monte-leon-2026",
-    "titulo": "Cuatro podios patagónicos: atletas de El Calafate brillaron en el Desafío Monte León",
-    "bajada": "Once corredores de El Calafate viajaron al Parque Nacional Monte León para competir en el Desafío Destino 2026. Frente a 210 participantes de toda la región, lograron cuatro podios en cuatro categorías distintas. Ayelén Tuller, Gustavo Guajardo, Julián Anchordoqui y Stephen Schroder pusieron a El Calafate en el podio del Atlántico Sur.",
+    "id": "20260410-1205-dep",
+    "titulo": "Adrián Varas, el corredor que encadena 21K, 42K y 100 millas",
+    "bajada": "El atleta participó en tres distancias del Patagonia Run y explica por qué la montaña se convierte en un vicio inevitable.",
     "fecha": "",
     "categoria": "deportes",
-    "imagen": "fotos/CIUDADES/trail-monte-leon-2026.webp"
+    "imagen": "fotos/foto-20260410-1205-dep.webp"
   },
   {
-    "id": "rescate-chalten-marzo-2026",
-    "titulo": "Dos turistas rescatados en El Chaltén en menos de 24 horas: una mexicana con fractura en Laguna de los Tres y un holandés extraviado toda la noche",
-    "bajada": "El domingo 22 de marzo, dos operativos de rescate se encadenaron en el Parque Nacional Los Glaciares. Una turista mexicana lesionada en el sendero más exigente del pueblo y un turista holandés que pasó la noche perdido en la montaña tras cruzar imprudentemente una tirolesa sobre el río Fitz Roy. Brigadistas, guardaparques y voluntarios de la Comisión de Auxilio trabajaron sin pausa.",
+    "id": "20260410-1205-neg",
+    "titulo": "Carne de guanaco busca posicionarse como producto identitario patagónico",
+    "bajada": "Río Gallegos será sede de una jornada que reúne a chefs, nutricionistas y productores para impulsar el consumo de esta proteína regional.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260410-1205-neg.webp"
+  },
+  {
+    "id": "20260409-1733-tapa",
+    "titulo": "La ley de glaciares avanza en el Congreso y redefine la protección del agua patagónica",
+    "bajada": "La Cámara de Diputados aprobó una nueva versión de la ley de glaciares que modifica los criterios de protección de las reservas hídricas estratégicas. Para la Patagonia binacional, donde se concentra la mayor masa glaciar del continente fuera de la Antártida, la norma tiene implicancias directas sobre minería, energía y gestión del recurso más valioso de la región.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/ruta-estepa-patagonica.jpg"
+  },
+  {
+    "id": "20260409-1733-sec1",
+    "titulo": "Neuquén otorgará lotes con servicios a veteranos de Malvinas",
+    "bajada": "El municipio de Neuquén destinará terrenos en el distrito 6 para excombatientes, con infraestructura básica garantizada.",
+    "fecha": "",
+    "categoria": "general",
+    "imagen": "fotos/foto-20260409-1733-sec1.webp"
+  },
+  {
+    "id": "20260409-1733-sec2",
+    "titulo": "Gremios santacruceños salen a la calle contra la Emergencia Económica",
+    "bajada": "El Frente Sindical de Santa Cruz se movilizó en Río Gallegos ante la posibilidad de que se trate una ley de emergencia que afectaría al empleo público provincial.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260409-1733-sec2.webp"
+  },
+  {
+    "id": "20260409-1733-dep",
+    "titulo": "Vóley Sub-18 femenino se disputa en Gobernador Gregores",
+    "bajada": "Nueve equipos santacruceños compiten desde mañana en un torneo provincial organizado por la Federación de Vóley.",
     "fecha": "",
     "categoria": "deportes",
-    "imagen": "fotos/CIUDADES/rescate-chalten-01.webp"
+    "imagen": "fotos/foto-20260409-1733-dep.webp"
   },
   {
-    "id": "guia-calafate-4-dias",
-    "titulo": "Cómo llegar, moverse y disfrutar El Calafate en 4 días",
-    "bajada": "El Calafate es la puerta de entrada al Parque Nacional Los Glaciares, hogar del Perito Moreno y de algunos de los paisajes más impactantes del planeta. Esta guía cubre todo: cómo llegar desde el aeropuerto, qué hacer cada día, dónde comer bien y cómo no perderse nada importante.",
+    "id": "20260409-1733-neg",
+    "titulo": "Reforma laboral genera alarma entre abogados y trabajadores de Santa Cruz",
+    "bajada": "El Colegio de Abogados santacruceño advierte que los artículos 20 y 277 de la reforma impactan en el acceso a la justicia laboral.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260409-1733-neg.webp"
+  },
+  {
+    "id": "20260409-1727-tapa",
+    "titulo": "Ley de Glaciares en riesgo: desde Santa Cruz advierten que la reforma sacrifica agua por minería",
+    "bajada": "La diputada nacional Moira Lanesan cuestionó la modificación impulsada por el oficialismo a la Ley de Glaciares. Desde la Patagonia profunda, donde nacen los hielos continentales más grandes del hemisferio sur, el debate adquiere una dimensión que en Buenos Aires se ignora.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260409-1727-tapa.webp"
+  },
+  {
+    "id": "20260409-1727-sec1",
+    "titulo": "Puerto Deseado inaugura la primera Ruta de los Salesianos patagónicos",
+    "bajada": "La ciudad santacruceña presenta un circuito histórico-turístico ligado a la obra salesiana y busca posicionarse en el mercado de cruceros internacionales.",
     "fecha": "",
     "categoria": "turismo",
-    "imagen": "fotos/CIUDADES/Calafate.webp"
+    "imagen": "fotos/foto-20260409-1727-sec1.webp"
   },
   {
-    "id": "historia-kawesqar",
-    "titulo": "Los Kawésqar: los últimos nómades del mar en el canal Beagle y su lucha por la memoria",
-    "bajada": "Quedan menos de 20 personas que hablan el idioma Kawésqar. Esta es la historia de un pueblo que navegó los canales más inhóspitos del planeta durante siglos, sobrevivió al frío que mataría a cualquier europeo y fue diezmado en pocas décadas por el contacto con la civilización occidental.",
+    "id": "20260409-1727-sec2",
+    "titulo": "Río Negro digitaliza su salud: más de 100 mil pacientes con historia clínica electrónica",
+    "bajada": "La provincia superó un hito en la implementación de la historia clínica digital y avanza hacia un sistema integrado en toda su red sanitaria.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260409-1727-sec2.webp"
+  },
+  {
+    "id": "20260409-1727-dep",
+    "titulo": "Liga Promesas: el básquet patagónico binacional se juega en Río Gallegos",
+    "bajada": "Equipos de Santa Cruz y Punta Arenas se enfrentan en la tercera fecha de la Liga Promesas de la Patagonia, con protagonismo de las categorías juveniles femeninas.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260409-1727-dep.webp"
+  },
+  {
+    "id": "20260409-1727-neg",
+    "titulo": "Banco Santa Cruz relanza 'Saber Garpa' para educar financieramente a jóvenes",
+    "bajada": "La segunda edición del programa de educación financiera abre inscripción para estudiantes secundarios de toda la provincia.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260409-1727-neg.webp"
+  },
+  {
+    "id": "20260409-1708-tapa",
+    "titulo": "Ley de Glaciares: la reforma que puede redefinir la Patagonia divide aguas en el Congreso",
+    "bajada": "El diputado santacruceño Jairo Guzmán defendió las modificaciones argumentando autonomía provincial e inversiones, mientras la legisladora Moira Lanesan advirtió que se sacrifica protección ambiental por cajas de corto plazo. La reforma toca el corazón hídrico de la Patagonia binacional.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260409-1708-tapa.webp"
+  },
+  {
+    "id": "20260409-1708-sec1",
+    "titulo": "Santa Cruz exime de tasas a alojamientos golpeados por los incendios",
+    "bajada": "La medida rige por un año para establecimientos turísticos afectados por la emergencia ígnea en la zona cordillerana santacruceña.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260409-1708-sec1.webp"
+  },
+  {
+    "id": "20260409-1708-sec2",
+    "titulo": "Santa Cruz busca posicionarse como hub de data centers internacionales",
+    "bajada": "El ministro de Producción provincial se reunió en Buenos Aires con referentes del sector de telecomunicaciones para avanzar en un centro de conectividad global.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/foto-20260409-1708-sec2.webp"
+  },
+  {
+    "id": "20260409-1708-dep",
+    "titulo": "El rally regional ruge en General Roca con su segunda fecha",
+    "bajada": "La ciudad rionegrina recibe la segunda fecha del Rally Regional con múltiples tramos especiales y una nutrida grilla de competidores.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260409-1708-dep.webp"
+  },
+  {
+    "id": "20260409-1708-neg",
+    "titulo": "YPF emite deuda por US$70 millones para acelerar Vaca Muerta",
+    "bajada": "La petrolera estatal lanza una obligación negociable destinada a financiar operaciones en el megayacimiento neuquino y reestructurar pasivos.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260409-1708-neg.webp"
+  },
+  {
+    "id": "20260409-1210-tapa",
+    "titulo": "Diputados reformó la Ley de Glaciares y la Patagonia queda en el centro de la tormenta",
+    "bajada": "Con 137 votos a favor y 111 en contra, la Cámara baja sancionó la modificación que otorga a los gobernadores la potestad de definir zonas periglaciares donde se podrán habilitar proyectos mineros. La norma redefine la protección de las reservas de agua dulce más importantes del sur argentino y genera reacciones desde Santa Cruz hasta Neuquén.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260409-1210-tapa.webp"
+  },
+  {
+    "id": "20260409-1210-sec1",
+    "titulo": "Figueroa acusó a Chile de \"sobreactuar\" el corte de gas neuquino",
+    "bajada": "El gobernador de Neuquén cuestionó la decisión chilena de interrumpir los envíos de gas y habló de una respuesta desproporcionada en un vínculo energético binacional clave.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260409-1210-sec1.webp"
+  },
+  {
+    "id": "20260409-1210-sec2",
+    "titulo": "El Ejército despliega el Ejercicio Kekén en Puerto Deseado",
+    "bajada": "Un operativo militar de gran escala moviliza vehículos de combate hacia distintos puntos de la Patagonia argentina, con epicentro en la costa santacruceña.",
+    "fecha": "",
+    "categoria": "general",
+    "imagen": "fotos/foto-20260409-1210-sec2.webp"
+  },
+  {
+    "id": "20260409-1210-dep",
+    "titulo": "Paula y el Patagonia Run: correr para volver a casa",
+    "bajada": "La historia de una corredora que encontró en el trail patagónico una forma de sanar heridas y reconstruir su vida.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260409-1210-dep.webp"
+  },
+  {
+    "id": "20260409-1210-neg",
+    "titulo": "El conflicto con Irán disparó el crudo y beneficia a petroleras patagónicas",
+    "bajada": "La escalada geopolítica en Medio Oriente impulsó el precio internacional del petróleo y las acciones de empresas argentinas con operaciones en Vaca Muerta subieron con fuerza.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260409-1210-neg.webp"
+  },
+  {
+    "id": "20260408-1208-tapa",
+    "titulo": "Glaciares bajo presión: protestas, detenciones y 67 mil firmas contra la reforma",
+    "bajada": "La reforma a la Ley de Glaciares desató una ola de resistencia que cruzó las calles y las plataformas digitales. Greenpeace desplegó banderas frente al Congreso y hubo detenidos, mientras una petición en línea superó las 67 mil adhesiones. La Patagonia, dueña de los mayores campos de hielo del hemisferio sur, está en el centro de la disputa.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260408-1208-tapa.webp"
+  },
+  {
+    "id": "20260408-1208-sec1",
+    "titulo": "Santa Cruz y operadoras petroleras negocian acuerdo de alto impacto",
+    "bajada": "El gobernador Vidal inició reuniones con los CEO de las 14 compañías que operan en la provincia para reactivar inversiones y sostener empleo en el sector hidrocarburífero.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260408-1208-sec1.webp"
+  },
+  {
+    "id": "20260408-1208-sec2",
+    "titulo": "Abigeato en alza: productores de Santa Cruz piden respuestas urgentes",
+    "bajada": "La Federación de Instituciones Agropecuarias de Santa Cruz denunció el aumento sostenido del robo de ganado y la impunidad que rodea los casos.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260408-1208-sec2.webp"
+  },
+  {
+    "id": "20260408-1208-neg",
+    "titulo": "La trucha de Piedra del Águila conquista mercados internacionales",
+    "bajada": "La producción acuícola neuquina gana reconocimiento global y se posiciona como referente de calidad patagónica en el exterior.",
+    "fecha": "",
+    "categoria": "economia",
+    "imagen": "fotos/foto-20260408-1208-neg.webp"
+  },
+  {
+    "id": "20260407-1050-dep",
+    "titulo": "Ariela Mansilla, campeona magallánica en la Vuelta de Calama",
+    "bajada": "La ciclista de Punta Arenas se impuso en las cuatro etapas de la 56ª Vuelta Internacional de Calama, una de las pruebas de ruta más tradicionales del ciclismo chileno.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260407-1050-dep.jpg"
+  },
+  {
+    "id": "20260407-1050-tapa",
+    "titulo": "Kast respaldó la soberanía argentina sobre Malvinas en su primera visita oficial",
+    "bajada": "El presidente chileno visitó la Casa Rosada y marcó un gesto diplomático inédito al apoyar el reclamo trasandino por las islas. El encuentro binacional incluyó acuerdos en seguridad transnacional y sintonía política con impacto directo en la Patagonia de ambos países.",
+    "fecha": "",
+    "categoria": "general",
+    "imagen": "fotos/foto-20260407-1050-tapa.jpg"
+  },
+  {
+    "id": "20260407-1050-sec1",
+    "titulo": "Punta Arenas cierra temporada turística con caída del 11%",
+    "bajada": "La baja en la llegada de cruceros arrastró los números de la temporada 2025-2026, que aún está un 32% por debajo de los niveles prepandemia de 2019.",
+    "fecha": "",
+    "categoria": "turismo",
+    "imagen": "fotos/foto-20260407-1050-sec1.jpeg"
+  },
+  {
+    "id": "20260407-1050-sec2",
+    "titulo": "Presentan libro para llevar la Antártica a las aulas chilenas",
+    "bajada": "La obra propone integrar el conocimiento antártico en la educación más allá de la ciencia, abarcando dimensiones culturales, ambientales y territoriales.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260407-1050-sec2.jpg"
+  },
+  {
+    "id": "20260407-1029-tapa",
+    "titulo": "Veranos más cálidos y secos ponen en riesgo los bosques de Magallanes",
+    "bajada": "Estudios dendrocronológicos revelan que el aumento sostenido de temperaturas estivales y la reducción de precipitaciones están debilitando la capacidad de recuperación de los bosques australes. La señal de alerta proviene de los propios anillos de los árboles, que registran décadas de transformación climática en el extremo sur del continente.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260407-1029-tapa.jpg"
+  },
+  {
+    "id": "20260407-1029-sec1",
+    "titulo": "Científica magallánica se formó en análisis de toxinas de marea roja",
+    "bajada": "Vanessa Monge, bióloga de la Universidad de Magallanes, fue seleccionada para capacitarse en la OPAQ de Países Bajos sobre saxitoxina, compuesto clasificado como arma química.",
+    "fecha": "",
+    "categoria": "ciencia",
+    "imagen": "fotos/foto-20260407-1029-sec1.jpg"
+  },
+  {
+    "id": "20260407-1029-sec2",
+    "titulo": "Iara Arias, la nadadora de Viedma que hace podio en aguas heladas",
+    "bajada": "La deportista rionegrina compite en natación en aguas abiertas a temperaturas cercanas a los 0 grados y se destaca a nivel internacional.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260407-1029-sec2.jpeg"
+  },
+  {
+    "id": "gran-fondo-calle-calle-2026",
+    "titulo": "34 nadadores desafiaron la lluvia y el frío en el Gran Fondo del Calle Calle",
+    "bajada": "Pese a las condiciones climáticas adversas, el Desafío Gran Fondo del Calle Calle reunió a 34 deportistas en las aguas abiertas del río valdiviano. Tres distancias, un escenario natural único y el espíritu del sur.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/gran-fondo-calle-calle-2026.jpg"
+  },
+  {
+    "id": "isla-estados-arqueologia-2026",
+    "titulo": "La expedición que busca reconstruir el lazo entre la Isla de los Estados y las Malvinas",
+    "bajada": "Un equipo del CONICET y la UBA completó la primera campaña arqueológica sistemática en uno de los territorios más inaccesibles de la Patagonia austral: la Isla de los Estados, base de aprovisionamiento clave para la soberanía argentina en el siglo XIX.",
     "fecha": "",
     "categoria": "historia",
-    "imagen": "fotos/PERSONAJES/kawesqar-canal-beagle.webp"
+    "imagen": "fotos/isla-estados-arqueologia.jpg"
   },
   {
-    "id": "ski-patagonia-2026",
-    "titulo": "Palpitando la temporada de Ski PATAGONIA 2026",
-    "bajada": "La cuenta regresiva para el invierno ya comenzó. Centros, precios y consejos para esquiar en Argentina y Chile en 2026.",
+    "id": "20260405-2021-tapa",
+    "titulo": "Ley de glaciares en riesgo: la reforma que puede redefinir el agua patagónica",
+    "bajada": "El Congreso argentino reactiva el debate sobre la reforma a la ley de protección de glaciares. Desde la Patagonia, donde nace el agua, la discusión no es abstracta: está en juego el resguardo de los campos de hielo más grandes del hemisferio sur fuera de la Antártida.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/GLACIAR_PERITO_MORENO.jpg"
+  },
+  {
+    "id": "20260405-2021-1",
+    "titulo": "Médica magallánica conquista la Triple Corona de Hielo internacional",
+    "bajada": "Paula Bravo Sepúlveda nadó una milla en el lago Achensee de Austria bajo temperaturas extremas y se convirtió en la primera chilena en completar el desafío.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260405-2021-1.jpg"
+  },
+  {
+    "id": "20260405-2021-2",
+    "titulo": "Un puma rescatado en Nahuel Huapi se recupera con el cariño de una gata",
+    "bajada": "El cachorro sobrevivió a un choque vehicular dentro del Parque Nacional y ahora transita su rehabilitación bajo un esquema de cuidado que incluye la compañía inesperada de una gata doméstica.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260405-2021-2.jpg"
+  },
+  {
+    "id": "20260405-2021-3",
+    "titulo": "Tres campos, tres caminos: el futuro de la ganadería extensiva patagónica",
+    "bajada": "Un análisis de campo muestra cómo las decisiones de manejo definen la viabilidad de la producción ovina y bovina en la estepa, entre el sobrepastoreo y la regeneración.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260405-2021-3.jpeg"
+  },
+  {
+    "id": "20260401-1454-tapa",
+    "titulo": "Gas gratuito y subsidio pesquero: Chile lanza plan de emergencia para zonas extremas",
+    "bajada": "La Moneda respondió a la crisis de combustibles con un paquete que incluye balones de gas sin costo para el 80% más vulnerable y $100.000 mensuales para embarcaciones artesanales. Magallanes, donde el frío y la lejanía multiplican el impacto del alza energética, es una de las regiones más beneficiadas.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/foto-20260401-1454-tapa.jpg"
+  },
+  {
+    "id": "20260401-1454-1",
+    "titulo": "Una ciudad patagónica, entre las de menor pobreza del país",
+    "bajada": "El último informe estadístico ubica a una localidad de la Patagonia argentina en el ranking nacional de aglomerados con menos pobreza.",
+    "fecha": "",
+    "categoria": "bienestar",
+    "imagen": "fotos/foto-20260401-1454-1.jpg"
+  },
+  {
+    "id": "20260401-1454-2",
+    "titulo": "Vivienda Primero llega a Punta Arenas: techo digno para 20 personas en calle",
+    "bajada": "El Hogar de Cristo implementa en la capital magallánica un modelo habitacional que prioriza a mayores de 50 años con larga trayectoria de exclusión.",
+    "fecha": "",
+    "categoria": "bienestar",
+    "imagen": "fotos/foto-20260401-1454-2.jpg"
+  },
+  {
+    "id": "20260401-1454-3",
+    "titulo": "Básquetbol femenino en Magallanes coronó a sus campeonas",
+    "bajada": "Español, Sokol y Bories de Puerto Natales se repartieron los títulos del Torneo Tanteo en Punta Arenas, con protagonismo de clubes de toda la región.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260401-1454-3.jpg"
+  },
+  {
+    "id": "20260331-1450-tapa",
+    "titulo": "Gripe aviar activa en Tierra del Fuego: detectan H5N1 en aves domésticas de Porvenir",
+    "bajada": "El virus de influenza aviar fue confirmado en aves de corral en la ciudad fueguina, lo que enciende las alarmas sanitarias en Magallanes. Especialistas del Instituto Milenio de la Universidad Católica advierten sobre la circulación activa del patógeno y llaman a extremar la vigilancia en la región austral.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/porvenir.jpg"
+  },
+  {
+    "id": "20260331-1450-1",
+    "titulo": "Tolerancia cero: Prefectura endurece control contra la pesca ilegal extranjera",
+    "bajada": "La Prefectura Naval Argentina aplicará multas directas a buques extranjeros que infrinjan las normas en aguas jurisdiccionales, en un giro hacia la fiscalización activa del Mar Argentino.",
+    "fecha": "",
+    "categoria": "pesca",
+    "imagen": "fotos/foto-20260331-1450-1.jpg"
+  },
+  {
+    "id": "20260331-1450-2",
+    "titulo": "Krill antártico: Magallanes debate el futuro de una pesquería estratégica",
+    "bajada": "La apertura de nuevas oportunidades en la pesca de krill desde la región austral chilena abre un debate que cruza lo económico, lo ambiental y lo geopolítico.",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "fotos/foto-20260331-1450-2.jpg"
+  },
+  {
+    "id": "20260331-1450-3",
+    "titulo": "Primer torneo Patagónico de Tenis reunirá a cuatro regiones en Punta Arenas",
+    "bajada": "Cincuenta deportistas compitieron en la clasificatoria local para representar a Magallanes en un certamen inédito que convocará a delegaciones de Santiago, Aysén y Puerto Montt en abril.",
+    "fecha": "",
+    "categoria": "deportes",
+    "imagen": "fotos/foto-20260331-1450-3.jpg"
+  },
+  {
+    "id": "20260330-1452-tapa",
+    "titulo": "En pleno desierto patagónico, un ganadero encontró la forma de reverdecer su campo",
+    "bajada": "Un productor de la estepa rionegrina adoptó un sistema de pastoreo que transformó su relación con la tierra seca. La experiencia es un modelo posible para miles de campos patagónicos golpeados por sequías cada vez más frecuentes.",
+    "fecha": "",
+    "categoria": "producción",
+    "imagen": "fotos/ruta-estepa-patagonica.jpg"
+  },
+  {
+    "id": "20260330-1452-1",
+    "titulo": "Punta Arenas enciende su invierno con el calendario de las Invernadas 2026",
+    "bajada": "Desde fines de mayo hasta agosto, más de una decena de actividades culturales y comunitarias transformarán el frío magallánico en punto de encuentro.",
+    "fecha": "",
+    "categoria": "cultura",
+    "imagen": "fotos/tedx-punta-arenas.jpg"
+  },
+  {
+    "id": "20260330-1452-2",
+    "titulo": "Camino de la Fe: Semana Santa entre montañas y pueblos neuquinos",
+    "bajada": "Un circuito espiritual y paisajístico recorre localidades de Neuquén y propone una forma distinta de vivir la Pascua en la Patagonia norte.",
+    "fecha": "",
+    "categoria": "turismo",
+    "imagen": "https://images.unsplash.com/photo-1626920648043-4ef6d4c82088?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTAwNjB8MHwxfHNlYXJjaHwxfHxOZXVxdWVuJTIwcGF0YWdvbmlhfGVufDB8MHx8fDE3NzQ4ODI0NTV8MA&ixlib=rb-4.1.0&q=80&w=1080"
+  },
+  {
+    "id": "20260330-1452-3",
+    "titulo": "Empresarios magallánicos exigen mantener subsidios clave para la región",
+    "bajada": "La CPC de Magallanes pidió focalizar medidas en transporte de carga y defender los subsidios de gas y cabotaje que sostienen la vida en el extremo austral.",
+    "fecha": "",
+    "categoria": "conectividad",
+    "imagen": "fotos/torres-del-paine.webp"
+  },
+  {
+    "id": "20260330-tapa",
+    "titulo": "Bariloche refuerza su flota contra incendios con compra de emergencia",
+    "bajada": "El municipio adquiere vehículos mediante leasing invocando la emergencia ígnea. La medida llega en un contexto de temporadas de fuego cada vez más agresivas en la cordillera rionegrina y pone sobre la mesa la pregunta de fondo: ¿alcanza con más camionetas o falta una política integral de prevención?",
+    "fecha": "",
+    "categoria": "medio ambiente",
+    "imagen": "https://images.unsplash.com/photo-1637580981212-0bd33a513bae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTAwNjB8MHwxfHNlYXJjaHwxfHx3aWxkZmlyZSUyMHBhdGFnb25pYSUyMGZvcmVzdHxlbnwwfDB8fHwxNzc0ODY4OTYwfDA&ixlib=rb-4.1.0&q=80&w=1080"
+  },
+  {
+    "id": "20260330-1",
+    "titulo": "Chile recorta fondos de Zonas Extremas: Magallanes pierde su prioridad",
+    "bajada": "El gobierno retiró un decreto que asignaba el 63% de los recursos del plan especial a la región más austral del mundo, generando alarma en la comunidad magallánica.",
+    "fecha": "",
+    "categoria": "política",
+    "imagen": "fotos/torres-del-paine.webp"
+  },
+  {
+    "id": "20260330-2",
+    "titulo": "Gaido visita Huawei y proyecta un parque solar para Neuquén",
+    "bajada": "El intendente neuquino recorrió el campus tecnológico del gigante chino y anticipó planes de energía renovable para la capital provincial.",
+    "fecha": "",
+    "categoria": "economía",
+    "imagen": "https://images.unsplash.com/photo-1631249802250-33298b111f8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTAwNjB8MHwxfHNlYXJjaHwxfHxzb2xhciUyMHBhdGFnb25pYXxlbnwwfDB8fHwxNzc0ODY4OTYxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+  },
+  {
+    "id": "20260330-0745-tapa",
+    "titulo": "Neuquén y Santiago ya están a un vuelo directo: Latam conecta la Patagonia con Chile",
+    "bajada": "La aerolínea lanzó una frecuencia de cuatro vuelos semanales entre Neuquén y la capital chilena. Es una señal concreta de integración binacional que la Patagonia necesitaba y que puede redefinir el turismo y los negocios en la región.",
+    "fecha": "",
+    "categoria": "turismo",
+    "imagen": "fotos/vuelo-andes-patagonia.jpg"
+  },
+  {
+    "id": "20260330-0745-1",
+    "titulo": "El Senado chileno garantiza a Magallanes un lugar en las comisiones clave",
+    "bajada": "El pacto de gobernabilidad 2026-2030 en la Cámara Alta incluye presencia estratégica de representantes magallánicos, algo inusual para la región más austral.",
+    "fecha": "",
+    "categoria": "política",
+    "imagen": "fotos/torres-del-paine.webp"
+  },
+  {
+    "id": "20260330-0745-2",
+    "titulo": "Homenaje histórico a los soldados patagónicos que combatieron en Malvinas",
+    "bajada": "Una jornada especial reconoció a los conscriptos del litoral marítimo patagónico que participaron en la guerra de 1982, una historia que sigue sin contarse lo suficiente.",
+    "fecha": "",
+    "categoria": "historia",
+    "imagen": "fotos/monumento-malvinas.jpg"
+  },
+  {
+    "id": "20260329-tapa",
+    "titulo": "Crisis silenciosa en Magallanes: 628 intentos de suicidio en un solo año",
+    "bajada": "Seis de cada diez casos se concentran en personas de entre 10 y 29 años. Los datos de la vigilancia epidemiológica 2025 exponen una emergencia de salud mental en el extremo austral de Chile que demanda respuesta urgente y coordinada.",
+    "fecha": "",
+    "categoria": "social",
+    "imagen": "https://images.unsplash.com/photo-1667759046770-dda6252397f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTAwNjB8MHwxfHNlYXJjaHwxfHxwYXRhZ29uaWElMjBtZW50YWwlMjBoZWFsdGglMjB5b3V0aHxlbnwwfDB8fHwxNzc0ODI0NjcxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+  },
+  {
+    "id": "20260329-1",
+    "titulo": "TEDx desembarca en Punta Arenas con ciencia antártica y voces del sur",
+    "bajada": "Diez expositores, entre científicos internacionales e investigadores locales, llevarán al escenario historias de innovación y cultura antártica el 14 y 15 de abril.",
+    "fecha": "",
+    "categoria": "social",
+    "imagen": "https://images.unsplash.com/photo-1739013475314-574185081045?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTAwNjB8MHwxfHNlYXJjaHwxfHxQdW50YSUyMEFyZW5hcyUyMGFudGFyY3RpYyUyMHNjaWVuY2V8ZW58MHwwfHx8MTc3NDgyNDY3Mnww&ixlib=rb-4.1.0&q=80&w=1080"
+  },
+  {
+    "id": "20260329-2",
+    "titulo": "Neuquén construye escuela para sacar a 40 alumnos de tráileres en un paraje rural",
+    "bajada": "La obra promete reemplazar aulas improvisadas en casillas rodantes por un edificio escolar definitivo, en una zona donde la educación depende de la voluntad antes que de la infraestructura.",
+    "fecha": "",
+    "categoria": "social",
+    "imagen": "https://images.unsplash.com/photo-1567030022907-820130d34939?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTAwNjB8MHwxfHNlYXJjaHwxfHxydXJhbCUyMHNjaG9vbCUyMHBhdGFnb25pYXxlbnwwfDB8fHwxNzc0ODI0NjcyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+  },
+  {
+    "id": "20260329-3",
+    "titulo": "Tragedia en el lago Epuyén: murió un navegante tras el vuelco de un velero",
+    "bajada": "Un hombre de 47 años falleció en aguas del lago chubutense, en un accidente que vuelve a poner en foco la seguridad náutica en los lagos patagónicos.",
+    "fecha": "",
+    "categoria": "social",
+    "imagen": "https://images.unsplash.com/photo-1595725293434-f48e3e94df7d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTAwNjB8MHwxfHNlYXJjaHwxfHxsYWtlJTIwcGF0YWdvbmlhJTIwc2FpbGluZ3xlbnwwfDB8fHwxNzc0ODI0NjczfDA&ixlib=rb-4.1.0&q=80&w=1080"
+  },
+  {
+    "id": "20260329-4",
+    "titulo": "El Ultra Trail del Fin del Mundo ya tiene fecha: 1.200 corredores de 40 países en Torres del Paine",
+    "bajada": "",
     "fecha": "",
     "categoria": "",
-    "imagen": "fotos/DEPORTES/CENTROS_SKY/ESQUI.webp"
+    "imagen": ""
   },
   {
-    "id": "perito-moreno-timeout-2026",
-    "titulo": "El Glaciar Perito Moreno, entre los 51 destinos más impactantes del mundo según Time Out",
-    "bajada": "La revista internacional incluyó al emblema de El Calafate en el puesto 45 de su ranking global, destacando su masa de hielo, sus tonalidades azuladas y el espectáculo natural de sus desprendimientos.",
+    "id": "20260329-6",
+    "titulo": "Temporada récord en la Patagonia: Torres del Paine y Bariloche cerraron el verano con cifras históricas",
+    "bajada": "",
     "fecha": "",
     "categoria": "",
-    "imagen": "fotos/PERSONAJES/perito-moreno-timeout-2026.webp"
-  },
-  {
-    "id": "20260407-propio-malvinas",
-    "titulo": "Preocupación kelper en Malvinas: el diésel sube 36,5% en una colonia cada vez más cara y más sola",
-    "bajada": "El portal de noticias local Penguin News reportó una suba del 36,5% en el precio del diésel. La noticia expone la vulnerabilidad energética del archipiélago, cuya dependencia logística con el Reino Unido –en crisis desde el Brexit– encarece la vida de sus habitantes.",
-    "fecha": "",
-    "categoria": "soberania|malvinas|economia",
-    "imagen": "fotos/INSTITUCIONES/Malvinas02.webp"
-  },
-  {
-    "id": "20260406-propio-ballenas-chiloe",
-    "titulo": "El mayor santuario de ballenas azules del mundo está en Chiloé — y un drone lo está documentando por primera vez",
-    "bajada": "El Centro de Conservación Cetacea lleva su vigésima tercera temporada en el noroeste de Chiloé con una innovación sin precedentes: drones de alta resolución para medir la salud de cada ballena azul sin molestarlas.",
-    "fecha": "",
-    "categoria": "medio ambiente",
-    "imagen": "fotos/FAUNA/ballena.webp"
-  },
-  {
-    "id": "20260401-propio-tiburones",
-    "titulo": "Tiburones en la Patagonia: una pesca incompatible con su propia biología",
-    "bajada": "Cinco especies conviven en el Golfo San Matías bajo categoría de amenaza. Su destino depende de una ecuación biológica implacable: crecer despacio y reproducirse poco en un mar donde la pesca no da tregua.",
-    "fecha": "",
-    "categoria": "medio ambiente",
-    "imagen": "fotos/AMBIENTE/PESCA_TIBURON_01.webp"
-  },
-  {
-    "id": "20260310-propio-incendios",
-    "titulo": "Comarca Andina en llamas: lo que el fuego revela sobre la fragilidad del bosque patagónico",
-    "bajada": "Los incendios que arrasaron El Hoyo y el corredor del paralelo 42 no fueron una sorpresa. Fueron la consecuencia anunciada de décadas de cambio climático, urbanización sin planificación y una política de manejo del fuego que llegó siempre tarde.",
-    "fecha": "",
-    "categoria": "medio ambiente",
-    "imagen": "fotos/AMBIENTE/portada_incendios_patagonia.webp"
-  },
-  {
-    "id": "20260318-propio-glaciares",
-    "titulo": "¿De qué hablamos cuando hablamos de la \"nueva\" Ley de Glaciares?",
-    "bajada": "El proyecto que modificaría la Ley 26.639 ya pasó el Senado con 40 votos a favor. Acota la protección, transfiere poder a las provincias mineras y deja fuera del amparo a los glaciares de escombros. Detrás del lobby: Barrick Gold, BHP, Glencore y un puñado de megaproyectos de cobre y litio que suman más de 40.000 millones de dólares.",
-    "fecha": "",
-    "categoria": "medio ambiente",
-    "imagen": "fotos/AMBIENTE/LEY_GLACIARES_02.webp"
+    "imagen": ""
   },
   {
     "id": "guia-chalten",

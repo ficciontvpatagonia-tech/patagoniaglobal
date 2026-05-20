@@ -1000,7 +1000,16 @@ if (!id) {
         if (notaArchivo) {
           renderNota(notaArchivo, noticias.fecha_display, { ...noticias, historias: historias.notas || [], historial: historial || [] });
         } else {
-          document.getElementById("loading").textContent = "Nota no encontrada.";
+          // Último recurso: redirigir a página estática si existe
+          fetch('notas/' + id + '.html', { method: 'HEAD' })
+            .then(r => {
+              if (r.ok) {
+                window.location.replace('notas/' + id + '.html');
+              } else {
+                document.getElementById("loading").textContent = "Nota no encontrada.";
+              }
+            })
+            .catch(() => { document.getElementById("loading").textContent = "Nota no encontrada."; });
         }
       });
     }
