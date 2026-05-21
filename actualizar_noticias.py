@@ -2387,6 +2387,7 @@ def generar_paginas_og(notas):
   <script type="application/ld+json">{jsonld}</script>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
   <!-- Google Analytics -->
+  <script>if(localStorage.getItem('gp_admin')==='1'){{window['ga-disable-G-5FP2F41BZG']=true;}}</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-5FP2F41BZG');</script>
   <style>
@@ -2594,6 +2595,7 @@ def generar_paginas_temas(notas_all):
   <meta property="og:description" content="{ea(desc_seo)}"/>
   <meta property="og:image" content="https://globalpatagonia.org/fotos/torres-del-paine.webp"/>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <script>if(localStorage.getItem('gp_admin')==='1'){{window['ga-disable-G-5FP2F41BZG']=true;}}</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-5FP2F41BZG');</script>
   <style>

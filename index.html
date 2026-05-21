@@ -63,7 +63,8 @@
     ]
   }
   </script>
-  <!-- Google Analytics — se carga después del evento load para no bloquear la página -->
+  <script>if(localStorage.getItem('gp_admin')==='1'){window['ga-disable-G-5FP2F41BZG']=true;}</script>
+    <!-- Google Analytics — se carga después del evento load para no bloquear la página -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
