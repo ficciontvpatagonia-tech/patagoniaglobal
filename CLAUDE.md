@@ -59,6 +59,16 @@ Portal de noticias panpatagónico (Argentina + Chile). Nombre: **GLOBALpatagonia
 - Después de publicar espera 90s y corre `--solo-instagram` para publicar tapa en Instagram.
 - Secrets: `ANTHROPIC_API_KEY`, `UNSPLASH_ACCESS_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHANNEL_ID`, `FACEBOOK_PAGE_ID`, `FACEBOOK_PAGE_TOKEN`, `INSTAGRAM_BUSINESS_ACCOUNT_ID`
 
+## Checklist para notas manuales (INFORMES/propios)
+
+Cada vez que se crea o recibe una nota manual de tipo INFORME (`notas/YYYYMMDD-propio-*.html`):
+
+1. **Agregar a `propios.json`** al inicio del array con: `id`, `titulo`, `bajada`, `imagen`, `tag`, `fecha`, `cuerpo` (puede ser vacío si tiene HTML estático). Si el array supera 7 → mover el último a `propios_historial.json`.
+2. **Agregar al `sitemap.xml`** con `priority 0.85`. Si tiene variantes `-en`/`-pt`/`-zh`, agregar cada una con `priority 0.8`.
+3. **Hreflang + lang-switcher** en el HTML: agregar `<link rel="alternate" hreflang="...">` y el bloque `.lang-switcher` para todas las variantes de idioma.
+4. **Publicación en redes automática**: el script detecta las notas nuevas en `propios.json` que no figuran en `telegram_state.json → informes_telegram_posteados` y las publica al siguiente run (6am). No se requiere acción manual.
+5. **Traducciones**: si la nota lo justifica, crear `-en.html`, `-pt.html`, `-zh.html` siguiendo el patrón de `20260520-propio-malvinas-colapso-britanico-*.html`.
+
 **CRÍTICO — notas/ nunca se sobreescriben:**
 - `actualizar_noticias.py` genera `notas/[id].html` solo si el archivo NO existe (`if os.path.exists(ruta): continue`)
 - El workflow usa `git ls-files --others --exclude-standard notas/ | xargs -r git add --` en lugar de `git add notas/` — esto agrega solo archivos *nuevos*, nunca modifica los existentes

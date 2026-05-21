@@ -3243,8 +3243,34 @@ def publicar_telegram(tapa):
         print(f"  Telegram falló: {e}")
 
 
+def _informes_pendientes(state, propios, plataforma):
+    """Retorna lista de informes de propios.json no publicados aún en la plataforma.
+    Migra automáticamente del campo 'ultimo_informe_X' al set 'informes_X_posteados'."""
+    set_key = f"informes_{plataforma}_posteados"
+    old_key = f"ultimo_informe_{plataforma}"
+    if set_key not in state:
+        ultimo = state.get(old_key, "")
+        ids = [p.get("id", "") for p in propios]
+        if ultimo and ultimo in ids:
+            # Marcar como posteados todos los que están desde 'ultimo' hacia atrás (más viejos)
+            state[set_key] = ids[ids.index(ultimo):]
+        else:
+            state[set_key] = [ultimo] if ultimo else []
+    posteados = set(state[set_key])
+    return [p for p in propios if p.get("id", "") not in posteados]
+
+
+def _marcar_informe_posteado(state, informe_id, plataforma):
+    """Registra un informe como publicado (set + campo legacy)."""
+    set_key = f"informes_{plataforma}_posteados"
+    posteados = set(state.get(set_key, []))
+    posteados.add(informe_id)
+    state[set_key] = list(posteados)
+    state[f"ultimo_informe_{plataforma}"] = informe_id
+
+
 def publicar_telegram_informe_nuevo():
-    """Publica en Telegram el informe más reciente de propios.json si es nuevo."""
+    """Publica en Telegram todos los informes de propios.json aún no publicados."""
     token   = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     channel = os.environ.get("TELEGRAM_CHANNEL_ID", "")
     if not token or not channel:
@@ -3263,60 +3289,59 @@ def publicar_telegram_informe_nuevo():
     if not propios:
         return
 
-    informe = propios[0]
-    informe_id = informe.get("id", "")
-
-    # Leer último informe publicado
     try:
         with open(state_path, encoding="utf-8") as f:
             state = json.load(f)
     except Exception:
         state = {}
 
-    if state.get("ultimo_informe_telegram") == informe_id:
-        return  # Ya publicado
+    pendientes = _informes_pendientes(state, propios, "telegram")
+    if not pendientes:
+        return
 
-    titulo = informe.get("titulo", "")
-    bajada = informe.get("bajada", "")
-    imagen = informe.get("imagen", "")
-    tag    = informe.get("tag", "📋 Informe")
-    link   = f"https://globalpatagonia.org/notas/{informe_id}.html"
+    for informe in pendientes:
+        informe_id = informe.get("id", "")
+        titulo = informe.get("titulo", "")
+        bajada = informe.get("bajada", "")
+        imagen = informe.get("imagen", "")
+        tag    = informe.get("tag", "📋 Informe")
+        link   = f"https://globalpatagonia.org/notas/{informe_id}.html"
 
-    caption = (
-        f"{tag}\n\n"
-        f"<b>{titulo}</b>\n\n"
-        f"{bajada}\n\n"
-        f'<a href="{link}">Leer informe completo →</a>\n\n'
-        f"<i>GLOBALpatagonia · Sur Global, principio de todo.</i>"
-    )
+        caption = (
+            f"{tag}\n\n"
+            f"<b>{titulo}</b>\n\n"
+            f"{bajada}\n\n"
+            f'<a href="{link}">Leer informe completo →</a>\n\n'
+            f"<i>GLOBALpatagonia · Sur Global, principio de todo.</i>"
+        )
 
-    ruta_img = os.path.join(base_dir, imagen) if imagen else ""
-    ruta_img = ruta_img if os.path.exists(ruta_img) else ""
+        ruta_img = os.path.join(base_dir, imagen) if imagen else ""
+        ruta_img = ruta_img if os.path.exists(ruta_img) else ""
 
-    try:
-        if ruta_img:
-            resultado = _telegram_request(token, "sendPhoto", {
-                "chat_id":    channel,
-                "caption":    caption,
-                "parse_mode": "HTML",
-            }, file_path=ruta_img)
-        else:
-            resultado = _telegram_request(token, "sendMessage", {
-                "chat_id":    channel,
-                "text":       caption,
-                "parse_mode": "HTML",
-                "disable_web_page_preview": "false",
-            })
+        try:
+            if ruta_img:
+                resultado = _telegram_request(token, "sendPhoto", {
+                    "chat_id":    channel,
+                    "caption":    caption,
+                    "parse_mode": "HTML",
+                }, file_path=ruta_img)
+            else:
+                resultado = _telegram_request(token, "sendMessage", {
+                    "chat_id":    channel,
+                    "text":       caption,
+                    "parse_mode": "HTML",
+                    "disable_web_page_preview": "false",
+                })
 
-        if resultado.get("ok"):
-            state["ultimo_informe_telegram"] = informe_id
-            with open(state_path, "w", encoding="utf-8") as f:
-                json.dump(state, f, ensure_ascii=False, indent=2)
-            print(f"  Telegram informe OK ✓ [{informe_id}]")
-        else:
-            print(f"  Telegram informe error: {resultado.get('description')}")
-    except Exception as e:
-        print(f"  Telegram informe falló: {e}")
+            if resultado.get("ok"):
+                _marcar_informe_posteado(state, informe_id, "telegram")
+                with open(state_path, "w", encoding="utf-8") as f:
+                    json.dump(state, f, ensure_ascii=False, indent=2)
+                print(f"  Telegram informe OK ✓ [{informe_id}]")
+            else:
+                print(f"  Telegram informe error: {resultado.get('description')}")
+        except Exception as e:
+            print(f"  Telegram informe falló: {e}")
 
 
 def _seleccionar_notas_binacionales(tapa, secundarias):
@@ -3519,101 +3544,100 @@ def publicar_facebook_informe_nuevo():
     if not propios:
         return
 
-    informe    = propios[0]
-    informe_id = informe.get("id", "")
-
     try:
         with open(state_path, encoding="utf-8") as f:
             state = json.load(f)
     except Exception:
         state = {}
 
-    if state.get("ultimo_informe_facebook") == informe_id:
-        return  # Ya publicado
+    pendientes = _informes_pendientes(state, propios, "facebook")
+    if not pendientes:
+        return
 
-    titulo = informe.get("titulo", "")
-    bajada = informe.get("bajada", "")
-    imagen = informe.get("imagen", "")
-    tag    = informe.get("tag", "📋 Informe")
-    link   = f"https://globalpatagonia.org/notas/{informe_id}.html"
+    api_url = f"https://graph.facebook.com/v21.0/{page_id}"
 
-    mensaje = (
-        f"{tag} {titulo}\n\n"
-        f"{bajada}\n\n"
-        f"🔗 {link}\n\n"
-        f"GLOBALpatagonia · Sur Global, principio de todo.\n"
-        f"globalpatagonia.org"
-    )
+    for informe in pendientes:
+        informe_id = informe.get("id", "")
+        titulo = informe.get("titulo", "")
+        bajada = informe.get("bajada", "")
+        imagen = informe.get("imagen", "")
+        tag    = informe.get("tag", "📋 Informe")
+        link   = f"https://globalpatagonia.org/notas/{informe_id}.html"
 
-    ruta_img = os.path.join(base_dir, imagen) if imagen else ""
-    ruta_img = ruta_img if os.path.exists(ruta_img) else ""
+        mensaje = (
+            f"{tag} {titulo}\n\n"
+            f"{bajada}\n\n"
+            f"🔗 {link}\n\n"
+            f"GLOBALpatagonia · Sur Global, principio de todo.\n"
+            f"globalpatagonia.org"
+        )
 
-    # Convertir WebP a JPEG si es necesario (Facebook no acepta WebP)
-    jpg_tmp = None
-    if ruta_img and ruta_img.lower().endswith(".webp"):
-        import tempfile
-        from PIL import Image as _PilImg
-        jpg_tmp = tempfile.mktemp(suffix=".jpg")
-        try:
-            with _PilImg.open(ruta_img) as _wim:
-                _wim.convert("RGB").save(jpg_tmp, "JPEG", quality=88)
-            ruta_img = jpg_tmp
-        except Exception as _we:
-            print(f"  WebP→JPEG falló: {_we}")
-            jpg_tmp = None
-            ruta_img = ""
+        ruta_img = os.path.join(base_dir, imagen) if imagen else ""
+        ruta_img = ruta_img if os.path.exists(ruta_img) else ""
 
-    try:
-        api_url = f"https://graph.facebook.com/v21.0/{page_id}"
-
-        if ruta_img:
-            boundary = "----GLOBALpatagonia"
-            with open(ruta_img, "rb") as img_file:
-                body = (
-                    f"--{boundary}\r\n"
-                    f'Content-Disposition: form-data; name="caption"\r\n\r\n'
-                    f"{mensaje}\r\n"
-                    f"--{boundary}\r\n"
-                    f'Content-Disposition: form-data; name="access_token"\r\n\r\n'
-                    f"{page_token}\r\n"
-                    f"--{boundary}\r\n"
-                    f'Content-Disposition: form-data; name="source"; filename="foto.jpg"\r\n'
-                    f"Content-Type: image/jpeg\r\n\r\n"
-                ).encode() + img_file.read() + f"\r\n--{boundary}--\r\n".encode()
-
-            if jpg_tmp and os.path.exists(jpg_tmp):
-                os.unlink(jpg_tmp)
-
-            req = urllib.request.Request(
-                f"{api_url}/photos",
-                data=body,
-                headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
-                method="POST"
-            )
-        else:
-            data = urllib.parse.urlencode({
-                "message":      mensaje,
-                "link":         link,
-                "access_token": page_token,
-            }).encode()
-            req = urllib.request.Request(f"{api_url}/feed", data=data, method="POST")
+        jpg_tmp = None
+        if ruta_img and ruta_img.lower().endswith(".webp"):
+            import tempfile
+            from PIL import Image as _PilImg
+            jpg_tmp = tempfile.mktemp(suffix=".jpg")
+            try:
+                with _PilImg.open(ruta_img) as _wim:
+                    _wim.convert("RGB").save(jpg_tmp, "JPEG", quality=88)
+                ruta_img = jpg_tmp
+            except Exception as _we:
+                print(f"  WebP→JPEG falló: {_we}")
+                jpg_tmp = None
+                ruta_img = ""
 
         try:
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                resultado = json.loads(resp.read().decode())
-            if resultado.get("id"):
-                state["ultimo_informe_facebook"] = informe_id
-                with open(state_path, "w", encoding="utf-8") as f:
-                    json.dump(state, f, ensure_ascii=False, indent=2)
-                print(f"  Facebook informe OK ✓ [{informe_id}]")
+            if ruta_img:
+                boundary = "----GLOBALpatagonia"
+                with open(ruta_img, "rb") as img_file:
+                    body = (
+                        f"--{boundary}\r\n"
+                        f'Content-Disposition: form-data; name="caption"\r\n\r\n'
+                        f"{mensaje}\r\n"
+                        f"--{boundary}\r\n"
+                        f'Content-Disposition: form-data; name="access_token"\r\n\r\n'
+                        f"{page_token}\r\n"
+                        f"--{boundary}\r\n"
+                        f'Content-Disposition: form-data; name="source"; filename="foto.jpg"\r\n'
+                        f"Content-Type: image/jpeg\r\n\r\n"
+                    ).encode() + img_file.read() + f"\r\n--{boundary}--\r\n".encode()
+
+                if jpg_tmp and os.path.exists(jpg_tmp):
+                    os.unlink(jpg_tmp)
+
+                req = urllib.request.Request(
+                    f"{api_url}/photos",
+                    data=body,
+                    headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
+                    method="POST"
+                )
             else:
-                print(f"  Facebook informe error: {resultado}")
-        except urllib.error.HTTPError as http_err:
-            detalle = http_err.read().decode("utf-8", errors="replace")
-            print(f"  Facebook informe falló {http_err.code}: {detalle}")
+                data = urllib.parse.urlencode({
+                    "message":      mensaje,
+                    "link":         link,
+                    "access_token": page_token,
+                }).encode()
+                req = urllib.request.Request(f"{api_url}/feed", data=data, method="POST")
 
-    except Exception as e:
-        print(f"  Facebook informe falló: {e}")
+            try:
+                with urllib.request.urlopen(req, timeout=30) as resp:
+                    resultado = json.loads(resp.read().decode())
+                if resultado.get("id"):
+                    _marcar_informe_posteado(state, informe_id, "facebook")
+                    with open(state_path, "w", encoding="utf-8") as f:
+                        json.dump(state, f, ensure_ascii=False, indent=2)
+                    print(f"  Facebook informe OK ✓ [{informe_id}]")
+                else:
+                    print(f"  Facebook informe error: {resultado}")
+            except urllib.error.HTTPError as http_err:
+                detalle = http_err.read().decode("utf-8", errors="replace")
+                print(f"  Facebook informe falló {http_err.code}: {detalle}")
+
+        except Exception as e:
+            print(f"  Facebook informe falló: {e}")
 
 
 def _nl_seccion_html(label, nota, color_label="#7aadcc"):
@@ -4228,17 +4252,18 @@ def publicar_instagram_informe_nuevo():
     if not propios:
         return
 
-    informe    = propios[0]
-    informe_id = informe.get("id", "")
-
     try:
         with open(state_path, encoding="utf-8") as f:
             state = json.load(f)
     except Exception:
         state = {}
 
-    if state.get("ultimo_informe_instagram") == informe_id:
-        return  # Ya publicado
+    # Instagram: publicar de a uno por run (el más reciente pendiente)
+    pendientes = _informes_pendientes(state, propios, "instagram")
+    if not pendientes:
+        return
+    informe    = pendientes[0]
+    informe_id = informe.get("id", "")
 
     titulo = informe.get("titulo", "")
     bajada = informe.get("bajada", "")
@@ -4328,7 +4353,7 @@ def publicar_instagram_informe_nuevo():
             with urllib.request.urlopen(req, timeout=30) as resp:
                 resultado = json.loads(resp.read().decode())
             if resultado.get("id"):
-                state["ultimo_informe_instagram"] = informe_id
+                _marcar_informe_posteado(state, informe_id, "instagram")
                 with open(state_path, "w", encoding="utf-8") as f:
                     json.dump(state, f, ensure_ascii=False, indent=2)
                 print(f"  Instagram informe OK ✓ [{informe_id}]")
