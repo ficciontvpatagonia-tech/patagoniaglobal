@@ -84,6 +84,39 @@
     ]
   },
   {
+    "id": "guia-bariloche",
+    "destino": "San Carlos de Bariloche",
+    "tagline": "El corazón de la Patagonia andina",
+    "imagen": "fotos/CIUDADES/bariloche-lago-nahuel-huapi.webp",
+    "descripcion": "A orillas del lago Nahuel Huapi, rodeada de volcanes y bosques de lengas, Bariloche es el destino más visitado de la Patagonia argentina. Capital del chocolate artesanal, del esquí austral y del trekking de alta montaña, combina una arquitectura alpina única con una naturaleza que no pide disculpas. El Parque Nacional Nahuel Huapi —el más antiguo de Argentina— envuelve la ciudad por completo.",
+    "cuando_ir": "Diciembre a marzo para trekking, kayak y playas de lago. Julio y agosto para esquí en Cerro Catedral, el mayor centro de ski de Sudamérica. Junio y septiembre son los meses de transición: menos turistas, precios más bajos y paisajes espectaculares. Abril y mayo regalan el otoño andino con lengas que se vuelven doradas.",
+    "como_llegar": "Vuelos desde Buenos Aires (2 hs), Córdoba, Rosario y otras ciudades. Aeropuerto Internacional Teniente Luis Candelaria (BRC) a 15 km del centro. Bus desde Buenos Aires: 20 horas con Vía Bariloche o Andesmar. Desde El Calafate o Ushuaia: vuelo de 2 horas o bus de 15-20 hs por ruta 40.",
+    "que_hacer": [
+      { "titulo": "Cerro Catedral", "descripcion": "El mayor centro de esquí de Sudamérica, a 19 km del centro. Más de 120 km de pistas, 37 medios de elevación. La temporada va de junio a octubre. Las vistas desde la cima —el Nahuel Huapi de un lado, el Tronador del otro— son únicas. En verano las aerosillas abren para caminantes y ciclistas de montaña." },
+      { "titulo": "Cerro López y el Refugio", "descripcion": "El trekking más accesible y espectacular de Bariloche. Subida de 3-4 horas hasta el refugio a 1.600 m s.n.m. El panorama —el Nahuel Huapi extendido 560 km² abajo— es uno de los más fotografiados de la Patagonia. Vale la pena pasar la noche para ver el amanecer sobre el lago." },
+      { "titulo": "Circuito Chico", "descripcion": "El paseo clásico: 65 km en auto o bicicleta bordeando el lago, pasando por el Cerro Campanario (mirador obligado), el Hotel Llao Llao y la Bahía López. El Campanario se sube en aerosilla en 10 minutos y entrega una de las mejores vistas panorámicas de la región." },
+      { "titulo": "Isla Victoria y Bosque de Arrayanes", "descripcion": "Excursión en catamarán desde Puerto Pañuelo. La parada más esperada: el Bosque de Arrayanes en la Península Quetrihué, un bosque de troncos canela-naranja que no existe en ningún otro lugar del mundo en esa concentración. Walt Disney lo visitó en los '40 y se inspiró para el bosque de 'Bambi'." },
+      { "titulo": "Chocolate y Calle Mitre", "descripcion": "Bariloche produce el mejor chocolate de Argentina, heredado de maestros chocolateros europeos del siglo XX. La Calle Mitre concentra las grandes chocolaterías: Mamuschka, Rapa Nui, Familia Weiss. Para chocolate de autor: las fábricas de los barrios Melipal y El Bolsón son más finas y menos masivas." },
+      { "titulo": "Kayak en el Nahuel Huapi", "descripcion": "El lago más grande de la Patagonia argentina (560 km²) tiene múltiples brazos para explorar en kayak. Varios operadores ofrecen salidas guiadas. El cruce a la Isla Victoria en kayak de mar (8 horas) es uno de los desafíos clásicos. También hay travesías de varios días con camping en islas." },
+      { "titulo": "Volcán Tronador", "descripcion": "El gigante blanco de 3.491 m. Se accede por la Ruta de los Siete Lagos hasta la Pampa Linda (80 km del centro). La caminata al mirador del Glaciar Negro es de 4 horas ida y vuelta. No requiere experiencia en alta montaña; sí requiere buen calzado y ropa de abrigo incluso en enero." },
+      { "titulo": "Parque Nacional Nahuel Huapi", "descripcion": "El más antiguo de Argentina (1934) envuelve la ciudad por completo. Más de 700.000 hectáreas con glaciares, volcanes y bosques de coihue. Los senderos van desde caminatas de 2 horas hasta travesías de varios días. Acceso libre; algunos senderos requieren registro previo." }
+    ],
+    "consejos": [
+      "En temporada de ski (julio–agosto), los hoteles se agotan meses antes — reservar con 60 días de anticipación como mínimo",
+      "El bus urbano llega al Cerro Catedral (línea 55) y al Circuito Chico; para Tronador y Pampa Linda, alquilar auto o ir en excursión",
+      "Para chocolate de calidad, buscar las fábricas artesanales en barrios Melipal o pedir la línea premium de Familia Weiss",
+      "El tiempo cambia rápido — un día de trekking puede empezar soleado y terminar con nieve en septiembre; siempre llevar capas",
+      "El Cruce de Lagos a Puerto Montt (Chile) sale martes, jueves y sábados entre octubre y abril — reservar con semanas de anticipación",
+      "El Hotel Llao Llao no requiere ser huésped para tomar el té de las 5 en la terraza con vista al lago — una de las mejores experiencias de la ciudad"
+    ],
+    "donde_comer": [
+      "El Patacón (Av. Bustillo km 7) — parrilla de referencia, cordero patagónico al asador, vista al lago",
+      "Kandahar (20 de Febrero 698) — el restaurante más antiguo de Bariloche, cocina de montaña: trucha, jabalí, fondue",
+      "Cassis (Av. Bustillo km 4.8) — bistró de autor con producto patagónico de temporada, reservar con anticipación",
+      "La Fonda del Tío (Morales 1160) — cocina casera, favorito de los locales para comer bien y barato"
+    ]
+  },
+  {
     "id": "guia-calafate-4-dias",
     "destino": "El Calafate",
     "tagline": "La puerta al Glaciar Perito Moreno",
