@@ -1,14 +1,32 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep",
+    "id": "20260523-un-magallanico-se-corono-campeon-en-el-torneo-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Chubut lleva 200 jóvenes a los Juegos EPADE 2026, la olimpiada patagónica",
-    "bajada": "Una delegación de más de 200 deportistas chubutenses se alista para los Juegos EPADE 2026, el evento deportivo juvenil más importante de la Patagonia argentina.",
-    "imagen": "fotos/foto-20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "titulo": "Un magallánico se coronó campeón en el torneo patagónico de kick boxing de Las Heras",
+    "bajada": "Leonardo Pallacar, representante puntarenense, ganó el torneo 'La Patagonia Rebelde 8' celebrado en el Complejo Municipal 11 de Julio de Las Heras, Santa Cruz.",
+    "imagen": "fotos/foto-20260523-un-magallanico-se-corono-campeon-en-el-torneo-dep.webp",
+    "meta": "Hoy · La Prensa Austral (Magallanes)"
   },
   "secundarias": [
+    {
+      "id": "20260522-escuela-de-mtb-del-andino-bariloche-compite-en-el-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Escuela de MTB del Andino Bariloche compite en El Chocón",
+      "bajada": "Alumnos de la Escuela de Mountain Bike del Club Andino Bariloche participaron de la segunda fecha del Campeonato Patagónico de Descenso en El Chocón, con destacada presencia regional.",
+      "imagen": "fotos/foto-20260522-escuela-de-mtb-del-andino-bariloche-compite-en-el-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
+    {
+      "id": "20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Chubut lleva 200 jóvenes a los Juegos EPADE 2026, la olimpiada patagónica",
+      "bajada": "Una delegación de más de 200 deportistas chubutenses se alista para los Juegos EPADE 2026, el evento deportivo juvenil más importante de la Patagonia argentina.",
+      "imagen": "fotos/foto-20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +42,7 @@
       "bajada": "Investigadores chilenos utilizan técnicas de ADN ambiental para mapear la biodiversidad de metazoos marinos en la península Antártica, una herramienta clave ante el retroceso glaciar acelerado.",
       "imagen": "fotos/foto-20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep.webp",
       "meta": "Hoy · INACH"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260512-cerro-catedral-regala-ascensos-gratuitos-a-los-dep",
       "tag": "🏃 Deportes",
@@ -42,22 +58,6 @@
       "bajada": "El municipio de Valdivia lanza la edición 2026 del programa de Deporte Adaptado con cinco disciplinas para personas con discapacidad física, visual, auditiva y cognitiva.",
       "imagen": "fotos/CIUDADES/deporte_inclusivo.webp",
       "meta": "Hoy · Diario de Valdivia"
-    },
-    {
-      "id": "20260508-rollerski-en-bariloche-entrenamiento-nordico-antes-de-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Rollerski en Bariloche: entrenamiento nórdico antes de que vuelva la nieve",
-      "bajada": "El Club Andino Bariloche realiza este sábado una jornada de rollerski para perfeccionar técnica nórdica fuera de temporada invernal.",
-      "imagen": "fotos/foto-20260508-rollerski-en-bariloche-entrenamiento-nordico-antes-de-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260506-catedral-alta-patagonia-elegido-mejor-centro-de-esqui-dep",
-      "tag": "🏔️ Deportes",
-      "titulo": "Catedral Alta Patagonia, elegido mejor centro de esquí en Brasil",
-      "bajada": "El cerro barilochense recibió en Río de Janeiro el premio O Melhor de Viagem & Turismo, el reconocimiento más importante del sector turístico brasileño.",
-      "imagen": "fotos/foto-20260506-catedral-alta-patagonia-elegido-mejor-centro-de-esqui-dep.webp",
-      "meta": "Hoy · Catedral Alta Patagonia (Bariloche)"
     }
   ]
 }
