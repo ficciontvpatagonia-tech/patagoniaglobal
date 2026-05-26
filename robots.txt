@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /nota.html
+Disallow: /guia.html
 
 Sitemap: https://globalpatagonia.org/sitemap.xml
 Sitemap: https://globalpatagonia.org/sitemap-news.xml

@@ -15,7 +15,7 @@ ROBOTS_PATH = os.path.join(REPO, 'robots.txt')
 BASE_URL = 'https://globalpatagonia.org'
 GH_REPO = 'ficciontvpatagonia-tech/patagoniaglobal'
 
-ROBOTS_REQUIRED = ['Disallow: /nota.html', 'Disallow: /buscar.html', 'Sitemap:']
+ROBOTS_REQUIRED = ['Disallow: /nota.html', 'Disallow: /guia.html', 'Sitemap:']
 
 
 def create_github_issue(token, title, body):
@@ -41,7 +41,7 @@ def sitemap_notas():
     return result
 
 
-def read_head(path, n=2500):
+def read_head(path, n=5000):
     try:
         with open(path, encoding='utf-8') as f:
             return f.read(n)
