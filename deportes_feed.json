@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260523-un-magallanico-se-corono-campeon-en-el-torneo-dep",
+    "id": "20260526-rally-de-natales-2026-29-binomios-cruzan-la-frontera-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Un magallánico se coronó campeón en el torneo patagónico de kick boxing de Las Heras",
-    "bajada": "Leonardo Pallacar, representante puntarenense, ganó el torneo 'La Patagonia Rebelde 8' celebrado en el Complejo Municipal 11 de Julio de Las Heras, Santa Cruz.",
-    "imagen": "fotos/foto-20260523-un-magallanico-se-corono-campeon-en-el-torneo-dep.webp",
-    "meta": "Hoy · La Prensa Austral (Magallanes)"
+    "titulo": "Rally de Natales 2026: 29 binomios cruzan la frontera para competir en Última Esperanza",
+    "bajada": "Cuatro tripulaciones de Porvenir integran la delegación de Tierra del Fuego chilena para la segunda fecha del Rally 2026, que reunirá a competidores de ambos lados de la frontera el 30 y 31 de mayo.",
+    "imagen": "fotos/foto-20260526-rally-de-natales-2026-29-binomios-cruzan-la-frontera-dep.webp",
+    "meta": "Hoy · La Prensa Austral"
   },
   "secundarias": [
+    {
+      "id": "20260523-un-magallanico-se-corono-campeon-en-el-torneo-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Un magallánico se coronó campeón en el torneo patagónico de kick boxing de Las Heras",
+      "bajada": "Leonardo Pallacar, representante puntarenense, ganó el torneo 'La Patagonia Rebelde 8' celebrado en el Complejo Municipal 11 de Julio de Las Heras, Santa Cruz.",
+      "imagen": "fotos/foto-20260523-un-magallanico-se-corono-campeon-en-el-torneo-dep.webp",
+      "meta": "Hoy · La Prensa Austral (Magallanes)"
+    },
     {
       "id": "20260522-escuela-de-mtb-del-andino-bariloche-compite-en-el-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Alumnos de la Escuela de Mountain Bike del Club Andino Bariloche participaron de la segunda fecha del Campeonato Patagónico de Descenso en El Chocón, con destacada presencia regional.",
       "imagen": "fotos/foto-20260522-escuela-de-mtb-del-andino-bariloche-compite-en-el-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Una delegación de más de 200 deportistas chubutenses se alista para los Juegos EPADE 2026, el evento deportivo juvenil más importante de la Patagonia argentina.",
       "imagen": "fotos/foto-20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Del 9 al 13 de marzo de 2026, los residentes de Bariloche podrán subir sin costo al Cerro Catedral mediante la Telecabina en la llamada Semana Residentes.",
       "imagen": "fotos/foto-20260512-cerro-catedral-regala-ascensos-gratuitos-a-los-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
-    {
-      "id": "20260511-valdivia-talleres-deportivos-inclusivos-dep",
-      "tag": "♿ Deportes",
-      "titulo": "Valdivia abre inscripciones para talleres deportivos inclusivos y adaptados 2026",
-      "bajada": "El municipio de Valdivia lanza la edición 2026 del programa de Deporte Adaptado con cinco disciplinas para personas con discapacidad física, visual, auditiva y cognitiva.",
-      "imagen": "fotos/CIUDADES/deporte_inclusivo.webp",
-      "meta": "Hoy · Diario de Valdivia"
     }
   ]
 }
