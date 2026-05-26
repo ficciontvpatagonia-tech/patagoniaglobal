@@ -123,10 +123,12 @@ jobs:
                   warns.append(f'::warning file={fname}::{fname} es pública pero no está en sitemap.xml — agregar a _PAGE_CONFIG en actualizar_noticias.py')
               if 'rel="canonical"' not in head and "rel='canonical'" not in head:
                   warns.append(f'::warning file={fname}::{fname} no tiene etiqueta canonical')
+              if 'clima.html' not in head:
+                  warns.append(f'::warning file={fname}::{fname} no tiene link a clima.html en el nav')
           for w in warns:
               print(w)
           if not warns:
-              print('✅ SEO raíz: todas las páginas públicas están en el sitemap y tienen canonical')
+              print('✅ SEO raíz: todas las páginas públicas están en el sitemap, tienen canonical y link a clima.html')
           PYEOF
 
       - name: Enviar URLs a IndexNow (Bing/Yandex)
