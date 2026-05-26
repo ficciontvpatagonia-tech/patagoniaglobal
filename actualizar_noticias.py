@@ -2960,7 +2960,9 @@ def actualizar_sitemap():
         ("https://globalpatagonia.org/",              today, "daily",   "1.0"),
         ("https://globalpatagonia.org/agenda.html",   today, "daily",   "0.7"),
         ("https://globalpatagonia.org/videos.html",   today, "weekly",  "0.7"),
+        ("https://globalpatagonia.org/clima.html",    today, "daily",   "0.7"),
         ("https://globalpatagonia.org/acerca.html",   today, "monthly", "0.5"),
+        ("https://globalpatagonia.org/apoyanos.html", today, "monthly", "0.4"),
         ("https://globalpatagonia.org/privacidad.html", today, "monthly", "0.3"),
     ]
 
