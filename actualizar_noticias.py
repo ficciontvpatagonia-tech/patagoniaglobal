@@ -2956,28 +2956,24 @@ def actualizar_sitemap():
         except Exception:
             pass
 
-    # Stubs de redirección, páginas error y páginas que nunca deben indexarse
-    # Regla: o están aquí, o tienen <meta name="robots" content="noindex"> en el HTML
+    # Solo stubs técnicos sin contenido propio — todo lo demás debe aparecer en Google
     _EXCLUDE_ROOT = {
-        'index.html',           # servido como / — ya está en la lista
-        'nota.html',            # stub redirect
-        'guia.html',            # stub redirect
-        '404.html',             # página de error
-        'buscar.html',          # UI de búsqueda
-        'colaboradores.html',   # noindex (Apps Script pendiente)
-        'publicidad.html',      # noindex
-        'prototipo.html',       # página de desarrollo
-        'demo-noticias-reales.html',    # página de desarrollo
-        'edicion-29-marzo-2026.html',   # edición vieja de prueba
+        'index.html',   # servido como / — ya está en la lista como raíz
+        'nota.html',    # stub redirect → /notas/X.html
+        'guia.html',    # stub redirect → /notas/X.html
+        '404.html',     # página de error HTTP
     }
     # Overrides de prioridad/frecuencia para páginas conocidas
     _PAGE_CONFIG = {
-        'agenda.html':     ("daily",   "0.7"),
-        'videos.html':     ("weekly",  "0.7"),
-        'clima.html':      ("daily",   "0.7"),
-        'acerca.html':     ("monthly", "0.5"),
-        'apoyanos.html':   ("monthly", "0.4"),
-        'privacidad.html': ("monthly", "0.3"),
+        'agenda.html':       ("daily",   "0.7"),
+        'videos.html':       ("weekly",  "0.7"),
+        'clima.html':        ("daily",   "0.7"),
+        'acerca.html':       ("monthly", "0.5"),
+        'apoyanos.html':     ("monthly", "0.4"),
+        'privacidad.html':   ("monthly", "0.3"),
+        'buscar.html':       ("monthly", "0.4"),
+        'colaboradores.html': ("monthly", "0.4"),
+        'publicidad.html':   ("monthly", "0.3"),
     }
     static = [("https://globalpatagonia.org/", today, "daily", "1.0")]
     for _fname in sorted(os.listdir(base)):

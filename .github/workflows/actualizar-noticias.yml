@@ -103,9 +103,6 @@ jobs:
           import os
           EXCLUDE = {
               'nota.html', 'guia.html', '404.html', 'index.html',
-              'buscar.html', 'colaboradores.html', 'publicidad.html',
-              'prototipo.html', 'demo-noticias-reales.html',
-              'edicion-29-marzo-2026.html',
           }
           warns = []
           with open('sitemap.xml', encoding='utf-8') as f:
