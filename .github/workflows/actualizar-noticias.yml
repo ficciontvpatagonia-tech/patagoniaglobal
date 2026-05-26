@@ -97,6 +97,41 @@ jobs:
           git diff --staged --quiet || git commit -m "Noticias actualizadas — $(date +'%d/%m/%Y')"
           git push
 
+      - name: Validar SEO páginas raíz
+        run: |
+          python3 - <<'PYEOF'
+          import os
+          EXCLUDE = {
+              'nota.html', 'guia.html', '404.html', 'index.html',
+              'buscar.html', 'colaboradores.html', 'publicidad.html',
+              'prototipo.html', 'demo-noticias-reales.html',
+              'edicion-29-marzo-2026.html',
+          }
+          warns = []
+          with open('sitemap.xml', encoding='utf-8') as f:
+              sitemap = f.read()
+          for fname in sorted(os.listdir('.')):
+              if not fname.endswith('.html') or not os.path.isfile(fname):
+                  continue
+              if fname in EXCLUDE:
+                  continue
+              try:
+                  head = open(fname, encoding='utf-8').read(20000)
+              except Exception:
+                  continue
+              if 'noindex' in head:
+                  continue
+              url = f'https://globalpatagonia.org/{fname}'
+              if url not in sitemap:
+                  warns.append(f'::warning file={fname}::{fname} es pública pero no está en sitemap.xml — agregar a _PAGE_CONFIG en actualizar_noticias.py')
+              if 'rel="canonical"' not in head and "rel='canonical'" not in head:
+                  warns.append(f'::warning file={fname}::{fname} no tiene etiqueta canonical')
+          for w in warns:
+              print(w)
+          if not warns:
+              print('✅ SEO raíz: todas las páginas públicas están en el sitemap y tienen canonical')
+          PYEOF
+
       - name: Enviar URLs a IndexNow (Bing/Yandex)
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}

@@ -3,3 +3,9 @@
 # Variables secretas — nunca subir a GitHub
 .env
 venv/
+# Archivos de desarrollo/preview — nunca commitear
+preview-*.html
+test-*.html
+prototipo*.html
+demo-*.html
+*.py.bak

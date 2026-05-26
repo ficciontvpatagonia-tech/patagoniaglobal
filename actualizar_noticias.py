@@ -2956,15 +2956,44 @@ def actualizar_sitemap():
         except Exception:
             pass
 
-    static = [
-        ("https://globalpatagonia.org/",              today, "daily",   "1.0"),
-        ("https://globalpatagonia.org/agenda.html",   today, "daily",   "0.7"),
-        ("https://globalpatagonia.org/videos.html",   today, "weekly",  "0.7"),
-        ("https://globalpatagonia.org/clima.html",    today, "daily",   "0.7"),
-        ("https://globalpatagonia.org/acerca.html",   today, "monthly", "0.5"),
-        ("https://globalpatagonia.org/apoyanos.html", today, "monthly", "0.4"),
-        ("https://globalpatagonia.org/privacidad.html", today, "monthly", "0.3"),
-    ]
+    # Stubs de redirección, páginas error y páginas que nunca deben indexarse
+    # Regla: o están aquí, o tienen <meta name="robots" content="noindex"> en el HTML
+    _EXCLUDE_ROOT = {
+        'index.html',           # servido como / — ya está en la lista
+        'nota.html',            # stub redirect
+        'guia.html',            # stub redirect
+        '404.html',             # página de error
+        'buscar.html',          # UI de búsqueda
+        'colaboradores.html',   # noindex (Apps Script pendiente)
+        'publicidad.html',      # noindex
+        'prototipo.html',       # página de desarrollo
+        'demo-noticias-reales.html',    # página de desarrollo
+        'edicion-29-marzo-2026.html',   # edición vieja de prueba
+    }
+    # Overrides de prioridad/frecuencia para páginas conocidas
+    _PAGE_CONFIG = {
+        'agenda.html':     ("daily",   "0.7"),
+        'videos.html':     ("weekly",  "0.7"),
+        'clima.html':      ("daily",   "0.7"),
+        'acerca.html':     ("monthly", "0.5"),
+        'apoyanos.html':   ("monthly", "0.4"),
+        'privacidad.html': ("monthly", "0.3"),
+    }
+    static = [("https://globalpatagonia.org/", today, "daily", "1.0")]
+    for _fname in sorted(os.listdir(base)):
+        if not _fname.endswith('.html') or not os.path.isfile(os.path.join(base, _fname)):
+            continue
+        if _fname in _EXCLUDE_ROOT:
+            continue
+        try:
+            with open(os.path.join(base, _fname), encoding='utf-8') as _fh:
+                _head = _fh.read(20000)
+            if 'noindex' in _head:
+                continue  # página excluida explícitamente — no va al sitemap
+        except Exception:
+            continue
+        _freq, _prio = _PAGE_CONFIG.get(_fname, ("monthly", "0.5"))
+        static.append((f"https://globalpatagonia.org/{_fname}", today, _freq, _prio))
 
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
