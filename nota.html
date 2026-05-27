@@ -22,7 +22,13 @@
         var lang = params.get('lang');
         var target = '/notas/' + id + (lang ? '-' + lang : '') + '.html';
         var canonicalUrl = 'https://globalpatagonia.org/notas/' + id + (lang ? '-' + lang : '') + '.html';
+        // Fix canonical: apuntar a la nota, no al inicio
         document.getElementById('canonical-tag').href = canonicalUrl;
+        // Fix meta-refresh: apuntar a la nota, no al inicio (importante para Googlebot sin JS)
+        var metaRefresh = document.getElementById('meta-refresh');
+        if (metaRefresh) metaRefresh.setAttribute('content', '0; url=' + target);
+        // Marcar modo redirect: evita que el script principal renderice contenido en esta URL
+        window.__NOTA_REDIRECTING = true;
         // Fallback no-JS: muestra enlace visible al contenido canónico (evita soft 404)
         var loadingEl = document.getElementById('loading');
         if (loadingEl) loadingEl.innerHTML = 'Redirigiendo a <a href="' + target + '">' + canonicalUrl + '</a>...';
@@ -951,6 +957,9 @@ function buscarNota(data, id) {
 const id = getParam("id");
 if (!id) {
   document.getElementById("loading").textContent = "Nota no encontrada.";
+} else if (window.__NOTA_REDIRECTING) {
+  // El IIFE en <head> ya inició window.location.replace() hacia /notas/X.html
+  // No renderizar contenido aquí: evita que nota.html?id=X sea indexada como duplicado
 } else {
   // Busca en noticias.json, historias.json, propios.json, negocios.json, turismo.json y historial.json
   Promise.all([
