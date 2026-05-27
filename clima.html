@@ -3,36 +3,36 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>El Tiempo en la Patagonia — GLOBALpatagonia</title>
-  <meta name="description" content="Pronóstico del tiempo en tiempo real para 17 ciudades de la Patagonia argentina y chilena, y 10 bases antárticas. Temperatura, viento, nieve, UV y meteograma 48h para Bariloche, Ushuaia, El Chaltén, Neuquén, Punta Arenas y más."/>
+  <title>Clima Bariloche hoy — Pronóstico 7 días · GLOBALpatagonia</title>
+  <meta name="description" content="Pronóstico del tiempo en Bariloche (Río Negro) para hoy y los próximos 7 días. Temperatura actual, viento, nieve, UV y meteograma 48h. Patagonia Argentina."/>
   <meta name="keywords" content="clima patagonia, tiempo patagonia, pronóstico patagonia, temperatura bariloche, tiempo ushuaia, clima el calafate, pronóstico neuquén, tiempo punta arenas, viento patagonia, nieve patagonia, meteorología patagónica, pronóstico 7 días patagonia, tiempo antártida, bases antárticas clima, meteo patagonia, temperatura el chaltén, tiempo puerto madryn, clima coyhaique"/>
   <meta name="robots" content="index, follow"/>
   <meta name="author" content="GLOBALpatagonia"/>
-  <link rel="canonical" href="https://globalpatagonia.org/clima.html"/>
+  <link rel="canonical" href="https://globalpatagonia.org/clima.html?ciudad=bariloche&pais=ar"/>
   <link rel="alternate" type="application/rss+xml" title="GLOBALpatagonia — Feed de noticias" href="https://globalpatagonia.org/feed.xml"/>
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#1c2d3d">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <meta property="og:title" content="El Tiempo en la Patagonia — GLOBALpatagonia"/>
-  <meta property="og:description" content="Pronóstico en tiempo real para 17 ciudades patagónicas y 10 bases antárticas. Temperatura, viento, nieve y meteograma 48h. Datos para escaladores, esquiadores y aventureros."/>
-  <meta property="og:url" content="https://globalpatagonia.org/clima.html"/>
+  <meta property="og:title" content="Clima Bariloche hoy — Pronóstico 7 días · GLOBALpatagonia"/>
+  <meta property="og:description" content="Pronóstico del tiempo en Bariloche (Río Negro) para hoy y los próximos 7 días. Temperatura actual, viento, nieve, UV y meteograma 48h. Patagonia Argentina."/>
+  <meta property="og:url" content="https://globalpatagonia.org/clima.html?ciudad=bariloche&pais=ar"/>
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="GLOBALpatagonia"/>
   <meta property="og:image" content="https://globalpatagonia.org/fotos/AMBIENTE/torres-del-paine.webp"/>
   <meta property="og:locale" content="es_AR"/>
   <meta property="fb:pages" content="1514791080208880"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="El Tiempo en la Patagonia — GLOBALpatagonia"/>
-  <meta name="twitter:description" content="Pronóstico en tiempo real para 17 ciudades patagónicas y 10 bases antárticas. Temperatura, viento, nieve, UV y meteograma 48h."/>
+  <meta name="twitter:title" content="Clima Bariloche hoy — Pronóstico 7 días · GLOBALpatagonia"/>
+  <meta name="twitter:description" content="Pronóstico del tiempo en Bariloche (Río Negro) para hoy y los próximos 7 días. Temperatura actual, viento, nieve, UV y meteograma 48h."/>
   <meta name="twitter:image" content="https://globalpatagonia.org/fotos/AMBIENTE/torres-del-paine.webp"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "El Tiempo en la Patagonia — GLOBALpatagonia",
-    "url": "https://globalpatagonia.org/clima.html",
-    "description": "Pronóstico meteorológico en tiempo real para 17 ciudades de la Patagonia argentina y chilena, y 10 bases antárticas.",
+    "name": "Clima Bariloche hoy — Pronóstico 7 días · GLOBALpatagonia",
+    "url": "https://globalpatagonia.org/clima.html?ciudad=bariloche&pais=ar",
+    "description": "Pronóstico del tiempo en Bariloche (Río Negro) para hoy y los próximos 7 días. Temperatura actual, viento, nieve, UV y meteograma 48h.",
     "inLanguage": "es",
     "publisher": {
       "@type": "NewsMediaOrganization",
@@ -374,7 +374,7 @@
 
 <!-- HERO -->
 <div class="clima-hero">
-  <h1 id="clima-h1">El Tiempo en la Patagonia</h1>
+  <h1 id="clima-h1">El Tiempo en Bariloche</h1>
   <p>Pronóstico 7 días · Datos profesionales para el terreno · Open-Meteo ECMWF/GFS</p>
 </div>
 
@@ -732,8 +732,8 @@ function selectCity(city) {
   history.replaceState(null,'',`?ciudad=${city.id}&pais=${cc}`);
   // SEO: update title, description, canonical y H1 por ciudad
   const _countryLabel = cc === 'cl' ? 'Patagonia Chilena' : cc === 'ant' ? 'Antártida' : 'Patagonia Argentina';
-  const _seoTitle = `Clima en ${city.name} hoy — Pronóstico 7 días · GLOBALpatagonia`;
-  const _seoDesc  = `Pronóstico del tiempo en ${city.name} (${city.region}) para hoy y los próximos 7 días. Temperatura actual, viento, nieve, UV y meteograma 48h. ${_countryLabel}.`;
+  const _seoTitle = `Clima ${city.name} hoy — Pronóstico 7 días · GLOBALpatagonia`;
+  const _seoDesc  = `Clima y pronóstico del tiempo en ${city.name} (${city.region}) para hoy y los próximos 7 días. Temperatura, viento, nieve, UV y meteograma 48h.`;
   const _seoUrl   = `https://globalpatagonia.org/clima.html?ciudad=${city.id}&pais=${cc}`;
   document.title = _seoTitle;
   document.querySelector('meta[name="description"]').content = _seoDesc;
