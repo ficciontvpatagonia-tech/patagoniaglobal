@@ -657,7 +657,7 @@ function renderRelacionadas(data, idActual, categoriaActual) {
       ? `<img class="rel-img" src="${n.imagen}" alt="${n.titulo}" onerror="this.style.display='none'">`
       : `<div class="rel-img"></div>`;
     return `
-      <a class="rel-card" href="/notas/${n.id}.html" style="text-decoration:none;color:inherit;display:block;">
+      <a class="rel-card" href="${'/notas/'+n.id+'.html'}" style="text-decoration:none;color:inherit;display:block;">
         ${img}
         <div class="rel-body">
           <div class="rel-tag">${normTag(n.tag) || "Patagonia"}</div>
@@ -1029,10 +1029,6 @@ if (!id) {
   "prerender": [{
     "where": { "href_matches": "/notas/*" },
     "eagerness": "moderate"
-  }],
-  "prefetch": [{
-    "where": { "href_matches": "/nota.html*" },
-    "eagerness": "conservative"
   }]
 }
 </script>

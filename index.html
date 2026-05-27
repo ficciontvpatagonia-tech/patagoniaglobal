@@ -2280,7 +2280,7 @@ function renderGuias(guias) {
       ? `background-image:url('${g.imagen}');background-size:cover;background-position:center;`
       : "background:linear-gradient(135deg,#1c2d3d,#3a5a7a);";
     return `
-      <a href="/notas/${g.id}.html" class="destino-card">
+      <a href="${'/notas/'+g.id+'.html'}" class="destino-card">
         <div class="destino-header" style="${bg}">
           <div class="destino-nombre">${g.destino}</div>
         </div>
@@ -2308,7 +2308,7 @@ function renderNegocios(arts) {
       ? `background-image:url('${a.imagen}');background-size:cover;background-position:center;`
       : "background:linear-gradient(135deg,#1a2a1a,#2d4a2d);";
     return `
-      <a href="/notas/${a.id}.html" class="negocio-card">
+      <a href="${'/notas/'+a.id+'.html'}" class="negocio-card">
         <div class="negocio-img" style="${bg}">
           <span class="negocio-tag">${normTag(a.tag) || 'Economía'}</span>
         </div>
@@ -2338,7 +2338,7 @@ function renderCultura(arts) {
     const tag = normTag(a.tag) || a.categoria || "Cultura";
     const meta = a.meta || "";
     return `
-      <a href="/notas/${a.id}.html" style="text-decoration:none;color:inherit;">
+      <a href="${'/notas/'+a.id+'.html'}" style="text-decoration:none;color:inherit;">
       <div class="historia-card">
         <div class="hist-img" style="${bg}height:180px;"></div>
         <div class="hist-badge" style="background:#3a5a7a;">${tag}</div>
@@ -2464,10 +2464,6 @@ fetch("propios.json")
   "prerender": [{
     "where": { "href_matches": "/notas/*" },
     "eagerness": "moderate"
-  }],
-  "prefetch": [{
-    "where": { "href_matches": "/*.html" },
-    "eagerness": "conservative"
   }]
 }
 </script>
