@@ -9,7 +9,8 @@
   <meta name="theme-color" content="#1c2d3d">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta name="robots" content="noindex, follow"/>
-  <link rel="canonical" id="guia-canonical"/>
+  <meta http-equiv="refresh" content="0; url=https://globalpatagonia.org/"/>
+  <link rel="canonical" id="guia-canonical" href="https://globalpatagonia.org/"/>
   <script>
     (function() {
       var params = new URLSearchParams(window.location.search);
@@ -509,7 +510,7 @@
   </div>
   <div class="header-main">
     <div class="logo-tagline">Sur Global · Principio de todo</div>
-    <a href="index.html">
+    <a href="/">
       <img src="logo.svg" alt="GLOBALpatagonia" class="logo-img"
            onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
       <div style="display:none;font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:white">
@@ -518,9 +519,9 @@
     </a>
   </div>
   <nav>
-    <a href="index.html">Inicio</a>
-    <a href="index.html#sec-noticias">Noticias</a>
-    <a href="index.html#sec-turismo">Turismo en Patagonia</a>
+    <a href="/">Inicio</a>
+    <a href="/#sec-noticias">Noticias</a>
+    <a href="/#sec-turismo">Turismo en Patagonia</a>
     <a href="agenda.html">Agenda</a>
     <a href="videos.html">Cinemateca</a>
     <a href="acerca.html">Acerca de</a>
@@ -538,7 +539,7 @@
 </div>
 
 <div class="container">
-  <a href="index.html#sec-guias" class="volver">← Volver a guías</a>
+  <a href="/#sec-guias" class="volver">← Volver a guías</a>
 
   <!-- DESCRIPCIÓN -->
   <div class="guia-section">
@@ -587,12 +588,12 @@
   <div class="footer-logo">GLOBAL<span>patagonia</span></div>
   <div class="footer-tagline">Argentina · Chile · Sin fronteras</div>
   <div class="footer-nav">
-    <a href="index.html#inicio">Inicio</a>
-    <a href="index.html#sec-noticias">Noticias</a>
-    <a href="index.html#sec-turismo">Turismo en Patagonia</a>
-    <a href="index.html#sec-deportes">Deportes & Aventura</a>
-    <a href="index.html#sec-negocios">Economía & Empresas</a>
-    <a href="index.html#sec-historia">Cultura Patagónica</a>
+    <a href="/#inicio">Inicio</a>
+    <a href="/#sec-noticias">Noticias</a>
+    <a href="/#sec-turismo">Turismo en Patagonia</a>
+    <a href="/#sec-deportes">Deportes & Aventura</a>
+    <a href="/#sec-negocios">Economía & Empresas</a>
+    <a href="/#sec-historia">Cultura Patagónica</a>
     <a href="acerca.html">Acerca de</a>
     <a href="privacidad.html">Privacidad</a>
   </div>
@@ -713,7 +714,7 @@
 
     // Ocultar secciones estándar y reemplazar container
     const container = document.querySelector('.container');
-    let html = `<a href="index.html#sec-guias" class="volver">← Back to guides</a>`;
+    let html = `<a href="/#sec-guias" class="volver">← Back to guides</a>`;
 
     (guia.secciones || []).forEach(sec => {
       html += `<div class="ext-section" id="ext-${sec.id}"><h2 class="ext-h2">${sec.h2}</h2>`;

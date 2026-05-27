@@ -10,6 +10,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta name="description" content="Noticias de la Patagonia argentina y chilena — GLOBALpatagonia"/>
   <meta name="robots" id="robots-meta" content="noindex, follow"/>
+  <meta http-equiv="refresh" id="meta-refresh" content="0; url=https://globalpatagonia.org/"/>
   <link rel="alternate" type="application/rss+xml" title="GLOBALpatagonia — Feed de noticias" href="https://globalpatagonia.org/feed.xml"/>
   <link rel="canonical" id="canonical-tag" href="https://globalpatagonia.org/"/>
   <script>
@@ -571,7 +572,7 @@
   </div>
   <div class="header-main">
     <div class="logo-tagline">Sur Global, principio de todo.</div>
-    <a href="index.html" style="text-decoration:none">
+    <a href="/" style="text-decoration:none">
       <img src="logo-globalpatagonia.png" alt="GLOBALpatagonia" class="logo-img">
     </a>
   </div>
@@ -580,11 +581,11 @@
       <span></span><span></span><span></span>
     </button>
     <div class="nav-links" id="nav-links">
-      <a href="index.html">Inicio</a>
-      <a href="index.html#sec-noticias">Noticias</a>
-      <a href="index.html#sec-deportes">Deportes & Actividades</a>
-      <a href="index.html#sec-turismo">Turismo & Guías</a>
-      <a href="index.html#sec-historia">Cultura Patagónica</a>
+      <a href="/">Inicio</a>
+      <a href="/#sec-noticias">Noticias</a>
+      <a href="/#sec-deportes">Deportes & Actividades</a>
+      <a href="/#sec-turismo">Turismo & Guías</a>
+      <a href="/#sec-historia">Cultura Patagónica</a>
       <a href="agenda.html">Agenda</a>
       <a href="clima.html">Clima</a>
       <a href="videos.html">Cinemateca</a>
@@ -753,7 +754,7 @@ function renderNota(nota, fechaDisplay, data) {
     "cultura": "sec-historia", "economía": "sec-negocios", "negocios": "sec-negocios"
   };
   const anchorKey = Object.keys(seccionAnchors).find(k => seccionNombre.toLowerCase().includes(k));
-  const seccionUrl = "https://globalpatagonia.org/index.html#" + (seccionAnchors[anchorKey] || "sec-noticias");
+  const seccionUrl = "https://globalpatagonia.org/#" + (seccionAnchors[anchorKey] || "sec-noticias");
   const breadcrumbEl = document.getElementById("jsonld-breadcrumb");
   if (breadcrumbEl) {
     breadcrumbEl.textContent = JSON.stringify({
@@ -770,7 +771,7 @@ function renderNota(nota, fechaDisplay, data) {
   // Breadcrumb visible
   const bcEl = document.getElementById("breadcrumb");
   if (bcEl) {
-    bcEl.innerHTML = `<a href="index.html">Inicio</a> › <a href="${seccionUrl}">${seccionNombre}</a> › <span>${nota.titulo}</span>`;
+    bcEl.innerHTML = `<a href="/">Inicio</a> › <a href="${seccionUrl}">${seccionNombre}</a> › <span>${nota.titulo}</span>`;
   }
 
   // Imagen
