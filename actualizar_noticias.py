@@ -2436,22 +2436,22 @@ def generar_paginas_og(notas):
   </div>
   <div class="header-main">
     <div class="logo-tagline">Sur Global, principio de todo.</div>
-    <a href="../index.html" style="text-decoration:none">
+    <a href="../" style="text-decoration:none">
       <img src="../logo-globalpatagonia.png" alt="GLOBALpatagonia" class="logo-img"/>
     </a>
   </div>
   <nav>
-    <a href="../index.html">Inicio</a>
-    <a href="../index.html#sec-noticias">Noticias</a>
-    <a href="../index.html#sec-deportes">Deportes &amp; Actividades</a>
-    <a href="../index.html#sec-turismo">Turismo &amp; Guías</a>
-    <a href="../index.html#sec-historia">Cultura Patagónica</a>
+    <a href="../">Inicio</a>
+    <a href="../#sec-noticias">Noticias</a>
+    <a href="../#sec-deportes">Deportes &amp; Actividades</a>
+    <a href="../#sec-turismo">Turismo &amp; Guías</a>
+    <a href="../#sec-historia">Cultura Patagónica</a>
     <a href="../buscar.html">Buscar</a>
   </nav>
 </header>
 
 <div class="container">
-  <a href="../index.html" class="volver">← Inicio</a>
+  <a href="../" class="volver">← Inicio</a>
   <article>
     {f'<div class="nota-tag">{e(tag)}</div>' if tag else ''}
     <h1 class="nota-titulo">{e(titulo)}</h1>
@@ -2646,22 +2646,22 @@ def generar_paginas_temas(notas_all):
   </div>
   <div class="header-main">
     <div class="logo-tagline">Sur Global, principio de todo.</div>
-    <a href="../index.html" style="text-decoration:none">
+    <a href="../" style="text-decoration:none">
       <img src="../logo-globalpatagonia.png" alt="GLOBALpatagonia" class="logo-img"/>
     </a>
   </div>
   <nav>
-    <a href="../index.html">Inicio</a>
-    <a href="../index.html#sec-noticias">Noticias</a>
-    <a href="../index.html#sec-deportes">Deportes &amp; Actividades</a>
-    <a href="../index.html#sec-turismo">Turismo &amp; Guías</a>
-    <a href="../index.html#sec-historia">Cultura Patagónica</a>
+    <a href="../">Inicio</a>
+    <a href="../#sec-noticias">Noticias</a>
+    <a href="../#sec-deportes">Deportes &amp; Actividades</a>
+    <a href="../#sec-turismo">Turismo &amp; Guías</a>
+    <a href="../#sec-historia">Cultura Patagónica</a>
     <a href="../buscar.html">Buscar</a>
   </nav>
 </header>
 
 <div class="container">
-  <a href="../index.html" class="volver">← Inicio</a>
+  <a href="../" class="volver">← Inicio</a>
   <div class="page-header">
     <div class="page-tag">Tema</div>
     <h1 class="page-titulo">{e(label)}</h1>
