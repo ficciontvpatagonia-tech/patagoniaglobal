@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260527-mtb-patagonico-el-andino-bariloche-lleva-pilotos-al-dep",
+    "id": "20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep",
     "tag": "🏃 Deportes",
-    "titulo": "MTB patagónico: el Andino Bariloche lleva pilotos al Campeonato de Descenso",
-    "bajada": "Alumnos de la Escuela de Mountain Bike del Club Andino Bariloche participaron en la segunda fecha del Campeonato Patagónico de Descenso disputada en El Chocón, con importante convocatoria regional.",
-    "imagen": "fotos/foto-20260527-mtb-patagonico-el-andino-bariloche-lleva-pilotos-al-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche"
+    "titulo": "Rosa Fénix: el equipo inclusivo de Neuquén que cruzó el Atlántico",
+    "bajada": "El equipo neuquino Rosa Fénix, integrado por personas con diversidad funcional, representó a la Patagonia en el Festival Internacional de Dragon Boat en España y dejó una huella que va mucho más allá del deporte.",
+    "imagen": "fotos/foto-20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep.webp",
+    "meta": "Hoy · Diario Río Negro"
   },
   "secundarias": [
+    {
+      "id": "20260527-mtb-patagonico-el-andino-bariloche-lleva-pilotos-al-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "MTB patagónico: el Andino Bariloche lleva pilotos al Campeonato de Descenso",
+      "bajada": "Alumnos de la Escuela de Mountain Bike del Club Andino Bariloche participaron en la segunda fecha del Campeonato Patagónico de Descenso disputada en El Chocón, con importante convocatoria regional.",
+      "imagen": "fotos/foto-20260527-mtb-patagonico-el-andino-bariloche-lleva-pilotos-al-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20260526-rally-de-natales-2026-29-binomios-cruzan-la-frontera-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Cuatro tripulaciones de Porvenir integran la delegación de Tierra del Fuego chilena para la segunda fecha del Rally 2026, que reunirá a competidores de ambos lados de la frontera el 30 y 31 de mayo.",
       "imagen": "fotos/foto-20260526-rally-de-natales-2026-29-binomios-cruzan-la-frontera-dep.webp",
       "meta": "Hoy · La Prensa Austral"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260523-un-magallanico-se-corono-campeon-en-el-torneo-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Leonardo Pallacar, representante puntarenense, ganó el torneo 'La Patagonia Rebelde 8' celebrado en el Complejo Municipal 11 de Julio de Las Heras, Santa Cruz.",
       "imagen": "fotos/foto-20260523-un-magallanico-se-corono-campeon-en-el-torneo-dep.webp",
       "meta": "Hoy · La Prensa Austral (Magallanes)"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260522-escuela-de-mtb-del-andino-bariloche-compite-en-el-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El centro de esquí más grande de Sudamérica abre la preventa de pases diarios para la temporada 2026, exclusivamente en efectivo, mientras la comunidad barilochense se prepara para el invierno.",
       "imagen": "fotos/foto-20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
-    {
-      "id": "20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "ADN ambiental: la ciencia que lee la vida marina invisible en la Antártida",
-      "bajada": "Investigadores chilenos utilizan técnicas de ADN ambiental para mapear la biodiversidad de metazoos marinos en la península Antártica, una herramienta clave ante el retroceso glaciar acelerado.",
-      "imagen": "fotos/foto-20260513-adn-ambiental-la-ciencia-que-lee-la-vida-marina-dep.webp",
-      "meta": "Hoy · INACH"
     }
   ]
 }
