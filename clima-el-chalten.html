@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior:smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clima El Chaltén hoy — Pronóstico 7 días · GLOBALpatagonia</title>
+  <meta name="description" content="Clima y pronóstico del tiempo en El Chaltén (Santa Cruz). Imprescindible antes de salir al trekking. Temperatura, viento, nieve, UV y meteograma 48h para los próximos 7 días."/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="author" content="GLOBALpatagonia"/>
+  <link rel="canonical" href="https://globalpatagonia.org/clima-el-chalten.html"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1c2d3d">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:title" content="Clima El Chaltén hoy — Pronóstico 7 días · GLOBALpatagonia"/>
+  <meta property="og:description" content="Clima y pronóstico del tiempo en El Chaltén (Santa Cruz). Imprescindible antes de salir al trekking. Temperatura, viento, nieve, UV y meteograma 48h para los próximos 7 días."/>
+  <meta property="og:url" content="https://globalpatagonia.org/clima-el-chalten.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="GLOBALpatagonia"/>
+  <meta property="og:image" content="https://globalpatagonia.org/fotos/CIUDADES/chalten-fitz-roy-atardecer.webp"/>
+  <meta property="og:locale" content="es_AR"/>
+  <meta property="fb:pages" content="1514791080208880"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Clima El Chaltén hoy — Pronóstico 7 días · GLOBALpatagonia"/>
+  <meta name="twitter:description" content="Clima y pronóstico del tiempo en El Chaltén (Santa Cruz — imprescindible antes de salir al trekking. Pronóstico para hoy y los próximos 7 días. Temperatura, viento, nieve, UV y meteograma 48h."/>
+  <meta name="twitter:image" content="https://globalpatagonia.org/fotos/CIUDADES/chalten-fitz-roy-atardecer.webp"/>
+  <!-- Ciudad override: DEBE estar antes de clima-widget.js -->
+  <script>
+    window.__CLIMA_CIUDAD_DEFAULT = 'chalten';
+    window.__CLIMA_PAIS_DEFAULT   = 'ar';
+    window.__CLIMA_SKIP_CANONICAL_UPDATE = true;
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+  <link rel="stylesheet" href="clima.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'G-5FP2F41BZG');
+    });
+  </script>
+</head>
+<body>
+
+<header>
+  <div class="top-bar">
+    <span class="fecha" id="fecha-display"></span>
+    <a href="clima.html" class="clima-btn" id="topbar-clima-strip">🌤 <span id="topbar-temps">Bariloche · Neuquén · Pta. Arenas · Pto. Montt</span> ▸</a>
+  </div>
+  <div class="header-main">
+    <h1 class="sr-only">GLOBALpatagonia — El Tiempo en la Patagonia</h1>
+    <div class="logo-tagline">Sur Global, principio de todo.</div>
+    <picture>
+      <source srcset="logo-globalpatagonia.webp" type="image/webp">
+      <img src="logo-globalpatagonia.png" alt="GLOBALpatagonia" class="logo-img" width="1440" height="321" fetchpriority="high">
+    </picture>
+    <div class="logo-sub">Argentina · Chile · Sin fronteras</div>
+  </div>
+  <nav>
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="/">Inicio</a>
+      <a href="/#sec-noticias">Noticias</a>
+      <a href="/#sec-deportes">Deportes &amp; Aventura</a>
+      <a href="/#sec-turismo">Turismo en Patagonia</a>
+      <a href="/#sec-guias">Guías</a>
+      <a href="/#sec-negocios">Economía</a>
+      <a href="/#sec-historia">Cultura Patagónica</a>
+      <a href="agenda.html">Agenda</a>
+      <a href="clima.html" class="active">Clima</a>
+      <a href="videos.html">Cinemateca</a>
+    </div>
+    <a href="buscar.html" class="nav-search-btn" aria-label="Buscar">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+    </a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="clima-hero">
+  <h1 id="clima-h1">El Tiempo en El Chaltén</h1>
+  <p>Pronóstico 7 días · Datos profesionales para el terreno · Open-Meteo ECMWF/GFS</p>
+</div>
+
+<!-- SELECTOR (sticky) -->
+<div class="selector-section">
+  <div class="selector-inner">
+    <div class="country-tabs">
+      <button class="country-tab active" id="tab-ar" onclick="switchCountry('ar')">🇦🇷 Argentina</button>
+      <button class="country-tab" id="tab-cl" onclick="switchCountry('cl')">🇨🇱 Chile</button>
+      <button class="country-tab" id="tab-ant" onclick="switchCountry('ant')">❄️ Antártida</button>
+    </div>
+    <div class="city-grid" id="city-grid"></div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <div class="loading-state" id="loading">
+    <div class="spinner"></div>
+    <p id="loading-text">Cargando datos meteorológicos...</p>
+  </div>
+  <div class="error-state" id="error-state" style="display:none">
+    <p>⚠️ No se pudieron obtener datos. Verificá tu conexión e intentá de nuevo.</p>
+  </div>
+
+  <section class="current-section" id="current-section" style="display:none">
+    <div class="section-label">Condiciones actuales</div>
+    <div class="current-card">
+      <div class="cc-main">
+        <div class="cc-location" id="cc-location"></div>
+        <span class="cc-emoji" id="cc-emoji"></span>
+        <div class="cc-temp" id="cc-temp"></div>
+        <div class="cc-apparent" id="cc-apparent"></div>
+        <div class="cc-desc" id="cc-desc"></div>
+      </div>
+      <div class="cc-details">
+        <div class="cc-detail-row"><span class="cc-detail-icon">💧</span><div><div class="cc-detail-label">Humedad</div><div class="cc-detail-value" id="cc-humidity"></div></div></div>
+        <div class="cc-detail-row"><span class="cc-detail-icon">📊</span><div><div class="cc-detail-label">Presión</div><div class="cc-detail-value" id="cc-pressure"></div></div></div>
+        <div class="cc-detail-row"><span class="cc-detail-icon">🌡️</span><div><div class="cc-detail-label">Punto de rocío</div><div class="cc-detail-value" id="cc-dewpoint"></div></div></div>
+        <div class="cc-detail-row"><span class="cc-detail-icon">👁️</span><div><div class="cc-detail-label">Visibilidad</div><div class="cc-detail-value" id="cc-visibility"></div></div></div>
+      </div>
+      <div class="cc-wind">
+        <div class="cc-wind-label">Viento</div>
+        <div class="cc-wind-arrow" id="cc-wind-arrow">↑</div>
+        <div class="cc-wind-speed" id="cc-wind-speed"></div>
+        <div class="cc-wind-unit">km/h</div>
+        <div class="cc-wind-dir" id="cc-wind-dir"></div>
+        <div class="cc-wind-gust" id="cc-wind-gust"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="forecast-section" id="forecast-section" style="display:none">
+    <div class="section-label">Pronóstico 7 días</div>
+    <div class="forecast-strip" id="forecast-strip"></div>
+  </section>
+
+  <section class="pro-section" id="pro-section" style="display:none">
+    <div class="pro-header">
+      <span class="pro-badge">⛰ Datos para el Terreno</span>
+      <div class="pro-title">Pronóstico Profesional</div>
+      <div class="pro-line"></div>
+    </div>
+    <p class="pro-subtitle">Variables avanzadas para escaladores, esquiadores y expedicionarios — próximas 48 horas</p>
+    <div id="risk-card"></div>
+    <div class="altitude-card">
+      <div class="section-label" style="margin-bottom:12px">Viento por altitud — Próximas 6 horas</div>
+      <table class="alt-table">
+        <thead><tr><th>Nivel</th><th>Referencia</th><th>Velocidad</th><th class="wind-bar-cell">Intensidad</th><th>Ráfaga</th></tr></thead>
+        <tbody id="alt-table-body"></tbody>
+      </table>
+    </div>
+    <div class="section-label">Indicadores clave — Próximas 48 horas</div>
+    <div class="metrics-grid" id="metrics-grid"></div>
+    <div class="meteogram-card" style="margin-top:20px">
+      <div class="meteogram-title">📈 Meteograma — Próximas 48 horas</div>
+      <div class="meteogram-legend">
+        <span class="legend-item"><span class="legend-dot temp"></span> Temperatura (°C)</span>
+        <span class="legend-item"><span class="legend-dot wind10"></span> Viento 10m (km/h)</span>
+        <span class="legend-item" style="align-items:flex-start"><span style="display:flex;align-items:center;gap:4px"><span style="width:16px;height:2px;background:#5a8db5;border-top:2px dashed #7aadcc;display:inline-block"></span></span> Viento 80m</span>
+        <span class="legend-item"><span style="width:10px;height:14px;background:rgba(80,140,210,.75);border-radius:2px;display:inline-block"></span> Precipitación (mm)</span>
+      </div>
+      <div class="chart-wrapper"><canvas id="meteogram-chart" height="200"></canvas></div>
+      <div style="margin-top:12px"><canvas id="precip-chart" height="80"></canvas></div>
+    </div>
+    <div class="windy-card" style="margin-top:20px">
+      <div class="windy-header">
+        <div class="windy-header-left"><span class="windy-title">🗺 Mapa en vivo · Isobaras activas</span></div>
+        <div class="windy-layers">
+          <button class="windy-layer-btn active" onclick="setWindyLayer('wind',this)">💨 Viento</button>
+          <button class="windy-layer-btn" onclick="setWindyLayer('rain',this)">🌧 Lluvia</button>
+          <button class="windy-layer-btn" onclick="setWindyLayer('temp',this)">🌡 Temperatura</button>
+          <button class="windy-layer-btn" onclick="setWindyLayer('clouds',this)">☁️ Nubes</button>
+          <button class="windy-layer-btn" onclick="setWindyLayer('snow',this)">❄️ Nieve</button>
+          <button class="windy-layer-btn" onclick="setWindyLayer('pressure',this)">📊 Presión</button>
+        </div>
+      </div>
+      <div class="windy-iframe-wrap">
+        <iframe id="windy-iframe" allowfullscreen loading="lazy"
+          src="https://embed.windy.com/embed2.html?lat=-45&lon=-70&zoom=4&level=surface&overlay=wind&product=ecmwf&isolines=pressure&menu=&message=true&marker=true&metricWind=km%2Fh&metricTemp=%C2%B0C">
+        </iframe>
+      </div>
+      <div class="windy-credit">Mapa: <a href="https://www.windy.com" target="_blank" rel="noopener">Windy.com</a> · Modelo ECMWF · Isobaras de presión</div>
+    </div>
+  </section>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="footer-logo" style="color:white">GLOBAL<span style="color:#8ab8d4">patagonia</span></div>
+  <div class="footer-tagline">Argentina · Chile · Sin fronteras</div>
+  <div class="footer-nav">
+    <a href="/">Inicio</a>
+    <a href="/#sec-noticias">Noticias</a>
+    <a href="/#sec-turismo">Turismo en Patagonia</a>
+    <a href="/#sec-deportes">Deportes &amp; Aventura</a>
+    <a href="agenda.html">Agenda</a>
+    <a href="clima.html">Clima</a>
+    <a href="acerca.html">Acerca de</a>
+    <a href="privacidad.html">Privacidad</a>
+  </div>
+  <div class="footer-copy">© 2026 GLOBALpatagonia · globalpatagonia.org · Argentina · Chile</div>
+</footer>
+
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+OneSignalDeferred.push(async function(OneSignal) {{
+  await OneSignal.init({{ appId: "d351217a-5fe8-4af2-bb35-fffdafb5e30f", notifyButton: {{ enable: true }} }});
+}});
+</script>
+<script src="clima-widget.js"></script>
+</body>
+</html>
