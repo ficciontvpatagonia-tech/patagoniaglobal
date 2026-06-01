@@ -2387,7 +2387,7 @@ function renderInformes(propios) {
     html += '<div class="informes-lista">';
     secundarias.forEach(n => {
       const bgSec = n.imagen
-        ? `background-image:url('${n.imagen}');background-size:cover;background-position:center;`
+        ? `background-image:url('${n.imagen}');background-size:cover;background-position:${n.imagen_position || 'center'};`
         : "background:linear-gradient(135deg,#1c2d3d,#3a5a7a);";
       html += `
         <div class="informe-item" onclick="irANota('${n.id}')">
@@ -2408,7 +2408,7 @@ function renderInformes(propios) {
     html += '<div class="informes-mini-grid">';
     mini.forEach(n => {
       const bgMini = n.imagen
-        ? `background-image:url('${n.imagen}');background-size:cover;background-position:center;`
+        ? `background-image:url('${n.imagen}');background-size:cover;background-position:${n.imagen_position || 'center'};`
         : "background:linear-gradient(135deg,#1c2d3d,#3a5a7a);";
       html += `
         <div class="informe-mini" onclick="irANota('${n.id}')">
