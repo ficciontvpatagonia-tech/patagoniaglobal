@@ -25,7 +25,7 @@ try:
 except ImportError:
     PIL_OK = False
 
-BASE      = Path(__file__).parent
+BASE      = Path(__file__).parent.parent  # raíz del repo (un nivel arriba de _scripts/)
 FOTOS_DIR = BASE / "fotos"
 
 MAX_WIDTH  = 1200   # px — ancho máximo web

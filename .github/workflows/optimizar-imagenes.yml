@@ -34,7 +34,7 @@ jobs:
 
       - name: Optimizar imágenes
         id: opt
-        run: python3 optimizar_imagenes.py
+        run: python3 _scripts/optimizar_imagenes.py
 
       - name: Detectar cambios
         id: cambios
