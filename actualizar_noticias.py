@@ -2356,9 +2356,12 @@ def generar_paginas_og(notas):
             "isPartOf": {"@type": "CreativeWork", "name": "GLOBALpatagonia"}
         }, ensure_ascii=False, indent=2)
 
+        autor     = nota.get("autor", "")
+        propio    = nota.get("propio", False)
+
         cuerpo_html = _render_cuerpo_html(cuerpo)
-        imagen_block = (f'<div class="nota-imagen-wrap"><img src="{ea(imagen_abs)}" '
-                        f'alt="{ea(titulo)}" class="nota-imagen" loading="eager"/></div>'
+        imagen_block = (f'<div class="nota-imagen-wrap" style="background-image:url(\'{ea(imagen_abs)}\')" '
+                        f'role="img" aria-label="{ea(titulo)}"></div>'
                         if imagen else '<div class="nota-imagen-placeholder"></div>')
 
         html_out = f"""<!DOCTYPE html>
@@ -2412,8 +2415,8 @@ def generar_paginas_og(notas):
     .nota-meta{{font-size:11px;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid #e0ddd8;}}
     .nota-fuente{{margin-top:40px;padding:16px 20px;background:white;border-radius:4px;border-left:3px solid #5a6070;font-size:12px;color:#5a6070;}}
     .nota-fuente strong{{color:#252830;}}
-    .nota-imagen-wrap{{width:100%;background:#0e1a26;border-radius:4px;margin-bottom:32px;display:flex;justify-content:center;align-items:center;overflow:hidden;max-height:480px;}}
-    .nota-imagen{{width:100%;max-height:480px;object-fit:contain;display:block;}}
+    .nota-imagen-wrap{{width:100%;height:420px;background-size:cover;background-position:center;border-radius:4px;margin-bottom:32px;overflow:hidden;}}
+    .autor-avatar{{width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #7aadcc;vertical-align:middle;margin-right:6px;}}
     .nota-imagen-placeholder{{width:100%;height:320px;background:linear-gradient(160deg,#0e1a26 0%,#1c2d3d 45%,#4a7a9a 100%);border-radius:4px;margin-bottom:32px;}}
     .nota-cuerpo p{{font-size:17.5px;line-height:1.85;color:#2a2a2a;margin-bottom:24px;}}
     .nota-cuerpo p:first-of-type{{font-size:20px;line-height:1.8;color:#1c2d3d;font-weight:400;border-left:4px solid #7aadcc;padding-left:20px;margin-bottom:32px;}}
@@ -2457,6 +2460,7 @@ def generar_paginas_og(notas):
     <h1 class="nota-titulo">{e(titulo)}</h1>
     {f'<p class="nota-bajada">{e(bajada)}</p>' if bajada else ''}
     <div class="nota-meta">
+      {f'<img src="../fotos/PERSONAJES/avatar-j-martineau.webp" alt="{ea(autor)}" class="autor-avatar"/><span>{e(autor)}</span>' if propio and autor else (f'<span>{e(autor)}</span>' if autor else '')}
       {f'<span>{e(pais_label)}</span>' if pais else ''}
       <span>{fecha_iso}</span>
     </div>
