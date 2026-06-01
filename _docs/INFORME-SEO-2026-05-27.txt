@@ -1,0 +1,134 @@
+INFORME FINAL — Auditoría SEO GLOBALpatagonia
+Fecha: 27/05/2026
+================================================================================
+
+
+1. HOME DUPLICADO — / vs /index.html
+================================================================================
+
+Diagnóstico real:
+El canonical en index.html ya apuntaba correctamente a https://globalpatagonia.org/
+(sin /index.html). La URL canónica estaba bien. El problema era que todos los
+links internos del sitio apuntaban a la versión no canónica (../index.html,
+index.html, index.html#sec-*), mandando señales contradictorias a los crawlers.
+
+Solución aplicada (sin server-side 301, que GitHub Pages no soporta):
+
+  Archivos                  | Cambios
+  --------------------------+-------------------------------------------------
+  388 notas (/notas/*.html) | 2.734 reemplazos ../index.html → ../
+  9 temas (/temas/*.html)   | 63 reemplazos ../index.html → ../
+  10 archivos raíz          | 65 reemplazos index.html → /
+  index.html (footer nav)   | 7 reemplazos index.html#sec-* → /#sec-*
+
+
+2. PROBLEMA /nota.html — "3 segundos de tiempo promedio"
+================================================================================
+
+Diagnóstico real:
+/nota.html ya tenía noindex y Disallow en robots.txt, y JS redirect instantáneo.
+Los 3 segundos eran el tiempo total de carga + redirect en JS (normal). El
+problema real era la ausencia de fallback para no-JS (Googlebot en primer render
+sin ejecutar scripts).
+
+Solución aplicada:
+- Añadido <meta http-equiv="refresh" content="0; url=https://globalpatagonia.org/">
+  como primera directiva de redirect (funciona sin JS)
+- Corregidos links del nav interno: index.html → /
+- Corregida la URL en breadcrumb JS: index.html# → /#
+- Corregida seccionUrl en JSON-LD BreadcrumbList: index.html# → /#
+
+Mismo fix aplicado a guia.html (mismo patrón, misma solución).
+
+
+3. PROBLEMA URLs -sec1 / -sec2 — DIAGNÓSTICO DIFERENTE AL ESPERADO
+================================================================================
+
+!! Las notas -sec1/-sec2 NO son páginas fragmentadas de un mismo artículo.
+Son artículos completamente independientes generados en el mismo batch diario:
+
+  20260407-1029-tapa.html  = nota principal del batch
+  20260407-1029-sec1.html  = segundo artículo del batch (tema diferente)
+  20260407-1029-sec2.html  = tercer artículo del batch (tema diferente)
+
+Cada una tiene su propio título, cuerpo, canonical URL, og:image y JSON-LD.
+No hay contenido duplicado ni paginación. Están correctamente indexadas en el
+sitemap. No se requiere consolidación ni redirect.
+
+El nombre puede ser confuso pero la estructura es correcta.
+
+
+4. CANONICAL TAGS — Auditoría completa
+================================================================================
+
+  Estado                              | Archivos
+  ------------------------------------+----------------------------------------
+  OK Correctos                        | 388 notas + 9 temas + index, acerca,
+                                      | agenda, apoyanos, buscar, clima,
+                                      | colaboradores, privacidad, publicidad,
+                                      | videos
+  OK Dynamic canonical (JS) + noindex | nota.html, guia.html
+  OK Apunta a nota canónica + noindex | preview-cerro-catedral.html
+  FIXED Canonical self + noindex,nof. | demo-noticias-reales.html
+                                      | edicion-29-marzo-2026.html
+                                      | prototipo.html
+  OK Sin canonical (correcto p/ 404)  | 404.html
+
+
+5. LINKS INTERNOS
+================================================================================
+
+- Links nota.html?id= en el sitio:       0 encontrados (ninguno existía)
+- Links nota.html?id= en scripts/JSONs:  0 encontrados
+- Todos los links usan ahora /notas/*.html o / como destino
+
+
+6. ROBOTS.TXT
+================================================================================
+
+Añadidos 4 Disallow que faltaban:
+
+  Disallow: /demo-noticias-reales.html
+  Disallow: /edicion-29-marzo-2026.html
+  Disallow: /prototipo.html
+  Disallow: /preview-cerro-catedral.html
+
+
+7. RESUMEN DE CAMBIOS
+================================================================================
+
+  Archivos modificados:   413 archivos en commit principal
+                          5 archivos adicionales (post-merge notas 27/05)
+  Redirects creados:      0 server-side (GitHub Pages no los soporta)
+                          2 meta-refresh añadidos (nota.html, guia.html)
+  Canonical tags:         3 añadidas (demo-noticias-reales, edicion-29-marzo,
+                          prototipo)
+                          1 guia.html: href vacío → href="https://globalpatagonia.org/"
+  Links internos fijos:   2.869 reemplazos totales
+  Robots.txt:             4 Disallow añadidos
+
+
+8. PROBLEMA PENDIENTE — DECISIÓN MANUAL REQUERIDA
+================================================================================
+
+El script actualizar_noticias.py genera notas nuevas con ../index.html en el
+nav/header de cada nota estática. El fix aplicado hoy corrige todas las notas
+existentes (388 + 5 del 27/05), pero cada ejecución del GitHub Action generará
+notas nuevas con el link incorrecto nuevamente.
+
+Opciones:
+
+  Opción 1 (RECOMENDADA):
+  Actualizar la plantilla en actualizar_noticias.py — cambiar las strings
+  href="../index.html" por href="../" para que las notas nuevas salgan
+  limpias desde el origen.
+
+  Opción 2:
+  Añadir un paso post-generación al GitHub Action que corra sed sobre las
+  notas nuevas después de generarlas.
+
+  Opción 3:
+  Dejarlo para el próximo SEO pass periódico.
+
+================================================================================
+Fin del informe
