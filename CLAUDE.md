@@ -101,10 +101,10 @@ Si la nota tiene `titulo_en`/`titulo_pt`, aparece automáticamente el switcher E
 GA4: `G-5FP2F41BZG` | AdSense: `ca-pub-1924505291132800`
 
 ## Notas estáticas — "También te puede interesar"
-- CSS de las cards `.relacionadas`, `.rel-card`, `.rel-img`, etc. está inlineado en cada `notas/*.html` (no viene de nota.html)
-- Script `agregar_relacionadas.py`: agrega la sección a todos los HTMLs estáticos que no la tengan. Ejecutar manualmente si se agregan notas nuevas con HTML propio.
-- Notas omitidas: variantes de idioma (`-en.html`, `-pt.html`, `-zh.html`) y el redirect stub `perito-moreno-timeout-2026.html`
-- Lógica de selección: mismo tag primero, luego otras, `random.seed(nid)` para que sea determinístico
+- **Automático en el flujo diario:** `generar_paginas_og()` en `actualizar_noticias.py` inyecta la sección (3 notas, mismo tag primero) en CADA `notas/[id].html` que crea. Toda nota nueva nace con ella — no requiere acción manual.
+- CSS de las cards `.relacionadas`, `.rel-card`, `.rel-img`, etc. está inlineado en cada `notas/*.html` (no viene de nota.html). En el script es la constante `_RELACIONADAS_CSS`.
+- Lógica de selección: mismo tag primero, luego otras, `random.Random(nid)` para que sea determinístico. El pool sale de la lista unión que ya recibe `generar_paginas_og` (historial + todas las secciones).
+- Script `agregar_relacionadas.py`: solo para **retro-rellenar** notas viejas/colaboradoras con HTML propio que aún no la tengan. Idempotente (salta las que ya la tienen). Omite variantes de idioma (`-en/-pt/-zh.html`) y notas sin el botón `ver-completo`.
 
 ## Notas estáticas — variantes de idioma (multiidioma)
 - Páginas especiales con traducciones completas se crean manualmente: `[id]-en.html`, `[id]-pt.html`

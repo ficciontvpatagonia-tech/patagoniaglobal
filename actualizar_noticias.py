@@ -17,6 +17,7 @@ import json
 import sys
 import os
 import re
+import random
 import time
 import calendar
 import unicodedata
@@ -2304,6 +2305,104 @@ def _render_cuerpo_html(cuerpo):
     return "\n".join(out)
 
 
+# ── "También te puede interesar" (sección de notas relacionadas) ──
+# Misma lógica/estilos que agregar_relacionadas.py, pero integrada al flujo
+# diario para que TODA nota nueva nazca con la sección sin correr nada a mano.
+
+_RELACIONADAS_CSS = (
+    ".relacionadas{margin-top:48px;padding-top:24px;border-top:2px solid #e0ddd8;}"
+    ".relacionadas-titulo{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#5a6070;margin-bottom:20px;}"
+    ".relacionadas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}"
+    ".rel-card{cursor:pointer;border-radius:4px;overflow:hidden;background:white;transition:transform 0.2s;text-decoration:none;color:inherit;display:block;}"
+    ".rel-card:hover{transform:translateY(-2px);}"
+    ".rel-img{width:100%;height:100px;object-fit:cover;display:block;background:linear-gradient(160deg,#0e1a26,#1c2d3d);}"
+    ".rel-body{padding:10px 12px 12px;}"
+    ".rel-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#3a7a5a;margin-bottom:4px;}"
+    ".rel-titulo{font-size:13px;font-weight:600;line-height:1.35;color:#252830;}"
+    "@media(max-width:600px){.relacionadas-grid{grid-template-columns:1fr 1fr;}}"
+    "@media(max-width:480px){.relacionadas-grid{grid-template-columns:1fr;}}"
+)
+
+
+def _rel_norm_tag(tag):
+    """Limpia emoji/puntos y devuelve solo el texto de la etiqueta."""
+    if not tag:
+        return "Patagonia"
+    m = re.search(r'[A-Za-záéíóúüñÁÉÍÓÚÜÑ\d]', tag)
+    if not m:
+        return "Patagonia"
+    result = tag[m.start():].strip().rstrip('·').strip()
+    return result or "Patagonia"
+
+
+def _rel_abs_img(imagen):
+    if not imagen:
+        return ""
+    if imagen.startswith("http"):
+        return imagen
+    return "https://globalpatagonia.org/" + imagen
+
+
+def _build_rel_pool(notas):
+    """Pool {id: {id, titulo, tag, imagen}} a partir de la lista de notas."""
+    pool = {}
+    for n in notas:
+        if not isinstance(n, dict):
+            continue
+        nid = n.get("id")
+        if not nid:
+            continue
+        pool[nid] = {
+            "id": nid,
+            "titulo": n.get("titulo", ""),
+            "tag": n.get("tag", ""),
+            "imagen": _rel_abs_img(n.get("imagen", "")),
+        }
+    return pool
+
+
+def _pick_related(nid, nota_tag, pool, n=3):
+    """Selecciona n notas: primero mismo tag, luego otras. Determinístico por id."""
+    others = [v for k, v in pool.items() if k != nid]
+    rng = random.Random(nid)
+    clean = _rel_norm_tag(nota_tag).lower()
+    same = [x for x in others if _rel_norm_tag(x["tag"]).lower() == clean]
+    diff = [x for x in others if _rel_norm_tag(x["tag"]).lower() != clean]
+    rng.shuffle(same)
+    rng.shuffle(diff)
+    return (same + diff)[:n]
+
+
+def _make_rel_html(notes):
+    """HTML de la sección 'También te puede interesar' para las notas dadas."""
+    import html as htmllib
+    if not notes:
+        return ""
+    cards = ""
+    for n in notes:
+        titulo = htmllib.escape(str(n["titulo"] or ""), quote=True)
+        if n["imagen"]:
+            img = (f'<img class="rel-img" src="{htmllib.escape(n["imagen"], quote=True)}" '
+                   f'alt="{titulo}" onerror="this.style.display=\'none\'">')
+        else:
+            img = '<div class="rel-img"></div>'
+        tag = htmllib.escape(_rel_norm_tag(n["tag"]))
+        cards += (
+            f'<a class="rel-card" href="/notas/{htmllib.escape(str(n["id"]), quote=True)}.html">'
+            f'{img}'
+            f'<div class="rel-body">'
+            f'<div class="rel-tag">{tag}</div>'
+            f'<div class="rel-titulo">{htmllib.escape(str(n["titulo"] or ""))}</div>'
+            f'</div></a>'
+        )
+    return (
+        '\n    <div class="relacionadas">'
+        '\n      <div class="relacionadas-titulo">También te puede interesar</div>'
+        f'\n      <div class="relacionadas-grid">{cards}</div>'
+        '\n    </div>'
+    )
+
+
 def generar_paginas_og(notas):
     """Genera notas/[id].html con contenido completo — indexable por Google sin JS."""
     import html as htmllib
@@ -2312,6 +2411,11 @@ def generar_paginas_og(notas):
     base = os.path.dirname(__file__)
     notas_dir = os.path.join(base, "notas")
     os.makedirs(notas_dir, exist_ok=True)
+
+    # Pool para "También te puede interesar" — la lista que llega ya es la unión
+    # de todas las fuentes (historial, secciones, informes…), igual que el pool
+    # que arma agregar_relacionadas.py.
+    rel_pool = _build_rel_pool(notas)
 
     generadas = 0
     for nota in notas:
@@ -2386,6 +2490,9 @@ def generar_paginas_og(notas):
         propio    = nota.get("propio", False)
 
         cuerpo_html = _render_cuerpo_html(cuerpo)
+
+        # "También te puede interesar" — 3 notas (mismo tag primero)
+        relacionadas_html = _make_rel_html(_pick_related(nid, tag, rel_pool, n=3))
 
         # SEO #1 — imagen principal como <img> real (indexable por Google Imágenes
         # y Discover; alt = título; carga prioritaria para mejorar LCP).
@@ -2466,6 +2573,7 @@ def generar_paginas_og(notas):
     .nota-cuerpo h3{{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,28px);font-weight:700;color:var(--verde);margin:48px 0 16px;padding-bottom:10px;border-bottom:3px solid var(--azul-claro);line-height:1.2;}}
     .ver-completo{{display:inline-flex;align-items:center;gap:8px;margin:32px 0;padding:12px 24px;background:var(--verde);color:white;text-decoration:none;border-radius:3px;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;}}
     .ver-completo:hover{{opacity:0.85;}}
+    {_RELACIONADAS_CSS}
     .divider-footer{{height:2px;background:linear-gradient(90deg,#1c2d3d,#7aadcc,#1c2d3d);}}
     footer{{background:#1c2d3d;color:rgba(255,255,255,0.6);text-align:center;padding:32px 20px;}}
     .footer-logo{{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:white;letter-spacing:1px;margin-bottom:6px;}}
@@ -2510,6 +2618,7 @@ def generar_paginas_og(notas):
     {imagen_block}
     <div class="nota-cuerpo">{cuerpo_html}</div>
     <div class="nota-fuente"><strong>Fuente original:</strong> Esta nota fue elaborada con información de <strong>{e(fuente)}</strong>.</div>
+    {relacionadas_html}
     <a href="../" class="ver-completo">← Más noticias en GLOBALpatagonia</a>
   </article>
 </div>
