@@ -255,3 +255,24 @@ footer { background:var(--verde); padding:40px 20px 28px; text-align:center; mar
   .selector-section { padding:14px; }
   .pro-title { font-size:17px; }
 }
+
+
+/* ── BLOQUE SEO CLIMA ── */
+.clima-seo { max-width:920px; margin:10px auto 40px; padding:0 20px; line-height:1.7; }
+.clima-seo h2 { font-family:'Playfair Display',serif; color:var(--verde); font-size:26px; margin:32px 0 16px; }
+.clima-seo h3 { font-family:'Playfair Display',serif; color:var(--verde-medio); font-size:19px; margin:24px 0 8px; }
+.clima-seo p { color:var(--gris-oscuro); margin-bottom:14px; font-size:16px; }
+.clima-estaciones { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:18px 0 8px; }
+.ce-card { background:#fff; border:1px solid #e3ddd3; border-radius:12px; padding:16px 18px; }
+.ce-card h3 { margin:0 0 6px; font-family:'Inter',sans-serif; font-size:16px; color:var(--verde); }
+.ce-card p { margin:0; font-size:14.5px; color:#4a4a4a; }
+.clima-faq { margin-top:28px; }
+.clima-faq details { background:#fff; border:1px solid #e3ddd3; border-radius:10px; padding:4px 18px; margin-bottom:10px; }
+.clima-faq summary { font-weight:600; color:var(--verde); cursor:pointer; padding:12px 0; font-size:15.5px; list-style:none; }
+.clima-faq summary::-webkit-details-marker { display:none; }
+.clima-faq summary::after { content:'+'; float:right; color:var(--verde-claro); font-size:20px; line-height:1; }
+.clima-faq details[open] summary::after { content:'–'; }
+.clima-faq details p { padding:0 0 14px; margin:0; font-size:15px; color:#4a4a4a; }
+.clima-guia-link { display:inline-block; margin-top:18px; background:var(--verde); color:#fff; text-decoration:none; padding:12px 22px; border-radius:999px; font-weight:600; font-size:15px; }
+.clima-guia-link:hover { background:var(--verde-medio); }
+@media(max-width:640px){ .clima-estaciones{ grid-template-columns:1fr; } .clima-seo h2{ font-size:22px; } }
