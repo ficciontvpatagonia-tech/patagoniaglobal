@@ -1,7 +1,9 @@
 User-agent: *
 Allow: /
-Disallow: /nota.html
-Disallow: /guia.html
+# nota.html y guia.html son stubs de redirección con <meta robots noindex>.
+# NO se bloquean aquí a propósito: Google necesita rastrearlos para leer el
+# noindex y depurar las URLs viejas (?id=X). Bloquearlos los dejaba en limbo
+# permanente (reportados a la vez como "bloqueado por robots" y "excluido por noindex").
 Disallow: /_archivo/
 Disallow: /_scripts/
 Disallow: /_docs/

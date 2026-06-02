@@ -2244,8 +2244,10 @@ def main():
     print(f"\n  Actualizando sitemap...")
     actualizar_sitemap()
 
-    print(f"\n  Generando news sitemap...")
-    generar_news_sitemap()
+    # El news sitemap lo genera el paso `generar_sitemap_news.py` del workflow,
+    # que escribe sitemap-news.xml — el nombre que referencian robots.txt y Google.
+    # Antes generar_news_sitemap() escribía aquí news-sitemap.xml (nombre huérfano
+    # que nadie referenciaba): doble generador → fuente recurrente de inconsistencias.
 
     print(f"\n  ✓ Listo — {fecha_display()}")
     print(f"{'='*55}\n")
@@ -3009,12 +3011,17 @@ def actualizar_sitemap():
     notas_dir = os.path.join(base, "notas")
 
     def _es_redirect_stub(fpath):
-        """Detecta páginas que son solo redirect (meta-refresh o JS a nota.html)."""
+        """Excluye del sitemap toda página que no deba indexarse: redirects
+        (meta-refresh o JS location.replace a CUALQUIER destino) y cualquier
+        página marcada con noindex. Antes solo detectaba redirects a nota.html,
+        por lo que stubs de slug viejo (p.ej. guia-calafate-4-dias → guia-calafate)
+        se colaban al sitemap y Google los reportaba como duplicados."""
         try:
             with open(fpath, encoding="utf-8") as fh:
-                head = fh.read(1500)
+                head = fh.read(2000)
             return ('http-equiv="refresh"' in head or
-                    ('window.location.replace' in head and 'nota.html' in head))
+                    'window.location.replace' in head or
+                    'noindex' in head)
         except Exception:
             return False
 
@@ -3032,6 +3039,14 @@ def actualizar_sitemap():
                 ids[nid] = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d")
 
     for nid, fecha in sorted(ids.items(), key=lambda x: x[1], reverse=True):
+        # Guard único para TODAS las fuentes (JSON o escaneo de directorio):
+        # solo va al sitemap si existe el archivo estático y NO es stub/noindex.
+        # Antes los ids venidos de los JSONs se emitían sin verificar el HTML,
+        # por eso entraban stubs de slug viejo (duplicados en GSC) y se podían
+        # listar URLs sin archivo (404 / soft-404).
+        fpath = os.path.join(notas_dir, f"{nid}.html")
+        if not os.path.isfile(fpath) or _es_redirect_stub(fpath):
+            continue
         es_historia = nid in historias_ids
         freq = "monthly" if es_historia else "weekly"
         prio = "0.9" if es_historia else "0.8"

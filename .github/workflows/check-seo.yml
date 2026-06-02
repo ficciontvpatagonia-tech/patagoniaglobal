@@ -24,4 +24,4 @@ jobs:
       - name: Correr auditoría SEO
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 check_seo.py
+        run: python3 _scripts/check_seo.py   # movido a _scripts/ en la reorg del 31/05
