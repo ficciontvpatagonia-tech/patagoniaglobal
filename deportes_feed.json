@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep",
-    "tag": "🏁 Deportes",
-    "titulo": "Barría ganó el Rally Aniversario de Puerto Natales en la Patagonia chilena",
-    "bajada": "Matías Barría y su navegante Sebastián Álvarez se impusieron en la segunda fecha del Campeonato Provincial de Rally natalino 2026, en la prueba que celebró los 115 años de la ciudad.",
-    "imagen": "fotos/foto-20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep.webp",
-    "meta": "Hoy · La Prensa Austral"
+    "id": "20260602-otra-hazana-de-susana-morales-oro-record-y-bandera-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "Otra hazaña de Susana Morales: oro, récord y bandera neuquina en el Iberoamericano",
+    "bajada": "La atleta máster de Neuquén capital, mayor de 65 años, se consagró campeona iberoamericana con récord en 300 metros con vallas en Perú, tras un viaje hecho a pulmón y peso por peso.",
+    "imagen": "fotos/foto-20260602-otra-hazana-de-susana-morales-oro-record-y-bandera-dep.webp",
+    "meta": "Hoy · LMNeuquén"
   },
   "secundarias": [
+    {
+      "id": "20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep",
+      "tag": "🏁 Deportes",
+      "titulo": "Barría ganó el Rally Aniversario de Puerto Natales en la Patagonia chilena",
+      "bajada": "Matías Barría y su navegante Sebastián Álvarez se impusieron en la segunda fecha del Campeonato Provincial de Rally natalino 2026, en la prueba que celebró los 115 años de la ciudad.",
+      "imagen": "fotos/foto-20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep.webp",
+      "meta": "Hoy · La Prensa Austral"
+    },
     {
       "id": "20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El equipo neuquino Rosa Fénix, integrado por personas con diversidad funcional, representó a la Patagonia en el Festival Internacional de Dragon Boat en España y dejó una huella que va mucho más allá del deporte.",
       "imagen": "fotos/foto-20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260527-mtb-patagonico-el-andino-bariloche-lleva-pilotos-al-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Alumnos de la Escuela de Mountain Bike del Club Andino Bariloche participaron en la segunda fecha del Campeonato Patagónico de Descenso disputada en El Chocón, con importante convocatoria regional.",
       "imagen": "fotos/foto-20260527-mtb-patagonico-el-andino-bariloche-lleva-pilotos-al-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260526-rally-de-natales-2026-29-binomios-cruzan-la-frontera-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Alumnos de la Escuela de Mountain Bike del Club Andino Bariloche participaron de la segunda fecha del Campeonato Patagónico de Descenso en El Chocón, con destacada presencia regional.",
       "imagen": "fotos/foto-20260522-escuela-de-mtb-del-andino-bariloche-compite-en-el-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Chubut lleva 200 jóvenes a los Juegos EPADE 2026, la olimpiada patagónica",
-      "bajada": "Una delegación de más de 200 deportistas chubutenses se alista para los Juegos EPADE 2026, el evento deportivo juvenil más importante de la Patagonia argentina.",
-      "imagen": "fotos/foto-20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
     }
   ]
 }
