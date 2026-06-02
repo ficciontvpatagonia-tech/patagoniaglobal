@@ -201,6 +201,38 @@ def audit():
     except Exception:
         pass
 
+    # ── 7. INFORMES (propios) — contenido manual de Marto, el más valioso ──
+    # Cada id de propios.json / propios_historial.json DEBE tener su página
+    # estática indexable. El script nunca las genera (son HTML manual), así que
+    # si falta o quedó como stub/noindex, el guard del sitemap la excluye en
+    # silencio y no se indexa. Acá se avisa antes de que eso pase.
+    propios_bad = []
+    for fuente in ('propios.json', 'propios_historial.json'):
+        fpath = os.path.join(REPO, fuente)
+        try:
+            data = json.load(open(fpath, encoding='utf-8'))
+        except Exception:
+            continue
+        if isinstance(data, dict) and 'notas' in data:
+            data = data['notas']
+        for nota in (data if isinstance(data, list) else []):
+            nid = isinstance(nota, dict) and nota.get('id')
+            if not nid:
+                continue
+            page = os.path.join(NOTAS_DIR, f'{nid}.html')
+            if not os.path.isfile(page):
+                propios_bad.append(f'{nid} → falta notas/{nid}.html')
+            else:
+                h = read_head(page, 2500)
+                if 'noindex' in h or 'window.location.replace' in h or 'http-equiv="refresh"' in h:
+                    propios_bad.append(f'{nid} → stub/noindex (no se indexa)')
+    if propios_bad:
+        issues.append(f'📰 INFORMES sin página indexable ({len(propios_bad)}):')
+        for x in propios_bad:
+            issues.append(f'  - {x}')
+    else:
+        ok.append('✅ Todos los INFORMES (propios) tienen página estática indexable')
+
     return ok, issues
 
 
