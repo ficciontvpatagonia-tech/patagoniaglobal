@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Rosa Fénix: el equipo inclusivo de Neuquén que cruzó el Atlántico",
-    "bajada": "El equipo neuquino Rosa Fénix, integrado por personas con diversidad funcional, representó a la Patagonia en el Festival Internacional de Dragon Boat en España y dejó una huella que va mucho más allá del deporte.",
-    "imagen": "fotos/foto-20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep.webp",
-    "meta": "Hoy · Diario Río Negro"
+    "id": "20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep",
+    "tag": "🏁 Deportes",
+    "titulo": "Barría ganó el Rally Aniversario de Puerto Natales en la Patagonia chilena",
+    "bajada": "Matías Barría y su navegante Sebastián Álvarez se impusieron en la segunda fecha del Campeonato Provincial de Rally natalino 2026, en la prueba que celebró los 115 años de la ciudad.",
+    "imagen": "fotos/foto-20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep.webp",
+    "meta": "Hoy · La Prensa Austral"
   },
   "secundarias": [
+    {
+      "id": "20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Rosa Fénix: el equipo inclusivo de Neuquén que cruzó el Atlántico",
+      "bajada": "El equipo neuquino Rosa Fénix, integrado por personas con diversidad funcional, representó a la Patagonia en el Festival Internacional de Dragon Boat en España y dejó una huella que va mucho más allá del deporte.",
+      "imagen": "fotos/foto-20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep.webp",
+      "meta": "Hoy · Diario Río Negro"
+    },
     {
       "id": "20260527-mtb-patagonico-el-andino-bariloche-lleva-pilotos-al-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Alumnos de la Escuela de Mountain Bike del Club Andino Bariloche participaron en la segunda fecha del Campeonato Patagónico de Descenso disputada en El Chocón, con importante convocatoria regional.",
       "imagen": "fotos/foto-20260527-mtb-patagonico-el-andino-bariloche-lleva-pilotos-al-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260526-rally-de-natales-2026-29-binomios-cruzan-la-frontera-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Cuatro tripulaciones de Porvenir integran la delegación de Tierra del Fuego chilena para la segunda fecha del Rally 2026, que reunirá a competidores de ambos lados de la frontera el 30 y 31 de mayo.",
       "imagen": "fotos/foto-20260526-rally-de-natales-2026-29-binomios-cruzan-la-frontera-dep.webp",
       "meta": "Hoy · La Prensa Austral"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260523-un-magallanico-se-corono-campeon-en-el-torneo-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Una delegación de más de 200 deportistas chubutenses se alista para los Juegos EPADE 2026, el evento deportivo juvenil más importante de la Patagonia argentina.",
       "imagen": "fotos/foto-20260517-chubut-lleva-200-jovenes-a-los-juegos-epade-2026-la-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Catedral lanza pases 2026 desde $160.000: la nieve ya tiene precio en Bariloche",
-      "bajada": "El centro de esquí más grande de Sudamérica abre la preventa de pases diarios para la temporada 2026, exclusivamente en efectivo, mientras la comunidad barilochense se prepara para el invierno.",
-      "imagen": "fotos/foto-20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep.webp",
-      "meta": "Hoy · Catedral Alta Patagonia"
     }
   ]
 }
