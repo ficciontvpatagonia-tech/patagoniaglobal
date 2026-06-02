@@ -1531,6 +1531,31 @@ def guardar_json(datos):
     print(f"\n  ✓ noticias.json guardado")
 
 
+def _notas_de_fuente(path):
+    """Devuelve todas las notas (dicts con 'id') de cualquier JSON de contenido,
+    sin importar su forma: lista directa, {"notas":[...]}, feed de sección
+    ({"principal","secundarias","row_cards"}) o noticias.json
+    ({"tapa","secundarias","noticias","historias"}). Se usa para garantizar que
+    cualquier nota manual cargada en cualquier sección reciba su página estática."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            datos = json.load(f)
+    except Exception:
+        return []
+    out = []
+    def _recoger(v):
+        if isinstance(v, dict) and v.get("id"):
+            out.append(v)
+        elif isinstance(v, list):
+            out.extend(x for x in v if isinstance(x, dict) and x.get("id"))
+    if isinstance(datos, list):
+        _recoger(datos)
+    elif isinstance(datos, dict):
+        for v in datos.values():
+            _recoger(v)
+    return out
+
+
 def inyectar_tapa_en_index(datos):
     """Inyecta HTML de tapa+secundarias+8 noticias directamente en index.html.
     Elimina la dependencia de JS para el above-the-fold, reduciendo LCP ~3.9s → ~1.5s."""
@@ -2160,21 +2185,20 @@ def main():
     except Exception:
         pass
 
-    # Generar páginas estáticas ANTES de publicar en redes y newsletter
+    # Generar páginas estáticas ANTES de publicar en redes y newsletter.
+    # Cobertura COMPLETA: además de la selección del día, recorre el historial y
+    # todos los feeds de sección. Así CUALQUIER nota manual cargada en cualquier
+    # parte (tapa, turismo, deportes, negocios, cultura, guías, informes) recibe
+    # su página estática indexable con SEO completo, sin intervención manual.
+    # generar_paginas_og NUNCA sobreescribe páginas existentes → solo crea las que
+    # faltan. historial.json va primero porque guarda el cuerpo completo.
     print(f"\n  Generando páginas estáticas...")
     _notas_og = [tapa] + secundarias + [n for n in [deportes, negocios, cultura, turismo] if n]
-    try:
-        with open(os.path.join(os.path.dirname(__file__), "propios.json"), encoding="utf-8") as _f:
-            _notas_og += json.load(_f)
-    except Exception:
-        pass
-    try:
-        with open(os.path.join(os.path.dirname(__file__), "historias.json"), encoding="utf-8") as _f:
-            _hist = json.load(_f)
-            _notas_og += _hist["notas"] if isinstance(_hist, dict) else _hist
-    except Exception:
-        pass
-    _notas_og_filtradas = [n for n in _notas_og if isinstance(n, dict)]
+    for _fuente in ("historial.json", "propios.json", "propios_historial.json",
+                    "historias.json", "noticias.json", "turismo.json",
+                    "deportes_feed.json", "negocios.json", "cultura.json", "guias.json"):
+        _notas_og += _notas_de_fuente(os.path.join(os.path.dirname(__file__), _fuente))
+    _notas_og_filtradas = [n for n in _notas_og if isinstance(n, dict) and n.get("id")]
     generar_paginas_og(_notas_og_filtradas)
 
     print(f"\n  Publicando en Telegram...")
