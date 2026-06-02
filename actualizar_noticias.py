@@ -2386,17 +2386,32 @@ def generar_paginas_og(notas):
         propio    = nota.get("propio", False)
 
         cuerpo_html = _render_cuerpo_html(cuerpo)
-        imagen_block = (f'<div class="nota-imagen-wrap" style="background-image:url(\'{ea(imagen_abs)}\')" '
-                        f'role="img" aria-label="{ea(titulo)}"></div>'
+
+        # SEO #1 — imagen principal como <img> real (indexable por Google Imágenes
+        # y Discover; alt = título; carga prioritaria para mejorar LCP).
+        imagen_block = (f'<img class="nota-imagen" src="{ea(imagen_abs)}" alt="{ea(titulo)}" '
+                        f'width="1200" height="630" fetchpriority="high" decoding="async"/>'
                         if imagen else '<div class="nota-imagen-placeholder"></div>')
+
+        # SEO #2 — meta description recortada a ~155 chars en corte limpio de palabra
+        # (la bajada completa sigue intacta en el cuerpo de la nota).
+        _bajada = (bajada or "").strip()
+        if len(_bajada) > 155:
+            meta_desc = _bajada[:155].rsplit(" ", 1)[0].rstrip(" ,.;:—-") + "…"
+        else:
+            meta_desc = _bajada
+
+        # SEO #3 — si el título ya es largo, no se le suma el sufijo de marca
+        # (no desperdicia el espacio visible del resultado de Google).
+        title_tag = titulo if len(titulo) > 52 else f"{titulo} — GLOBALpatagonia"
 
         html_out = f"""<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>{e(titulo)} — GLOBALpatagonia</title>
-  <meta name="description" content="{ea(bajada)}"/>
+  <title>{e(title_tag)}</title>
+  <meta name="description" content="{ea(meta_desc)}"/>
   <link rel="canonical" href="{ea(static_url)}"/>
   {hreflang_tags}<meta property="og:site_name" content="GLOBALpatagonia"/>
   <meta property="og:type" content="article"/>
@@ -2442,6 +2457,8 @@ def generar_paginas_og(notas):
     .nota-fuente{{margin-top:40px;padding:16px 20px;background:white;border-radius:4px;border-left:3px solid #5a6070;font-size:12px;color:#5a6070;}}
     .nota-fuente strong{{color:#252830;}}
     .nota-imagen-wrap{{width:100%;height:420px;background-size:cover;background-position:center;border-radius:4px;margin-bottom:32px;overflow:hidden;}}
+    .nota-imagen{{width:100%;height:420px;object-fit:cover;object-position:center;border-radius:4px;margin-bottom:32px;display:block;}}
+    @media(max-width:600px){{.nota-imagen{{height:240px;}}}}
     .autor-avatar{{width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #7aadcc;vertical-align:middle;margin-right:6px;}}
     .nota-imagen-placeholder{{width:100%;height:320px;background:linear-gradient(160deg,#0e1a26 0%,#1c2d3d 45%,#4a7a9a 100%);border-radius:4px;margin-bottom:32px;}}
     .nota-cuerpo p{{font-size:17.5px;line-height:1.85;color:#2a2a2a;margin-bottom:24px;}}
