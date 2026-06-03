@@ -1150,9 +1150,9 @@ def buscar_foto_propia(nota, fotos):
         s = "".join(c for c in s if _ud.category(c) != "Mn")
         return set(_re.findall(r'[a-z]+', s))
 
-    kw_img   = nota.get("imagen_keywords", "").lower()
-    titulo   = nota.get("titulo", "").lower()
-    pais     = nota.get("pais", "").lower()
+    kw_img   = (nota.get("imagen_keywords") or "").lower()
+    titulo   = (nota.get("titulo") or "").lower()
+    pais     = (nota.get("pais") or "").lower()
     contexto = f"{kw_img} {titulo} {pais}"
 
     tokens_kw     = _tokenize(kw_img)
@@ -1379,7 +1379,7 @@ def resolver_imagen(nota, fotos_propias, fotos_usadas):
         print(f"    [{nota_id}] foto propia: {foto_propia} (score {foto_score}) ✓")
         return foto_propia
 
-    keywords = nota.get("imagen_keywords", "patagonia landscape")
+    keywords = nota.get("imagen_keywords") or "patagonia landscape"
     print(f"    [{nota_id}] Unsplash: '{keywords}' ...", end=" ", flush=True)
     url = buscar_imagen_unsplash(keywords)
     if url:
