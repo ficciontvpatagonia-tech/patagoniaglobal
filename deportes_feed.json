@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260602-otra-hazana-de-susana-morales-oro-record-y-bandera-dep",
+    "id": "20260603-400-corredores-en-puerto-williams-la-corrida-mas-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Otra hazaña de Susana Morales: oro, récord y bandera neuquina en el Iberoamericano",
-    "bajada": "La atleta máster de Neuquén capital, mayor de 65 años, se consagró campeona iberoamericana con récord en 300 metros con vallas en Perú, tras un viaje hecho a pulmón y peso por peso.",
-    "imagen": "fotos/foto-20260602-otra-hazana-de-susana-morales-oro-record-y-bandera-dep.webp",
-    "meta": "Hoy · LMNeuquén"
+    "titulo": "400 corredores en Puerto Williams: la corrida más austral del mundo",
+    "bajada": "La Corrida Familiar del Mes del Mar reunió a más de 400 participantes en Puerto Williams, la ciudad más austral del planeta, organizada por la Armada de Chile y la Municipalidad de Cabo de Hornos.",
+    "imagen": "fotos/foto-20260603-400-corredores-en-puerto-williams-la-corrida-mas-dep.webp",
+    "meta": "Hoy · El Magallánico"
   },
   "secundarias": [
+    {
+      "id": "20260602-otra-hazana-de-susana-morales-oro-record-y-bandera-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Otra hazaña de Susana Morales: oro, récord y bandera neuquina en el Iberoamericano",
+      "bajada": "La atleta máster de Neuquén capital, mayor de 65 años, se consagró campeona iberoamericana con récord en 300 metros con vallas en Perú, tras un viaje hecho a pulmón y peso por peso.",
+      "imagen": "fotos/foto-20260602-otra-hazana-de-susana-morales-oro-record-y-bandera-dep.webp",
+      "meta": "Hoy · LMNeuquén"
+    },
     {
       "id": "20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep",
       "tag": "🏁 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Matías Barría y su navegante Sebastián Álvarez se impusieron en la segunda fecha del Campeonato Provincial de Rally natalino 2026, en la prueba que celebró los 115 años de la ciudad.",
       "imagen": "fotos/foto-20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep.webp",
       "meta": "Hoy · La Prensa Austral"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El equipo neuquino Rosa Fénix, integrado por personas con diversidad funcional, representó a la Patagonia en el Festival Internacional de Dragon Boat en España y dejó una huella que va mucho más allá del deporte.",
       "imagen": "fotos/foto-20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260527-mtb-patagonico-el-andino-bariloche-lleva-pilotos-al-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Leonardo Pallacar, representante puntarenense, ganó el torneo 'La Patagonia Rebelde 8' celebrado en el Complejo Municipal 11 de Julio de Las Heras, Santa Cruz.",
       "imagen": "fotos/foto-20260523-un-magallanico-se-corono-campeon-en-el-torneo-dep.webp",
       "meta": "Hoy · La Prensa Austral (Magallanes)"
-    },
-    {
-      "id": "20260522-escuela-de-mtb-del-andino-bariloche-compite-en-el-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Escuela de MTB del Andino Bariloche compite en El Chocón",
-      "bajada": "Alumnos de la Escuela de Mountain Bike del Club Andino Bariloche participaron de la segunda fecha del Campeonato Patagónico de Descenso en El Chocón, con destacada presencia regional.",
-      "imagen": "fotos/foto-20260522-escuela-de-mtb-del-andino-bariloche-compite-en-el-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
     }
   ]
 }
