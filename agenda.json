@@ -1,18 +1,5 @@
 [
   {
-    "id": "festival-folklorico-patagonia-punta-arenas-2026",
-    "titulo": "Festival Folclórico en la Patagonia XLV",
-    "fecha": "2026-06-01",
-    "fecha_fin": "2026-06-03",
-    "fecha_display": "3 días en la primera semana de junio",
-    "lugar": "Punta Arenas",
-    "region": "Región de Magallanes, Chile",
-    "pais": "CL",
-    "categoria": "cultura",
-    "emoji": "🎶",
-    "descripcion": "45° edición del tradicional certamen folclórico de Punta Arenas, con obras seleccionadas de compositores locales y participación de Puerto Natales. El festival se desarrollará a lo largo de tres días."
-  },
-  {
     "id": "encuentro-historia-trabajo-memorias-obreras-punta-arenas-2026",
     "titulo": "III Encuentro de Historia del Trabajo y Memorias Obreras en la Patagonia",
     "fecha": "2026-06-01",
@@ -49,6 +36,19 @@
     "categoria": "deportes",
     "emoji": "🏎️",
     "descripcion": "La tercera fecha del Campeonato Regional de Karting se disputará en la pista de Rally Kart de Punta Arenas bajo el nombre 'Gran Prix Velocidad Extrema'. La jornada coronará a los campeones de la temporada invernal en una competencia al estilo tradicional."
+  },
+  {
+    "id": "regional-karting-punta-arenas-2026-06",
+    "titulo": "3ª Fecha del Regional de Karting - Gran Prix Velocidad Extrema",
+    "fecha": "2026-06-13",
+    "fecha_fin": null,
+    "fecha_display": "13 de junio",
+    "lugar": "Pista Rally Kart, Punta Arenas",
+    "region": "Magallanes, Chile",
+    "pais": "CL",
+    "categoria": "deportes",
+    "emoji": "🏎️",
+    "descripcion": "La tercera fecha del Regional de Karting se disputará en la pista de Rally Kart de Punta Arenas bajo el nombre 'Gran Prix Velocidad Extrema'. La jornada coronará a los campeones de la temporada invernal con una modalidad de competencia al estilo tradicional."
   },
   {
     "id": "patagonian-expedition-race-2026",
