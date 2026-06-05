@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260603-400-corredores-en-puerto-williams-la-corrida-mas-dep",
+    "id": "20260605-montanas-limpias-rio-negro-le-da-rango-oficial-a-la-dep",
     "tag": "🏃 Deportes",
-    "titulo": "400 corredores en Puerto Williams: la corrida más austral del mundo",
-    "bajada": "La Corrida Familiar del Mes del Mar reunió a más de 400 participantes en Puerto Williams, la ciudad más austral del planeta, organizada por la Armada de Chile y la Municipalidad de Cabo de Hornos.",
-    "imagen": "fotos/foto-20260603-400-corredores-en-puerto-williams-la-corrida-mas-dep.webp",
-    "meta": "Hoy · El Magallánico"
+    "titulo": "Montañas Limpias: Río Negro le da rango oficial a la conciencia de altura",
+    "bajada": "La Legislatura de Río Negro declaró de interés social, ambiental y educativo la campaña Montañas Limpias del Club Andino Bariloche, reconociendo su impacto territorial en los cerros patagónicos.",
+    "imagen": "fotos/foto-20260605-montanas-limpias-rio-negro-le-da-rango-oficial-a-la-dep.webp",
+    "meta": "Hoy · Club Andino Bariloche"
   },
   "secundarias": [
+    {
+      "id": "20260603-400-corredores-en-puerto-williams-la-corrida-mas-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "400 corredores en Puerto Williams: la corrida más austral del mundo",
+      "bajada": "La Corrida Familiar del Mes del Mar reunió a más de 400 participantes en Puerto Williams, la ciudad más austral del planeta, organizada por la Armada de Chile y la Municipalidad de Cabo de Hornos.",
+      "imagen": "fotos/foto-20260603-400-corredores-en-puerto-williams-la-corrida-mas-dep.webp",
+      "meta": "Hoy · El Magallánico"
+    },
     {
       "id": "20260602-otra-hazana-de-susana-morales-oro-record-y-bandera-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La atleta máster de Neuquén capital, mayor de 65 años, se consagró campeona iberoamericana con récord en 300 metros con vallas en Perú, tras un viaje hecho a pulmón y peso por peso.",
       "imagen": "fotos/foto-20260602-otra-hazana-de-susana-morales-oro-record-y-bandera-dep.webp",
       "meta": "Hoy · LMNeuquén"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep",
       "tag": "🏁 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Matías Barría y su navegante Sebastián Álvarez se impusieron en la segunda fecha del Campeonato Provincial de Rally natalino 2026, en la prueba que celebró los 115 años de la ciudad.",
       "imagen": "fotos/foto-20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep.webp",
       "meta": "Hoy · La Prensa Austral"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Cuatro tripulaciones de Porvenir integran la delegación de Tierra del Fuego chilena para la segunda fecha del Rally 2026, que reunirá a competidores de ambos lados de la frontera el 30 y 31 de mayo.",
       "imagen": "fotos/foto-20260526-rally-de-natales-2026-29-binomios-cruzan-la-frontera-dep.webp",
       "meta": "Hoy · La Prensa Austral"
-    },
-    {
-      "id": "20260523-un-magallanico-se-corono-campeon-en-el-torneo-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Un magallánico se coronó campeón en el torneo patagónico de kick boxing de Las Heras",
-      "bajada": "Leonardo Pallacar, representante puntarenense, ganó el torneo 'La Patagonia Rebelde 8' celebrado en el Complejo Municipal 11 de Julio de Las Heras, Santa Cruz.",
-      "imagen": "fotos/foto-20260523-un-magallanico-se-corono-campeon-en-el-torneo-dep.webp",
-      "meta": "Hoy · La Prensa Austral (Magallanes)"
     }
   ]
 }
