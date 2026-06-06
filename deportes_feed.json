@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260605-montanas-limpias-rio-negro-le-da-rango-oficial-a-la-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Montañas Limpias: Río Negro le da rango oficial a la conciencia de altura",
-    "bajada": "La Legislatura de Río Negro declaró de interés social, ambiental y educativo la campaña Montañas Limpias del Club Andino Bariloche, reconociendo su impacto territorial en los cerros patagónicos.",
-    "imagen": "fotos/foto-20260605-montanas-limpias-rio-negro-le-da-rango-oficial-a-la-dep.webp",
+    "id": "20260606-trona-360-el-libro-que-nacio-en-la-montana-y-volvio-a-dep",
+    "tag": "🏔️ Deportes",
+    "titulo": "«Trona 360»: el libro que nació en la montaña y volvió a Bariloche",
+    "bajada": "El Club Andino Bariloche presentó el libro de un egresado de sus Escuelas Juveniles de Montaña, que documenta experiencias transformadoras en la naturaleza patagónica.",
+    "imagen": "fotos/foto-20260606-trona-360-el-libro-que-nacio-en-la-montana-y-volvio-a-dep.webp",
     "meta": "Hoy · Club Andino Bariloche"
   },
   "secundarias": [
+    {
+      "id": "20260605-montanas-limpias-rio-negro-le-da-rango-oficial-a-la-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Montañas Limpias: Río Negro le da rango oficial a la conciencia de altura",
+      "bajada": "La Legislatura de Río Negro declaró de interés social, ambiental y educativo la campaña Montañas Limpias del Club Andino Bariloche, reconociendo su impacto territorial en los cerros patagónicos.",
+      "imagen": "fotos/foto-20260605-montanas-limpias-rio-negro-le-da-rango-oficial-a-la-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20260603-400-corredores-en-puerto-williams-la-corrida-mas-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La Corrida Familiar del Mes del Mar reunió a más de 400 participantes en Puerto Williams, la ciudad más austral del planeta, organizada por la Armada de Chile y la Municipalidad de Cabo de Hornos.",
       "imagen": "fotos/foto-20260603-400-corredores-en-puerto-williams-la-corrida-mas-dep.webp",
       "meta": "Hoy · El Magallánico"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260602-otra-hazana-de-susana-morales-oro-record-y-bandera-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La atleta máster de Neuquén capital, mayor de 65 años, se consagró campeona iberoamericana con récord en 300 metros con vallas en Perú, tras un viaje hecho a pulmón y peso por peso.",
       "imagen": "fotos/foto-20260602-otra-hazana-de-susana-morales-oro-record-y-bandera-dep.webp",
       "meta": "Hoy · LMNeuquén"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep",
       "tag": "🏁 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Alumnos de la Escuela de Mountain Bike del Club Andino Bariloche participaron en la segunda fecha del Campeonato Patagónico de Descenso disputada en El Chocón, con importante convocatoria regional.",
       "imagen": "fotos/foto-20260527-mtb-patagonico-el-andino-bariloche-lleva-pilotos-al-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260526-rally-de-natales-2026-29-binomios-cruzan-la-frontera-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Rally de Natales 2026: 29 binomios cruzan la frontera para competir en Última Esperanza",
-      "bajada": "Cuatro tripulaciones de Porvenir integran la delegación de Tierra del Fuego chilena para la segunda fecha del Rally 2026, que reunirá a competidores de ambos lados de la frontera el 30 y 31 de mayo.",
-      "imagen": "fotos/foto-20260526-rally-de-natales-2026-29-binomios-cruzan-la-frontera-dep.webp",
-      "meta": "Hoy · La Prensa Austral"
     }
   ]
 }
