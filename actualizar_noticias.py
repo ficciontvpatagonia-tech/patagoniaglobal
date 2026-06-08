@@ -1131,6 +1131,23 @@ def extraer_galeria_articulo(url_articulo, nota_id):
         return []
 
 
+# Tokens (sin acentos) que identifican una foto como "de pueblos originarios".
+# Si una foto tiene alguno de estos en sus keywords, queda sujeta al gate.
+_FOTO_PUEBLOS_ORIGINARIOS = frozenset([
+    "tehuelche", "aonikenk", "mapuche", "kawesqar", "selknam",
+    "yagan", "yamana", "haush", "manekenk",
+    "originarios", "originaria", "indigenas", "indigena",
+])
+# Tokens que deben aparecer en la nota para que una foto de pueblos originarios
+# sea elegible. Sin alguno de estos, esas fotos se descartan para la nota.
+_NOTA_PUEBLOS_ORIGINARIOS = frozenset([
+    "tehuelche", "aonikenk", "mapuche", "kawesqar", "selknam", "selk",
+    "ona", "yagan", "yamana", "haush", "manekenk",
+    "originario", "originarios", "originaria", "originarias",
+    "indigena", "indigenas", "ancestral", "ancestrales",
+])
+
+
 def buscar_foto_propia(nota, fotos):
     """Busca la foto propia más relevante para una nota.
 
@@ -1157,17 +1174,31 @@ def buscar_foto_propia(nota, fotos):
 
     tokens_kw     = _tokenize(kw_img)
     tokens_titulo = _tokenize(titulo)
+    tokens_ctx    = _tokenize(contexto)
+
+    # Gate de pueblos originarios: una foto de pueblos originarios solo se
+    # ofrece a notas que realmente tratan sobre el tema. Evita que keywords
+    # genéricas de esas fotos (ej. "historia patagonia", "patagonia historia")
+    # se las asignen a notas que nada tienen que ver (infraestructura,
+    # deportes, economía, etc.).
+    nota_es_originarios = bool(tokens_ctx & _NOTA_PUEBLOS_ORIGINARIOS)
 
     mejor = None
     mejor_score = 0
 
     for foto in fotos:
+        if not nota_es_originarios:
+            tokens_foto = set()
+            for kw in foto.get("keywords", []):
+                tokens_foto |= _tokenize(kw)
+            if tokens_foto & _FOTO_PUEBLOS_ORIGINARIOS:
+                continue
         score = 0
         for kw in foto.get("keywords", []):
             kw_l      = kw.lower()
             tokens_kw_foto = _tokenize(kw_l)
             # Match exacto de palabra (todos los tokens del keyword están en el contexto)
-            if tokens_kw_foto and tokens_kw_foto.issubset(_tokenize(contexto)):
+            if tokens_kw_foto and tokens_kw_foto.issubset(tokens_ctx):
                 score += 2 * len(tokens_kw_foto)
             # Match de substrings en imagen_keywords
             elif kw_l in kw_img:
