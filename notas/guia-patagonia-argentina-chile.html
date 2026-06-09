@@ -143,12 +143,12 @@
 
 <div class="container">
   <a href="../" class="volver">← Volver a GLOBALpatagonia</a>
-  <div class="lang-switcher">
-    <a href="guia-patagonia-argentina-chile.html" class="active">🇦🇷 ES</a>
-    <a href="guia-patagonia-argentina-chile-en.html">🇬🇧 EN</a>
-    <a href="guia-patagonia-argentina-chile-pt.html">🇧🇷 PT</a>
-    <a href="guia-patagonia-argentina-chile-zh.html">🇨🇳 中文</a>
-  </div>
+    <div class="lang-switcher">
+      <a href="guia-patagonia-argentina-chile.html" class="active">🇦🇷 ES</a>
+      <a href="guia-patagonia-argentina-chile-en.html">🇬🇧 EN</a>
+      <a href="guia-patagonia-argentina-chile-pt.html">🇧🇷 PT</a>
+      <a href="guia-patagonia-argentina-chile-zh.html">🇨🇳 中文</a>
+    </div>
 
   <section class="guia-seccion" id="why">
 <h2>¿Por qué recorrer la Patagonia argentina y chilena juntas?</h2>
@@ -323,5 +323,28 @@
     '</div>';
 })();
 </script>
+<script>/* gp-lang-banner */(function(){
+  var SUP=['es','en','pt','zh'];
+  var MSG={es:'Leé este artículo en español',en:'Read this article in English',pt:'Leia este artigo em português',zh:'\u9605\u8bfb\u672c\u6587\u7684\u4e2d\u6587\u7248'};
+  function norm(l){l=(l||'').toLowerCase();return l.indexOf('zh')===0?'zh':l.slice(0,2);}
+  var cur=norm(document.documentElement.lang||'es');
+  var want=norm(navigator.language||navigator.userLanguage||'es');
+  if(SUP.indexOf(want)<0||want===cur)return;
+  try{if(sessionStorage.getItem('gpLangDismiss'))return;}catch(e){}
+  var file=location.pathname.split('/').pop();
+  var base=file.replace(/-(en|pt|zh)\.html$/,'').replace(/\.html$/,'');
+  var target=base+(want==='es'?'':'-'+want)+'.html';
+  var bar=document.createElement('div');
+  bar.style.cssText='position:sticky;top:0;z-index:9999;display:flex;align-items:center;justify-content:center;gap:14px;background:#1c2d3d;color:#fff;font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;padding:10px 16px;box-shadow:0 2px 8px rgba(0,0,0,.18);';
+  var a=document.createElement('a');
+  a.href=target;a.textContent='\ud83d\udcd6 '+MSG[want]+' \u2192';
+  a.style.cssText='color:#fff;text-decoration:none;border-bottom:1.5px solid #7aadcc;padding-bottom:1px;';
+  var x=document.createElement('button');
+  x.type='button';x.textContent='\u2715';x.setAttribute('aria-label','close');
+  x.style.cssText='background:none;border:none;color:#7aadcc;font-size:16px;cursor:pointer;line-height:1;padding:0 4px;';
+  x.onclick=function(){bar.parentNode&&bar.parentNode.removeChild(bar);try{sessionStorage.setItem('gpLangDismiss','1');}catch(e){}};
+  bar.appendChild(a);bar.appendChild(x);
+  document.body.insertBefore(bar,document.body.firstChild);
+})();</script>
 </body>
 </html>

@@ -22,7 +22,7 @@ if _env_file.exists():
             k, v = line.split("=", 1)
             os.environ.setdefault(k.strip(), v.strip())
 
-BASE = Path(__file__).parent
+BASE = Path(__file__).parent.parent  # el script vive en _scripts/; el repo es la raíz
 NOTAS_DIR = BASE / "notas"
 PROPIOS_FILE = BASE / "propios.json"
 PROPIOS_HISTORIAL_FILE = BASE / "propios_historial.json"
@@ -39,6 +39,43 @@ SWITCHER_CSS = """\
     .lang-switcher{display:flex;gap:8px;margin:0 0 24px;align-items:center;flex-wrap:wrap;}
     .lang-switcher a{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border:1.5px solid #c8d4dc;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:0.5px;text-decoration:none;color:#3a5a7a;background:#fff;transition:all 0.2s;}
     .lang-switcher a:hover,.lang-switcher a.active{background:var(--verde);color:white;border-color:var(--verde);}"""
+
+# Banner inteligente: detecta el idioma del navegador y ofrece la versión
+# traducida de forma prominente. Es 100% autónomo (arma la URL desde la propia
+# ruta), así que el MISMO bloque sirve para las 4 variantes (es/en/pt/zh).
+# Clave: el hreflang sólo redirige en la búsqueda de Google; este banner captura
+# al público que llega por redes/directo y aterriza en el idioma equivocado.
+LANG_BANNER = """<script>/* gp-lang-banner */(function(){
+  var SUP=['es','en','pt','zh'];
+  var MSG={es:'Leé este artículo en español',en:'Read this article in English',pt:'Leia este artigo em português',zh:'\\u9605\\u8bfb\\u672c\\u6587\\u7684\\u4e2d\\u6587\\u7248'};
+  function norm(l){l=(l||'').toLowerCase();return l.indexOf('zh')===0?'zh':l.slice(0,2);}
+  var cur=norm(document.documentElement.lang||'es');
+  var want=norm(navigator.language||navigator.userLanguage||'es');
+  if(SUP.indexOf(want)<0||want===cur)return;
+  try{if(sessionStorage.getItem('gpLangDismiss'))return;}catch(e){}
+  var file=location.pathname.split('/').pop();
+  var base=file.replace(/-(en|pt|zh)\\.html$/,'').replace(/\\.html$/,'');
+  var target=base+(want==='es'?'':'-'+want)+'.html';
+  var bar=document.createElement('div');
+  bar.style.cssText='position:sticky;top:0;z-index:9999;display:flex;align-items:center;justify-content:center;gap:14px;background:#1c2d3d;color:#fff;font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;padding:10px 16px;box-shadow:0 2px 8px rgba(0,0,0,.18);';
+  var a=document.createElement('a');
+  a.href=target;a.textContent='\\ud83d\\udcd6 '+MSG[want]+' \\u2192';
+  a.style.cssText='color:#fff;text-decoration:none;border-bottom:1.5px solid #7aadcc;padding-bottom:1px;';
+  var x=document.createElement('button');
+  x.type='button';x.textContent='\\u2715';x.setAttribute('aria-label','close');
+  x.style.cssText='background:none;border:none;color:#7aadcc;font-size:16px;cursor:pointer;line-height:1;padding:0 4px;';
+  x.onclick=function(){bar.parentNode&&bar.parentNode.removeChild(bar);try{sessionStorage.setItem('gpLangDismiss','1');}catch(e){}};
+  bar.appendChild(a);bar.appendChild(x);
+  document.body.insertBefore(bar,document.body.firstChild);
+})();</script>"""
+
+
+def inject_lang_banner(html: str) -> str:
+    if "gp-lang-banner" in html:
+        return html
+    if "</body>" in html:
+        return html.replace("</body>", f"{LANG_BANNER}\n</body>", 1)
+    return html + "\n" + LANG_BANNER
 
 
 def make_switcher(note_id: str, active_lang: str) -> str:
@@ -94,6 +131,9 @@ def update_switcher_and_hreflang(html: str, note_id: str, active_lang: str) -> s
     # Remove existing hreflang tags then re-insert
     html = re.sub(r'  <link rel="alternate" hreflang[^\n]*/>\n?', "", html)
     html = html.replace('  <link rel="icon"', f'{hreflang}\n  <link rel="icon"', 1)
+
+    # Banner auto-detección de idioma (idempotente)
+    html = inject_lang_banner(html)
 
     return html
 
@@ -171,6 +211,12 @@ def get_ids(include_historial: bool = False) -> list:
             if nid and (NOTAS_DIR / f"{nid}.html").exists():
                 if nid not in ids:
                     ids.append(nid)
+    # Descubrir sets traducidos ya existentes en disco (incluye notas que
+    # rotaron fuera de los JSON pero siguen como página permanente indexada).
+    for f in NOTAS_DIR.glob("*-en.html"):
+        nid = f.name[:-len("-en.html")]
+        if (NOTAS_DIR / f"{nid}.html").exists() and nid not in ids:
+            ids.append(nid)
     return ids
 
 
@@ -186,6 +232,8 @@ def needs_work(note_id: str) -> bool:
             continue
         html = path.read_text(encoding="utf-8")
         if f"{note_id}-pt.html" not in html or f"{note_id}-zh.html" not in html:
+            return True
+        if "gp-lang-banner" not in html:
             return True
     return False
 
