@@ -254,6 +254,13 @@ footer { background:var(--verde); padding:40px 20px 28px; text-align:center; mar
   .city-btn { font-size:11px; padding:5px 10px; }
   .selector-section { padding:14px; }
   .pro-title { font-size:17px; }
+  /* Tabla "Viento por altitud": evitar desborde horizontal en móvil */
+  .alt-table { font-size:12.5px; }
+  .alt-table th, .alt-table td { padding:9px 7px; }
+  .alt-table th { font-size:9px; letter-spacing:.5px; }
+  /* La barra de intensidad es decorativa; la velocidad ya da el dato.
+     Se oculta en móvil para que las columnas útiles no se apretujen. */
+  .wind-bar-cell { display:none; }
 }
 
 

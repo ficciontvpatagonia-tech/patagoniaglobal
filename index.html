@@ -1266,8 +1266,15 @@
       .esp-img { height: 130px !important; }
 
       /* Secciones */
-      .section-header { padding: 28px 0 14px; }
-      .section-title { font-size: 18px; }
+      .section-header { padding: 28px 0 14px; flex-wrap: wrap; }
+      .section-title { font-size: 18px; white-space: normal; }
+      .section-line { min-width: 16px; }
+      .section-badge { letter-spacing: 1px; }
+
+      /* Filas de 4 cards → 2 columnas en móvil (evita desborde por min-content) */
+      #deportes-row, #turismo-row { grid-template-columns: repeat(2, 1fr) !important; }
+      /* Listado archivo (SEO) — que el texto envuelva siempre */
+      #archivo-notas li { overflow-wrap: anywhere; }
 
       /* Cards */
       .card-body { padding: 12px; }
@@ -1496,7 +1503,7 @@
         let html = `<a href="${href}" style="text-decoration:none;position:relative;overflow:hidden;display:block;">
           <div style="height:300px;background-image:url('${p.imagen}');background-size:cover;background-position:center;"></div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.1) 65%,transparent 100%);padding:22px;display:flex;flex-direction:column;justify-content:flex-end;">
-            <div style="display:inline-block;background:${p.badge_bg};color:${p.badge_color};font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:8px;width:fit-content;">${p.badge_text}</div>
+            <div style="display:inline-block;background:#7a2020;color:#f4a0a0;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:8px;width:fit-content;">${normTag(p.tag) || '🏔️ Aventura'}</div>
             <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.25;">${p.titulo}</div>
           </div>
         </a>`;
@@ -1508,7 +1515,7 @@
           html += `<${tag} ${extra}position:relative;overflow:hidden;flex:1;display:block;">
             <div style="height:148px;background-image:url('${s.imagen}');background-size:cover;background-position:center;"></div>
             <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,transparent 60%);padding:14px;display:flex;flex-direction:column;justify-content:flex-end;">
-              <div style="display:inline-block;background:${s.badge_bg};color:${s.badge_color};font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-bottom:6px;width:fit-content;">${s.badge_text}</div>
+              <div style="display:inline-block;background:#7a2020;color:#f4a0a0;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-bottom:6px;width:fit-content;">${normTag(s.tag) || '🏔️ Aventura'}</div>
               <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:white;line-height:1.25;">${s.titulo}</div>
             </div>
           </${tag}>`;
