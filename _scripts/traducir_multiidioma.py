@@ -135,6 +135,26 @@ def update_switcher_and_hreflang(html: str, note_id: str, active_lang: str) -> s
     # Banner auto-detección de idioma (idempotente)
     html = inject_lang_banner(html)
 
+    # Forzar coherencia SEO por idioma (el modelo no siempre cumple, y los
+    # originales ES a veces no traen og:locale para copiar). Idempotente.
+    full_locale = {"es": "es_AR", "en": "en_US", "pt": "pt_BR", "zh": "zh_CN"}
+    full_htmllang = {"es": "es", "en": "en", "pt": "pt", "zh": "zh-Hans"}
+    loc = full_locale[active_lang]
+    hl = full_htmllang[active_lang]
+    # <html lang>
+    html = re.sub(r'(<html[^>]*\blang=")[^"]*(")', rf'\g<1>{hl}\g<2>', html, count=1)
+    # JSON-LD inLanguage
+    html = re.sub(r'("inLanguage"\s*:\s*")[^"]*(")', rf'\g<1>{hl}\g<2>', html)
+    # og:locale — corregir si existe, insertar tras og:url si falta
+    if re.search(r'<meta property="og:locale"', html):
+        html = re.sub(r'(<meta property="og:locale" content=")[^"]*(")', rf'\g<1>{loc}\g<2>', html)
+    elif re.search(r'<meta property="og:url"', html):
+        html = re.sub(r'(<meta property="og:url"[^>]*/>)',
+                      rf'\1\n  <meta property="og:locale" content="{loc}"/>', html, count=1)
+    # Chino: Google Fonts está bloqueado en China → loli.net
+    if active_lang == "zh":
+        html = html.replace("fonts.googleapis.com", "fonts.loli.net").replace("fonts.gstatic.com", "gstatic.loli.net")
+
     return html
 
 
