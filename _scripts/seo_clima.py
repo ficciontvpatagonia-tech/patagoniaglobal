@@ -169,6 +169,48 @@ CITIES = {
             ("¿Cuál es la mejor época para visitar Punta Arenas?", "De octubre a marzo, por los días largos y las excursiones operativas hacia Torres del Paine, la isla Magdalena y el Estrecho de Magallanes."),
         ],
     },
+    "clima-puerto-montt.html": {
+        "ciudad": "Puerto Montt", "lugar": "Puerto Montt, Los Lagos (Chile)",
+        "guia": GUIA_GENERAL,
+        "intro": [
+            "Puerto Montt tiene un <strong>clima oceánico templado lluvioso</strong>: fresco todo el año, muy húmedo y con lluvias frecuentes en casi cualquier estación. A orillas del seno de Reloncaví, es la puerta de entrada a Chiloé, la Carretera Austral y la Patagonia chilena de los lagos y volcanes.",
+            "Acá la lluvia es protagonista más que el frío: no hay temperaturas extremas, pero sí muchos días nublados y cambios rápidos. Antes de cruzar a Chiloé o salir hacia Puerto Varas y el Volcán Osorno, revisá el pronóstico de 7 días que aparece arriba en esta página.",
+        ],
+        "estaciones": {
+            "☀️ Verano (dic–feb)": "De 11 a 19 °C, la época más seca y luminosa. La mejor ventana para navegar, recorrer Chiloé y la Carretera Austral. Aun así, llevá impermeable.",
+            "🍂 Otoño (mar–may)": "De 8 a 14 °C, vuelven las lluvias y los bosques toman color. Paisajes verdes y menos turistas.",
+            "❄️ Invierno (jun–ago)": "De 4 a 10 °C, muy lluvioso y con días cortos. Rara vez nieva en la ciudad; la nieve está en los volcanes cercanos.",
+            "🌸 Primavera (sep–nov)": "De 7 a 15 °C, clima inestable que alterna sol y lluvia. Reverdece todo y reabren las excursiones de temporada.",
+        },
+        "mejor": "La mejor época para visitar Puerto Montt es de <strong>diciembre a marzo</strong>, los meses más secos y de días largos para recorrer Chiloé, Puerto Varas, el Volcán Osorno y la Carretera Austral. El resto del año es verde y hermoso, pero hay que ir preparado para la lluvia.",
+        "faq": [
+            ("¿Qué temperatura hace hoy en Puerto Montt?", "Arriba en esta página podés ver la temperatura actual y el pronóstico de los próximos 7 días, con lluvia, viento y sensación térmica, datos de los modelos ECMWF y GFS actualizados cada hora."),
+            ("¿Llueve mucho en Puerto Montt?", "Sí. Es una de las zonas más lluviosas de Chile, con precipitaciones repartidas casi todo el año. El verano (diciembre a marzo) es la temporada más seca, pero conviene llevar siempre ropa impermeable."),
+            ("¿Cuál es la mejor época para visitar Puerto Montt?", "De diciembre a marzo, por ser los meses más secos y de días largos, ideales para Chiloé, Puerto Varas y la Carretera Austral."),
+            ("¿Nieva en Puerto Montt?", "En la ciudad la nieve es excepcional: el invierno es lluvioso más que nevado. La nieve aparece en los volcanes y la cordillera cercana."),
+        ],
+    },
+    "clima-comodoro.html": {
+        "ciudad": "Comodoro Rivadavia", "lugar": "Comodoro Rivadavia, Chubut (Argentina)",
+        "guia": GUIA_GENERAL,
+        "intro": [
+            "Comodoro Rivadavia tiene un <strong>clima árido frío y extremadamente ventoso</strong>: seco, con poca lluvia y rachas de viento de las más fuertes de la Patagonia. Sobre el Golfo San Jorge, es la principal ciudad petrolera del país y un nudo de servicios del sur de Chubut y norte de Santa Cruz.",
+            "El viento del oeste es el rasgo que define el día a día y puede superar los 100 km/h. Las temperaturas son moderadas por el mar, pero la sensación térmica la marca el viento. Antes de salir a la ruta o a la costa, mirá el pronóstico de 7 días que aparece arriba en esta página.",
+        ],
+        "estaciones": {
+            "☀️ Verano (dic–feb)": "De 18 a 26 °C y viento intenso, sobre todo a la tarde. Días largos; buena época para la costa y el Cerro Chenque, siempre con cortavientos.",
+            "🍂 Otoño (mar–may)": "De 10 a 18 °C, el viento amaina un poco y baja la temperatura. Temporada más tranquila y luz suave.",
+            "❄️ Invierno (jun–ago)": "De 4 a 11 °C, frío seco con heladas y nieve ocasional. Días cortos y viento que acentúa el frío.",
+            "🌸 Primavera (sep–nov)": "De 9 a 18 °C y el pico del viento patagónico, con rachas muy fuertes. Vuelven las jornadas largas.",
+        },
+        "mejor": "La mejor época para visitar Comodoro Rivadavia es <strong>verano (diciembre a marzo)</strong>, con temperaturas templadas y días largos para la costa del Golfo San Jorge y la Reserva Punta del Marqués. El viento es un factor todo el año: conviene revisar siempre el pronóstico.",
+        "faq": [
+            ("¿Qué temperatura hace hoy en Comodoro Rivadavia?", "Arriba en esta página tenés la temperatura actual y el pronóstico de 7 días, con viento y sensación térmica —clave en una de las ciudades más ventosas del país."),
+            ("¿Por qué hace tanto viento en Comodoro Rivadavia?", "Por su ubicación en la costa patagónica, plena zona de los vientos del oeste. Las rachas pueden superar los 100 km/h, sobre todo en primavera y verano."),
+            ("¿Cuál es la mejor época para visitar Comodoro Rivadavia?", "El verano (diciembre a marzo), por las temperaturas más templadas y los días largos para recorrer la costa y los museos del petróleo."),
+            ("¿Nieva en Comodoro Rivadavia?", "Poco: el invierno es frío y seco, con heladas frecuentes y nevadas ocasionales que no suelen acumular en la ciudad."),
+        ],
+    },
 }
 
 CSS_MARK = "/* ── BLOQUE SEO CLIMA ── */"
