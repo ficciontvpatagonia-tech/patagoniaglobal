@@ -1378,9 +1378,51 @@ def _foto_fallback(fotos_usadas):
     return None
 
 
+def imagen_de_pagina_publicada(nota_id):
+    """REGLA FIJA: si la nota ya tiene página estática publicada (notas/{id}.html),
+    su foto es la fuente de verdad. El index DEBE mostrar exactamente esa misma foto.
+    Prioridad absoluta a la foto que Marto subió manualmente (queda horneada en la página
+    y nunca se reescribe por el exists-guard). Devuelve ruta local o None."""
+    base = os.path.dirname(__file__)
+    ruta = os.path.join(base, "notas", f"{nota_id}.html")
+    if not os.path.exists(ruta):
+        return None
+    try:
+        with open(ruta, encoding="utf-8") as f:
+            html = f.read()
+    except Exception:
+        return None
+    import re as _re
+    m = _re.search(r'<meta\s+property="og:image"\s+content="([^"]+)"', html)
+    if not m:
+        m = _re.search(r'<img\s+class="nota-imagen"\s+src="([^"]+)"', html)
+    if not m:
+        return None
+    src = m.group(1).strip()
+    # Normalizar a ruta local (fotos/...): quitar dominio si lo trae
+    for pref in ("https://globalpatagonia.org/", "http://globalpatagonia.org/", "/"):
+        if src.startswith(pref):
+            src = src[len(pref):]
+            break
+    # Ignorar placeholders genéricos del template (no son foto real de la nota)
+    if not src or "torres-del-paine" in src or src.endswith("logo-globalpatagonia.webp"):
+        return None
+    # Verificar que el archivo exista en disco antes de fijarlo
+    if not src.startswith("http") and not os.path.exists(os.path.join(base, src)):
+        return None
+    return src
+
+
 def resolver_imagen(nota, fotos_propias, fotos_usadas):
-    """Jerarquía: RSS > og:image > foto propia > Unsplash > fallback. Siempre ruta local."""
+    """Jerarquía: página publicada (FIJA) > RSS > og:image > foto propia > Unsplash > fallback. Siempre ruta local."""
     nota_id = nota.get("id", "sin-id")
+
+    # REGLA FIJA: el index siempre muestra la MISMA foto que la página de la nota.
+    # Si la nota ya está publicada, anclamos a su foto (prioridad foto manual de Marto).
+    publicada = imagen_de_pagina_publicada(nota_id)
+    if publicada:
+        print(f"    [{nota_id}] foto fijada desde página publicada → {publicada}")
+        return publicada
 
     rss_url = nota.get("imagen", "")
     if rss_url and str(rss_url).startswith("http"):
