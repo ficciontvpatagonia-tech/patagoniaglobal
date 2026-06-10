@@ -4353,9 +4353,6 @@ def _generar_imagen_ig(ruta_local, titulo, tag="", nota_id=""):
             draw.text((PADDING,     y_txt),     linea, font=font_titulo, fill=C_CREMA)
             y_txt += LINE_H
 
-        # ── CTA "ver nota completa" ───────────────────────────────────────────────
-        draw.text((PADDING, ALTO - 60), "ver nota completa", font=font_cta, fill=C_TEAL)
-
         # ── Guardar _ig.jpg ───────────────────────────────────────────────────────
         # Usar nota_id como nombre de archivo para evitar que Instagram cachee 404 de runs anteriores
         if nota_id:
@@ -4544,18 +4541,33 @@ def publicar_instagram_informe_nuevo():
     if not imagen:
         return
 
-    base_dir_i    = os.path.dirname(__file__)
-    imagen_ig_i   = imagen.rsplit(".", 1)[0] + "_ig.jpg"
-    image_url_ig_i  = f"https://globalpatagonia.org/{imagen_ig_i}" if os.path.exists(os.path.join(base_dir_i, imagen_ig_i)) else None
+    base_dir_i = os.path.dirname(__file__)
+    # Buscar la tarjeta _ig.jpg igual que la tapa: primero por id del informe, luego por nombre de imagen.
+    # (La tarjeta se genera en el run principal como fotos/{informe_id}_ig.jpg — antes solo se buscaba
+    #  por nombre de imagen y nunca se encontraba → caía al WebP original, que Instagram rechaza.)
+    _ig_by_id_i   = os.path.join(base_dir_i, "fotos", informe_id + "_ig.jpg") if informe_id else ""
+    _ig_by_name_i = os.path.join(base_dir_i, imagen.rsplit(".", 1)[0] + "_ig.jpg") if imagen else ""
+    if _ig_by_id_i and os.path.exists(_ig_by_id_i):
+        imagen_ig_i = f"fotos/{informe_id}_ig.jpg"
+    elif _ig_by_name_i and os.path.exists(_ig_by_name_i):
+        imagen_ig_i = imagen.rsplit(".", 1)[0] + "_ig.jpg"
+    else:
+        imagen_ig_i = None
+    image_url_ig_i   = f"https://globalpatagonia.org/{imagen_ig_i}" if imagen_ig_i else None
     image_url_orig_i = f"https://globalpatagonia.org/{imagen}"
     image_url = image_url_ig_i or image_url_orig_i
 
-    caption = (
-        f"{tag} {titulo}\n\n"
-        f"{bajada}\n\n"
-        f"🔗 Ver nota completa → link en bio\n\n"
-        f"#Patagonia #GLOBALpatagonia #Informe #SurGlobal #PatagoniaArgentina"
-    )
+    # Caption con la nota completa (igual que la tapa): cabecera + cuerpo + hashtags, recortado a 2200.
+    import re as _re_i
+    hashtags_i   = "#Patagonia #GLOBALpatagonia #Informe #SurGlobal #PatagoniaArgentina"
+    cuerpo_i     = _re_i.sub(r"<[^>]+>", "", informe.get("cuerpo", "")).strip()
+    encabezado_i = f"{tag} {titulo}\n\n{bajada}\n\n"
+    pie_i        = f"\n\n{hashtags_i}"
+    disponible_i = 2200 - len(encabezado_i) - len(pie_i)
+    if len(cuerpo_i) > disponible_i:
+        corte_i  = cuerpo_i[:disponible_i].rfind("\n\n")
+        cuerpo_i = cuerpo_i[:corte_i if corte_i > 0 else disponible_i].rstrip() + "…"
+    caption = encabezado_i + cuerpo_i + pie_i
 
     try:
         api_base = f"https://graph.facebook.com/v21.0/{ig_user_id}"
