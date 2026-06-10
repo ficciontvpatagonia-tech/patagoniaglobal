@@ -679,8 +679,29 @@ var _watchStart = null;
 var _watchAcum  = 0;
 var _milestones = new Set();
 var _pollInterval = null;
+var _pendingVid = null;   // video YouTube a montar cuando la API termine de cargar
 
-function onYouTubeIframeAPIReady() { _ytReady = true; }
+function onYouTubeIframeAPIReady() {
+  _ytReady = true;
+  if (_pendingVid) { var v = _pendingVid; _pendingVid = null; _mountYT(v); }
+}
+
+// Deja .lb-ratio con un punto de montaje <div id="lb-iframe"> limpio y mata el player previo.
+function _resetPlayerHost() {
+  if (_ytPlayer) { try { _ytPlayer.destroy(); } catch(e) {} _ytPlayer = null; }
+  var ratio = document.querySelector('.lb-ratio');
+  if (ratio) ratio.innerHTML = '<div id="lb-iframe"></div>';
+}
+
+// Crea el reproductor YouTube sobre el div de montaje (la API lo reemplaza por un iframe
+// con enablejsapi/origin ya seteados) y engancha el tracking de reproducción.
+function _mountYT(v) {
+  _ytPlayer = new YT.Player('lb-iframe', {
+    videoId: v.youtube_id,
+    playerVars: { autoplay: 1, playsinline: 1, rel: 0 },
+    events: { onStateChange: _ytStateChange }
+  });
+}
 
 function _ytStateChange(e) {
   if (e.data === YT.PlayerState.PLAYING) {
@@ -746,19 +767,14 @@ function abrirVideo(v) {
   });
   _logSheet(v, 'click');
 
-  const iframe = document.getElementById("lb-iframe");
+  _resetPlayerHost();
   if (v.youtube_id) {
-    if (_ytPlayer) {
-      _ytPlayer.loadVideoById(v.youtube_id);
-    } else {
-      iframe.src = getEmbedUrl(v);
-      if (_ytReady) {
-        _ytPlayer = new YT.Player('lb-iframe', { events: { onStateChange: _ytStateChange } });
-      }
-    }
+    if (_ytReady) _mountYT(v);
+    else _pendingVid = v;   // se monta solo cuando carga la API de YouTube
   } else {
-    if (_ytPlayer) { try { _ytPlayer.destroy(); } catch(e) {} _ytPlayer = null; }
-    iframe.src = v.embed_url || '';
+    // Embed que no es de YouTube: iframe directo (sin tracking de reproducción)
+    const ratio = document.querySelector('.lb-ratio');
+    if (ratio) ratio.innerHTML = '<iframe id="lb-iframe" src="' + (v.embed_url || '') + '" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
   }
 
   document.getElementById("lb-titulo").textContent = v.titulo;
@@ -770,9 +786,9 @@ function abrirVideo(v) {
 function cerrar() {
   clearInterval(_pollInterval); _pollInterval = null;
   _fireWatch('cerrado');
-  if (_ytPlayer) { try { _ytPlayer.destroy(); } catch(e) {} _ytPlayer = null; }
+  _pendingVid = null;
+  _resetPlayerHost();
   _trackVid = null;
-  document.getElementById("lb-iframe").src = "";
   document.getElementById("lightbox").classList.remove("open");
   document.body.style.overflow = "";
 }
