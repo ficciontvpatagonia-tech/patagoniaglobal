@@ -21,6 +21,23 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # guía de viaje a la que enlaza cada ciudad (None → guía general Patagonia)
 GUIA_GENERAL = ("notas/guia-patagonia-argentina-chile.html", "Guía Patagonia Argentina y Chile")
 
+# Normales climáticas (promedio 10 años, modelo ERA5 vía Open-Meteo), por archivo:
+# lista de 12 tuplas (máx, mín, mm de lluvia), de enero a diciembre.
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "clima_normals.json"), encoding="utf-8") as _f:
+    NORMALS = json.load(_f)
+
+MESES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+         "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+
+
+# Título y meta description alineados a las búsquedas reales: clima / tiempo / temperatura / pronóstico.
+def build_title(c):
+    return f"Clima en {c['ciudad']}: tiempo, temperatura y pronóstico 7 días"
+
+def build_desc(c):
+    return (f"El tiempo en {c['ciudad']} hoy y el pronóstico a 7 días: temperatura, viento, "
+            f"lluvia y el clima mes a mes. Datos por hora de los modelos ECMWF y GFS.")
+
 CITIES = {
     "clima-bariloche.html": {
         "ciudad": "Bariloche", "lugar": "San Carlos de Bariloche, Río Negro (Argentina)",
@@ -232,11 +249,38 @@ CSS_BLOCK = CSS_MARK + """
 .clima-faq details p { padding:0 0 14px; margin:0; font-size:15px; color:#4a4a4a; }
 .clima-guia-link { display:inline-block; margin-top:18px; background:var(--verde); color:#fff; text-decoration:none; padding:12px 22px; border-radius:999px; font-weight:600; font-size:15px; }
 .clima-guia-link:hover { background:var(--verde-medio); }
-@media(max-width:640px){ .clima-estaciones{ grid-template-columns:1fr; } .clima-seo h2{ font-size:22px; } }
+.clima-meses { width:100%; border-collapse:collapse; margin:14px 0 8px; font-size:15px; }
+.clima-meses th, .clima-meses td { padding:9px 12px; text-align:left; border-bottom:1px solid #e3ddd3; }
+.clima-meses thead th { color:var(--verde); font-family:'Inter',sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; }
+.clima-meses tbody th { font-weight:600; color:var(--gris-oscuro); }
+.clima-meses tbody td { color:#4a4a4a; }
+.clima-meses tbody tr:hover { background:#faf8f4; }
+@media(max-width:640px){ .clima-estaciones{ grid-template-columns:1fr; } .clima-seo h2{ font-size:22px; } .clima-meses{ font-size:14px; } .clima-meses th, .clima-meses td{ padding:7px 8px; } }
 """
 
 
-def build_section(c):
+def build_meses_table(fname, c):
+    rows = NORMALS.get(fname)
+    if not rows:
+        return ""
+    warm = max(range(12), key=lambda i: rows[i][0])
+    cold = min(range(12), key=lambda i: rows[i][0])
+    wet = max(range(12), key=lambda i: rows[i][2])
+    trs = "".join(
+        f'\n        <tr><th scope="row">{MESES[i]}</th><td>{mx} °C</td><td>{mn} °C</td><td>{pr} mm</td></tr>'
+        for i, (mx, mn, pr) in enumerate(rows)
+    )
+    return f"""
+    <h3>Clima de {c['ciudad']} mes a mes</h3>
+    <p>Promedios históricos de los últimos 10 años (modelo ERA5). El mes más cálido es <strong>{MESES[warm].lower()}</strong> (máxima media de {rows[warm][0]} °C) y el más frío <strong>{MESES[cold].lower()}</strong> ({rows[cold][0]} °C); las lluvias son mayores en <strong>{MESES[wet].lower()}</strong>.</p>
+    <table class="clima-meses">
+      <thead><tr><th scope="col">Mes</th><th scope="col">Máxima media</th><th scope="col">Mínima media</th><th scope="col">Lluvia</th></tr></thead>
+      <tbody>{trs}
+      </tbody>
+    </table>"""
+
+
+def build_section(fname, c):
     est = "".join(
         f'\n      <div class="ce-card"><h3>{k}</h3><p>{v}</p></div>'
         for k, v in c["estaciones"].items()
@@ -247,13 +291,14 @@ def build_section(c):
     )
     intro = "".join(f'\n    <p>{p}</p>' for p in c["intro"])
     guia_href, guia_txt = c["guia"]
+    meses = build_meses_table(fname, c)
     return f"""
 <!-- clima-seo: contenido indexable (generado por _scripts/seo_clima.py) -->
 <section class="clima-seo">
     <h2>El clima en {c['ciudad']}: qué esperar todo el año</h2>{intro}
     <h3>El clima de {c['ciudad']} estación por estación</h3>
     <div class="clima-estaciones">{est}
-    </div>
+    </div>{meses}
     <h3>¿Cuál es la mejor época para visitar {c['ciudad']}?</h3>
     <p>{c['mejor']}</p>
     <div class="clima-faq">
@@ -278,23 +323,46 @@ def build_jsonld(c):
     return f'\n  <script type="application/ld+json">\n{data}\n  </script>\n'
 
 
-def process(path, c):
+def _set_meta(html, selector_prefix, value):
+    """Reemplaza el content="" de un meta/title ya presente. No inserta si falta."""
+    pat = re.compile(r'(' + selector_prefix + r')[^"]*(")')
+    return pat.sub(lambda m: m.group(1) + value + m.group(2), html, count=1)
+
+
+def process(path, fname, c):
     with open(path, encoding="utf-8") as f:
         html = f.read()
-    if "clima-seo" in html:
-        return "ya tenía bloque — saltada"
 
-    # 1. arreglar H1 duplicado: el sr-only del header pasa a <p>
+    title, desc = build_title(c), build_desc(c)
+
+    # 1. título + meta description + OG/Twitter (alineados a las queries reales)
+    html = re.sub(r"<title>.*?</title>", f"<title>{title}</title>", html, count=1, flags=re.S)
+    html = _set_meta(html, r'<meta name="description" content="', desc)
+    html = _set_meta(html, r'<meta property="og:title" content="', title)
+    html = _set_meta(html, r'<meta property="og:description" content="', desc)
+    html = _set_meta(html, r'<meta name="twitter:title" content="', title)
+    html = _set_meta(html, r'<meta name="twitter:description" content="', desc)
+
+    # 2. H1 duplicado del header (sr-only) → <p>
     html = html.replace(
         '<h1 class="sr-only">GLOBALpatagonia — El Tiempo en la Patagonia</h1>',
         '<p class="sr-only">GLOBALpatagonia — El Tiempo en la Patagonia</p>',
     )
 
-    # 2. JSON-LD antes de </head>
-    html = html.replace("</head>", build_jsonld(c) + "</head>", 1)
+    # 3. JSON-LD FAQPage (reemplaza el existente o lo inserta antes de </head>)
+    jsonld = build_jsonld(c)
+    html, n = re.subn(r'\s*<script type="application/ld\+json">.*?</script>',
+                      jsonld.rstrip("\n"), html, count=1, flags=re.S)
+    if n == 0:
+        html = html.replace("</head>", jsonld + "</head>", 1)
 
-    # 3. sección de contenido antes de <footer>
-    html = html.replace("<footer>", build_section(c) + "\n<footer>", 1)
+    # 4. sección de contenido indexable (reemplaza el bloque existente o lo inserta antes de <footer>)
+    section = build_section(fname, c)
+    if "clima-seo" in html:
+        html = re.sub(r'\s*(?:<!-- clima-seo[^>]*-->\s*)?<section class="clima-seo">.*?</section>',
+                      "\n" + section.strip("\n"), html, count=1, flags=re.S)
+    else:
+        html = html.replace("<footer>", section + "\n<footer>", 1)
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(html)
@@ -305,11 +373,12 @@ def ensure_css():
     css_path = os.path.join(ROOT, "clima.css")
     with open(css_path, encoding="utf-8") as f:
         css = f.read()
-    if CSS_MARK in css:
-        return "CSS ya presente"
-    with open(css_path, "a", encoding="utf-8") as f:
-        f.write("\n\n" + CSS_BLOCK)
-    return "CSS agregado a clima.css"
+    if CSS_MARK in css:                       # quitar bloque viejo (update-in-place)
+        css = css[:css.index(CSS_MARK)].rstrip()
+    css = css.rstrip() + "\n\n" + CSS_BLOCK
+    with open(css_path, "w", encoding="utf-8") as f:
+        f.write(css)
+    return "CSS clima actualizado"
 
 
 if __name__ == "__main__":
@@ -319,5 +388,5 @@ if __name__ == "__main__":
         if not os.path.exists(path):
             print(f"  {fname:<28} NO EXISTE")
             continue
-        print(f"  {fname:<28} {process(path, c)}")
+        print(f"  {fname:<28} {process(path, fname, c)}")
     print("\nListo. Revisá una página en el navegador antes de pushear.")

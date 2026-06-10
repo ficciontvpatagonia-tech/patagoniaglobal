@@ -263,7 +263,6 @@ footer { background:var(--verde); padding:40px 20px 28px; text-align:center; mar
   .wind-bar-cell { display:none; }
 }
 
-
 /* ── BLOQUE SEO CLIMA ── */
 .clima-seo { max-width:920px; margin:10px auto 40px; padding:0 20px; line-height:1.7; }
 .clima-seo h2 { font-family:'Playfair Display',serif; color:var(--verde); font-size:26px; margin:32px 0 16px; }
@@ -282,4 +281,10 @@ footer { background:var(--verde); padding:40px 20px 28px; text-align:center; mar
 .clima-faq details p { padding:0 0 14px; margin:0; font-size:15px; color:#4a4a4a; }
 .clima-guia-link { display:inline-block; margin-top:18px; background:var(--verde); color:#fff; text-decoration:none; padding:12px 22px; border-radius:999px; font-weight:600; font-size:15px; }
 .clima-guia-link:hover { background:var(--verde-medio); }
-@media(max-width:640px){ .clima-estaciones{ grid-template-columns:1fr; } .clima-seo h2{ font-size:22px; } }
+.clima-meses { width:100%; border-collapse:collapse; margin:14px 0 8px; font-size:15px; }
+.clima-meses th, .clima-meses td { padding:9px 12px; text-align:left; border-bottom:1px solid #e3ddd3; }
+.clima-meses thead th { color:var(--verde); font-family:'Inter',sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; }
+.clima-meses tbody th { font-weight:600; color:var(--gris-oscuro); }
+.clima-meses tbody td { color:#4a4a4a; }
+.clima-meses tbody tr:hover { background:#faf8f4; }
+@media(max-width:640px){ .clima-estaciones{ grid-template-columns:1fr; } .clima-seo h2{ font-size:22px; } .clima-meses{ font-size:14px; } .clima-meses th, .clima-meses td{ padding:7px 8px; } }
