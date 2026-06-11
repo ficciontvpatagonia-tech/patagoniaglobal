@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260609-la-sirena-de-hielo-vuelve-al-estrecho-barbara-dep",
-    "tag": "🏊 Deportes",
-    "titulo": "La 'Sirena de Hielo' vuelve al Estrecho: Bárbara Hernández en el Chapuzón de Punta Arenas",
-    "bajada": "La nadadora chilena Bárbara Hernández, cuatro veces récord Guinness en aguas magallánicas, recibirá un reconocimiento de la Fundación Antártica21 y se sumará al Chapuzón del Estrecho el 27 de junio.",
-    "imagen": "fotos/foto-20260609-la-sirena-de-hielo-vuelve-al-estrecho-barbara-dep.webp",
-    "meta": "Hoy · El Pingüino"
+    "id": "20260611-tres-jovenes-escalan-la-cumbre-mas-alta-del-parque-dep",
+    "tag": "🏔️ Deportes",
+    "titulo": "Tres jóvenes escalan la cumbre más alta del Parque Torres del Paine",
+    "bajada": "Ángel Canales, Vicente y un tercer compañero coronaron la cima más elevada del parque nacional chileno el mismo día en que Puerto Natales cumplía 115 años.",
+    "imagen": "fotos/foto-20260611-tres-jovenes-escalan-la-cumbre-mas-alta-del-parque-dep.webp",
+    "meta": "Hoy · El Magallánico"
   },
   "secundarias": [
+    {
+      "id": "20260609-la-sirena-de-hielo-vuelve-al-estrecho-barbara-dep",
+      "tag": "🏊 Deportes",
+      "titulo": "La 'Sirena de Hielo' vuelve al Estrecho: Bárbara Hernández en el Chapuzón de Punta Arenas",
+      "bajada": "La nadadora chilena Bárbara Hernández, cuatro veces récord Guinness en aguas magallánicas, recibirá un reconocimiento de la Fundación Antártica21 y se sumará al Chapuzón del Estrecho el 27 de junio.",
+      "imagen": "fotos/foto-20260609-la-sirena-de-hielo-vuelve-al-estrecho-barbara-dep.webp",
+      "meta": "Hoy · El Pingüino"
+    },
     {
       "id": "20260606-trona-360-el-libro-que-nacio-en-la-montana-y-volvio-a-dep",
       "tag": "🏔️ Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El Club Andino Bariloche presentó el libro de un egresado de sus Escuelas Juveniles de Montaña, que documenta experiencias transformadoras en la naturaleza patagónica.",
       "imagen": "fotos/foto-20260606-trona-360-el-libro-que-nacio-en-la-montana-y-volvio-a-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260605-montanas-limpias-rio-negro-le-da-rango-oficial-a-la-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La Legislatura de Río Negro declaró de interés social, ambiental y educativo la campaña Montañas Limpias del Club Andino Bariloche, reconociendo su impacto territorial en los cerros patagónicos.",
       "imagen": "fotos/foto-20260605-montanas-limpias-rio-negro-le-da-rango-oficial-a-la-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260603-400-corredores-en-puerto-williams-la-corrida-mas-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Matías Barría y su navegante Sebastián Álvarez se impusieron en la segunda fecha del Campeonato Provincial de Rally natalino 2026, en la prueba que celebró los 115 años de la ciudad.",
       "imagen": "fotos/foto-20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep.webp",
       "meta": "Hoy · La Prensa Austral"
-    },
-    {
-      "id": "20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Rosa Fénix: el equipo inclusivo de Neuquén que cruzó el Atlántico",
-      "bajada": "El equipo neuquino Rosa Fénix, integrado por personas con diversidad funcional, representó a la Patagonia en el Festival Internacional de Dragon Boat en España y dejó una huella que va mucho más allá del deporte.",
-      "imagen": "fotos/foto-20260528-rosa-fenix-el-equipo-inclusivo-de-neuquen-que-cruzo-el-dep.webp",
-      "meta": "Hoy · Diario Río Negro"
     }
   ]
 }
