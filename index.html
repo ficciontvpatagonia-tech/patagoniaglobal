@@ -560,7 +560,7 @@
     }
 
     .informe-principal .inf-img {
-      height: 260px;
+      height: 300px;
       background: linear-gradient(135deg, #0d1820, #1c2d3d, #3a5a7a);
       display: flex;
       align-items: center;
@@ -600,11 +600,12 @@
     }
 
     .informe-item-img {
-      height: 120px;
+      height: 140px;
       background: linear-gradient(135deg, #1c2d3d, #3a5a7a);
       background-size: cover;
       background-position: center;
       border-radius: 4px 4px 0 0;
+      flex-shrink: 0;
     }
 
     .informe-item {
@@ -615,11 +616,14 @@
       cursor: pointer;
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
       transition: border-color 0.2s;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .informe-item:hover { border-left-color: var(--verde); }
 
-    .informe-item-body { padding: 12px 14px; }
+    .informe-item-body { padding: 12px 14px; flex: 1; }
 
     .informe-item .inf-label { color: #3a5a7a; }
 
