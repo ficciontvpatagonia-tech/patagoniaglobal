@@ -507,8 +507,9 @@
 
     .informes-top {
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
+      align-items: stretch;
     }
 
     .informes-mini-grid {
@@ -560,7 +561,7 @@
     }
 
     .informe-principal .inf-img {
-      height: 300px;
+      height: 220px;
       background: linear-gradient(135deg, #0d1820, #1c2d3d, #3a5a7a);
       display: flex;
       align-items: center;
@@ -594,13 +595,11 @@
     }
 
     .informes-lista {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      display: contents;
     }
 
     .informe-item-img {
-      height: 140px;
+      height: 220px;
       background: linear-gradient(135deg, #1c2d3d, #3a5a7a);
       background-size: cover;
       background-position: center;
