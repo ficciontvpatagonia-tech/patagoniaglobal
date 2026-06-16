@@ -6,6 +6,7 @@ Solo incluye artículos de los últimos 2 días (requisito de Google News).
 
 import json
 import os
+import re
 from datetime import datetime, timedelta, timezone
 
 REPO = os.path.dirname(os.path.abspath(__file__))
@@ -64,7 +65,32 @@ def recolectar_notas():
                 vistas.add(nid)
                 notas.append(nota)
 
+    # propios.json (INFORMES de Marto) — quedaban afuera del sitemap de noticias
+    path = os.path.join(REPO, 'propios.json')
+    if os.path.exists(path):
+        with open(path, encoding='utf-8') as f:
+            data = json.load(f)
+        for nota in data:
+            nid = nota.get('id', '')
+            if nid and nid not in vistas and es_reciente(nid):
+                vistas.add(nid)
+                notas.append(nota)
+
     return notas
+
+
+def titulo_de_nota(nota):
+    """El 'titulo' de propios.json a veces es el H1 corto (ej. "CARNE DE GUANACO"),
+    no el headline real. Si existe el HTML publicado, preferimos el <title> de ahí."""
+    nid = nota.get('id', '')
+    path = os.path.join(REPO, 'notas', f'{nid}.html')
+    if os.path.exists(path):
+        with open(path, encoding='utf-8') as f:
+            contenido = f.read()
+        m = re.search(r'<title>(.*?)</title>', contenido, re.DOTALL)
+        if m:
+            return m.group(1).replace(' — GLOBALpatagonia', '').strip()
+    return nota.get('titulo', '')
 
 
 def url_de_nota(nid):
@@ -89,7 +115,7 @@ def generar():
 
     for nota in notas:
         nid = nota.get('id', '')
-        titulo = escape_xml(nota.get('titulo', ''))
+        titulo = escape_xml(titulo_de_nota(nota))
         fecha = fecha_desde_id(nid)
         if not fecha or not titulo:
             continue
