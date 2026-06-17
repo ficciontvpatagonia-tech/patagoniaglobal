@@ -2692,6 +2692,7 @@ def generar_paginas_og(notas):
     <div class="nota-cuerpo">{cuerpo_html}</div>
     <div class="nota-fuente"><strong>Fuente original:</strong> Esta nota fue elaborada con información de <strong>{e(fuente)}</strong>.</div>
     {relacionadas_html}
+    <div class="compartir-bloque" id="compartir-bloque"></div>
     <a href="../" class="ver-completo">← Más noticias en GLOBALpatagonia</a>
   </article>
 </div>
@@ -2702,6 +2703,26 @@ def generar_paginas_og(notas):
   <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:4px;">Argentina · Chile · Sin fronteras</div>
   <div class="footer-copy">© 2026 GLOBALpatagonia · globalpatagonia.org</div>
 </footer>
+<script>
+(function(){{
+  var href = encodeURIComponent(window.location.href);
+  var titulo = encodeURIComponent(document.title.replace(' — GLOBALpatagonia','').replace(' - GLOBALpatagonia',''));
+  var mailSubject = encodeURIComponent(document.title.replace(' — GLOBALpatagonia','').replace(' - GLOBALpatagonia',''));
+  var mailBody = encodeURIComponent(document.title + '\\n' + window.location.href);
+  var div = document.getElementById('compartir-bloque');
+  if (!div) return;
+  div.innerHTML =
+    '<span style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7a7a7a;display:block;margin-bottom:10px;">Compartir</span>' +
+    '<div style="display:flex;flex-wrap:wrap;gap:8px;">' +
+    '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#25D366;" href="https://wa.me/?text='+titulo+'%20'+href+'" target="_blank" rel="noopener">WhatsApp</a>' +
+    '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#000;" href="https://twitter.com/intent/tweet?text='+titulo+'&url='+href+'" target="_blank" rel="noopener">X</a>' +
+    '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#1877F2;" href="https://www.facebook.com/sharer/sharer.php?u='+href+'" target="_blank" rel="noopener">Facebook</a>' +
+    '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#0A66C2;" href="https://www.linkedin.com/sharing/share-offsite/?url='+href+'" target="_blank" rel="noopener">LinkedIn</a>' +
+    '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#555;" href="mailto:?subject='+mailSubject+'&body='+mailBody+'">Email</a>' +
+    '<button style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;cursor:pointer;border:none;color:white;background:#3a5a7a;" onclick="navigator.clipboard.writeText(window.location.href);this.textContent=\x27\xa1Copiado!\x27">Copiar enlace</button>' +
+    '</div>';
+}})();
+</script>
 </body>
 </html>"""
 
