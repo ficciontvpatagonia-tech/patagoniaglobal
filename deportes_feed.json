@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260611-tres-jovenes-escalan-la-cumbre-mas-alta-del-parque-dep",
-    "tag": "🏔️ Deportes",
-    "titulo": "Tres jóvenes escalan la cumbre más alta del Parque Torres del Paine",
-    "bajada": "Ángel Canales, Vicente y un tercer compañero coronaron la cima más elevada del parque nacional chileno el mismo día en que Puerto Natales cumplía 115 años.",
-    "imagen": "fotos/foto-20260611-tres-jovenes-escalan-la-cumbre-mas-alta-del-parque-dep.webp",
-    "meta": "Hoy · El Magallánico"
+    "id": "20260619-miguel-puratic-campeon-binacional-de-motocross-puerto-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "Miguel Puratic, campeón binacional de Motocross: Puerto Natales en lo más alto",
+    "bajada": "El piloto de Puerto Natales se consagró campeón del torneo binacional Argentina-Chile de Motocross disputado en el Motódromo Ricardo Navarro de Punta Arenas, cerrando una temporada de alta exigencia entre dos países.",
+    "imagen": "fotos/foto-20260619-miguel-puratic-campeon-binacional-de-motocross-puerto-dep.webp",
+    "meta": "Hoy · El Pingüino"
   },
   "secundarias": [
+    {
+      "id": "20260611-tres-jovenes-escalan-la-cumbre-mas-alta-del-parque-dep",
+      "tag": "🏔️ Deportes",
+      "titulo": "Tres jóvenes escalan la cumbre más alta del Parque Torres del Paine",
+      "bajada": "Ángel Canales, Vicente y un tercer compañero coronaron la cima más elevada del parque nacional chileno el mismo día en que Puerto Natales cumplía 115 años.",
+      "imagen": "fotos/foto-20260611-tres-jovenes-escalan-la-cumbre-mas-alta-del-parque-dep.webp",
+      "meta": "Hoy · El Magallánico"
+    },
     {
       "id": "20260609-la-sirena-de-hielo-vuelve-al-estrecho-barbara-dep",
       "tag": "🏊 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La nadadora chilena Bárbara Hernández, cuatro veces récord Guinness en aguas magallánicas, recibirá un reconocimiento de la Fundación Antártica21 y se sumará al Chapuzón del Estrecho el 27 de junio.",
       "imagen": "fotos/foto-20260609-la-sirena-de-hielo-vuelve-al-estrecho-barbara-dep.webp",
       "meta": "Hoy · El Pingüino"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260606-trona-360-el-libro-que-nacio-en-la-montana-y-volvio-a-dep",
       "tag": "🏔️ Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El Club Andino Bariloche presentó el libro de un egresado de sus Escuelas Juveniles de Montaña, que documenta experiencias transformadoras en la naturaleza patagónica.",
       "imagen": "fotos/foto-20260606-trona-360-el-libro-que-nacio-en-la-montana-y-volvio-a-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260605-montanas-limpias-rio-negro-le-da-rango-oficial-a-la-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La atleta máster de Neuquén capital, mayor de 65 años, se consagró campeona iberoamericana con récord en 300 metros con vallas en Perú, tras un viaje hecho a pulmón y peso por peso.",
       "imagen": "fotos/foto-20260602-otra-hazana-de-susana-morales-oro-record-y-bandera-dep.webp",
       "meta": "Hoy · LMNeuquén"
-    },
-    {
-      "id": "20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep",
-      "tag": "🏁 Deportes",
-      "titulo": "Barría ganó el Rally Aniversario de Puerto Natales en la Patagonia chilena",
-      "bajada": "Matías Barría y su navegante Sebastián Álvarez se impusieron en la segunda fecha del Campeonato Provincial de Rally natalino 2026, en la prueba que celebró los 115 años de la ciudad.",
-      "imagen": "fotos/foto-20260601-barria-gano-el-rally-aniversario-de-puerto-natales-en-dep.webp",
-      "meta": "Hoy · La Prensa Austral"
     }
   ]
 }
