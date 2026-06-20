@@ -2812,11 +2812,22 @@ def generar_paginas_temas(notas_all):
     for slug in por_tema:
         por_tema[slug].sort(key=lambda n: str(n.get("fecha", n.get("meta", ""))), reverse=True)
 
+    # Slugs que tendrán página (≥2 notas) — para la barra de navegación entre
+    # hubs. Malla completa: cada hub enlaza a todos los demás, reforzando el
+    # enlazado interno y dándole a Google más rutas de rastreo entre temas.
+    slugs_pub = [s for s, ns in por_tema.items() if len(ns) >= 2]
+
     generadas = 0
     for slug, notas in por_tema.items():
         if len(notas) < 2:
             continue
         label    = _TEMA_LABELS[slug]
+        _nav_items = "".join(
+            f'<a href="{o}.html">{_TEMA_LABELS[o]}</a>'
+            for o in sorted(slugs_pub, key=lambda x: _TEMA_LABELS[x]) if o != slug)
+        tema_nav_html = (f'<nav class="temas-nav" aria-label="Otros temas">'
+                         f'<span class="temas-nav-tit">Otros temas</span>{_nav_items}</nav>'
+                         if _nav_items else "")
         tema_url = f"https://globalpatagonia.org/temas/{slug}.html"
         desc_seo = f"Todas las noticias de {label} en la Patagonia argentina y chilena — GLOBALpatagonia"
 
@@ -2894,6 +2905,10 @@ def generar_paginas_temas(notas_all):
     .card-meta{{font-size:11px;color:#aaa;letter-spacing:0.5px;text-transform:uppercase;}}
     .volver{{display:inline-flex;align-items:center;gap:6px;margin:28px 0;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#3a5a7a;text-decoration:none;}}
     .volver:hover{{color:var(--verde);}}
+    .temas-nav{{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:28px 0 60px;border-top:1px solid #d8d4ce;}}
+    .temas-nav-tit{{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--verde);margin-right:4px;}}
+    .temas-nav a{{font-size:12px;color:#5a6070;text-decoration:none;letter-spacing:0.5px;}}
+    .temas-nav a:hover{{color:var(--verde);text-decoration:underline;}}
     .divider-footer{{height:2px;background:linear-gradient(90deg,#1c2d3d,#7aadcc,#1c2d3d);}}
     footer{{background:#1c2d3d;color:rgba(255,255,255,0.6);text-align:center;padding:32px 20px;}}
     .footer-logo{{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:white;letter-spacing:1px;margin-bottom:6px;}}
@@ -2934,6 +2949,7 @@ def generar_paginas_temas(notas_all):
   <div class="grid">
 {cards_html}
   </div>
+  {tema_nav_html}
 </div>
 
 <div class="divider-footer"></div>
