@@ -95,6 +95,7 @@ jobs:
           git add tapa_forzada.json secundaria_forzada.json 2>/dev/null || true
           git ls-files --others --exclude-standard notas/ | xargs -r git add --
           git add notas/
+          git add temas/   # páginas de sección por tema (las genera generar_paginas_temas; antes no se commiteaban → sitemap apuntaba a 404)
           git diff --staged --quiet || git commit -m "Noticias actualizadas — $(date +'%d/%m/%Y')"
           git push
 
