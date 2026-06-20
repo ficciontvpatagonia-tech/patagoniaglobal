@@ -2562,6 +2562,18 @@ def generar_paginas_og(notas):
         autor     = nota.get("autor", "")
         propio    = nota.get("propio", False)
 
+        # Enlace al hub de su tema (nota → categoría). De-orfaniza las páginas
+        # temas/ y le da a Google una ruta de rastreo nota→hub→otras notas.
+        _cat0 = str(nota.get("categoria", "")).split("|")[0].strip()
+        _tema_slug = _slug_categoria(_cat0) if _cat0 else ""
+        # Solo enlazar si el hub existe en disco (un tema con <2 notas no tiene
+        # página → evita 404). generar_paginas_temas corre en cada run y crea/
+        # actualiza las páginas; las de runs previos ya están commiteadas.
+        tema_link = (f"../temas/{_tema_slug}.html"
+                     if _tema_slug in _TEMA_LABELS
+                     and os.path.isfile(os.path.join(notas_dir, "..", "temas", f"{_tema_slug}.html"))
+                     else "")
+
         cuerpo_html = _render_cuerpo_html(cuerpo)
 
         # "También te puede interesar" — 3 notas (mismo tag primero)
@@ -2631,6 +2643,8 @@ def generar_paginas_og(notas):
     .volver{{display:inline-flex;align-items:center;gap:6px;margin:28px 0 24px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#3a5a7a;text-decoration:none;}}
     .volver:hover{{color:var(--verde);}}
     .nota-tag{{display:inline-block;background:var(--verde);color:#8ab8d4;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:18px;}}
+    a.nota-tag{{text-decoration:none;transition:background 0.2s;}}
+    a.nota-tag:hover{{background:#2a4358;}}
     .nota-titulo{{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);font-weight:900;line-height:1.15;color:var(--gris-oscuro);margin-bottom:20px;letter-spacing:-0.5px;}}
     .nota-bajada{{font-size:19px;font-weight:400;color:var(--gris-medio);line-height:1.65;margin-bottom:24px;border-left:4px solid #8ab8d4;padding-left:18px;font-style:italic;}}
     .nota-meta{{font-size:11px;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid #e0ddd8;}}
@@ -2680,7 +2694,7 @@ def generar_paginas_og(notas):
 <div class="container">
   <a href="../" class="volver">← Inicio</a>
   <article>
-    {f'<div class="nota-tag">{e(tag)}</div>' if tag else ''}
+    {f'<a class="nota-tag" href="{ea(tema_link)}">{e(tag)}</a>' if (tag and tema_link) else (f'<div class="nota-tag">{e(tag)}</div>' if tag else '')}
     <h1 class="nota-titulo">{e(titulo)}</h1>
     {f'<p class="nota-bajada">{e(bajada)}</p>' if bajada else ''}
     <div class="nota-meta">
