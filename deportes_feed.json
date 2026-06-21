@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260620-el-guardaesqui-del-cab-abre-reservas-para-la-temporada-dep",
+    "id": "20260621-el-geda-del-club-andino-bariloche-cierra-su-temporada-dep",
     "tag": "🏃 Deportes",
-    "titulo": "El guardaesquí del CAB abre reservas para la temporada invernal 2026 en Bariloche",
-    "bajada": "El Club Andino Bariloche habilitó la reserva del servicio de guardaesquí para la temporada 2026, con funcionamiento en el renovado Refugio Kaltschmidt, con mayor espacio y comodidades para quienes recorren las laderas del Cerro Catedral.",
-    "imagen": "fotos/foto-20260620-el-guardaesqui-del-cab-abre-reservas-para-la-temporada-dep.webp",
+    "titulo": "El GEDA del Club Andino Bariloche cierra su Temporada 43 en el Kaltschmidt",
+    "bajada": "El Grupo de Excursionistas Adultos del Club Andino Bariloche celebra el cierre de su temporada número 43 este sábado en el Refugio Kaltschmidt.",
+    "imagen": "fotos/foto-20260621-el-geda-del-club-andino-bariloche-cierra-su-temporada-dep.webp",
     "meta": "Hoy · Club Andino Bariloche"
   },
   "secundarias": [
+    {
+      "id": "20260620-el-guardaesqui-del-cab-abre-reservas-para-la-temporada-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "El guardaesquí del CAB abre reservas para la temporada invernal 2026 en Bariloche",
+      "bajada": "El Club Andino Bariloche habilitó la reserva del servicio de guardaesquí para la temporada 2026, con funcionamiento en el renovado Refugio Kaltschmidt, con mayor espacio y comodidades para quienes recorren las laderas del Cerro Catedral.",
+      "imagen": "fotos/foto-20260620-el-guardaesqui-del-cab-abre-reservas-para-la-temporada-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20260619-miguel-puratic-campeon-binacional-de-motocross-puerto-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El piloto de Puerto Natales se consagró campeón del torneo binacional Argentina-Chile de Motocross disputado en el Motódromo Ricardo Navarro de Punta Arenas, cerrando una temporada de alta exigencia entre dos países.",
       "imagen": "fotos/foto-20260619-miguel-puratic-campeon-binacional-de-motocross-puerto-dep.webp",
       "meta": "Hoy · El Pingüino"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260611-tres-jovenes-escalan-la-cumbre-mas-alta-del-parque-dep",
       "tag": "🏔️ Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Ángel Canales, Vicente y un tercer compañero coronaron la cima más elevada del parque nacional chileno el mismo día en que Puerto Natales cumplía 115 años.",
       "imagen": "fotos/foto-20260611-tres-jovenes-escalan-la-cumbre-mas-alta-del-parque-dep.webp",
       "meta": "Hoy · El Magallánico"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260609-la-sirena-de-hielo-vuelve-al-estrecho-barbara-dep",
       "tag": "🏊 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La Legislatura de Río Negro declaró de interés social, ambiental y educativo la campaña Montañas Limpias del Club Andino Bariloche, reconociendo su impacto territorial en los cerros patagónicos.",
       "imagen": "fotos/foto-20260605-montanas-limpias-rio-negro-le-da-rango-oficial-a-la-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260603-400-corredores-en-puerto-williams-la-corrida-mas-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "400 corredores en Puerto Williams: la corrida más austral del mundo",
-      "bajada": "La Corrida Familiar del Mes del Mar reunió a más de 400 participantes en Puerto Williams, la ciudad más austral del planeta, organizada por la Armada de Chile y la Municipalidad de Cabo de Hornos.",
-      "imagen": "fotos/foto-20260603-400-corredores-en-puerto-williams-la-corrida-mas-dep.webp",
-      "meta": "Hoy · El Magallánico"
     }
   ]
 }
