@@ -159,6 +159,15 @@ def update_switcher_and_hreflang(html: str, note_id: str, active_lang: str) -> s
 
 
 def translate_page(html_es: str, note_id: str, lang: str) -> str:
+    en_extras = ""
+    if lang == "en":
+        en_extras = """
+EXTRA PARA INGLÉS — SOBERANÍA (obligatorio):
+- NUNCA usar "Falklands" solo para el territorio. Las Malvinas son argentinas: usar "Malvinas".
+- En el título y en la etiqueta de país del byline (nota-meta) usar la forma "Malvinas (Falklands)".
+- En el cuerpo, usar "Malvinas" (no hace falta repetir el paréntesis en cada mención).
+- EXCEPCIÓN: dejar SIN cambiar los nombres propios institucionales reales, p. ej. "Falkland Islands Government", "Falkland Islands Immigration", "FIGAS" — son el nombre oficial y no se traducen."""
+
     zh_extras = ""
     if lang == "zh":
         zh_extras = """
@@ -196,6 +205,7 @@ CAMBIOS MECÁNICOS (exactos):
 {switcher_html}
 7. Si el CSS no tiene .lang-switcher, agregar antes de </style>:
 {SWITCHER_CSS}
+{en_extras}
 {zh_extras}
 
 HTML FUENTE (español):
