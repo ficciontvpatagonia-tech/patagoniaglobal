@@ -1147,6 +1147,32 @@ _NOTA_PUEBLOS_ORIGINARIOS = frozenset([
     "indigena", "indigenas", "ancestral", "ancestrales",
 ])
 
+# Gate de ciudad: una foto canónica de una ciudad concreta NO debe asignarse a
+# una nota que trata sobre OTRA ciudad. Cada entrada es la tupla de tokens
+# (ya sin acentos) que deben aparecer juntos para identificar a esa ciudad.
+# Las ciudades de una sola palabra distintiva bastan con ese token; las de dos
+# (ej. "puerto williams") requieren ambos para no confundirse entre sí
+# (puerto madryn / puerto natales / puerto williams comparten "puerto").
+# Sin esto, el epíteto compartido "fin del mundo" hacía que la foto del Tren de
+# Ushuaia se le asignara a notas de Puerto Williams, y casos análogos.
+_CIUDADES_FOTO = (
+    ("bariloche",), ("ushuaia",), ("calafate",), ("chalten",),
+    ("comodoro",), ("madryn",), ("trelew",), ("esquel",), ("zapala",),
+    ("viedma",), ("bolson",), ("cipolletti",), ("plottier",), ("trevelin",),
+    ("angostura",), ("coyhaique",), ("valdivia",), ("osorno",), ("porvenir",),
+    ("chiloe",), ("pucon",), ("cochrane",),
+    ("punta", "arenas"), ("puerto", "natales"), ("puerto", "montt"),
+    ("puerto", "varas"), ("puerto", "williams"), ("puerto", "deseado"),
+    ("puerto", "aysen"), ("rio", "gallegos"), ("caleta", "olivia"),
+    ("pico", "truncado"), ("chos", "malal"), ("piedra", "buena"),
+    ("cabo", "hornos"), ("cabo", "froward"),
+)
+
+
+def _ciudades_en(tokens):
+    """Devuelve el set de ciudades canónicas presentes en un set de tokens."""
+    return {c for c in _CIUDADES_FOTO if all(t in tokens for t in c)}
+
 
 def buscar_foto_propia(nota, fotos):
     """Busca la foto propia más relevante para una nota.
@@ -1183,6 +1209,10 @@ def buscar_foto_propia(nota, fotos):
     # deportes, economía, etc.).
     nota_es_originarios = bool(tokens_ctx & _NOTA_PUEBLOS_ORIGINARIOS)
 
+    # Ciudades sobre las que trata la nota (si las hay). Si la nota no menciona
+    # ninguna ciudad reconocida, el gate de ciudad queda inactivo.
+    nota_ciudades = _ciudades_en(tokens_ctx)
+
     mejor = None
     mejor_score = 0
 
@@ -1192,6 +1222,13 @@ def buscar_foto_propia(nota, fotos):
             for kw in foto.get("keywords", []):
                 tokens_foto |= _tokenize(kw)
             if tokens_foto & _FOTO_PUEBLOS_ORIGINARIOS:
+                continue
+        # Gate de ciudad: si la foto es claramente de una ciudad concreta y la
+        # nota trata sobre otra(s) ciudad(es) distinta(s), descartar la foto.
+        # Se basa SOLO en el nombre de archivo (no en keywords genéricas).
+        if nota_ciudades:
+            foto_ciudades = _ciudades_en(_tokenize(os.path.basename(foto.get("archivo", ""))))
+            if foto_ciudades and foto_ciudades.isdisjoint(nota_ciudades):
                 continue
         score = 0
         for kw in foto.get("keywords", []):
