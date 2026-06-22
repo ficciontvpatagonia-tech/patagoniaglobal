@@ -2558,7 +2558,7 @@ def generar_paginas_og(notas):
                 fecha_iso = m.group(1)
 
         pais_label = {"argentina": "🇦🇷 Argentina", "chile": "🇨🇱 Chile",
-                      "ambos": "🇦🇷🇨🇱 Argentina · Chile", "malvinas": "🇬🇧 Malvinas"}.get(pais, "🌎 Patagonia")
+                      "ambos": "🇦🇷🇨🇱 Argentina · Chile", "malvinas": "🇦🇷 Malvinas"}.get(pais, "🌎 Patagonia")
 
         hreflang_tags = ""
         if nota.get("titulo_en"):
@@ -2690,7 +2690,7 @@ def generar_paginas_og(notas):
     .nota-imagen-wrap{{width:100%;height:420px;background-size:cover;background-position:center;border-radius:4px;margin-bottom:32px;overflow:hidden;}}
     .nota-imagen{{width:100%;height:420px;object-fit:cover;object-position:center;border-radius:4px;margin-bottom:32px;display:block;}}
     @media(max-width:600px){{.nota-imagen{{height:240px;}}}}
-    .autor-avatar{{width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #7aadcc;vertical-align:middle;margin-right:6px;}}
+    .autor-avatar{{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid #7aadcc;vertical-align:middle;margin-right:6px;}}
     .nota-imagen-placeholder{{width:100%;height:320px;background:linear-gradient(160deg,#0e1a26 0%,#1c2d3d 45%,#4a7a9a 100%);border-radius:4px;margin-bottom:32px;}}
     .nota-cuerpo p{{font-size:17.5px;line-height:1.85;color:#2a2a2a;margin-bottom:24px;}}
     .nota-cuerpo p:first-of-type{{font-size:20px;line-height:1.8;color:#1c2d3d;font-weight:400;border-left:4px solid #7aadcc;padding-left:20px;margin-bottom:32px;}}
