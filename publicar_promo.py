@@ -310,25 +310,59 @@ def pub_telegram(p):
 
 
 def _renovar_token_facebook(token):
-    app_id = os.environ.get("FACEBOOK_APP_ID", "")
+    """Intercambia el token actual por uno long-lived y obtiene el Page Access Token real.
+    Copiado de actualizar_noticias.py (versión de producción que funciona)."""
+    app_id     = os.environ.get("FACEBOOK_APP_ID", "")
     app_secret = os.environ.get("FACEBOOK_APP_SECRET", "")
-    page_id = os.environ.get("FACEBOOK_PAGE_ID", "")
-    if not app_id or not app_secret:
+    page_id    = os.environ.get("FACEBOOK_PAGE_ID", "")
+    if not app_id or not app_secret or not token:
         return token, page_id
     try:
-        u = ("https://graph.facebook.com/v21.0/oauth/access_token?grant_type=fb_exchange_token"
-             f"&client_id={app_id}&client_secret={app_secret}&fb_exchange_token={token}")
-        with urllib.request.urlopen(u, timeout=30) as r:
-            long_token = json.loads(r.read().decode()).get("access_token", token)
-        with urllib.request.urlopen(
-                f"https://graph.facebook.com/v21.0/me/accounts?access_token={long_token}", timeout=30) as r:
-            data = json.loads(r.read().decode()).get("data", [])
-        for pg in data:
-            if not page_id or pg.get("id") == page_id:
-                print("  Facebook: token renovado ✓")
-                return pg.get("access_token", long_token), pg.get("id", page_id)
+        params = urllib.parse.urlencode({
+            "grant_type":        "fb_exchange_token",
+            "client_id":         app_id,
+            "client_secret":     app_secret,
+            "fb_exchange_token": token,
+        })
+        url = f"https://graph.facebook.com/oauth/access_token?{params}"
+        with urllib.request.urlopen(url, timeout=15) as resp:
+            data = json.loads(resp.read().decode())
+        nuevo = data.get("access_token", "")
+        if not nuevo:
+            return token, page_id
+
+        # Paso 2a: /me/accounts (si el token es un User Token)
+        try:
+            accounts_url = f"https://graph.facebook.com/me/accounts?access_token={nuevo}"
+            with urllib.request.urlopen(accounts_url, timeout=15) as resp2:
+                accounts = json.loads(resp2.read().decode())
+            pages = accounts.get("data", [])
+            for page in pages:
+                if page.get("id") == page_id:
+                    print("  Facebook: token renovado automáticamente ✓")
+                    return page["access_token"], page["id"]
+            if pages:
+                first = pages[0]
+                print("  Facebook: token renovado automáticamente ✓")
+                return first["access_token"], first["id"]
+        except Exception:
+            pass
+
+        # Paso 2b: si el token YA ES un page token, /me devuelve el ID de la página
+        try:
+            me_url = f"https://graph.facebook.com/me?fields=id,name&access_token={nuevo}"
+            with urllib.request.urlopen(me_url, timeout=15) as resp3:
+                me_data = json.loads(resp3.read().decode())
+            actual_id = me_data.get("id", "")
+            if actual_id:
+                print("  Facebook: token renovado automáticamente ✓")
+                return nuevo, actual_id
+        except Exception:
+            pass
+
+        return nuevo, page_id
     except Exception as e:
-        print(f"  Facebook: no se pudo renovar token ({e}), uso el actual")
+        print(f"  Facebook: no se pudo renovar el token ({e}), se usa el existente.")
     return token, page_id
 
 
