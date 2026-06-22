@@ -1,0 +1,61 @@
+name: Publicar promo en redes (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      que:
+        description: '¿Qué promo publicar?'
+        required: true
+        default: 'ambas'
+        type: choice
+        options:
+          - ambas
+          - cinemateca
+          - clima
+      redes:
+        description: 'Redes (todas, o sacar alguna)'
+        required: true
+        default: 'todas'
+        type: choice
+        options:
+          - todas
+          - solo-telegram
+          - solo-facebook
+          - solo-instagram
+
+permissions:
+  contents: read
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install Pillow numpy
+
+      - name: Publicar promo
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+          FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
+          FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+        run: |
+          REDES=""
+          case "${{ github.event.inputs.redes }}" in
+            solo-telegram)  REDES="--no-facebook --no-instagram" ;;
+            solo-facebook)  REDES="--no-telegram --no-instagram" ;;
+            solo-instagram) REDES="--no-telegram --no-facebook" ;;
+          esac
+          python3 publicar_promo.py ${{ github.event.inputs.que }} $REDES
