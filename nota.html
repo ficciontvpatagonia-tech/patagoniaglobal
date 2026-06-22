@@ -221,7 +221,7 @@
     }
     .nota-meta span { display: flex; align-items: center; gap: 5px; }
     .autor-avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1.5px solid #7aadcc; flex-shrink: 0; }
-    .nota-fuente-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #1c2d3d; flex-shrink: 0; }
+    .nota-fuente-avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #1c2d3d; flex-shrink: 0; }
 
     /* COMPARTIR */
     .compartir {
@@ -638,6 +638,7 @@ function bandera(pais) {
   if (pais === 'chile') return '🇨🇱 Chile';
   if (pais === 'ambos') return '🇦🇷🇨🇱 Argentina · Chile';
   if (pais === 'argentina') return '🇦🇷 Argentina';
+  if (pais === 'malvinas') return '🇦🇷 Malvinas';
   return '🌎 Patagonia';
 }
 
@@ -893,7 +894,7 @@ function renderNota(nota, fechaDisplay, data) {
   }
 
   const AUTORES_AVATAR = {
-    "J. Martineau": "fotos/avatar-j-martineau.webp"
+    "J. Martineau": "fotos/PERSONAJES/avatar-j-martineau.webp"
   };
 
   const langSwitcherHtml = hasMultilang ? `

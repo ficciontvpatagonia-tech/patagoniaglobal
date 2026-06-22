@@ -2392,13 +2392,20 @@ def main():
 #  PÁGINAS ESTÁTICAS PARA SEO (contenido completo, sin JS)
 # ══════════════════════════════════════════════════════════
 
+def _reescribir_rutas_fotos(html):
+    """En páginas estáticas (notas/), las rutas relativas 'fotos/' deben ser
+    '../fotos/' (la página vive un nivel abajo). Reescribe src/href/url() que
+    apunten a 'fotos/' sin tocar las absolutas (http) ni las que ya tienen '../'."""
+    return re.sub(r'((?:src|href)=["\']|url\(["\']?)fotos/', r'\1../fotos/', html)
+
+
 def _render_cuerpo_html(cuerpo):
     """Convierte cuerpo de nota a HTML. Bloques que empiezan con '<' van como raw HTML."""
     import html as htmllib
     if not cuerpo:
         return ""
     if cuerpo.strip().startswith("<"):
-        return cuerpo
+        return _reescribir_rutas_fotos(cuerpo)
     out = []
     for bloque in cuerpo.split("\n\n"):
         bloque = bloque.strip()
@@ -2412,7 +2419,7 @@ def _render_cuerpo_html(cuerpo):
             out.append(f"<p>{bloque}</p>")
         else:
             out.append(f"<p>{htmllib.escape(bloque)}</p>")
-    return "\n".join(out)
+    return _reescribir_rutas_fotos("\n".join(out))
 
 
 # ── "También te puede interesar" (sección de notas relacionadas) ──
@@ -2690,7 +2697,7 @@ def generar_paginas_og(notas):
     .nota-imagen-wrap{{width:100%;height:420px;background-size:cover;background-position:center;border-radius:4px;margin-bottom:32px;overflow:hidden;}}
     .nota-imagen{{width:100%;height:420px;object-fit:cover;object-position:center;border-radius:4px;margin-bottom:32px;display:block;}}
     @media(max-width:600px){{.nota-imagen{{height:240px;}}}}
-    .autor-avatar{{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid #7aadcc;vertical-align:middle;margin-right:6px;}}
+    .autor-avatar{{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #7aadcc;vertical-align:middle;margin-right:10px;}}
     .nota-imagen-placeholder{{width:100%;height:320px;background:linear-gradient(160deg,#0e1a26 0%,#1c2d3d 45%,#4a7a9a 100%);border-radius:4px;margin-bottom:32px;}}
     .nota-cuerpo p{{font-size:17.5px;line-height:1.85;color:#2a2a2a;margin-bottom:24px;}}
     .nota-cuerpo p:first-of-type{{font-size:20px;line-height:1.8;color:#1c2d3d;font-weight:400;border-left:4px solid #7aadcc;padding-left:20px;margin-bottom:32px;}}
@@ -2737,7 +2744,6 @@ def generar_paginas_og(notas):
     <div class="nota-meta">
       {f'<img src="../fotos/PERSONAJES/avatar-j-martineau.webp" alt="{ea(autor)}" class="autor-avatar"/><span>{e(autor)}</span>' if propio and autor else (f'<span>{e(autor)}</span>' if autor else '')}
       {f'<span>{e(pais_label)}</span>' if pais else ''}
-      <span>{fecha_iso}</span>
     </div>
     {imagen_block}
     <div class="nota-cuerpo">{cuerpo_html}</div>
