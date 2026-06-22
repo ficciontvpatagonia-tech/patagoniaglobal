@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260621-el-geda-del-club-andino-bariloche-cierra-su-temporada-dep",
+    "id": "20260622-rio-gallegos-y-la-deuda-pendiente-accesibilidad-para-dep",
     "tag": "🏃 Deportes",
-    "titulo": "El GEDA del Club Andino Bariloche cierra su Temporada 43 en el Kaltschmidt",
-    "bajada": "El Grupo de Excursionistas Adultos del Club Andino Bariloche celebra el cierre de su temporada número 43 este sábado en el Refugio Kaltschmidt.",
-    "imagen": "fotos/foto-20260621-el-geda-del-club-andino-bariloche-cierra-su-temporada-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche"
+    "titulo": "Río Gallegos y la deuda pendiente: accesibilidad para el deporte inclusivo",
+    "bajada": "El titular del Consejo Municipal de Discapacidad de Río Gallegos alertó que la falta de accesibilidad urbana desborda las capacidades institucionales y frena la participación deportiva de personas con discapacidad.",
+    "imagen": "fotos/CIUDADES/deporte_inclusivo.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260621-el-geda-del-club-andino-bariloche-cierra-su-temporada-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "El GEDA del Club Andino Bariloche cierra su Temporada 43 en el Kaltschmidt",
+      "bajada": "El Grupo de Excursionistas Adultos del Club Andino Bariloche celebra el cierre de su temporada número 43 este sábado en el Refugio Kaltschmidt.",
+      "imagen": "fotos/foto-20260621-el-geda-del-club-andino-bariloche-cierra-su-temporada-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20260620-el-guardaesqui-del-cab-abre-reservas-para-la-temporada-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El Club Andino Bariloche habilitó la reserva del servicio de guardaesquí para la temporada 2026, con funcionamiento en el renovado Refugio Kaltschmidt, con mayor espacio y comodidades para quienes recorren las laderas del Cerro Catedral.",
       "imagen": "fotos/foto-20260620-el-guardaesqui-del-cab-abre-reservas-para-la-temporada-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260619-miguel-puratic-campeon-binacional-de-motocross-puerto-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El piloto de Puerto Natales se consagró campeón del torneo binacional Argentina-Chile de Motocross disputado en el Motódromo Ricardo Navarro de Punta Arenas, cerrando una temporada de alta exigencia entre dos países.",
       "imagen": "fotos/foto-20260619-miguel-puratic-campeon-binacional-de-motocross-puerto-dep.webp",
       "meta": "Hoy · El Pingüino"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260611-tres-jovenes-escalan-la-cumbre-mas-alta-del-parque-dep",
       "tag": "🏔️ Deportes",
@@ -49,14 +57,6 @@
       "titulo": "«Trona 360»: el libro que nació en la montaña y volvió a Bariloche",
       "bajada": "El Club Andino Bariloche presentó el libro de un egresado de sus Escuelas Juveniles de Montaña, que documenta experiencias transformadoras en la naturaleza patagónica.",
       "imagen": "fotos/foto-20260606-trona-360-el-libro-que-nacio-en-la-montana-y-volvio-a-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260605-montanas-limpias-rio-negro-le-da-rango-oficial-a-la-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Montañas Limpias: Río Negro le da rango oficial a la conciencia de altura",
-      "bajada": "La Legislatura de Río Negro declaró de interés social, ambiental y educativo la campaña Montañas Limpias del Club Andino Bariloche, reconociendo su impacto territorial en los cerros patagónicos.",
-      "imagen": "fotos/foto-20260605-montanas-limpias-rio-negro-le-da-rango-oficial-a-la-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
     }
   ]
