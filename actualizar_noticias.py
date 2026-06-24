@@ -945,6 +945,22 @@ def fotos_propias_disponibles():
     resultado = list(indexadas.values())
     archivos_indexados = set(indexadas.keys())
 
+    # Carátulas de la Cinemateca (videos.json) NO son fotos editoriales: son
+    # afiches de películas/documentales. Sin esto, un póster cuyo nombre de
+    # archivo comparte un epíteto con un titular (ej. "fin del mundo" →
+    # "encuentros-fin-del-mundo-poster") se asignaba a una nota que nada tiene
+    # que ver. Se excluyen tanto los thumbnails declarados en videos.json como
+    # cualquier archivo con marca de afiche en el nombre.
+    cinemateca_thumbs = set()
+    try:
+        with open(os.path.join(os.path.dirname(__file__), "videos.json"), encoding="utf-8") as f:
+            for v in json.load(f):
+                th = (v.get("thumbnail") or "").strip()
+                if th.startswith("fotos/"):
+                    cinemateca_thumbs.add(th[len("fotos/"):])
+    except Exception:
+        pass
+
     for ext in ("*.jpg", "*.jpeg", "*.webp", "*.png"):
         for ruta in _glob.glob(os.path.join(fotos_dir, "**", ext), recursive=True):
             nombre    = os.path.basename(ruta)
@@ -953,6 +969,11 @@ def fotos_propias_disponibles():
                 continue
             # Saltar carpeta INSTAGRAM
             if rel.startswith("INSTAGRAM" + os.sep):
+                continue
+            # Saltar carátulas de la Cinemateca y afiches/posters de cine
+            if rel.replace(os.sep, "/") in cinemateca_thumbs:
+                continue
+            if re.search(r'(^|[-_])(poster|afiche|caratula|thumbnail|thumb)([-_]|\.)', nombre, re.IGNORECASE):
                 continue
             # Saltar fotos de artículos individuales
             if re.match(r'(foto-)?\d{8}-', nombre):
