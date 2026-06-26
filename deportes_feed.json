@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260622-rio-gallegos-y-la-deuda-pendiente-accesibilidad-para-dep",
+    "id": "20260626-el-club-andino-bariloche-abre-inscripciones-para-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Río Gallegos y la deuda pendiente: accesibilidad para el deporte inclusivo",
-    "bajada": "El titular del Consejo Municipal de Discapacidad de Río Gallegos alertó que la falta de accesibilidad urbana desborda las capacidades institucionales y frena la participación deportiva de personas con discapacidad.",
-    "imagen": "fotos/CIUDADES/deporte_inclusivo.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "titulo": "El Club Andino Bariloche abre inscripciones para cursos de esquí y snowboard",
+    "bajada": "El Club Andino Bariloche lanza su propuesta de formación en nieve para adultos con cursos de esquí y snowboard en múltiples niveles, desde principiantes hasta perfeccionamiento técnico.",
+    "imagen": "fotos/foto-20260626-el-club-andino-bariloche-abre-inscripciones-para-dep.webp",
+    "meta": "Hoy · Club Andino Bariloche"
   },
   "secundarias": [
+    {
+      "id": "20260622-rio-gallegos-y-la-deuda-pendiente-accesibilidad-para-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Río Gallegos y la deuda pendiente: accesibilidad para el deporte inclusivo",
+      "bajada": "El titular del Consejo Municipal de Discapacidad de Río Gallegos alertó que la falta de accesibilidad urbana desborda las capacidades institucionales y frena la participación deportiva de personas con discapacidad.",
+      "imagen": "fotos/CIUDADES/deporte_inclusivo.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20260621-el-geda-del-club-andino-bariloche-cierra-su-temporada-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El Grupo de Excursionistas Adultos del Club Andino Bariloche celebra el cierre de su temporada número 43 este sábado en el Refugio Kaltschmidt.",
       "imagen": "fotos/foto-20260621-el-geda-del-club-andino-bariloche-cierra-su-temporada-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260620-el-guardaesqui-del-cab-abre-reservas-para-la-temporada-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El Club Andino Bariloche habilitó la reserva del servicio de guardaesquí para la temporada 2026, con funcionamiento en el renovado Refugio Kaltschmidt, con mayor espacio y comodidades para quienes recorren las laderas del Cerro Catedral.",
       "imagen": "fotos/foto-20260620-el-guardaesqui-del-cab-abre-reservas-para-la-temporada-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260619-miguel-puratic-campeon-binacional-de-motocross-puerto-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La nadadora chilena Bárbara Hernández, cuatro veces récord Guinness en aguas magallánicas, recibirá un reconocimiento de la Fundación Antártica21 y se sumará al Chapuzón del Estrecho el 27 de junio.",
       "imagen": "fotos/foto-20260609-la-sirena-de-hielo-vuelve-al-estrecho-barbara-dep.webp",
       "meta": "Hoy · El Pingüino"
-    },
-    {
-      "id": "20260606-trona-360-el-libro-que-nacio-en-la-montana-y-volvio-a-dep",
-      "tag": "🏔️ Deportes",
-      "titulo": "«Trona 360»: el libro que nació en la montaña y volvió a Bariloche",
-      "bajada": "El Club Andino Bariloche presentó el libro de un egresado de sus Escuelas Juveniles de Montaña, que documenta experiencias transformadoras en la naturaleza patagónica.",
-      "imagen": "fotos/foto-20260606-trona-360-el-libro-que-nacio-en-la-montana-y-volvio-a-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
     }
   ]
 }
