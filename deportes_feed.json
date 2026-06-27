@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260626-el-club-andino-bariloche-abre-inscripciones-para-dep",
+    "id": "20260627-geda-cierra-43-temporadas-de-montana-con-una-jornada-dep",
     "tag": "🏃 Deportes",
-    "titulo": "El Club Andino Bariloche abre inscripciones para cursos de esquí y snowboard",
-    "bajada": "El Club Andino Bariloche lanza su propuesta de formación en nieve para adultos con cursos de esquí y snowboard en múltiples niveles, desde principiantes hasta perfeccionamiento técnico.",
-    "imagen": "fotos/foto-20260626-el-club-andino-bariloche-abre-inscripciones-para-dep.webp",
+    "titulo": "GEDA cierra 43 temporadas de montaña con una jornada en Cerro Catedral",
+    "bajada": "El Grupo Expedicionarios de Adultos del Club Andino Bariloche celebró el cierre de su temporada 43 con una salida de camaradería en el cerro que los vio crecer.",
+    "imagen": "fotos/foto-20260627-geda-cierra-43-temporadas-de-montana-con-una-jornada-dep.webp",
     "meta": "Hoy · Club Andino Bariloche"
   },
   "secundarias": [
+    {
+      "id": "20260626-el-club-andino-bariloche-abre-inscripciones-para-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "El Club Andino Bariloche abre inscripciones para cursos de esquí y snowboard",
+      "bajada": "El Club Andino Bariloche lanza su propuesta de formación en nieve para adultos con cursos de esquí y snowboard en múltiples niveles, desde principiantes hasta perfeccionamiento técnico.",
+      "imagen": "fotos/foto-20260626-el-club-andino-bariloche-abre-inscripciones-para-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20260622-rio-gallegos-y-la-deuda-pendiente-accesibilidad-para-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El titular del Consejo Municipal de Discapacidad de Río Gallegos alertó que la falta de accesibilidad urbana desborda las capacidades institucionales y frena la participación deportiva de personas con discapacidad.",
       "imagen": "fotos/CIUDADES/deporte_inclusivo.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260621-el-geda-del-club-andino-bariloche-cierra-su-temporada-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El Grupo de Excursionistas Adultos del Club Andino Bariloche celebra el cierre de su temporada número 43 este sábado en el Refugio Kaltschmidt.",
       "imagen": "fotos/foto-20260621-el-geda-del-club-andino-bariloche-cierra-su-temporada-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260620-el-guardaesqui-del-cab-abre-reservas-para-la-temporada-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Ángel Canales, Vicente y un tercer compañero coronaron la cima más elevada del parque nacional chileno el mismo día en que Puerto Natales cumplía 115 años.",
       "imagen": "fotos/foto-20260611-tres-jovenes-escalan-la-cumbre-mas-alta-del-parque-dep.webp",
       "meta": "Hoy · El Magallánico"
-    },
-    {
-      "id": "20260609-la-sirena-de-hielo-vuelve-al-estrecho-barbara-dep",
-      "tag": "🏊 Deportes",
-      "titulo": "La 'Sirena de Hielo' vuelve al Estrecho: Bárbara Hernández en el Chapuzón de Punta Arenas",
-      "bajada": "La nadadora chilena Bárbara Hernández, cuatro veces récord Guinness en aguas magallánicas, recibirá un reconocimiento de la Fundación Antártica21 y se sumará al Chapuzón del Estrecho el 27 de junio.",
-      "imagen": "fotos/foto-20260609-la-sirena-de-hielo-vuelve-al-estrecho-barbara-dep.webp",
-      "meta": "Hoy · El Pingüino"
     }
   ]
 }
