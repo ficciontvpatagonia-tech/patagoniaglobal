@@ -4941,7 +4941,10 @@ def solo_instagram():
 
 
 def solo_facebook():
-    """Postea las notas del día a Facebook sin correr el script completo."""
+    """Postea las notas del día a Facebook sin correr el script completo.
+    Deduplica con `tapa_facebook_posteadas` (telegram_state.json), igual que la
+    tapa de Instagram, para que un posteo manual fuera de horario no repita lo
+    ya publicado por el run de la mañana."""
     base_dir = os.path.dirname(__file__)
     try:
         with open(os.path.join(base_dir, "noticias.json"), encoding="utf-8") as f:
@@ -4950,27 +4953,54 @@ def solo_facebook():
         print(f"  Error leyendo noticias.json: {e}")
         return
 
+    state_path = os.path.join(base_dir, "telegram_state.json")
+    try:
+        with open(state_path, encoding="utf-8") as f:
+            fb_state = json.load(f)
+    except Exception:
+        fb_state = {}
+    tapa_fb_posteadas = set(fb_state.get("tapa_facebook_posteadas", []))
+
     tapa        = noticias.get("tapa", {})
     secundarias = noticias.get("secundarias", [])
     notas       = [n for n in [tapa] + secundarias if n]
 
-    print(f"\n  Publicando {len(notas)} notas de tapa en Facebook...")
+    print(f"\n  Publicando notas de tapa en Facebook (con deduplicación)...")
     for nota in notas:
-        print(f"  → [{nota.get('id','')}] {nota.get('titulo','')[:60]}")
+        nid = nota.get("id", "")
+        if nid and nid in tapa_fb_posteadas:
+            print(f"  → ya posteada, se omite [{nid}]")
+            continue
+        print(f"  → [{nid}] {nota.get('titulo','')[:60]}")
         publicar_facebook(nota)
+        if nid:
+            tapa_fb_posteadas.add(nid)
 
-    # Negocios
+    # Negocios (omite si ya se publicó en la mañana)
     neg_path = os.path.join(base_dir, "negocios.json")
     try:
         with open(neg_path, encoding="utf-8") as f:
             negocios_data = json.load(f)
         if negocios_data:
-            neg = negocios_data[0]
-            print(f"\n  Publicando negocios en Facebook...")
-            print(f"  → [{neg.get('id','')}] {neg.get('titulo','')[:60]}")
-            publicar_facebook(neg)
+            neg    = negocios_data[0]
+            neg_id = neg.get("id", "")
+            if neg_id and fb_state.get("ultimo_negocios_facebook") == neg_id:
+                print(f"  → negocios ya posteado, se omite [{neg_id}]")
+            else:
+                print(f"\n  Publicando negocios en Facebook...")
+                print(f"  → [{neg_id}] {neg.get('titulo','')[:60]}")
+                publicar_facebook(neg)
+                fb_state["ultimo_negocios_facebook"] = neg_id
     except Exception as e:
         print(f"  Error en negocios: {e}")
+
+    # Persistir estado (en local; en el Action manual no se commitea, no molesta)
+    fb_state["tapa_facebook_posteadas"] = list(tapa_fb_posteadas)
+    try:
+        with open(state_path, "w", encoding="utf-8") as f:
+            json.dump(fb_state, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
 
     print("\n  ✓ Facebook manual listo")
 
