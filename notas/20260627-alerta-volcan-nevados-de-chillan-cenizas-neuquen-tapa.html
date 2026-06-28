@@ -97,6 +97,18 @@
     .footer-logo span{color:#8ab8d4;font-weight:400;font-style:italic;}
     .footer-copy{font-size:11px;letter-spacing:1px;margin-top:12px;color:rgba(255,255,255,0.35);}
     @media(max-width:600px){.top-bar{padding:6px 16px;}.logo-img{height:46px;}nav{flex-wrap:wrap;}nav a{padding:10px 10px;font-size:10px;}}
+  
+    .relacionadas{margin-top:48px;padding-top:24px;border-top:2px solid #e0ddd8;}
+    .relacionadas-titulo{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#5a6070;margin-bottom:20px;}
+    .relacionadas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .rel-card{cursor:pointer;border-radius:4px;overflow:hidden;background:white;transition:transform 0.2s;text-decoration:none;color:inherit;display:block;}
+    .rel-card:hover{transform:translateY(-2px);}
+    .rel-img{width:100%;height:100px;object-fit:cover;display:block;background:linear-gradient(160deg,#0e1a26,#1c2d3d);}
+    .rel-body{padding:10px 12px 12px;}
+    .rel-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#3a7a5a;margin-bottom:4px;}
+    .rel-titulo{font-size:13px;font-weight:600;line-height:1.35;color:#252830;}
+    @media(max-width:600px){.relacionadas-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:480px){.relacionadas-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
@@ -146,6 +158,10 @@
 <p>El episodio del Nevados de Chillán es un recordatorio de algo que Argentina y Chile comparten: la misma columna vertebral de volcanes activos a lo largo de los Andes. La Patagonia ha convivido —y a veces sufrido— esa geografía. En 2011, la erupción del cordón Puyehue–Caulle, también en territorio chileno, cubrió de cenizas a Bariloche, Villa La Angostura y buena parte de la Patagonia argentina durante meses, y obligó a suspender vuelos en medio hemisferio. Por eso un pulso eruptivo en Ñuble se sigue con atención a ambos lados del límite. Por ahora, el volcán continúa bajo alerta amarilla y monitoreo permanente: sin señales de algo mayor, pero sin perderle pisada.</p></div>
     <div class="nota-fuente"><strong>Fuentes:</strong> Elaboración propia con información de <strong>Sernageomin</strong>, <strong>BioBío Chile</strong>, <strong>La Tercera</strong>, <strong>Cooperativa</strong> y <strong>LM Neuquén</strong>. Videos: YouTube.</div>
     <div class="compartir-bloque" id="compartir-bloque"></div>
+    <div class="relacionadas">
+      <div class="relacionadas-titulo">También te puede interesar</div>
+      <div class="relacionadas-grid"><a class="rel-card" href="/notas/20260621-chubut-regula-el-avistaje-de-ballenas-15-temporadas-en-tapa.html"><img class="rel-img" src="https://globalpatagonia.org/fotos/foto-20260621-chubut-regula-el-avistaje-de-ballenas-15-temporadas-en-tapa.webp" alt="Chubut regula el avistaje de ballenas: 15 temporadas en juego para 7 empresas" onerror="this.style.display='none'"><div class="rel-body"><div class="rel-tag">Ambiente</div><div class="rel-titulo">Chubut regula el avistaje de ballenas: 15 temporadas en juego para 7 empresas</div></div></a><a class="rel-card" href="/notas/historia-fundacion-punta-arenas.html"><img class="rel-img" src="https://globalpatagonia.org/fotos/CIUDADES/punta-arenas.webp" alt="Punta Arenas: la ciudad que sobrevivió al fin del mundo para convertirse en la capital del sur" onerror="this.style.display='none'"><div class="rel-body"><div class="rel-tag">Historia</div><div class="rel-titulo">Punta Arenas: la ciudad que sobrevivió al fin del mundo para convertirse en la capital del sur</div></div></a><a class="rel-card" href="/notas/20260623-chubut-pone-el-cuerpo-ante-la-licitacion-del-futaleufu-tapa.html"><img class="rel-img" src="https://globalpatagonia.org/fotos/torres-del-paine.webp" alt="Chubut pone el cuerpo ante la licitación del Futaleufú: Torres convoca a la cordillera" onerror="this.style.display='none'"><div class="rel-body"><div class="rel-tag">Energía</div><div class="rel-titulo">Chubut pone el cuerpo ante la licitación del Futaleufú: Torres convoca a la cordillera</div></div></a></div>
+    </div>
     <a href="../" class="ver-completo">← Más noticias en GLOBALpatagonia</a>
   </article>
 </div>
