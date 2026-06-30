@@ -108,6 +108,28 @@
     .cx-air a { display:inline-flex; align-items:center; gap:7px; background:#faf8f4; border:1.5px solid #d4ccbf; border-radius:10px; padding:9px 15px; color:#1c2d3d; text-decoration:none; font-weight:600; font-size:.88rem; transition:all .2s; }
     .cx-air a:hover { background:#1c2d3d; color:#fff; border-color:#1c2d3d; }
     .cx-air .fl { font-size:1rem; line-height:1; }
+    /* Tablero de vuelos en vivo */
+    .cv-board { border:1px solid #e3ddd3; border-radius:14px; overflow:hidden; margin-top:18px; background:#fff; box-shadow:0 2px 10px rgba(28,45,61,.05); }
+    .cv-head { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:6px; padding:13px 18px; background:#1c2d3d; color:#fff; }
+    .cv-head .ttl { font-weight:600; display:flex; align-items:center; gap:8px; font-size:1rem; }
+    .cv-head .ttl .live { width:9px; height:9px; border-radius:50%; background:#41c463; box-shadow:0 0 0 0 rgba(65,196,99,.6); animation:cvpulse 2s infinite; }
+    @keyframes cvpulse { 0%{box-shadow:0 0 0 0 rgba(65,196,99,.5);} 70%{box-shadow:0 0 0 7px rgba(65,196,99,0);} 100%{box-shadow:0 0 0 0 rgba(65,196,99,0);} }
+    .cv-head .upd { font-size:.76rem; color:#9fb4c4; }
+    .cv-tabs { display:flex; border-bottom:1px solid #e3ddd3; }
+    .cv-tab { flex:1; padding:11px; background:#f4f1ea; border:none; cursor:pointer; font-family:inherit; font-weight:600; font-size:.9rem; color:#6b7480; transition:all .15s; }
+    .cv-tab.active { background:#fff; color:#1c2d3d; box-shadow:inset 0 -2px 0 #7aadcc; }
+    .cv-list { max-height:430px; overflow-y:auto; }
+    .cv-row { display:grid; grid-template-columns:58px 1fr auto; gap:12px; align-items:center; padding:10px 16px; border-top:1px solid #f1ede5; font-size:.9rem; }
+    .cv-row:first-child { border-top:none; }
+    .cv-row .h { font-weight:700; color:#1c2d3d; line-height:1.2; }
+    .cv-row .h .r { display:block; font-weight:500; font-size:.72rem; color:#c0392b; }
+    .cv-row .m .city { font-weight:600; color:#1c2d3d; }
+    .cv-row .m .fl { font-size:.78rem; color:#8a8478; margin-top:1px; }
+    .cv-row .st { font-size:.78rem; font-weight:600; display:flex; align-items:center; gap:6px; white-space:nowrap; text-align:right; }
+    .cv-row .st .dot { width:9px; height:9px; border-radius:50%; flex:none; }
+    .cv-foot { padding:9px 16px; font-size:.74rem; color:#8a8478; background:#faf8f4; border-top:1px solid #f1ede5; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; }
+    .cv-foot a { color:#5a7a96; }
+    .cv-msg { padding:26px 18px; text-align:center; color:#8a8478; font-size:.9rem; }
     .cx-wrap { max-width:1060px; margin:0 auto; padding:0 20px 60px; }
     .cx-section-label { font-family:'Playfair Display',serif; font-size:1.5rem; color:#1c2d3d; margin:46px 0 6px; }
     .cx-section-sub { color:#6b7480; font-size:.92rem; margin:0 0 18px; }
@@ -265,6 +287,23 @@
       <div class="d">Estado, demoras y cancelaciones por número de vuelo o ruta, con historial de puntualidad.</div>
       <div class="go">Consultar estado →</div>
     </a>
+  </div>
+
+  <!-- Tablero embebido (prueba: Bariloche) -->
+  <div class="cv-board" id="cv-board">
+    <div class="cv-head">
+      <span class="ttl"><span class="live"></span>Bariloche (BRC) en vivo</span>
+      <span class="upd" id="cv-upd">Cargando…</span>
+    </div>
+    <div class="cv-tabs">
+      <button class="cv-tab active" id="cv-tab-d" onclick="cvShow('partidas')">🛫 Partidas</button>
+      <button class="cv-tab" id="cv-tab-a" onclick="cvShow('arribos')">🛬 Arribos</button>
+    </div>
+    <div class="cv-list" id="cv-list"><div class="cv-msg">Cargando vuelos…</div></div>
+    <div class="cv-foot">
+      <span>Fuente: Aeropuertos Argentina</span>
+      <a href="https://www.aeropuertosargentina.com/es/vuelos" target="_blank" rel="noopener">Tablero oficial completo →</a>
+    </div>
   </div>
 
   <!-- ════ VUELO A MALVINAS ════ -->
@@ -426,6 +465,54 @@
     var s = hoy.toLocaleDateString('es-AR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
     fd.textContent = s.charAt(0).toUpperCase() + s.slice(1) + ' · Patagonia Argentina y Chilena';
   }
+})();
+</script>
+
+<script>
+/* Tablero de vuelos en vivo (lee vuelos_brc.json generado por GitHub Actions) */
+(function(){
+  var DATA = null, vista = 'partidas';
+  function esc(s){ return (s||'').replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function haceCuanto(iso){
+    try {
+      var diff = (Date.now() - new Date(iso).getTime())/60000;
+      if (diff < 1.5) return 'recién';
+      if (diff < 60) return 'hace ' + Math.round(diff) + ' min';
+      return 'hace ' + Math.round(diff/60) + ' h';
+    } catch(e){ return ''; }
+  }
+  window.cvShow = function(v){
+    vista = v;
+    document.getElementById('cv-tab-d').classList.toggle('active', v==='partidas');
+    document.getElementById('cv-tab-a').classList.toggle('active', v==='arribos');
+    render();
+  };
+  function render(){
+    var box = document.getElementById('cv-list');
+    if (!DATA) return;
+    var lista = DATA[vista] || [];
+    if (!lista.length){ box.innerHTML = '<div class="cv-msg">No hay vuelos para mostrar.</div>'; return; }
+    var prep = (vista==='partidas') ? 'a' : 'desde';
+    box.innerHTML = lista.map(function(v){
+      var real = v.real ? '<span class="r">est. '+esc(v.real)+'</span>' : '';
+      return '<div class="cv-row">'
+        + '<div class="h">'+esc(v.hora)+real+'</div>'
+        + '<div class="m"><div class="city">'+prep+' '+esc(v.ciudad)+'</div><div class="fl">'+esc(v.aerolinea)+' · '+esc(v.nro)+'</div></div>'
+        + '<div class="st"><span class="dot" style="background:'+esc(v.color)+'"></span>'+esc(v.estado)+'</div>'
+        + '</div>';
+    }).join('');
+  }
+  fetch('vuelos_brc.json?t=' + Math.floor(Date.now()/60000))
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(d){
+      DATA = d;
+      document.getElementById('cv-upd').textContent = 'Actualizado ' + haceCuanto(d.actualizado);
+      render();
+    })
+    .catch(function(){
+      document.getElementById('cv-upd').textContent = '';
+      document.getElementById('cv-list').innerHTML = '<div class="cv-msg">No se pudo cargar el tablero ahora. Mirá el <a href="https://www.aeropuertosargentina.com/es/vuelos" target="_blank" rel="noopener">tablero oficial</a>.</div>';
+    });
 })();
 </script>
 

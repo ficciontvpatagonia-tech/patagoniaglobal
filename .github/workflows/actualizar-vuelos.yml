@@ -1,0 +1,41 @@
+name: Actualizar Vuelos
+
+# Trae el estado de vuelos (Aeropuertos Argentina) server-side y lo guarda en
+# vuelos_brc.json para que conectividad.html lo muestre. PRUEBA: Bariloche.
+# Cadencia conservadora: cada 30 min en horario operativo (ART ~06:00–23:59).
+
+on:
+  # schedule:
+  #   - cron: '*/30 0-2,9-23 * * *'   # cada 30 min, horas UTC = ART 06:00–02:59 (ACTIVAR cuando demos OK)
+  workflow_dispatch:                  # por ahora solo manual, para probar
+
+permissions:
+  contents: write
+
+# Evita que dos corridas se pisen
+concurrency:
+  group: actualizar-vuelos
+  cancel-in-progress: true
+
+jobs:
+  vuelos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Traer vuelos
+        run: python3 actualizar_vuelos.py
+
+      - name: Commitear si cambió
+        run: |
+          git config user.name "GLOBALpatagonia Bot"
+          git config user.email "bot@globalpatagonia.org"
+          git add vuelos_brc.json
+          git diff --staged --quiet || git commit -m "Vuelos actualizados — $(date -u +'%d/%m %H:%M')Z [skip-news]"
+          git push
