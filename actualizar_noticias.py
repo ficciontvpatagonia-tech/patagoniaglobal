@@ -312,6 +312,47 @@ def guardar_historial(articulos):
         json.dump(articulos[:MAX_HISTORIAL], f, ensure_ascii=False, indent=2)
 
 
+def _construir_indice_fotos(base):
+    """Mapa {nombre-sin-extensión en minúsculas: ruta relativa real} de fotos/.
+    Si un mismo nombre existe en varios formatos, prefiere .webp (el optimizado)."""
+    idx = {}
+    fotos_dir = os.path.join(base, "fotos")
+    for root, _dirs, files in os.walk(fotos_dir):
+        for fn in files:
+            stem = os.path.splitext(fn)[0].lower()
+            rel  = os.path.relpath(os.path.join(root, fn), base)
+            if stem not in idx or fn.lower().endswith(".webp"):
+                idx[stem] = rel
+    return idx
+
+
+def normalizar_ruta_foto(ref, base, fotos_idx):
+    """Repara una referencia a foto cuyo archivo ya no existe en disco (típicamente por
+    una migración .jpg/.jpeg→.webp o por moverla a una subcarpeta), buscando el archivo
+    real por nombre de base. Deja intactas: URLs externas (Unsplash), rutas que ya
+    resuelven, y fotos genuinamente ausentes (no hay reemplazo). Preserva la forma de la
+    referencia original (URL absoluta / ruta-raíz / relativa)."""
+    if not ref or not isinstance(ref, str):
+        return ref
+    raw = ref.split("?")[0].split("#")[0]
+    if raw.startswith(("http://", "https://")):
+        i = raw.find("globalpatagonia.org")
+        if i == -1:
+            return ref  # imagen externa (Unsplash, etc.) → no tocar
+        local   = raw[i + len("globalpatagonia.org"):].lstrip("/")
+        prefijo = "https://globalpatagonia.org/"
+    elif raw.startswith("/"):
+        local, prefijo = raw.lstrip("/"), "/"
+    else:
+        local, prefijo = raw, ""
+    if not local.startswith("fotos/"):
+        return ref
+    if os.path.isfile(os.path.join(base, local)):
+        return ref  # ya resuelve, nada que reparar
+    real = fotos_idx.get(os.path.splitext(os.path.basename(local))[0].lower())
+    return prefijo + real if real else ref  # sin reemplazo → se deja como está
+
+
 def actualizar_search_index():
     """Construye/actualiza search-index.json con todas las notas publicadas."""
     base       = os.path.dirname(__file__)
@@ -322,6 +363,20 @@ def actualizar_search_index():
             indice = json.load(f)
     except Exception:
         indice = []
+
+    # Índice de fotos reales para auto-reparar rutas obsoletas (migraciones, mudanzas)
+    fotos_idx = _construir_indice_fotos(base)
+
+    # Auto-sanado: revalida y corrige las rutas de las entradas ya indexadas en cada corrida,
+    # así una migración de fotos posterior nunca deja el buscador con imágenes rotas.
+    reparadas = 0
+    for n in indice:
+        img = n.get("imagen")
+        if img:
+            nuevo = normalizar_ruta_foto(img, base, fotos_idx)
+            if nuevo != img:
+                n["imagen"] = nuevo
+                reparadas += 1
 
     ids_existentes = {n["id"] for n in indice if n.get("id")}
     nuevas = []
@@ -337,7 +392,7 @@ def actualizar_search_index():
             "bajada":   nota.get("bajada", ""),
             "fecha":    nota.get("fecha", ""),
             "categoria": nota.get("categoria", nota.get("tag", "")),
-            "imagen":   nota.get("imagen", ""),
+            "imagen":   normalizar_ruta_foto(nota.get("imagen", ""), base, fotos_idx),
         })
 
     fuentes = [
@@ -387,12 +442,18 @@ def actualizar_search_index():
         except Exception:
             pass
 
-    if nuevas:
-        indice = nuevas + indice
-        indice.sort(key=lambda n: n.get("fecha", ""), reverse=True)
+    if nuevas or reparadas:
+        if nuevas:
+            indice = nuevas + indice
+            indice.sort(key=lambda n: n.get("fecha", ""), reverse=True)
         with open(index_path, "w", encoding="utf-8") as f:
             json.dump(indice, f, ensure_ascii=False, indent=2)
-        print(f"  → {len(nuevas)} nota(s) agregadas al índice ({len(indice)} total)")
+        partes = []
+        if nuevas:
+            partes.append(f"{len(nuevas)} nota(s) agregada(s)")
+        if reparadas:
+            partes.append(f"{reparadas} ruta(s) de foto auto-reparada(s)")
+        print(f"  → Índice de búsqueda: {', '.join(partes)} ({len(indice)} total)")
     else:
         print(f"  → Índice de búsqueda sin cambios ({len(indice)} notas)")
 
