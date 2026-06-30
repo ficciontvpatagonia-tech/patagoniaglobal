@@ -202,14 +202,14 @@
       <div class="relacionadas-grid"><a class="rel-card" href="/notas/20260609-propio-malvinas-submarinos.html"><img class="rel-img" src="https://globalpatagonia.org/fotos/submarino-astute-royal-navy.webp" alt="Reino Unido sem submarinos de ataque: sem defesa nem dissuasão nas Malvinas" onerror="this.style.display='none'"><div class="rel-body"><div class="rel-tag">Soberania</div><div class="rel-titulo">Reino Unido sem submarinos de ataque: sem defesa nem dissuasão nas Malvinas</div></div></a><a class="rel-card" href="/notas/20260407-propio-malvinas.html"><img class="rel-img" src="https://globalpatagonia.org/fotos/INSTITUCIONES/Malvinas02.webp" alt="Preocupação kelper nas Malvinas: o diesel sobe 36,5% em uma colônia cada vez mais cara e mais sozinha" onerror="this.style.display='none'"><div class="rel-body"><div class="rel-tag">Soberania</div><div class="rel-titulo">Preocupação kelper nas Malvinas: o diesel sobe 36,5% em uma colônia cada vez mais cara e mais sozinha</div></div></a><a class="rel-card" href="/notas/20260420-propio-malvinas-alimentos.html"><img class="rel-img" src="https://globalpatagonia.org/fotos/INSTITUCIONES/malvinas_stanley_dock.webp" alt="Crise alimentar nas Ilhas Malvinas" onerror="this.style.display='none'"><div class="rel-body"><div class="rel-tag">Soberania</div><div class="rel-titulo">Crise alimentar nas Ilhas Malvinas</div></div></a></div>
     </div>
     <div class="compartir-bloque" id="compartir-bloque"></div>
-    <a href="../" class="ver-completo">← Mais notícias em GLOBALpatagonia</a>
+    <a href="../" class="ver-completo">← Mais notícias na GLOBALpatagonia</a>
   </article>
 </div>
 
 <div class="divider-footer"></div>
 <footer>
   <div class="footer-logo"><span>global</span>PATAGONIA</div>
-  <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:4px;">Argentina · Chile · Sem fronteiras</div>
+  <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:4px;">Argentina · Chile · No Borders</div>
   <div class="footer-copy">© 2026 GLOBALpatagonia · globalpatagonia.org</div>
 </footer>
 <script>
@@ -223,7 +223,15 @@
   div.innerHTML =
     '<span style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7a7a7a;display:block;margin-bottom:10px;">Compartilhar</span>' +
     '<div style="display:flex;flex-wrap:wrap;gap:8px;">' +
-    '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#25D366;" href="https://wa.me/?text='+titulo+'%20'+href+
+    '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#25D366;" href="https://wa.me/?text='+titulo+'%20'+href+'" target="_blank" rel="noopener">WhatsApp</a>' +
+    '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#000;" href="https://twitter.com/intent/tweet?text='+titulo+'&url='+href+'" target="_blank" rel="noopener">X</a>' +
+    '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#1877F2;" href="https://www.facebook.com/sharer/sharer.php?u='+href+'" target="_blank" rel="noopener">Facebook</a>' +
+    '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#0A66C2;" href="https://www.linkedin.com/sharing/share-offsite/?url='+href+'" target="_blank" rel="noopener">LinkedIn</a>' +
+    '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#555;" href="mailto:?subject='+mailSubject+'&body='+mailBody+'">Email</a>' +
+    '<button style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;cursor:pointer;border:none;color:white;background:#3a5a7a;" onclick="navigator.clipboard.writeText(window.location.href);this.textContent=\'Copied!\'">Copiar link</button>' +
+    '</div>';
+})();
+</script>
 <script>/* gp-lang-banner */(function(){
   var SUP=['es','en','pt','zh'];
   var MSG={es:'Leé este artículo en español',en:'Read this article in English',pt:'Leia este artigo em português',zh:'\u9605\u8bfb\u672c\u6587\u7684\u4e2d\u6587\u7248'};
@@ -247,3 +255,5 @@
   bar.appendChild(a);bar.appendChild(x);
   document.body.insertBefore(bar,document.body.firstChild);
 })();</script>
+</body>
+</html>
