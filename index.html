@@ -148,6 +148,29 @@
     }
     .top-bar .cotiza-btn:hover { background: rgba(212,173,118,0.22); color: #fff; border-color: rgba(212,173,118,0.45); }
 
+    /* Accesos rápidos a páginas especiales (bajo el ticker) */
+    .quick-access {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 14px; max-width: 1100px; margin: 22px auto 2px; padding: 0 20px;
+    }
+    .qa-btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 13px 26px; border: 1.5px solid #d4ccbf; border-radius: 12px;
+      background: #fff; color: #1c2d3d; text-decoration: none;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: .9rem;
+      letter-spacing: 1.6px; text-transform: uppercase;
+      transition: all .22s ease; box-shadow: 0 2px 8px rgba(28,45,61,.05);
+    }
+    .qa-btn:hover { background: #1c2d3d; color: #fff; border-color: #1c2d3d; transform: translateY(-2px); box-shadow: 0 7px 18px rgba(28,45,61,.18); }
+    .qa-btn .qa-ico { font-size: 1.15rem; line-height: 1; }
+    .qa-btn.qa-cambio { border-color: #d4ad76; }
+    .qa-btn.qa-cambio:hover { background: #8c6b4a; border-color: #8c6b4a; }
+    @media (max-width: 680px) {
+      .quick-access { gap: 9px; margin-top: 16px; }
+      .qa-btn { padding: 10px 15px; font-size: .72rem; letter-spacing: 1px; border-radius: 10px; }
+      .qa-btn .qa-ico { font-size: 1rem; }
+    }
+
     .header-main {
       display: flex;
       flex-direction: column;
@@ -1355,14 +1378,12 @@
     <div class="nav-links" id="nav-links">
       <a href="#inicio" class="active">Inicio</a>
       <a href="#sec-noticias">Noticias</a>
+      <a href="#sec-pesca">Informes</a>
       <a href="#sec-deportes">Deportes & Aventura</a>
       <a href="#sec-turismo">Turismo en Patagonia</a>
       <a href="#sec-guias">Guías</a>
       <a href="#sec-negocios">Economía</a>
       <a href="#sec-historia">Cultura Patagónica</a>
-      <a href="agenda.html">Agenda</a>
-      <a href="clima.html">Clima</a>
-      <a href="videos.html">Cinemateca</a>
     </div>
     <a href="buscar.html" class="nav-search-btn" aria-label="Buscar">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -1380,6 +1401,14 @@
   <div class="ticker-text" id="ticker-texto">
     FIESTA NACIONAL DEL CHEF PATAGÓNICO: Villa Pehuenia celebra su 20ª edición con chefs de ambos lados de la cordillera y Dolli Irigoyen como madrina · PATAGONIA CAMP CUP 9ª EDICIÓN: hoy corren los 42 km entre los bosques otoñales de Torres del Paine · TORRES DEL PAINE ESTRENA SISTEMA TARIFARIO desde el 1° de mayo con nuevas modalidades de acceso y exigencias invernales · JUEGOS EPADE 2026: Neuquén, Río Negro y La Pampa se enfrentan en el gran torneo patagónico del 11 al 23 de mayo · CONICET ANALIZA el rol del cambio climático detrás de los incendios patagónicos de 2026 · PATAGONIA BARILOCHE BY UTMB: inscripciones abiertas para la edición más esperada del trail running norpatagónico
   </div>
+</div>
+
+<!-- ACCESOS RÁPIDOS (páginas especiales) -->
+<div class="quick-access" role="navigation" aria-label="Accesos rápidos">
+  <a href="agenda.html" class="qa-btn"><span class="qa-ico">📅</span>Agenda</a>
+  <a href="clima.html" class="qa-btn"><span class="qa-ico">🌤</span>Clima</a>
+  <a href="videos.html" class="qa-btn"><span class="qa-ico">🎬</span>Cinemateca</a>
+  <a href="cotizaciones.html" class="qa-btn qa-cambio"><span class="qa-ico">💱</span>Cambio&nbsp;$</a>
 </div>
 
 <div class="container">
