@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Reports — GLOBALpatagonia</title>
+<meta name="description" content="In-depth reports from Patagonia: geopolitics of the South Atlantic and the Falklands/Malvinas, energy, AI data centers, environment and culture. English coverage from the Global South."/>
+<link rel="canonical" href="https://globalpatagonia.org/reports.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:title" content="Reports — GLOBALpatagonia"/>
+<meta property="og:description" content="In-depth reports from Patagonia, in English. Geopolitics, energy, AI, environment and culture from the Global South."/>
+<meta property="og:url" content="https://globalpatagonia.org/reports.html"/>
+<meta property="og:image" content="https://globalpatagonia.org/fotos/datacenter-ia-patagonia-aerea.webp"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --azul:#1c2d3d; --glacial:#7aadcc; --gris:#252830; --arcilla:#8c6b4a; --crema:#f0ede8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--crema);color:var(--gris);line-height:1.5}
+  a{text-decoration:none;color:inherit}
+  header{background:var(--azul);color:#fff;padding:26px 20px 30px;text-align:center}
+  .logo{font-size:26px;font-weight:700;letter-spacing:.5px}
+  .logo span{color:var(--glacial)}
+  .kicker{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:4px}
+  h1{font-family:'Playfair Display',serif;font-weight:800;font-size:30px;margin-top:14px}
+  .sub{font-size:14px;color:rgba(255,255,255,.7);margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto}
+  .wrap{max-width:640px;margin:0 auto;padding:22px 16px 60px}
+  .card{display:flex;gap:14px;background:#fff;border-radius:10px;overflow:hidden;margin-bottom:16px;
+        box-shadow:0 1px 4px rgba(28,45,61,.10);transition:transform .15s,box-shadow .15s}
+  .card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(28,45,61,.16)}
+  .card-img{flex:0 0 122px;height:122px;object-fit:cover;background:var(--azul)}
+  .card-body{padding:12px 14px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+  .tag{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--glacial);margin-bottom:5px}
+  .card-title{font-family:'Playfair Display',serif;font-weight:700;font-size:17px;line-height:1.25;color:var(--azul);margin-bottom:5px}
+  .card-desc{font-size:12.5px;color:#5a6068;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .es-flag{font-size:10px;font-weight:600;color:var(--arcilla);margin-top:5px}
+  footer{text-align:center;padding:26px 16px;color:#8a8f96;font-size:12px;border-top:1px solid #e2ded7}
+  footer a{color:var(--azul);font-weight:600}
+  .loading{text-align:center;color:#8a8f96;padding:40px 0;font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span>GLOBAL</span>patagonia</a>
+  <div class="kicker">Global South · No Borders</div>
+  <h1>Reports</h1>
+  <p class="sub">In-depth coverage from Patagonia and the South Atlantic — in English.</p>
+</header>
+
+<main class="wrap">
+  <div id="list" class="loading">Loading reports…</div>
+</main>
+
+<footer>
+  <div>© 2026 GLOBALpatagonia · <a href="/">globalpatagonia.org</a></div>
+  <div style="margin-top:6px">Argentina · Chile · No Borders</div>
+</footer>
+
+<script>
+(function(){
+  var TAG_EN = {
+    'Tecnología':'Technology', 'Soberanía':'Sovereignty', 'Ambiente':'Environment',
+    'Infraestructura':'Infrastructure', 'Zona Fría':'Cold Zone', 'Internacional':'International',
+    'Economía':'Economy', 'Cultura':'Culture', 'Energía':'Energy'
+  };
+  fetch('propios.json?v=' + Date.now())
+    .then(r => r.json())
+    .then(list => {
+      var el = document.getElementById('list');
+      el.className = '';
+      el.innerHTML = '';
+      list.forEach(function(it){
+        var hasEn = !!it.titulo_en;
+        var href  = 'notas/' + it.id + (hasEn ? '-en' : '') + '.html';
+        var title = hasEn ? it.titulo_en : (it.titulo || '');
+        var desc  = hasEn ? (it.bajada_en || '') : (it.bajada || '');
+        var tagEs = (it.tag || 'Report').replace(/^[^\p{L}]+/u, '').trim() || 'Report';
+        var tag   = TAG_EN[tagEs] || tagEs;
+        var img   = it.imagen || 'fotos/datacenter-ia-patagonia-aerea.webp';
+        var a = document.createElement('a');
+        a.className = 'card';
+        a.href = href;
+        a.innerHTML =
+          '<img class="card-img" src="' + img + '" alt="" loading="lazy"/>' +
+          '<div class="card-body">' +
+            '<div class="tag">' + tag + '</div>' +
+            '<div class="card-title">' + title + '</div>' +
+            '<div class="card-desc">' + desc + '</div>' +
+            (hasEn ? '' : '<div class="es-flag">Read in Spanish →</div>') +
+          '</div>';
+        el.appendChild(a);
+      });
+      if(!list.length){ el.className='loading'; el.textContent='No reports yet.'; }
+    })
+    .catch(function(){
+      var el = document.getElementById('list');
+      el.className = 'loading';
+      el.innerHTML = 'Could not load reports. <a href="/" style="color:#1c2d3d;font-weight:600">Go to homepage →</a>';
+    });
+})();
+</script>
+</body>
+</html>
