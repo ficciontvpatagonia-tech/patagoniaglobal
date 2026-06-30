@@ -168,6 +168,13 @@
     .rv-foot { padding:9px 16px; font-size:.74rem; color:#8a8478; background:#faf8f4; border-top:1px solid #f1ede5; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; }
     .rv-foot a{ color:#5a7a96; }
     .rv-msg{ padding:24px; text-align:center; color:#8a8478; font-size:.9rem; }
+    .rv-alert { border-radius:12px; padding:14px 18px; margin:0 0 16px; font-size:.9rem; line-height:1.5; }
+    .rv-alert.corte { background:#fbeae8; border:1px solid #e8b4ad; border-left:4px solid #c0392b; color:#7a2018; }
+    .rv-alert.prec { background:#fdf6e3; border:1px solid #e8d9a8; border-left:4px solid #e6a700; color:#6b5410; }
+    .rv-alert b { display:block; margin-bottom:5px; font-size:.96rem; }
+    .rv-alert ul { margin:6px 0 0; padding-left:18px; }
+    .rv-alert li { margin-bottom:3px; }
+    .mtab-dot { width:8px; height:8px; border-radius:50%; background:#e23b2e; display:inline-block; margin-left:5px; box-shadow:0 0 0 0 rgba(226,59,46,.6); animation:cvpulse 1.8s infinite; vertical-align:middle; }
     .cx-wrap { max-width:1060px; margin:0 auto; padding:0 20px 60px; }
     .cx-section-label { font-family:'Playfair Display',serif; font-size:1.5rem; color:#1c2d3d; margin:46px 0 6px; }
     .cx-section-sub { color:#6b7480; font-size:.92rem; margin:0 0 18px; }
@@ -361,6 +368,8 @@
   <!-- ════ ESTADO DE RUTAS ════ -->
   <h2 class="cx-section-label" id="rutas">🛣️ Estado de rutas y caminos</h2>
   <p class="cx-section-sub">Estado oficial de las rutas nacionales patagónicas según <strong>Vialidad Nacional</strong>, en vivo. ¿Está cortada, con precaución o es de ripio? Filtrá por provincia. En la Patagonia el camino cambia rápido: nieve y hielo en cordillera (mayo–septiembre), tramos de ripio y viento.</p>
+
+  <div id="rv-alert" hidden></div>
 
   <!-- Tablero de rutas en vivo (Vialidad Nacional, vía Google Sheets oficial) -->
   <div class="rv-box" id="rv-box">
@@ -641,6 +650,23 @@
       if (r.act > ult) ult = r.act;
     });
     document.getElementById('rv-upd').textContent = ult ? ('Vialidad · ' + ult) : '';
+    // Aviso destacado + puntito en la solapa si hay cortes / precaución
+    var cortes = ROWS.filter(function(r){ return r.clase.indexOf('roj')===0; });
+    var precs  = ROWS.filter(function(r){ return r.clase.indexOf('verd')!==0 && r.clase.indexOf('roj')!==0; });
+    var al = document.getElementById('rv-alert');
+    if (cortes.length){
+      al.className = 'rv-alert corte'; al.hidden = false;
+      al.innerHTML = '<b>⚠️ '+cortes.length+(cortes.length===1?' tramo cortado':' tramos cortados')+' en la Patagonia</b><ul>'
+        + cortes.slice(0,10).map(function(r){ return '<li><strong>RN '+esc(r.ruta)+'</strong> · '+esc(r.tramo)+' ('+esc(r.prov)+') — '+esc(r.estado)+'</li>'; }).join('')
+        + '</ul>';
+    } else if (precs.length){
+      al.className = 'rv-alert prec'; al.hidden = false;
+      al.innerHTML = '<b>⚠️ '+precs.length+(precs.length===1?' tramo con precaución o restricción':' tramos con precaución o restricción')+'</b>Revisá el detalle en la lista antes de salir.';
+    } else { al.hidden = true; al.innerHTML = ''; }
+    var tab = document.getElementById('mtab-rutas');
+    var dot = tab.querySelector('.mtab-dot');
+    if (cortes.length && !dot){ var d=document.createElement('span'); d.className='mtab-dot'; d.title=cortes.length+' ruta(s) cortada(s)'; tab.appendChild(d); }
+    else if (!cortes.length && dot){ dot.remove(); }
     document.getElementById('rv-sum').innerHTML =
       '<span class="rv-pill"><span class="dot" style="background:#2e9e4f"></span>'+hab+' habilitadas</span>' +
       '<span class="rv-pill"><span class="dot" style="background:#e6a700"></span>'+prec+' con precaución</span>' +
@@ -665,6 +691,9 @@
     }).join('');
   }
   window.rvFiltrar = function(p){ filtro = p; render(); };
+  // Cargar al iniciar (aunque no se abra la solapa) para mostrar la alerta de cortes
+  if (document.readyState === 'complete' || document.readyState === 'interactive') rvLoad();
+  else window.addEventListener('DOMContentLoaded', rvLoad);
 })();
 </script>
 
