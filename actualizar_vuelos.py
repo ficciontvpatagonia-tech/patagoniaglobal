@@ -10,12 +10,28 @@ Prueba inicial: Bariloche (BRC). Para sumar aeropuertos, agregar a AEROPUERTOS.
 """
 import json
 import sys
+import re
+import ssl
+import html as _html
 import datetime
 import urllib.request
 import urllib.error
 from zoneinfo import ZoneInfo
 
 API = "https://webaa-api-h4d5amdfcze7hthn.a02.azurefd.net/web-prod/v1/api-aa/all-flights"
+# London Supply: tablero (HTML) de los aeropuertos que NO opera AA2000.
+LS_API = "https://flightstats.londonsupplygroup.com"
+LS_AEROPUERTOS = {
+    "USH": "Ushuaia",
+    "FTE": "El Calafate",
+    "REL": "Trelew",
+}
+LS_COLOR = {
+    "aterrizado": "#008000", "arribado": "#008000", "despegado": "#008000",
+    "en horario": "#777777", "a horario": "#777777", "estimado": "#777777",
+    "embarcando": "#e07a1f", "cerrado": "#e07a1f", "última llamada": "#e07a1f",
+    "demorado": "#c0392b", "cancelado": "#c0392b", "desviado": "#c0392b",
+}
 TZ = ZoneInfo("America/Argentina/Buenos_Aires")
 
 # Aeropuertos patagónicos argentinos (API de Aeropuertos Argentina). iata -> nombre.
@@ -85,6 +101,60 @@ def _fetch(iata, movtp, fecha):
     return vuelos
 
 
+def _ls_cell(row, n):
+    m = re.search(r'class="c' + str(n) + r'[^"]*"[^>]*>(.*?)</div>', row, re.S)
+    if not m:
+        return ""
+    t = re.sub(r'<[^>]+>', ' ', m.group(1))
+    return re.sub(r'\s+', ' ', _html.unescape(t)).strip()
+
+
+def _ls_fetch(iata, tipo):
+    """tipo: 'partidas' | 'arribos'. Parsea el tablero HTML de London Supply."""
+    url = f"{LS_API}/{tipo}-{iata}"
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+        "Accept": "text/html",
+    })
+    try:
+        resp = urllib.request.urlopen(req, timeout=30)
+    except urllib.error.URLError as e:
+        # Algunos entornos no validan la cadena de certificados de este sitio;
+        # como es un tablero público sin datos sensibles, reintentamos sin verificar.
+        if isinstance(getattr(e, "reason", None), ssl.SSLError):
+            ctx = ssl.create_default_context()
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
+            resp = urllib.request.urlopen(req, timeout=30, context=ctx)
+        else:
+            raise
+    with resp:
+        h = resp.read().decode("latin-1", "replace")
+    vuelos = []
+    for row in re.findall(r'<li class="dl">(.*?)</li>', h, re.S):
+        nro = _ls_cell(row, 2)
+        if not nro:
+            continue
+        ciudad = re.sub(r'^\([A-Z0-9]{3}\)\s*', '', _ls_cell(row, 3)).strip()
+        prog = _ls_cell(row, 4)
+        real = _ls_cell(row, 5)
+        estado = _ls_cell(row, 6)
+        am = re.search(r'alt="([^"]+)"', row)
+        code = nro.split(" ")[0].strip()
+        aero = AEROLINEAS.get(code) or (_html.unescape(am.group(1)).title() if am else "—")
+        vuelos.append({
+            "hora": prog,
+            "real": real if (real and real != prog) else "",
+            "nro": nro,
+            "aerolinea": aero,
+            "ciudad": ciudad,
+            "estado": estado,
+            "color": LS_COLOR.get(estado.lower(), "#777777"),
+        })
+    vuelos.sort(key=lambda v: v["hora"])
+    return vuelos
+
+
 def main():
     ahora = datetime.datetime.now(TZ)
     fecha = ahora.strftime("%d-%m-%Y")
@@ -104,11 +174,31 @@ def main():
             "partidas": partidas,
         }
         print(f"[vuelos] {iata} {nombre}: {len(arribos)} arribos, {len(partidas)} partidas")
+
+    # London Supply (Ushuaia, El Calafate, Trelew)
+    for iata, nombre in LS_AEROPUERTOS.items():
+        try:
+            arribos = _ls_fetch(iata, "arribos")
+            partidas = _ls_fetch(iata, "partidas")
+        except (urllib.error.URLError, ValueError, TimeoutError) as e:
+            print(f"[vuelos] ERROR LS {iata}: {e}", file=sys.stderr)
+            errores += 1
+            continue
+        if not (arribos or partidas):
+            print(f"[vuelos] LS {iata} {nombre}: sin vuelos hoy, se omite")
+            continue
+        aeropuertos[iata] = {
+            "nombre": nombre,
+            "arribos": arribos,
+            "partidas": partidas,
+        }
+        print(f"[vuelos] LS {iata} {nombre}: {len(arribos)} arribos, {len(partidas)} partidas")
+
     if not aeropuertos:
         print("[vuelos] sin datos de ningún aeropuerto, no se escribe el archivo", file=sys.stderr)
         return 1
     out = {
-        "fuente": "Aeropuertos Argentina",
+        "fuente": "Aeropuertos Argentina + London Supply",
         "actualizado": ahora.isoformat(timespec="minutes"),
         "aeropuertos": aeropuertos,
     }
