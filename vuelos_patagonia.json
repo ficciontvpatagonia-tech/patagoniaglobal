@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina",
- "actualizado": "2026-06-30T16:19-03:00",
+ "actualizado": "2026-06-30T16:27-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -560,8 +560,8 @@
      "nro": "AD 8745",
      "aerolinea": "Azul Linhas Aereas Brasileiras",
      "ciudad": "San Pablo-Viracopos",
-     "estado": "Consulte Cía.",
-     "color": "#FB671E"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "17:35",
@@ -696,12 +696,12 @@
     },
     {
      "hora": "16:07",
-     "real": "16:09",
+     "real": "",
      "nro": "WJ 3031",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "Consulte Cía.",
+     "color": "#FB671E"
     },
     {
      "hora": "17:35",
