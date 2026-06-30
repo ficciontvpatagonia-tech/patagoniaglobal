@@ -101,6 +101,13 @@
     .cx-jump { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:20px; }
     .cx-jump a { color:#8ab8d4; background:rgba(122,173,204,.12); border:1px solid rgba(122,173,204,.25); border-radius:20px; padding:6px 14px; font-size:.82rem; text-decoration:none; transition:all .2s; }
     .cx-jump a:hover { background:rgba(122,173,204,.25); color:#fff; }
+    .cx-air-box { background:#fff; border:1px solid #e3ddd3; border-radius:14px; padding:18px 22px; margin-top:20px; }
+    .cx-air-box .h { font-family:'Inter',sans-serif; font-weight:600; color:#1c2d3d; font-size:1rem; margin:0 0 4px; }
+    .cx-air-box .s { color:#6b7480; font-size:.86rem; margin:0 0 14px; }
+    .cx-air { display:flex; flex-wrap:wrap; gap:10px; }
+    .cx-air a { display:inline-flex; align-items:center; gap:7px; background:#faf8f4; border:1.5px solid #d4ccbf; border-radius:10px; padding:9px 15px; color:#1c2d3d; text-decoration:none; font-weight:600; font-size:.88rem; transition:all .2s; }
+    .cx-air a:hover { background:#1c2d3d; color:#fff; border-color:#1c2d3d; }
+    .cx-air .fl { font-size:1rem; line-height:1; }
     .cx-wrap { max-width:1060px; margin:0 auto; padding:0 20px 60px; }
     .cx-section-label { font-family:'Playfair Display',serif; font-size:1.5rem; color:#1c2d3d; margin:46px 0 6px; }
     .cx-section-sub { color:#6b7480; font-size:.92rem; margin:0 0 18px; }
@@ -224,11 +231,47 @@
     </table>
   </div>
 
+  <!-- Aerolíneas: reservar y horarios -->
+  <div class="cx-air-box">
+    <p class="h">🎫 Reservá y mirá horarios</p>
+    <p class="s">Las frecuencias y horarios exactos los publica cada aerolínea en su sitio oficial. Reservá o consultá directamente acá:</p>
+    <div class="cx-air">
+      <a href="https://www.aerolineas.com.ar" target="_blank" rel="noopener"><span class="fl">🇦🇷</span>Aerolíneas Argentinas</a>
+      <a href="https://www.latamairlines.com/ar/es" target="_blank" rel="noopener"><span class="fl">✈️</span>LATAM</a>
+      <a href="https://jetsmart.com/ar/es" target="_blank" rel="noopener"><span class="fl">✈️</span>JetSMART</a>
+      <a href="https://flybondi.com" target="_blank" rel="noopener"><span class="fl">🇦🇷</span>Flybondi</a>
+      <a href="https://www.skyairline.com" target="_blank" rel="noopener"><span class="fl">🇨🇱</span>SKY Airline</a>
+      <a href="https://dapairline.com" target="_blank" rel="noopener"><span class="fl">🇨🇱</span>Aerovías DAP</a>
+      <a href="https://www.voegol.com.br" target="_blank" rel="noopener"><span class="fl">🇧🇷</span>GOL</a>
+    </div>
+  </div>
+
+  <!-- Estado de vuelos en tiempo real -->
+  <h3 style="font-family:'Inter';color:#1c2d3d;margin:28px 0 4px;font-size:1.05rem;">🟢 Estado de vuelos en tiempo real</h3>
+  <p class="cx-section-sub" style="margin-bottom:14px;">¿Tu vuelo sale en horario, demora o se canceló? Estos tableros oficiales y de seguimiento muestran arribos y partidas en vivo, aeropuerto por aeropuerto.</p>
+  <div class="cx-live">
+    <a href="https://www.aeropuertosargentina.com/es/vuelos" target="_blank" rel="noopener">
+      <div class="t">🛬 Aeropuertos Argentina</div>
+      <div class="d">Tablero oficial de arribos y partidas en vivo de cada aeropuerto argentino, con demoras y cancelaciones.</div>
+      <div class="go">Ver vuelos en vivo →</div>
+    </a>
+    <a href="https://www.flightradar24.com" target="_blank" rel="noopener">
+      <div class="t">📡 Flightradar24</div>
+      <div class="d">Seguimiento mundial en tiempo real: ubicá tu vuelo en el mapa y mirá su estado y horario.</div>
+      <div class="go">Rastrear vuelo →</div>
+    </a>
+    <a href="https://www.flightaware.com" target="_blank" rel="noopener">
+      <div class="t">🕒 FlightAware</div>
+      <div class="d">Estado, demoras y cancelaciones por número de vuelo o ruta, con historial de puntualidad.</div>
+      <div class="go">Consultar estado →</div>
+    </a>
+  </div>
+
   <!-- ════ VUELO A MALVINAS ════ -->
   <div class="cx-mal" id="malvinas-vuelo">
     <h3>🇦🇷 El vuelo a las Islas Malvinas</h3>
     <p style="color:#3f4651;line-height:1.65;margin:.4rem 0 0;font-size:.94rem;">
-      El único vuelo regular lo opera <strong>LATAM</strong> en la ruta <strong>Santiago → Punta Arenas → Mount Pleasant</strong> (Islas Malvinas), normalmente los <strong>sábados</strong> (~1 h 41 min en el tramo Punta Arenas–Malvinas).
+      El único vuelo regular lo opera <strong><a href="https://www.latamairlines.com/ar/es" target="_blank" rel="noopener" style="color:#8c6b4a;text-decoration:underline;">LATAM</a></strong> en la ruta <strong>Santiago → Punta Arenas → Mount Pleasant</strong> (Islas Malvinas), normalmente los <strong>sábados</strong> (~1 h 41 min en el tramo Punta Arenas–Malvinas).
       <strong>Una vez al mes</strong> —habitualmente el <strong>segundo sábado</strong>— el servicio hace <strong>escala en Río Gallegos</strong> (Santa Cruz), donde pueden subir y bajar pasajeros desde Argentina sin pasar por Chile. El día y el sentido de la escala pueden cambiar según el calendario operativo de la aerolínea, así que conviene confirmar al reservar.
     </p>
   </div>
