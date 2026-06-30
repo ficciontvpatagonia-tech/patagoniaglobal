@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260628-el-kaltschmidt-vuelve-a-abrir-el-refugio-iconico-de-dep",
-    "tag": "🏔 Deportes",
-    "titulo": "El Kaltschmidt vuelve a abrir: el refugio icónico de Catedral, renovado",
-    "bajada": "El Refugio Kaltschmidt del Club Andino Bariloche reabre el 9 de julio en la base del Cerro Catedral tras una ampliación que lo pone a punto para la temporada invernal.",
-    "imagen": "fotos/foto-20260628-el-kaltschmidt-vuelve-a-abrir-el-refugio-iconico-de-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche"
+    "id": "20260630-7500-cuerpos-en-el-estrecho-el-chapuzon-de-magallanes-dep",
+    "tag": "🏊 Deportes",
+    "titulo": "7.500 cuerpos en el Estrecho: el Chapuzón de Magallanes ya es leyenda invernal",
+    "bajada": "Con el agua a 4°C y sensación térmica de -3°C, más de 7.500 personas se lanzaron al Estrecho de Magallanes en una nueva edición del evento más icónico del invierno austral en Punta Arenas.",
+    "imagen": "fotos/foto-20260630-7500-cuerpos-en-el-estrecho-el-chapuzon-de-magallanes-dep.webp",
+    "meta": "Hoy · El Magallánico"
   },
   "secundarias": [
+    {
+      "id": "20260628-el-kaltschmidt-vuelve-a-abrir-el-refugio-iconico-de-dep",
+      "tag": "🏔 Deportes",
+      "titulo": "El Kaltschmidt vuelve a abrir: el refugio icónico de Catedral, renovado",
+      "bajada": "El Refugio Kaltschmidt del Club Andino Bariloche reabre el 9 de julio en la base del Cerro Catedral tras una ampliación que lo pone a punto para la temporada invernal.",
+      "imagen": "fotos/foto-20260628-el-kaltschmidt-vuelve-a-abrir-el-refugio-iconico-de-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20260627-geda-cierra-43-temporadas-de-montana-con-una-jornada-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El Grupo Expedicionarios de Adultos del Club Andino Bariloche celebró el cierre de su temporada 43 con una salida de camaradería en el cerro que los vio crecer.",
       "imagen": "fotos/foto-20260627-geda-cierra-43-temporadas-de-montana-con-una-jornada-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260626-el-club-andino-bariloche-abre-inscripciones-para-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El Club Andino Bariloche lanza su propuesta de formación en nieve para adultos con cursos de esquí y snowboard en múltiples niveles, desde principiantes hasta perfeccionamiento técnico.",
       "imagen": "fotos/foto-20260626-el-club-andino-bariloche-abre-inscripciones-para-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260622-rio-gallegos-y-la-deuda-pendiente-accesibilidad-para-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El Club Andino Bariloche habilitó la reserva del servicio de guardaesquí para la temporada 2026, con funcionamiento en el renovado Refugio Kaltschmidt, con mayor espacio y comodidades para quienes recorren las laderas del Cerro Catedral.",
       "imagen": "fotos/foto-20260620-el-guardaesqui-del-cab-abre-reservas-para-la-temporada-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260619-miguel-puratic-campeon-binacional-de-motocross-puerto-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Miguel Puratic, campeón binacional de Motocross: Puerto Natales en lo más alto",
-      "bajada": "El piloto de Puerto Natales se consagró campeón del torneo binacional Argentina-Chile de Motocross disputado en el Motódromo Ricardo Navarro de Punta Arenas, cerrando una temporada de alta exigencia entre dos países.",
-      "imagen": "fotos/foto-20260619-miguel-puratic-campeon-binacional-de-motocross-puerto-dep.webp",
-      "meta": "Hoy · El Pingüino"
     }
   ]
 }
