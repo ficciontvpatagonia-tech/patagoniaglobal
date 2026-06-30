@@ -5,9 +5,9 @@ name: Actualizar Vuelos
 # Cadencia conservadora: cada 30 min en horario operativo (ART ~06:00–23:59).
 
 on:
-  # schedule:
-  #   - cron: '*/30 0-2,9-23 * * *'   # cada 30 min, horas UTC = ART 06:00–02:59 (ACTIVAR cuando demos OK)
-  workflow_dispatch:                  # por ahora solo manual, para probar
+  schedule:
+    - cron: '*/30 0-2,9-23 * * *'   # cada 30 min, horas UTC = ART 06:00–02:59
+  workflow_dispatch:                  # también manual desde GitHub
 
 permissions:
   contents: write
