@@ -1,0 +1,67 @@
+name: Publicar informe traducido en redes (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: 'ID del informe (propios.json), sin sufijo de idioma'
+        required: true
+        default: '20260629-propio-datacenter-ia-patagonia'
+        type: string
+      lang:
+        description: 'Idioma a distribuir'
+        required: true
+        default: 'en'
+        type: choice
+        options:
+          - en
+          - pt
+          - zh
+      redes:
+        description: 'Redes destino'
+        required: true
+        default: 'fb-ig'
+        type: choice
+        options:
+          - fb-ig          # Facebook + Instagram (recomendado: canales con descubrimiento)
+          - todas          # incluye Telegram (lista de suscriptores en español)
+          - solo-facebook
+          - solo-instagram
+          - solo-telegram
+
+permissions:
+  contents: read
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install Pillow numpy
+
+      - name: Publicar informe traducido
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+          FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
+          FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+        run: |
+          REDES=""
+          case "${{ github.event.inputs.redes }}" in
+            fb-ig)          REDES="--no-telegram" ;;
+            solo-facebook)  REDES="--no-telegram --no-instagram" ;;
+            solo-instagram) REDES="--no-telegram --no-facebook" ;;
+            solo-telegram)  REDES="--no-facebook --no-instagram" ;;
+          esac
+          python3 publicar_informe_idioma.py --id "${{ github.event.inputs.id }}" --lang "${{ github.event.inputs.lang }}" $REDES
