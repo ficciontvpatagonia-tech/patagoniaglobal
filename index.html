@@ -481,6 +481,11 @@
       cursor: pointer;
       box-shadow: 0 1px 3px rgba(0,0,0,0.06);
       transition: transform 0.2s, box-shadow 0.2s;
+      /* Lazy-render: las cards fuera de pantalla no se pintan ni descargan su
+         background-image hasta acercarse al viewport. auto recuerda el tamaño
+         real una vez renderizada; 300px es la reserva inicial (evita CLS). */
+      content-visibility: auto;
+      contain-intrinsic-size: auto 300px;
     }
 
     .noticia-card:hover {
