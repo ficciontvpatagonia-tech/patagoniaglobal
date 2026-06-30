@@ -2658,9 +2658,14 @@ def generar_paginas_og(notas):
         else:
             meta_desc = _bajada
 
-        # SEO #3 — si el título ya es largo, no se le suma el sufijo de marca
-        # (no desperdicia el espacio visible del resultado de Google).
-        title_tag = titulo if len(titulo) > 52 else f"{titulo} — GLOBALpatagonia"
+        # SEO #3 — el <title> nunca debe pasar de ~60 chars (Google lo corta).
+        # Se agrega el sufijo de marca SOLO si el total sigue entrando en 60;
+        # si no, va el título solo. (El sufijo " — GLOBALpatagonia" son 18 chars,
+        # así que el umbral real es título ≤ 42. Antes el umbral ">52" dejaba
+        # pasar títulos de 43–60 con sufijo → 61–78 chars cortados en el SERP.)
+        _SUFIJO_MARCA = " — GLOBALpatagonia"
+        title_tag = (f"{titulo}{_SUFIJO_MARCA}"
+                     if len(titulo) + len(_SUFIJO_MARCA) <= 60 else titulo)
 
         html_out = f"""<!DOCTYPE html>
 <html lang="es">
