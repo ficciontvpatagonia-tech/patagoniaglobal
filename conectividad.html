@@ -130,6 +130,44 @@
     .cv-foot { padding:9px 16px; font-size:.74rem; color:#8a8478; background:#faf8f4; border-top:1px solid #f1ede5; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; }
     .cv-foot a { color:#5a7a96; }
     .cv-msg { padding:26px 18px; text-align:center; color:#8a8478; font-size:.9rem; }
+    /* Solapas principales */
+    .cx-tabsbar { position:sticky; top:0; z-index:30; background:#f0ede8; border-bottom:1px solid #e0d9cd; box-shadow:0 2px 8px rgba(28,45,61,.06); }
+    .cx-tabsbar-inner { max-width:1060px; margin:0 auto; display:flex; gap:6px; padding:8px 14px; }
+    .cx-mtab { flex:1; min-width:0; text-align:center; display:flex; align-items:center; justify-content:center; gap:8px; padding:12px 8px; border:none; background:transparent; cursor:pointer; font-family:'Inter',sans-serif; font-weight:600; font-size:.9rem; line-height:1.15; color:#6b7480; border-radius:10px; transition:all .18s; text-transform:uppercase; letter-spacing:.5px; }
+    .cx-mtab:hover { background:#e6e0d6; color:#1c2d3d; }
+    .cx-mtab.active { background:#1c2d3d; color:#fff; }
+    .cx-mtab .i { font-size:1.1rem; }
+    .cx-panel[hidden] { display:none; }
+    @media(max-width:560px){ .cx-mtab{ font-size:.68rem; letter-spacing:0; padding:9px 4px; flex-direction:column; gap:3px; } .cx-mtab .i{font-size:1.25rem;} }
+    /* Widget rutas (Vialidad Nacional) */
+    .rv-box { border:1px solid #e3ddd3; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 2px 10px rgba(28,45,61,.05); margin:8px 0 20px; }
+    .rv-head { background:#1c2d3d; color:#fff; padding:13px 18px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px; align-items:center; }
+    .rv-head .ttl { font-weight:600; display:flex; align-items:center; gap:8px; }
+    .rv-head .ttl .live { width:9px;height:9px;border-radius:50%;background:#41c463;animation:cvpulse 2s infinite; }
+    .rv-head .upd { font-size:.76rem; color:#9fb4c4; }
+    .rv-sum { display:flex; flex-wrap:wrap; gap:8px; padding:12px 16px; background:#faf8f4; border-bottom:1px solid #eee5d8; font-size:.82rem; }
+    .rv-pill { display:inline-flex; align-items:center; gap:6px; background:#fff; border:1px solid #e3ddd3; border-radius:20px; padding:4px 12px; font-weight:600; color:#3f4651; }
+    .rv-pill .dot{ width:9px;height:9px;border-radius:50%; }
+    .rv-filtros { display:flex; flex-wrap:wrap; gap:6px; padding:10px 16px; border-bottom:1px solid #f1ede5; }
+    .rv-chip { border:1.5px solid #d4ccbf; background:#faf8f4; color:#5a6470; border-radius:18px; padding:5px 12px; font-size:.8rem; font-weight:600; cursor:pointer; font-family:inherit; transition:all .15s; }
+    .rv-chip.active { background:#1c2d3d; color:#fff; border-color:#1c2d3d; }
+    .rv-list { max-height:540px; overflow-y:auto; }
+    .rv-row { display:grid; grid-template-columns:52px 1fr auto; gap:12px; align-items:start; padding:11px 16px; border-top:1px solid #f1ede5; font-size:.88rem; }
+    .rv-row:first-child{ border-top:none; }
+    .rv-rt { display:flex; flex-direction:column; align-items:center; }
+    .rv-rt .n { font-weight:700; color:#1c2d3d; font-size:.92rem; }
+    .rv-rt .cal { font-size:.58rem; text-transform:uppercase; letter-spacing:.3px; padding:1px 5px; border-radius:4px; margin-top:3px; font-weight:700; white-space:nowrap; }
+    .rv-rt .cal.ripio{ background:#efe2d0; color:#8c6b4a; }
+    .rv-rt .cal.pav{ background:#e6ebef; color:#52708a; }
+    .rv-rt .cal.nat{ background:#e3e8df; color:#5f7256; }
+    .rv-mid .tr { font-weight:600; color:#1c2d3d; }
+    .rv-mid .pr { font-size:.72rem; color:#8a8478; text-transform:uppercase; letter-spacing:.3px; }
+    .rv-mid .ob { font-size:.78rem; color:#6b7480; margin-top:3px; line-height:1.45; }
+    .rv-est { font-size:.72rem; font-weight:700; display:flex; align-items:center; gap:6px; white-space:nowrap; }
+    .rv-est .dot{ width:10px;height:10px;border-radius:50%;flex:none; }
+    .rv-foot { padding:9px 16px; font-size:.74rem; color:#8a8478; background:#faf8f4; border-top:1px solid #f1ede5; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; }
+    .rv-foot a{ color:#5a7a96; }
+    .rv-msg{ padding:24px; text-align:center; color:#8a8478; font-size:.9rem; }
     .cx-wrap { max-width:1060px; margin:0 auto; padding:0 20px 60px; }
     .cx-section-label { font-family:'Playfair Display',serif; font-size:1.5rem; color:#1c2d3d; margin:46px 0 6px; }
     .cx-section-sub { color:#6b7480; font-size:.92rem; margin:0 0 18px; }
@@ -204,18 +242,20 @@
 <div class="cx-hero">
   <h1>Conectividad Patagónica</h1>
   <p>Todo para moverte por la Patagonia y cruzar la frontera: vuelos y aerolíneas por ciudad, el vuelo a Malvinas, estado de rutas y pasos, y los requisitos para entrar a Chile o viajar a las Islas Malvinas.</p>
-  <div class="cx-jump">
-    <a href="#vuelos">✈️ Vuelos</a>
-    <a href="#malvinas-vuelo">🇦🇷 Vuelo a Malvinas</a>
-    <a href="#rutas">🛣️ Estado de rutas</a>
-    <a href="#pasos">🛂 Pasos y aduanas</a>
-    <a href="#requisitos-cl">📋 Cruzar a Chile</a>
-    <a href="#requisitos-mal">🏝️ Viajar a Malvinas</a>
+</div>
+
+<!-- SOLAPAS PRINCIPALES -->
+<div class="cx-tabsbar">
+  <div class="cx-tabsbar-inner">
+    <button class="cx-mtab active" id="mtab-vuelos" onclick="cxTab('vuelos')"><span class="i">🛫</span>Vuelos</button>
+    <button class="cx-mtab" id="mtab-rutas" onclick="cxTab('rutas')"><span class="i">🛣️</span>Rutas</button>
+    <button class="cx-mtab" id="mtab-pasos" onclick="cxTab('pasos')"><span class="i">🛂</span><span>Pasos de frontera</span></button>
   </div>
 </div>
 
 <div class="cx-wrap">
 
+  <section class="cx-panel" id="panel-vuelos">
   <!-- ════ VUELOS ════ -->
   <h2 class="cx-section-label" id="vuelos">✈️ Vuelos y aerolíneas por ciudad</h2>
   <p class="cx-section-sub">Aeropuertos y compañías que operan en cada ciudad clave de la Patagonia. Las frecuencias varían por temporada (más oferta en verano) — confirmá horarios y precios en la web de cada aerolínea.</p>
@@ -315,9 +355,29 @@
     </p>
   </div>
 
+  </section>
+
+  <section class="cx-panel" id="panel-rutas" hidden>
   <!-- ════ ESTADO DE RUTAS ════ -->
   <h2 class="cx-section-label" id="rutas">🛣️ Estado de rutas y caminos</h2>
-  <p class="cx-section-sub">En la Patagonia el estado del camino cambia rápido: nieve y hielo en cordillera (mayo–septiembre), tramos de ripio y viento. Consultá siempre el parte oficial <em>antes</em> de salir.</p>
+  <p class="cx-section-sub">Estado oficial de las rutas nacionales patagónicas según <strong>Vialidad Nacional</strong>, en vivo. ¿Está cortada, con precaución o es de ripio? Filtrá por provincia. En la Patagonia el camino cambia rápido: nieve y hielo en cordillera (mayo–septiembre), tramos de ripio y viento.</p>
+
+  <!-- Tablero de rutas en vivo (Vialidad Nacional, vía Google Sheets oficial) -->
+  <div class="rv-box" id="rv-box">
+    <div class="rv-head">
+      <span class="ttl"><span class="live"></span>Rutas nacionales patagónicas</span>
+      <span class="upd" id="rv-upd">Cargando…</span>
+    </div>
+    <div class="rv-sum" id="rv-sum"></div>
+    <div class="rv-filtros" id="rv-filtros"></div>
+    <div class="rv-list" id="rv-list"><div class="rv-msg">Cargando estado de rutas…</div></div>
+    <div class="rv-foot">
+      <span>Fuente: Vialidad Nacional (Argentina)</span>
+      <a href="https://www.argentina.gob.ar/transporte/vialidad-nacional/estado-de-rutas" target="_blank" rel="noopener">Mapa oficial completo →</a>
+    </div>
+  </div>
+
+  <p class="cx-section-sub" style="margin-top:22px;">Más fuentes oficiales en vivo (incluye el lado chileno):</p>
   <div class="cx-live">
     <a href="https://www.argentina.gob.ar/transporte/vialidad-nacional/estado-de-rutas" target="_blank" rel="noopener">
       <div class="t">🚧 Vialidad Nacional (AR)</div>
@@ -339,6 +399,9 @@
     <strong>Tips de ruta patagónica:</strong> cargá combustible en cada pueblo (las distancias son largas y las estaciones, escasas); en invierno llevá cadenas y mantené el tanque por encima de la mitad; en tramos de ripio bajá la velocidad y respetá la distancia (las piedras rompen parabrisas); y revisá el viento, que en el sur puede complicar más que la nieve. En la app de Vialidad podés ver el detalle por número de ruta.
   </div>
 
+  </section>
+
+  <section class="cx-panel" id="panel-pasos" hidden>
   <!-- ════ PASOS Y ADUANAS ════ -->
   <h2 class="cx-section-label" id="pasos">🛂 Pasos fronterizos y aduanas</h2>
   <p class="cx-section-sub">Principales pasos cordilleranos Argentina–Chile en la Patagonia. Los horarios se reducen en invierno y pueden cerrar por temporal — verificá el estado del día en los enlaces de arriba.</p>
@@ -429,6 +492,8 @@
     <strong>Importante:</strong> los <strong>miembros en actividad de las Fuerzas Armadas argentinas</strong> tienen el ingreso prohibido al archipiélago. GLOBALpatagonia recuerda que las Islas Malvinas son parte del territorio nacional argentino; esta guía tiene fines prácticos para el viajero.
   </div>
 
+  </section>
+
   <div class="cx-disclaimer">
     Información de referencia recopilada de fuentes oficiales y aerolíneas, sujeta a cambios. Verificá vuelos, horarios de pasos y requisitos en los sitios oficiales antes de viajar.
     Última revisión editorial: junio de 2026.
@@ -513,6 +578,93 @@
       document.getElementById('cv-upd').textContent = '';
       document.getElementById('cv-list').innerHTML = '<div class="cv-msg">No se pudo cargar el tablero ahora. Mirá el <a href="https://www.aeropuertosargentina.com/es/vuelos" target="_blank" rel="noopener">tablero oficial</a>.</div>';
     });
+})();
+</script>
+
+<script>
+/* Solapas + tablero de rutas en vivo (Vialidad Nacional, vía su Google Sheet oficial con CORS) */
+(function(){
+  window.cxTab = function(t){
+    ['vuelos','rutas','pasos'].forEach(function(k){
+      document.getElementById('panel-'+k).hidden = (k!==t);
+      document.getElementById('mtab-'+k).classList.toggle('active', k===t);
+    });
+    var bar = document.querySelector('.cx-tabsbar');
+    if (bar) bar.scrollIntoView({block:'start'});
+    if (t==='rutas') rvLoad();
+  };
+
+  var SHEET = 'https://sheets.googleapis.com/v4/spreadsheets/17AqjqeNvM4nG6cOUsUFKFaKXMiNmztYfzHIxeM9FcXk/values/tablavisible?key=AIzaSyCq2wEEKL9-6RmX-TkW23qJsrmnFHFf5tY&alt=json';
+  var PROVS = ['Neuquén','Río Negro','Chubut','Santa Cruz','Tierra del Fuego','La Pampa'];
+  var COLOR = { verdin:'#2e9e4f', verde:'#2e9e4f', amarillo:'#e6a700', amarillento:'#e6a700', naranja:'#e07a1f', rojo:'#c0392b', rojizo:'#c0392b', celeste:'#3a86c8', gris:'#8a8478' };
+  var loaded = false, ROWS = null, filtro = 'Todas';
+  function norm(s){ return (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim(); }
+  function esc(s){ return (s||'').replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function stripTags(s){ return (s||'').replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim(); }
+  function calClase(c){ c = norm(c); if(c.indexOf('ripio')>=0) return ['ripio','Ripio']; if(c.indexOf('natural')>=0) return ['nat','Natural']; return ['pav','Pavim.']; }
+
+  window.rvLoad = function(){
+    if (loaded) return; loaded = true;
+    fetch(SHEET).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(d){
+      var v = d.values || [];
+      ROWS = [];
+      for (var i=1;i<v.length;i++){
+        var row = v[i]; while(row.length<9) row.push('');
+        if (PROVS.map(norm).indexOf(norm(row[0])) < 0) continue;
+        var m = (row[3]||'').match(/bg-([a-z]+)['"]?\s*>([^<]+)</i);
+        ROWS.push({
+          prov: row[0].trim(), ruta: row[1].trim(), tramo: row[2].trim(),
+          clase: m ? m[1].toLowerCase() : 'gris', estado: m ? m[2].trim() : stripTags(row[3]),
+          calzada: row[4].trim(), obs: stripTags(row[7]), act: (row[8]||'').trim()
+        });
+      }
+      // problemas primero, luego provincia y ruta
+      ROWS.sort(function(a,b){
+        var pa = (a.clase.indexOf('verd')===0)?1:0, pb = (b.clase.indexOf('verd')===0)?1:0;
+        if (pa!==pb) return pa-pb;
+        return a.prov.localeCompare(b.prov) || (parseInt(a.ruta)||999)-(parseInt(b.ruta)||999);
+      });
+      render();
+    }).catch(function(){
+      document.getElementById('rv-upd').textContent = '';
+      document.getElementById('rv-list').innerHTML = '<div class="rv-msg">No se pudo cargar el estado ahora. Mirá el <a href="https://www.argentina.gob.ar/transporte/vialidad-nacional/estado-de-rutas" target="_blank" rel="noopener">mapa oficial de Vialidad</a>.</div>';
+    });
+  };
+
+  function render(){
+    if (!ROWS) return;
+    var hab=0, prec=0, corte=0, ult='';
+    ROWS.forEach(function(r){
+      if (r.clase.indexOf('verd')===0) hab++;
+      else if (r.clase.indexOf('roj')===0) corte++;
+      else prec++;
+      if (r.act > ult) ult = r.act;
+    });
+    document.getElementById('rv-upd').textContent = ult ? ('Vialidad · ' + ult) : '';
+    document.getElementById('rv-sum').innerHTML =
+      '<span class="rv-pill"><span class="dot" style="background:#2e9e4f"></span>'+hab+' habilitadas</span>' +
+      '<span class="rv-pill"><span class="dot" style="background:#e6a700"></span>'+prec+' con precaución</span>' +
+      '<span class="rv-pill"><span class="dot" style="background:#c0392b"></span>'+corte+' cortadas</span>';
+    // chips de provincia (solo las presentes)
+    var provs = ['Todas']; PROVS.forEach(function(p){ if (ROWS.some(function(r){ return r.prov===p; })) provs.push(p); });
+    document.getElementById('rv-filtros').innerHTML = provs.map(function(p){
+      return '<button class="rv-chip'+(p===filtro?' active':'')+'" onclick="rvFiltrar(\''+p.replace(/'/g,"\\'")+'\')">'+esc(p)+'</button>';
+    }).join('');
+    var lista = ROWS.filter(function(r){ return filtro==='Todas' || r.prov===filtro; });
+    var box = document.getElementById('rv-list');
+    if (!lista.length){ box.innerHTML = '<div class="rv-msg">Sin datos para mostrar.</div>'; return; }
+    box.innerHTML = lista.map(function(r){
+      var col = COLOR[r.clase] || '#8a8478';
+      var cal = calClase(r.calzada);
+      var ob = r.obs ? '<div class="ob">'+esc(r.obs.length>150 ? r.obs.slice(0,150)+'…' : r.obs)+'</div>' : '';
+      return '<div class="rv-row">'
+        + '<div class="rv-rt"><span class="n">RN '+esc(r.ruta)+'</span><span class="cal '+cal[0]+'">'+cal[1]+'</span></div>'
+        + '<div class="rv-mid"><div class="tr">'+esc(r.tramo)+'</div><div class="pr">'+esc(r.prov)+'</div>'+ob+'</div>'
+        + '<div class="rv-est"><span class="dot" style="background:'+col+'"></span>'+esc(r.estado)+'</div>'
+        + '</div>';
+    }).join('');
+  }
+  window.rvFiltrar = function(p){ filtro = p; render(); };
 })();
 </script>
 
