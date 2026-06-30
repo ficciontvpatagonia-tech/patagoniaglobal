@@ -136,6 +136,17 @@
       white-space: nowrap;
     }
     .top-bar .clima-btn:hover { background: rgba(122,173,204,0.22); color: #fff; border-color: rgba(122,173,204,0.45); }
+    .top-bar .cotiza-btn {
+      color: #d4ad76; font-weight: 600; text-decoration: none;
+      background: rgba(212,173,118,0.1);
+      border: 1px solid rgba(212,173,118,0.22);
+      border-radius: 20px;
+      padding: 3px 12px 3px 10px;
+      display: inline-flex; align-items: center; gap: 5px;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .top-bar .cotiza-btn:hover { background: rgba(212,173,118,0.22); color: #fff; border-color: rgba(212,173,118,0.45); }
 
     .header-main {
       display: flex;
@@ -1247,7 +1258,7 @@
 
       /* Header */
       .top-bar { padding: 5px 12px; font-size: 10px; }
-      .top-bar .clima-btn { display: none; }
+      .top-bar .clima-btn, .top-bar .cotiza-btn { display: none; }
       .header-main { padding: 16px 16px 12px; }
       .logo-img { max-height: 110px; height: auto; }
       .logo-sub { font-size: 10px; letter-spacing: 2px; }
@@ -1324,6 +1335,7 @@
 <!-- TOP BAR -->
 <header>
   <div class="top-bar">
+    <a href="cotizaciones.html" class="cotiza-btn" id="topbar-cotiza-strip" title="Cotizaciones y cambio de moneda Argentina–Chile">💱 <span id="topbar-cotiza">Dólar · Peso chileno</span> ▸</a>
     <span class="fecha" id="fecha-display">Sábado, 2 de Mayo de 2026 · Patagonia Argentina y Chilena</span>
     <a href="clima.html" class="clima-btn" id="topbar-clima-strip">🌤 <span id="topbar-temps">Bariloche · Neuquén · Pta. Arenas · Pto. Montt</span> ▸</a>
   </div>
@@ -2703,6 +2715,38 @@ fetch("propios.json")
         t:     r.current_weather.temperature,
         emoji: emoji(r.current_weather.weathercode),
       }));
+      localStorage.setItem(KEY, JSON.stringify({ ts: Date.now(), data }));
+      update(data);
+    } catch(e) { /* falla silenciosa, queda el texto por defecto */ }
+  });
+})();
+</script>
+<script>
+(function() {
+  // Pill de cotizaciones en la top-bar (sin API key, dolarapi.com + cl.dolarapi.com)
+  const KEY = 'gp_cotiza_pill_v1', TTL = 30 * 60 * 1000;
+  const fmt = n => new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 }).format(Math.round(n));
+  const fmt2 = n => new Intl.NumberFormat('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n);
+  function update(d) {
+    const el = document.getElementById('topbar-cotiza');
+    if (!el) return;
+    el.textContent = `Dólar $${fmt(d.usdVenta)} · 1 CLP $${fmt2(d.clpToArs)}`;
+  }
+  window.addEventListener('load', async () => {
+    try {
+      const cached = localStorage.getItem(KEY);
+      if (cached) {
+        const { ts, data } = JSON.parse(cached);
+        if (Date.now() - ts < TTL) { update(data); return; }
+      }
+      const [ar, cl] = await Promise.all([
+        fetch('https://dolarapi.com/v1/dolares/oficial').then(r => r.json()),
+        fetch('https://cl.dolarapi.com/v1/cotizaciones/usd').then(r => r.json()),
+      ]);
+      const data = {
+        usdVenta: ar.venta,                 // ARS por dólar (oficial, venta)
+        clpToArs: ar.venta / cl.venta,      // cuántos ARS vale 1 CLP
+      };
       localStorage.setItem(KEY, JSON.stringify({ ts: Date.now(), data }));
       update(data);
     } catch(e) { /* falla silenciosa, queda el texto por defecto */ }
