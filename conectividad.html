@@ -130,6 +130,31 @@
     .cv-foot { padding:9px 16px; font-size:.74rem; color:#8a8478; background:#faf8f4; border-top:1px solid #f1ede5; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; }
     .cv-foot a { color:#5a7a96; }
     .cv-msg { padding:26px 18px; text-align:center; color:#8a8478; font-size:.9rem; }
+    .cv-cities { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 12px; }
+    .cv-chip { border:1.5px solid #d4ccbf; background:#faf8f4; color:#5a6470; border-radius:18px; padding:6px 14px; font-size:.84rem; font-weight:600; cursor:pointer; font-family:inherit; transition:all .15s; }
+    .cv-chip:hover { border-color:#1c2d3d; color:#1c2d3d; }
+    .cv-chip.active { background:#1c2d3d; color:#fff; border-color:#1c2d3d; }
+    .cv-chip .b { opacity:.6; font-weight:400; margin-left:5px; }
+    .cv-chip.active .b { opacity:.85; }
+    /* Acordeón de aerolíneas por ciudad */
+    .acc { border:1px solid #e3ddd3; border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 2px 8px rgba(28,45,61,.04); }
+    .acc-item { border-top:1px solid #f1ede5; }
+    .acc-item:first-child { border-top:none; }
+    .acc-h { width:100%; display:flex; align-items:center; gap:10px; padding:13px 16px; background:#fff; border:none; cursor:pointer; font-family:inherit; text-align:left; }
+    .acc-h:hover { background:#faf8f4; }
+    .acc-city { font-weight:700; color:#1c2d3d; font-size:.92rem; flex:none; }
+    .acc-city .cx-code { color:#8a8478; font-weight:600; font-size:.74rem; margin-left:3px; }
+    .acc-air-sm { flex:1; min-width:0; color:#8a8478; font-size:.78rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .acc-badge { flex:none; font-size:.7rem; font-weight:700; color:#2e7d46; background:#e3f1e8; border-radius:20px; padding:2px 9px; white-space:nowrap; }
+    .acc-chev { flex:none; color:#a89e8d; transition:transform .2s; font-size:.85rem; }
+    .acc-item.open .acc-chev { transform:rotate(90deg); }
+    .acc-body { display:none; padding:2px 16px 14px; font-size:.88rem; color:#3f4651; line-height:1.55; }
+    .acc-item.open .acc-body { display:block; }
+    .acc-body .lbl { color:#a89e8d; font-size:.7rem; text-transform:uppercase; letter-spacing:.4px; margin-top:9px; font-weight:700; }
+    .acc-live { margin-top:10px; }
+    .acc-sum { font-size:.85rem; color:#1c2d3d; font-weight:600; margin-bottom:3px; }
+    .acc-note { color:#8a8478; font-size:.82rem; }
+    @media(max-width:560px){ .acc-air-sm{ display:none; } }
     /* Solapas principales */
     .cx-tabsbar { position:sticky; top:0; z-index:30; background:#f0ede8; border-bottom:1px solid #e0d9cd; box-shadow:0 2px 8px rgba(28,45,61,.06); }
     .cx-tabsbar-inner { max-width:1060px; margin:0 auto; display:flex; gap:6px; padding:8px 14px; }
@@ -264,50 +289,15 @@
 
   <section class="cx-panel" id="panel-vuelos">
   <!-- ════ VUELOS ════ -->
-  <h2 class="cx-section-label" id="vuelos">✈️ Vuelos y aerolíneas por ciudad</h2>
-  <p class="cx-section-sub">Aeropuertos y compañías que operan en cada ciudad de la Patagonia. <strong>Aerolíneas Argentinas</strong> vuela todo el año; <strong>LADE</strong> (la aérea de fomento de la Fuerza Aérea) conecta pueblos patagónicos con frecuencias acotadas y variables; las <strong>low-cost</strong> (JetSMART, Flybondi) operan sobre todo en temporada alta —verano y vacaciones de invierno— y reducen o suspenden rutas el resto del año. Confirmá siempre en la web de cada aerolínea.</p>
+  <h2 class="cx-section-label" id="vuelos">✈️ Vuelos</h2>
 
-  <h3 style="font-family:'Inter';color:#1c2d3d;margin:14px 0 10px;font-size:1.05rem;">🇦🇷 Patagonia argentina</h3>
-  <div class="cx-table-wrap">
-    <table class="cx">
-      <thead><tr><th>Ciudad / Aeropuerto</th><th>Aerolíneas</th><th>Rutas principales</th></tr></thead>
-      <tbody>
-        <tr><td class="cx-city">Neuquén <span class="cx-code">(NQN)</span></td><td>Aerolíneas Argentinas · LATAM (a Santiago) · JetSMART y Flybondi <em>(temporada)</em></td><td>Buenos Aires, Córdoba; <strong>Santiago de Chile</strong> (LATAM, directo)</td></tr>
-        <tr><td class="cx-city">Bariloche <span class="cx-code">(BRC)</span></td><td>Aerolíneas Argentinas · LADE · JetSMART y Flybondi <em>(temporada)</em></td><td>Buenos Aires, Córdoba, Rosario; São Paulo (estacional)</td></tr>
-        <tr><td class="cx-city">San Martín de los Andes <span class="cx-code">(CPC · Chapelco)</span></td><td>Aerolíneas Argentinas · JetSMART <em>(temporada)</em></td><td>Buenos Aires</td></tr>
-        <tr><td class="cx-city">Esquel <span class="cx-code">(EQS)</span></td><td>Aerolíneas Argentinas</td><td>Buenos Aires</td></tr>
-        <tr><td class="cx-city">Puerto Madryn / Trelew <span class="cx-code">(PMY / REL)</span></td><td>Aerolíneas Argentinas · Flybondi <em>(temporada)</em></td><td>Buenos Aires</td></tr>
-        <tr><td class="cx-city">Comodoro Rivadavia <span class="cx-code">(CRD)</span></td><td>Aerolíneas Argentinas · LADE · Flybondi <em>(temporada)</em></td><td>Buenos Aires, Neuquén, Río Gallegos</td></tr>
-        <tr><td class="cx-city">El Calafate <span class="cx-code">(FTE)</span></td><td>Aerolíneas Argentinas · LATAM · LADE · JetSMART <em>(temporada)</em></td><td>Buenos Aires (hasta 6 vuelos/día), Ushuaia, Trelew, Bariloche</td></tr>
-        <tr><td class="cx-city">Río Gallegos <span class="cx-code">(RGL)</span></td><td>Aerolíneas Argentinas · LADE</td><td>Buenos Aires, Ushuaia, El Calafate, Río Grande; <strong>escala mensual a Malvinas</strong> (LATAM)</td></tr>
-        <tr><td class="cx-city">Ushuaia <span class="cx-code">(USH)</span></td><td>Aerolíneas Argentinas · LADE · JetSMART y Flybondi <em>(temporada)</em></td><td>Buenos Aires, El Calafate; São Paulo (GOL, estacional)</td></tr>
-        <tr><td class="cx-city">Río Grande <span class="cx-code">(RGA)</span></td><td>Aerolíneas Argentinas · LADE</td><td>Buenos Aires, Río Gallegos</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3 style="font-family:'Inter';color:#1c2d3d;margin:24px 0 10px;font-size:1.05rem;">🇨🇱 Patagonia chilena</h3>
-  <div class="cx-table-wrap">
-    <table class="cx">
-      <thead><tr><th>Ciudad / Aeropuerto</th><th>Aerolíneas</th><th>Rutas principales</th></tr></thead>
-      <tbody>
-        <tr><td class="cx-city">Temuco <span class="cx-code">(ZCO)</span></td><td>LATAM, SKY, JetSMART</td><td>Santiago</td></tr>
-        <tr><td class="cx-city">Puerto Montt <span class="cx-code">(PMC)</span></td><td>LATAM, SKY, JetSMART</td><td>Santiago, Balmaceda, Punta Arenas</td></tr>
-        <tr><td class="cx-city">Balmaceda / Coyhaique <span class="cx-code">(BBA)</span></td><td>LATAM, SKY</td><td>Santiago, Puerto Montt</td></tr>
-        <tr><td class="cx-city">Puerto Natales <span class="cx-code">(PNT)</span></td><td>JetSMART, SKY (estacional)</td><td>Santiago (temporada alta)</td></tr>
-        <tr><td class="cx-city">Punta Arenas <span class="cx-code">(PUQ)</span></td><td>LATAM, SKY, JetSMART, Aerovías DAP</td><td>Santiago, Puerto Montt; Puerto Williams / Porvenir (DAP); <strong>Islas Malvinas</strong> (LATAM)</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Tablero de vuelos en vivo (Bariloche) -->
-  <h3 style="font-family:'Inter';color:#1c2d3d;margin:28px 0 4px;font-size:1.05rem;">🛬 Tablero de vuelos en vivo</h3>
-  <p class="cx-section-sub" style="margin-bottom:14px;">¿Tu vuelo sale en horario, demora o se canceló? Mirá el tablero en vivo, con arribos y partidas actualizados.</p>
-
-  <!-- Tablero embebido (prueba: Bariloche) -->
+  <!-- A) ESTADO EN VIVO (primero) -->
+  <h3 style="font-family:'Inter';color:#1c2d3d;margin:6px 0 4px;font-size:1.05rem;">🟢 Estado de vuelos en vivo</h3>
+  <p class="cx-section-sub" style="margin-bottom:12px;">Elegí la ciudad y mirá sus partidas y arribos de hoy, con horario y estado (demora, cancelación, embarque). Datos de Aeropuertos Argentina.</p>
+  <div class="cv-cities" id="cv-cities"></div>
   <div class="cv-board" id="cv-board">
     <div class="cv-head">
-      <span class="ttl"><span class="live"></span>Bariloche (BRC) en vivo</span>
+      <span class="ttl"><span class="live"></span><span id="cv-title">Bariloche (BRC)</span></span>
       <span class="upd" id="cv-upd">Cargando…</span>
     </div>
     <div class="cv-tabs">
@@ -319,6 +309,33 @@
       <span>Fuente: Aeropuertos Argentina</span>
       <a href="https://www.aeropuertosargentina.com/es/vuelos" target="_blank" rel="noopener">Tablero oficial completo →</a>
     </div>
+  </div>
+
+  <!-- B) AEROLÍNEAS POR CIUDAD (acordeón compacto) -->
+  <h3 style="font-family:'Inter';color:#1c2d3d;margin:30px 0 6px;font-size:1.05rem;">✈️ Aerolíneas por ciudad</h3>
+  <p class="cx-section-sub" style="margin-bottom:12px;">Tocá una ciudad para ver sus aerolíneas y rutas. <strong>Aerolíneas Argentinas</strong> vuela todo el año; <strong>LADE</strong> (Fuerza Aérea) conecta pueblos patagónicos con frecuencias acotadas; las <strong>low-cost</strong> (JetSMART, Flybondi) operan sobre todo en temporada alta. Confirmá en la web de cada aerolínea.</p>
+
+  <p style="font-family:'Inter';color:#1c2d3d;margin:8px 0 8px;font-size:.95rem;font-weight:600;">🇦🇷 Patagonia argentina</p>
+  <div class="acc" id="acc-ar">
+    <div class="acc-item" data-iata="NQN"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Neuquén <span class="cx-code">NQN</span></span><span class="acc-air-sm">Aerolíneas Argentinas · LATAM · low-cost (temp.)</span><span class="acc-badge" hidden></span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>Aerolíneas Argentinas · LATAM (directo a Santiago) · JetSMART y Flybondi <em>(temporada)</em><div class="lbl">Rutas</div>Buenos Aires, Córdoba; <strong>Santiago de Chile</strong> (LATAM)<div class="acc-live"></div></div></div>
+    <div class="acc-item" data-iata="BRC"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Bariloche <span class="cx-code">BRC</span></span><span class="acc-air-sm">Aerolíneas Argentinas · LADE · low-cost (temp.)</span><span class="acc-badge" hidden></span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>Aerolíneas Argentinas · LADE · JetSMART y Flybondi <em>(temporada)</em><div class="lbl">Rutas</div>Buenos Aires, Córdoba, Rosario; São Paulo (estacional)<div class="acc-live"></div></div></div>
+    <div class="acc-item" data-iata="CRD"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Comodoro Rivadavia <span class="cx-code">CRD</span></span><span class="acc-air-sm">Aerolíneas Argentinas · LADE · Flybondi (temp.)</span><span class="acc-badge" hidden></span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>Aerolíneas Argentinas · LADE · Flybondi <em>(temporada)</em><div class="lbl">Rutas</div>Buenos Aires, Neuquén, Río Gallegos<div class="acc-live"></div></div></div>
+    <div class="acc-item" data-iata="RGL"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Río Gallegos <span class="cx-code">RGL</span></span><span class="acc-air-sm">Aerolíneas Argentinas · LADE</span><span class="acc-badge" hidden></span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>Aerolíneas Argentinas · LADE<div class="lbl">Rutas</div>Buenos Aires, Ushuaia, El Calafate, Río Grande; <strong>escala mensual a Malvinas</strong> (LATAM)<div class="acc-live"></div></div></div>
+    <div class="acc-item" data-iata="RGA"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Río Grande <span class="cx-code">RGA</span></span><span class="acc-air-sm">Aerolíneas Argentinas · LADE</span><span class="acc-badge" hidden></span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>Aerolíneas Argentinas · LADE<div class="lbl">Rutas</div>Buenos Aires, Río Gallegos<div class="acc-live"></div></div></div>
+    <div class="acc-item"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">El Calafate <span class="cx-code">FTE</span></span><span class="acc-air-sm">Aerolíneas Argentinas · LATAM · LADE · JetSMART (temp.)</span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>Aerolíneas Argentinas · LATAM · LADE · JetSMART <em>(temporada)</em><div class="lbl">Rutas</div>Buenos Aires (hasta 6 vuelos/día), Ushuaia, Trelew, Bariloche<div class="acc-live"><span class="acc-note">Sin tablero en vivo acá — seguilo en <a href="https://www.flightradar24.com" target="_blank" rel="noopener">Flightradar24</a>.</span></div></div></div>
+    <div class="acc-item"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Ushuaia <span class="cx-code">USH</span></span><span class="acc-air-sm">Aerolíneas Argentinas · LADE · low-cost (temp.)</span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>Aerolíneas Argentinas · LADE · JetSMART y Flybondi <em>(temporada)</em><div class="lbl">Rutas</div>Buenos Aires, El Calafate; São Paulo (GOL, estacional)<div class="acc-live"><span class="acc-note">Sin tablero en vivo acá — seguilo en <a href="https://www.flightradar24.com" target="_blank" rel="noopener">Flightradar24</a>.</span></div></div></div>
+    <div class="acc-item"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Puerto Madryn / Trelew <span class="cx-code">PMY / REL</span></span><span class="acc-air-sm">Aerolíneas Argentinas · Flybondi (temp.)</span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>Aerolíneas Argentinas · Flybondi <em>(temporada)</em><div class="lbl">Rutas</div>Buenos Aires<div class="acc-live"><span class="acc-note">Sin tablero en vivo acá — seguilo en <a href="https://www.flightradar24.com" target="_blank" rel="noopener">Flightradar24</a>.</span></div></div></div>
+    <div class="acc-item"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">San Martín de los Andes <span class="cx-code">CPC · Chapelco</span></span><span class="acc-air-sm">Aerolíneas Argentinas · JetSMART (temp.)</span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>Aerolíneas Argentinas · JetSMART <em>(temporada)</em><div class="lbl">Rutas</div>Buenos Aires<div class="acc-live"><span class="acc-note">Sin tablero en vivo acá — seguilo en <a href="https://www.flightradar24.com" target="_blank" rel="noopener">Flightradar24</a>.</span></div></div></div>
+    <div class="acc-item"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Esquel <span class="cx-code">EQS</span></span><span class="acc-air-sm">Aerolíneas Argentinas</span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>Aerolíneas Argentinas<div class="lbl">Rutas</div>Buenos Aires<div class="acc-live"><span class="acc-note">Sin tablero en vivo acá — seguilo en <a href="https://www.flightradar24.com" target="_blank" rel="noopener">Flightradar24</a>.</span></div></div></div>
+  </div>
+
+  <p style="font-family:'Inter';color:#1c2d3d;margin:22px 0 8px;font-size:.95rem;font-weight:600;">🇨🇱 Patagonia chilena</p>
+  <div class="acc" id="acc-cl">
+    <div class="acc-item"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Punta Arenas <span class="cx-code">PUQ</span></span><span class="acc-air-sm">LATAM · SKY · JetSMART · Aerovías DAP</span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>LATAM · SKY · JetSMART · Aerovías DAP<div class="lbl">Rutas</div>Santiago, Puerto Montt; Puerto Williams / Porvenir (DAP); <strong>Islas Malvinas</strong> (LATAM)</div></div>
+    <div class="acc-item"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Puerto Montt <span class="cx-code">PMC</span></span><span class="acc-air-sm">LATAM · SKY · JetSMART</span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>LATAM · SKY · JetSMART<div class="lbl">Rutas</div>Santiago, Balmaceda, Punta Arenas</div></div>
+    <div class="acc-item"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Balmaceda / Coyhaique <span class="cx-code">BBA</span></span><span class="acc-air-sm">LATAM · SKY</span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>LATAM · SKY<div class="lbl">Rutas</div>Santiago, Puerto Montt</div></div>
+    <div class="acc-item"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Temuco <span class="cx-code">ZCO</span></span><span class="acc-air-sm">LATAM · SKY · JetSMART</span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>LATAM · SKY · JetSMART<div class="lbl">Rutas</div>Santiago</div></div>
+    <div class="acc-item"><button class="acc-h" onclick="accTog(this)"><span class="acc-city">Puerto Natales <span class="cx-code">PNT</span></span><span class="acc-air-sm">JetSMART · SKY (estacional)</span><span class="acc-chev">▸</span></button><div class="acc-body"><div class="lbl">Aerolíneas</div>JetSMART · SKY <em>(estacional)</em><div class="lbl">Rutas</div>Santiago (temporada alta)</div></div>
   </div>
 
   <!-- ════ VUELO A MALVINAS ════ -->
@@ -534,45 +551,69 @@
 </script>
 
 <script>
-/* Tablero de vuelos en vivo (lee vuelos_brc.json generado por GitHub Actions) */
+/* Tablero de vuelos multi-ciudad (lee vuelos_patagonia.json del GitHub Action) + acordeón */
 (function(){
-  var DATA = null, vista = 'partidas';
+  var ALL = null, ciudad = 'BRC', vista = 'partidas';
+  var ORDEN = ['BRC','NQN','CRD','RGL','RGA'];
+  var NOMBRE = { BRC:'Bariloche', NQN:'Neuquén', CRD:'Comodoro Rivadavia', RGL:'Río Gallegos', RGA:'Río Grande' };
   function esc(s){ return (s||'').replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function haceCuanto(iso){
-    try {
-      var diff = (Date.now() - new Date(iso).getTime())/60000;
-      if (diff < 1.5) return 'recién';
-      if (diff < 60) return 'hace ' + Math.round(diff) + ' min';
-      return 'hace ' + Math.round(diff/60) + ' h';
+    try { var diff=(Date.now()-new Date(iso).getTime())/60000;
+      if (diff<1.5) return 'recién'; if (diff<60) return 'hace '+Math.round(diff)+' min'; return 'hace '+Math.round(diff/60)+' h';
     } catch(e){ return ''; }
   }
+  window.accTog = function(btn){ btn.parentElement.classList.toggle('open'); };
   window.cvShow = function(v){
     vista = v;
     document.getElementById('cv-tab-d').classList.toggle('active', v==='partidas');
     document.getElementById('cv-tab-a').classList.toggle('active', v==='arribos');
-    render();
+    renderBoard();
   };
-  function render(){
-    var box = document.getElementById('cv-list');
-    if (!DATA) return;
-    var lista = DATA[vista] || [];
-    if (!lista.length){ box.innerHTML = '<div class="cv-msg">No hay vuelos para mostrar.</div>'; return; }
+  window.cvCity = function(iata){
+    ciudad = iata;
+    document.querySelectorAll('.cv-chip').forEach(function(c){ c.classList.toggle('active', c.getAttribute('data-iata')===iata); });
+    document.getElementById('cv-title').textContent = (NOMBRE[iata]||iata)+' ('+iata+')';
+    renderBoard();
+  };
+  function ap(){ return (ALL && ALL.aeropuertos) ? ALL.aeropuertos[ciudad] : null; }
+  function renderBoard(){
+    var box = document.getElementById('cv-list'); var a = ap();
+    if (!a){ box.innerHTML='<div class="cv-msg">Sin datos para esta ciudad.</div>'; return; }
+    var lista = a[vista] || [];
+    if (!lista.length){ box.innerHTML='<div class="cv-msg">No hay '+vista+' registradas hoy.</div>'; return; }
     var prep = (vista==='partidas') ? 'a' : 'desde';
     box.innerHTML = lista.map(function(v){
       var real = v.real ? '<span class="r">est. '+esc(v.real)+'</span>' : '';
-      return '<div class="cv-row">'
-        + '<div class="h">'+esc(v.hora)+real+'</div>'
-        + '<div class="m"><div class="city">'+prep+' '+esc(v.ciudad)+'</div><div class="fl">'+esc(v.aerolinea)+' · '+esc(v.nro)+'</div></div>'
-        + '<div class="st"><span class="dot" style="background:'+esc(v.color)+'"></span>'+esc(v.estado)+'</div>'
-        + '</div>';
+      return '<div class="cv-row"><div class="h">'+esc(v.hora)+real+'</div><div class="m"><div class="city">'+prep+' '+esc(v.ciudad)+'</div><div class="fl">'+esc(v.aerolinea)+' · '+esc(v.nro)+'</div></div><div class="st"><span class="dot" style="background:'+esc(v.color)+'"></span>'+esc(v.estado)+'</div></div>';
     }).join('');
   }
-  fetch('vuelos_brc.json?t=' + Math.floor(Date.now()/60000))
+  function renderChips(){
+    document.getElementById('cv-cities').innerHTML = ORDEN.map(function(iata){
+      var a = ALL.aeropuertos[iata]; var n = a ? (a.partidas.length + a.arribos.length) : 0;
+      return '<button class="cv-chip'+(iata===ciudad?' active':'')+'" data-iata="'+iata+'" onclick="cvCity(\''+iata+'\')">'+(NOMBRE[iata]||iata)+'<span class="b">'+n+'</span></button>';
+    }).join('');
+  }
+  function fillAccordion(){
+    ORDEN.forEach(function(iata){
+      var a = ALL.aeropuertos[iata]; if(!a) return;
+      var item = document.querySelector('.acc-item[data-iata="'+iata+'"]'); if(!item) return;
+      var parts = a.partidas || [];
+      var badge = item.querySelector('.acc-badge');
+      if (badge){ badge.hidden=false; badge.textContent = parts.length+' hoy'; }
+      var live = item.querySelector('.acc-live');
+      if (live){
+        if (parts.length){
+          live.innerHTML = '<div class="acc-sum">🟢 '+parts.length+' salidas hoy · primera '+esc(parts[0].hora)+' · última '+esc(parts[parts.length-1].hora)+'</div><span class="acc-note">Detalle completo en el tablero de arriba (elegí '+(NOMBRE[iata]||iata)+').</span>';
+        } else { live.innerHTML = '<span class="acc-note">Sin salidas registradas hoy.</span>'; }
+      }
+    });
+  }
+  fetch('vuelos_patagonia.json?t=' + Math.floor(Date.now()/60000))
     .then(function(r){ if(!r.ok) throw 0; return r.json(); })
     .then(function(d){
-      DATA = d;
+      ALL = d;
       document.getElementById('cv-upd').textContent = 'Actualizado ' + haceCuanto(d.actualizado);
-      render();
+      renderChips(); renderBoard(); fillAccordion();
     })
     .catch(function(){
       document.getElementById('cv-upd').textContent = '';

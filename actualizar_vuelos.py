@@ -18,9 +18,18 @@ from zoneinfo import ZoneInfo
 API = "https://webaa-api-h4d5amdfcze7hthn.a02.azurefd.net/web-prod/v1/api-aa/all-flights"
 TZ = ZoneInfo("America/Argentina/Buenos_Aires")
 
-# Aeropuertos a generar: iata -> (nombre, archivo de salida)
+# Aeropuertos patagónicos argentinos (API de Aeropuertos Argentina). iata -> nombre.
+# Todo se guarda en un único archivo combinado (vuelos_patagonia.json).
+SALIDA = "vuelos_patagonia.json"
+# Solo los aeropuertos patagónicos operados por Aeropuertos Argentina 2000 (los
+# demás —Ushuaia, El Calafate, Trelew, Madryn— son de otra concesionaria y su API
+# no devuelve vuelos). Para esos, la UI usa enlaces a Flightradar24.
 AEROPUERTOS = {
-    "BRC": ("Bariloche", "vuelos_brc.json"),
+    "NQN": "Neuquén",
+    "BRC": "Bariloche",
+    "CRD": "Comodoro Rivadavia",
+    "RGL": "Río Gallegos",
+    "RGA": "Río Grande",
 }
 
 # Nombres limpios por código de aerolínea (la API trunca el nombre)
@@ -79,27 +88,35 @@ def _fetch(iata, movtp, fecha):
 def main():
     ahora = datetime.datetime.now(TZ)
     fecha = ahora.strftime("%d-%m-%Y")
-    fallo = False
-    for iata, (nombre, archivo) in AEROPUERTOS.items():
+    aeropuertos = {}
+    errores = 0
+    for iata, nombre in AEROPUERTOS.items():
         try:
             arribos = _fetch(iata, "A", fecha)
             partidas = _fetch(iata, "D", fecha)
         except (urllib.error.URLError, ValueError, TimeoutError) as e:
             print(f"[vuelos] ERROR {iata}: {e}", file=sys.stderr)
-            fallo = True
+            errores += 1
             continue
-        out = {
-            "aeropuerto": nombre,
-            "iata": iata,
-            "fuente": "Aeropuertos Argentina",
-            "actualizado": ahora.isoformat(timespec="minutes"),
+        aeropuertos[iata] = {
+            "nombre": nombre,
             "arribos": arribos,
             "partidas": partidas,
         }
-        with open(archivo, "w", encoding="utf-8") as f:
-            json.dump(out, f, ensure_ascii=False, indent=1)
-        print(f"[vuelos] {iata}: {len(arribos)} arribos, {len(partidas)} partidas -> {archivo}")
-    return 1 if fallo else 0
+        print(f"[vuelos] {iata} {nombre}: {len(arribos)} arribos, {len(partidas)} partidas")
+    if not aeropuertos:
+        print("[vuelos] sin datos de ningún aeropuerto, no se escribe el archivo", file=sys.stderr)
+        return 1
+    out = {
+        "fuente": "Aeropuertos Argentina",
+        "actualizado": ahora.isoformat(timespec="minutes"),
+        "aeropuertos": aeropuertos,
+    }
+    with open(SALIDA, "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, indent=1)
+    print(f"[vuelos] {len(aeropuertos)} aeropuertos -> {SALIDA}")
+    # Falla solo si TODO falló; algunos aeropuertos chicos pueden no tener vuelos hoy
+    return 0
 
 
 if __name__ == "__main__":
