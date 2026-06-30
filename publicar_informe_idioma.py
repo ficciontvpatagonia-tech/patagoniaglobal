@@ -143,7 +143,7 @@ def pub_telegram(p):
     token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     channel = os.environ.get("TELEGRAM_CHANNEL_ID", "")
     if not token or not channel:
-        print("  Telegram: sin credenciales, se omite."); return
+        print("  Telegram: sin credenciales, se omite."); return False
     img = os.path.join(BASE_DIR, p["imagen"])
     img = img if os.path.exists(img) else None
     try:
@@ -153,18 +153,20 @@ def pub_telegram(p):
         else:
             res = _telegram_request(token, "sendMessage",
                 {"chat_id": channel, "text": cap_telegram(p), "parse_mode": "HTML"})
-        print("  Telegram OK ✓" if res.get("ok") else f"  Telegram error: {res.get('description')}")
+        ok = bool(res.get("ok"))
+        print("  Telegram OK ✓" if ok else f"  Telegram error: {res.get('description')}")
+        return ok
     except Exception as e:
-        print(f"  Telegram falló: {e}")
+        print(f"  Telegram falló: {e}"); return False
 
 
 def pub_facebook(p):
     page_token = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
     if not page_token:
-        print("  Facebook: sin credenciales, se omite."); return
+        print("  Facebook: sin credenciales, se omite."); return False
     page_token, page_id = _renovar_token_facebook(page_token)
     if not page_id:
-        print("  Facebook: sin página, se omite."); return
+        print("  Facebook: sin página, se omite."); return False
     img = os.path.join(BASE_DIR, p["imagen"])
     img = img if os.path.exists(img) else None
     mensaje = cap_facebook(p)
@@ -185,18 +187,20 @@ def pub_facebook(p):
             req = urllib.request.Request(f"{api}/feed", data=data, method="POST")
         with urllib.request.urlopen(req, timeout=40) as r:
             res = json.loads(r.read().decode())
-        print("  Facebook OK ✓" if res.get("id") else f"  Facebook error: {res}")
+        ok = bool(res.get("id"))
+        print("  Facebook OK ✓" if ok else f"  Facebook error: {res}")
+        return ok
     except urllib.error.HTTPError as e:
-        print(f"  Facebook falló {e.code}: {e.read().decode('utf-8', 'replace')}")
+        print(f"  Facebook falló {e.code}: {e.read().decode('utf-8', 'replace')}"); return False
     except Exception as e:
-        print(f"  Facebook falló: {e}")
+        print(f"  Facebook falló: {e}"); return False
 
 
 def pub_instagram(p):
     ig = os.environ.get("INSTAGRAM_BUSINESS_ACCOUNT_ID", "")
     token = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
     if not ig or not token:
-        print("  Instagram: sin credenciales, se omite."); return
+        print("  Instagram: sin credenciales, se omite."); return False
     token, _ = _renovar_token_facebook(token)
     image_url = f"{SITE}/{p['imagen']}"
     caption = cap_instagram(p)
@@ -209,7 +213,7 @@ def pub_instagram(p):
             res = json.loads(r.read().decode())
         cid = res.get("id")
         if not cid:
-            print(f"  Instagram container error: {res}"); return
+            print(f"  Instagram container error: {res}"); return False
         for _ in range(12):
             time.sleep(5)
             try:
@@ -219,26 +223,58 @@ def pub_instagram(p):
                 if st == "FINISHED":
                     break
                 if st == "ERROR":
-                    print("  Instagram: error de procesamiento"); return
+                    print("  Instagram: error de procesamiento"); return False
             except Exception:
                 pass
         else:
-            print("  Instagram: timeout de container"); return
+            print("  Instagram: timeout de container"); return False
         data = urllib.parse.urlencode({"creation_id": cid, "access_token": token}).encode()
         req = urllib.request.Request(f"{api}/media_publish", data=data, method="POST")
         with urllib.request.urlopen(req, timeout=40) as r:
             res = json.loads(r.read().decode())
-        print("  Instagram OK ✓" if res.get("id") else f"  Instagram publish error: {res}")
+        ok = bool(res.get("id"))
+        print("  Instagram OK ✓" if ok else f"  Instagram publish error: {res}")
+        return ok
     except urllib.error.HTTPError as e:
-        print(f"  Instagram falló {e.code}: {e.read().decode('utf-8', 'replace')}")
+        print(f"  Instagram falló {e.code}: {e.read().decode('utf-8', 'replace')}"); return False
     except Exception as e:
-        print(f"  Instagram falló: {e}")
+        print(f"  Instagram falló: {e}"); return False
+
+
+STATE_FILE = os.path.join(BASE_DIR, "telegram_state.json")
+
+
+def _state_key(lang):
+    return f"informes_{lang}_redes_posteados"
+
+
+def cargar_estado():
+    try:
+        return json.load(open(STATE_FILE))
+    except Exception:
+        return {}
+
+
+def guardar_estado(st):
+    with open(STATE_FILE, "w") as f:
+        json.dump(st, f, ensure_ascii=False, indent=2)
+
+
+def informe_auto(arr, lang, posteados):
+    """Devuelve el informe MÁS NUEVO con traducción <lang> aún no distribuido, o None.
+    propios.json va de más nuevo (índice 0) a más viejo."""
+    for inf in arr:
+        if inf.get(f"titulo_{lang}") and inf.get("id") not in posteados:
+            return inf
+    return None
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--id", required=True)
+    ap.add_argument("--id", help="ID del informe (omitir en modo --auto)")
     ap.add_argument("--lang", required=True, choices=["en", "pt", "zh"])
+    ap.add_argument("--auto", action="store_true",
+                    help="elegir el informe más nuevo con traducción no distribuido (dedup vía telegram_state.json)")
     ap.add_argument("--imagen", action="store_true", help="solo generar la placa")
     ap.add_argument("--no-telegram", action="store_true")
     ap.add_argument("--no-facebook", action="store_true")
@@ -246,20 +282,42 @@ def main():
     a = ap.parse_args()
 
     arr = json.load(open(os.path.join(BASE_DIR, "propios.json")))
-    match = [x for x in arr if x.get("id") == a.id]
-    if not match:
-        print(f"✗ informe {a.id} no está en propios.json"); sys.exit(1)
-    if not match[0].get(f"titulo_{a.lang}"):
-        print(f"✗ el informe no tiene traducción {a.lang} (falta titulo_{a.lang})"); sys.exit(1)
+    estado = cargar_estado()
+    posteados = estado.get(_state_key(a.lang), [])
 
-    p = construir(match[0], a.lang)
-    print(f"=== INFORME {a.id} [{a.lang}] → {p['link']} ===")
+    if a.auto:
+        inf = informe_auto(arr, a.lang, posteados)
+        if not inf:
+            print(f"Sin informe nuevo para distribuir en {a.lang}. Nada que hacer."); return
+    else:
+        if not a.id:
+            print("✗ falta --id (o usar --auto)"); sys.exit(1)
+        match = [x for x in arr if x.get("id") == a.id]
+        if not match:
+            print(f"✗ informe {a.id} no está en propios.json"); sys.exit(1)
+        inf = match[0]
+        if not inf.get(f"titulo_{a.lang}"):
+            print(f"✗ el informe no tiene traducción {a.lang} (falta titulo_{a.lang})"); sys.exit(1)
+
+    p = construir(inf, a.lang)
+    print(f"=== INFORME {inf['id']} [{a.lang}] → {p['link']} ===")
     asegurar_placa(p)
     if a.imagen:
         print("Solo imagen — listo."); return
-    if not a.no_telegram:  pub_telegram(p)
-    if not a.no_facebook:  pub_facebook(p)
-    if not a.no_instagram: pub_instagram(p)
+
+    ok = False
+    if not a.no_telegram:  ok = pub_telegram(p) or ok
+    if not a.no_facebook:  ok = pub_facebook(p) or ok
+    if not a.no_instagram: ok = pub_instagram(p) or ok
+
+    # En modo auto, marcar como distribuido solo si alguna red publicó OK
+    if a.auto and ok:
+        posteados.append(inf["id"])
+        estado[_state_key(a.lang)] = posteados
+        guardar_estado(estado)
+        print(f"  estado actualizado: {inf['id']} marcado como distribuido en {a.lang}")
+    elif a.auto and not ok:
+        print("  ⚠️ ninguna red publicó OK — NO se marca (se reintentará en la próxima corrida)")
 
 
 if __name__ == "__main__":

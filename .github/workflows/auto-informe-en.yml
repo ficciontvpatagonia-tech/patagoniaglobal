@@ -1,0 +1,90 @@
+name: Auto-distribuir informe nuevo en inglés (FB+IG)
+
+# Cada día revisa si hay un informe nuevo con traducción al inglés (titulo_en en
+# propios.json) que aún no se distribuyó, y lo postea a Facebook + Instagram en
+# inglés. Dedup vía telegram_state.json (informes_en_redes_posteados). Si no hay
+# nada nuevo, es un no-op. Telegram NO se toca (es lista en español).
+
+on:
+  schedule:
+    - cron: '0 16 * * *'   # 16:00 UTC = 13h Argentina / 12h ET (franja activa EE.UU.)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-informe-en
+  cancel-in-progress: false
+
+jobs:
+  distribuir:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install Pillow numpy
+
+      - name: Configurar git
+        run: |
+          git config user.name "gp-auto-bot"
+          git config user.email "bot@globalpatagonia.org"
+
+      - name: Generar placa si hay informe nuevo
+        id: placa
+        run: |
+          OUT=$(python3 publicar_informe_idioma.py --auto --lang en --imagen)
+          echo "$OUT"
+          if echo "$OUT" | grep -q "Nada que hacer"; then
+            echo "pending=false" >> "$GITHUB_OUTPUT"
+          else
+            PLACA=$(echo "$OUT" | grep -oE 'fotos/[A-Za-z0-9._-]+_en_promo\.jpg' | head -1)
+            echo "pending=true" >> "$GITHUB_OUTPUT"
+            echo "placa=$PLACA" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit y push de la placa
+        if: steps.placa.outputs.pending == 'true'
+        run: |
+          git add "${{ steps.placa.outputs.placa }}"
+          git pull --rebase --autostash origin main || true
+          git commit -m "[auto-en] placa informe traducido" || { echo "sin cambios"; exit 0; }
+          git push
+
+      - name: Esperar a que GitHub Pages sirva la placa
+        if: steps.placa.outputs.pending == 'true'
+        run: |
+          URL="https://globalpatagonia.org/${{ steps.placa.outputs.placa }}"
+          echo "Esperando $URL"
+          for i in $(seq 1 20); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+            echo "intento $i: HTTP $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 15
+          done
+          echo "✗ Pages no sirvió la placa a tiempo"; exit 1
+
+      - name: Publicar en Facebook + Instagram y actualizar estado
+        if: steps.placa.outputs.pending == 'true'
+        env:
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+          FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
+          FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+        run: python3 publicar_informe_idioma.py --auto --lang en --no-telegram
+
+      - name: Commit y push del estado
+        if: steps.placa.outputs.pending == 'true'
+        run: |
+          git add telegram_state.json
+          git pull --rebase --autostash origin main || true
+          git commit -m "[auto-en] estado distribucion informe EN" || { echo "sin cambios"; exit 0; }
+          git push
