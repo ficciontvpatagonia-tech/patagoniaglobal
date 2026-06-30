@@ -3064,11 +3064,15 @@ def actualizar_archivo_en_index(notas):
     notas_ord = sorted(notas, key=_fecha_nota, reverse=True)
 
     links = []
+    seen = set()
     for n in notas_ord:
         nid = n.get("id", "")
         titulo = n.get("titulo", "")
         if not nid or not titulo:
             continue
+        if nid in seen:        # evita duplicados en el archivo (misma nota repetida)
+            continue
+        seen.add(nid)
         url = f"/notas/{nid}.html"
         cat = n.get("categoria", n.get("tag", "")).replace("·", "").strip()
         cat_html = f'<span class="arc-cat">{htmllib.escape(cat)}</span> ' if cat else ""
