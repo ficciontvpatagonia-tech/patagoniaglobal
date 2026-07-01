@@ -90,6 +90,20 @@
     .ver-completo{display:inline-flex;align-items:center;gap:8px;margin:32px 0;padding:12px 24px;background:var(--verde);color:white;text-decoration:none;border-radius:3px;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
     .ver-completo:hover{opacity:0.85;}
     .relacionadas{margin-top:48px;padding-top:24px;border-top:2px solid #e0ddd8;}.relacionadas-titulo{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#5a6070;margin-bottom:20px;}.relacionadas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}.rel-card{cursor:pointer;border-radius:4px;overflow:hidden;background:white;transition:transform 0.2s;text-decoration:none;color:inherit;display:block;}.rel-card:hover{transform:translateY(-2px);}.rel-img{width:100%;height:100px;object-fit:cover;display:block;background:linear-gradient(160deg,#0e1a26,#1c2d3d);}.rel-body{padding:10px 12px 12px;}.rel-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#3a7a5a;margin-bottom:4px;}.rel-titulo{font-size:13px;font-weight:600;line-height:1.35;color:#252830;}@media(max-width:600px){.relacionadas-grid{grid-template-columns:1fr 1fr;}}@media(max-width:480px){.relacionadas-grid{grid-template-columns:1fr;}}
+    .ski-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:32px 0;}
+    @media(max-width:600px){.ski-grid{grid-template-columns:1fr;}}
+    .ski-card{background:white;border-radius:6px;padding:20px;border-left:4px solid #7aadcc;box-shadow:0 2px 8px rgba(0,0,0,0.07);}
+    .ski-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+    .ski-card-nombre{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1c2d3d;line-height:1.2;}
+    .ski-card-lugar{font-size:11px;color:#7a8090;letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+    .ski-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;white-space:nowrap;}
+    .ski-badge-abierto{background:#d4edda;color:#155724;}
+    .ski-badge-pronto{background:#fff3cd;color:#856404;}
+    .ski-stat-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;}
+    .ski-stat{text-align:center;min-width:60px;}
+    .ski-stat-val{font-size:22px;font-weight:700;color:#1c2d3d;line-height:1;}
+    .ski-stat-lbl{font-size:10px;color:#7a8090;letter-spacing:0.5px;text-transform:uppercase;margin-top:2px;}
+    .ski-card-nota{font-size:13px;color:#4a5060;line-height:1.5;border-top:1px solid #eee;padding-top:12px;margin-top:4px;}
     .divider-footer{height:2px;background:linear-gradient(90deg,#1c2d3d,#7aadcc,#1c2d3d);}
     footer{background:#1c2d3d;color:rgba(255,255,255,0.6);text-align:center;padding:32px 20px;}
     .footer-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:white;letter-spacing:1px;margin-bottom:6px;}
@@ -135,7 +149,63 @@
 <p>El Cerro Catedral, el centro más grande de Sudamérica, registró hasta 36 centímetros de nieve acumulada desde los 1.500 metros hacia arriba. La apertura oficial se concretó el 29 de junio y la temporada ya está en marcha. El pase diario arranca en $160.000, con cuotas sin interés hasta fin de mes. La novedad de este año es el Playpark, una nueva área pensada para los que se acercan a la nieve por primera vez.</p>
 <p>El mapa de centros abiertos se extiende por toda la Patagonia. En Villa La Angostura, el Cerro Bayo inauguró su temporada respaldado por las precipitaciones naturales y la nieve artificial acumulada. En el lado neuquino, el Caviahue Ski Resort abrió el 27 de junio, y Batea Mahuida —el parque de nieve mapuche en Villa Pehuenia— suma su primera jornada este 1° de julio. En San Martín de los Andes, el Chapelco trabaja contra el reloj: prepara la apertura y estrena obra, un telecabine que triplicará la capacidad de transporte hacia la montaña.</p>
 <p>Las expectativas son altas. Las temperaturas se sostienen bajas, la nieve caída tiene buena calidad —seca, en polvo— y los pronósticos anticipan nuevas precipitaciones en los próximos días. Para los operadores turísticos de Bariloche, San Martín y el corredor neuquino, la apertura temprana con buenas condiciones es el mejor escenario posible para atraer visitantes en julio, el mes pico de la temporada.</p>
-<p>La Patagonia de nieve no es solo esquí. El invierno 2026 llega con una oferta que incluye raquetas, mushing, gastronomía de altura, hoteles con vista a la montaña y una agenda cultural que crece año a año. Para el turismo regional, cada centímetro que acumula la montaña es un argumento más. Hoy la montaña habló fuerte.</p></div>
+<p>La Patagonia de nieve no es solo esquí. El invierno 2026 llega con una oferta que incluye raquetas, mushing, gastronomía de altura, hoteles con vista a la montaña y una agenda cultural que crece año a año. Para el turismo regional, cada centímetro que acumula la montaña es un argumento más. Hoy la montaña habló fuerte.</p>
+<h3>Estado de las pistas — 1° de julio de 2026</h3>
+<div class="ski-grid">
+  <div class="ski-card">
+    <div class="ski-card-header">
+      <div><div class="ski-card-nombre">Cerro Catedral</div><div class="ski-card-lugar">Bariloche, Río Negro</div></div>
+      <span class="ski-badge ski-badge-abierto">Abierto</span>
+    </div>
+    <div class="ski-stat-row">
+      <div class="ski-stat"><div class="ski-stat-val">36 cm</div><div class="ski-stat-lbl">base nieve</div></div>
+      <div class="ski-stat"><div class="ski-stat-val">1.500 m</div><div class="ski-stat-lbl">desde altitud</div></div>
+      <div class="ski-stat"><div class="ski-stat-val">29 jun</div><div class="ski-stat-lbl">apertura</div></div>
+    </div>
+    <div class="ski-card-nota">Nieve en polvo, seca. Nuevo sector Playpark para principiantes. Pase diario desde $160.000 con cuotas sin interés.</div>
+  </div>
+  <div class="ski-card">
+    <div class="ski-card-header">
+      <div><div class="ski-card-nombre">Caviahue Ski Resort</div><div class="ski-card-lugar">Caviahue, Neuquén</div></div>
+      <span class="ski-badge ski-badge-abierto">Abierto</span>
+    </div>
+    <div class="ski-stat-row">
+      <div class="ski-stat"><div class="ski-stat-val">27 jun</div><div class="ski-stat-lbl">apertura</div></div>
+    </div>
+    <div class="ski-card-nota">Uno de los primeros en abrir de la temporada. Buen manto de nieve natural en el volcán Copahue. Ideal para familias.</div>
+  </div>
+  <div class="ski-card">
+    <div class="ski-card-header">
+      <div><div class="ski-card-nombre">Cerro Bayo</div><div class="ski-card-lugar">Villa La Angostura, Neuquén</div></div>
+      <span class="ski-badge ski-badge-abierto">Abierto</span>
+    </div>
+    <div class="ski-stat-row">
+      <div class="ski-stat"><div class="ski-stat-val">Natural</div><div class="ski-stat-lbl">tipo nieve</div></div>
+      <div class="ski-stat"><div class="ski-stat-val">+ art.</div><div class="ski-stat-lbl">refuerzo</div></div>
+    </div>
+    <div class="ski-card-nota">Combina precipitaciones naturales con nieve artificial acumulada. Vista al lago Nahuel Huapi. Centro boutique, ideal para quienes buscan esquiar sin aglomeraciones.</div>
+  </div>
+  <div class="ski-card">
+    <div class="ski-card-header">
+      <div><div class="ski-card-nombre">Batea Mahuida</div><div class="ski-card-lugar">Villa Pehuenia, Neuquén</div></div>
+      <span class="ski-badge ski-badge-abierto">Abierto hoy</span>
+    </div>
+    <div class="ski-stat-row">
+      <div class="ski-stat"><div class="ski-stat-val">1 jul</div><div class="ski-stat-lbl">primera jornada</div></div>
+    </div>
+    <div class="ski-card-nota">Parque de nieve mapuche en el volcán Batea Mahuida. Hoy arrancó su primera jornada de la temporada. Perfil cultural y familiar único en la región.</div>
+  </div>
+  <div class="ski-card" style="border-left-color:#f0b429;">
+    <div class="ski-card-header">
+      <div><div class="ski-card-nombre">Chapelco</div><div class="ski-card-lugar">San Martín de los Andes, Neuquén</div></div>
+      <span class="ski-badge ski-badge-pronto">Próximamente</span>
+    </div>
+    <div class="ski-stat-row">
+      <div class="ski-stat"><div class="ski-stat-val">En obra</div><div class="ski-stat-lbl">telecabine nuevo</div></div>
+    </div>
+    <div class="ski-card-nota">Prepara la apertura. El gran estreno de la temporada: nuevo telecabine que triplicará la capacidad de transporte hacia la cumbre. Será una de las novedades del invierno 2026.</div>
+  </div>
+</div></div>
     <div class="nota-fuente"><strong>Fuente original:</strong> Esta nota fue elaborada con información de <strong>Diario Río Negro</strong>.</div>
     
     <div class="relacionadas">
