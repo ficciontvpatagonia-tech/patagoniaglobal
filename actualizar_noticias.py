@@ -1036,6 +1036,11 @@ def fotos_propias_disponibles():
                 continue
             if re.search(r'(^|[-_])(poster|afiche|caratula|thumbnail|thumb)([-_]|\.)', nombre, re.IGNORECASE):
                 continue
+            # Excluir fotos institucionales/políticas sensibles del pool general.
+            # Solo entran al scoring si la nota las menciona explícitamente
+            # (imagen_keywords o título con esas palabras exactas).
+            if re.search(r'(^|[-_])(monumento|bandera|escudo)([-_.]|$)', nombre, re.IGNORECASE):
+                continue
             # Saltar fotos de artículos individuales
             if re.match(r'(foto-)?\d{8}-', nombre):
                 continue
@@ -1295,16 +1300,41 @@ def buscar_foto_propia(nota, fotos):
     # ninguna ciudad reconocida, el gate de ciudad queda inactivo.
     nota_ciudades = _ciudades_en(tokens_ctx)
 
+    # Palabras en imagen_keywords/título que "aterrizan" a Argentina o Chile.
+    # Usadas para el gate de país en fotos institucionales.
+    _KW_ARGENTINA = {"argentina", "malvinas", "neuquen", "bariloche", "ushuaia",
+                     "comodoro", "viedma", "kirchner", "peronismo", "diputados", "senado"}
+    _KW_CHILE     = {"chile", "chilena", "chileno", "magallanes", "aysen", "coyhaique",
+                     "punta arenas", "puntarenas", "valdivia", "osorno", "atacama"}
+    nota_es_chile = (pais == "chile") or bool(tokens_ctx & _KW_CHILE - _KW_ARGENTINA)
+
     mejor = None
     mejor_score = 0
 
     for foto in fotos:
+        archivo_rel = foto.get("archivo", "")
+
         if not nota_es_originarios:
             tokens_foto = set()
             for kw in foto.get("keywords", []):
                 tokens_foto |= _tokenize(kw)
             if tokens_foto & _FOTO_PUEBLOS_ORIGINARIOS:
                 continue
+
+        # Gate de país para fotos institucionales:
+        # Si la nota es chilena, las fotos de INSTITUCIONES/ con marcadores
+        # argentinos (malvinas, diputados, congreso, escudo) quedan excluidas
+        # salvo que la nota las mencione explícitamente en imagen_keywords.
+        if nota_es_chile and archivo_rel.startswith("INSTITUCIONES/"):
+            nombre_foto = os.path.basename(archivo_rel).lower()
+            _MARCADORES_AR = re.compile(
+                r'malvinas|diputados|congreso|escudo|kirchner|senado|conicet'
+            )
+            if _MARCADORES_AR.search(nombre_foto):
+                kw_explicito = bool(_re.search(r'malvinas|congreso|diputados', kw_img))
+                if not kw_explicito:
+                    continue
+
         # Gate de ciudad: si la foto es claramente de una ciudad concreta y la
         # nota trata sobre otra(s) ciudad(es) distinta(s), descartar la foto.
         # Se basa SOLO en el nombre de archivo (no en keywords genéricas).
@@ -1312,6 +1342,10 @@ def buscar_foto_propia(nota, fotos):
             foto_ciudades = _ciudades_en(_tokenize(os.path.basename(foto.get("archivo", ""))))
             if foto_ciudades and foto_ciudades.isdisjoint(nota_ciudades):
                 continue
+
+        # Fotos de INSTITUCIONES requieren un score mínimo más alto:
+        # no deben ganar como fallback genérico, solo cuando hay match real.
+        _score_minimo = 4 if archivo_rel.startswith("INSTITUCIONES/") else 0
         score = 0
         for kw in foto.get("keywords", []):
             kw_l      = kw.lower()
@@ -1325,7 +1359,7 @@ def buscar_foto_propia(nota, fotos):
             # Match en título (más peso)
             if tokens_kw_foto and tokens_kw_foto.issubset(tokens_titulo):
                 score += 2
-        if score > mejor_score:
+        if score > mejor_score and score >= _score_minimo:
             mejor_score = score
             mejor = foto
 
