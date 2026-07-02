@@ -921,7 +921,7 @@ function renderNota(nota, fechaDisplay, data) {
     ${nota.propio
       ? `<div class="nota-fuente" style="border-left:3px solid #1c2d3d;background:#f0ede8;display:flex;align-items:center;gap:12px;">
            ${AUTORES_AVATAR[nota.autor] ? `<img class="nota-fuente-avatar" src="${AUTORES_AVATAR[nota.autor]}" alt="${nota.autor}">` : ""}
-           <div><strong>Por ${nota.autor || "GLOBALpatagonia"}</strong> · Nota de producción propia · <strong>GLOBALpatagonia</strong></div>
+           <div><strong>Por ${nota.autor && nota.autor.includes("Martineau") ? `<a href="autor-j-martineau.html" style="color:inherit;">${nota.autor}</a>` : (nota.autor || "GLOBALpatagonia")}</strong> · Nota de producción propia · <strong>GLOBALpatagonia</strong></div>
          </div>`
       : nota.url_original
         ? `<div class="nota-fuente">

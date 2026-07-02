@@ -2698,6 +2698,12 @@ def generar_paginas_og(notas):
                              + hreflang_tags)
             hreflang_tags += f'<link rel="alternate" hreflang="x-default" href="{ea(static_url)}"/>\n  '
 
+        autor     = nota.get("autor", "")
+        propio    = nota.get("propio", False)
+        # Firma Martineau → author Person con URL a la página de autor (E-E-A-T:
+        # Google asocia todas las notas firmadas a una misma entidad-autor).
+        firma_martineau = bool(propio and autor and "Martineau" in autor)
+
         jsonld = _json.dumps({
             "@context": "https://schema.org",
             "@type": "NewsArticle",
@@ -2715,12 +2721,12 @@ def generar_paginas_og(notas):
                 "url": "https://globalpatagonia.org/",
                 "logo": {"@type": "ImageObject", "url": "https://globalpatagonia.org/favicon.svg"}
             },
-            "author": {"@type": "Organization", "name": fuente or "GLOBALpatagonia"},
+            "author": ({"@type": "Person", "name": autor,
+                        "url": "https://globalpatagonia.org/autor-j-martineau.html"}
+                       if firma_martineau
+                       else {"@type": "Organization", "name": fuente or "GLOBALpatagonia"}),
             "isPartOf": {"@type": "CreativeWork", "name": "GLOBALpatagonia"}
         }, ensure_ascii=False, indent=2)
-
-        autor     = nota.get("autor", "")
-        propio    = nota.get("propio", False)
 
         # Enlace al hub de su tema (nota → categoría). De-orfaniza las páginas
         # temas/ y le da a Google una ruta de rastreo nota→hub→otras notas.
@@ -2761,6 +2767,32 @@ def generar_paginas_og(notas):
         _SUFIJO_MARCA = " — GLOBALpatagonia"
         title_tag = (f"{titulo}{_SUFIJO_MARCA}"
                      if len(titulo) + len(_SUFIJO_MARCA) <= 60 else titulo)
+
+        # Firma en la meta de la nota. Si es Martineau, avatar + nombre enlazan
+        # a la página de autor (autor-j-martineau.html).
+        if firma_martineau:
+            firma_html = (f'<a href="../autor-j-martineau.html" '
+                          f'style="display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none;">'
+                          f'<img src="../fotos/PERSONAJES/avatar-j-martineau.webp" alt="{ea(autor)}" class="autor-avatar"/>'
+                          f'<span>{e(autor)}</span></a>')
+        elif propio and autor:
+            firma_html = (f'<img src="../fotos/PERSONAJES/avatar-j-martineau.webp" '
+                          f'alt="{ea(autor)}" class="autor-avatar"/><span>{e(autor)}</span>')
+        elif autor:
+            firma_html = f'<span>{e(autor)}</span>'
+        else:
+            firma_html = ''
+
+        # Bloque de fuente al pie: los propios son producción original (no
+        # llevan "elaborada con información de"), el resto atribuye al medio.
+        if propio:
+            fuente_html = ('<div class="nota-fuente"><strong>Informe original de GLOBALpatagonia.</strong> '
+                           + (f'Por <a href="../autor-j-martineau.html" style="color:#252830;font-weight:600;">{e(autor)}</a>.'
+                              if firma_martineau else '')
+                           + '</div>')
+        else:
+            fuente_html = (f'<div class="nota-fuente"><strong>Fuente original:</strong> '
+                           f'Esta nota fue elaborada con información de <strong>{e(fuente)}</strong>.</div>')
 
         html_out = f"""<!DOCTYPE html>
 <html lang="es">
@@ -2863,12 +2895,12 @@ def generar_paginas_og(notas):
     <h1 class="nota-titulo">{e(titulo)}</h1>
     {f'<p class="nota-bajada">{e(bajada)}</p>' if bajada else ''}
     <div class="nota-meta">
-      {f'<img src="../fotos/PERSONAJES/avatar-j-martineau.webp" alt="{ea(autor)}" class="autor-avatar"/><span>{e(autor)}</span>' if propio and autor else (f'<span>{e(autor)}</span>' if autor else '')}
+      {firma_html}
       {f'<span>{e(pais_label)}</span>' if pais else ''}
     </div>
     {imagen_block}
     <div class="nota-cuerpo">{cuerpo_html}</div>
-    <div class="nota-fuente"><strong>Fuente original:</strong> Esta nota fue elaborada con información de <strong>{e(fuente)}</strong>.</div>
+    {fuente_html}
     {relacionadas_html}
     <div class="compartir-bloque" id="compartir-bloque"></div>
     <a href="../" class="ver-completo">← Más noticias en GLOBALpatagonia</a>
@@ -3417,6 +3449,7 @@ def actualizar_sitemap():
         'videos.html':       ("weekly",  "0.7"),
         'clima.html':        ("daily",   "0.7"),
         'acerca.html':       ("monthly", "0.5"),
+        'autor-j-martineau.html': ("weekly", "0.6"),
         'apoyanos.html':     ("monthly", "0.4"),
         'privacidad.html':   ("monthly", "0.3"),
         'buscar.html':       ("monthly", "0.4"),
