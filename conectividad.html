@@ -633,13 +633,16 @@
 <script>
 /* Solapas + tablero de rutas en vivo (Vialidad Nacional, vía su Google Sheet oficial con CORS) */
 (function(){
-  window.cxTab = function(t){
+  window.cxTab = function(t, noscroll){
     ['vuelos','rutas','pasos'].forEach(function(k){
       document.getElementById('panel-'+k).hidden = (k!==t);
       document.getElementById('mtab-'+k).classList.toggle('active', k===t);
     });
-    var bar = document.querySelector('.cx-tabsbar');
-    if (bar) bar.scrollIntoView({block:'start'});
+    if (history.replaceState) history.replaceState(null, '', '#'+t);
+    if (!noscroll){
+      var bar = document.querySelector('.cx-tabsbar');
+      if (bar) bar.scrollIntoView({block:'start'});
+    }
     if (t==='rutas') rvLoad();
   };
 
@@ -731,6 +734,9 @@
     }).join('');
   }
   window.rvFiltrar = function(p){ filtro = p; render(); };
+  // Deep-link: conectividad.html#vuelos / #rutas / #pasos (botones del index)
+  var _h = (location.hash||'').replace('#','');
+  if (_h === 'rutas' || _h === 'pasos') cxTab(_h, true);
   // Cargar al iniciar (aunque no se abra la solapa) para mostrar la alerta de cortes
   if (document.readyState === 'complete' || document.readyState === 'interactive') rvLoad();
   else window.addEventListener('DOMContentLoaded', rvLoad);
