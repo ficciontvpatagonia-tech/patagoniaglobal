@@ -38,5 +38,11 @@ jobs:
           git config user.email "bot@globalpatagonia.org"
           git rm --quiet --ignore-unmatch vuelos_brc.json
           git add vuelos_patagonia.json
-          git diff --staged --quiet || git commit -m "Vuelos actualizados — $(date -u +'%d/%m %H:%M')Z [skip-news]"
+          git diff --staged --quiet && exit 0
+          git commit -m "Vuelos actualizados — $(date -u +'%d/%m %H:%M')Z [skip-news]"
+          # Si otro workflow pusheó mientras corríamos, rebasear y reintentar (evita "fetch first")
+          for i in 1 2 3; do
+            git push && exit 0
+            git pull --rebase origin main || exit 1
+          done
           git push

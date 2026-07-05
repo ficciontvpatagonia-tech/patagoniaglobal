@@ -292,7 +292,7 @@
   <h2 class="cx-section-label" id="vuelos">✈️ Vuelos</h2>
 
   <!-- A) ESTADO EN VIVO (primero) -->
-  <h3 style="font-family:'Inter';color:#1c2d3d;margin:6px 0 4px;font-size:1.05rem;">🟢 Estado de vuelos en vivo</h3>
+  <h3 style="font-family:'Inter';color:#1c2d3d;margin:6px 0 4px;font-size:1.05rem;">🟢 Estado de vuelos en vivo <span id="cv-upd-top" style="font-size:.78rem;font-weight:600;color:#6b7580;white-space:nowrap;"></span></h3>
   <p class="cx-section-sub" style="margin-bottom:12px;">Elegí la ciudad y mirá sus partidas y arribos de hoy, con horario y estado (demora, cancelación, embarque). Datos de Aeropuertos Argentina.</p>
   <div class="cv-cities" id="cv-cities"></div>
   <div class="cv-board" id="cv-board">
@@ -559,8 +559,12 @@
   function esc(s){ return (s||'').replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function haceCuanto(iso){
     try { var diff=(Date.now()-new Date(iso).getTime())/60000;
-      if (diff<1.5) return 'recién'; if (diff<60) return 'hace '+Math.round(diff)+' min'; return 'hace '+Math.round(diff/60)+' h';
+      if (diff<1.5) return 'recién'; if (diff<60) return 'hace '+Math.round(diff)+' min';
+      if (diff<1440) return 'hace '+Math.round(diff/60)+' h'; return 'hace '+Math.round(diff/1440)+' días';
     } catch(e){ return ''; }
+  }
+  function horaLocal(iso){
+    try { return new Date(iso).toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'America/Argentina/Buenos_Aires'}); } catch(e){ return ''; }
   }
   window.accTog = function(btn){ btn.parentElement.classList.toggle('open'); };
   window.cvShow = function(v){
@@ -614,7 +618,9 @@
       ALL = d;
       var pres = ORDEN.filter(function(i){ return ALL.aeropuertos[i]; });
       if (pres.indexOf(ciudad) < 0 && pres.length){ ciudad = pres[0]; document.getElementById('cv-title').textContent = (NOMBRE[ciudad]||ciudad)+' ('+ciudad+')'; }
-      document.getElementById('cv-upd').textContent = 'Actualizado ' + haceCuanto(d.actualizado);
+      var updTxt = 'Actualizado ' + haceCuanto(d.actualizado) + (horaLocal(d.actualizado) ? ' (' + horaLocal(d.actualizado) + ' hs)' : '');
+      document.getElementById('cv-upd').textContent = updTxt;
+      var updTop = document.getElementById('cv-upd-top'); if (updTop) updTop.textContent = '· ' + updTxt;
       renderChips(); renderBoard(); fillAccordion();
     })
     .catch(function(){
