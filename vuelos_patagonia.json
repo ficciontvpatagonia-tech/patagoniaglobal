@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-07-06T18:56-03:00",
+ "actualizado": "2026-07-06T20:12-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -509,30 +509,30 @@
     },
     {
      "hora": "18:40",
-     "real": "19:20",
+     "real": "19:18",
      "nro": "O4 692",
      "aerolinea": "Andes",
      "ciudad": "Ciudad del Este",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "19:23",
-     "real": "",
+     "real": "19:35",
      "nro": "WJ 3057",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "19:25",
-     "real": "19:34",
+     "real": "19:42",
      "nro": "AR 1686",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "20:25",
@@ -554,12 +554,12 @@
     },
     {
      "hora": "20:35",
-     "real": "",
+     "real": "20:30",
      "nro": "AR 1704",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Rosario",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "21:35",
@@ -572,12 +572,12 @@
     },
     {
      "hora": "21:40",
-     "real": "",
+     "real": "22:04",
      "nro": "AR 1690",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "22:30",
@@ -781,21 +781,21 @@
     },
     {
      "hora": "19:15",
-     "real": "",
+     "real": "19:45",
      "nro": "AR 1679",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "19:30",
-     "real": "",
+     "real": "19:20",
      "nro": "G3 9471",
      "aerolinea": "GOL",
      "ciudad": "San Pablo-Guarulhos",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "20:08",
@@ -803,8 +803,8 @@
      "nro": "WJ 3058",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "20:15",
@@ -812,8 +812,8 @@
      "nro": "AR 1689",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Embarcando",
+     "color": "#C36419"
     },
     {
      "hora": "21:05",
@@ -839,8 +839,8 @@
      "nro": "AR 1673",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     },
     {
      "hora": "22:00",
@@ -862,12 +862,12 @@
     },
     {
      "hora": "22:30",
-     "real": "",
+     "real": "22:50",
      "nro": "AR 1691",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "23:10",
@@ -943,8 +943,8 @@
      "nro": "AR 1834",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Consulte Cía.",
+     "color": "#FB671E"
     }
    ],
    "partidas": [
@@ -1194,21 +1194,21 @@
     },
     {
      "hora": "19:33",
-     "real": "",
+     "real": "19:22",
      "nro": "WJ* 3205",
      "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "19:45",
-     "real": "",
+     "real": "19:55",
      "nro": "AR 1892",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "20:55",
@@ -1299,8 +1299,8 @@
      "nro": "WJ* 3206",
      "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Embarcando",
+     "color": "#e07a1f"
     },
     {
      "hora": "20:35",
@@ -1308,7 +1308,7 @@
      "nro": "AR 1893",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
@@ -1336,12 +1336,12 @@
     },
     {
      "hora": "19:35",
-     "real": "19:51",
+     "real": "19:50",
      "nro": "AR 1850",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Demorado",
-     "color": "#c0392b"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -1360,7 +1360,7 @@
      "nro": "AR 1851",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     }
    ]
