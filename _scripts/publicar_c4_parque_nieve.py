@@ -13,9 +13,10 @@ IMG = "fotos/DEPORTES/CENTROS_SKY/"
 CSS = "<style>.ski-table{width:100%;border-collapse:collapse;margin:24px 0 8px;font-size:14px;border-radius:6px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08)}.ski-table thead tr{background:#1c2d3d;color:#fff;text-align:left}.ski-table thead th{padding:12px 16px;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase}.ski-table tbody tr:nth-child(even){background:#fff}.ski-table tbody tr:nth-child(odd){background:#f7f5f0}.ski-table tbody td{padding:11px 16px;color:#2a2a2a;border-bottom:1px solid #e8e5e0}.ski-table td strong{color:#1c2d3d}.c4-card{display:flex;gap:18px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(28,45,61,.1);margin:22px 0}.c4-card img{width:38%;object-fit:cover;min-height:220px}.c4-card .c4-body{padding:18px 18px 18px 0;flex:1}.c4-card h4{font-family:'Playfair Display',serif;color:#1c2d3d;font-size:18px;margin:0 0 8px}.c4-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}.c4-chip{background:#f0ede8;border:1px solid #7aadcc;color:#1c2d3d;font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px}.c4-nota{background:#fff8ec;border-left:4px solid #8c6b4a;padding:14px 18px;border-radius:0 8px 8px 0;font-size:15px;margin:22px 0}.c4-quote{font-family:'Playfair Display',serif;font-size:19px;color:#1c2d3d;font-style:italic;border-left:4px solid #8c6b4a;padding:6px 0 6px 18px;margin:26px 0}.c4-quote span{display:block;font-family:Inter,sans-serif;font-size:12px;font-style:normal;color:#888;margin-top:6px}.c4-g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}.c4-g2 img{width:100%;height:260px;object-fit:cover;border-radius:8px}.c4-foto{width:100%;border-radius:8px;margin:6px 0 2px}.c4-cred{font-size:12px;color:#888;margin-bottom:14px}@media(max-width:640px){.c4-card{flex-direction:column}.c4-card img{width:100%}.c4-card .c4-body{padding:16px}.c4-g2{grid-template-columns:1fr}}</style>"
 
 
-def card(img, alt, titulo, chips, texto):
+def card(img, alt, titulo, chips, texto, pos=None):
     ch = "".join(f'<span class="c4-chip">{c}</span>' for c in chips)
-    return (f'<div class="c4-card"><img src="{IMG}{img}" alt="{alt}" loading="lazy">'
+    st = f' style="object-position:{pos}"' if pos else ""
+    return (f'<div class="c4-card"><img src="{IMG}{img}" alt="{alt}" loading="lazy"{st}>'
             f'<div class="c4-body"><h4>{titulo}</h4><div class="c4-chips">{ch}</div>'
             f'<p style="font-size:15px;margin:0">{texto}</p></div></div>')
 
@@ -52,7 +53,7 @@ cuerpo_es = "\n\n".join([
     "<h3>Qué se puede hacer</h3>",
     card("c4-parque-nieve-clase.webp", "Clase de esquí para principiantes en C4 Parque de Nieve",
          "⛷ Esquí y snowboard: los primeros pasos", ["Desde $105.000", "Incluye acceso a pista", "Instructores propios"],
-         "Clases para quienes nunca se calzaron una tabla o esquíes, en pendientes pensadas para aprender sin sustos. También hay clases de <b>progresión</b> para el segundo o tercer día, cuando el desafío es afirmar giros y frenadas antes de animarse al cerro grande."),
+         "Clases para quienes nunca se calzaron una tabla o esquíes, en pendientes pensadas para aprender sin sustos. También hay clases de <b>progresión</b> para el segundo o tercer día, cuando el desafío es afirmar giros y frenadas antes de animarse al cerro grande.", pos="35% 50%"),
     card("c4-parque-nieve-tubing.webp", "Snowtubing en C4 Parque de Nieve",
          "🛷 Snowtubing: la estrella de los chicos", ["Desde $40.000", "Desde los 4 años"],
          "Bajadas en enormes donas inflables por canaletas de nieve. Es la actividad más pedida por las familias: no requiere ninguna técnica, solo ganas de gritar en la bajada. Los más chicos pueden compartir la dona con un adulto."),
@@ -111,7 +112,7 @@ cuerpo_en = "\n\n".join([
     "<h3>What you can do</h3>",
     card("c4-parque-nieve-clase.webp", "Beginner ski lesson at C4 Snow Park, San Martín de los Andes",
          "⛷ Skiing and snowboarding: first steps", ["From AR$105,000", "Slope access included", "In-house instructors"],
-         "Lessons for people who have never put on skis or a board, on slopes designed for learning without fear. There are also <b>progression</b> lessons for day two or three, when the challenge is locking in turns and stops before taking on the big mountain."),
+         "Lessons for people who have never put on skis or a board, on slopes designed for learning without fear. There are also <b>progression</b> lessons for day two or three, when the challenge is locking in turns and stops before taking on the big mountain.", pos="35% 50%"),
     card("c4-parque-nieve-tubing.webp", "Snow tubing at C4 Snow Park",
          "🛷 Snow tubing: the kids' favorite", ["From AR$40,000", "From age 4"],
          "Rides down snow chutes on giant inflatable donuts. It's the most requested family activity: no technique required, just the will to scream on the way down. The youngest kids can share a donut with an adult."),
@@ -170,7 +171,7 @@ cuerpo_pt = "\n\n".join([
     "<h3>O que dá para fazer</h3>",
     card("c4-parque-nieve-clase.webp", "Aula de esqui para iniciantes no C4 Parque de Nieve",
          "⛷ Esqui e snowboard: os primeiros passos", ["A partir de AR$ 105.000", "Acesso à pista incluído", "Instrutores próprios"],
-         "Aulas para quem nunca calçou uma prancha ou esquis, em descidas pensadas para aprender sem sustos. Também há aulas de <b>progressão</b> para o segundo ou terceiro dia, quando o desafio é firmar curvas e freadas antes de encarar a montanha grande."),
+         "Aulas para quem nunca calçou uma prancha ou esquis, em descidas pensadas para aprender sem sustos. Também há aulas de <b>progressão</b> para o segundo ou terceiro dia, quando o desafio é firmar curvas e freadas antes de encarar a montanha grande.", pos="35% 50%"),
     card("c4-parque-nieve-tubing.webp", "Snow tubing no C4 Parque de Nieve",
          "🛷 Snow tubing: a estrela das crianças", ["A partir de AR$ 40.000", "A partir dos 4 anos"],
          "Descidas em enormes boias infláveis por canaletas de neve. É a atividade mais pedida pelas famílias: não exige nenhuma técnica, só vontade de gritar na descida. Os menores podem dividir a boia com um adulto."),
@@ -229,7 +230,7 @@ cuerpo_zh = "\n\n".join([
     "<h3>可以玩什么</h3>",
     card("c4-parque-nieve-clase.webp", "C4雪地公园的初学者滑雪课",
          "⛷ 双板与单板：迈出第一步", ["105,000比索起", "含雪道使用", "自有教练"],
-         "为从未穿过雪板的人开设的课程，在专为学习设计的缓坡上无惧起步。还有针对第二、三天的<b>进阶课程</b>，帮你在挑战大山之前巩固转弯和刹车。"),
+         "为从未穿过雪板的人开设的课程，在专为学习设计的缓坡上无惧起步。还有针对第二、三天的<b>进阶课程</b>，帮你在挑战大山之前巩固转弯和刹车。", pos="35% 50%"),
     card("c4-parque-nieve-tubing.webp", "C4雪地公园的雪圈滑道",
          "🛷 雪圈：孩子们的最爱", ["40,000比索起", "4岁起"],
          "乘坐巨大的充气雪圈沿雪槽滑下。这是家庭游客最喜爱的项目：不需要任何技巧，只需要在滑下时放声尖叫。年龄最小的孩子可以和大人共乘一个雪圈。"),
