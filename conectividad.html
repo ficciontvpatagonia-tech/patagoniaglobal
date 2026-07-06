@@ -155,15 +155,8 @@
     .acc-sum { font-size:.85rem; color:#1c2d3d; font-weight:600; margin-bottom:3px; }
     .acc-note { color:#8a8478; font-size:.82rem; }
     @media(max-width:560px){ .acc-air-sm{ display:none; } }
-    /* Solapas principales */
-    .cx-tabsbar { position:sticky; top:0; z-index:30; background:#f0ede8; border-bottom:1px solid #e0d9cd; box-shadow:0 2px 8px rgba(28,45,61,.06); }
-    .cx-tabsbar-inner { max-width:1060px; margin:0 auto; display:flex; gap:6px; padding:8px 14px; }
-    .cx-mtab { flex:1; min-width:0; text-align:center; display:flex; align-items:center; justify-content:center; gap:8px; padding:12px 8px; border:none; background:transparent; cursor:pointer; font-family:'Inter',sans-serif; font-weight:600; font-size:.9rem; line-height:1.15; color:#6b7480; border-radius:10px; transition:all .18s; text-transform:uppercase; letter-spacing:.5px; }
-    .cx-mtab:hover { background:#e6e0d6; color:#1c2d3d; }
-    .cx-mtab.active { background:#1c2d3d; color:#fff; }
-    .cx-mtab .i { font-size:1.1rem; }
+    /* Paneles por sección (se muestra uno según el hash: #vuelos / #rutas / #pasos) */
     .cx-panel[hidden] { display:none; }
-    @media(max-width:560px){ .cx-mtab{ font-size:.68rem; letter-spacing:0; padding:9px 4px; flex-direction:column; gap:3px; } .cx-mtab .i{font-size:1.25rem;} }
     /* Widget rutas (Vialidad Nacional) */
     .rv-box { border:1px solid #e3ddd3; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 2px 10px rgba(28,45,61,.05); margin:8px 0 20px; }
     .rv-head { background:#1c2d3d; color:#fff; padding:13px 18px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px; align-items:center; }
@@ -199,7 +192,6 @@
     .rv-alert b { display:block; margin-bottom:5px; font-size:.96rem; }
     .rv-alert ul { margin:6px 0 0; padding-left:18px; }
     .rv-alert li { margin-bottom:3px; }
-    .mtab-dot { width:8px; height:8px; border-radius:50%; background:#e23b2e; display:inline-block; margin-left:5px; box-shadow:0 0 0 0 rgba(226,59,46,.6); animation:cvpulse 1.8s infinite; vertical-align:middle; }
     .cx-wrap { max-width:1060px; margin:0 auto; padding:0 20px 60px; }
     .cx-section-label { font-family:'Playfair Display',serif; font-size:1.5rem; color:#1c2d3d; margin:46px 0 6px; }
     .cx-section-sub { color:#6b7480; font-size:.92rem; margin:0 0 18px; }
@@ -274,15 +266,6 @@
 <div class="cx-hero">
   <h1>Conectividad Patagónica</h1>
   <p>Todo para moverte por la Patagonia y cruzar la frontera: vuelos y aerolíneas por ciudad, el vuelo a Malvinas, estado de rutas y pasos, y los requisitos para entrar a Chile o viajar a las Islas Malvinas.</p>
-</div>
-
-<!-- SOLAPAS PRINCIPALES -->
-<div class="cx-tabsbar">
-  <div class="cx-tabsbar-inner">
-    <button class="cx-mtab active" id="mtab-vuelos" onclick="cxTab('vuelos')"><span class="i">🛫</span>Vuelos</button>
-    <button class="cx-mtab" id="mtab-rutas" onclick="cxTab('rutas')"><span class="i">🛣️</span>Rutas</button>
-    <button class="cx-mtab" id="mtab-pasos" onclick="cxTab('pasos')"><span class="i">🛂</span><span>Pasos de frontera</span></button>
-  </div>
 </div>
 
 <div class="cx-wrap">
@@ -398,24 +381,24 @@
   <section class="cx-panel" id="panel-pasos" hidden>
   <!-- ════ PASOS Y ADUANAS ════ -->
   <h2 class="cx-section-label" id="pasos">🛂 Pasos fronterizos y aduanas</h2>
-  <p class="cx-section-sub">Principales pasos cordilleranos Argentina–Chile en la Patagonia. Los horarios se reducen en invierno y pueden cerrar por temporal — verificá el estado del día en los enlaces de arriba.</p>
+  <p class="cx-section-sub">Principales pasos cordilleranos Argentina–Chile en la Patagonia, con su horario de apertura y cierre (hora argentina, esquema invernal vigente). En verano varios amplían el horario; pueden cerrar por temporal — verificá el estado del día en los enlaces de abajo.</p>
   <div class="cx-table-wrap">
     <table class="cx">
-      <thead><tr><th>Paso</th><th>Conecta</th><th>Notas</th></tr></thead>
+      <thead><tr><th>Paso</th><th>Conecta</th><th>Horario</th><th>Notas</th></tr></thead>
       <tbody>
-        <tr><td class="cx-city">Pino Hachado</td><td>Neuquén ↔ Temuco/Curacautín</td><td>Pavimentado; principal del norte patagónico</td></tr>
-        <tr><td class="cx-city">Cardenal Samoré</td><td>Villa La Angostura ↔ Osorno</td><td>El más transitado; sensible a la nieve</td></tr>
-        <tr><td class="cx-city">Hua Hum</td><td>San Martín de los Andes ↔ Panguipulli</td><td>Incluye tramo de transbordador / ripio</td></tr>
-        <tr><td class="cx-city">Futaleufú / Río Encuentro</td><td>Esquel/Trevelin ↔ Futaleufú</td><td>Acceso a la Carretera Austral</td></tr>
-        <tr><td class="cx-city">Huemules</td><td>Comodoro/Aldea Beleiro ↔ Coyhaique</td><td>Zona Aysén</td></tr>
-        <tr><td class="cx-city">Río Don Guillermo / Cerro Castillo</td><td>El Calafate ↔ Puerto Natales (Torres del Paine)</td><td>Ruta turística clave del sur</td></tr>
-        <tr><td class="cx-city">Integración Austral</td><td>Río Gallegos ↔ Punta Arenas</td><td>El gran corredor del extremo sur</td></tr>
-        <tr><td class="cx-city">San Sebastián</td><td>Tierra del Fuego (AR ↔ CL)</td><td>Paso obligado para cruzar la isla</td></tr>
+        <tr><td class="cx-city">Pino Hachado</td><td>Neuquén ↔ Temuco/Curacautín</td><td>9 a 19 h</td><td>Pavimentado; principal del norte patagónico</td></tr>
+        <tr><td class="cx-city">Cardenal Samoré</td><td>Villa La Angostura ↔ Osorno</td><td>9 a 19 h</td><td>El más transitado; sensible a la nieve</td></tr>
+        <tr><td class="cx-city">Hua Hum</td><td>San Martín de los Andes ↔ Panguipulli</td><td>9 a 20 h</td><td>Incluye tramo de transbordador / ripio</td></tr>
+        <tr><td class="cx-city">Futaleufú / Río Encuentro</td><td>Esquel/Trevelin ↔ Futaleufú</td><td>9 a 20 h</td><td>Acceso a la Carretera Austral</td></tr>
+        <tr><td class="cx-city">Huemules</td><td>Comodoro/Aldea Beleiro ↔ Coyhaique</td><td>8 a 20 h</td><td>Zona Aysén</td></tr>
+        <tr><td class="cx-city">Río Don Guillermo / Cerro Castillo</td><td>El Calafate ↔ Puerto Natales (Torres del Paine)</td><td>8 a 20 h</td><td>Ruta turística clave del sur</td></tr>
+        <tr><td class="cx-city">Integración Austral</td><td>Río Gallegos ↔ Punta Arenas</td><td>8 a 24 h</td><td>El gran corredor del extremo sur</td></tr>
+        <tr><td class="cx-city">San Sebastián</td><td>Tierra del Fuego (AR ↔ CL)</td><td>8 a 22 h <span style="color:#8a8478;font-size:.8em;">(verano: 6 a 22)</span></td><td>Paso obligado para cruzar la isla</td></tr>
       </tbody>
     </table>
   </div>
   <div class="cx-warn">
-    Para una lista completa con horarios oficiales de cada paso, consultá <a href="https://www.argentina.gob.ar/seguridad/pasosinternacionales" target="_blank" rel="noopener">Pasos Internacionales (Argentina)</a> y <a href="https://www.pasosfronterizos.gov.cl/" target="_blank" rel="noopener">Pasos Fronterizos (Chile)</a>.
+    <strong>Ojo con la hora chilena:</strong> entre abril y septiembre Chile va <strong>una hora atrás</strong> de Argentina, y las aduanas chilenas cierran según su propia hora. Los horarios pueden cambiar por temporada o temporal: confirmá el día del cruce en <a href="https://www.argentina.gob.ar/seguridad/pasosinternacionales" target="_blank" rel="noopener">Pasos Internacionales (Argentina)</a> y <a href="https://www.pasosfronterizos.gov.cl/" target="_blank" rel="noopener">Pasos Fronterizos (Chile)</a>.
   </div>
 
   <!-- ════ REQUISITOS CHILE ════ -->
@@ -636,13 +619,8 @@
   window.cxTab = function(t, noscroll){
     ['vuelos','rutas','pasos'].forEach(function(k){
       document.getElementById('panel-'+k).hidden = (k!==t);
-      document.getElementById('mtab-'+k).classList.toggle('active', k===t);
     });
     if (history.replaceState) history.replaceState(null, '', '#'+t);
-    if (!noscroll){
-      var bar = document.querySelector('.cx-tabsbar');
-      if (bar) bar.scrollIntoView({block:'start'});
-    }
     if (t==='rutas') rvLoad();
   };
 
@@ -706,10 +684,6 @@
       al.className = 'rv-alert prec'; al.hidden = false;
       al.innerHTML = '<b>⚠️ '+precs.length+(precs.length===1?' tramo con precaución o restricción':' tramos con precaución o restricción')+'</b>Revisá el detalle en la lista antes de salir.';
     } else { al.hidden = true; al.innerHTML = ''; }
-    var tab = document.getElementById('mtab-rutas');
-    var dot = tab.querySelector('.mtab-dot');
-    if (cortes.length && !dot){ var d=document.createElement('span'); d.className='mtab-dot'; d.title=cortes.length+' ruta(s) cortada(s)'; tab.appendChild(d); }
-    else if (!cortes.length && dot){ dot.remove(); }
     document.getElementById('rv-sum').innerHTML =
       '<span class="rv-pill"><span class="dot" style="background:#2e9e4f"></span>'+hab+' habilitadas</span>' +
       '<span class="rv-pill"><span class="dot" style="background:#e6a700"></span>'+prec+' con precaución</span>' +
