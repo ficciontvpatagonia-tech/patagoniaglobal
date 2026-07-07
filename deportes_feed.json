@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260706-cerro-catedral-abre-sus-pistas-la-temporada-de-esqui-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Cerro Catedral abre sus pistas: la temporada de esquí empieza en Bariloche",
-    "bajada": "El centro de esquí más grande de Sudamérica encendió sus instalaciones para la temporada 2026, con nieve natural acumulada tras el combo polar de los últimos días.",
-    "imagen": "fotos/foto-20260706-cerro-catedral-abre-sus-pistas-la-temporada-de-esqui-dep.webp",
-    "meta": "Hoy · Diario Río Negro"
+    "id": "20260707-dana-garcia-deja-santa-cruz-con-beca-completa-la-dep",
+    "tag": "🏊 Deportes",
+    "titulo": "Dana García deja Santa Cruz con beca completa: la natación austral llega a Puerto Rico",
+    "bajada": "La nadadora santacruceña de 18 años parte a fines de julio hacia Puerto Rico con una beca universitaria completa, en un nuevo hito de la natación patagónica proyectada al mundo.",
+    "imagen": "fotos/foto-20260707-dana-garcia-deja-santa-cruz-con-beca-completa-la-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260706-cerro-catedral-abre-sus-pistas-la-temporada-de-esqui-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Cerro Catedral abre sus pistas: la temporada de esquí empieza en Bariloche",
+      "bajada": "El centro de esquí más grande de Sudamérica encendió sus instalaciones para la temporada 2026, con nieve natural acumulada tras el combo polar de los últimos días.",
+      "imagen": "fotos/foto-20260706-cerro-catedral-abre-sus-pistas-la-temporada-de-esqui-dep.webp",
+      "meta": "Hoy · Diario Río Negro"
+    },
     {
       "id": "20260705-esqui-de-travesia-para-principiantes-club-andino-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La Subcomisión de Montañismo del Club Andino Bariloche organiza la primera salida de ski de travesía de la temporada 2026, pensada para socios sin experiencia previa en terreno de altura.",
       "imagen": "fotos/foto-20260705-esqui-de-travesia-para-principiantes-club-andino-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260704-crisostomo-lleva-el-trail-de-bariloche-a-los-andes-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El atleta barilochense Genaro Crisóstomo competirá este domingo en la Merrell Ultra Trail Cordillera Blanca, en Huaraz, Perú, su primer gran desafío internacional de la temporada.",
       "imagen": "fotos/foto-20260704-crisostomo-lleva-el-trail-de-bariloche-a-los-andes-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260703-santa-cruz-deporte-inclusivo-y-aulas-sensibilizadas-en-dep",
       "tag": "🏃 Deportes",
@@ -49,14 +57,6 @@
       "titulo": "El Kaltschmidt vuelve a abrir: el refugio icónico de Catedral, renovado",
       "bajada": "El Refugio Kaltschmidt del Club Andino Bariloche reabre el 9 de julio en la base del Cerro Catedral tras una ampliación que lo pone a punto para la temporada invernal.",
       "imagen": "fotos/foto-20260628-el-kaltschmidt-vuelve-a-abrir-el-refugio-iconico-de-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260627-geda-cierra-43-temporadas-de-montana-con-una-jornada-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "GEDA cierra 43 temporadas de montaña con una jornada en Cerro Catedral",
-      "bajada": "El Grupo Expedicionarios de Adultos del Club Andino Bariloche celebró el cierre de su temporada 43 con una salida de camaradería en el cerro que los vio crecer.",
-      "imagen": "fotos/foto-20260627-geda-cierra-43-temporadas-de-montana-con-una-jornada-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
     }
   ]
