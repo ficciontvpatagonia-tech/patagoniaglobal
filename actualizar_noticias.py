@@ -1059,6 +1059,18 @@ def fotos_propias_disponibles():
     return resultado
 
 
+def _es_imagen_raster(contenido, minimo=5_000):
+    """True si los bytes son una imagen real (JPEG/PNG/WebP/GIF) de tamaño razonable.
+    Evita guardar como .jpg los SVG/HTML de error que devuelven algunos diarios
+    (caso real 07/07/2026: ícono SVG de 161 bytes quedó como foto de nota)."""
+    if not contenido or len(contenido) < minimo:
+        return False
+    return (contenido[:3] == b"\xff\xd8\xff"                                # JPEG
+            or contenido[:8] == b"\x89PNG\r\n\x1a\n"                        # PNG
+            or (contenido[:4] == b"RIFF" and contenido[8:12] == b"WEBP")    # WebP
+            or contenido[:6] in (b"GIF87a", b"GIF89a"))                     # GIF
+
+
 def extraer_og_image(url_articulo, nota_id):
     """Descarga la og:image del artículo fuente y la guarda en fotos/."""
     if not url_articulo:
@@ -1106,6 +1118,9 @@ def extraer_og_image(url_articulo, nota_id):
         })
         with urllib.request.urlopen(img_req, timeout=10) as resp:
             contenido = resp.read()
+
+        if not _es_imagen_raster(contenido):
+            return None
 
         with open(ruta_local, "wb") as f:
             f.write(contenido)
@@ -1201,7 +1216,7 @@ def extraer_galeria_articulo(url_articulo, nota_id):
                 })
                 with urllib.request.urlopen(img_req, timeout=10) as resp:
                     contenido = resp.read()
-                if len(contenido) < 10_000:
+                if not _es_imagen_raster(contenido, minimo=10_000):
                     continue
                 with open(ruta_local, "wb") as f:
                     f.write(contenido)
@@ -1491,7 +1506,7 @@ def _descargar_imagen_externa(url_http, nota_id, sufijo=""):
         })
         with urllib.request.urlopen(req, timeout=12) as resp:
             contenido = resp.read()
-        if len(contenido) < 5_000:
+        if not _es_imagen_raster(contenido):
             return None
         with open(ruta_local, "wb") as f:
             f.write(contenido)
