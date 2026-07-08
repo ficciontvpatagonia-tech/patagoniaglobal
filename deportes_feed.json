@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260707-dana-garcia-deja-santa-cruz-con-beca-completa-la-dep",
-    "tag": "🏊 Deportes",
-    "titulo": "Dana García deja Santa Cruz con beca completa: la natación austral llega a Puerto Rico",
-    "bajada": "La nadadora santacruceña de 18 años parte a fines de julio hacia Puerto Rico con una beca universitaria completa, en un nuevo hito de la natación patagónica proyectada al mundo.",
-    "imagen": "fotos/foto-20260707-dana-garcia-deja-santa-cruz-con-beca-completa-la-dep.webp",
+    "id": "20260708-el-calafate-recibe-la-copa-mundial-de-natacion-en-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "El Calafate recibe la Copa Mundial de Natación en Aguas Frías 2026",
+    "bajada": "La Winter Swimming World Cup 2026 se desarrollará en El Calafate del 2 al 8 de agosto, con una pileta flotante ya instalada y competidores internacionales confirmados.",
+    "imagen": "fotos/CIUDADES/Calafate.webp",
     "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260707-dana-garcia-deja-santa-cruz-con-beca-completa-la-dep",
+      "tag": "🏊 Deportes",
+      "titulo": "Dana García deja Santa Cruz con beca completa: la natación austral llega a Puerto Rico",
+      "bajada": "La nadadora santacruceña de 18 años parte a fines de julio hacia Puerto Rico con una beca universitaria completa, en un nuevo hito de la natación patagónica proyectada al mundo.",
+      "imagen": "fotos/foto-20260707-dana-garcia-deja-santa-cruz-con-beca-completa-la-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20260706-cerro-catedral-abre-sus-pistas-la-temporada-de-esqui-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El centro de esquí más grande de Sudamérica encendió sus instalaciones para la temporada 2026, con nieve natural acumulada tras el combo polar de los últimos días.",
       "imagen": "fotos/foto-20260706-cerro-catedral-abre-sus-pistas-la-temporada-de-esqui-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260705-esqui-de-travesia-para-principiantes-club-andino-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La Subcomisión de Montañismo del Club Andino Bariloche organiza la primera salida de ski de travesía de la temporada 2026, pensada para socios sin experiencia previa en terreno de altura.",
       "imagen": "fotos/foto-20260705-esqui-de-travesia-para-principiantes-club-andino-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260704-crisostomo-lleva-el-trail-de-bariloche-a-los-andes-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Con el agua a 4°C y sensación térmica de -3°C, más de 7.500 personas se lanzaron al Estrecho de Magallanes en una nueva edición del evento más icónico del invierno austral en Punta Arenas.",
       "imagen": "fotos/foto-20260630-7500-cuerpos-en-el-estrecho-el-chapuzon-de-magallanes-dep.webp",
       "meta": "Hoy · El Magallánico"
-    },
-    {
-      "id": "20260628-el-kaltschmidt-vuelve-a-abrir-el-refugio-iconico-de-dep",
-      "tag": "🏔 Deportes",
-      "titulo": "El Kaltschmidt vuelve a abrir: el refugio icónico de Catedral, renovado",
-      "bajada": "El Refugio Kaltschmidt del Club Andino Bariloche reabre el 9 de julio en la base del Cerro Catedral tras una ampliación que lo pone a punto para la temporada invernal.",
-      "imagen": "fotos/foto-20260628-el-kaltschmidt-vuelve-a-abrir-el-refugio-iconico-de-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
     }
   ]
 }
