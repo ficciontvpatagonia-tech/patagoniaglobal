@@ -604,39 +604,44 @@ def buscar_reemplazo_en_historial(historial, ids_excluidos, dias=7):
     hace_n_dias = (datetime.now() - timedelta(days=dias)).strftime('%Y%m%d')
     ids_set = set(ids_excluidos)
 
+    def _elegible(art):
+        """Solo notas del robot con fecha en el ID. Las manuales/permanentes
+        (c4-*, historia-*, cultura-*) y las de sección (excluir_feed) NUNCA
+        pueden volver al feed de portada."""
+        art_id = art.get("id", "")
+        if art.get("excluir_feed"):
+            return None
+        if not art_id[:8].isdigit():
+            return None
+        if art_id in ids_set:
+            return None
+        if not art.get("titulo") or not art.get("cuerpo"):
+            return None
+        return art_id[:8]
+
     candidatas = []
     for art in historial:
-        art_id = art.get("id", "")
-        art_fecha = art_id[:8] if len(art_id) >= 8 else ""
-        if art_fecha < hace_n_dias:
+        art_fecha = _elegible(art)
+        if not art_fecha or art_fecha < hace_n_dias:
             continue
-        if art_id in ids_set:
-            continue
-        if not art.get("titulo") or not art.get("cuerpo"):
-            continue
-        es_tapa = art_id.endswith("-tapa") if art_id else False
+        es_tapa = art["id"].endswith("-tapa")
         candidatas.append((es_tapa, art_fecha, art))
 
     if not candidatas:
         # Ampliar a 14 días
         hace_14 = (datetime.now() - timedelta(days=14)).strftime('%Y%m%d')
         for art in historial:
-            art_id = art.get("id", "")
-            art_fecha = art_id[:8] if len(art_id) >= 8 else ""
-            if art_fecha < hace_14 or art_fecha >= hace_n_dias:
+            art_fecha = _elegible(art)
+            if not art_fecha or art_fecha < hace_14 or art_fecha >= hace_n_dias:
                 continue
-            if art_id in ids_set:
-                continue
-            if art.get("titulo") and art.get("cuerpo"):
-                es_tapa = art_id.endswith("-tapa") if art_id else False
-                candidatas.append((es_tapa, art_fecha, art))
+            es_tapa = art["id"].endswith("-tapa")
+            candidatas.append((es_tapa, art_fecha, art))
 
     if not candidatas:
         return None
 
     # Priorizar ex-tapas, luego más recientes
-    candidatas.sort(key=lambda x: (not x[0], x[1]), reverse=True)
-    return candidatas[0][2]
+    return max(candidatas, key=lambda x: (x[0], x[1]))[2]
 
 
 # ══════════════════════════════════════════════════════════
