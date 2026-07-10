@@ -2614,9 +2614,41 @@ def _build_rel_pool(notas):
     return pool
 
 
+_REL_LANG_SUFIJOS = ("-en", "-pt", "-zh")
+
+
+def _rel_base_lang(nid):
+    """Devuelve (id_base, lang) — lang None si la nota es la versión ES/base."""
+    for s in _REL_LANG_SUFIJOS:
+        if nid.endswith(s):
+            return nid[: -len(s)], s[1:]
+    return nid, None
+
+
 def _pick_related(nid, nota_tag, pool, n=3):
-    """Selecciona n notas: primero mismo tag, luego otras. Determinístico por id."""
-    others = [v for k, v in pool.items() if k != nid]
+    """Selecciona n notas: primero mismo tag, luego otras. Determinístico por id.
+    Nunca ofrece variantes de idioma de la MISMA nota; en páginas ES solo
+    candidatas ES, y en páginas -en/-pt/-zh prefiere notas del mismo idioma
+    (si no alcanzan, completa con ES de otras notas)."""
+    base, lang = _rel_base_lang(nid)
+    others, es_extra = [], []
+    for k, v in pool.items():
+        if k == nid:
+            continue
+        kbase, klang = _rel_base_lang(k)
+        if kbase == base:
+            continue  # variante de idioma de la misma nota: jamás recomendar
+        if klang == lang:
+            others.append(v)
+        elif lang is not None and klang is None:
+            es_extra.append(v)  # fallback para páginas traducidas con poco set
+    if lang is not None and len(others) < n:
+        vistos = {_rel_base_lang(x["id"])[0] for x in others}
+        for v in es_extra:
+            vb = _rel_base_lang(v["id"])[0]
+            if vb not in vistos:
+                others.append(v)
+                vistos.add(vb)
     rng = random.Random(nid)
     clean = _rel_norm_tag(nota_tag).lower()
     same = [x for x in others if _rel_norm_tag(x["tag"]).lower() == clean]
