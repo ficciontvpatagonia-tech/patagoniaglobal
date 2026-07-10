@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260709-i-yenu-jono-veinte-anos-de-kayak-y-comunidad-en-rio-dep",
+    "id": "20260710-escalada-para-chicos-en-punta-arenas-el-cierre-que-dep",
     "tag": "🏃 Deportes",
-    "titulo": "I Yenu Jono: veinte años de kayak y comunidad en Río Gallegos",
-    "bajada": "La escuela de kayak I Yenu Jono de Río Gallegos cumple más de dos décadas formando palistas en las aguas australes del río Santa Cruz, con un nombre tomado de la lengua Aónikenk.",
-    "imagen": "fotos/foto-20260709-i-yenu-jono-veinte-anos-de-kayak-y-comunidad-en-rio-dep.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "titulo": "Escalada para chicos en Punta Arenas: el cierre que llenó el boulder",
+    "bajada": "El taller municipal de escalada de Punta Arenas cerró su ciclo con una jornada masiva en el centro Japo Boulder, convocando a niños y adolescentes de toda la ciudad en torno a un deporte que crece en la Patagonia austral.",
+    "imagen": "fotos/foto-20260710-escalada-para-chicos-en-punta-arenas-el-cierre-que-dep.webp",
+    "meta": "Hoy · El Pingüino"
   },
   "secundarias": [
+    {
+      "id": "20260709-i-yenu-jono-veinte-anos-de-kayak-y-comunidad-en-rio-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "I Yenu Jono: veinte años de kayak y comunidad en Río Gallegos",
+      "bajada": "La escuela de kayak I Yenu Jono de Río Gallegos cumple más de dos décadas formando palistas en las aguas australes del río Santa Cruz, con un nombre tomado de la lengua Aónikenk.",
+      "imagen": "fotos/foto-20260709-i-yenu-jono-veinte-anos-de-kayak-y-comunidad-en-rio-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20260708-el-calafate-recibe-la-copa-mundial-de-natacion-en-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La Winter Swimming World Cup 2026 se desarrollará en El Calafate del 2 al 8 de agosto, con una pileta flotante ya instalada y competidores internacionales confirmados.",
       "imagen": "fotos/CIUDADES/Calafate.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260707-dana-garcia-deja-santa-cruz-con-beca-completa-la-dep",
       "tag": "🏊 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La nadadora santacruceña de 18 años parte a fines de julio hacia Puerto Rico con una beca universitaria completa, en un nuevo hito de la natación patagónica proyectada al mundo.",
       "imagen": "fotos/foto-20260707-dana-garcia-deja-santa-cruz-con-beca-completa-la-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260706-cerro-catedral-abre-sus-pistas-la-temporada-de-esqui-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El atleta barilochense Genaro Crisóstomo competirá este domingo en la Merrell Ultra Trail Cordillera Blanca, en Huaraz, Perú, su primer gran desafío internacional de la temporada.",
       "imagen": "fotos/foto-20260704-crisostomo-lleva-el-trail-de-bariloche-a-los-andes-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260703-santa-cruz-deporte-inclusivo-y-aulas-sensibilizadas-en-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Santa Cruz: deporte inclusivo y aulas sensibilizadas en toda la provincia",
-      "bajada": "El coordinador provincial Maximiliano Ferreyra destacó el impacto de los encuentros deportivos inclusivos en la salud integral de los atletas y el programa de sensibilización que ya llegó a las escuelas santacruceñas.",
-      "imagen": "fotos/foto-20260703-santa-cruz-deporte-inclusivo-y-aulas-sensibilizadas-en-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
     }
   ]
 }
