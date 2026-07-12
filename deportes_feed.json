@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260711-bariloche-al-mundo-magdalena-kast-entra-al-consejo-de-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Bariloche al mundo: Magdalena Kast entra al Consejo de la FIS",
-    "bajada": "La socia del Club Andino Bariloche fue electa para integrar el máximo órgano de gobierno de la Federación Internacional de Ski y Snowboard, un hito histórico para el deporte de nieve patagónico.",
-    "imagen": "fotos/foto-20260711-bariloche-al-mundo-magdalena-kast-entra-al-consejo-de-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche"
+    "id": "20260712-alfredo-slipek-adios-al-guia-de-montana-que-formo-dep",
+    "tag": "🏔 Deportes",
+    "titulo": "Alfredo Slipek: adiós al guía de montaña que formó generaciones en Bariloche",
+    "bajada": "El Club Andino Bariloche despidió a su socio honorario, creador del Grupo de Excursionistas de Adultos (GEDA) y referente del andinismo regional durante décadas.",
+    "imagen": "fotos/foto-20260712-alfredo-slipek-adios-al-guia-de-montana-que-formo-dep.webp",
+    "meta": "Hoy · Club Andino Bariloche (Bariloche)"
   },
   "secundarias": [
+    {
+      "id": "20260711-bariloche-al-mundo-magdalena-kast-entra-al-consejo-de-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Bariloche al mundo: Magdalena Kast entra al Consejo de la FIS",
+      "bajada": "La socia del Club Andino Bariloche fue electa para integrar el máximo órgano de gobierno de la Federación Internacional de Ski y Snowboard, un hito histórico para el deporte de nieve patagónico.",
+      "imagen": "fotos/foto-20260711-bariloche-al-mundo-magdalena-kast-entra-al-consejo-de-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20260710-escalada-para-chicos-en-punta-arenas-el-cierre-que-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El taller municipal de escalada de Punta Arenas cerró su ciclo con una jornada masiva en el centro Japo Boulder, convocando a niños y adolescentes de toda la ciudad en torno a un deporte que crece en la Patagonia austral.",
       "imagen": "fotos/foto-20260710-escalada-para-chicos-en-punta-arenas-el-cierre-que-dep.webp",
       "meta": "Hoy · El Pingüino"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260709-i-yenu-jono-veinte-anos-de-kayak-y-comunidad-en-rio-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La escuela de kayak I Yenu Jono de Río Gallegos cumple más de dos décadas formando palistas en las aguas australes del río Santa Cruz, con un nombre tomado de la lengua Aónikenk.",
       "imagen": "fotos/foto-20260709-i-yenu-jono-veinte-anos-de-kayak-y-comunidad-en-rio-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260708-el-calafate-recibe-la-copa-mundial-de-natacion-en-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El centro de esquí más grande de Sudamérica encendió sus instalaciones para la temporada 2026, con nieve natural acumulada tras el combo polar de los últimos días.",
       "imagen": "fotos/foto-20260706-cerro-catedral-abre-sus-pistas-la-temporada-de-esqui-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
-    {
-      "id": "20260705-esqui-de-travesia-para-principiantes-club-andino-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Esquí de travesía para principiantes: Club Andino Bariloche abre la montaña a nuevos",
-      "bajada": "La Subcomisión de Montañismo del Club Andino Bariloche organiza la primera salida de ski de travesía de la temporada 2026, pensada para socios sin experiencia previa en terreno de altura.",
-      "imagen": "fotos/foto-20260705-esqui-de-travesia-para-principiantes-club-andino-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
     }
   ]
 }
