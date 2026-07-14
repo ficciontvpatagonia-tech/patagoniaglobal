@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-07-14T19:57-03:00",
+ "actualizado": "2026-07-14T20:58-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -142,21 +142,21 @@
     },
     {
      "hora": "20:40",
-     "real": "",
+     "real": "21:15",
      "nro": "AR 1650",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "21:55",
-     "real": "",
+     "real": "21:35",
      "nro": "AR 1630",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "22:21",
@@ -315,16 +315,16 @@
     },
     {
      "hora": "20:30",
-     "real": "",
+     "real": "20:35",
      "nro": "AR 1909",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Ultimo aviso",
-     "color": "#FB671E"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "21:15",
-     "real": "",
+     "real": "21:45",
      "nro": "AR 1651",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
@@ -572,20 +572,20 @@
     },
     {
      "hora": "21:00",
-     "real": "",
+     "real": "20:56",
      "nro": "AR 1676",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "21:27",
-     "real": "",
+     "real": "21:00",
      "nro": "WJ 3051",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "",
+     "estado": "En Zona",
      "color": "#C0C0C0"
     },
     {
@@ -608,12 +608,12 @@
     },
     {
      "hora": "22:28",
-     "real": "",
+     "real": "22:05",
      "nro": "WJ 3057",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "22:40",
@@ -682,12 +682,12 @@
     },
     {
      "hora": "09:30",
-     "real": "20:10",
+     "real": "20:50",
      "nro": "FO 5243",
      "aerolinea": "Flybondi",
      "ciudad": "Aeroparque",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "10:10",
@@ -817,12 +817,12 @@
     },
     {
      "hora": "18:40",
-     "real": "19:40",
+     "real": "20:27",
      "nro": "AR 1673",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "19:03",
@@ -871,12 +871,12 @@
     },
     {
      "hora": "22:12",
-     "real": "",
+     "real": "22:00",
      "nro": "WJ 3052",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "22:20",
@@ -898,12 +898,12 @@
     },
     {
      "hora": "23:13",
-     "real": "",
+     "real": "23:00",
      "nro": "WJ 3058",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "23:20",
@@ -1430,21 +1430,21 @@
     },
     {
      "hora": "19:45",
-     "real": "",
+     "real": "20:12",
      "nro": "AR 1891",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Embarcando",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "20:13",
-     "real": "",
+     "real": "20:21",
      "nro": "WJ* 3204",
      "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Despegado",
+     "color": "#008000"
     }
    ]
   },
