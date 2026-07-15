@@ -1281,15 +1281,53 @@ def _ciudades_en(tokens):
     return {c for c in _CIUDADES_FOTO if all(t in tokens for t in c)}
 
 
-def buscar_foto_propia(nota, fotos):
-    """Busca la foto propia más relevante para una nota.
+# Tokens de geografía NO-visual (provincias, regiones, países, gentilicios).
+# Que una foto y una nota compartan provincia no dice nada sobre el TEMA:
+# "santa-cruz-vigia-atardecer" no ilustra un colapso eléctrico en Santa Cruz,
+# ni "eclipse-recorrido-rio-negro-2027" una ley de carne de jabalí en Río Negro
+# (casos reales 15/07/2026). Estos tokens pueden SUMAR como desempate, pero una
+# foto necesita al menos un match temático (no-geográfico) para ser candidata.
+# Las CIUDADES no van acá a propósito: una foto de la ciudad sí es una imagen
+# válida de una nota sobre esa ciudad (gate _CIUDADES_FOTO aparte).
+_GEO_NO_VISUAL = frozenset([
+    "argentina", "argentino", "argentina", "argentinos", "argentinas",
+    "chile", "chileno", "chilena", "chilenos", "chilenas",
+    "patagonia", "patagonico", "patagonica", "patagonicos", "patagonicas",
+    "chubut", "neuquen", "neuquino", "neuquina", "pampa",
+    "magallanes", "aysen", "antartica", "antartida",
+    "santa", "cruz", "rio", "negro", "tierra", "fuego",
+    "provincia", "provincial", "region", "regional",
+    "sur", "norte", "austral", "cordillera", "andes",
+])
+
+# Tokens débiles: números, preposiciones y descriptores de la TOMA (no del
+# sujeto). "guia-why-laguna-tres-argentina" no ilustra "tres ciudades sin luz"
+# porque compartan la palabra "tres". Tampoco cuentan como match temático.
+_TOKENS_DEBILES = frozenset([
+    "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez",
+    "del", "los", "las", "por", "con", "para", "sin", "mas", "desde", "hacia", "entre",
+    "guia", "foto", "imagen", "vista", "panoramica", "panoramico",
+    "aereo", "aerea", "atardecer", "amanecer", "nocturna", "nocturno",
+])
+
+_NO_TEMATICOS = _GEO_NO_VISUAL | _TOKENS_DEBILES
+
+
+def candidatas_foto_propia(nota, fotos, usadas=None, n=6):
+    """Devuelve las fotos propias candidatas para una nota, mejor primero.
 
     Scoring (acumulativo):
     - keyword de la foto aparece en imagen_keywords de la nota (+2 por match exacto de palabra, +1 por substring)
     - keyword de la foto aparece en el título de la nota (+2)
-    - keyword de la foto aparece en fuente/pais de la nota (+1)
 
-    Retorna (ruta, score) — score 0 significa sin match."""
+    Regla central: los matches puramente geográficos (_GEO_NO_VISUAL) suman al
+    score total pero NO al score temático. Una foto sin score temático (≥2)
+    no es candidata — compartir provincia no es compartir tema.
+
+    `usadas`: fotos ya asignadas en este run — se excluyen para no repetir la
+    misma imagen en dos notas del mismo día.
+
+    Retorna lista de dicts {archivo, descripcion, keywords, score_topico, score}."""
     import re as _re
 
     def _tokenize(s):
@@ -1328,11 +1366,12 @@ def buscar_foto_propia(nota, fotos):
                      "punta arenas", "puntarenas", "valdivia", "osorno", "atacama"}
     nota_es_chile = (pais == "chile") or bool(tokens_ctx & _KW_CHILE - _KW_ARGENTINA)
 
-    mejor = None
-    mejor_score = 0
+    candidatas = []
 
     for foto in fotos:
         archivo_rel = foto.get("archivo", "")
+        if usadas and f"fotos/{archivo_rel}" in usadas:
+            continue
 
         if not nota_es_originarios:
             tokens_foto = set()
@@ -1365,27 +1404,112 @@ def buscar_foto_propia(nota, fotos):
 
         # Fotos de INSTITUCIONES requieren un score mínimo más alto:
         # no deben ganar como fallback genérico, solo cuando hay match real.
-        _score_minimo = 4 if archivo_rel.startswith("INSTITUCIONES/") else 0
-        score = 0
+        _score_minimo = 4 if archivo_rel.startswith("INSTITUCIONES/") else 2
+        score        = 0
+        score_topico = 0
         for kw in foto.get("keywords", []):
             kw_l      = kw.lower()
             tokens_kw_foto = _tokenize(kw_l)
+            add = 0
             # Match exacto de palabra (todos los tokens del keyword están en el contexto)
             if tokens_kw_foto and tokens_kw_foto.issubset(tokens_ctx):
-                score += 2 * len(tokens_kw_foto)
+                add += 2 * len(tokens_kw_foto)
             # Match de substrings en imagen_keywords
             elif kw_l in kw_img:
-                score += 1
+                add += 1
             # Match en título (más peso)
             if tokens_kw_foto and tokens_kw_foto.issubset(tokens_titulo):
-                score += 2
-        if score > mejor_score and score >= _score_minimo:
-            mejor_score = score
-            mejor = foto
+                add += 2
+            if not add:
+                continue
+            score += add
+            # Solo cuenta como temático si el keyword tiene al menos un token
+            # que no sea geografía no-visual ni palabra débil (números,
+            # preposiciones, descriptores de toma).
+            if tokens_kw_foto - _NO_TEMATICOS:
+                score_topico += add
+        if score_topico >= _score_minimo:
+            candidatas.append({
+                "archivo":      archivo_rel,
+                "descripcion":  foto.get("descripcion", ""),
+                "keywords":     foto.get("keywords", []),
+                "score_topico": score_topico,
+                "score":        score,
+            })
 
-    if mejor and mejor_score > 0:
-        return f"fotos/{mejor['archivo']}", mejor_score
+    candidatas.sort(key=lambda c: (-c["score_topico"], -c["score"], c["archivo"]))
+    # Dedupe .jpg/.webp del mismo archivo (misma toma dos veces gasta lugares):
+    # gana la primera aparición; a igual score el sort pone .jpg antes, pero
+    # preferimos .webp si existe entre las candidatas.
+    por_stem = {}
+    for c in candidatas:
+        stem = re.sub(r'\.(jpg|jpeg|webp|png)$', '', c["archivo"], flags=re.IGNORECASE)
+        previa = por_stem.get(stem)
+        if previa is None:
+            por_stem[stem] = c
+        elif c["archivo"].lower().endswith(".webp") and (c["score_topico"], c["score"]) == (previa["score_topico"], previa["score"]):
+            por_stem[stem] = c
+    unicas = sorted(por_stem.values(), key=lambda c: (-c["score_topico"], -c["score"], c["archivo"]))
+    return unicas[:n]
+
+
+def buscar_foto_propia(nota, fotos):
+    """Compatibilidad: mejor candidata como (ruta, score) — score 0 = sin match."""
+    cands = candidatas_foto_propia(nota, fotos)
+    if cands:
+        return f"fotos/{cands[0]['archivo']}", cands[0]["score_topico"]
     return None, 0
+
+
+def elegir_foto_propia_claude(nota, candidatas):
+    """Árbitro final: Claude decide si alguna candidata realmente ilustra la nota.
+
+    El scoring por keywords no distingue "invierno" (palabra genérica de estación)
+    de "guanaco" (tema real). Antes de fijar una foto propia, se le muestra a
+    Claude el título/bajada de la nota y las candidatas: elige UNA o NINGUNA.
+
+    Retorna (ruta|None, motivo). Si la API falla, cae a la mejor candidata solo
+    si su match temático es fuerte (score_topico ≥ 6); si no, None → Unsplash."""
+    lista = "\n".join(
+        f"- {c['archivo']} — {c['descripcion']}" for c in candidatas
+    )
+    prompt = f"""Sos el editor fotográfico de un diario patagónico. Elegí la foto de archivo que ilustra correctamente esta nota.
+
+NOTA:
+Título: {nota.get('titulo', '')}
+Bajada: {nota.get('bajada', '')}
+Tema visual buscado: {nota.get('imagen_keywords', '')}
+
+FOTOS DISPONIBLES (nombre de archivo — descripción; ordenadas por afinidad de keywords, la primera suele ser la más cercana):
+{lista}
+
+Reglas:
+- La foto tiene que ilustrar el TEMA de la nota, no solo coincidir en provincia o lugar. Una postal turística NO ilustra un apagón, un mapa de eclipse NO ilustra una ley de carne.
+- Si la nota es sobre una ciudad/lugar en sí (turismo, obras, aniversario), una foto de esa ciudad sí sirve.
+- Si ninguna foto corresponde de verdad al tema, respondé NINGUNA. Es mejor no elegir nada que elegir una foto fuera de contexto.
+
+Respondé SOLO con el nombre de archivo exacto (tal como figura arriba) o NINGUNA."""
+    try:
+        client = anthropic.Anthropic(api_key=API_KEY)
+        resp = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=100,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        eleccion = resp.content[0].text.strip().strip('"').strip("`")
+        if eleccion.upper().startswith("NINGUNA"):
+            return None, "arbitro: ninguna corresponde"
+        for c in candidatas:
+            if c["archivo"] == eleccion or eleccion.endswith(c["archivo"]):
+                return f"fotos/{c['archivo']}", f"arbitro eligió (topico {c['score_topico']})"
+        # Respuesta no reconocida → mismo criterio conservador que un error de API
+        print(f" [arbitro respuesta no reconocida: {eleccion[:60]!r}]", end="")
+    except Exception as e:
+        print(f" [arbitro falló: {e}]", end="")
+    top = candidatas[0]
+    if top["score_topico"] >= 6:
+        return f"fotos/{top['archivo']}", f"sin arbitro, match fuerte (topico {top['score_topico']})"
+    return None, "sin arbitro y match débil"
 
 
 def _unsplash_query(keywords):
@@ -1617,13 +1741,14 @@ def resolver_imagen(nota, fotos_propias, fotos_usadas):
     elif nota.get("skip_og_image"):
         print(f"    [{nota_id}] og:image omitida (fuente política) → Unsplash directo")
 
-    foto_propia, foto_score = buscar_foto_propia(nota, fotos_propias)
-    if foto_propia:
-        # Si hay match real (score > 0), usar la foto aunque ya fue usada por otra nota.
-        # Solo respetar fotos_usadas cuando no hay match (fallback aleatorio).
-        fotos_usadas.add(foto_propia)
-        print(f"    [{nota_id}] foto propia: {foto_propia} (score {foto_score}) ✓")
-        return foto_propia
+    candidatas = candidatas_foto_propia(nota, fotos_propias, usadas=fotos_usadas)
+    if candidatas:
+        foto_propia, motivo = elegir_foto_propia_claude(nota, candidatas)
+        if foto_propia:
+            fotos_usadas.add(foto_propia)
+            print(f"    [{nota_id}] foto propia: {foto_propia} ({motivo}) ✓")
+            return foto_propia
+        print(f"    [{nota_id}] pool propio descartado ({motivo}) → Unsplash")
 
     keywords = nota.get("imagen_keywords") or "patagonia landscape"
     print(f"    [{nota_id}] Unsplash: '{keywords}' ...", end=" ", flush=True)
