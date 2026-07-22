@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260720-club-andino-de-punta-arenas-recauda-fondos-para-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Club Andino de Punta Arenas recauda fondos para esquiadores con feria solidaria",
-    "bajada": "Familias del equipo de esquí organizan este fin de semana una feria de ropa de nieve y venta de alimentos para financiar los viajes y competencias de los deportistas magallánicos.",
-    "imagen": "fotos/foto-20260720-club-andino-de-punta-arenas-recauda-fondos-para-dep.webp",
-    "meta": "Hoy · El Pingüino"
+    "id": "20260722-kyarha-carpo-14-medallas-en-aguas-bajo-cero-sin-dep",
+    "tag": "🏊 Deportes",
+    "titulo": "Kyarha Carpo: 14 medallas en aguas bajo cero sin neopreno",
+    "bajada": "La nadadora magallánica regresó de una gira por Polonia, Lituania y Suecia con 14 medallas internacionales en natación en aguas heladas, compitiendo sin traje de neopreno en temperaturas bajo cero.",
+    "imagen": "fotos/foto-20260722-kyarha-carpo-14-medallas-en-aguas-bajo-cero-sin-dep.webp",
+    "meta": "Hoy · El Pingüino (Magallanes)"
   },
   "secundarias": [
+    {
+      "id": "20260720-club-andino-de-punta-arenas-recauda-fondos-para-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Club Andino de Punta Arenas recauda fondos para esquiadores con feria solidaria",
+      "bajada": "Familias del equipo de esquí organizan este fin de semana una feria de ropa de nieve y venta de alimentos para financiar los viajes y competencias de los deportistas magallánicos.",
+      "imagen": "fotos/foto-20260720-club-andino-de-punta-arenas-recauda-fondos-para-dep.webp",
+      "meta": "Hoy · El Pingüino"
+    },
     {
       "id": "20260712-alfredo-slipek-adios-al-guia-de-montana-que-formo-dep",
       "tag": "🏔 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El Club Andino Bariloche despidió a su socio honorario, creador del Grupo de Excursionistas de Adultos (GEDA) y referente del andinismo regional durante décadas.",
       "imagen": "fotos/foto-20260712-alfredo-slipek-adios-al-guia-de-montana-que-formo-dep.webp",
       "meta": "Hoy · Club Andino Bariloche (Bariloche)"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260711-bariloche-al-mundo-magdalena-kast-entra-al-consejo-de-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La socia del Club Andino Bariloche fue electa para integrar el máximo órgano de gobierno de la Federación Internacional de Ski y Snowboard, un hito histórico para el deporte de nieve patagónico.",
       "imagen": "fotos/foto-20260711-bariloche-al-mundo-magdalena-kast-entra-al-consejo-de-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260710-escalada-para-chicos-en-punta-arenas-el-cierre-que-dep",
       "tag": "🏃 Deportes",
@@ -49,14 +57,6 @@
       "titulo": "El Calafate recibe la Copa Mundial de Natación en Aguas Frías 2026",
       "bajada": "La Winter Swimming World Cup 2026 se desarrollará en El Calafate del 2 al 8 de agosto, con una pileta flotante ya instalada y competidores internacionales confirmados.",
       "imagen": "fotos/CIUDADES/Calafate.webp",
-      "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20260707-dana-garcia-deja-santa-cruz-con-beca-completa-la-dep",
-      "tag": "🏊 Deportes",
-      "titulo": "Dana García deja Santa Cruz con beca completa: la natación austral llega a Puerto Rico",
-      "bajada": "La nadadora santacruceña de 18 años parte a fines de julio hacia Puerto Rico con una beca universitaria completa, en un nuevo hito de la natación patagónica proyectada al mundo.",
-      "imagen": "fotos/foto-20260707-dana-garcia-deja-santa-cruz-con-beca-completa-la-dep.webp",
       "meta": "Hoy · Tiempo Sur"
     }
   ]
