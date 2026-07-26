@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260725-cerro-catedral-y-senaf-la-montana-como-espacio-de-dep",
+    "id": "20260726-esqui-de-travesia-en-bariloche-el-club-andino-abre-la-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Cerro Catedral y SENAF: la montaña como espacio de inclusión real",
-    "bajada": "Ocho adolescentes del dispositivo CAINA vivieron una jornada de esquí inclusivo en Catedral, una experiencia diseñada para que la montaña no sea privilegio de pocos.",
-    "imagen": "fotos/foto-20260725-cerro-catedral-y-senaf-la-montana-como-espacio-de-dep.webp",
-    "meta": "Hoy · Catedral Alta Patagonia"
+    "titulo": "Esquí de travesía en Bariloche: el Club Andino abre la montaña a principiantes",
+    "bajada": "Tras el éxito de la primera salida, la Subcomisión de Montañismo del Club Andino Bariloche lanza una segunda jornada de ski de travesía para socios que quieren iniciarse en esta disciplina de montaña.",
+    "imagen": "fotos/foto-20260726-esqui-de-travesia-en-bariloche-el-club-andino-abre-la-dep.webp",
+    "meta": "Hoy · Club Andino Bariloche"
   },
   "secundarias": [
+    {
+      "id": "20260725-cerro-catedral-y-senaf-la-montana-como-espacio-de-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Cerro Catedral y SENAF: la montaña como espacio de inclusión real",
+      "bajada": "Ocho adolescentes del dispositivo CAINA vivieron una jornada de esquí inclusivo en Catedral, una experiencia diseñada para que la montaña no sea privilegio de pocos.",
+      "imagen": "fotos/foto-20260725-cerro-catedral-y-senaf-la-montana-como-espacio-de-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia"
+    },
     {
       "id": "20260722-kyarha-carpo-14-medallas-en-aguas-bajo-cero-sin-dep",
       "tag": "🏊 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La nadadora magallánica regresó de una gira por Polonia, Lituania y Suecia con 14 medallas internacionales en natación en aguas heladas, compitiendo sin traje de neopreno en temperaturas bajo cero.",
       "imagen": "fotos/foto-20260722-kyarha-carpo-14-medallas-en-aguas-bajo-cero-sin-dep.webp",
       "meta": "Hoy · El Pingüino (Magallanes)"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260720-club-andino-de-punta-arenas-recauda-fondos-para-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Familias del equipo de esquí organizan este fin de semana una feria de ropa de nieve y venta de alimentos para financiar los viajes y competencias de los deportistas magallánicos.",
       "imagen": "fotos/foto-20260720-club-andino-de-punta-arenas-recauda-fondos-para-dep.webp",
       "meta": "Hoy · El Pingüino"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260712-alfredo-slipek-adios-al-guia-de-montana-que-formo-dep",
       "tag": "🏔 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El taller municipal de escalada de Punta Arenas cerró su ciclo con una jornada masiva en el centro Japo Boulder, convocando a niños y adolescentes de toda la ciudad en torno a un deporte que crece en la Patagonia austral.",
       "imagen": "fotos/foto-20260710-escalada-para-chicos-en-punta-arenas-el-cierre-que-dep.webp",
       "meta": "Hoy · El Pingüino"
-    },
-    {
-      "id": "20260709-i-yenu-jono-veinte-anos-de-kayak-y-comunidad-en-rio-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "I Yenu Jono: veinte años de kayak y comunidad en Río Gallegos",
-      "bajada": "La escuela de kayak I Yenu Jono de Río Gallegos cumple más de dos décadas formando palistas en las aguas australes del río Santa Cruz, con un nombre tomado de la lengua Aónikenk.",
-      "imagen": "fotos/foto-20260709-i-yenu-jono-veinte-anos-de-kayak-y-comunidad-en-rio-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
     }
   ]
 }
