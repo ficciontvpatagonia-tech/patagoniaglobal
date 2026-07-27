@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260726-esqui-de-travesia-en-bariloche-el-club-andino-abre-la-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Esquí de travesía en Bariloche: el Club Andino abre la montaña a principiantes",
-    "bajada": "Tras el éxito de la primera salida, la Subcomisión de Montañismo del Club Andino Bariloche lanza una segunda jornada de ski de travesía para socios que quieren iniciarse en esta disciplina de montaña.",
-    "imagen": "fotos/foto-20260726-esqui-de-travesia-en-bariloche-el-club-andino-abre-la-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche"
+    "id": "20260727-51-gran-premio-de-tierra-del-fuego-los-binomios-afinan-dep",
+    "tag": "🏁 Deportes",
+    "titulo": "51° Gran Premio de Tierra del Fuego: los binomios afinan motores en el fin del mundo",
+    "bajada": "A menos de veinte días de la largada, pilotos y navegantes ultiman preparativos para la edición 51 del Gran Premio de Tierra del Fuego, una carrera de automovilismo de montaña que se organiza en conjunto entre Argentina y Chile en el corazón del canal Beagle.",
+    "imagen": "fotos/foto-20260727-51-gran-premio-de-tierra-del-fuego-los-binomios-afinan-dep.webp",
+    "meta": "Hoy · La Prensa Austral"
   },
   "secundarias": [
+    {
+      "id": "20260726-esqui-de-travesia-en-bariloche-el-club-andino-abre-la-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Esquí de travesía en Bariloche: el Club Andino abre la montaña a principiantes",
+      "bajada": "Tras el éxito de la primera salida, la Subcomisión de Montañismo del Club Andino Bariloche lanza una segunda jornada de ski de travesía para socios que quieren iniciarse en esta disciplina de montaña.",
+      "imagen": "fotos/foto-20260726-esqui-de-travesia-en-bariloche-el-club-andino-abre-la-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20260725-cerro-catedral-y-senaf-la-montana-como-espacio-de-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Ocho adolescentes del dispositivo CAINA vivieron una jornada de esquí inclusivo en Catedral, una experiencia diseñada para que la montaña no sea privilegio de pocos.",
       "imagen": "fotos/foto-20260725-cerro-catedral-y-senaf-la-montana-como-espacio-de-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260722-kyarha-carpo-14-medallas-en-aguas-bajo-cero-sin-dep",
       "tag": "🏊 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La nadadora magallánica regresó de una gira por Polonia, Lituania y Suecia con 14 medallas internacionales en natación en aguas heladas, compitiendo sin traje de neopreno en temperaturas bajo cero.",
       "imagen": "fotos/foto-20260722-kyarha-carpo-14-medallas-en-aguas-bajo-cero-sin-dep.webp",
       "meta": "Hoy · El Pingüino (Magallanes)"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260720-club-andino-de-punta-arenas-recauda-fondos-para-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La socia del Club Andino Bariloche fue electa para integrar el máximo órgano de gobierno de la Federación Internacional de Ski y Snowboard, un hito histórico para el deporte de nieve patagónico.",
       "imagen": "fotos/foto-20260711-bariloche-al-mundo-magdalena-kast-entra-al-consejo-de-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260710-escalada-para-chicos-en-punta-arenas-el-cierre-que-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Escalada para chicos en Punta Arenas: el cierre que llenó el boulder",
-      "bajada": "El taller municipal de escalada de Punta Arenas cerró su ciclo con una jornada masiva en el centro Japo Boulder, convocando a niños y adolescentes de toda la ciudad en torno a un deporte que crece en la Patagonia austral.",
-      "imagen": "fotos/foto-20260710-escalada-para-chicos-en-punta-arenas-el-cierre-que-dep.webp",
-      "meta": "Hoy · El Pingüino"
     }
   ]
 }
