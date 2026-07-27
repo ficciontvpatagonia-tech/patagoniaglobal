@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-07-26T19:31-03:00",
+ "actualizado": "2026-07-26T21:00-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -115,7 +115,7 @@
     },
     {
      "hora": "18:45",
-     "real": "20:50",
+     "real": "21:20",
      "nro": "AR 1648",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
@@ -124,12 +124,12 @@
     },
     {
      "hora": "19:14",
-     "real": "",
+     "real": "20:04",
      "nro": "LA 416",
      "aerolinea": "LATAM",
      "ciudad": "Santiago de Chile",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "20:10",
@@ -234,12 +234,12 @@
     },
     {
      "hora": "15:00",
-     "real": "20:00",
+     "real": "20:34",
      "nro": "AR 1643",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "15:30",
@@ -310,8 +310,8 @@
      "nro": "LA 417",
      "aerolinea": "LATAM",
      "ciudad": "Santiago de Chile",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "20:55",
@@ -319,8 +319,8 @@
      "nro": "WJ 3170",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Consulte Cía.",
+     "color": "#FB671E"
     },
     {
      "hora": "21:10",
@@ -504,7 +504,7 @@
      "nro": "AR 1682",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Desviado",
+     "estado": "Cancelado",
      "color": "#FB671E"
     },
     {
@@ -536,12 +536,12 @@
     },
     {
      "hora": "15:50",
-     "real": "",
+     "real": "19:49",
      "nro": "G3 9470",
      "aerolinea": "GOL",
      "ciudad": "San Pablo-Guarulhos",
-     "estado": "Desviado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "16:10",
@@ -558,7 +558,7 @@
      "nro": "AR 1259",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "San Pablo-Guarulhos",
-     "estado": "Demorado",
+     "estado": "Cancelado",
      "color": "#FB671E"
     },
     {
@@ -567,12 +567,12 @@
      "nro": "JJ 8162",
      "aerolinea": "Latam Brasil",
      "ciudad": "San Pablo-Guarulhos",
-     "estado": "Desviado",
+     "estado": "Cancelado",
      "color": "#FB671E"
     },
     {
      "hora": "17:50",
-     "real": "19:25",
+     "real": "",
      "nro": "AR 1672",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
@@ -581,20 +581,11 @@
     },
     {
      "hora": "18:30",
-     "real": "",
+     "real": "21:20",
      "nro": "O4 400",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Consulte Cía.",
-     "color": "#FB671E"
-    },
-    {
-     "hora": "18:35",
-     "real": "",
-     "nro": "H2 1901",
-     "aerolinea": "SKY",
-     "ciudad": "Santiago de Chile",
-     "estado": "Consulte Cía.",
+     "estado": "Demorado",
      "color": "#FB671E"
     },
     {
@@ -617,12 +608,12 @@
     },
     {
      "hora": "19:50",
-     "real": "",
+     "real": "23:30",
      "nro": "O4 677",
      "aerolinea": "Andes",
      "ciudad": "Rosario",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "19:50",
@@ -657,7 +648,7 @@
      "nro": "AR 1690",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
+     "estado": "Cancelado",
      "color": "#FB671E"
     },
     {
@@ -684,7 +675,7 @@
      "nro": "AR 1692",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
+     "estado": "Cancelado",
      "color": "#FB671E"
     },
     {
@@ -821,7 +812,7 @@
      "nro": "AR 1555",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Córdoba",
-     "estado": "Demorado",
+     "estado": "Cancelado",
      "color": "#FB671E"
     },
     {
@@ -830,8 +821,8 @@
      "nro": "O4 671",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Consulte Cía.",
-     "color": "#FB671E"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "13:30",
@@ -844,11 +835,11 @@
     },
     {
      "hora": "14:20",
-     "real": "",
+     "real": "19:50",
      "nro": "O4 675",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Consulte Cía.",
+     "estado": "Demorado",
      "color": "#FB671E"
     },
     {
@@ -857,7 +848,7 @@
      "nro": "AR 1258",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "San Pablo-Guarulhos",
-     "estado": "Consulte Cía.",
+     "estado": "Cancelado",
      "color": "#FB671E"
     },
     {
@@ -866,7 +857,7 @@
      "nro": "AR 1683",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
+     "estado": "Cancelado",
      "color": "#FB671E"
     },
     {
@@ -929,7 +920,7 @@
      "nro": "JJ 8163",
      "aerolinea": "Latam Brasil",
      "ciudad": "San Pablo-Guarulhos",
-     "estado": "Consulte Cía.",
+     "estado": "Cancelado",
      "color": "#FB671E"
     },
     {
@@ -939,15 +930,6 @@
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
      "estado": "Cancelado",
-     "color": "#FB671E"
-    },
-    {
-     "hora": "19:30",
-     "real": "",
-     "nro": "H2 1902",
-     "aerolinea": "SKY",
-     "ciudad": "Santiago de Chile",
-     "estado": "Consulte Cía.",
      "color": "#FB671E"
     },
     {
@@ -961,7 +943,7 @@
     },
     {
      "hora": "19:40",
-     "real": "",
+     "real": "22:10",
      "nro": "O4 673",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
@@ -1019,7 +1001,7 @@
      "nro": "AR 1691",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
+     "estado": "Cancelado",
      "color": "#FB671E"
     },
     {
@@ -1037,7 +1019,7 @@
      "nro": "AR 1693",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
+     "estado": "Cancelado",
      "color": "#FB671E"
     },
     {
@@ -1302,21 +1284,21 @@
     },
     {
      "hora": "20:05",
-     "real": "20:35",
+     "real": "20:27",
      "nro": "AR 1878",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Demorado",
-     "color": "#c0392b"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "20:43",
-     "real": "",
+     "real": "20:41",
      "nro": "WJ* 3203",
      "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "21:35",
@@ -1362,8 +1344,8 @@
      "nro": "AR 1202",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Embarcando",
+     "color": "#e07a1f"
     },
     {
      "hora": "21:28",
@@ -1371,7 +1353,7 @@
      "nro": "WJ* 3204",
      "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
@@ -1417,12 +1399,12 @@
     },
     {
      "hora": "19:35",
-     "real": "",
+     "real": "19:42",
      "nro": "AR 1850",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -1455,12 +1437,12 @@
     },
     {
      "hora": "20:25",
-     "real": "",
+     "real": "21:00",
      "nro": "AR 1851",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Despegado",
+     "color": "#008000"
     }
    ]
   },
