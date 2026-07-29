@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260728-cerro-catedral-17500-barilochenses-tienen-su-montana-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Cerro Catedral: 17.500 barilochenses tienen su montaña cada invierno",
-    "bajada": "Más de 17.500 residentes de Bariloche acceden cada temporada a beneficios especiales en Catedral Alta Patagonia, consolidando al cerro como un espacio comunitario además de destino turístico.",
-    "imagen": "fotos/foto-20260728-cerro-catedral-17500-barilochenses-tienen-su-montana-dep.webp",
-    "meta": "Hoy · Catedral Alta Patagonia"
+    "id": "20260729-del-nahuel-huapi-al-mundial-una-nadadora-desafia-el-dep",
+    "tag": "🏊 Deportes",
+    "titulo": "Del Nahuel Huapi al Mundial: una nadadora desafía el invierno patagónico",
+    "bajada": "Una deportista de Bariloche entrena en las aguas heladas del lago en plena nevada y se prepara para representar a la región en un campeonato mundial de natación en aguas abiertas.",
+    "imagen": "fotos/foto-20260729-del-nahuel-huapi-al-mundial-una-nadadora-desafia-el-dep.webp",
+    "meta": "Hoy · Diario Río Negro"
   },
   "secundarias": [
+    {
+      "id": "20260728-cerro-catedral-17500-barilochenses-tienen-su-montana-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Cerro Catedral: 17.500 barilochenses tienen su montaña cada invierno",
+      "bajada": "Más de 17.500 residentes de Bariloche acceden cada temporada a beneficios especiales en Catedral Alta Patagonia, consolidando al cerro como un espacio comunitario además de destino turístico.",
+      "imagen": "fotos/foto-20260728-cerro-catedral-17500-barilochenses-tienen-su-montana-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia"
+    },
     {
       "id": "20260727-51-gran-premio-de-tierra-del-fuego-los-binomios-afinan-dep",
       "tag": "🏁 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "A menos de veinte días de la largada, pilotos y navegantes ultiman preparativos para la edición 51 del Gran Premio de Tierra del Fuego, una carrera de automovilismo de montaña que se organiza en conjunto entre Argentina y Chile en el corazón del canal Beagle.",
       "imagen": "fotos/foto-20260727-51-gran-premio-de-tierra-del-fuego-los-binomios-afinan-dep.webp",
       "meta": "Hoy · La Prensa Austral"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260726-esqui-de-travesia-en-bariloche-el-club-andino-abre-la-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Tras el éxito de la primera salida, la Subcomisión de Montañismo del Club Andino Bariloche lanza una segunda jornada de ski de travesía para socios que quieren iniciarse en esta disciplina de montaña.",
       "imagen": "fotos/foto-20260726-esqui-de-travesia-en-bariloche-el-club-andino-abre-la-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260725-cerro-catedral-y-senaf-la-montana-como-espacio-de-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Familias del equipo de esquí organizan este fin de semana una feria de ropa de nieve y venta de alimentos para financiar los viajes y competencias de los deportistas magallánicos.",
       "imagen": "fotos/foto-20260720-club-andino-de-punta-arenas-recauda-fondos-para-dep.webp",
       "meta": "Hoy · El Pingüino"
-    },
-    {
-      "id": "20260712-alfredo-slipek-adios-al-guia-de-montana-que-formo-dep",
-      "tag": "🏔 Deportes",
-      "titulo": "Alfredo Slipek: adiós al guía de montaña que formó generaciones en Bariloche",
-      "bajada": "El Club Andino Bariloche despidió a su socio honorario, creador del Grupo de Excursionistas de Adultos (GEDA) y referente del andinismo regional durante décadas.",
-      "imagen": "fotos/foto-20260712-alfredo-slipek-adios-al-guia-de-montana-que-formo-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche (Bariloche)"
     }
   ]
 }
