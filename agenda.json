@@ -1,55 +1,29 @@
 [
   {
-    "id": "aniversario-porvenir-2026",
-    "titulo": "Aniversario de Porvenir – Celebraciones oficiales",
-    "fecha": "2026-07-01",
-    "fecha_fin": "2026-07-19",
-    "fecha_display": "Hasta el 19 de julio",
-    "lugar": "Porvenir",
-    "region": "Región de Magallanes y la Antártica Chilena, Chile",
-    "pais": "CL",
+    "id": "feria-internacional-libro-comodoro-2026",
+    "titulo": "XIII Feria Internacional del Libro de Comodoro Rivadavia",
+    "fecha": "2026-07-30",
+    "fecha_fin": "2026-08-09",
+    "fecha_display": "30 de julio al 9 de agosto",
+    "lugar": "Comodoro Rivadavia",
+    "region": "Chubut, Argentina",
+    "pais": "AR",
     "categoria": "cultura",
-    "emoji": "🎉",
-    "descripcion": "La Municipalidad de Porvenir organiza un calendario extendido de celebraciones por el aniversario de la capital fueguina, que incluye la Noche Selknam, el tradicional Chapuzón y la actuación del artista Max Carra."
+    "emoji": "📚",
+    "descripcion": "El casco céntrico de Comodoro Rivadavia se transforma en un gran polo cultural bajo el lema \"Más libros, más libres – 50 años Memoria, Verdad y Justicia\". La decimotercera edición de esta feria internacional reúne propuestas literarias y culturales durante más de diez días."
   },
   {
-    "id": "feria-invernadas-magallanes-2026",
-    "titulo": "Feria Invernadas",
-    "fecha": "2026-07-15",
-    "fecha_fin": "2026-07-19",
-    "fecha_display": "Hasta el domingo 19 de julio",
-    "lugar": "Mall Espacio Urbano Pionero, Punta Arenas",
-    "region": "Magallanes, Chile",
-    "pais": "CL",
-    "categoria": "cultura",
-    "emoji": "🧶",
-    "descripcion": "Muestra de manufactura regional que destaca el talento emprendedor magallánico, con productos inspirados en el patrimonio local. Disponible en Mall Espacio Urbano Pionero hasta el domingo."
-  },
-  {
-    "id": "ski-travesia-principiantes-bariloche-2026",
-    "titulo": "Primera Salida de Ski de Travesía para Principiantes – Temporada 2026",
-    "fecha": "2026-07-15",
+    "id": "fiesta-nacional-nieve-bariloche-2026",
+    "titulo": "Fiesta Nacional de la Nieve",
+    "fecha": "2026-08-05",
     "fecha_fin": null,
-    "fecha_display": "Temporada 2026 (fecha a confirmar)",
+    "fecha_display": "Agosto 2026",
     "lugar": "Bariloche",
     "region": "Río Negro, Argentina",
     "pais": "AR",
-    "categoria": "deportes",
-    "emoji": "⛷️",
-    "descripcion": "El Club Andino Bariloche organiza la primera salida de ski de travesía para principiantes de la temporada 2026, pensada especialmente para socios que quieran iniciarse en esta disciplina de montaña."
-  },
-  {
-    "id": "festival-folklorico-magallanes-2026",
-    "titulo": "XLIII Festival Folclórico en la Patagonia",
-    "fecha": "2026-08-01",
-    "fecha_fin": "2026-08-03",
-    "fecha_display": "1, 2 y 3 de agosto",
-    "lugar": "Confederación Deportiva de Magallanes, Punta Arenas",
-    "region": "Magallanes, Chile",
-    "pais": "CL",
     "categoria": "cultura",
-    "emoji": "🪗",
-    "descripcion": "43ª edición del festival de folclore patagónico en Punta Arenas. Grupos de Chile y Argentina celebran la música y danza tradicional de ambos lados de la cordillera."
+    "emoji": "❄️",
+    "descripcion": "La Fiesta Nacional de la Nieve reúne artistas y actividades tradicionales en Bariloche con programación día por día. Un evento icónico del invierno patagónico con shows en vivo y celebraciones populares."
   },
   {
     "id": "habitar-patagonias-2026",
@@ -65,6 +39,71 @@
     "descripcion": "Exposición que explora las distintas formas de habitar y representar la Patagonia desde el arte contemporáneo. Una mirada plural sobre el territorio patagónico desde la periferia cultural."
   },
   {
+    "id": "cena-95-aniversario-club-andino-bariloche-2026",
+    "titulo": "Cena 95° Aniversario Club Andino Bariloche",
+    "fecha": "2026-08-14",
+    "fecha_fin": null,
+    "fecha_display": "14 de agosto",
+    "lugar": "Refugio 1931, Base del Cerro Catedral, Bariloche",
+    "region": "Río Negro, Argentina",
+    "pais": "AR",
+    "categoria": "cultura",
+    "emoji": "🏔️",
+    "descripcion": "El Club Andino Bariloche celebra su 95° aniversario con una cena conmemorativa para socios, familiares y amigos. El evento se realizará a las 20:00 horas en el Refugio «1931» en la base del Cerro Catedral."
+  },
+  {
+    "id": "cena-95-aniversario-cab-bariloche-2026",
+    "titulo": "Cena 95° Aniversario Club Andino Bariloche",
+    "fecha": "2026-08-14",
+    "fecha_fin": null,
+    "fecha_display": "14 de agosto",
+    "lugar": "Refugio 1931, Base del Cerro Catedral, Bariloche",
+    "region": "Río Negro, Argentina",
+    "pais": "AR",
+    "categoria": "cultura",
+    "emoji": "🏔️",
+    "descripcion": "El Club Andino Bariloche celebra su 95° aniversario con una cena conmemorativa para socios, familiares y amigos. El evento se realizará a las 20:00 horas en el histórico Refugio 1931."
+  },
+  {
+    "id": "banff-mountain-film-festival-bariloche-2026",
+    "titulo": "Banff Mountain Film Festival - Bariloche",
+    "fecha": "2026-08-20",
+    "fecha_fin": "2026-08-22",
+    "fecha_display": "20 al 22 de agosto",
+    "lugar": "San Carlos de Bariloche",
+    "region": "Río Negro, Argentina",
+    "pais": "AR",
+    "categoria": "cultura",
+    "emoji": "🎬",
+    "descripcion": "El festival de cine de montaña y aventura más importante del mundo regresa a Bariloche en su 26ª gira por Argentina. Las funciones serán a partir de las 20 horas durante tres noches consecutivas."
+  },
+  {
+    "id": "feria-antartica-escolar-punta-arenas-2026",
+    "titulo": "Feria Antártica Escolar 2026",
+    "fecha": "2026-08-24",
+    "fecha_fin": "2026-08-28",
+    "fecha_display": "Última semana de agosto",
+    "lugar": "Punta Arenas",
+    "region": "Magallanes y la Antártica Chilena, Chile",
+    "pais": "CL",
+    "categoria": "desarrollo",
+    "emoji": "🧊",
+    "descripcion": "La FAE 2026 reunirá quince proyectos de investigación escolar sobre temática antártica provenientes de distintas regiones de Chile. El evento se realizará en Punta Arenas durante la última semana de agosto."
+  },
+  {
+    "id": "feria-antartica-escolar-2026-punta-arenas",
+    "titulo": "Feria Antártica Escolar 2026",
+    "fecha": "2026-08-24",
+    "fecha_fin": "2026-08-28",
+    "fecha_display": "Última semana de agosto",
+    "lugar": "Punta Arenas",
+    "region": "Magallanes y la Antártica Chilena, Chile",
+    "pais": "CL",
+    "categoria": "cultura",
+    "emoji": "🧊",
+    "descripcion": "La Feria Antártica Escolar 2026 reunirá quince proyectos de investigación desarrollados por estudiantes de distintas regiones de Chile. El evento organizado por el INACH se llevará a cabo en Punta Arenas durante la última semana de agosto."
+  },
+  {
     "id": "patagonian-marathon-2026",
     "titulo": "Patagonian International Marathon",
     "fecha": "2026-09-05",
@@ -78,6 +117,19 @@
     "descripcion": "Maratón internacional en el corazón del Parque Nacional Torres del Paine. Una de las carreras más icónicas del mundo, con el macizo Torres como telón de fondo."
   },
   {
+    "id": "festival-boxeo-el-chalten-2026",
+    "titulo": "Festival Provincial e Interprovincial de Boxeo",
+    "fecha": "2026-09-12",
+    "fecha_fin": null,
+    "fecha_display": "12 de septiembre",
+    "lugar": "El Chaltén",
+    "region": "Santa Cruz, Argentina",
+    "pais": "AR",
+    "categoria": "deportes",
+    "emoji": "🥊",
+    "descripcion": "Festival de boxeo con 18 combates confirmados que reunirá competidores provinciales e interprovinciales en El Chaltén. El evento cuenta con el aval y acompañamiento de la Federación Argentina de Box (FAB)."
+  },
+  {
     "id": "cumbre-agentes-sanitarios-trelew-2026",
     "titulo": "Cumbre Nacional de Agentes Sanitarios",
     "fecha": "2026-10-08",
@@ -89,5 +141,18 @@
     "categoria": "desarrollo",
     "emoji": "🏥",
     "descripcion": "Encuentro nacional de agentes sanitarios que se realizará en Trelew durante tres jornadas, con inscripciones ya abiertas y expectativa de asistencia masiva."
+  },
+  {
+    "id": "guanaco-trail-running-timaukel-2027",
+    "titulo": "Guanaco Trail Running",
+    "fecha": "2027-02-01",
+    "fecha_fin": null,
+    "fecha_display": "Febrero 2027",
+    "lugar": "Pampa Guanaco y Lago Blanco, Timaukel, Tierra del Fuego",
+    "region": "Magallanes y Antártica Chilena, Chile",
+    "pais": "CL",
+    "categoria": "deportes",
+    "emoji": "🦙",
+    "descripcion": "Primera edición del Guanaco Trail Running en la comuna de Timaukel, con categorías de 3K, 14K y 30K que conectan los parajes de Pampa Guanaco y Lago Blanco. La competencia busca convocar a más de 300 atletas y posicionar a Tierra del Fuego como polo de turismo deportivo."
   }
 ]
