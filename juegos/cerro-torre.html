@@ -124,8 +124,14 @@
     gap:10px; text-align:center; padding:16px;
   }
   #overlay.hidden{display:none}
-  #overlay h2{ color:var(--azul-glacial); font-size:.9rem; letter-spacing:1px; margin:0 0 4px; }
+  #overlay h2{ color:var(--azul-glacial); font-size:1.05rem; letter-spacing:1px; margin:0 0 4px; }
   #overlay p{ font-size:.62rem; line-height:1.7; margin:2px 0; color:var(--fondo); }
+  #overlay .end-alt-num{
+    font-size:2.4rem; font-weight:700; color:var(--azul-glacial); line-height:1;
+    margin:6px 0 0; text-shadow:2px 2px 0 #000,-1px -1px 0 #000;
+  }
+  #overlay .end-alt-label{ font-size:.68rem; margin:2px 0 10px; }
+  #overlay .end-record{ font-size:.75rem; }
   #overlay .btn{
     margin-top:8px; padding:8px 18px; background:var(--arcilla); color:#fff;
     border:2px solid #fff; font-family:inherit; font-size:.7rem; letter-spacing:1px;
@@ -380,7 +386,9 @@
     ov.classList.remove('win-cover');
     ov.innerHTML = `
       <h2>${reason}</h2>
-      <p>Altura alcanzada: <strong>${m} m</strong> de 3.128 m<br>Récord: <strong>${bestAlt} m</strong></p>
+      <div class="end-alt-num">${m} m</div>
+      <p class="end-alt-label">de 3.128 m</p>
+      <p class="end-record">Récord: <strong>${bestAlt} m</strong></p>
       <button class="btn" id="btnStart">Reintentar (o ESPACIO)</button>`;
     ov.classList.remove('hidden');
     document.getElementById('btnStart').addEventListener('click', startGame, {once:true});
