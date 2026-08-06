@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260805-timaukel-lanza-el-primer-guanaco-trail-running-en-dep",
+    "id": "20260806-barria-hizo-cima-en-el-elbrus-a-30c-y-esquivo-una-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Timaukel lanza el primer Guanaco Trail Running en Tierra del Fuego chilena",
-    "bajada": "La municipalidad de Timaukel anunció la primera edición del Guanaco Trail Running para febrero de 2027, con recorridos de 3K, 14K y 30K entre Pampa Guanaco y Lago Blanco, apuntando a más de 300 atletas.",
-    "imagen": "fotos/foto-20260805-timaukel-lanza-el-primer-guanaco-trail-running-en-dep.webp",
-    "meta": "Hoy · El Pingüino"
+    "titulo": "Barría hizo cima en el Elbrús a -30°C y esquivó una tormenta mortal",
+    "bajada": "El escalador magallánico alcanzó los 5.642 metros del volcán más alto de Europa horas antes de que una tormenta en el Cáucaso dejara siete víctimas fatales.",
+    "imagen": "fotos/foto-20260806-barria-hizo-cima-en-el-elbrus-a-30c-y-esquivo-una-dep.webp",
+    "meta": "Hoy · El Pingüino (Magallanes)"
   },
   "secundarias": [
+    {
+      "id": "20260805-timaukel-lanza-el-primer-guanaco-trail-running-en-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Timaukel lanza el primer Guanaco Trail Running en Tierra del Fuego chilena",
+      "bajada": "La municipalidad de Timaukel anunció la primera edición del Guanaco Trail Running para febrero de 2027, con recorridos de 3K, 14K y 30K entre Pampa Guanaco y Lago Blanco, apuntando a más de 300 atletas.",
+      "imagen": "fotos/foto-20260805-timaukel-lanza-el-primer-guanaco-trail-running-en-dep.webp",
+      "meta": "Hoy · El Pingüino"
+    },
     {
       "id": "20260804-300-nadadores-de-aguas-frias-llegan-a-el-calafate-para-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La 4ª edición de la Swimming World Cup Argentina 2026 se disputará del 4 al 9 de agosto en la Villa Turística de El Calafate, con más de 300 participantes de 15 países.",
       "imagen": "fotos/foto-20260804-300-nadadores-de-aguas-frias-llegan-a-el-calafate-para-dep.webp",
       "meta": "Hoy · Tiempo Sur (Santa Cruz)"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260801-bariloche-forma-instructores-de-ski-y-snowboard-con-dep",
       "tag": "🏔️ Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El Club Andino Bariloche lanzó el Curso de Instructor de Clubes junto a FASA y AADIDESS, fortaleciendo la formación de profesionales de montaña en la Patagonia andina.",
       "imagen": "fotos/foto-20260801-bariloche-forma-instructores-de-ski-y-snowboard-con-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260731-bariloche-recibe-al-festival-de-cine-de-montana-mas-dep",
       "tag": "🏔️ Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Más de 17.500 residentes de Bariloche acceden cada temporada a beneficios especiales en Catedral Alta Patagonia, consolidando al cerro como un espacio comunitario además de destino turístico.",
       "imagen": "fotos/foto-20260728-cerro-catedral-17500-barilochenses-tienen-su-montana-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
-    {
-      "id": "20260727-51-gran-premio-de-tierra-del-fuego-los-binomios-afinan-dep",
-      "tag": "🏁 Deportes",
-      "titulo": "51° Gran Premio de Tierra del Fuego: los binomios afinan motores en el fin del mundo",
-      "bajada": "A menos de veinte días de la largada, pilotos y navegantes ultiman preparativos para la edición 51 del Gran Premio de Tierra del Fuego, una carrera de automovilismo de montaña que se organiza en conjunto entre Argentina y Chile en el corazón del canal Beagle.",
-      "imagen": "fotos/foto-20260727-51-gran-premio-de-tierra-del-fuego-los-binomios-afinan-dep.webp",
-      "meta": "Hoy · La Prensa Austral"
     }
   ]
 }
