@@ -1527,7 +1527,7 @@ def _unsplash_query(keywords):
     return None
 
 
-def buscar_imagen_unsplash(keywords):
+def buscar_imagen_unsplash(keywords, pais=""):
     if not UNSPLASH_ACCESS_KEY or UNSPLASH_ACCESS_KEY == "PEGAR_ACA_TU_UNSPLASH_KEY":
         return None
     resultado = _unsplash_query(keywords)
@@ -1537,7 +1537,14 @@ def buscar_imagen_unsplash(keywords):
     resultado = _unsplash_query(f"{primera} patagonia")
     if resultado:
         return resultado
-    return _unsplash_query("patagonia landscape argentina")
+    # Último recurso: paisaje genérico de patagonia, pero SIN sesgar el país
+    # (antes decía siempre "argentina" y una nota chilena sin resultados
+    # terminaba con foto de El Chaltén/Fitz Roy — caso Magallanes 07/08/2026)
+    generico = {
+        "chile": "patagonia chile landscape",
+        "argentina": "patagonia argentina landscape",
+    }.get(pais, "patagonia landscape")
+    return _unsplash_query(generico)
 
 
 def _recortar_banner(ruta_local, url_fuente=""):
@@ -1752,7 +1759,7 @@ def resolver_imagen(nota, fotos_propias, fotos_usadas):
 
     keywords = nota.get("imagen_keywords") or "patagonia landscape"
     print(f"    [{nota_id}] Unsplash: '{keywords}' ...", end=" ", flush=True)
-    url = buscar_imagen_unsplash(keywords)
+    url = buscar_imagen_unsplash(keywords, nota.get("pais", ""))
     if url:
         local = _descargar_imagen_externa(url, nota_id, "-unsplash")
         if local:
