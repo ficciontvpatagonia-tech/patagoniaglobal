@@ -1,0 +1,31 @@
+name: Auditoría Cinemateca Mensual
+
+on:
+  schedule:
+    - cron: '0 12 1 * *'   # día 1 de cada mes, 9:00 AM hora Argentina (UTC-3)
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  auditoria:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install anthropic
+
+      - name: Correr auditoría de cinemateca
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 _scripts/check_cinemateca.py
