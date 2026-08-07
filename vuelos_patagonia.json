@@ -1,31 +1,31 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-07T07:02-03:00",
+ "actualizado": "2026-08-07T08:22-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
    "arribos": [
     {
      "hora": "08:10",
-     "real": "08:19",
+     "real": "08:02",
      "nro": "AR 1872",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
+    {
+     "hora": "09:40",
+     "real": "09:45",
+     "nro": "AR 1874",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
      "estado": "En horario",
      "color": "#777777"
     },
     {
-     "hora": "09:40",
-     "real": "10:06",
-     "nro": "AR 1874",
-     "aerolinea": "Aerolíneas Argentinas",
-     "ciudad": "Buenos Aires",
-     "estado": "Demorado",
-     "color": "#c0392b"
-    },
-    {
      "hora": "11:10",
-     "real": "10:59",
+     "real": "11:04",
      "nro": "AR 1870",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -34,7 +34,7 @@
     },
     {
      "hora": "12:50",
-     "real": "",
+     "real": "12:39",
      "nro": "AR 1586",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Cordoba",
@@ -61,7 +61,7 @@
     },
     {
      "hora": "16:10",
-     "real": "",
+     "real": "11:30",
      "nro": "AR 1880",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -112,7 +112,7 @@
      "nro": "AR 1873",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
@@ -212,12 +212,12 @@
    "arribos": [
     {
      "hora": "07:30",
-     "real": "07:20",
+     "real": "07:18",
      "nro": "AR 1838",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "15:00",
@@ -254,8 +254,8 @@
      "nro": "AR 1839",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Embarcando",
+     "color": "#e07a1f"
     },
     {
      "hora": "15:50",
@@ -342,8 +342,8 @@
      "nro": "AR 1803",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "09:58",
