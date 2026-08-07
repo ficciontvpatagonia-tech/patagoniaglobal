@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-07T18:39-03:00",
+ "actualizado": "2026-08-07T19:36-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
@@ -70,12 +70,12 @@
     },
     {
      "hora": "21:35",
-     "real": "21:40",
+     "real": "22:12",
      "nro": "AR 1876",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     }
    ],
    "partidas": [
@@ -130,8 +130,8 @@
      "nro": "AR 1891",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Cerrado",
+     "color": "#e07a1f"
     },
     {
      "hora": "21:04",
@@ -144,18 +144,27 @@
     },
     {
      "hora": "22:30",
-     "real": "",
+     "real": "23:00",
      "nro": "AR 1877",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     }
    ]
   },
   "FTE": {
    "nombre": "El Calafate",
    "arribos": [
+    {
+     "hora": "07:30",
+     "real": "07:18",
+     "nro": "AR 1838",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
     {
      "hora": "15:00",
      "real": "15:27",
@@ -176,15 +185,33 @@
     },
     {
      "hora": "18:35",
-     "real": "18:41",
+     "real": "18:40",
      "nro": "AR 1850",
      "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
+    {
+     "hora": "20:20",
+     "real": "",
+     "nro": "PRI 1",
+     "aerolinea": "Privado",
      "ciudad": "Buenos Aires",
      "estado": "En horario",
      "color": "#777777"
     }
    ],
    "partidas": [
+    {
+     "hora": "08:20",
+     "real": "08:33",
+     "nro": "AR 1839",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Despegado",
+     "color": "#008000"
+    },
     {
      "hora": "15:50",
      "real": "16:20",
@@ -209,8 +236,8 @@
      "nro": "AR 1851",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Embarcando",
+     "color": "#e07a1f"
     }
    ]
   },
