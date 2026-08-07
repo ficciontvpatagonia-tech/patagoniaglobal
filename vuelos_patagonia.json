@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-07T12:56-03:00",
+ "actualizado": "2026-08-07T13:56-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
@@ -43,12 +43,12 @@
     },
     {
      "hora": "13:50",
-     "real": "14:06",
+     "real": "",
      "nro": "AR 1886",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Demorado",
-     "color": "#c0392b"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "14:00",
@@ -135,12 +135,12 @@
     },
     {
      "hora": "13:40",
-     "real": "",
+     "real": "13:46",
      "nro": "AR 1895",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "14:40",
@@ -148,7 +148,7 @@
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "El Calafate",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
@@ -157,17 +157,17 @@
      "nro": "LA 8175",
      "aerolinea": "LATAM",
      "ciudad": "São Paulo",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
      "hora": "17:00",
-     "real": "",
+     "real": "17:15",
      "nro": "AR 1587",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Cordoba",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "18:15",
@@ -212,16 +212,16 @@
    "arribos": [
     {
      "hora": "15:00",
-     "real": "15:10",
+     "real": "15:27",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "16:00",
-     "real": "",
+     "real": "15:49",
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ushuaia",
