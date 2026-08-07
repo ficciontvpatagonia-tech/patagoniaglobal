@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-07T19:36-03:00",
+ "actualizado": "2026-08-07T20:34-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
@@ -70,7 +70,7 @@
     },
     {
      "hora": "21:35",
-     "real": "22:12",
+     "real": "22:09",
      "nro": "AR 1876",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -126,12 +126,12 @@
     },
     {
      "hora": "19:30",
-     "real": "",
+     "real": "19:42",
      "nro": "AR 1891",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Cerrado",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "21:04",
@@ -194,12 +194,12 @@
     },
     {
      "hora": "20:20",
-     "real": "",
+     "real": "19:51",
      "nro": "PRI 1",
      "aerolinea": "Privado",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -232,12 +232,12 @@
     },
     {
      "hora": "19:25",
-     "real": "",
+     "real": "19:54",
      "nro": "AR 1851",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Embarcando",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     }
    ]
   },
