@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-07T15:57-03:00",
+ "actualizado": "2026-08-07T16:54-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
@@ -34,30 +34,30 @@
     },
     {
      "hora": "16:10",
-     "real": "",
+     "real": "16:25",
      "nro": "AR 1880",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
+    {
+     "hora": "17:10",
+     "real": "17:22",
+     "nro": "AR 1898",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "El Calafate",
      "estado": "En horario",
      "color": "#777777"
     },
     {
-     "hora": "17:10",
-     "real": "17:40",
-     "nro": "AR 1898",
-     "aerolinea": "Aerolíneas Argentinas",
-     "ciudad": "El Calafate",
-     "estado": "Demorado",
-     "color": "#c0392b"
-    },
-    {
      "hora": "18:40",
-     "real": "19:03",
+     "real": "18:54",
      "nro": "AR 1890",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Demorado",
-     "color": "#c0392b"
+     "estado": "En horario",
+     "color": "#777777"
     },
     {
      "hora": "20:24",
@@ -176,7 +176,7 @@
     },
     {
      "hora": "18:35",
-     "real": "18:47",
+     "real": "18:41",
      "nro": "AR 1850",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -187,12 +187,12 @@
    "partidas": [
     {
      "hora": "15:50",
-     "real": "16:25",
+     "real": "16:20",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ushuaia",
-     "estado": "Embarcando",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "16:50",
@@ -200,8 +200,8 @@
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Cerrado",
+     "color": "#e07a1f"
     },
     {
      "hora": "19:25",
