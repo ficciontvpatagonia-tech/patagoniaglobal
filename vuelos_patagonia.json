@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-07T08:22-03:00",
+ "actualizado": "2026-08-07T09:08-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
@@ -34,7 +34,7 @@
     },
     {
      "hora": "12:50",
-     "real": "12:39",
+     "real": "12:41",
      "nro": "AR 1586",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Cordoba",
@@ -52,7 +52,7 @@
     },
     {
      "hora": "14:00",
-     "real": "14:24",
+     "real": "14:41",
      "nro": "LA 8174",
      "aerolinea": "LATAM",
      "ciudad": "São Paulo",
@@ -112,8 +112,8 @@
      "nro": "AR 1873",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Cerrado",
+     "color": "#e07a1f"
     },
     {
      "hora": "10:30",
@@ -250,12 +250,12 @@
    "partidas": [
     {
      "hora": "08:20",
-     "real": "",
+     "real": "08:33",
      "nro": "AR 1839",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Embarcando",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "15:50",
