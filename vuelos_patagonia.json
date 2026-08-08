@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-08T20:00-03:00",
+ "actualizado": "2026-08-08T20:37-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
@@ -117,12 +117,12 @@
     },
     {
      "hora": "19:45",
-     "real": "",
+     "real": "20:27",
      "nro": "AR 1891",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Embarcando",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "21:03",
@@ -130,7 +130,7 @@
      "nro": "WJ* 3202",
      "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     }
    ]
