@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-08T09:57-03:00",
+ "actualizado": "2026-08-08T10:50-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
@@ -25,7 +25,7 @@
     },
     {
      "hora": "12:30",
-     "real": "12:54",
+     "real": "12:47",
      "nro": "AR 1882",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -34,12 +34,12 @@
     },
     {
      "hora": "13:30",
-     "real": "13:23",
+     "real": "13:46",
      "nro": "AR 1884",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "14:55",
@@ -221,12 +221,12 @@
     },
     {
      "hora": "14:45",
-     "real": "",
+     "real": "15:08",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "17:05",
