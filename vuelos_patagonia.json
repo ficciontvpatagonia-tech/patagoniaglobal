@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-08T12:30-03:00",
+ "actualizado": "2026-08-08T12:58-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
@@ -25,12 +25,12 @@
     },
     {
      "hora": "12:30",
-     "real": "12:44",
+     "real": "",
      "nro": "AR 1882",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "13:30",
@@ -121,7 +121,7 @@
      "nro": "AR 1881",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Embarcando",
+     "estado": "Cerrado",
      "color": "#e07a1f"
     },
     {
@@ -139,7 +139,7 @@
      "nro": "AR 1885",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
@@ -221,7 +221,7 @@
     },
     {
      "hora": "14:45",
-     "real": "15:08",
+     "real": "15:30",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -259,7 +259,7 @@
     },
     {
      "hora": "15:35",
-     "real": "16:00",
+     "real": "16:20",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ushuaia",
@@ -268,12 +268,12 @@
     },
     {
      "hora": "18:10",
-     "real": "",
+     "real": "18:35",
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "19:25",
