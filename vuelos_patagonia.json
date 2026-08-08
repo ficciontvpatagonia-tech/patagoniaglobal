@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-08T12:58-03:00",
+ "actualizado": "2026-08-08T13:44-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
@@ -34,12 +34,12 @@
     },
     {
      "hora": "13:30",
-     "real": "13:38",
+     "real": "13:22",
      "nro": "AR 1884",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "14:55",
@@ -61,7 +61,7 @@
     },
     {
      "hora": "15:55",
-     "real": "16:46",
+     "real": "16:59",
      "nro": "AR 1892",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -70,12 +70,12 @@
     },
     {
      "hora": "16:55",
-     "real": "",
+     "real": "17:30",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "El Calafate",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "17:55",
@@ -88,7 +88,7 @@
     },
     {
      "hora": "18:55",
-     "real": "",
+     "real": "18:52",
      "nro": "AR 1890",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -117,21 +117,21 @@
     },
     {
      "hora": "12:20",
-     "real": "",
+     "real": "13:07",
      "nro": "AR 1881",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Cerrado",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "13:20",
-     "real": "",
+     "real": "13:35",
      "nro": "AR 1883",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "14:20",
@@ -144,12 +144,12 @@
     },
     {
      "hora": "15:45",
-     "real": "",
+     "real": "16:25",
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "El Calafate",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "16:35",
@@ -171,12 +171,12 @@
     },
     {
      "hora": "17:45",
-     "real": "",
+     "real": "18:15",
      "nro": "AR 1889",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "18:45",
@@ -230,16 +230,16 @@
     },
     {
      "hora": "17:05",
-     "real": "",
+     "real": "17:40",
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ushuaia",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "18:35",
-     "real": "",
+     "real": "18:28",
      "nro": "AR 1850",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
