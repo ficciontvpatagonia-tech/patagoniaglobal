@@ -1,13 +1,13 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-09T00:43-03:00",
+ "actualizado": "2026-08-09T06:39-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
    "arribos": [
     {
      "hora": "08:40",
-     "real": "",
+     "real": "08:35",
      "nro": "AR 1872",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -15,17 +15,8 @@
      "color": "#777777"
     },
     {
-     "hora": "10:10",
-     "real": "",
-     "nro": "FO* 5030",
-     "aerolinea": "Flybondi",
-     "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
-    },
-    {
      "hora": "11:00",
-     "real": "",
+     "real": "10:55",
      "nro": "AR 1880",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -120,15 +111,6 @@
      "real": "",
      "nro": "AR 1873",
      "aerolinea": "Aerolíneas Argentinas",
-     "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
-    },
-    {
-     "hora": "10:55",
-     "real": "",
-     "nro": "FO* 5031",
-     "aerolinea": "Flybondi",
      "ciudad": "Buenos Aires",
      "estado": "En horario",
      "color": "#777777"
@@ -230,12 +212,12 @@
    "arribos": [
     {
      "hora": "09:00",
-     "real": "",
+     "real": "09:25",
      "nro": "AR 1838",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "13:50",
@@ -309,12 +291,12 @@
    "arribos": [
     {
      "hora": "01:35",
-     "real": "01:22",
+     "real": "01:30",
      "nro": "AR 1196",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "09:25",
@@ -338,12 +320,12 @@
    "partidas": [
     {
      "hora": "03:50",
-     "real": "",
+     "real": "03:37",
      "nro": "AR 1197",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "09:58",
