@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-09T10:07-03:00",
+ "actualizado": "2026-08-09T11:06-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
@@ -16,12 +16,12 @@
     },
     {
      "hora": "11:00",
-     "real": "11:06",
+     "real": "10:58",
      "nro": "AR 1880",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "12:40",
@@ -34,7 +34,7 @@
     },
     {
      "hora": "13:50",
-     "real": "13:52",
+     "real": "13:56",
      "nro": "AR 1882",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -52,7 +52,7 @@
     },
     {
      "hora": "14:50",
-     "real": "",
+     "real": "14:52",
      "nro": "AR 1886",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -212,7 +212,7 @@
    "arribos": [
     {
      "hora": "09:00",
-     "real": "09:02",
+     "real": "",
      "nro": "AR 1838",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -221,12 +221,12 @@
     },
     {
      "hora": "13:50",
-     "real": "13:42",
+     "real": "14:09",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "17:00",
@@ -300,21 +300,21 @@
     },
     {
      "hora": "09:25",
-     "real": "",
+     "real": "09:19",
      "nro": "WJ* 3191",
      "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "15:20",
-     "real": "",
+     "real": "15:50",
      "nro": "AR 1810",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     }
    ],
    "partidas": [
@@ -329,21 +329,21 @@
     },
     {
      "hora": "09:58",
-     "real": "",
+     "real": "10:01",
      "nro": "WJ* 3192",
      "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "16:00",
-     "real": "",
+     "real": "16:25",
      "nro": "AR 1811",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     }
    ]
   }
