@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-09T12:58-03:00",
+ "actualizado": "2026-08-09T13:45-03:00",
  "aeropuertos": {
   "USH": {
    "nombre": "Ushuaia",
@@ -34,7 +34,7 @@
     },
     {
      "hora": "13:50",
-     "real": "13:56",
+     "real": "13:51",
      "nro": "AR 1882",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -52,7 +52,7 @@
     },
     {
      "hora": "14:50",
-     "real": "15:13",
+     "real": "15:09",
      "nro": "AR 1886",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -70,7 +70,7 @@
     },
     {
      "hora": "17:00",
-     "real": "17:02",
+     "real": "17:08",
      "nro": "AR 1870",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -130,8 +130,8 @@
      "nro": "AR 1895",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Cerrado",
+     "color": "#e07a1f"
     },
     {
      "hora": "14:40",
@@ -221,16 +221,16 @@
     },
     {
      "hora": "13:50",
-     "real": "13:42",
+     "real": "13:39",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "17:00",
-     "real": "",
+     "real": "16:50",
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ushuaia",
@@ -263,7 +263,7 @@
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ushuaia",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
@@ -309,7 +309,7 @@
     },
     {
      "hora": "15:20",
-     "real": "15:50",
+     "real": "16:21",
      "nro": "AR 1810",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -338,7 +338,7 @@
     },
     {
      "hora": "16:00",
-     "real": "16:25",
+     "real": "16:45",
      "nro": "AR 1811",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
