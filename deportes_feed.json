@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260808-dia-del-montanes-en-catedral-el-club-andino-celebra-su-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Día del Montañés en Catedral: el Club Andino celebra su mes con los cerros",
-    "bajada": "El Club Andino Bariloche convoca al tradicional Desfile del Día del Montañés este 8 de agosto a las 14.30 en la base del Cerro Catedral, en pleno mes aniversario del club.",
-    "imagen": "fotos/foto-20260808-dia-del-montanes-en-catedral-el-club-andino-celebra-su-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche (Bariloche)"
+    "id": "20260809-tropas-de-montana-vuelven-a-catedral-despues-de-62-anos-dep",
+    "tag": "🏔 Deportes",
+    "titulo": "Tropas de Montaña vuelven a Catedral después de 62 años",
+    "bajada": "La Comprobación de Nivel de Entrenamiento de Patrullas de Montaña del Ejército Argentino regresó a Cerro Catedral por primera vez desde 1964, reuniendo brigadas de todo el país en el cerro barilochense.",
+    "imagen": "fotos/foto-20260809-tropas-de-montana-vuelven-a-catedral-despues-de-62-anos-dep.webp",
+    "meta": "Hoy · Catedral Alta Patagonia"
   },
   "secundarias": [
+    {
+      "id": "20260808-dia-del-montanes-en-catedral-el-club-andino-celebra-su-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Día del Montañés en Catedral: el Club Andino celebra su mes con los cerros",
+      "bajada": "El Club Andino Bariloche convoca al tradicional Desfile del Día del Montañés este 8 de agosto a las 14.30 en la base del Cerro Catedral, en pleno mes aniversario del club.",
+      "imagen": "fotos/foto-20260808-dia-del-montanes-en-catedral-el-club-andino-celebra-su-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche (Bariloche)"
+    },
     {
       "id": "20260807-nadar-con-el-perito-moreno-de-fondo-desafio-extremo-en-dep",
       "tag": "🏊 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Un nadador oriundo de Cutral Co completó el desafío de nadar en el lago Argentino con el glaciar Perito Moreno como escenario, en una de las experiencias de natación en aguas frías más imponentes de la Patagonia.",
       "imagen": "fotos/foto-20260807-nadar-con-el-perito-moreno-de-fondo-desafio-extremo-en-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260806-barria-hizo-cima-en-el-elbrus-a-30c-y-esquivo-una-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El escalador magallánico alcanzó los 5.642 metros del volcán más alto de Europa horas antes de que una tormenta en el Cáucaso dejara siete víctimas fatales.",
       "imagen": "fotos/foto-20260806-barria-hizo-cima-en-el-elbrus-a-30c-y-esquivo-una-dep.webp",
       "meta": "Hoy · El Pingüino (Magallanes)"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260805-timaukel-lanza-el-primer-guanaco-trail-running-en-dep",
       "tag": "🏃 Deportes",
@@ -49,14 +57,6 @@
       "titulo": "Bariloche forma instructores de ski y snowboard con respaldo federal",
       "bajada": "El Club Andino Bariloche lanzó el Curso de Instructor de Clubes junto a FASA y AADIDESS, fortaleciendo la formación de profesionales de montaña en la Patagonia andina.",
       "imagen": "fotos/foto-20260801-bariloche-forma-instructores-de-ski-y-snowboard-con-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260731-bariloche-recibe-al-festival-de-cine-de-montana-mas-dep",
-      "tag": "🏔️ Deportes",
-      "titulo": "Bariloche recibe al festival de cine de montaña más importante del mundo",
-      "bajada": "El Banff Mountain Film Festival llega a San Carlos de Bariloche los días 20, 21 y 22 de agosto en su 26ª gira argentina, con entradas ya en venta.",
-      "imagen": "fotos/foto-20260731-bariloche-recibe-al-festival-de-cine-de-montana-mas-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
     }
   ]
