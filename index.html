@@ -197,6 +197,7 @@
     .qa-drawer .qa-btn .qa-ico { font-size: 1.25rem; line-height: 1; width: 24px; text-align: center; flex: 0 0 auto; }
     .qa-drawer .qa-btn.qa-cambio { border-color: #d4ad76; }
     .qa-drawer .qa-btn.qa-cambio:hover { background: #8c6b4a; border-color: #8c6b4a; }
+    .qa-drawer .qa-btn .qa-subinline { font-size: .66rem; font-weight: 600; opacity: .65; margin-left: 2px; }
     body.qa-lock { overflow: hidden; }
     @media (max-width: 680px) {
       .qa-trigger { margin-top: 16px; font-size: .7rem; padding: 10px 18px; }
@@ -1454,10 +1455,10 @@
     <a href="conectividad.html#vuelos" class="qa-btn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'conectividad_aerea'})"><span class="qa-ico">🛫</span>Conectividad Aérea</a>
     <a href="conectividad.html#rutas" class="qa-btn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'estado_rutas'})"><span class="qa-ico">🛣️</span>Estado de las Rutas</a>
     <a href="conectividad.html#pasos" class="qa-btn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'pasos_fronterizos'})"><span class="qa-ico">🛂</span>Pasos Fronterizos</a>
-    <a href="cotizaciones.html" class="qa-btn qa-cambio" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'divisas'})"><span class="qa-ico">💱</span>Divisas</a>
-    <a href="videos.html" class="qa-btn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'cinemateca'})"><span class="qa-ico">🎬</span>Cinemateca</a>
-    <a href="agenda.html" class="qa-btn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'agenda'})"><span class="qa-ico">📅</span>Agenda</a>
-    <a href="arcade.html" class="qa-btn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'arcade'})"><span class="qa-ico">🕹️</span>Arcade</a>
+    <a href="cotizaciones.html" class="qa-btn qa-cambio" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'divisas'})"><span class="qa-ico">💱</span>Divisas <span class="qa-subinline">AR$ · CH$ · US$</span></a>
+    <a href="videos.html" class="qa-btn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'cinemateca'})"><span class="qa-ico">🎬</span>Cinemateca Patagónica</a>
+    <a href="agenda.html" class="qa-btn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'agenda'})"><span class="qa-ico">📅</span>Agenda Regional</a>
+    <a href="arcade.html" class="qa-btn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'arcade'})"><span class="qa-ico">🕹️</span>Juegos / Arcade</a>
   </nav>
 </aside>
 <script>
@@ -1882,10 +1883,10 @@
       <a href="conectividad.html#vuelos" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'conectividad_aerea'})"><span class="qa-gico">🛫</span>Conectividad Aérea</a>
       <a href="conectividad.html#rutas" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'estado_rutas'})"><span class="qa-gico">🛣️</span>Estado de las Rutas</a>
       <a href="conectividad.html#pasos" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'pasos_fronterizos'})"><span class="qa-gico">🛂</span>Pasos Fronterizos</a>
-      <a href="cotizaciones.html" class="qa-gbtn qa-cambio" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'divisas'})"><span class="qa-gico">💱</span>Divisas</a>
-      <a href="videos.html" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'cinemateca'})"><span class="qa-gico">🎬</span>Cinemateca</a>
-      <a href="agenda.html" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'agenda'})"><span class="qa-gico">📅</span>Agenda</a>
-      <a href="arcade.html" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'arcade'})"><span class="qa-gico">🕹️</span>Arcade</a>
+      <a href="cotizaciones.html" class="qa-gbtn qa-cambio" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'divisas'})"><span class="qa-gico">💱</span><span class="qa-gtext">Divisas<span class="qa-gsub">AR$ · CH$ · US$</span></span></a>
+      <a href="videos.html" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'cinemateca'})"><span class="qa-gico">🎬</span>Cinemateca Patagónica</a>
+      <a href="agenda.html" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'agenda'})"><span class="qa-gico">📅</span>Agenda Regional</a>
+      <a href="arcade.html" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'arcade'})"><span class="qa-gico">🕹️</span>Juegos / Arcade</a>
     </div>
   </div>
 </div>
@@ -1903,6 +1904,8 @@
   .qa-grid .qa-gbtn .qa-gico { font-size:1.4rem; line-height:1; }
   .qa-grid .qa-gbtn.qa-cambio { border-color:#d4ad76; }
   .qa-grid .qa-gbtn.qa-cambio:hover { background:#d4ad76; color:#1c2d3d; border-color:#d4ad76; }
+  .qa-grid .qa-gtext { display:flex; flex-direction:column; align-items:center; gap:3px; }
+  .qa-grid .qa-gsub { font-size:.6rem; font-weight:600; letter-spacing:.4px; text-transform:none; opacity:.75; }
   @media (max-width:680px) {
     .qa-grid { grid-template-columns:repeat(2,1fr); gap:10px; }
     .qa-grid .qa-gbtn { padding:14px 6px; font-size:.66rem; }
