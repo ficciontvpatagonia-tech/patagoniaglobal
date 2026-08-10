@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260809-tropas-de-montana-vuelven-a-catedral-despues-de-62-anos-dep",
-    "tag": "🏔 Deportes",
-    "titulo": "Tropas de Montaña vuelven a Catedral después de 62 años",
-    "bajada": "La Comprobación de Nivel de Entrenamiento de Patrullas de Montaña del Ejército Argentino regresó a Cerro Catedral por primera vez desde 1964, reuniendo brigadas de todo el país en el cerro barilochense.",
-    "imagen": "fotos/foto-20260809-tropas-de-montana-vuelven-a-catedral-despues-de-62-anos-dep.webp",
+    "id": "20260810-cerro-catedral-y-fasa-esqui-de-alto-rendimiento-con-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "Cerro Catedral y FASA: esquí de alto rendimiento con base patagónica",
+    "bajada": "El centro de ski más grande de Sudamérica retoma su alianza con la federación nacional para potenciar la formación de atletas de élite en Bariloche.",
+    "imagen": "fotos/foto-20260810-cerro-catedral-y-fasa-esqui-de-alto-rendimiento-con-dep.webp",
     "meta": "Hoy · Catedral Alta Patagonia"
   },
   "secundarias": [
+    {
+      "id": "20260809-tropas-de-montana-vuelven-a-catedral-despues-de-62-anos-dep",
+      "tag": "🏔 Deportes",
+      "titulo": "Tropas de Montaña vuelven a Catedral después de 62 años",
+      "bajada": "La Comprobación de Nivel de Entrenamiento de Patrullas de Montaña del Ejército Argentino regresó a Cerro Catedral por primera vez desde 1964, reuniendo brigadas de todo el país en el cerro barilochense.",
+      "imagen": "fotos/foto-20260809-tropas-de-montana-vuelven-a-catedral-despues-de-62-anos-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia"
+    },
     {
       "id": "20260808-dia-del-montanes-en-catedral-el-club-andino-celebra-su-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El Club Andino Bariloche convoca al tradicional Desfile del Día del Montañés este 8 de agosto a las 14.30 en la base del Cerro Catedral, en pleno mes aniversario del club.",
       "imagen": "fotos/foto-20260808-dia-del-montanes-en-catedral-el-club-andino-celebra-su-dep.webp",
       "meta": "Hoy · Club Andino Bariloche (Bariloche)"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260807-nadar-con-el-perito-moreno-de-fondo-desafio-extremo-en-dep",
       "tag": "🏊 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Un nadador oriundo de Cutral Co completó el desafío de nadar en el lago Argentino con el glaciar Perito Moreno como escenario, en una de las experiencias de natación en aguas frías más imponentes de la Patagonia.",
       "imagen": "fotos/foto-20260807-nadar-con-el-perito-moreno-de-fondo-desafio-extremo-en-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260806-barria-hizo-cima-en-el-elbrus-a-30c-y-esquivo-una-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La 4ª edición de la Swimming World Cup Argentina 2026 se disputará del 4 al 9 de agosto en la Villa Turística de El Calafate, con más de 300 participantes de 15 países.",
       "imagen": "fotos/foto-20260804-300-nadadores-de-aguas-frias-llegan-a-el-calafate-para-dep.webp",
       "meta": "Hoy · Tiempo Sur (Santa Cruz)"
-    },
-    {
-      "id": "20260801-bariloche-forma-instructores-de-ski-y-snowboard-con-dep",
-      "tag": "🏔️ Deportes",
-      "titulo": "Bariloche forma instructores de ski y snowboard con respaldo federal",
-      "bajada": "El Club Andino Bariloche lanzó el Curso de Instructor de Clubes junto a FASA y AADIDESS, fortaleciendo la formación de profesionales de montaña en la Patagonia andina.",
-      "imagen": "fotos/foto-20260801-bariloche-forma-instructores-de-ski-y-snowboard-con-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
     }
   ]
 }
