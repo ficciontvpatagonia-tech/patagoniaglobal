@@ -1873,6 +1873,43 @@
 })();
 </script>
 
+<!-- ACCESOS RÁPIDOS (grid, pie de página) -->
+<div id="sec-accesos" style="background:#0d1b26; border-top:1px solid rgba(122,173,204,0.15); padding:32px 0 38px;">
+  <div style="max-width:1200px; margin:0 auto; padding:0 20px;">
+    <h2 style="font-family:'Playfair Display',serif; font-size:20px; font-weight:900; color:white; margin-bottom:18px; text-align:center;">Accesos Rápidos</h2>
+    <div class="qa-grid">
+      <a href="clima.html" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'pronostico'})"><span class="qa-gico">🌤</span>Pronóstico Patagonia</a>
+      <a href="conectividad.html#vuelos" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'conectividad_aerea'})"><span class="qa-gico">🛫</span>Conectividad Aérea</a>
+      <a href="conectividad.html#rutas" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'estado_rutas'})"><span class="qa-gico">🛣️</span>Estado de las Rutas</a>
+      <a href="conectividad.html#pasos" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'pasos_fronterizos'})"><span class="qa-gico">🛂</span>Pasos Fronterizos</a>
+      <a href="cotizaciones.html" class="qa-gbtn qa-cambio" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'divisas'})"><span class="qa-gico">💱</span>Divisas</a>
+      <a href="videos.html" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'cinemateca'})"><span class="qa-gico">🎬</span>Cinemateca</a>
+      <a href="agenda.html" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'agenda'})"><span class="qa-gico">📅</span>Agenda</a>
+      <a href="arcade.html" class="qa-gbtn" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'arcade'})"><span class="qa-gico">🕹️</span>Arcade</a>
+    </div>
+  </div>
+</div>
+<style>
+  .qa-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .qa-grid .qa-gbtn {
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    padding:18px 10px; border:1px solid rgba(122,173,204,0.25); border-radius:10px;
+    background:rgba(255,255,255,0.05); color:#fff; text-decoration:none;
+    font-family:'Inter',sans-serif; font-weight:600; font-size:.72rem;
+    letter-spacing:.3px; text-transform:uppercase; text-align:center;
+    transition:all .2s ease;
+  }
+  .qa-grid .qa-gbtn:hover { background:#7aadcc; color:#0d1b26; border-color:#7aadcc; transform:translateY(-2px); }
+  .qa-grid .qa-gbtn .qa-gico { font-size:1.4rem; line-height:1; }
+  .qa-grid .qa-gbtn.qa-cambio { border-color:#d4ad76; }
+  .qa-grid .qa-gbtn.qa-cambio:hover { background:#d4ad76; color:#1c2d3d; border-color:#d4ad76; }
+  @media (max-width:680px) {
+    .qa-grid { grid-template-columns:repeat(2,1fr); gap:10px; }
+    .qa-grid .qa-gbtn { padding:14px 6px; font-size:.66rem; }
+    .qa-grid .qa-gbtn .qa-gico { font-size:1.2rem; }
+  }
+</style>
+
 <!-- TELEGRAM BANNER -->
 <div class="telegram-banner">
   <div class="telegram-banner-inner">
