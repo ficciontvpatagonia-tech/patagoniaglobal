@@ -59,6 +59,7 @@ def _req(url):
     r = urllib.request.Request(url, headers={
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
         "Referer": "https://www.aeropuertosargentina.com/",
+        "Origin": "https://www.aeropuertosargentina.com",
         "Accept": "application/json, text/plain, */*",
     })
     with urllib.request.urlopen(r, timeout=30) as resp:
