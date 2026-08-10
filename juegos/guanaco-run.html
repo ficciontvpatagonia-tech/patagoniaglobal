@@ -41,7 +41,7 @@
   }
 }
 </script>
-<script>if(localStorage.getItem('gp_admin')==='1'){window['ga-disable-G-5FP2F41BZG']=true;}</script>
+<script>(function(){var p=new URLSearchParams(location.search);if(p.get('admin')==='1'){localStorage.setItem('gp_admin','1');}if(localStorage.getItem('gp_admin')==='1'){window['ga-disable-G-5FP2F41BZG']=true;}})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5FP2F41BZG');</script>
 <style>
@@ -280,7 +280,7 @@
       <button class="btn" id="btnStart">Reintentar (o ESPACIO)</button>`;
     ov.classList.remove('hidden');
     document.getElementById('btnStart').addEventListener('click', startGame, {once:true});
-    if(typeof gtag==='function') gtag('event','arcade_gameover',{juego:'guanaco_run', puntos:s});
+    if(typeof gtag==='function') gtag('event','arcade_gameover',{juego:'guanaco_run', puntos:s, tiempo:Math.round(elapsed)});
   }
 
   function startGame(){

@@ -135,6 +135,9 @@
 
   footer{ font-size:.62rem; color:#888; text-align:center; max-width:560px; width:100%; padding:0 10px; }
 </style>
+<script>(function(){var p=new URLSearchParams(location.search);if(p.get('admin')==='1'){localStorage.setItem('gp_admin','1');}if(localStorage.getItem('gp_admin')==='1'){window['ga-disable-G-5FP2F41BZG']=true;}})();</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5FP2F41BZG');</script>
 </head>
 <body>
 
@@ -487,7 +490,7 @@
       <button class="btn" id="btnStart">Reintentar</button>`;
     ov.classList.remove('hidden');
     document.getElementById('btnStart').addEventListener('click', startGame, {once:true});
-    if(typeof gtag==='function') gtag('event','arcade_gameover',{juego:'los_73_malditos', km});
+    if(typeof gtag==='function') gtag('event','arcade_gameover',{juego:'los_73_malditos', km, tiempo:Math.round(elapsed)});
   }
 
   function winGame(){
@@ -511,7 +514,7 @@
       <button class="btn" id="btnStart">Volver a la ruta</button>`;
     ov.classList.remove('hidden');
     document.getElementById('btnStart').addEventListener('click', startGame, {once:true});
-    if(typeof gtag==='function') gtag('event','arcade_win',{juego:'los_73_malditos', tiempo:elapsed});
+    if(typeof gtag==='function') gtag('event','arcade_win',{juego:'los_73_malditos', tiempo:Math.round(elapsed)});
   }
 
   // ---- input ----
