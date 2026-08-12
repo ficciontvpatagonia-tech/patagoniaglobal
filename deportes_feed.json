@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260811-45-jovenes-de-argentina-y-chile-esquiaron-juntos-en-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "45 jóvenes de Argentina y Chile esquiaron juntos en Cerro Catedral",
-    "bajada": "El Encuentro Interclubes de Esquí de Fondo 2026 reunió durante dos jornadas a chicos y chicas de ambos lados de la cordillera en la pista de Cerro Catedral.",
-    "imagen": "fotos/foto-20260811-45-jovenes-de-argentina-y-chile-esquiaron-juntos-en-dep.webp",
-    "meta": "Hoy · Catedral Alta Patagonia (Bariloche)"
+    "id": "20260812-dia-del-montanes-en-catedral-generaciones-que-hicieron-dep",
+    "tag": "🏔️ Deportes",
+    "titulo": "Día del Montañés en Catedral: generaciones que hicieron la cultura de montaña",
+    "bajada": "Cerro Catedral celebra el Día del Montañés reconociendo a las familias, clubes e instituciones que durante décadas construyeron la identidad de la montaña barilochense.",
+    "imagen": "fotos/foto-20260812-dia-del-montanes-en-catedral-generaciones-que-hicieron-dep.webp",
+    "meta": "Hoy · Catedral Alta Patagonia"
   },
   "secundarias": [
+    {
+      "id": "20260811-45-jovenes-de-argentina-y-chile-esquiaron-juntos-en-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "45 jóvenes de Argentina y Chile esquiaron juntos en Cerro Catedral",
+      "bajada": "El Encuentro Interclubes de Esquí de Fondo 2026 reunió durante dos jornadas a chicos y chicas de ambos lados de la cordillera en la pista de Cerro Catedral.",
+      "imagen": "fotos/foto-20260811-45-jovenes-de-argentina-y-chile-esquiaron-juntos-en-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia (Bariloche)"
+    },
     {
       "id": "20260810-cerro-catedral-y-fasa-esqui-de-alto-rendimiento-con-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El centro de ski más grande de Sudamérica retoma su alianza con la federación nacional para potenciar la formación de atletas de élite en Bariloche.",
       "imagen": "fotos/foto-20260810-cerro-catedral-y-fasa-esqui-de-alto-rendimiento-con-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260809-tropas-de-montana-vuelven-a-catedral-despues-de-62-anos-dep",
       "tag": "🏔 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La Comprobación de Nivel de Entrenamiento de Patrullas de Montaña del Ejército Argentino regresó a Cerro Catedral por primera vez desde 1964, reuniendo brigadas de todo el país en el cerro barilochense.",
       "imagen": "fotos/foto-20260809-tropas-de-montana-vuelven-a-catedral-despues-de-62-anos-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260808-dia-del-montanes-en-catedral-el-club-andino-celebra-su-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El escalador magallánico alcanzó los 5.642 metros del volcán más alto de Europa horas antes de que una tormenta en el Cáucaso dejara siete víctimas fatales.",
       "imagen": "fotos/foto-20260806-barria-hizo-cima-en-el-elbrus-a-30c-y-esquivo-una-dep.webp",
       "meta": "Hoy · El Pingüino (Magallanes)"
-    },
-    {
-      "id": "20260805-timaukel-lanza-el-primer-guanaco-trail-running-en-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Timaukel lanza el primer Guanaco Trail Running en Tierra del Fuego chilena",
-      "bajada": "La municipalidad de Timaukel anunció la primera edición del Guanaco Trail Running para febrero de 2027, con recorridos de 3K, 14K y 30K entre Pampa Guanaco y Lago Blanco, apuntando a más de 300 atletas.",
-      "imagen": "fotos/foto-20260805-timaukel-lanza-el-primer-guanaco-trail-running-en-dep.webp",
-      "meta": "Hoy · El Pingüino"
     }
   ]
 }
