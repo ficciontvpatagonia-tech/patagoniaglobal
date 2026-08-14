@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-14T19:22-03:00",
+ "actualizado": "2026-08-14T19:50-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -776,8 +776,8 @@
      "nro": "AR 1953",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Rosario",
-     "estado": "Ultimo aviso",
-     "color": "#FB671E"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "20:00",
@@ -794,8 +794,8 @@
      "nro": "WJ 3060",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Ultimo aviso",
+     "color": "#FB671E"
     },
     {
      "hora": "20:40",
@@ -930,12 +930,12 @@
     },
     {
      "hora": "19:50",
-     "real": "",
+     "real": "19:36",
      "nro": "AR 1834",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -1017,8 +1017,8 @@
      "nro": "AR 1835",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     }
    ]
   },
@@ -1272,7 +1272,7 @@
      "nro": "AR 1891",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Embarcando",
+     "estado": "Cerrado",
      "color": "#e07a1f"
     },
     {
@@ -1298,6 +1298,24 @@
   "FTE": {
    "nombre": "El Calafate",
    "arribos": [
+    {
+     "hora": "07:30",
+     "real": "07:09",
+     "nro": "AR 1838",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
+    {
+     "hora": "11:20",
+     "real": "10:50",
+     "nro": "5U 400",
+     "aerolinea": "Lade",
+     "ciudad": "Perito Moreno",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
     {
      "hora": "14:40",
      "real": "14:05",
@@ -1326,6 +1344,15 @@
      "color": "#008000"
     },
     {
+     "hora": "17:35",
+     "real": "17:30",
+     "nro": "MEDEVAC 1",
+     "aerolinea": "Medevac",
+     "ciudad": "Rio Turbio",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
+    {
      "hora": "18:35",
      "real": "18:18",
      "nro": "AR 1850",
@@ -1336,6 +1363,24 @@
     }
    ],
    "partidas": [
+    {
+     "hora": "08:20",
+     "real": "08:32",
+     "nro": "AR 1839",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Despegado",
+     "color": "#008000"
+    },
+    {
+     "hora": "12:00",
+     "real": "11:34",
+     "nro": "5U 400",
+     "aerolinea": "Lade",
+     "ciudad": "Rio Gallegos",
+     "estado": "Despegado",
+     "color": "#008000"
+    },
     {
      "hora": "15:20",
      "real": "15:36",
@@ -1364,13 +1409,22 @@
      "color": "#008000"
     },
     {
-     "hora": "19:25",
+     "hora": "18:31",
      "real": "",
+     "nro": "MEDEVAC 2",
+     "aerolinea": "Medevac",
+     "ciudad": "Bahia Blanca",
+     "estado": "Despegado",
+     "color": "#008000"
+    },
+    {
+     "hora": "19:25",
+     "real": "19:44",
      "nro": "AR 1851",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Embarcando",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     }
    ]
   },
