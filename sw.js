@@ -1,10 +1,10 @@
-const CACHE_STATIC = 'gp-static-v1';
-const CACHE_DATA   = 'gp-data-v1';
+const CACHE_STATIC = 'gp-static-v2';
+const CACHE_DATA   = 'gp-data-v2';
 
 const STATIC_ASSETS = [
   '/', '/index.html', '/nota.html', '/agenda.html', '/videos.html',
   '/acerca.html', '/apoyanos.html', '/buscar.html',
-  '/logo-globalpatagonia.png', '/favicon.ico'
+  '/logo-globalpatagonia.webp', '/favicon.ico'
 ];
 
 // Cache static assets on install
@@ -47,15 +47,20 @@ self.addEventListener('fetch', e => {
       }).catch(() => caches.match(e.request))
     );
   } else if (isImage || isFont) {
-    // Cache first — images/fonts don't change often
+    // Stale-while-revalidate: sirve del cache al toque si existe, pero
+    // SIEMPRE relanza el fetch en paralelo para refrescar esa URL en el
+    // cache. Antes era cache-first puro sin vencimiento: una vez cacheada
+    // una URL (ej. la foto de una nota, el logo) quedaba servida desde ahí
+    // para siempre aunque el archivo cambiara en el servidor — el visitante
+    // recurrente nunca se enteraba de un cambio de imagen.
     e.respondWith(
       caches.match(e.request).then(cached => {
-        if (cached) return cached;
-        return fetch(e.request).then(res => {
+        const fetchPromise = fetch(e.request).then(res => {
           const clone = res.clone();
           caches.open(CACHE_STATIC).then(c => c.put(e.request, clone));
           return res;
-        });
+        }).catch(() => cached);
+        return cached || fetchPromise;
       })
     );
   }
