@@ -3059,7 +3059,7 @@ def generar_paginas_og(notas):
   <div class="header-main">
     <div class="logo-tagline">Sur Global, principio de todo.</div>
     <a href="../" style="text-decoration:none">
-      <img src="../logo-globalpatagonia.png" alt="GLOBALpatagonia" class="logo-img"/>
+      <img src="../logo-globalpatagonia.webp" alt="GLOBALpatagonia" class="logo-img"/>
     </a>
   </div>
   <nav>
@@ -3306,7 +3306,7 @@ def generar_paginas_temas(notas_all):
   <div class="header-main">
     <div class="logo-tagline">Sur Global, principio de todo.</div>
     <a href="../" style="text-decoration:none">
-      <img src="../logo-globalpatagonia.png" alt="GLOBALpatagonia" class="logo-img"/>
+      <img src="../logo-globalpatagonia.webp" alt="GLOBALpatagonia" class="logo-img"/>
     </a>
   </div>
   <nav>
