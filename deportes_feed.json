@@ -1,14 +1,48 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260810-cerro-catedral-y-fasa-esqui-de-alto-rendimiento-con-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Cerro Catedral y FASA: esquí de alto rendimiento con base patagónica",
-    "bajada": "El centro de ski más grande de Sudamérica retoma su alianza con la federación nacional para potenciar la formación de atletas de élite en Bariloche.",
-    "imagen": "fotos/foto-20260810-cerro-catedral-y-fasa-esqui-de-alto-rendimiento-con-dep.webp",
-    "meta": "Hoy · Catedral Alta Patagonia"
+    "id": "20260814-travesia-nocturna-en-bariloche-24-esquiadores-se-dep",
+    "tag": "🏔️ Deportes",
+    "titulo": "Travesía nocturna en Bariloche: 24 esquiadores se internaron en la montaña de noche",
+    "bajada": "El Club Andino Bariloche organizó una salida de esquí de travesía nocturna que reunió a 24 participantes en condiciones ideales de viento y visibilidad.",
+    "imagen": "fotos/foto-20260814-travesia-nocturna-en-bariloche-24-esquiadores-se-dep.webp",
+    "meta": "Hoy · Club Andino Bariloche"
   },
   "secundarias": [
+    {
+      "id": "20260813-adriana-miracle-dos-oros-en-aguas-glaciares-frente-al-dep",
+      "tag": "🏊 Deportes",
+      "titulo": "Adriana Miracle: dos oros en aguas glaciares frente al Perito Moreno",
+      "bajada": "La nadadora riogalleguense conquistó dos primeros puestos y dos terceros en la Winter Swimming World Cup disputada en El Calafate, con una pileta flotante frente al glaciar como escenario.",
+      "imagen": "fotos/foto-20260813-adriana-miracle-dos-oros-en-aguas-glaciares-frente-al-dep.webp",
+      "meta": "Hoy · Tiempo Sur (Santa Cruz)"
+    },
+    {
+      "id": "20260812-dia-del-montanes-en-catedral-generaciones-que-hicieron-dep",
+      "tag": "🏔️ Deportes",
+      "titulo": "Día del Montañés en Catedral: generaciones que hicieron la cultura de montaña",
+      "bajada": "Cerro Catedral celebra el Día del Montañés reconociendo a las familias, clubes e instituciones que durante décadas construyeron la identidad de la montaña barilochense.",
+      "imagen": "fotos/foto-20260812-dia-del-montanes-en-catedral-generaciones-que-hicieron-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia"
+    }
+  ],
+  "row_cards": [
+    {
+      "id": "20260811-45-jovenes-de-argentina-y-chile-esquiaron-juntos-en-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "45 jóvenes de Argentina y Chile esquiaron juntos en Cerro Catedral",
+      "bajada": "El Encuentro Interclubes de Esquí de Fondo 2026 reunió durante dos jornadas a chicos y chicas de ambos lados de la cordillera en la pista de Cerro Catedral.",
+      "imagen": "fotos/foto-20260811-45-jovenes-de-argentina-y-chile-esquiaron-juntos-en-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia (Bariloche)"
+    },
+    {
+      "id": "20260810-cerro-catedral-y-fasa-esqui-de-alto-rendimiento-con-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Cerro Catedral y FASA: esquí de alto rendimiento con base patagónica",
+      "bajada": "El centro de ski más grande de Sudamérica retoma su alianza con la federación nacional para potenciar la formación de atletas de élite en Bariloche.",
+      "imagen": "fotos/foto-20260810-cerro-catedral-y-fasa-esqui-de-alto-rendimiento-con-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia"
+    },
     {
       "id": "20260809-tropas-de-montana-vuelven-a-catedral-despues-de-62-anos-dep",
       "tag": "🏔 Deportes",
@@ -24,40 +58,6 @@
       "bajada": "El Club Andino Bariloche convoca al tradicional Desfile del Día del Montañés este 8 de agosto a las 14.30 en la base del Cerro Catedral, en pleno mes aniversario del club.",
       "imagen": "fotos/foto-20260808-dia-del-montanes-en-catedral-el-club-andino-celebra-su-dep.webp",
       "meta": "Hoy · Club Andino Bariloche (Bariloche)"
-    }
-  ],
-  "row_cards": [
-    {
-      "id": "20260807-nadar-con-el-perito-moreno-de-fondo-desafio-extremo-en-dep",
-      "tag": "🏊 Deportes",
-      "titulo": "Nadar con el Perito Moreno de fondo: desafío extremo en el lago Argentino",
-      "bajada": "Un nadador oriundo de Cutral Co completó el desafío de nadar en el lago Argentino con el glaciar Perito Moreno como escenario, en una de las experiencias de natación en aguas frías más imponentes de la Patagonia.",
-      "imagen": "fotos/foto-20260807-nadar-con-el-perito-moreno-de-fondo-desafio-extremo-en-dep.webp",
-      "meta": "Hoy · Diario Río Negro"
-    },
-    {
-      "id": "20260806-barria-hizo-cima-en-el-elbrus-a-30c-y-esquivo-una-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Barría hizo cima en el Elbrús a -30°C y esquivó una tormenta mortal",
-      "bajada": "El escalador magallánico alcanzó los 5.642 metros del volcán más alto de Europa horas antes de que una tormenta en el Cáucaso dejara siete víctimas fatales.",
-      "imagen": "fotos/foto-20260806-barria-hizo-cima-en-el-elbrus-a-30c-y-esquivo-una-dep.webp",
-      "meta": "Hoy · El Pingüino (Magallanes)"
-    },
-    {
-      "id": "20260805-timaukel-lanza-el-primer-guanaco-trail-running-en-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Timaukel lanza el primer Guanaco Trail Running en Tierra del Fuego chilena",
-      "bajada": "La municipalidad de Timaukel anunció la primera edición del Guanaco Trail Running para febrero de 2027, con recorridos de 3K, 14K y 30K entre Pampa Guanaco y Lago Blanco, apuntando a más de 300 atletas.",
-      "imagen": "fotos/foto-20260805-timaukel-lanza-el-primer-guanaco-trail-running-en-dep.webp",
-      "meta": "Hoy · El Pingüino"
-    },
-    {
-      "id": "20260804-300-nadadores-de-aguas-frias-llegan-a-el-calafate-para-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "300 nadadores de aguas frías llegan a El Calafate para la Swimming World Cup",
-      "bajada": "La 4ª edición de la Swimming World Cup Argentina 2026 se disputará del 4 al 9 de agosto en la Villa Turística de El Calafate, con más de 300 participantes de 15 países.",
-      "imagen": "fotos/foto-20260804-300-nadadores-de-aguas-frias-llegan-a-el-calafate-para-dep.webp",
-      "meta": "Hoy · Tiempo Sur (Santa Cruz)"
     }
   ]
 }
