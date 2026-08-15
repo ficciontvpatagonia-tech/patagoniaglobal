@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-15T06:26-03:00",
+ "actualizado": "2026-08-15T06:51-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -279,8 +279,8 @@
      "nro": "AR 1688",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "En Zona",
+     "color": "#C0C0C0"
     },
     {
      "hora": "07:15",
@@ -1072,12 +1072,12 @@
     },
     {
      "hora": "09:15",
-     "real": "05:23",
+     "real": "",
      "nro": "AR 1856",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Aterrizado",
-     "color": "#008000"
+     "estado": "",
+     "color": "#C0C0C0"
     },
     {
      "hora": "16:16",
