@@ -1804,6 +1804,61 @@
 
   <div class="divider" style="margin:32px 0;"></div>
 
+  <!-- ══ BANNER ARCADE PATAGÓNICO ══ -->
+  <style>
+    @keyframes arc-scan  { 0%{transform:translateX(-120%)} 100%{transform:translateX(320%)} }
+    @keyframes arc-blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+    @keyframes arc-glow  { 0%,100%{text-shadow:0 0 6px rgba(122,173,204,.6),0 0 18px rgba(122,173,204,.3)} 50%{text-shadow:0 0 14px rgba(122,173,204,1),0 0 34px rgba(122,173,204,.65)} }
+    @keyframes arc-pulse { 0%,100%{box-shadow:0 0 10px rgba(122,173,204,.45)} 50%{box-shadow:0 0 24px rgba(122,173,204,.9)} }
+    @keyframes arc-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    .banner-arcade {
+      display:block; text-decoration:none; color:inherit; position:relative; overflow:hidden;
+      border-radius:10px; background:linear-gradient(160deg,#0a0a0a 0%,#131c26 55%,#0a0a0a 100%);
+      border:2px solid rgba(122,173,204,.35); box-shadow:0 4px 22px rgba(0,0,0,.45), inset 0 0 40px rgba(122,173,204,.06);
+      cursor:pointer; transition:transform .2s, border-color .2s;
+    }
+    .banner-arcade:hover { transform:translateY(-2px); border-color:rgba(122,173,204,.7); }
+    .banner-arcade .ba-scanlines {
+      position:absolute; inset:0; pointer-events:none;
+      background:repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0px, rgba(255,255,255,.025) 1px, transparent 1px, transparent 3px);
+    }
+    .banner-arcade .ba-sweep-track { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .banner-arcade .ba-sweep { position:absolute; top:0; bottom:0; width:22%; background:linear-gradient(90deg,transparent,rgba(122,173,204,.12),transparent); animation:arc-scan 4.5s ease-in-out infinite; }
+    .banner-arcade .ba-inner { position:relative; z-index:1; display:flex; align-items:center; gap:20px; padding:22px 28px; flex-wrap:wrap; }
+    .banner-arcade .ba-icon { font-size:2.3rem; line-height:1; animation:arc-float 3s ease-in-out infinite; filter:drop-shadow(0 0 10px rgba(122,173,204,.5)); }
+    .banner-arcade .ba-coin { font-family:'Courier New',monospace; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#f4a0a0; animation:arc-blink 1.3s steps(1) infinite; margin-bottom:5px; }
+    .banner-arcade .ba-title { font-family:'Courier New',monospace; font-weight:700; font-size:1.5rem; letter-spacing:1.5px; text-transform:uppercase; color:#7aadcc; animation:arc-glow 2.4s ease-in-out infinite; }
+    .banner-arcade .ba-desc { font-size:.82rem; color:rgba(255,255,255,.6); margin-top:6px; max-width:440px; }
+    .banner-arcade .ba-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+    .banner-arcade .ba-tag { background:rgba(122,173,204,.1); border:1px solid rgba(122,173,204,.3); border-radius:4px; padding:4px 10px; font-size:.68rem; font-family:'Courier New',monospace; color:#7aadcc; white-space:nowrap; }
+    .banner-arcade .ba-cta { font-family:'Courier New',monospace; font-weight:800; font-size:.8rem; letter-spacing:1.5px; text-transform:uppercase; color:#0a0a0a; background:#7aadcc; padding:13px 24px; border-radius:5px; white-space:nowrap; animation:arc-pulse 2s ease-in-out infinite; }
+    @media (max-width:600px) {
+      .banner-arcade .ba-inner { padding:18px; gap:14px; }
+      .banner-arcade .ba-title { font-size:1.2rem; }
+      .banner-arcade .ba-cta { width:100%; text-align:center; }
+    }
+  </style>
+  <a href="arcade.html" class="banner-arcade" aria-label="Arcade Patagónico: minijuegos 8 bits gratis, jugá online" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'arcade_banner_home'})">
+    <div class="ba-scanlines"></div>
+    <div class="ba-sweep-track"><div class="ba-sweep"></div></div>
+    <div class="ba-inner">
+      <div class="ba-icon">🕹️</div>
+      <div style="flex:1;min-width:220px;">
+        <div class="ba-coin">● INSERT COIN — JUGÁ GRATIS</div>
+        <div class="ba-title">Arcade Patagónico</div>
+        <div class="ba-desc">3 minijuegos 8-bit ambientados en la Patagonia real: escalá, corré y esquivá. Sin descargas, directo en el navegador.</div>
+        <div class="ba-tags">
+          <span class="ba-tag">🧗 Cerro Torre</span>
+          <span class="ba-tag">🦙 Guanaco Run</span>
+          <span class="ba-tag">🚗 Los 73 Malditos</span>
+        </div>
+      </div>
+      <div class="ba-cta">▶ Jugar ahora</div>
+    </div>
+  </a>
+
+  <div class="divider" style="margin:32px 0;"></div>
+
   <!-- ══ HISTORIA & CULTURA ══ -->
   <div id="sec-historia" class="section-header">
     <h2 class="section-title">Cultura Patagónica & Pueblos Originarios</h2>
