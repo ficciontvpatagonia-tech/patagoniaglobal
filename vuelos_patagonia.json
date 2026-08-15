@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-15T15:30-03:00",
+ "actualizado": "2026-08-15T15:58-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -207,12 +207,12 @@
     },
     {
      "hora": "15:50",
-     "real": "",
+     "real": "15:41",
      "nro": "AR 1430",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Comodoro Rivadavia",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "16:40",
@@ -410,12 +410,12 @@
     },
     {
      "hora": "15:35",
-     "real": "15:55",
+     "real": "15:49",
      "nro": "WJ 3045",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "16:00",
@@ -423,7 +423,7 @@
      "nro": "JJ 8158",
      "aerolinea": "Latam Brasil",
      "ciudad": "San Pablo-Guarulhos",
-     "estado": "",
+     "estado": "En Zona",
      "color": "#C0C0C0"
     },
     {
@@ -455,12 +455,12 @@
     },
     {
      "hora": "17:31",
-     "real": "",
+     "real": "17:25",
      "nro": "WJ 3047",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "17:50",
@@ -473,12 +473,12 @@
     },
     {
      "hora": "17:50",
-     "real": "",
+     "real": "17:25",
      "nro": "O4 400",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "18:35",
@@ -740,8 +740,8 @@
      "nro": "WJ 3046",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Embarcando",
+     "color": "#C36419"
     },
     {
      "hora": "17:00",
@@ -1040,12 +1040,12 @@
     },
     {
      "hora": "16:00",
-     "real": "",
+     "real": "15:52",
      "nro": "AR 1919",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "18:10",
@@ -1221,12 +1221,12 @@
     },
     {
      "hora": "18:45",
-     "real": "18:27",
+     "real": "19:02",
      "nro": "AR 1890",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "20:23",
@@ -1363,7 +1363,7 @@
     },
     {
      "hora": "18:35",
-     "real": "18:16",
+     "real": "18:32",
      "nro": "AR 1850",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
