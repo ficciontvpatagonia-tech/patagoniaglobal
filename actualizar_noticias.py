@@ -4822,6 +4822,7 @@ def publicar_instagram(tapa):
     if not ig_user_id or not access_token:
         print("  Instagram: sin credenciales, se omite.")
         return
+    access_token, _ = _renovar_token_facebook(access_token)
 
     titulo  = tapa.get("titulo", "")
     bajada  = tapa.get("bajada", "")
@@ -4948,6 +4949,7 @@ def publicar_instagram_informe_nuevo():
     access_token = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
     if not ig_user_id or not access_token:
         return
+    access_token, _ = _renovar_token_facebook(access_token)
 
     base_dir     = os.path.dirname(__file__)
     state_path   = os.path.join(base_dir, "telegram_state.json")
