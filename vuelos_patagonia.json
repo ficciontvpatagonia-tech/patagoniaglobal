@@ -1,17 +1,17 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-16T08:20-03:00",
+ "actualizado": "2026-08-16T08:45-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
    "arribos": [
     {
      "hora": "07:59",
-     "real": "",
+     "real": "10:05",
      "nro": "WJ 3169",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "Consulte Cía.",
+     "estado": "Demorado",
      "color": "#FB671E"
     },
     {
@@ -144,11 +144,11 @@
     },
     {
      "hora": "08:32",
-     "real": "",
+     "real": "10:40",
      "nro": "WJ 3170",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "Consulte Cía.",
+     "estado": "Demorado",
      "color": "#FB671E"
     },
     {
@@ -302,12 +302,12 @@
     },
     {
      "hora": "09:25",
-     "real": "",
+     "real": "09:13",
      "nro": "WJ 3051",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "10:10",
@@ -547,12 +547,12 @@
     },
     {
      "hora": "08:30",
-     "real": "",
+     "real": "08:27",
      "nro": "WJ 3040",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "09:00",
@@ -560,8 +560,8 @@
      "nro": "AR 1689",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Embarcando",
+     "color": "#C36419"
     },
     {
      "hora": "09:20",
@@ -587,8 +587,8 @@
      "nro": "WJ 3052",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "11:00",
@@ -1077,7 +1077,7 @@
     },
     {
      "hora": "13:50",
-     "real": "",
+     "real": "12:30",
      "nro": "AR 1882",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -1086,7 +1086,7 @@
     },
     {
      "hora": "13:55",
-     "real": "14:16",
+     "real": "14:25",
      "nro": "LA 8174",
      "aerolinea": "LATAM",
      "ciudad": "São Paulo",
