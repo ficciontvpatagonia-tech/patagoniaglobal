@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260815-guanaco-trail-running-fecha-categorias-y-circuito-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Guanaco Trail Running 2027: fecha, categorías y circuito",
-    "bajada": "La Municipalidad de Timaukel confirmó las tres categorías —Chulengo, 14K y Bagual— de la primera edición, fijada para el 13 de febrero de 2027 entre Pampa Guanaco y Lago Blanco, en el sur de Tierra del Fuego chilena.",
-    "imagen": "fotos/foto-20260815-guanaco-trail-running-fecha-categorias-y-circuito-dep.webp",
-    "meta": "Hoy · GLOBALpatagonia"
+    "id": "20260816-snow-park-de-catedral-un-nuevo-acceso-al-freestyle-en-dep",
+    "tag": "🏔 Deportes",
+    "titulo": "Snow Park de Catedral: un nuevo acceso al freestyle en la montaña",
+    "bajada": "Cerro Catedral lanza un producto para facilitar el acceso a la pista de freestyle, con módulos para todos los niveles.",
+    "imagen": "fotos/foto-20260816-snow-park-de-catedral-un-nuevo-acceso-al-freestyle-en-dep.webp",
+    "meta": "Hoy · Catedral Alta Patagonia"
   },
   "secundarias": [
+    {
+      "id": "20260815-guanaco-trail-running-fecha-categorias-y-circuito-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Guanaco Trail Running 2027: fecha, categorías y circuito",
+      "bajada": "La Municipalidad de Timaukel confirmó las tres categorías —Chulengo, 14K y Bagual— de la primera edición, fijada para el 13 de febrero de 2027 entre Pampa Guanaco y Lago Blanco, en el sur de Tierra del Fuego chilena.",
+      "imagen": "fotos/foto-20260815-guanaco-trail-running-fecha-categorias-y-circuito-dep.webp",
+      "meta": "Hoy · GLOBALpatagonia"
+    },
     {
       "id": "20260814-travesia-nocturna-en-bariloche-24-esquiadores-se-dep",
       "tag": "🏔️ Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El Club Andino Bariloche organizó una salida de esquí de travesía nocturna que reunió a 24 participantes en condiciones ideales de viento y visibilidad.",
       "imagen": "fotos/foto-20260814-travesia-nocturna-en-bariloche-24-esquiadores-se-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260813-adriana-miracle-dos-oros-en-aguas-glaciares-frente-al-dep",
       "tag": "🏊 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La nadadora riogalleguense conquistó dos primeros puestos y dos terceros en la Winter Swimming World Cup disputada en El Calafate, con una pileta flotante frente al glaciar como escenario.",
       "imagen": "fotos/foto-20260813-adriana-miracle-dos-oros-en-aguas-glaciares-frente-al-dep.webp",
       "meta": "Hoy · Tiempo Sur (Santa Cruz)"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260812-dia-del-montanes-en-catedral-generaciones-que-hicieron-dep",
       "tag": "🏔️ Deportes",
@@ -49,14 +57,6 @@
       "titulo": "Cerro Catedral y FASA: esquí de alto rendimiento con base patagónica",
       "bajada": "El centro de ski más grande de Sudamérica retoma su alianza con la federación nacional para potenciar la formación de atletas de élite en Bariloche.",
       "imagen": "fotos/foto-20260810-cerro-catedral-y-fasa-esqui-de-alto-rendimiento-con-dep.webp",
-      "meta": "Hoy · Catedral Alta Patagonia"
-    },
-    {
-      "id": "20260809-tropas-de-montana-vuelven-a-catedral-despues-de-62-anos-dep",
-      "tag": "🏔 Deportes",
-      "titulo": "Tropas de Montaña vuelven a Catedral después de 62 años",
-      "bajada": "La Comprobación de Nivel de Entrenamiento de Patrullas de Montaña del Ejército Argentino regresó a Cerro Catedral por primera vez desde 1964, reuniendo brigadas de todo el país en el cerro barilochense.",
-      "imagen": "fotos/foto-20260809-tropas-de-montana-vuelven-a-catedral-despues-de-62-anos-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
     }
   ]
