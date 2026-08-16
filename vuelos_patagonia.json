@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-16T19:20-03:00",
+ "actualizado": "2026-08-16T19:47-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -482,12 +482,12 @@
     },
     {
      "hora": "19:50",
-     "real": "19:15",
+     "real": "",
      "nro": "O4 678",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "Consulte Cía.",
+     "color": "#FB671E"
     },
     {
      "hora": "20:10",
@@ -500,12 +500,12 @@
     },
     {
      "hora": "20:40",
-     "real": "",
+     "real": "21:33",
      "nro": "AR 1686",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "21:40",
@@ -668,8 +668,8 @@
      "nro": "AD 8745",
      "aerolinea": "Azul Linhas Aereas Brasileiras",
      "ciudad": "Belo Horizonte",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Cancelado",
+     "color": "#FB671E"
     },
     {
      "hora": "16:30",
@@ -691,12 +691,12 @@
     },
     {
      "hora": "18:10",
-     "real": "",
+     "real": "18:55",
      "nro": "JJ 8163",
      "aerolinea": "Latam Brasil",
      "ciudad": "San Pablo-Guarulhos",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "18:40",
@@ -704,8 +704,8 @@
      "nro": "AR 1673",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "19:00",
@@ -718,21 +718,21 @@
     },
     {
      "hora": "19:15",
-     "real": "",
+     "real": "19:22",
      "nro": "O4 673",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "19:40",
-     "real": "",
+     "real": "19:39",
      "nro": "O4 401",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "19:40",
@@ -740,8 +740,8 @@
      "nro": "AR 1679",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Ultimo aviso",
+     "color": "#FB671E"
     },
     {
      "hora": "20:10",
@@ -749,8 +749,8 @@
      "nro": "WJ 3060",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Ultimo aviso",
+     "color": "#FB671E"
     },
     {
      "hora": "20:40",
@@ -772,12 +772,12 @@
     },
     {
      "hora": "21:30",
-     "real": "",
+     "real": "22:20",
      "nro": "AR 1687",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "22:30",
@@ -1068,7 +1068,7 @@
     },
     {
      "hora": "21:25",
-     "real": "22:24",
+     "real": "22:35",
      "nro": "AR 1874",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -1101,7 +1101,7 @@
      "nro": "AR 1893",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
@@ -1110,7 +1110,7 @@
      "nro": "WJ* 3204",
      "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
@@ -1156,12 +1156,12 @@
     },
     {
      "hora": "19:35",
-     "real": "19:45",
+     "real": "",
      "nro": "AR 1850",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
