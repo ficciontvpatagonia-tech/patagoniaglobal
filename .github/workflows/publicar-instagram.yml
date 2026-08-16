@@ -22,6 +22,45 @@ jobs:
       - name: Instalar dependencias
         run: pip install anthropic feedparser Pillow numpy
 
+      - name: Diagnóstico Instagram (temporal)
+        env:
+          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
+          FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+        run: |
+          python3 - <<'EOF'
+          import os, sys, json, urllib.request
+          sys.path.insert(0, '.')
+          import actualizar_noticias as an
+
+          token = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
+          nuevo, page_id = an._renovar_token_facebook(token)
+          print(f"page_id resuelto: {page_id}")
+
+          def get(url):
+              try:
+                  with urllib.request.urlopen(url, timeout=15) as r:
+                      return json.loads(r.read().decode())
+              except urllib.error.HTTPError as e:
+                  return {"HTTPError": e.code, "body": e.read().decode("utf-8", errors="replace")}
+
+          ig_secret = os.environ.get("INSTAGRAM_BUSINESS_ACCOUNT_ID", "")
+
+          r0 = get(f"https://graph.facebook.com/v21.0/debug_token?input_token={token}&access_token={token}")
+          print("Permisos/scopes del token CRUDO (tal como llegó del secret):", json.dumps(r0))
+
+          r1 = get(f"https://graph.facebook.com/v21.0/{page_id}?fields=instagram_business_account,name&access_token={nuevo}")
+          print("Página -> instagram_business_account vinculada:", json.dumps(r1))
+
+          r2 = get(f"https://graph.facebook.com/v21.0/{ig_secret}?fields=id,username&access_token={nuevo}")
+          print("Lookup directo del INSTAGRAM_BUSINESS_ACCOUNT_ID:", json.dumps(r2))
+
+          r3 = get(f"https://graph.facebook.com/v21.0/debug_token?input_token={nuevo}&access_token={nuevo}")
+          print("Permisos/scopes del token RENOVADO (page token derivado):", json.dumps(r3))
+          EOF
+
       - name: Publicar en Instagram
         env:
           FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
