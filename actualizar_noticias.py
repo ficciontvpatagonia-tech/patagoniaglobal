@@ -39,6 +39,29 @@ def slugify(text, max_len=55):
 import feedparser
 import anthropic
 
+
+def llamar_llm(mensajes, max_tokens=10000, model_claude="claude-sonnet-4-6"):
+    """Llama a Claude; si falla (sin crédito, rate limit, etc.) y hay
+    DEEPSEEK_API_KEY configurada, cae a DeepSeek para no perder el run.
+    Devuelve el texto de la respuesta. Relanza el error de Claude si
+    tampoco hay fallback disponible."""
+    try:
+        client = anthropic.Anthropic(api_key=API_KEY)
+        response = client.messages.create(
+            model=model_claude, max_tokens=max_tokens, messages=mensajes
+        )
+        return response.content[0].text.strip()
+    except Exception as e_claude:
+        if not DEEPSEEK_API_KEY:
+            raise
+        print(f" [Claude falló: {e_claude} — fallback DeepSeek]", end=" ", flush=True)
+        import openai
+        ds_client = openai.OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
+        resp = ds_client.chat.completions.create(
+            model="deepseek-chat", max_tokens=max_tokens, messages=mensajes
+        )
+        return resp.choices[0].message.content.strip()
+
 # ══════════════════════════════════════════════════════════
 #  CONFIGURACIÓN
 # ══════════════════════════════════════════════════════════
@@ -53,6 +76,7 @@ if os.path.exists(_env_path):
                 os.environ.setdefault(_k.strip(), _v.strip())
 
 API_KEY             = os.environ.get("ANTHROPIC_API_KEY", "")
+DEEPSEEK_API_KEY     = os.environ.get("DEEPSEEK_API_KEY", "")
 UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY", "")
 BREVO_API_KEY       = os.environ.get("BREVO_API_KEY", "")
 BREVO_LIST_ID       = 3
@@ -733,8 +757,6 @@ def reescribir_con_claude(noticias_crudas, historial, es_domingo=False):
         print("  ⚠ No se encontraron noticias patagónicas.")
         return None
 
-    client = anthropic.Anthropic(api_key=API_KEY)
-
     ya_publicadas   = urls_ya_publicadas(historial)
     noticias_nuevas = [n for n in noticias_crudas if _normalizar_url(n["url"]) not in ya_publicadas]
     print(f"  Noticias nuevas (no publicadas aún): {len(noticias_nuevas)}")
@@ -959,12 +981,7 @@ REGLAS CRÍTICAS:
                     "Devolvé ÚNICAMENTE el objeto JSON pedido, sin texto antes ni después, "
                     "asegurándote de escapar correctamente comillas y saltos de línea dentro de las strings."
                 })
-            response = client.messages.create(
-                model="claude-sonnet-4-6",
-                max_tokens=10000,
-                messages=mensajes
-            )
-            ultimo_texto = response.content[0].text.strip()
+            ultimo_texto = llamar_llm(mensajes, max_tokens=10000)
             texto = _extraer_json(ultimo_texto)
             datos = json.loads(texto)
             print("OK")
@@ -1490,13 +1507,8 @@ Reglas:
 
 Respondé SOLO con el nombre de archivo exacto (tal como figura arriba) o NINGUNA."""
     try:
-        client = anthropic.Anthropic(api_key=API_KEY)
-        resp = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=100,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        eleccion = resp.content[0].text.strip().strip('"').strip("`")
+        eleccion = llamar_llm([{"role": "user", "content": prompt}], max_tokens=100)
+        eleccion = eleccion.strip('"').strip("`")
         if eleccion.upper().startswith("NINGUNA"):
             return None, "arbitro: ninguna corresponde"
         for c in candidatas:
@@ -2138,7 +2150,6 @@ Resumen: {n['resumen_original']}
 URL: {n['url']}
 """
 
-    client = anthropic.Anthropic(api_key=API_KEY)
     prompt = f"""Sos el editor de agenda de GLOBALpatagonia. Hoy es {hoy}.
 
 Analizá estas noticias y extraé SOLO las que corresponden a un evento futuro concreto (festival, carrera, muestra, fiesta, torneo, congreso, recital, certamen deportivo, etc.) con fecha definida en la Patagonia argentina o chilena. Ignorá inauguraciones de obras, nombramientos, noticias sin fecha de evento.
@@ -2162,12 +2173,7 @@ Para cada evento válido generá un objeto JSON con estos campos exactos:
 Respondé SOLO con un array JSON válido. Si no hay eventos válidos respondé []."""
 
     try:
-        response = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=2000,
-            messages=[{"role": "user", "content": prompt}]
-        )
-        texto = response.content[0].text.strip()
+        texto = llamar_llm([{"role": "user", "content": prompt}], max_tokens=2000)
         if "```" in texto:
             for parte in texto.split("```"):
                 p = parte.strip()
