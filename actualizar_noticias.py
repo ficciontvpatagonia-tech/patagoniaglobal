@@ -4816,12 +4816,13 @@ def _generar_imagen_ig(ruta_local, titulo, tag="", nota_id=""):
 # ══════════════════════════════════════════════════════════
 
 def publicar_instagram(tapa):
-    """Publica la tapa del día en Instagram Business via Graph API (2 pasos: container → publish)."""
+    """Publica la tapa del día en Instagram Business via Graph API (2 pasos: container → publish).
+    Devuelve True si publicó con éxito, False en cualquier otro caso."""
     ig_user_id   = os.environ.get("INSTAGRAM_BUSINESS_ACCOUNT_ID", "")
     access_token = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
     if not ig_user_id or not access_token:
         print("  Instagram: sin credenciales, se omite.")
-        return
+        return False
     access_token, _ = _renovar_token_facebook(access_token)
 
     titulo  = tapa.get("titulo", "")
@@ -4832,7 +4833,7 @@ def publicar_instagram(tapa):
 
     if not imagen:
         print("  Instagram: sin imagen, se omite.")
-        return
+        return False
 
     banderas  = {"argentina": "🇦🇷", "chile": "🇨🇱", "ambos": "🇦🇷🇨🇱", "malvinas": "🗺️"}
     bandera   = banderas.get(pais, "")
@@ -4890,15 +4891,15 @@ def publicar_instagram(tapa):
                 except urllib.error.HTTPError as http_err2:
                     detalle2 = http_err2.read().decode("utf-8", errors="replace")
                     print(f"  Instagram container falló {http_err2.code}: {detalle2}")
-                    return
+                    return False
             else:
                 print(f"  Instagram container falló {http_err.code}: {detalle}")
-                return
+                return False
 
         creation_id = resultado.get("id")
         if not creation_id:
             print(f"  Instagram container error: {resultado}")
-            return
+            return False
 
         # Esperar a que el container esté listo (poll de status)
         import time
@@ -4915,12 +4916,12 @@ def publicar_instagram(tapa):
                     break
                 if status_code == "ERROR":
                     print(f"  Instagram container ERROR de procesamiento")
-                    return
+                    return False
             except Exception:
                 pass
         else:
             print(f"  Instagram container timeout (no FINISHED)")
-            return
+            return False
 
         # Paso 2: publicar el container
         data = urllib.parse.urlencode({
@@ -4933,14 +4934,18 @@ def publicar_instagram(tapa):
                 resultado = json.loads(resp.read().decode())
             if resultado.get("id"):
                 print(f"  Instagram OK ✓ [{nota_id}]")
+                return True
             else:
                 print(f"  Instagram publish error: {resultado}")
+                return False
         except urllib.error.HTTPError as http_err:
             detalle = http_err.read().decode("utf-8", errors="replace")
             print(f"  Instagram publish falló {http_err.code}: {detalle}")
+            return False
 
     except Exception as e:
         print(f"  Instagram falló: {e}")
+        return False
 
 
 def publicar_instagram_informe_nuevo():
@@ -5191,8 +5196,7 @@ def solo_instagram():
         if nid in tapa_ig_posteadas:
             continue
         print(f"\n  Publicando tapa en Instagram (post-push)…")
-        publicar_instagram(nota_ig)
-        if nid:
+        if publicar_instagram(nota_ig) and nid:
             tapa_ig_posteadas.add(nid)
     ig_state["tapa_ig_posteadas"] = list(tapa_ig_posteadas)
 
@@ -5225,8 +5229,8 @@ def solo_instagram():
         if ig_state.get(f"ultimo_{clave}_instagram") == sec_id:
             continue
         print(f"\n  Publicando {clave} en Instagram (post-push)…")
-        publicar_instagram(nota_sec)
-        ig_state[f"ultimo_{clave}_instagram"] = sec_id
+        if publicar_instagram(nota_sec):
+            ig_state[f"ultimo_{clave}_instagram"] = sec_id
 
     # Notas manuales en Instagram (fallback al campo viejo para migración)
     manuales_ig_posteadas = set(ig_state.get("manuales_ig_posteadas") or ig_state.get("manuales_posteadas", []))
@@ -5259,8 +5263,8 @@ def solo_instagram():
             mid = nota_m.get("id", "")
             if mid and mid not in manuales_ig_posteadas:
                 print(f"\n  Manual Instagram: [{mid}]…")
-                publicar_instagram(nota_m)
-                manuales_ig_posteadas.add(mid)
+                if publicar_instagram(nota_m):
+                    manuales_ig_posteadas.add(mid)
 
     ig_state["manuales_ig_posteadas"] = list(manuales_ig_posteadas)
     with open(state_path, "w", encoding="utf-8") as f:
