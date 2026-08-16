@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-16T18:20-03:00",
+ "actualizado": "2026-08-16T18:45-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -79,12 +79,12 @@
     },
     {
      "hora": "17:55",
-     "real": "18:25",
+     "real": "18:23",
      "nro": "AR 1648",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "18:15",
@@ -97,12 +97,12 @@
     },
     {
      "hora": "19:16",
-     "real": "",
+     "real": "20:18",
      "nro": "LA 416",
      "aerolinea": "LATAM",
      "ciudad": "Santiago de Chile",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "20:02",
@@ -234,12 +234,12 @@
     },
     {
      "hora": "20:20",
-     "real": "",
+     "real": "21:18",
      "nro": "LA 417",
      "aerolinea": "LATAM",
      "ciudad": "Santiago de Chile",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "20:47",
@@ -428,12 +428,12 @@
     },
     {
      "hora": "17:50",
-     "real": "18:36",
+     "real": "18:38",
      "nro": "AR 1672",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "18:20",
@@ -455,12 +455,12 @@
     },
     {
      "hora": "18:50",
-     "real": "18:30",
+     "real": "18:32",
      "nro": "O4 400",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "18:50",
@@ -468,8 +468,8 @@
      "nro": "AR 1678",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "En Zona",
+     "color": "#C0C0C0"
     },
     {
      "hora": "19:25",
@@ -527,12 +527,12 @@
     },
     {
      "hora": "22:50",
-     "real": "",
+     "real": "23:15",
      "nro": "AR 1692",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     }
    ],
    "partidas": [
@@ -695,8 +695,8 @@
      "nro": "JJ 8163",
      "aerolinea": "Latam Brasil",
      "ciudad": "San Pablo-Guarulhos",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "18:40",
@@ -799,12 +799,12 @@
     },
     {
      "hora": "23:40",
-     "real": "",
+     "real": "23:55",
      "nro": "AR 1693",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     }
    ]
   },
@@ -954,8 +954,8 @@
      "nro": "AR 1835",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     }
    ]
   },
@@ -1088,12 +1088,12 @@
     },
     {
      "hora": "17:50",
-     "real": "18:20",
+     "real": "18:32",
      "nro": "AR 1587",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Cordoba",
-     "estado": "Embarcando",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "20:55",
