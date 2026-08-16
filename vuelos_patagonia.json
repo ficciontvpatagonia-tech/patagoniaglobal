@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-16T13:51-03:00",
+ "actualizado": "2026-08-16T14:19-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -61,12 +61,12 @@
     },
     {
      "hora": "14:25",
-     "real": "",
+     "real": "14:16",
      "nro": "AR 1572",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Córdoba",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "15:15",
@@ -180,12 +180,12 @@
     },
     {
      "hora": "13:52",
-     "real": "",
+     "real": "13:54",
      "nro": "WJ 3164",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "14:15",
@@ -1182,8 +1182,8 @@
      "nro": "AR 1883",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Embarcando",
+     "color": "#e07a1f"
     },
     {
      "hora": "15:00",
@@ -1200,7 +1200,7 @@
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "El Calafate",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
@@ -1352,7 +1352,7 @@
     },
     {
      "hora": "15:20",
-     "real": "15:55",
+     "real": "16:40",
      "nro": "AR 1810",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
