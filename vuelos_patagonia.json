@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-17T19:24-03:00",
+ "actualizado": "2026-08-17T19:50-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -261,12 +261,12 @@
     },
     {
      "hora": "19:50",
-     "real": "",
+     "real": "19:42",
      "nro": "AR 1649",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "20:47",
@@ -500,15 +500,6 @@
     },
     {
      "hora": "19:35",
-     "real": "",
-     "nro": "WJ 3057",
-     "aerolinea": "JetSMART",
-     "ciudad": "Aeroparque",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
-    },
-    {
-     "hora": "19:35",
      "real": "19:24",
      "nro": "O4 614",
      "aerolinea": "Andes",
@@ -517,8 +508,17 @@
      "color": "#008000"
     },
     {
+     "hora": "19:35",
+     "real": "19:32",
+     "nro": "WJ 3057",
+     "aerolinea": "JetSMART",
+     "ciudad": "Aeroparque",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
+    {
      "hora": "20:20",
-     "real": "21:25",
+     "real": "21:35",
      "nro": "AR 1690",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
@@ -776,8 +776,8 @@
      "nro": "AR 1687",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Ultimo aviso",
+     "color": "#FB671E"
     },
     {
      "hora": "20:20",
@@ -785,8 +785,8 @@
      "nro": "WJ 3058",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Embarcando",
+     "color": "#C36419"
     },
     {
      "hora": "20:25",
@@ -1185,12 +1185,12 @@
     },
     {
      "hora": "19:35",
-     "real": "19:33",
+     "real": "19:36",
      "nro": "AR 1890",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -1360,8 +1360,8 @@
      "nro": "AR 1851",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Embarcando",
+     "color": "#e07a1f"
     }
    ]
   },
