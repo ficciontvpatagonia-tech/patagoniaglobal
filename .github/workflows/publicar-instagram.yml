@@ -22,11 +22,39 @@ jobs:
       - name: Instalar dependencias
         run: pip install anthropic feedparser Pillow numpy
 
-      - name: Publicar en Instagram
+      - name: Diagnóstico Instagram (solo lectura, no publica)
         env:
           FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
           FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
           FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
           INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
-        run: python3 actualizar_noticias.py --solo-instagram
+        run: |
+          python3 - <<'EOF'
+          import os, sys, json, urllib.request
+          sys.path.insert(0, '.')
+          import actualizar_noticias as an
+
+          token = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
+          nuevo, page_id = an._renovar_token_facebook(token)
+
+          def get(url):
+              try:
+                  with urllib.request.urlopen(url, timeout=15) as r:
+                      return json.loads(r.read().decode())
+              except urllib.error.HTTPError as e:
+                  return {"HTTPError": e.code, "body": e.read().decode("utf-8", errors="replace")}
+
+          ig_id = os.environ.get("INSTAGRAM_BUSINESS_ACCOUNT_ID", "")
+          r = get(f"https://graph.facebook.com/v21.0/{ig_id}?fields=id,username,name,biography,profile_picture_url,followers_count&access_token={nuevo}")
+          print("Cuenta de Instagram que va a recibir los posts:", json.dumps(r, ensure_ascii=False))
+          EOF
+
+      # - name: Publicar en Instagram   [TEMPORALMENTE DESACTIVADO — solo diagnóstico, no publicar sin confirmar con Marto]
+      #   env:
+      #     FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+      #     FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+      #     FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
+      #     FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
+      #     INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+      #   run: python3 actualizar_noticias.py --solo-instagram
