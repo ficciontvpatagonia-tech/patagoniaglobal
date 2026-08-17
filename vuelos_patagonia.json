@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-17T11:55-03:00",
+ "actualizado": "2026-08-17T12:25-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -43,12 +43,12 @@
     },
     {
      "hora": "12:30",
-     "real": "",
+     "real": "12:09",
      "nro": "AR 1431",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Comodoro Rivadavia",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "13:30",
@@ -189,12 +189,12 @@
     },
     {
      "hora": "11:51",
-     "real": "",
+     "real": "12:06",
      "nro": "WJ 3164",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "Consulte Cía.",
-     "color": "#FB671E"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "13:10",
@@ -202,7 +202,7 @@
      "nro": "AR 1431",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Mendoza",
-     "estado": "Pre Embarque",
+     "estado": "Embarcando",
      "color": "#C36419"
     },
     {
@@ -383,12 +383,12 @@
     },
     {
      "hora": "12:10",
-     "real": "",
+     "real": "12:00",
      "nro": "AR 1674",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "12:50",
@@ -396,8 +396,8 @@
      "nro": "O4 616",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "En Zona",
+     "color": "#C0C0C0"
     },
     {
      "hora": "13:30",
@@ -641,26 +641,26 @@
      "nro": "AD 9747",
      "aerolinea": "Azul Linhas Aereas Brasileiras",
      "ciudad": "Belo Horizonte",
-     "estado": "Embarcando",
-     "color": "#C36419"
-    },
-    {
-     "hora": "12:00",
-     "real": "",
-     "nro": "AR 1681",
-     "aerolinea": "Aerolíneas Argentinas",
-     "ciudad": "Aeroparque",
      "estado": "Cerrado",
      "color": "#FF0000"
     },
     {
+     "hora": "12:00",
+     "real": "12:10",
+     "nro": "AR 1681",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Aeroparque",
+     "estado": "Despegado",
+     "color": "#008000"
+    },
+    {
      "hora": "12:05",
-     "real": "",
+     "real": "12:03",
      "nro": "O4 611",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "13:00",
@@ -668,8 +668,8 @@
      "nro": "AR 1555",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Córdoba",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     },
     {
      "hora": "13:40",
@@ -903,12 +903,12 @@
     },
     {
      "hora": "12:30",
-     "real": "",
+     "real": "12:15",
      "nro": "AR 1828",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "17:35",
@@ -1018,12 +1018,12 @@
     },
     {
      "hora": "12:30",
-     "real": "",
+     "real": "12:23",
      "nro": "5U 901",
      "aerolinea": "Lade",
      "ciudad": "Ushuaia",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -1218,8 +1218,8 @@
      "nro": "AR 1881",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Embarcando",
+     "color": "#e07a1f"
     },
     {
      "hora": "13:20",
@@ -1282,7 +1282,7 @@
     },
     {
      "hora": "15:20",
-     "real": "15:12",
+     "real": "",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
