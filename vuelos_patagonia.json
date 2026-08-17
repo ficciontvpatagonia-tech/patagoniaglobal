@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-17T17:55-03:00",
+ "actualizado": "2026-08-17T18:27-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -473,12 +473,12 @@
     },
     {
      "hora": "18:10",
-     "real": "18:00",
+     "real": "18:01",
      "nro": "AR 1678",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "19:00",
@@ -486,8 +486,8 @@
      "nro": "O4 618",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "En Zona",
+     "color": "#C0C0C0"
     },
     {
      "hora": "19:10",
@@ -518,7 +518,7 @@
     },
     {
      "hora": "20:20",
-     "real": "21:15",
+     "real": "21:25",
      "nro": "AR 1690",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
@@ -749,8 +749,8 @@
      "nro": "O4 613",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "19:00",
@@ -808,7 +808,7 @@
     },
     {
      "hora": "21:15",
-     "real": "22:05",
+     "real": "22:15",
      "nro": "AR 1691",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
@@ -977,12 +977,12 @@
     },
     {
      "hora": "18:15",
-     "real": "",
+     "real": "18:05",
      "nro": "AR 1833",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "20:55",
@@ -1268,12 +1268,12 @@
     },
     {
      "hora": "18:20",
-     "real": "",
+     "real": "18:12",
      "nro": "AR 1889",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Ultima Llamada",
-     "color": "#777777"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "20:25",
@@ -1351,8 +1351,8 @@
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Embarcando",
+     "color": "#e07a1f"
     },
     {
      "hora": "19:40",
