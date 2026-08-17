@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-17T12:50-03:00",
+ "actualizado": "2026-08-17T13:27-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -61,12 +61,12 @@
     },
     {
      "hora": "13:50",
-     "real": "",
+     "real": "13:24",
      "nro": "WJ 3161",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "14:30",
@@ -198,12 +198,12 @@
     },
     {
      "hora": "13:10",
-     "real": "",
+     "real": "13:07",
      "nro": "AR 1431",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Mendoza",
-     "estado": "Ultimo aviso",
-     "color": "#FB671E"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "14:10",
@@ -229,8 +229,8 @@
      "nro": "AR 1643",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     },
     {
      "hora": "16:05",
@@ -401,12 +401,12 @@
     },
     {
      "hora": "13:30",
-     "real": "",
+     "real": "13:17",
      "nro": "AR 1664",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "14:40",
@@ -637,12 +637,12 @@
     },
     {
      "hora": "12:00",
-     "real": "",
+     "real": "13:12",
      "nro": "AD 9747",
      "aerolinea": "Azul Linhas Aereas Brasileiras",
      "ciudad": "Belo Horizonte",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "12:00",
@@ -664,21 +664,21 @@
     },
     {
      "hora": "13:00",
-     "real": "",
+     "real": "13:06",
      "nro": "AR 1555",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Córdoba",
-     "estado": "Ultimo aviso",
-     "color": "#FB671E"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "13:40",
-     "real": "",
+     "real": "13:21",
      "nro": "O4 617",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "14:20",
@@ -686,8 +686,8 @@
      "nro": "AR 1665",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     },
     {
      "hora": "15:30",
@@ -968,12 +968,12 @@
     },
     {
      "hora": "13:10",
-     "real": "",
+     "real": "13:16",
      "nro": "AR 1829",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "18:15",
@@ -1227,8 +1227,8 @@
      "nro": "AR 1883",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Demorado",
-     "color": "#c0392b"
+     "estado": "Pre Embarque",
+     "color": "#777777"
     },
     {
      "hora": "15:05",
@@ -1236,7 +1236,7 @@
      "nro": "LA 8175",
      "aerolinea": "LATAM",
      "ciudad": "São Paulo",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
@@ -1279,6 +1279,15 @@
      "ciudad": "Comodoro Rivadavia",
      "estado": "Aterrizado",
      "color": "#008000"
+    },
+    {
+     "hora": "14:00",
+     "real": "",
+     "nro": "V5 1",
+     "aerolinea": "Aerovias Dap",
+     "ciudad": "Rio Gallegos",
+     "estado": "En horario",
+     "color": "#777777"
     },
     {
      "hora": "15:20",
@@ -1388,7 +1397,7 @@
     },
     {
      "hora": "15:55",
-     "real": "",
+     "real": "15:45",
      "nro": "AR 1810",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
