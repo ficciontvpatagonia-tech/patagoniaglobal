@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-17T11:28-03:00",
+ "actualizado": "2026-08-17T11:55-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -193,8 +193,8 @@
      "nro": "WJ 3164",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Consulte Cía.",
+     "color": "#FB671E"
     },
     {
      "hora": "13:10",
@@ -387,7 +387,7 @@
      "nro": "AR 1674",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
+     "estado": "En Zona",
      "color": "#C0C0C0"
     },
     {
@@ -632,16 +632,7 @@
      "nro": "AR 1671",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
-    },
-    {
-     "hora": "12:00",
-     "real": "",
-     "nro": "AR 1681",
-     "aerolinea": "Aerolíneas Argentinas",
-     "ciudad": "Aeroparque",
-     "estado": "Pre Embarque",
+     "estado": "Embarcando",
      "color": "#C36419"
     },
     {
@@ -650,8 +641,17 @@
      "nro": "AD 9747",
      "aerolinea": "Azul Linhas Aereas Brasileiras",
      "ciudad": "Belo Horizonte",
-     "estado": "Reprogramado",
-     "color": "#C0C0C0"
+     "estado": "Embarcando",
+     "color": "#C36419"
+    },
+    {
+     "hora": "12:00",
+     "real": "",
+     "nro": "AR 1681",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Aeroparque",
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "12:05",
@@ -1131,16 +1131,16 @@
     },
     {
      "hora": "11:30",
-     "real": "11:35",
+     "real": "",
      "nro": "AR 1880",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "12:30",
-     "real": "13:31",
+     "real": "13:10",
      "nro": "AR 1882",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -1149,7 +1149,7 @@
     },
     {
      "hora": "14:00",
-     "real": "14:39",
+     "real": "14:38",
      "nro": "LA 8174",
      "aerolinea": "LATAM",
      "ciudad": "São Paulo",
@@ -1300,7 +1300,7 @@
     },
     {
      "hora": "18:50",
-     "real": "",
+     "real": "18:42",
      "nro": "AR 1850",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
