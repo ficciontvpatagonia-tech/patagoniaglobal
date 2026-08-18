@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-17T20:47-03:00",
+ "actualizado": "2026-08-17T22:15-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -133,12 +133,12 @@
     },
     {
      "hora": "21:34",
-     "real": "",
+     "real": "21:15",
      "nro": "WJ 3173",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "21:50",
@@ -279,21 +279,21 @@
     },
     {
      "hora": "21:15",
-     "real": "",
+     "real": "21:31",
      "nro": "AR 1651",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "22:19",
-     "real": "",
+     "real": "22:11",
      "nro": "WJ 3174",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     }
    ]
   },
@@ -518,12 +518,12 @@
     },
     {
      "hora": "20:20",
-     "real": "21:35",
+     "real": "21:32",
      "nro": "AR 1690",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "20:24",
@@ -536,21 +536,21 @@
     },
     {
      "hora": "21:10",
-     "real": "22:10",
+     "real": "21:57",
      "nro": "WJ 3035",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "21:25",
-     "real": "22:04",
+     "real": "22:05",
      "nro": "AR 1684",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "21:45",
@@ -563,11 +563,11 @@
     },
     {
      "hora": "22:25",
-     "real": "",
+     "real": "22:17",
      "nro": "AR 1705",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Rosario",
-     "estado": "",
+     "estado": "En Zona",
      "color": "#C0C0C0"
     }
    ],
@@ -799,12 +799,12 @@
     },
     {
      "hora": "21:10",
-     "real": "",
+     "real": "21:40",
      "nro": "WJ 3054",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "21:15",
@@ -812,8 +812,8 @@
      "nro": "AR 1691",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "22:01",
@@ -821,8 +821,8 @@
      "nro": "WJ 3036",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Embarcando",
+     "color": "#C36419"
     },
     {
      "hora": "22:15",
@@ -830,8 +830,8 @@
      "nro": "AR 1685",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Embarcando",
+     "color": "#C36419"
     },
     {
      "hora": "22:25",
@@ -986,12 +986,12 @@
     },
     {
      "hora": "20:55",
-     "real": "",
+     "real": "20:56",
      "nro": "AR 1835",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     }
    ]
   },
@@ -1277,12 +1277,12 @@
     },
     {
      "hora": "20:25",
-     "real": "",
+     "real": "20:52",
      "nro": "AR 1891",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Cerrado",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     }
    ]
   },
