@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-18T07:28-03:00",
+ "actualizado": "2026-08-18T07:57-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -16,12 +16,12 @@
     },
     {
      "hora": "08:09",
-     "real": "",
+     "real": "07:51",
      "nro": "WJ 3161",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "08:25",
@@ -197,6 +197,15 @@
      "color": "#C0C0C0"
     },
     {
+     "hora": "13:29",
+     "real": "",
+     "nro": "LA 433",
+     "aerolinea": "LATAM",
+     "ciudad": "Santiago de Chile",
+     "estado": "En Horario",
+     "color": "#C0C0C0"
+    },
+    {
      "hora": "14:03",
      "real": "",
      "nro": "WJ 3166",
@@ -275,21 +284,21 @@
    "arribos": [
     {
      "hora": "07:45",
-     "real": "07:33",
+     "real": "07:28",
      "nro": "WJ 3055",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "07:55",
-     "real": "",
+     "real": "07:41",
      "nro": "AR 1666",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "08:20",
@@ -551,8 +560,8 @@
      "nro": "WJ 3056",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Ultimo aviso",
+     "color": "#FB671E"
     },
     {
      "hora": "08:45",
@@ -831,12 +840,12 @@
     },
     {
      "hora": "08:00",
-     "real": "",
+     "real": "07:35",
      "nro": "AR 1822",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "09:25",
@@ -1022,7 +1031,7 @@
      "nro": "AR 1856",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
+     "estado": "En Horario",
      "color": "#C0C0C0"
     },
     {
@@ -1031,7 +1040,7 @@
      "nro": "5U 907",
      "aerolinea": "Lade",
      "ciudad": "Rio Grande",
-     "estado": "",
+     "estado": "En Horario",
      "color": "#C0C0C0"
     }
    ],
@@ -1046,20 +1055,20 @@
      "color": "#008000"
     },
     {
+     "hora": "10:00",
+     "real": "",
+     "nro": "5U 906",
+     "aerolinea": "Lade",
+     "ciudad": "Rio Grande",
+     "estado": "En Horario",
+     "color": "#C0C0C0"
+    },
+    {
      "hora": "10:30",
      "real": "",
      "nro": "AR 1857",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
-    },
-    {
-     "hora": "13:20",
-     "real": "",
-     "nro": "5U 906",
-     "aerolinea": "Lade",
-     "ciudad": "Rio Grande",
      "estado": "En Horario",
      "color": "#C0C0C0"
     }
@@ -1117,12 +1126,12 @@
      "nro": "AR 1872",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "09:35",
-     "real": "09:39",
+     "real": "09:36",
      "nro": "AR 1874",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -1282,12 +1291,12 @@
    "arribos": [
     {
      "hora": "07:30",
-     "real": "07:39",
+     "real": "",
      "nro": "AR 1838",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "15:05",
@@ -1381,7 +1390,7 @@
     },
     {
      "hora": "07:00",
-     "real": "06:54",
+     "real": "06:55",
      "nro": "AR 1803",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
