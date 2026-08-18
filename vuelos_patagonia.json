@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-17T22:15-03:00",
+ "actualizado": "2026-08-17T23:36-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -142,12 +142,12 @@
     },
     {
      "hora": "21:50",
-     "real": "",
+     "real": "22:51",
      "nro": "AR 1630",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -563,12 +563,12 @@
     },
     {
      "hora": "22:25",
-     "real": "22:17",
+     "real": "22:18",
      "nro": "AR 1705",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Rosario",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -808,30 +808,30 @@
     },
     {
      "hora": "21:15",
-     "real": "22:25",
+     "real": "22:45",
      "nro": "AR 1691",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "22:01",
-     "real": "23:00",
+     "real": "23:05",
      "nro": "WJ 3036",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "22:15",
-     "real": "22:45",
+     "real": "23:10",
      "nro": "AR 1685",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "22:25",
@@ -844,12 +844,12 @@
     },
     {
      "hora": "23:15",
-     "real": "",
+     "real": "23:35",
      "nro": "AR 1673",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "23:40",
