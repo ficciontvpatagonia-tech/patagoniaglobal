@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260816-snow-park-de-catedral-un-nuevo-acceso-al-freestyle-en-dep",
-    "tag": "🏔 Deportes",
-    "titulo": "Snow Park de Catedral: un nuevo acceso al freestyle en la montaña",
-    "bajada": "Cerro Catedral lanza un producto para facilitar el acceso a la pista de freestyle, con módulos para todos los niveles.",
-    "imagen": "fotos/foto-20260816-snow-park-de-catedral-un-nuevo-acceso-al-freestyle-en-dep.webp",
+    "id": "20260819-el-operativo-nocturno-de-catedral-1000-km-para-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "El operativo nocturno de Catedral: 1.000 km para preparar las pistas",
+    "bajada": "Un ejército de máquinas y maquinistas trabaja de madrugada para que los esquiadores encuentren la montaña en perfectas condiciones cada mañana.",
+    "imagen": "fotos/foto-20260819-el-operativo-nocturno-de-catedral-1000-km-para-dep.webp",
     "meta": "Hoy · Catedral Alta Patagonia"
   },
   "secundarias": [
+    {
+      "id": "20260816-snow-park-de-catedral-un-nuevo-acceso-al-freestyle-en-dep",
+      "tag": "🏔 Deportes",
+      "titulo": "Snow Park de Catedral: un nuevo acceso al freestyle en la montaña",
+      "bajada": "Cerro Catedral lanza un producto para facilitar el acceso a la pista de freestyle, con módulos para todos los niveles.",
+      "imagen": "fotos/foto-20260816-snow-park-de-catedral-un-nuevo-acceso-al-freestyle-en-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia"
+    },
     {
       "id": "20260815-guanaco-trail-running-fecha-categorias-y-circuito-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La Municipalidad de Timaukel confirmó las tres categorías —Chulengo, 14K y Bagual— de la primera edición, fijada para el 13 de febrero de 2027 entre Pampa Guanaco y Lago Blanco, en el sur de Tierra del Fuego chilena.",
       "imagen": "fotos/foto-20260815-guanaco-trail-running-fecha-categorias-y-circuito-dep.webp",
       "meta": "Hoy · GLOBALpatagonia"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260814-travesia-nocturna-en-bariloche-24-esquiadores-se-dep",
       "tag": "🏔️ Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El Club Andino Bariloche organizó una salida de esquí de travesía nocturna que reunió a 24 participantes en condiciones ideales de viento y visibilidad.",
       "imagen": "fotos/foto-20260814-travesia-nocturna-en-bariloche-24-esquiadores-se-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260813-adriana-miracle-dos-oros-en-aguas-glaciares-frente-al-dep",
       "tag": "🏊 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El Encuentro Interclubes de Esquí de Fondo 2026 reunió durante dos jornadas a chicos y chicas de ambos lados de la cordillera en la pista de Cerro Catedral.",
       "imagen": "fotos/foto-20260811-45-jovenes-de-argentina-y-chile-esquiaron-juntos-en-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia (Bariloche)"
-    },
-    {
-      "id": "20260810-cerro-catedral-y-fasa-esqui-de-alto-rendimiento-con-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Cerro Catedral y FASA: esquí de alto rendimiento con base patagónica",
-      "bajada": "El centro de ski más grande de Sudamérica retoma su alianza con la federación nacional para potenciar la formación de atletas de élite en Bariloche.",
-      "imagen": "fotos/foto-20260810-cerro-catedral-y-fasa-esqui-de-alto-rendimiento-con-dep.webp",
-      "meta": "Hoy · Catedral Alta Patagonia"
     }
   ]
 }
