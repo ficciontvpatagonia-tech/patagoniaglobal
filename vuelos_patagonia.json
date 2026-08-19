@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-19T19:25-03:00",
+ "actualizado": "2026-08-19T19:51-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -522,8 +522,8 @@
      "nro": "WJ 3049",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "En Zona",
+     "color": "#C0C0C0"
     },
     {
      "hora": "20:50",
@@ -536,12 +536,12 @@
     },
     {
      "hora": "21:16",
-     "real": "",
+     "real": "21:21",
      "nro": "WJ 3053",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "21:50",
@@ -776,8 +776,8 @@
      "nro": "AR 1679",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Consulte Cía.",
+     "color": "#FB671E"
     },
     {
      "hora": "20:00",
@@ -912,12 +912,12 @@
     },
     {
      "hora": "20:20",
-     "real": "",
+     "real": "20:00",
      "nro": "AR 1834",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     }
    ],
    "partidas": [
@@ -1131,16 +1131,7 @@
     },
     {
      "hora": "16:55",
-     "real": "16:50",
-     "nro": "AR 1898",
-     "aerolinea": "Aerolíneas Argentinas",
-     "ciudad": "El Calafate",
-     "estado": "Consulte en Cía",
-     "color": "#777777"
-    },
-    {
-     "hora": "16:55",
-     "real": "20:06",
+     "real": "20:04",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "PUNTA ARENAS",
@@ -1205,11 +1196,11 @@
     },
     {
      "hora": "17:45",
-     "real": "",
+     "real": "20:55",
      "nro": "AR 1889",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Consulte en Cía",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
