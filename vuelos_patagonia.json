@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-20T13:35-03:00",
+ "actualizado": "2026-08-20T14:29-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -79,7 +79,7 @@
     },
     {
      "hora": "13:40",
-     "real": "15:00",
+     "real": "15:10",
      "nro": "AR 1642",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
@@ -88,7 +88,7 @@
     },
     {
      "hora": "14:30",
-     "real": "14:55",
+     "real": "15:00",
      "nro": "AR 1572",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Córdoba",
@@ -252,30 +252,30 @@
     },
     {
      "hora": "13:25",
-     "real": "",
+     "real": "13:35",
      "nro": "AR 1431",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Mendoza",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "14:10",
-     "real": "15:50",
+     "real": "16:00",
      "nro": "AR 1573",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Córdoba",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     },
     {
      "hora": "15:05",
-     "real": "15:30",
+     "real": "15:40",
      "nro": "AR 1643",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     },
     {
      "hora": "15:44",
@@ -292,7 +292,7 @@
      "nro": "AR 1430",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Comodoro Rivadavia",
-     "estado": "Estima",
+     "estado": "Pre Embarque",
      "color": "#C36419"
     },
     {
@@ -446,16 +446,16 @@
     },
     {
      "hora": "13:30",
-     "real": "13:46",
+     "real": "13:55",
      "nro": "AR 1664",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "14:40",
-     "real": "15:09",
+     "real": "15:53",
      "nro": "AR 1916",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
@@ -700,12 +700,12 @@
     },
     {
      "hora": "12:05",
-     "real": "13:20",
+     "real": "13:42",
      "nro": "O4 641",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "12:30",
@@ -718,15 +718,6 @@
     },
     {
      "hora": "13:00",
-     "real": "13:38",
-     "nro": "AR 1675",
-     "aerolinea": "Aerolíneas Argentinas",
-     "ciudad": "Aeroparque",
-     "estado": "Embarcando",
-     "color": "#C36419"
-    },
-    {
-     "hora": "13:00",
      "real": "17:10",
      "nro": "5U 501",
      "aerolinea": "Lade",
@@ -735,13 +726,22 @@
      "color": "#C0C0C0"
     },
     {
+     "hora": "13:00",
+     "real": "14:11",
+     "nro": "AR 1675",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Aeroparque",
+     "estado": "Despegado",
+     "color": "#008000"
+    },
+    {
      "hora": "14:10",
-     "real": "13:30",
+     "real": "14:22",
      "nro": "O4 647",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "14:30",
@@ -749,17 +749,17 @@
      "nro": "AR 1665",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Pre Embarque",
+     "estado": "Embarcando",
      "color": "#C36419"
     },
     {
      "hora": "15:30",
-     "real": "16:00",
+     "real": "16:33",
      "nro": "AR 1917",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     },
     {
      "hora": "15:50",
@@ -794,8 +794,8 @@
      "nro": "FO 5243",
      "aerolinea": "Flybondi",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Cancelado",
+     "color": "#FB671E"
     },
     {
      "hora": "18:10",
@@ -1098,8 +1098,8 @@
      "nro": "AR 1829",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     },
     {
      "hora": "18:15",
@@ -1248,12 +1248,12 @@
     },
     {
      "hora": "16:45",
-     "real": "16:47",
+     "real": "17:37",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "El Calafate",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "19:08",
@@ -1277,12 +1277,12 @@
    "partidas": [
     {
      "hora": "15:35",
-     "real": "",
+     "real": "16:10",
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "El Calafate",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "16:35",
@@ -1336,12 +1336,12 @@
     },
     {
      "hora": "16:55",
-     "real": "16:46",
+     "real": "17:21",
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ushuaia",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "18:35",
@@ -1374,12 +1374,12 @@
     },
     {
      "hora": "17:45",
-     "real": "",
+     "real": "18:05",
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "19:25",
@@ -1433,7 +1433,7 @@
     },
     {
      "hora": "15:55",
-     "real": "15:52",
+     "real": "16:01",
      "nro": "AR 1810",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
