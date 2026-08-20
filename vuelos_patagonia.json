@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-20T14:59-03:00",
+ "actualizado": "2026-08-20T15:52-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -79,21 +79,21 @@
     },
     {
      "hora": "13:40",
-     "real": "15:10",
+     "real": "15:01",
      "nro": "AR 1642",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "14:30",
-     "real": "15:00",
+     "real": "15:08",
      "nro": "AR 1572",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Córdoba",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "14:59",
@@ -106,7 +106,7 @@
     },
     {
      "hora": "15:10",
-     "real": "15:40",
+     "real": "15:50",
      "nro": "AR 1430",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Mendoza",
@@ -115,12 +115,12 @@
     },
     {
      "hora": "17:05",
-     "real": "",
+     "real": "16:50",
      "nro": "AR 1646",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "17:50",
@@ -265,8 +265,8 @@
      "nro": "AR 1573",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Córdoba",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "15:05",
@@ -274,21 +274,21 @@
      "nro": "AR 1643",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "15:44",
-     "real": "",
+     "real": "15:47",
      "nro": "WJ 3168",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "16:05",
-     "real": "16:20",
+     "real": "16:30",
      "nro": "AR 1430",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Comodoro Rivadavia",
@@ -301,8 +301,8 @@
      "nro": "AR 1647",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     },
     {
      "hora": "18:30",
@@ -459,8 +459,8 @@
      "nro": "AR 1916",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "En Zona",
+     "color": "#C0C0C0"
     },
     {
      "hora": "14:50",
@@ -482,12 +482,12 @@
     },
     {
      "hora": "16:00",
-     "real": "",
+     "real": "15:50",
      "nro": "JJ 8158",
      "aerolinea": "Latam Brasil",
      "ciudad": "San Pablo-Guarulhos",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "16:50",
@@ -509,12 +509,12 @@
     },
     {
      "hora": "17:35",
-     "real": "",
+     "real": "17:45",
      "nro": "O4 642",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "17:50",
@@ -745,16 +745,16 @@
     },
     {
      "hora": "14:30",
-     "real": "14:35",
+     "real": "15:05",
      "nro": "AR 1665",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Ultimo aviso",
-     "color": "#FB671E"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "15:30",
-     "real": "16:33",
+     "real": "16:40",
      "nro": "AR 1917",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
@@ -763,12 +763,12 @@
     },
     {
      "hora": "15:50",
-     "real": "",
+     "real": "15:52",
      "nro": "AD 8745",
      "aerolinea": "Azul Linhas Aereas Brasileiras",
      "ciudad": "San Pablo-Viracopos",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "16:30",
@@ -1011,12 +1011,12 @@
     },
     {
      "hora": "15:10",
-     "real": "",
+     "real": "15:09",
      "nro": "AR 1558",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Córdoba",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "17:35",
@@ -1098,8 +1098,8 @@
      "nro": "AR 1829",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "18:15",
@@ -1212,25 +1212,25 @@
    "arribos": [
     {
      "hora": "14:45",
-     "real": "15:20",
+     "real": "15:33",
      "nro": "AR 1886",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Demorado",
-     "color": "#c0392b"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "15:05",
-     "real": "",
+     "real": "15:02",
      "nro": "G3 7176",
      "aerolinea": "GOL",
      "ciudad": "São Paulo",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "16:45",
-     "real": "17:27",
+     "real": "17:52",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "El Calafate",
@@ -1248,12 +1248,12 @@
     },
     {
      "hora": "19:55",
-     "real": "",
+     "real": "20:17",
      "nro": "AR 1892",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     }
    ],
    "partidas": [
@@ -1272,8 +1272,8 @@
      "nro": "G3 7177",
      "aerolinea": "GOL",
      "ciudad": "São Paulo",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Embarcando",
+     "color": "#e07a1f"
     },
     {
      "hora": "17:35",
@@ -1327,7 +1327,7 @@
     },
     {
      "hora": "18:35",
-     "real": "18:33",
+     "real": "18:44",
      "nro": "AR 1850",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -1338,12 +1338,12 @@
    "partidas": [
     {
      "hora": "14:17",
-     "real": "",
+     "real": "14:57",
      "nro": "PRI 999",
      "aerolinea": "Privado",
      "ciudad": "PUERTO NATALES",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "15:25",
@@ -1453,7 +1453,7 @@
     },
     {
      "hora": "14:50",
-     "real": "",
+     "real": "15:13",
      "nro": "WJ* 3192",
      "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
