@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260819-el-operativo-nocturno-de-catedral-1000-km-para-dep",
+    "id": "20260821-santa-cruz-busca-el-titulo-en-el-argentino-sub-16-de-dep",
     "tag": "🏃 Deportes",
-    "titulo": "El operativo nocturno de Catedral: 1.000 km para preparar las pistas",
-    "bajada": "Un ejército de máquinas y maquinistas trabaja de madrugada para que los esquiadores encuentren la montaña en perfectas condiciones cada mañana.",
-    "imagen": "fotos/foto-20260819-el-operativo-nocturno-de-catedral-1000-km-para-dep.webp",
-    "meta": "Hoy · Catedral Alta Patagonia"
+    "titulo": "Santa Cruz busca el título en el Argentino Sub-16 de handball",
+    "bajada": "El equipo masculino de la Asociación Santa Cruceña disputa la final del Nivel B en Mendoza tras una campaña implacable.",
+    "imagen": "fotos/foto-20260821-santa-cruz-busca-el-titulo-en-el-argentino-sub-16-de-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260819-el-operativo-nocturno-de-catedral-1000-km-para-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "El operativo nocturno de Catedral: 1.000 km para preparar las pistas",
+      "bajada": "Un ejército de máquinas y maquinistas trabaja de madrugada para que los esquiadores encuentren la montaña en perfectas condiciones cada mañana.",
+      "imagen": "fotos/foto-20260819-el-operativo-nocturno-de-catedral-1000-km-para-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia"
+    },
     {
       "id": "20260816-snow-park-de-catedral-un-nuevo-acceso-al-freestyle-en-dep",
       "tag": "🏔 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Cerro Catedral lanza un producto para facilitar el acceso a la pista de freestyle, con módulos para todos los niveles.",
       "imagen": "fotos/foto-20260816-snow-park-de-catedral-un-nuevo-acceso-al-freestyle-en-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260815-guanaco-trail-running-fecha-categorias-y-circuito-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La Municipalidad de Timaukel confirmó las tres categorías —Chulengo, 14K y Bagual— de la primera edición, fijada para el 13 de febrero de 2027 entre Pampa Guanaco y Lago Blanco, en el sur de Tierra del Fuego chilena.",
       "imagen": "fotos/foto-20260815-guanaco-trail-running-fecha-categorias-y-circuito-dep.webp",
       "meta": "Hoy · GLOBALpatagonia"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260814-travesia-nocturna-en-bariloche-24-esquiadores-se-dep",
       "tag": "🏔️ Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Cerro Catedral celebra el Día del Montañés reconociendo a las familias, clubes e instituciones que durante décadas construyeron la identidad de la montaña barilochense.",
       "imagen": "fotos/foto-20260812-dia-del-montanes-en-catedral-generaciones-que-hicieron-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
-    {
-      "id": "20260811-45-jovenes-de-argentina-y-chile-esquiaron-juntos-en-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "45 jóvenes de Argentina y Chile esquiaron juntos en Cerro Catedral",
-      "bajada": "El Encuentro Interclubes de Esquí de Fondo 2026 reunió durante dos jornadas a chicos y chicas de ambos lados de la cordillera en la pista de Cerro Catedral.",
-      "imagen": "fotos/foto-20260811-45-jovenes-de-argentina-y-chile-esquiaron-juntos-en-dep.webp",
-      "meta": "Hoy · Catedral Alta Patagonia (Bariloche)"
     }
   ]
 }
