@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-20T22:18-03:00",
+ "actualizado": "2026-08-20T23:44-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -160,21 +160,21 @@
     },
     {
      "hora": "21:50",
-     "real": "22:15",
+     "real": "22:20",
      "nro": "AR 1630",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "22:58",
-     "real": "",
+     "real": "22:56",
      "nro": "WJ 3169",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -342,12 +342,12 @@
     },
     {
      "hora": "23:44",
-     "real": "",
+     "real": "23:30",
      "nro": "WJ 3170",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     }
    ]
   },
@@ -889,21 +889,21 @@
     },
     {
      "hora": "21:40",
-     "real": "22:15",
+     "real": "22:28",
      "nro": "AR 1687",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Ultimo aviso",
-     "color": "#FB671E"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "21:45",
-     "real": "",
+     "real": "22:24",
      "nro": "WJ 3036",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "21:50",
@@ -916,21 +916,21 @@
     },
     {
      "hora": "22:30",
-     "real": "",
+     "real": "22:58",
      "nro": "WJ 3058",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "22:40",
-     "real": "23:00",
+     "real": "23:27",
      "nro": "AR 1691",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "22:45",
