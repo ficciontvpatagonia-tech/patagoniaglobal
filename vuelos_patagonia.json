@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-20T20:53-03:00",
+ "actualizado": "2026-08-20T22:18-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -324,21 +324,21 @@
     },
     {
      "hora": "20:20",
-     "real": "20:34",
+     "real": "20:30",
      "nro": "LA 417",
      "aerolinea": "LATAM",
      "ciudad": "Santiago de Chile",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "21:10",
-     "real": "",
+     "real": "21:31",
      "nro": "AR 1651",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "23:44",
@@ -590,21 +590,21 @@
     },
     {
      "hora": "20:50",
-     "real": "21:25",
+     "real": "21:21",
      "nro": "AR 1686",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "21:00",
-     "real": "21:05",
+     "real": "21:07",
      "nro": "WJ 3035",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "21:10",
@@ -617,30 +617,30 @@
     },
     {
      "hora": "21:50",
-     "real": "",
-     "nro": "WJ 3057",
-     "aerolinea": "JetSMART",
-     "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
-    },
-    {
-     "hora": "21:50",
      "real": "22:15",
      "nro": "AR 1690",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
+    {
+     "hora": "21:50",
+     "real": "22:08",
+     "nro": "WJ 3057",
+     "aerolinea": "JetSMART",
+     "ciudad": "Aeroparque",
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "22:50",
-     "real": "",
+     "real": "00:05",
      "nro": "AR 1676",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "22:55",
@@ -862,30 +862,30 @@
     },
     {
      "hora": "20:40",
-     "real": "",
+     "real": "21:04",
      "nro": "AR 1685",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "20:55",
-     "real": "",
+     "real": "21:13",
      "nro": "WJ 3052",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "21:00",
-     "real": "",
+     "real": "20:58",
      "nro": "O4 649",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "21:40",
@@ -893,7 +893,7 @@
      "nro": "AR 1687",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Demorado",
+     "estado": "Ultimo aviso",
      "color": "#FB671E"
     },
     {
@@ -902,8 +902,8 @@
      "nro": "WJ 3036",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "21:50",
@@ -911,8 +911,8 @@
      "nro": "FO 5245",
      "aerolinea": "Flybondi",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Cancelado",
+     "color": "#FB671E"
     },
     {
      "hora": "22:30",
@@ -920,8 +920,8 @@
      "nro": "WJ 3058",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     },
     {
      "hora": "22:40",
@@ -1112,12 +1112,12 @@
     },
     {
      "hora": "20:30",
-     "real": "",
+     "real": "20:54",
      "nro": "AR 1835",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     }
    ]
   },
@@ -1211,6 +1211,51 @@
    "nombre": "Ushuaia",
    "arribos": [
     {
+     "hora": "07:30",
+     "real": "07:31",
+     "nro": "AR 1872",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
+    {
+     "hora": "08:35",
+     "real": "08:31",
+     "nro": "AR 1876",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
+    {
+     "hora": "09:35",
+     "real": "09:41",
+     "nro": "AR 1874",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
+    {
+     "hora": "10:05",
+     "real": "",
+     "nro": "FO* 5030",
+     "aerolinea": "Flybondi",
+     "ciudad": "Buenos Aires",
+     "estado": "Cancelado",
+     "color": "#c0392b"
+    },
+    {
+     "hora": "10:55",
+     "real": "10:40",
+     "nro": "AR 1870",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
+    {
      "hora": "14:45",
      "real": "15:33",
      "nro": "AR 1886",
@@ -1258,6 +1303,51 @@
    ],
    "partidas": [
     {
+     "hora": "08:20",
+     "real": "08:55",
+     "nro": "AR 1873",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Despegado",
+     "color": "#008000"
+    },
+    {
+     "hora": "09:25",
+     "real": "10:01",
+     "nro": "AR 1877",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Despegado",
+     "color": "#008000"
+    },
+    {
+     "hora": "10:25",
+     "real": "11:03",
+     "nro": "AR 1875",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Despegado",
+     "color": "#008000"
+    },
+    {
+     "hora": "10:50",
+     "real": "",
+     "nro": "FO* 5031",
+     "aerolinea": "Flybondi",
+     "ciudad": "Buenos Aires",
+     "estado": "Cancelado",
+     "color": "#c0392b"
+    },
+    {
+     "hora": "12:25",
+     "real": "12:30",
+     "nro": "AR 1871",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Buenos Aires",
+     "estado": "Despegado",
+     "color": "#008000"
+    },
+    {
      "hora": "15:35",
      "real": "16:43",
      "nro": "AR 1897",
@@ -1286,21 +1376,21 @@
     },
     {
      "hora": "19:53",
-     "real": "20:53",
+     "real": "21:23",
      "nro": "WJ* 3206",
      "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
-     "estado": "Embarcando",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "20:55",
-     "real": "",
+     "real": "21:38",
      "nro": "AR 1893",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Embarcando",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     }
    ]
   },
