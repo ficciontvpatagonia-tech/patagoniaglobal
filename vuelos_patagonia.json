@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-22T06:26-03:00",
+ "actualizado": "2026-08-22T06:52-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -542,7 +542,7 @@
      "nro": "AR 1663",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Pre Embarque",
+     "estado": "Embarcando",
      "color": "#C36419"
     },
     {
@@ -831,12 +831,12 @@
     },
     {
      "hora": "07:50",
-     "real": "",
+     "real": "07:40",
      "nro": "AR 1822",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "10:40",
