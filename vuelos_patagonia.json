@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-22T16:46-03:00",
+ "actualizado": "2026-08-22T17:22-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -410,30 +410,30 @@
     },
     {
      "hora": "17:10",
-     "real": "17:24",
+     "real": "17:32",
      "nro": "JJ 8162",
      "aerolinea": "Latam Brasil",
      "ciudad": "San Pablo-Guarulhos",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "17:25",
-     "real": "17:15",
+     "real": "17:10",
      "nro": "O4 400",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "17:31",
-     "real": "",
+     "real": "17:48",
      "nro": "WJ 3047",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "17:50",
@@ -446,12 +446,12 @@
     },
     {
      "hora": "18:35",
-     "real": "",
+     "real": "18:09",
      "nro": "H2 1901",
      "aerolinea": "SKY",
      "ciudad": "Santiago de Chile",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "18:50",
@@ -677,8 +677,8 @@
      "nro": "JJ 8159",
      "aerolinea": "Latam Brasil",
      "ciudad": "San Pablo-Guarulhos",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Consulte Cía.",
+     "color": "#FB671E"
     },
     {
      "hora": "18:10",
@@ -700,12 +700,12 @@
     },
     {
      "hora": "18:16",
-     "real": "",
+     "real": "18:40",
      "nro": "WJ 3048",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "18:40",
@@ -862,17 +862,17 @@
      "nro": "AR 1900",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Consulte Cía.",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "17:20",
-     "real": "",
+     "real": "17:06",
      "nro": "AR 1430",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Neuquén",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -923,12 +923,12 @@
     },
     {
      "hora": "16:35",
-     "real": "",
+     "real": "16:45",
      "nro": "AR 1901",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "18:10",
@@ -936,8 +936,8 @@
      "nro": "AR 1833",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     }
    ]
   },
@@ -1068,12 +1068,12 @@
     },
     {
      "hora": "15:55",
-     "real": "16:46",
+     "real": "16:47",
      "nro": "AR 1892",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Demorado",
-     "color": "#c0392b"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "16:55",
@@ -1151,12 +1151,12 @@
     },
     {
      "hora": "16:35",
-     "real": "",
+     "real": "17:03",
      "nro": "G3 7177",
      "aerolinea": "GOL",
      "ciudad": "São Paulo",
-     "estado": "Embarcando",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "16:45",
@@ -1164,8 +1164,8 @@
      "nro": "AR 1893",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Demorado",
-     "color": "#c0392b"
+     "estado": "Embarcando",
+     "color": "#e07a1f"
     },
     {
      "hora": "17:45",
@@ -1173,7 +1173,7 @@
      "nro": "AR 1889",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
+     "estado": "Ultima Llamada",
      "color": "#777777"
     },
     {
@@ -1228,7 +1228,7 @@
     },
     {
      "hora": "18:35",
-     "real": "19:03",
+     "real": "18:56",
      "nro": "AR 1850",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -1261,7 +1261,7 @@
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
