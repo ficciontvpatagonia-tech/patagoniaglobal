@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-22T16:22-03:00",
+ "actualizado": "2026-08-22T16:46-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -216,12 +216,12 @@
     },
     {
      "hora": "16:40",
-     "real": "",
+     "real": "16:42",
      "nro": "AR 1647",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "18:30",
@@ -410,7 +410,7 @@
     },
     {
      "hora": "17:10",
-     "real": "17:05",
+     "real": "17:24",
      "nro": "JJ 8162",
      "aerolinea": "Latam Brasil",
      "ciudad": "San Pablo-Guarulhos",
@@ -646,12 +646,12 @@
     },
     {
      "hora": "15:20",
-     "real": "15:55",
+     "real": "16:23",
      "nro": "AR 1903",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "15:50",
@@ -664,12 +664,12 @@
     },
     {
      "hora": "16:15",
-     "real": "16:00",
+     "real": "16:27",
      "nro": "WJ 3046",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "17:00",
@@ -927,8 +927,8 @@
      "nro": "AR 1901",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "18:10",
@@ -1068,7 +1068,7 @@
     },
     {
      "hora": "15:55",
-     "real": "16:53",
+     "real": "16:46",
      "nro": "AR 1892",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -1077,12 +1077,12 @@
     },
     {
      "hora": "16:55",
-     "real": "16:43",
+     "real": "16:42",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "El Calafate",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "18:45",
@@ -1142,12 +1142,12 @@
     },
     {
      "hora": "15:45",
-     "real": "16:15",
+     "real": "16:41",
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "El Calafate",
-     "estado": "Embarcando",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "16:35",
@@ -1219,7 +1219,7 @@
     },
     {
      "hora": "17:05",
-     "real": "17:27",
+     "real": "17:42",
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ushuaia",
