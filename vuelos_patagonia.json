@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-22T12:21-03:00",
+ "actualizado": "2026-08-22T12:46-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -180,12 +180,12 @@
     },
     {
      "hora": "12:31",
-     "real": "",
+     "real": "12:32",
      "nro": "WJ 3166",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "13:10",
@@ -849,12 +849,12 @@
     },
     {
      "hora": "12:30",
-     "real": "12:42",
+     "real": "12:44",
      "nro": "AR 1828",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "15:55",
@@ -1119,7 +1119,7 @@
      "nro": "AR 1881",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Embarcando",
+     "estado": "Cerrado",
      "color": "#e07a1f"
     },
     {
