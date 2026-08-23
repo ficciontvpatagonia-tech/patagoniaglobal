@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-23T13:26-03:00",
+ "actualizado": "2026-08-23T13:53-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -52,12 +52,12 @@
     },
     {
      "hora": "13:35",
-     "real": "",
+     "real": "13:41",
      "nro": "AR 1642",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "14:25",
@@ -171,21 +171,21 @@
     },
     {
      "hora": "13:10",
-     "real": "",
+     "real": "13:27",
      "nro": "AR 1431",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Mendoza",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "13:52",
-     "real": "",
+     "real": "13:49",
      "nro": "WJ 3164",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "14:15",
@@ -193,7 +193,7 @@
      "nro": "AR 1573",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Córdoba",
-     "estado": "Pre Embarque",
+     "estado": "Embarcando",
      "color": "#C36419"
     },
     {
@@ -383,12 +383,12 @@
     },
     {
      "hora": "14:40",
-     "real": "",
+     "real": "14:50",
      "nro": "AR 1682",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "14:50",
@@ -637,12 +637,12 @@
     },
     {
      "hora": "13:00",
-     "real": "",
+     "real": "13:28",
      "nro": "AR 1555",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Córdoba",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "14:00",
@@ -1104,12 +1104,12 @@
     },
     {
      "hora": "13:40",
-     "real": "",
+     "real": "13:41",
      "nro": "AR 1882",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "13:55",
@@ -1140,12 +1140,12 @@
     },
     {
      "hora": "17:00",
-     "real": "16:59",
+     "real": "17:24",
      "nro": "AR 1870",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "20:05",
@@ -1205,12 +1205,12 @@
     },
     {
      "hora": "13:30",
-     "real": "",
+     "real": "13:43",
      "nro": "AR 1895",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Ultima Llamada",
-     "color": "#777777"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "14:40",
@@ -1300,16 +1300,16 @@
     },
     {
      "hora": "13:50",
-     "real": "13:46",
+     "real": "13:45",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "17:00",
-     "real": "",
+     "real": "16:51",
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ushuaia",
@@ -1333,8 +1333,8 @@
      "nro": "AR 1899",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Embarcando",
+     "color": "#e07a1f"
     },
     {
      "hora": "14:40",
@@ -1342,7 +1342,7 @@
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ushuaia",
-     "estado": "En horario",
+     "estado": "Pre Embarque",
      "color": "#777777"
     },
     {
@@ -1388,7 +1388,7 @@
     },
     {
      "hora": "15:20",
-     "real": "15:15",
+     "real": "15:24",
      "nro": "AR 1810",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
