@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-23T16:28-03:00",
+ "actualizado": "2026-08-23T16:48-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -419,12 +419,12 @@
     },
     {
      "hora": "16:30",
-     "real": "16:39",
+     "real": "16:47",
      "nro": "O4 672",
      "aerolinea": "Andes",
      "ciudad": "Resistencia",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "17:10",
@@ -954,8 +954,8 @@
      "nro": "WJ 3032",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Ultimo aviso",
+     "color": "#FB671E"
     },
     {
      "hora": "17:50",
@@ -1122,7 +1122,7 @@
     },
     {
      "hora": "20:05",
-     "real": "",
+     "real": "20:18",
      "nro": "AR 1892",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -1191,8 +1191,8 @@
      "nro": "AR 1889",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Embarcando",
-     "color": "#e07a1f"
+     "estado": "Ultima Llamada",
+     "color": "#777777"
     },
     {
      "hora": "17:50",
