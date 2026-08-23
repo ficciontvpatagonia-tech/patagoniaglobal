@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260822-semanita-blanca-la-primera-experiencia-en-la-nieve-dep",
+    "id": "20260823-el-club-andino-bariloche-aborda-la-clave-de-las-caidas-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Semanita Blanca: la primera experiencia en la nieve para los más chicos",
-    "bajada": "El Club Andino Bariloche invita a sus familias a una jornada de iniciación al esquí para que los más pequeños den sus primeros pasos en la montaña.",
-    "imagen": "fotos/foto-20260822-semanita-blanca-la-primera-experiencia-en-la-nieve-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche"
+    "titulo": "El Club Andino Bariloche aborda la clave de las caídas",
+    "bajada": "La Subcomisión de Montañismo invita a una charla gratuita para aprender sobre la dinámica de las caídas y los sistemas de aseguramiento.",
+    "imagen": "fotos/foto-20260823-el-club-andino-bariloche-aborda-la-clave-de-las-caidas-dep.webp",
+    "meta": "Hoy · Club Andino Bariloche (Bariloche)"
   },
   "secundarias": [
+    {
+      "id": "20260822-semanita-blanca-la-primera-experiencia-en-la-nieve-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Semanita Blanca: la primera experiencia en la nieve para los más chicos",
+      "bajada": "El Club Andino Bariloche invita a sus familias a una jornada de iniciación al esquí para que los más pequeños den sus primeros pasos en la montaña.",
+      "imagen": "fotos/foto-20260822-semanita-blanca-la-primera-experiencia-en-la-nieve-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20260821-santa-cruz-busca-el-titulo-en-el-argentino-sub-16-de-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El equipo masculino de la Asociación Santa Cruceña disputa la final del Nivel B en Mendoza tras una campaña implacable.",
       "imagen": "fotos/foto-20260821-santa-cruz-busca-el-titulo-en-el-argentino-sub-16-de-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260819-el-operativo-nocturno-de-catedral-1000-km-para-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Un ejército de máquinas y maquinistas trabaja de madrugada para que los esquiadores encuentren la montaña en perfectas condiciones cada mañana.",
       "imagen": "fotos/foto-20260819-el-operativo-nocturno-de-catedral-1000-km-para-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260816-snow-park-de-catedral-un-nuevo-acceso-al-freestyle-en-dep",
       "tag": "🏔 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El Club Andino Bariloche organizó una salida de esquí de travesía nocturna que reunió a 24 participantes en condiciones ideales de viento y visibilidad.",
       "imagen": "fotos/foto-20260814-travesia-nocturna-en-bariloche-24-esquiadores-se-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260813-adriana-miracle-dos-oros-en-aguas-glaciares-frente-al-dep",
-      "tag": "🏊 Deportes",
-      "titulo": "Adriana Miracle: dos oros en aguas glaciares frente al Perito Moreno",
-      "bajada": "La nadadora riogalleguense conquistó dos primeros puestos y dos terceros en la Winter Swimming World Cup disputada en El Calafate, con una pileta flotante frente al glaciar como escenario.",
-      "imagen": "fotos/foto-20260813-adriana-miracle-dos-oros-en-aguas-glaciares-frente-al-dep.webp",
-      "meta": "Hoy · Tiempo Sur (Santa Cruz)"
     }
   ]
 }
