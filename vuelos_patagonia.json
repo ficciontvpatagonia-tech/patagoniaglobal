@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-23T06:27-03:00",
+ "actualizado": "2026-08-23T06:53-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -139,8 +139,8 @@
      "nro": "AR 1631",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "08:32",
@@ -257,11 +257,11 @@
    "arribos": [
     {
      "hora": "07:10",
-     "real": "",
+     "real": "07:01",
      "nro": "AR 1906",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
+     "estado": "En Zona",
      "color": "#C0C0C0"
     },
     {
@@ -275,12 +275,12 @@
     },
     {
      "hora": "08:10",
-     "real": "",
+     "real": "08:03",
      "nro": "AR 1688",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "08:20",
@@ -1113,12 +1113,12 @@
     },
     {
      "hora": "13:55",
-     "real": "14:35",
+     "real": "",
      "nro": "LA 8174",
      "aerolinea": "LATAM",
      "ciudad": "São Paulo",
-     "estado": "Demorado",
-     "color": "#c0392b"
+     "estado": "En horario",
+     "color": "#777777"
     },
     {
      "hora": "14:50",
@@ -1300,7 +1300,7 @@
    "arribos": [
     {
      "hora": "09:30",
-     "real": "09:21",
+     "real": "09:36",
      "nro": "AR 1894",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
