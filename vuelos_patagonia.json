@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-23T19:22-03:00",
+ "actualizado": "2026-08-23T19:48-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -464,21 +464,21 @@
     },
     {
      "hora": "19:25",
-     "real": "19:30",
+     "real": "19:36",
      "nro": "WJ 3059",
      "aerolinea": "JetSMART",
      "ciudad": "Aeroparque",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "19:30",
-     "real": "19:27",
+     "real": "",
      "nro": "AR 1952",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Rosario",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "19:50",
@@ -740,7 +740,7 @@
      "nro": "WJ 3060",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "Estima",
+     "estado": "Embarcando",
      "color": "#C36419"
     },
     {
@@ -1104,7 +1104,7 @@
     },
     {
      "hora": "20:05",
-     "real": "20:14",
+     "real": "20:07",
      "nro": "AR 1892",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -1228,12 +1228,12 @@
     },
     {
      "hora": "19:35",
-     "real": "19:32",
+     "real": "19:24",
      "nro": "AR 1850",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
