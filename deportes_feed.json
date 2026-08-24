@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260823-el-club-andino-bariloche-aborda-la-clave-de-las-caidas-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "El Club Andino Bariloche aborda la clave de las caídas",
-    "bajada": "La Subcomisión de Montañismo invita a una charla gratuita para aprender sobre la dinámica de las caídas y los sistemas de aseguramiento.",
-    "imagen": "fotos/foto-20260823-el-club-andino-bariloche-aborda-la-clave-de-las-caidas-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche (Bariloche)"
+    "id": "20260824-desfile-del-dia-del-montanes-una-tradicion-que-une-a-dep",
+    "tag": "🏔️ Deportes",
+    "titulo": "Desfile del Día del Montañés: una tradición que une a Bariloche",
+    "bajada": "La nueva edición del desfile reunió a toda la comunidad deportiva de montaña en la Plaza de Bariloche.",
+    "imagen": "fotos/foto-20260824-desfile-del-dia-del-montanes-una-tradicion-que-une-a-dep.webp",
+    "meta": "Hoy · Club Andino Bariloche"
   },
   "secundarias": [
+    {
+      "id": "20260823-el-club-andino-bariloche-aborda-la-clave-de-las-caidas-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "El Club Andino Bariloche aborda la clave de las caídas",
+      "bajada": "La Subcomisión de Montañismo invita a una charla gratuita para aprender sobre la dinámica de las caídas y los sistemas de aseguramiento.",
+      "imagen": "fotos/foto-20260823-el-club-andino-bariloche-aborda-la-clave-de-las-caidas-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche (Bariloche)"
+    },
     {
       "id": "20260822-semanita-blanca-la-primera-experiencia-en-la-nieve-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El Club Andino Bariloche invita a sus familias a una jornada de iniciación al esquí para que los más pequeños den sus primeros pasos en la montaña.",
       "imagen": "fotos/foto-20260822-semanita-blanca-la-primera-experiencia-en-la-nieve-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260821-santa-cruz-busca-el-titulo-en-el-argentino-sub-16-de-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El equipo masculino de la Asociación Santa Cruceña disputa la final del Nivel B en Mendoza tras una campaña implacable.",
       "imagen": "fotos/foto-20260821-santa-cruz-busca-el-titulo-en-el-argentino-sub-16-de-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260819-el-operativo-nocturno-de-catedral-1000-km-para-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La Municipalidad de Timaukel confirmó las tres categorías —Chulengo, 14K y Bagual— de la primera edición, fijada para el 13 de febrero de 2027 entre Pampa Guanaco y Lago Blanco, en el sur de Tierra del Fuego chilena.",
       "imagen": "fotos/foto-20260815-guanaco-trail-running-fecha-categorias-y-circuito-dep.webp",
       "meta": "Hoy · GLOBALpatagonia"
-    },
-    {
-      "id": "20260814-travesia-nocturna-en-bariloche-24-esquiadores-se-dep",
-      "tag": "🏔️ Deportes",
-      "titulo": "Travesía nocturna en Bariloche: 24 esquiadores se internaron en la montaña de noche",
-      "bajada": "El Club Andino Bariloche organizó una salida de esquí de travesía nocturna que reunió a 24 participantes en condiciones ideales de viento y visibilidad.",
-      "imagen": "fotos/foto-20260814-travesia-nocturna-en-bariloche-24-esquiadores-se-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
     }
   ]
 }
