@@ -7,9 +7,7 @@ HISTORIAL = f"{BASE}/propios_historial.json"
 MAX_ACTIVOS = 7
 
 CREDITO_SATELITAL = (
-    '<div style="font-size:13px;color:#8a8a8a;margin:4px 0 20px">'
-    'Imagen satelital del complejo hidroeléctrico sobre el río Santa Cruz '
-    '— Maxar Technologies / Google Earth, 2022.</div>\n\n'
+    '<div style="margin:2rem 0"><img src="fotos/ENERGIA/represa-jorge-cepernic-satelital.webp" alt="Vista satelital de las represas sobre el río Santa Cruz" loading="lazy" decoding="async" style="width:100%;border-radius:6px;display:block"><div style="font-size:.8rem;color:#777;margin-top:.45rem">El complejo Néstor Kirchner–Jorge Cepernic sobre el río Santa Cruz, con la obra parada de forma intermitente desde hace años. Imagen satelital: Maxar Technologies / Google Earth, 2022.</div></div>\\n\\n'
 )
 
 cuerpo = (
@@ -38,7 +36,7 @@ cuerpo_en = (
     "<h3>The concrete giant that fell back asleep</h3>\n\n"
     "The heart of heavy construction in Santa Cruz has always been the Néstor Kirchner (Cóndor Cliff) and Jorge Cepernic dams on the Santa Cruz River. In January 2026, US$136 million arrived from a loan with Chinese banks and the project emerged from two years of paralysis: Cóndor Cliff is now 20% complete and Cepernic 42%. Once finished, the project is expected to generate 4,000 jobs.\n\n"
     "But the relief was short-lived. According to the UOCRA's Internal Commission at the dams, a new tranche of funds — also close to US$136 million — has sat deposited at the Central Bank for more than five months without being released, which slowed construction again and led the contractor to cut staff. It is that freeze, not an earlier one, that triggered this week's blockade on the bridge over the Santa Cruz River.\n\n"
-    '<div style="font-size:13px;color:#8a8a8a;margin:4px 0 20px">Satellite image of the hydroelectric complex on the Santa Cruz River — Maxar Technologies / Google Earth, 2022.</div>\n\n'
+    '<div style="margin:2rem 0"><img src="fotos/ENERGIA/represa-jorge-cepernic-satelital.webp" alt="Satellite view of the dams on the Santa Cruz River" loading="lazy" decoding="async" style="width:100%;border-radius:6px;display:block"><div style="font-size:.8rem;color:#777;margin-top:.45rem">The Néstor Kirchner–Jorge Cepernic complex on the Santa Cruz River, intermittently stalled for years. Satellite image: Maxar Technologies / Google Earth, 2022.</div></div>\\n\\n'
     "<h3>Handing national highways to the provinces</h3>\n\n"
     "In April, the national government issued Decree 253/2026, delegating to nine provinces — including Santa Cruz, alongside Corrientes, Santa Fe, Córdoba, San Luis, Mendoza, Río Negro, Neuquén and San Juan — the power to grant tolled concessions on stretches of national highways, including Routes 3 and 40. The national government keeps ownership; provinces can bid, award contracts and charge tolls, with concessions of up to 30 years and a requirement to launch bidding within one year. Toll revenue can only be spent on the concessioned stretch, not on other works.\n\n"
     "In a province still marked by the Austral Construcciones overpricing scandal from the previous decade, the scheme raises a legitimate question about bidding transparency that Governor Claudio Vidal's administration will have to answer.\n\n"
@@ -55,7 +53,7 @@ cuerpo_pt = (
     "<h3>O gigante de concreto que voltou a dormir</h3>\n\n"
     "O coração da obra pesada em Santa Cruz sempre foram as represas Néstor Kirchner (Cóndor Cliff) e Jorge Cepernic, sobre o rio Santa Cruz. Em janeiro de 2026 chegaram US$ 136 milhões de um crédito com bancos chineses e o projeto saiu de dois anos de paralisação: hoje Cóndor Cliff tem 20% de avanço e Cepernic, 42%. Concluída, a obra deve gerar 4.000 empregos.\n\n"
     "Mas o alívio durou pouco. Segundo a Comissão Interna da UOCRA nas Represas, um novo lote de fundos — também próximo a US$ 136 milhões — está depositado no Banco Central há mais de cinco meses sem ser liberado, o que voltou a travar o ritmo da obra e levou a construtora a reduzir pessoal. Foi esse novo bloqueio, e não o de anos anteriores, que motivou o corte desta semana na ponte sobre o rio Santa Cruz.\n\n"
-    '<div style="font-size:13px;color:#8a8a8a;margin:4px 0 20px">Imagem de satélite do complexo hidrelétrico sobre o rio Santa Cruz — Maxar Technologies / Google Earth, 2022.</div>\n\n'
+    '<div style="margin:2rem 0"><img src="fotos/ENERGIA/represa-jorge-cepernic-satelital.webp" alt="Vista de satélite das represas sobre o rio Santa Cruz" loading="lazy" decoding="async" style="width:100%;border-radius:6px;display:block"><div style="font-size:.8rem;color:#777;margin-top:.45rem">O complexo Néstor Kirchner–Jorge Cepernic sobre o rio Santa Cruz, com a obra parada de forma intermitente há anos. Imagem de satélite: Maxar Technologies / Google Earth, 2022.</div></div>\\n\\n'
     "<h3>A delegação das rodovias nacionais</h3>\n\n"
     "Em abril, o governo nacional publicou o Decreto 253/2026, que delega a nove províncias — entre elas Santa Cruz, junto com Corrientes, Santa Fe, Córdoba, San Luis, Mendoza, Río Negro, Neuquén e San Juan — o poder de conceder trechos de rodovias nacionais, incluindo as rotas 3 e 40, mediante pedágio. O Estado nacional mantém a titularidade; as províncias poderão licitar, adjudicar contratos e cobrar pedágio, com concessões de até 30 anos e a obrigação de abrir licitação dentro de um ano. Os recursos arrecadados com pedágio só podem ser usados no trecho concedido, não em outras obras.\n\n"
     "Em uma província marcada pelo antecedente da Austral Construcciones e dos superfaturamentos na obra pública da década passada, o esquema levanta uma pergunta legítima sobre transparência nas licitações, que caberá ao governo de Claudio Vidal responder.\n\n"
@@ -72,7 +70,7 @@ cuerpo_zh = (
     "<h3>再度沉睡的混凝土巨人</h3>\n\n"
     "圣克鲁斯省重型工程建设的核心，一直是位于圣克鲁斯河上的内斯托尔·基什内尔（孔多尔崖）和豪尔赫·塞佩尔尼克两座大坝。2026年1月，一笔来自中国银行贷款的1.36亿美元资金到位，项目结束了长达两年的停滞：目前孔多尔崖大坝工程进度为20%，塞佩尔尼克大坝为42%。工程完工后预计将创造4,000个就业岗位。\n\n"
     "但喘息期十分短暂。据UOCRA大坝工程内部委员会称，另一笔同样约1.36亿美元的资金已在阿根廷中央银行存放超过五个月未予拨付，这再次拖慢了工程进度，并促使承建企业裁减人员。正是这笔新的资金冻结，而非此前年份的旧问题，引发了本周在圣克鲁斯河大桥上的封路行动。\n\n"
-    '<div style="font-size:13px;color:#8a8a8a;margin:4px 0 20px">圣克鲁斯河水电综合体卫星图像 — Maxar Technologies / 谷歌地球，2022年。</div>\n\n'
+    '<div style="margin:2rem 0"><img src="fotos/ENERGIA/represa-jorge-cepernic-satelital.webp" alt="圣克鲁斯河大坝卫星视图" loading="lazy" decoding="async" style="width:100%;border-radius:6px;display:block"><div style="font-size:.8rem;color:#777;margin-top:.45rem">圣克鲁斯河上的内斯托尔·基什内尔-豪尔赫·塞佩尔尼克大坝综合体，工程断断续续停滞多年。卫星图像：Maxar Technologies / 谷歌地球，2022年。</div></div>\\n\\n'
     "<h3>国道管理权下放</h3>\n\n"
     "今年4月，阿根廷国家政府颁布了253/2026号法令，将包括圣克鲁斯省在内的九个省份——科连特斯、圣菲、科尔多瓦、圣路易斯、门多莎、里奥内格罗、内乌肯和圣胡安——授权可对国道路段（包括3号和40号公路）实行收费特许经营。国家政府保留路权所有权；各省可组织招标、授予合同并收取通行费，特许经营期最长可达30年，并须在一年内启动招标。通行费收入只能用于所特许经营的路段，不得挪作他用。\n\n"
     "这个省份仍背负着上个十年“奥斯特拉尔建筑公司”（Austral Construcciones）公共工程超支丑闻的历史包袱，该方案由此引发了关于招标透明度的合理质疑，克劳迪奥·比达尔省长领导的政府将不得不对此作出回应。\n\n"
@@ -97,8 +95,7 @@ nueva_entrada = {
     "meta": "24 de Agosto de 2026 · J. Martineau",
     "excluir_feed": True,
     "galeria": [
-        "fotos/ENERGIA/protesta-uocra-corte-ruta-nacional.webp",
-        "fotos/ENERGIA/represa-jorge-cepernic-satelital.webp"
+        "fotos/ENERGIA/protesta-uocra-corte-ruta-nacional.webp"
     ],
     "titulo_en": "Santa Cruz: Argentina's Sharpest Construction Collapse",
     "bajada_en": "Construction employment fell 40% year-on-year in the first half of 2026 — the worst performance in the country — marking the deepest gap versus the historical average. The UOCRA union blocked Route 3 again this week over stalled dam funding on the Santa Cruz River.",
