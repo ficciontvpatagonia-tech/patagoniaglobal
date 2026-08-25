@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260824-desfile-del-dia-del-montanes-una-tradicion-que-une-a-dep",
-    "tag": "🏔️ Deportes",
-    "titulo": "Desfile del Día del Montañés: una tradición que une a Bariloche",
-    "bajada": "La nueva edición del desfile reunió a toda la comunidad deportiva de montaña en la Plaza de Bariloche.",
-    "imagen": "fotos/foto-20260824-desfile-del-dia-del-montanes-una-tradicion-que-une-a-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche"
+    "id": "20260825-chubut-en-la-ruta-apoyo-a-120-corredores-en-el-medio-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "Chubut en la ruta: apoyo a 120 corredores en el Medio Maratón",
+    "bajada": "La provincia acompañó a sus atletas con una carpa institucional en la competencia más importante de América, realizada en Buenos Aires.",
+    "imagen": "fotos/foto-20260825-chubut-en-la-ruta-apoyo-a-120-corredores-en-el-medio-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260824-desfile-del-dia-del-montanes-una-tradicion-que-une-a-dep",
+      "tag": "🏔️ Deportes",
+      "titulo": "Desfile del Día del Montañés: una tradición que une a Bariloche",
+      "bajada": "La nueva edición del desfile reunió a toda la comunidad deportiva de montaña en la Plaza de Bariloche.",
+      "imagen": "fotos/foto-20260824-desfile-del-dia-del-montanes-una-tradicion-que-une-a-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20260823-el-club-andino-bariloche-aborda-la-clave-de-las-caidas-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La Subcomisión de Montañismo invita a una charla gratuita para aprender sobre la dinámica de las caídas y los sistemas de aseguramiento.",
       "imagen": "fotos/foto-20260823-el-club-andino-bariloche-aborda-la-clave-de-las-caidas-dep.webp",
       "meta": "Hoy · Club Andino Bariloche (Bariloche)"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260822-semanita-blanca-la-primera-experiencia-en-la-nieve-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El Club Andino Bariloche invita a sus familias a una jornada de iniciación al esquí para que los más pequeños den sus primeros pasos en la montaña.",
       "imagen": "fotos/foto-20260822-semanita-blanca-la-primera-experiencia-en-la-nieve-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260821-santa-cruz-busca-el-titulo-en-el-argentino-sub-16-de-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Cerro Catedral lanza un producto para facilitar el acceso a la pista de freestyle, con módulos para todos los niveles.",
       "imagen": "fotos/foto-20260816-snow-park-de-catedral-un-nuevo-acceso-al-freestyle-en-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
-    {
-      "id": "20260815-guanaco-trail-running-fecha-categorias-y-circuito-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Guanaco Trail Running 2027: fecha, categorías y circuito",
-      "bajada": "La Municipalidad de Timaukel confirmó las tres categorías —Chulengo, 14K y Bagual— de la primera edición, fijada para el 13 de febrero de 2027 entre Pampa Guanaco y Lago Blanco, en el sur de Tierra del Fuego chilena.",
-      "imagen": "fotos/foto-20260815-guanaco-trail-running-fecha-categorias-y-circuito-dep.webp",
-      "meta": "Hoy · GLOBALpatagonia"
     }
   ]
 }
