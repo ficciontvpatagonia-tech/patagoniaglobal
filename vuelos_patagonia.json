@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-25T19:27-03:00",
+ "actualizado": "2026-08-25T19:57-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -387,21 +387,21 @@
      "nro": "AR 1686",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "",
-     "color": "#C0C0C0"
-    },
-    {
-     "hora": "20:10",
-     "real": "19:40",
-     "nro": "O4 628",
-     "aerolinea": "Andes",
-     "ciudad": "Ezeiza",
      "estado": "En Zona",
      "color": "#C0C0C0"
     },
     {
+     "hora": "20:10",
+     "real": "19:46",
+     "nro": "O4 628",
+     "aerolinea": "Andes",
+     "ciudad": "Ezeiza",
+     "estado": "Aterrizado",
+     "color": "#008000"
+    },
+    {
      "hora": "20:25",
-     "real": "21:55",
+     "real": "21:20",
      "nro": "WJ 3057",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
@@ -583,12 +583,12 @@
     },
     {
      "hora": "19:25",
-     "real": "",
+     "real": "19:49",
      "nro": "O4 625",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Consulte Cía.",
-     "color": "#FB671E"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "19:30",
@@ -605,7 +605,7 @@
      "nro": "AR 1679",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Pre Embarque",
+     "estado": "Embarcando",
      "color": "#C36419"
     },
     {
@@ -783,8 +783,8 @@
      "nro": "AR 1829",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "20:50",
@@ -792,8 +792,8 @@
      "nro": "AR 1835",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     }
    ]
   },
