@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-25T13:37-03:00",
+ "actualizado": "2026-08-25T14:32-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -257,12 +257,12 @@
     },
     {
      "hora": "13:40",
-     "real": "",
+     "real": "13:52",
      "nro": "AR 1664",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "13:50",
@@ -484,30 +484,30 @@
     },
     {
      "hora": "13:15",
-     "real": "",
+     "real": "13:51",
      "nro": "AR 1683",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "14:30",
-     "real": "",
+     "real": "14:45",
      "nro": "AR 1665",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Embarcando",
+     "color": "#C36419"
     },
     {
      "hora": "14:40",
-     "real": "",
+     "real": "14:28",
      "nro": "O4 627",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "15:35",
@@ -705,12 +705,12 @@
     },
     {
      "hora": "13:35",
-     "real": "13:41",
+     "real": "13:42",
      "nro": "AR 1824",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "19:25",
@@ -770,12 +770,12 @@
     },
     {
      "hora": "14:05",
-     "real": "14:15",
+     "real": "14:23",
      "nro": "AR 1431",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Neuquén",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "19:55",
@@ -1030,7 +1030,7 @@
     },
     {
      "hora": "14:45",
-     "real": "15:13",
+     "real": "15:09",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
