@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-25T12:42-03:00",
+ "actualizado": "2026-08-25T13:37-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -126,12 +126,12 @@
     },
     {
      "hora": "13:29",
-     "real": "",
+     "real": "13:21",
      "nro": "LA 433",
      "aerolinea": "LATAM",
      "ciudad": "Santiago de Chile",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "15:20",
@@ -261,17 +261,17 @@
      "nro": "AR 1664",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "",
+     "estado": "En Zona",
      "color": "#C0C0C0"
     },
     {
      "hora": "13:50",
-     "real": "13:40",
+     "real": "13:34",
      "nro": "O4 626",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "14:50",
@@ -351,6 +351,15 @@
      "nro": "O4 624",
      "aerolinea": "Andes",
      "ciudad": "Salta",
+     "estado": "",
+     "color": "#C0C0C0"
+    },
+    {
+     "hora": "18:35",
+     "real": "",
+     "nro": "H2 541",
+     "aerolinea": "SKY",
+     "ciudad": "Santiago de Chile",
      "estado": "",
      "color": "#C0C0C0"
     },
@@ -479,8 +488,8 @@
      "nro": "AR 1683",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Cerrado",
+     "color": "#FF0000"
     },
     {
      "hora": "14:30",
@@ -578,6 +587,15 @@
      "nro": "O4 625",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
+     "estado": "En Horario",
+     "color": "#C0C0C0"
+    },
+    {
+     "hora": "19:30",
+     "real": "",
+     "nro": "H2 542",
+     "aerolinea": "SKY",
+     "ciudad": "Santiago de Chile",
      "estado": "En Horario",
      "color": "#C0C0C0"
     },
@@ -682,17 +700,17 @@
      "nro": "AJ 515",
      "aerolinea": "American Jet",
      "ciudad": "Perito Moreno",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Cancelado",
+     "color": "#FB671E"
     },
     {
      "hora": "13:35",
-     "real": "",
+     "real": "13:41",
      "nro": "AR 1824",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "19:25",
@@ -747,17 +765,17 @@
      "nro": "AJ 515",
      "aerolinea": "American Jet",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Cancelado",
+     "color": "#FB671E"
     },
     {
      "hora": "14:05",
-     "real": "",
+     "real": "14:15",
      "nro": "AR 1431",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Neuquén",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     },
     {
      "hora": "19:55",
@@ -793,12 +811,12 @@
     },
     {
      "hora": "13:20",
-     "real": "",
+     "real": "13:11",
      "nro": "5U 907",
      "aerolinea": "Lade",
      "ciudad": "Rio Grande",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -906,7 +924,7 @@
     },
     {
      "hora": "16:55",
-     "real": "",
+     "real": "16:51",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "El Calafate",
@@ -1012,7 +1030,7 @@
     },
     {
      "hora": "14:45",
-     "real": "15:17",
+     "real": "15:13",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
@@ -1021,7 +1039,7 @@
     },
     {
      "hora": "16:55",
-     "real": "",
+     "real": "16:47",
      "nro": "AR 1897",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ushuaia",
