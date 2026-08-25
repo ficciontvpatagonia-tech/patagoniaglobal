@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-25T10:51-03:00",
+ "actualizado": "2026-08-25T11:45-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -239,12 +239,12 @@
     },
     {
      "hora": "11:15",
-     "real": "11:10",
+     "real": "11:11",
      "nro": "O4 620",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "Estima",
-     "color": "#C36419"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "12:25",
@@ -266,12 +266,12 @@
     },
     {
      "hora": "13:50",
-     "real": "",
+     "real": "13:40",
      "nro": "O4 626",
      "aerolinea": "Andes",
      "ciudad": "Ezeiza",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Estima",
+     "color": "#C36419"
     },
     {
      "hora": "14:50",
@@ -457,12 +457,12 @@
     },
     {
      "hora": "11:00",
-     "real": "",
+     "real": "11:15",
      "nro": "AR 1671",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Ultimo aviso",
-     "color": "#FB671E"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "12:05",
@@ -836,12 +836,12 @@
     },
     {
      "hora": "11:20",
-     "real": "",
+     "real": "11:12",
      "nro": "5U 906",
      "aerolinea": "Lade",
      "ciudad": "Rio Gallegos",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -860,8 +860,8 @@
      "nro": "5U 907",
      "aerolinea": "Lade",
      "ciudad": "Rio Gallegos",
-     "estado": "Chequeando",
-     "color": "#C0C0C0"
+     "estado": "Pre Embarque",
+     "color": "#C36419"
     }
    ]
   },
@@ -948,8 +948,8 @@
      "nro": "AR 1881",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Pre Embarque",
-     "color": "#777777"
+     "estado": "Cerrado",
+     "color": "#e07a1f"
     },
     {
      "hora": "15:35",
