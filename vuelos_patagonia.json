@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-25T09:55-03:00",
+ "actualizado": "2026-08-25T10:51-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -121,8 +121,8 @@
      "nro": "AR 1639",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Pre Embarque",
-     "color": "#C36419"
+     "estado": "Consulte Cía.",
+     "color": "#FB671E"
     },
     {
      "hora": "13:29",
@@ -230,12 +230,12 @@
     },
     {
      "hora": "10:10",
-     "real": "",
+     "real": "09:58",
      "nro": "AR 1670",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Aeroparque",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "11:15",
@@ -461,8 +461,8 @@
      "nro": "AR 1671",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Ultimo aviso",
+     "color": "#FB671E"
     },
     {
      "hora": "12:05",
@@ -738,8 +738,8 @@
      "nro": "AJ 514",
      "aerolinea": "American Jet",
      "ciudad": "Perito Moreno",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     },
     {
      "hora": "14:05",
@@ -813,12 +813,12 @@
     },
     {
      "hora": "10:00",
-     "real": "",
+     "real": "10:04",
      "nro": "5U 906",
      "aerolinea": "Lade",
      "ciudad": "Rio Grande",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Despegado",
+     "color": "#008000"
     }
    ]
   },
@@ -840,7 +840,7 @@
      "nro": "5U 906",
      "aerolinea": "Lade",
      "ciudad": "Rio Gallegos",
-     "estado": "",
+     "estado": "En Zona",
      "color": "#C0C0C0"
     }
    ],
@@ -860,7 +860,7 @@
      "nro": "5U 907",
      "aerolinea": "Lade",
      "ciudad": "Rio Gallegos",
-     "estado": "En Horario",
+     "estado": "Chequeando",
      "color": "#C0C0C0"
     }
    ]
@@ -879,21 +879,21 @@
     },
     {
      "hora": "10:35",
-     "real": "11:00",
+     "real": "10:40",
      "nro": "AR 1880",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Demorado",
-     "color": "#c0392b"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "14:45",
-     "real": "15:00",
+     "real": "",
      "nro": "AR 1886",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Demorado",
-     "color": "#c0392b"
+     "estado": "En horario",
+     "color": "#777777"
     },
     {
      "hora": "15:05",
@@ -914,19 +914,19 @@
      "color": "#777777"
     },
     {
-     "hora": "18:25",
+     "hora": "18:08",
      "real": "",
-     "nro": "AR 1890",
-     "aerolinea": "Aerolíneas Argentinas",
+     "nro": "WJ* 3203",
+     "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
      "estado": "En horario",
      "color": "#777777"
     },
     {
-     "hora": "20:03",
+     "hora": "18:25",
      "real": "",
-     "nro": "WJ* 3203",
-     "aerolinea": "Jetsmart Argentina",
+     "nro": "AR 1890",
+     "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
      "estado": "En horario",
      "color": "#777777"
@@ -935,12 +935,12 @@
    "partidas": [
     {
      "hora": "10:00",
-     "real": "",
+     "real": "09:59",
      "nro": "AR 1873",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Cerrado",
-     "color": "#e07a1f"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "11:25",
@@ -980,7 +980,7 @@
     },
     {
      "hora": "19:00",
-     "real": "",
+     "real": "19:15",
      "nro": "WJ* 3204",
      "aerolinea": "Jetsmart Argentina",
      "ciudad": "Buenos Aires",
@@ -1012,12 +1012,12 @@
     },
     {
      "hora": "14:45",
-     "real": "",
+     "real": "15:00",
      "nro": "AR 1898",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "En horario",
-     "color": "#777777"
+     "estado": "Demorado",
+     "color": "#c0392b"
     },
     {
      "hora": "16:55",
