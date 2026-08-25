@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-25T19:57-03:00",
+ "actualizado": "2026-08-25T20:29-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -70,12 +70,12 @@
     },
     {
      "hora": "20:15",
-     "real": "",
+     "real": "20:10",
      "nro": "AR 1650",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "21:34",
@@ -383,12 +383,12 @@
     },
     {
      "hora": "19:50",
-     "real": "",
+     "real": "19:59",
      "nro": "AR 1686",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "En Zona",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "20:10",
@@ -419,12 +419,12 @@
     },
     {
      "hora": "21:50",
-     "real": "",
+     "real": "22:45",
      "nro": "AR 1690",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     }
    ],
    "partidas": [
@@ -601,12 +601,12 @@
     },
     {
      "hora": "19:40",
-     "real": "",
+     "real": "20:15",
      "nro": "AR 1679",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Embarcando",
-     "color": "#C36419"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "20:13",
@@ -655,12 +655,12 @@
     },
     {
      "hora": "22:40",
-     "real": "",
+     "real": "23:40",
      "nro": "AR 1691",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "En Horario",
-     "color": "#C0C0C0"
+     "estado": "Demorado",
+     "color": "#FB671E"
     }
    ]
   },
@@ -714,12 +714,12 @@
     },
     {
      "hora": "19:25",
-     "real": "",
+     "real": "19:18",
      "nro": "AR 1430",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Neuquén",
-     "estado": "Consulte Cía.",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     },
     {
      "hora": "20:20",
@@ -727,8 +727,8 @@
      "nro": "AR 1834",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "",
-     "color": "#C0C0C0"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -779,12 +779,12 @@
     },
     {
      "hora": "19:55",
-     "real": "",
+     "real": "20:03",
      "nro": "AR 1829",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Cerrado",
-     "color": "#FF0000"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "20:50",
@@ -1011,7 +1011,7 @@
      "nro": "AR 1891",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Buenos Aires",
-     "estado": "Embarcando",
+     "estado": "Cerrado",
      "color": "#e07a1f"
     }
    ]
