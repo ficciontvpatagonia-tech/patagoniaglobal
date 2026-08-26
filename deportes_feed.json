@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260825-chubut-en-la-ruta-apoyo-a-120-corredores-en-el-medio-dep",
+    "id": "20260826-copa-davis-la-designacion-de-frana-no-toca-la-agenda-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Chubut en la ruta: apoyo a 120 corredores en el Medio Maratón",
-    "bajada": "La provincia acompañó a sus atletas con una carpa institucional en la competencia más importante de América, realizada en Buenos Aires.",
-    "imagen": "fotos/foto-20260825-chubut-en-la-ruta-apoyo-a-120-corredores-en-el-medio-dep.webp",
+    "titulo": "Copa Davis: la designación de Frana no toca la agenda deportiva patagónica",
+    "bajada": "La lista de tenistas convocados por el capitán argentino para enfrentar a Turquía no tiene referentes de clubes patagónicos.",
+    "imagen": "fotos/foto-20260826-copa-davis-la-designacion-de-frana-no-toca-la-agenda-dep.webp",
     "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260825-chubut-en-la-ruta-apoyo-a-120-corredores-en-el-medio-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Chubut en la ruta: apoyo a 120 corredores en el Medio Maratón",
+      "bajada": "La provincia acompañó a sus atletas con una carpa institucional en la competencia más importante de América, realizada en Buenos Aires.",
+      "imagen": "fotos/foto-20260825-chubut-en-la-ruta-apoyo-a-120-corredores-en-el-medio-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20260824-desfile-del-dia-del-montanes-una-tradicion-que-une-a-dep",
       "tag": "🏔️ Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La nueva edición del desfile reunió a toda la comunidad deportiva de montaña en la Plaza de Bariloche.",
       "imagen": "fotos/foto-20260824-desfile-del-dia-del-montanes-una-tradicion-que-une-a-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260823-el-club-andino-bariloche-aborda-la-clave-de-las-caidas-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La Subcomisión de Montañismo invita a una charla gratuita para aprender sobre la dinámica de las caídas y los sistemas de aseguramiento.",
       "imagen": "fotos/foto-20260823-el-club-andino-bariloche-aborda-la-clave-de-las-caidas-dep.webp",
       "meta": "Hoy · Club Andino Bariloche (Bariloche)"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260822-semanita-blanca-la-primera-experiencia-en-la-nieve-dep",
       "tag": "🏃 Deportes",
@@ -49,14 +57,6 @@
       "titulo": "El operativo nocturno de Catedral: 1.000 km para preparar las pistas",
       "bajada": "Un ejército de máquinas y maquinistas trabaja de madrugada para que los esquiadores encuentren la montaña en perfectas condiciones cada mañana.",
       "imagen": "fotos/foto-20260819-el-operativo-nocturno-de-catedral-1000-km-para-dep.webp",
-      "meta": "Hoy · Catedral Alta Patagonia"
-    },
-    {
-      "id": "20260816-snow-park-de-catedral-un-nuevo-acceso-al-freestyle-en-dep",
-      "tag": "🏔 Deportes",
-      "titulo": "Snow Park de Catedral: un nuevo acceso al freestyle en la montaña",
-      "bajada": "Cerro Catedral lanza un producto para facilitar el acceso a la pista de freestyle, con módulos para todos los niveles.",
-      "imagen": "fotos/foto-20260816-snow-park-de-catedral-un-nuevo-acceso-al-freestyle-en-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
     }
   ]
