@@ -1,6 +1,6 @@
 {
  "fuente": "Aeropuertos Argentina + London Supply",
- "actualizado": "2026-08-25T22:19-03:00",
+ "actualizado": "2026-08-25T23:47-03:00",
  "aeropuertos": {
   "NQN": {
    "nombre": "Neuquén",
@@ -419,12 +419,12 @@
     },
     {
      "hora": "21:50",
-     "real": "22:45",
+     "real": "23:11",
      "nro": "AR 1690",
      "aerolinea": "Aerolíneas Argentinas",
      "ciudad": "Ezeiza",
-     "estado": "Demorado",
-     "color": "#FB671E"
+     "estado": "Aterrizado",
+     "color": "#008000"
     }
    ],
    "partidas": [
@@ -637,12 +637,12 @@
     },
     {
      "hora": "21:10",
-     "real": "22:40",
+     "real": "22:57",
      "nro": "WJ 3058",
      "aerolinea": "JetSMART",
      "ciudad": "Ezeiza",
-     "estado": "Ultimo aviso",
-     "color": "#FB671E"
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "21:40",
@@ -761,21 +761,21 @@
     },
     {
      "hora": "14:05",
-     "real": "14:23",
-     "nro": "AR 1431",
-     "aerolinea": "Aerolíneas Argentinas",
-     "ciudad": "Neuquén",
-     "estado": "Despegado",
-     "color": "#008000"
-    },
-    {
-     "hora": "14:05",
      "real": "",
      "nro": "AJ 515",
      "aerolinea": "American Jet",
      "ciudad": "Ezeiza",
      "estado": "Cancelado",
      "color": "#FB671E"
+    },
+    {
+     "hora": "14:05",
+     "real": "14:23",
+     "nro": "AR 1431",
+     "aerolinea": "Aerolíneas Argentinas",
+     "ciudad": "Neuquén",
+     "estado": "Despegado",
+     "color": "#008000"
     },
     {
      "hora": "19:55",
