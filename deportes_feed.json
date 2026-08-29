@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260827-el-geda-del-club-andino-inicia-su-temporada-44-en-el-dep",
+    "id": "20260829-caleta-olivia-va-por-el-bronce-en-el-argentino-de-dep",
     "tag": "🏃 Deportes",
-    "titulo": "El GEDA del Club Andino inicia su temporada 44 en El Bolsón",
-    "bajada": "El Grupo Excursionistas de Adultos arranca el año con una salida al Cerro Perito Moreno, reafirmando su compromiso con el montañismo y la vida al aire libre.",
-    "imagen": "fotos/foto-20260827-el-geda-del-club-andino-inicia-su-temporada-44-en-el-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche"
+    "titulo": "Caleta Olivia va por el bronce en el Argentino de Futsal",
+    "bajada": "El seleccionado santacruceño buscará subir al podio en el Campeonato Argentino de Selecciones Masculino tras caer en semis.",
+    "imagen": "fotos/foto-20260829-caleta-olivia-va-por-el-bronce-en-el-argentino-de-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260827-el-geda-del-club-andino-inicia-su-temporada-44-en-el-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "El GEDA del Club Andino inicia su temporada 44 en El Bolsón",
+      "bajada": "El Grupo Excursionistas de Adultos arranca el año con una salida al Cerro Perito Moreno, reafirmando su compromiso con el montañismo y la vida al aire libre.",
+      "imagen": "fotos/foto-20260827-el-geda-del-club-andino-inicia-su-temporada-44-en-el-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20260826-copa-davis-la-designacion-de-frana-no-toca-la-agenda-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La lista de tenistas convocados por el capitán argentino para enfrentar a Turquía no tiene referentes de clubes patagónicos.",
       "imagen": "fotos/foto-20260826-copa-davis-la-designacion-de-frana-no-toca-la-agenda-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260825-chubut-en-la-ruta-apoyo-a-120-corredores-en-el-medio-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La provincia acompañó a sus atletas con una carpa institucional en la competencia más importante de América, realizada en Buenos Aires.",
       "imagen": "fotos/foto-20260825-chubut-en-la-ruta-apoyo-a-120-corredores-en-el-medio-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260824-desfile-del-dia-del-montanes-una-tradicion-que-une-a-dep",
       "tag": "🏔️ Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El Club Andino Bariloche invita a sus familias a una jornada de iniciación al esquí para que los más pequeños den sus primeros pasos en la montaña.",
       "imagen": "fotos/foto-20260822-semanita-blanca-la-primera-experiencia-en-la-nieve-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260821-santa-cruz-busca-el-titulo-en-el-argentino-sub-16-de-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Santa Cruz busca el título en el Argentino Sub-16 de handball",
-      "bajada": "El equipo masculino de la Asociación Santa Cruceña disputa la final del Nivel B en Mendoza tras una campaña implacable.",
-      "imagen": "fotos/foto-20260821-santa-cruz-busca-el-titulo-en-el-argentino-sub-16-de-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
     }
   ]
 }
