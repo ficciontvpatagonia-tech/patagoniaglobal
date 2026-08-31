@@ -21,8 +21,8 @@ def quote(txt):
             'padding:.4rem 0 .4rem 1.4rem;font-size:1.25rem;line-height:1.5;'
             f'font-style:italic">{txt}</blockquote>')
 
-IMG_PORTADA = "fotos/malvinas-milei-trump.webp"
-IMG_PARLAMENTO = "fotos/malvinas-parlamento-britanico.webp"
+IMG_PORTADA = "fotos/malvinas-cartel-ruta-vs-falkland-islands.webp"
+IMG_SECUNDARIA = "fotos/malvinas-milei-trump.webp"
 
 # ============================== ESPAÑOL ==============================
 cuerpo = "\n\n".join([
@@ -36,8 +36,8 @@ cuerpo = "\n\n".join([
 
     quote("“Los Estados Unidos tienen una posición de neutralidad sobre las islas. Eso no ha cambiado”."),
 
-    img_block(IMG_PORTADA, "Javier Milei y Donald Trump",
-              "El vínculo entre Washington y Buenos Aires atraviesa el trasfondo de una advertencia que, en los hechos, tensiona a Londres dentro de la propia OTAN."),
+    img_block(IMG_PORTADA, "Cartel de la Ruta 3 hacia Malvinas junto al cartel de bienvenida a las Falkland Islands",
+              "Dos formas de nombrar el mismo archipiélago: el cartel vial que marca los 2.394 km hasta Malvinas y el cartel que recibe a los visitantes en las islas como “Falkland Islands”."),
 
     "<h3>Londres se sacude</h3>",
 
@@ -49,8 +49,8 @@ cuerpo = "\n\n".join([
 
     "<p>La ministra Bridget Phillipson evitó pronunciarse sobre la soberanía en una entrevista radial y se limitó a defender el nivel de gasto militar: “Estamos invirtiendo más que en cualquier otro momento desde la Guerra Fría”.</p>",
 
-    img_block(IMG_PARLAMENTO, "Cámara de los Comunes del Parlamento británico",
-              "El presupuesto de Defensa británico y la advertencia de Washington reabrieron, una vez más, el debate sobre Malvinas en el Parlamento."),
+    img_block(IMG_SECUNDARIA, "Javier Milei y Donald Trump",
+              "El vínculo entre Washington y Buenos Aires atraviesa el trasfondo de una advertencia que, en los hechos, tensiona a Londres dentro de la propia OTAN."),
 
     "<h3>No es la primera vez</h3>",
 
@@ -75,8 +75,8 @@ cuerpo_en = "\n\n".join([
 
     quote("“The United States holds a position of neutrality on the islands. That has not changed.”"),
 
-    img_block(IMG_PORTADA, "Javier Milei and Donald Trump",
-              "The Washington–Buenos Aires relationship sits in the background of a warning that, in practice, puts pressure on London within NATO itself."),
+    img_block(IMG_PORTADA, "Road sign to Malvinas next to the Falkland Islands welcome sign",
+              "Two ways of naming the same archipelago: the highway sign marking the 2,394 km to Malvinas, and the sign that welcomes visitors on the islands as the “Falkland Islands”."),
 
     "<h3>London rattled</h3>",
 
@@ -88,8 +88,8 @@ cuerpo_en = "\n\n".join([
 
     "<p>Minister Bridget Phillipson avoided the sovereignty question in a radio interview and instead defended the spending level: “We are investing more than at any point since the Cold War.”</p>",
 
-    img_block(IMG_PARLAMENTO, "The House of Commons at the British Parliament",
-              "Britain's defence budget and Washington's warning reopened, once again, the debate over Malvinas (the Falklands) in Parliament."),
+    img_block(IMG_SECUNDARIA, "Javier Milei and Donald Trump",
+              "The Washington–Buenos Aires relationship sits in the background of a warning that, in practice, puts pressure on London within NATO itself."),
 
     "<h3>Not the first time</h3>",
 
@@ -114,8 +114,8 @@ cuerpo_pt = "\n\n".join([
 
     quote("“Os Estados Unidos mantêm uma posição de neutralidade sobre as ilhas. Isso não mudou.”"),
 
-    img_block(IMG_PORTADA, "Javier Milei e Donald Trump",
-              "O vínculo entre Washington e Buenos Aires está no pano de fundo de um aviso que, na prática, pressiona Londres dentro da própria OTAN."),
+    img_block(IMG_PORTADA, "Placa da rota para as Malvinas ao lado da placa de boas-vindas às Falkland Islands",
+              "Duas formas de nomear o mesmo arquipélago: a placa rodoviária que marca os 2.394 km até as Malvinas e a placa que recebe os visitantes nas ilhas como “Falkland Islands”."),
 
     "<h3>Londres se abala</h3>",
 
@@ -127,8 +127,8 @@ cuerpo_pt = "\n\n".join([
 
     "<p>A ministra Bridget Phillipson evitou se pronunciar sobre a soberania em uma entrevista de rádio e se limitou a defender o nível de gasto militar: “Estamos investindo mais do que em qualquer outro momento desde a Guerra Fria.”</p>",
 
-    img_block(IMG_PARLAMENTO, "Câmara dos Comuns do Parlamento britânico",
-              "O orçamento de Defesa britânico e o aviso de Washington reabriram, mais uma vez, o debate sobre as Malvinas no Parlamento."),
+    img_block(IMG_SECUNDARIA, "Javier Milei e Donald Trump",
+              "O vínculo entre Washington e Buenos Aires está no pano de fundo de um aviso que, na prática, pressiona Londres dentro da própria OTAN."),
 
     "<h3>Não é a primeira vez</h3>",
 
@@ -153,8 +153,8 @@ cuerpo_zh = "\n\n".join([
 
     quote("“美国在群岛问题上保持中立立场，这一点没有改变。”"),
 
-    img_block(IMG_PORTADA, "哈维尔·米莱与唐纳德·特朗普",
-              "华盛顿与布宜诺斯艾利斯之间的关系，正是这场实际上对伦敦在北约内部构成压力的警告的背景。"),
+    img_block(IMG_PORTADA, "通往马尔维纳斯的路标与福克兰群岛欢迎标牌",
+              "同一群岛的两种称谓：标注着距马尔维纳斯2394公里的公路标牌，与岛上迎接访客、写着“福克兰群岛”的欢迎标牌。"),
 
     "<h3>伦敦为之震动</h3>",
 
@@ -166,8 +166,8 @@ cuerpo_zh = "\n\n".join([
 
     "<p>大臣布里奇特·菲利普森在一次电台采访中回避了主权问题，只是为国防开支水平进行了辩护：“我们的投入是冷战结束以来任何时期都无法比拟的。”</p>",
 
-    img_block(IMG_PARLAMENTO, "英国议会下议院",
-              "英国的国防预算与华盛顿的警告，再次在议会内重新引发了关于马尔维纳斯群岛的辩论。"),
+    img_block(IMG_SECUNDARIA, "哈维尔·米莱与唐纳德·特朗普",
+              "华盛顿与布宜诺斯艾利斯之间的关系，正是这场实际上对伦敦在北约内部构成压力的警告的背景。"),
 
     "<h3>并非第一次</h3>",
 
@@ -204,7 +204,7 @@ nueva_entrada = {
     "url_original": "",
     "pais": "malvinas",
     "imagen": IMG_PORTADA,
-    "imagen_keywords": "malvinas eeuu trump otan reino unido presion soberania washington",
+    "imagen_keywords": "malvinas falkland islands cartel ruta bandera argentina eeuu trump otan reino unido",
     "hashtags_en": "#Malvinas #Falklands #USA #NATO #UK",
     "meta": FECHA_META,
     "excluir_feed": True,
