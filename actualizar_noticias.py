@@ -41,26 +41,36 @@ import anthropic
 
 
 def llamar_llm(mensajes, max_tokens=10000, model_claude="claude-sonnet-4-6"):
-    """Llama a Claude; si falla (sin crédito, rate limit, etc.) y hay
-    DEEPSEEK_API_KEY configurada, cae a DeepSeek para no perder el run.
-    Devuelve el texto de la respuesta. Relanza el error de Claude si
-    tampoco hay fallback disponible."""
-    try:
+    """Llama al LLM. Prioridad TEMPORAL (31/08/2026, a pedido de Marto): DeepSeek
+    primero mientras tenga crédito cargado, Claude como red de seguridad si
+    DeepSeek falla. Revertir el orden (Claude primero, DeepSeek fallback) cuando
+    Marto avise que el crédito de DeepSeek se agotó.
+    Devuelve el texto de la respuesta. Relanza el último error si ningún
+    proveedor disponible responde."""
+    def _claude(mt):
         client = anthropic.Anthropic(api_key=API_KEY)
         response = client.messages.create(
-            model=model_claude, max_tokens=max_tokens, messages=mensajes
+            model=model_claude, max_tokens=mt, messages=mensajes
         )
         return response.content[0].text.strip()
-    except Exception as e_claude:
-        if not DEEPSEEK_API_KEY:
-            raise
-        print(f" [Claude falló: {e_claude} — fallback DeepSeek]", end=" ", flush=True)
+
+    def _deepseek(mt):
         import openai
         ds_client = openai.OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
         resp = ds_client.chat.completions.create(
-            model="deepseek-chat", max_tokens=max_tokens, messages=mensajes
+            model="deepseek-chat", max_tokens=mt, messages=mensajes
         )
         return resp.choices[0].message.content.strip()
+
+    if DEEPSEEK_API_KEY:
+        try:
+            # DeepSeek suele ser menos compacto que Claude para el mismo JSON:
+            # se pide más margen de tokens para no truncar la respuesta a mitad del objeto.
+            return _deepseek(int(max_tokens * 1.6))
+        except Exception as e_ds:
+            print(f" [DeepSeek falló: {e_ds} — fallback Claude]", end=" ", flush=True)
+            return _claude(max_tokens)
+    return _claude(max_tokens)
 
 # ══════════════════════════════════════════════════════════
 #  CONFIGURACIÓN
@@ -967,11 +977,17 @@ REGLAS CRÍTICAS:
             texto = texto[inicio:fin]
         return texto
 
+    def _reparar_json(texto):
+        """Arregla el defecto más común de DeepSeek en este JSON: comas colgantes
+        antes de un } o ] de cierre (p.ej. último campo de un objeto o último
+        elemento del ticker)."""
+        return re.sub(r',(\s*[}\]])', r'\1', texto)
+
     ultimo_error = None
     ultimo_texto = ""
     for intento in range(1, 4):
         sufijo = f" (intento {intento}/3)" if intento > 1 else ""
-        print(f"  Enviando a Claude para reescritura editorial...{sufijo}", end=" ", flush=True)
+        print(f"  Enviando a LLM para reescritura editorial...{sufijo}", end=" ", flush=True)
         try:
             mensajes = [{"role": "user", "content": prompt}]
             if intento > 1 and ultimo_texto:
@@ -983,7 +999,10 @@ REGLAS CRÍTICAS:
                 })
             ultimo_texto = llamar_llm(mensajes, max_tokens=10000)
             texto = _extraer_json(ultimo_texto)
-            datos = json.loads(texto)
+            try:
+                datos = json.loads(texto)
+            except json.JSONDecodeError:
+                datos = json.loads(_reparar_json(texto))  # si también falla, sube al except de abajo
             print("OK")
             return datos
         except json.JSONDecodeError as e:
