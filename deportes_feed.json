@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260831-el-boxeo-vuelve-a-torres-del-paine-con-su-festival-mas-dep",
+    "id": "20260901-el-club-mar-del-plata-rompe-la-racha-y-es-campeon-del-dep",
     "tag": "🏃 Deportes",
-    "titulo": "El boxeo vuelve a Torres del Paine con su festival más austral",
-    "bajada": "El Gimnasio Municipal de Villa Cerro Castillo recibe una nueva edición del Festival de Boxeo Jorge 'Cuajo' Andrade, con apoyo del Gobierno Regional.",
-    "imagen": "fotos/foto-20260831-el-boxeo-vuelve-a-torres-del-paine-con-su-festival-mas-dep.webp",
-    "meta": "Hoy · El Magallánico"
+    "titulo": "El Club Mar del Plata rompe la racha y es campeón del fútbol regional",
+    "bajada": "El histórico equipo de Caleta Olivia vuelve a la cima tras una década, con una campaña aplastante en la liga local.",
+    "imagen": "fotos/foto-20260901-el-club-mar-del-plata-rompe-la-racha-y-es-campeon-del-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260831-el-boxeo-vuelve-a-torres-del-paine-con-su-festival-mas-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "El boxeo vuelve a Torres del Paine con su festival más austral",
+      "bajada": "El Gimnasio Municipal de Villa Cerro Castillo recibe una nueva edición del Festival de Boxeo Jorge 'Cuajo' Andrade, con apoyo del Gobierno Regional.",
+      "imagen": "fotos/foto-20260831-el-boxeo-vuelve-a-torres-del-paine-con-su-festival-mas-dep.webp",
+      "meta": "Hoy · El Magallánico"
+    },
     {
       "id": "20260831-la-vuelta-a-la-isla-solitaria-celebra-su-octava-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La competencia de natación en aguas frías del Lago Argentino se realizará el 20 y 21 de febrero.",
       "imagen": "fotos/foto-20260831-la-vuelta-a-la-isla-solitaria-celebra-su-octava-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260829-caleta-olivia-va-por-el-bronce-en-el-argentino-de-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El seleccionado santacruceño buscará subir al podio en el Campeonato Argentino de Selecciones Masculino tras caer en semis.",
       "imagen": "fotos/foto-20260829-caleta-olivia-va-por-el-bronce-en-el-argentino-de-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260827-el-geda-del-club-andino-inicia-su-temporada-44-en-el-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La provincia acompañó a sus atletas con una carpa institucional en la competencia más importante de América, realizada en Buenos Aires.",
       "imagen": "fotos/foto-20260825-chubut-en-la-ruta-apoyo-a-120-corredores-en-el-medio-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20260824-desfile-del-dia-del-montanes-una-tradicion-que-une-a-dep",
-      "tag": "🏔️ Deportes",
-      "titulo": "Desfile del Día del Montañés: una tradición que une a Bariloche",
-      "bajada": "La nueva edición del desfile reunió a toda la comunidad deportiva de montaña en la Plaza de Bariloche.",
-      "imagen": "fotos/foto-20260824-desfile-del-dia-del-montanes-una-tradicion-que-une-a-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
     }
   ]
 }
