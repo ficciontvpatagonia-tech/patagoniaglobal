@@ -150,14 +150,18 @@ jobs:
       - name: Esperar propagación GitHub Pages
         run: sleep 90
 
-      - name: Publicar tapa e informes en Instagram
-        env:
-          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
-          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
-          FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
-          FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
-          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
-        run: python3 actualizar_noticias.py --solo-instagram
+      # - name: Publicar tapa e informes en Instagram   [DESACTIVADO 03/09/2026 — INSTAGRAM_BUSINESS_ACCOUNT_ID
+      #   apunta a la cuenta personal de Jacques (@martin.subira), no a una cuenta de marca de GLOBALpatagonia.
+      #   La cuenta profesional "GLOBALpatagonia" (dentro de esa misma cuenta personal, vía Accounts Center)
+      #   fue cerrada por Instagram sin aviso. Reactivar solo cuando haya una cuenta de marca vinculada
+      #   correctamente a la Página de Facebook y el secret apunte a ese ID.]
+      # - env:
+      #     FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+      #     FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+      #     FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
+      #     FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
+      #     INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+      #   run: python3 actualizar_noticias.py --solo-instagram
 
       - name: Guardar estado Instagram
         run: |

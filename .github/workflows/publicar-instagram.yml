@@ -51,11 +51,14 @@ jobs:
           print("Búsqueda de @global.patagonia vía business_discovery:", json.dumps(r, ensure_ascii=False))
           EOF
 
-      - name: Publicar en Instagram
-        env:
-          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
-          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
-          FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
-          FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
-          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
-        run: python3 actualizar_noticias.py --solo-instagram
+      # - name: Publicar en Instagram   [DESACTIVADO 03/09/2026 — confirmado con Jacques: INSTAGRAM_BUSINESS_ACCOUNT_ID
+      #   apunta a su cuenta personal (@martin.subira), no a una cuenta de marca de GLOBALpatagonia. La cuenta
+      #   profesional "GLOBALpatagonia" (vinculada dentro de esa cuenta personal vía Accounts Center) fue
+      #   cerrada por Instagram sin aviso. Reactivar solo con una cuenta de marca correcta y vinculada a la Página.]
+      # - env:
+      #     FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+      #     FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+      #     FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
+      #     FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
+      #     INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+      #   run: python3 actualizar_noticias.py --solo-instagram
