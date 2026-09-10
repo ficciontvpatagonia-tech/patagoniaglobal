@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260909-una-salida-nocturna-en-el-cerro-catedral-convoco-a-40-dep",
+    "id": "20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Una salida nocturna en el Cerro Catedral convocó a 40 montañistas",
-    "bajada": "La travesía organizada por el Club Andino Bariloche combinó esquí y raquetas para disfrutar del entorno nevado bajo la luz de la luna.",
-    "imagen": "fotos/foto-20260909-una-salida-nocturna-en-el-cerro-catedral-convoco-a-40-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche"
+    "titulo": "Newcom: Gladiadores de Río Turbio va por el título nacional en San Juan",
+    "bajada": "El equipo de la Cuenca Carbonífera se consagró campeón provincial y representará a Santa Cruz en los Juegos Evita. El Newcom, disciplina adaptada similar al vóley, busca consolidarse en la región.",
+    "imagen": "fotos/foto-20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260909-una-salida-nocturna-en-el-cerro-catedral-convoco-a-40-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Una salida nocturna en el Cerro Catedral convocó a 40 montañistas",
+      "bajada": "La travesía organizada por el Club Andino Bariloche combinó esquí y raquetas para disfrutar del entorno nevado bajo la luz de la luna.",
+      "imagen": "fotos/foto-20260909-una-salida-nocturna-en-el-cerro-catedral-convoco-a-40-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20260908-catedral-celebra-sus-90-anos-con-un-beneficio-para-los-dep",
       "tag": "🏔️ Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El cerro más emblemático de Bariloche lanza un pase especial para que los locales festejen nueve décadas de historia sobre la nieve.",
       "imagen": "fotos/foto-20260908-catedral-celebra-sus-90-anos-con-un-beneficio-para-los-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260902-esqui-de-travesia-nocturno-nueva-salida-en-el-cerro-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El Club Andino Bariloche organiza una salida nocturna con esquí, raquetas y splitboard para el viernes 4 de septiembre.",
       "imagen": "fotos/foto-20260902-esqui-de-travesia-nocturno-nueva-salida-en-el-cerro-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260901-el-club-mar-del-plata-rompe-la-racha-y-es-campeon-del-dep",
       "tag": "🏃 Deportes",
@@ -49,14 +57,6 @@
       "titulo": "La Vuelta a la Isla Solitaria celebra su octava edición en 2027",
       "bajada": "La competencia de natación en aguas frías del Lago Argentino se realizará el 20 y 21 de febrero.",
       "imagen": "fotos/foto-20260831-la-vuelta-a-la-isla-solitaria-celebra-su-octava-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20260829-caleta-olivia-va-por-el-bronce-en-el-argentino-de-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Caleta Olivia va por el bronce en el Argentino de Futsal",
-      "bajada": "El seleccionado santacruceño buscará subir al podio en el Campeonato Argentino de Selecciones Masculino tras caer en semis.",
-      "imagen": "fotos/foto-20260829-caleta-olivia-va-por-el-bronce-en-el-argentino-de-dep.webp",
       "meta": "Hoy · Tiempo Sur"
     }
   ]
