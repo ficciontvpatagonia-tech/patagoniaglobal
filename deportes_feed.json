@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep",
+    "id": "20260911-catedral-recibe-la-copa-sudamericana-de-esqui-alpino-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Newcom: Gladiadores de Río Turbio va por el título nacional en San Juan",
-    "bajada": "El equipo de la Cuenca Carbonífera se consagró campeón provincial y representará a Santa Cruz en los Juegos Evita. El Newcom, disciplina adaptada similar al vóley, busca consolidarse en la región.",
-    "imagen": "fotos/foto-20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "titulo": "Catedral recibe la Copa Sudamericana de Esquí Alpino",
+    "bajada": "144 atletas de más de 20 países compiten en Slalom y Slalom Gigante en el cerro barilochense, sede de una nueva fecha continental.",
+    "imagen": "fotos/foto-20260911-catedral-recibe-la-copa-sudamericana-de-esqui-alpino-dep.webp",
+    "meta": "Hoy · Catedral Alta Patagonia"
   },
   "secundarias": [
+    {
+      "id": "20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Newcom: Gladiadores de Río Turbio va por el título nacional en San Juan",
+      "bajada": "El equipo de la Cuenca Carbonífera se consagró campeón provincial y representará a Santa Cruz en los Juegos Evita. El Newcom, disciplina adaptada similar al vóley, busca consolidarse en la región.",
+      "imagen": "fotos/foto-20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20260909-una-salida-nocturna-en-el-cerro-catedral-convoco-a-40-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La travesía organizada por el Club Andino Bariloche combinó esquí y raquetas para disfrutar del entorno nevado bajo la luz de la luna.",
       "imagen": "fotos/foto-20260909-una-salida-nocturna-en-el-cerro-catedral-convoco-a-40-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260908-catedral-celebra-sus-90-anos-con-un-beneficio-para-los-dep",
       "tag": "🏔️ Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El cerro más emblemático de Bariloche lanza un pase especial para que los locales festejen nueve décadas de historia sobre la nieve.",
       "imagen": "fotos/foto-20260908-catedral-celebra-sus-90-anos-con-un-beneficio-para-los-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260902-esqui-de-travesia-nocturno-nueva-salida-en-el-cerro-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El Gimnasio Municipal de Villa Cerro Castillo recibe una nueva edición del Festival de Boxeo Jorge 'Cuajo' Andrade, con apoyo del Gobierno Regional.",
       "imagen": "fotos/foto-20260831-el-boxeo-vuelve-a-torres-del-paine-con-su-festival-mas-dep.webp",
       "meta": "Hoy · El Magallánico"
-    },
-    {
-      "id": "20260831-la-vuelta-a-la-isla-solitaria-celebra-su-octava-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "La Vuelta a la Isla Solitaria celebra su octava edición en 2027",
-      "bajada": "La competencia de natación en aguas frías del Lago Argentino se realizará el 20 y 21 de febrero.",
-      "imagen": "fotos/foto-20260831-la-vuelta-a-la-isla-solitaria-celebra-su-octava-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
     }
   ]
 }
