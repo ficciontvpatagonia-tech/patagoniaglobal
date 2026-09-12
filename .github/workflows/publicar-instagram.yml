@@ -48,7 +48,12 @@ jobs:
 
           fields = urllib.parse.quote("business_discovery.username(global.patagonia){username,name,biography,followers_count,profile_picture_url}")
           r = get(f"https://graph.facebook.com/v21.0/{ig_id}?fields={fields}&access_token={nuevo}")
-          print("Búsqueda de @global.patagonia vía business_discovery:", json.dumps(r, ensure_ascii=False))
+          print("Búsqueda de @global.patagonia vía business_discovery (usando el secret actual como ig_id):", json.dumps(r, ensure_ascii=False))
+
+          fields2 = urllib.parse.quote("instagram_business_account{id,username,name,followers_count,profile_picture_url}")
+          r2 = get(f"https://graph.facebook.com/v21.0/{page_id}?fields={fields2}&access_token={nuevo}")
+          print("Cuenta de Instagram ENLAZADA HOY a la Página de Facebook:", json.dumps(r2, ensure_ascii=False))
+          print("Secret INSTAGRAM_BUSINESS_ACCOUNT_ID actual:", ig_id)
           EOF
 
       # - name: Publicar en Instagram   [DESACTIVADO 03/09/2026 — confirmado con Jacques: INSTAGRAM_BUSINESS_ACCOUNT_ID
