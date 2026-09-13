@@ -65,13 +65,21 @@ jobs:
           print("  expires_at:", "NUNCA VENCE" if expires_at == 0 else expires_at)
           print("  data_access_expires_at:", "NUNCA VENCE" if da_expires_at == 0 else da_expires_at)
           print("  detalle:", json.dumps(data, ensure_ascii=False))
+
+          media = get(f"https://graph.facebook.com/v21.0/{ig_id}/media?fields=id,caption,timestamp,permalink&limit=15&access_token={nuevo}")
+          print("\n--- Últimas 15 publicaciones en @global.patagonia ---")
+          print(json.dumps(media, ensure_ascii=False, indent=2))
           EOF
 
-      - name: Publicar en Instagram   # REACTIVADO 12/09/2026 — @global.patagonia (id 17841432640127604) recuperada y enlazada a la Página de Facebook (verificado por API)
-        env:
-          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
-          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
-          FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
-          FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
-          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
-        run: python3 actualizar_noticias.py --solo-instagram
+      # PAUSADO 13/09/2026 — se detectaron posts duplicados (este workflow no
+      # persiste el dedup entre corridas, permissions: contents: read). NO
+      # reactivar sin antes agregar el commit-back del estado. Ver diagnóstico
+      # arriba y avisar a Marto antes de tocar esto.
+      # - name: Publicar en Instagram
+      #   env:
+      #     FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+      #     FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+      #     FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
+      #     FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
+      #     INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+      #   run: python3 actualizar_noticias.py --solo-instagram
