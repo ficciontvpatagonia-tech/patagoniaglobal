@@ -4872,6 +4872,13 @@ def publicar_instagram(tapa):
 
     hashtags = "#Patagonia #GLOBALpatagonia #Noticias #SurGlobal #PatagoniaArgentina"
     cuerpo_raw = tapa.get("cuerpo", "")
+    if not cuerpo_raw.strip() and nota_id:
+        # Los JSON de sección (deportes/cultura/turismo) solo guardan el resumen;
+        # el texto completo vive en historial.json (ver CLAUDE.md "Notas completas").
+        for _h in cargar_historial():
+            if _h.get("id") == nota_id and _h.get("cuerpo"):
+                cuerpo_raw = _h["cuerpo"]
+                break
     # Limpiar HTML si lo hubiera
     import re as _re
     cuerpo_texto = _re.sub(r"<[^>]+>", "", cuerpo_raw).strip()
