@@ -54,6 +54,17 @@ jobs:
           r2 = get(f"https://graph.facebook.com/v21.0/{page_id}?fields={fields2}&access_token={nuevo}")
           print("Cuenta de Instagram ENLAZADA HOY a la Página de Facebook:", json.dumps(r2, ensure_ascii=False))
           print("Secret INSTAGRAM_BUSINESS_ACCOUNT_ID actual:", ig_id)
+
+          app_id = os.environ.get("FACEBOOK_APP_ID", "")
+          app_secret = os.environ.get("FACEBOOK_APP_SECRET", "")
+          dbg = get(f"https://graph.facebook.com/debug_token?input_token={token}&access_token={app_id}|{app_secret}")
+          data = dbg.get("data", {})
+          expires_at = data.get("expires_at")
+          da_expires_at = data.get("data_access_expires_at")
+          print("Vigencia del FACEBOOK_PAGE_TOKEN (secret crudo, sin renovar):")
+          print("  expires_at:", "NUNCA VENCE" if expires_at == 0 else expires_at)
+          print("  data_access_expires_at:", "NUNCA VENCE" if da_expires_at == 0 else da_expires_at)
+          print("  detalle:", json.dumps(data, ensure_ascii=False))
           EOF
 
       - name: Publicar en Instagram   # REACTIVADO 12/09/2026 — @global.patagonia (id 17841432640127604) recuperada y enlazada a la Página de Facebook (verificado por API)
