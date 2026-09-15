@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260911-catedral-recibe-la-copa-sudamericana-de-esqui-alpino-dep",
+    "id": "20260915-rio-gallegos-se-prepara-para-el-open-de-jiu-jitsu-2026-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Catedral recibe la Copa Sudamericana de Esquí Alpino",
-    "bajada": "144 atletas de más de 20 países compiten en Slalom y Slalom Gigante en el cerro barilochense, sede de una nueva fecha continental.",
-    "imagen": "fotos/foto-20260911-catedral-recibe-la-copa-sudamericana-de-esqui-alpino-dep.webp",
-    "meta": "Hoy · Catedral Alta Patagonia"
+    "titulo": "Río Gallegos se prepara para el Open de Jiu-Jitsu 2026 en el Club Boca",
+    "bajada": "El sábado 26 de septiembre, el Club Boca de Río Gallegos será sede del Open provincial de Jiu-Jitsu, con competidores de toda Santa Cruz.",
+    "imagen": "fotos/foto-20260915-rio-gallegos-se-prepara-para-el-open-de-jiu-jitsu-2026-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260911-catedral-recibe-la-copa-sudamericana-de-esqui-alpino-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Catedral recibe la Copa Sudamericana de Esquí Alpino",
+      "bajada": "144 atletas de más de 20 países compiten en Slalom y Slalom Gigante en el cerro barilochense, sede de una nueva fecha continental.",
+      "imagen": "fotos/foto-20260911-catedral-recibe-la-copa-sudamericana-de-esqui-alpino-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia"
+    },
     {
       "id": "20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El equipo de la Cuenca Carbonífera se consagró campeón provincial y representará a Santa Cruz en los Juegos Evita. El Newcom, disciplina adaptada similar al vóley, busca consolidarse en la región.",
       "imagen": "fotos/foto-20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260909-una-salida-nocturna-en-el-cerro-catedral-convoco-a-40-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La travesía organizada por el Club Andino Bariloche combinó esquí y raquetas para disfrutar del entorno nevado bajo la luz de la luna.",
       "imagen": "fotos/foto-20260909-una-salida-nocturna-en-el-cerro-catedral-convoco-a-40-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260908-catedral-celebra-sus-90-anos-con-un-beneficio-para-los-dep",
       "tag": "🏔️ Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El histórico equipo de Caleta Olivia vuelve a la cima tras una década, con una campaña aplastante en la liga local.",
       "imagen": "fotos/foto-20260901-el-club-mar-del-plata-rompe-la-racha-y-es-campeon-del-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20260831-el-boxeo-vuelve-a-torres-del-paine-con-su-festival-mas-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "El boxeo vuelve a Torres del Paine con su festival más austral",
-      "bajada": "El Gimnasio Municipal de Villa Cerro Castillo recibe una nueva edición del Festival de Boxeo Jorge 'Cuajo' Andrade, con apoyo del Gobierno Regional.",
-      "imagen": "fotos/foto-20260831-el-boxeo-vuelve-a-torres-del-paine-con-su-festival-mas-dep.webp",
-      "meta": "Hoy · El Magallánico"
     }
   ]
 }
