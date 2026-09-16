@@ -40,11 +40,14 @@ import feedparser
 import anthropic
 
 
-def llamar_llm(mensajes, max_tokens=10000, model_claude="claude-sonnet-4-6"):
+def llamar_llm(mensajes, max_tokens=10000, model_claude="claude-sonnet-4-6", forzar_claude=False):
     """Llama al LLM. Prioridad TEMPORAL (31/08/2026, a pedido de Marto): DeepSeek
     primero mientras tenga crédito cargado, Claude como red de seguridad si
     DeepSeek falla. Revertir el orden (Claude primero, DeepSeek fallback) cuando
     Marto avise que el crédito de DeepSeek se agotó.
+    `forzar_claude=True` salta DeepSeek aunque haya crédito — usado como último
+    recurso cuando DeepSeek respondió pero con JSON inválido (no es un error de
+    conexión, así que el fallback automático de abajo no se activaba solo).
     Devuelve el texto de la respuesta. Relanza el último error si ningún
     proveedor disponible responde."""
     def _claude(mt):
@@ -62,7 +65,7 @@ def llamar_llm(mensajes, max_tokens=10000, model_claude="claude-sonnet-4-6"):
         )
         return resp.choices[0].message.content.strip()
 
-    if DEEPSEEK_API_KEY:
+    if DEEPSEEK_API_KEY and not forzar_claude:
         try:
             # DeepSeek suele ser menos compacto que Claude para el mismo JSON:
             # se pide más margen de tokens para no truncar la respuesta a mitad del objeto.
@@ -997,7 +1000,7 @@ REGLAS CRÍTICAS:
                     "Devolvé ÚNICAMENTE el objeto JSON pedido, sin texto antes ni después, "
                     "asegurándote de escapar correctamente comillas y saltos de línea dentro de las strings."
                 })
-            ultimo_texto = llamar_llm(mensajes, max_tokens=10000)
+            ultimo_texto = llamar_llm(mensajes, max_tokens=10000, forzar_claude=(intento == 3))
             texto = _extraer_json(ultimo_texto)
             try:
                 datos = json.loads(texto)
