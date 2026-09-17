@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260915-rio-gallegos-se-prepara-para-el-open-de-jiu-jitsu-2026-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Río Gallegos se prepara para el Open de Jiu-Jitsu 2026 en el Club Boca",
-    "bajada": "El sábado 26 de septiembre, el Club Boca de Río Gallegos será sede del Open provincial de Jiu-Jitsu, con competidores de toda Santa Cruz.",
-    "imagen": "fotos/foto-20260915-rio-gallegos-se-prepara-para-el-open-de-jiu-jitsu-2026-dep.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "id": "20260917-catedral-celebro-90-anos-con-1000-residentes-debutando-dep",
+    "tag": "🏔️ Deportes",
+    "titulo": "Catedral celebró 90 años con 1.000 residentes debutando en la nieve",
+    "bajada": "Más de 1.000 residentes de Bariloche y Dina Huapi dieron sus primeros pasos en esquí durante el aniversario del cerro Catedral, con pases de iniciación sin cargo.",
+    "imagen": "fotos/foto-20260917-catedral-celebro-90-anos-con-1000-residentes-debutando-dep.webp",
+    "meta": "Hoy · Catedral Alta Patagonia"
   },
   "secundarias": [
+    {
+      "id": "20260915-rio-gallegos-se-prepara-para-el-open-de-jiu-jitsu-2026-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Río Gallegos se prepara para el Open de Jiu-Jitsu 2026 en el Club Boca",
+      "bajada": "El sábado 26 de septiembre, el Club Boca de Río Gallegos será sede del Open provincial de Jiu-Jitsu, con competidores de toda Santa Cruz.",
+      "imagen": "fotos/foto-20260915-rio-gallegos-se-prepara-para-el-open-de-jiu-jitsu-2026-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20260911-catedral-recibe-la-copa-sudamericana-de-esqui-alpino-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "144 atletas de más de 20 países compiten en Slalom y Slalom Gigante en el cerro barilochense, sede de una nueva fecha continental.",
       "imagen": "fotos/foto-20260911-catedral-recibe-la-copa-sudamericana-de-esqui-alpino-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El equipo de la Cuenca Carbonífera se consagró campeón provincial y representará a Santa Cruz en los Juegos Evita. El Newcom, disciplina adaptada similar al vóley, busca consolidarse en la región.",
       "imagen": "fotos/foto-20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260909-una-salida-nocturna-en-el-cerro-catedral-convoco-a-40-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El Club Andino Bariloche organiza una salida nocturna con esquí, raquetas y splitboard para el viernes 4 de septiembre.",
       "imagen": "fotos/foto-20260902-esqui-de-travesia-nocturno-nueva-salida-en-el-cerro-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260901-el-club-mar-del-plata-rompe-la-racha-y-es-campeon-del-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "El Club Mar del Plata rompe la racha y es campeón del fútbol regional",
-      "bajada": "El histórico equipo de Caleta Olivia vuelve a la cima tras una década, con una campaña aplastante en la liga local.",
-      "imagen": "fotos/foto-20260901-el-club-mar-del-plata-rompe-la-racha-y-es-campeon-del-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
     }
   ]
 }
