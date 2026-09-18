@@ -1,0 +1,30 @@
+name: Instagram Insights (manual, a demanda)
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Días hacia atrás'
+        required: false
+        default: '30'
+
+permissions:
+  contents: read
+
+jobs:
+  reporte:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Reporte de métricas de Instagram
+        env:
+          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+        run: python3 _scripts/instagram_insights.py --days "${{ github.event.inputs.days }}"
