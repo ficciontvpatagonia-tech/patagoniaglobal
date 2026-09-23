@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260917-catedral-celebro-90-anos-con-1000-residentes-debutando-dep",
-    "tag": "🏔️ Deportes",
-    "titulo": "Catedral celebró 90 años con 1.000 residentes debutando en la nieve",
-    "bajada": "Más de 1.000 residentes de Bariloche y Dina Huapi dieron sus primeros pasos en esquí durante el aniversario del cerro Catedral, con pases de iniciación sin cargo.",
-    "imagen": "fotos/foto-20260917-catedral-celebro-90-anos-con-1000-residentes-debutando-dep.webp",
-    "meta": "Hoy · Catedral Alta Patagonia"
+    "id": "20260923-aguilas-del-sur-organiza-una-social-run-solidaria-en-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "Águilas del Sur organiza una social run solidaria en Río Gallegos",
+    "bajada": "La carrera recreativa se corre este sábado 26 de septiembre con inscripción gratuita a cambio de un alimento no perecedero para el merendero Rayito de Luz.",
+    "imagen": "fotos/foto-20260923-aguilas-del-sur-organiza-una-social-run-solidaria-en-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260917-catedral-celebro-90-anos-con-1000-residentes-debutando-dep",
+      "tag": "🏔️ Deportes",
+      "titulo": "Catedral celebró 90 años con 1.000 residentes debutando en la nieve",
+      "bajada": "Más de 1.000 residentes de Bariloche y Dina Huapi dieron sus primeros pasos en esquí durante el aniversario del cerro Catedral, con pases de iniciación sin cargo.",
+      "imagen": "fotos/foto-20260917-catedral-celebro-90-anos-con-1000-residentes-debutando-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia"
+    },
     {
       "id": "20260915-rio-gallegos-se-prepara-para-el-open-de-jiu-jitsu-2026-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El sábado 26 de septiembre, el Club Boca de Río Gallegos será sede del Open provincial de Jiu-Jitsu, con competidores de toda Santa Cruz.",
       "imagen": "fotos/foto-20260915-rio-gallegos-se-prepara-para-el-open-de-jiu-jitsu-2026-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260911-catedral-recibe-la-copa-sudamericana-de-esqui-alpino-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "144 atletas de más de 20 países compiten en Slalom y Slalom Gigante en el cerro barilochense, sede de una nueva fecha continental.",
       "imagen": "fotos/foto-20260911-catedral-recibe-la-copa-sudamericana-de-esqui-alpino-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El cerro más emblemático de Bariloche lanza un pase especial para que los locales festejen nueve décadas de historia sobre la nieve.",
       "imagen": "fotos/foto-20260908-catedral-celebra-sus-90-anos-con-un-beneficio-para-los-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
-    {
-      "id": "20260902-esqui-de-travesia-nocturno-nueva-salida-en-el-cerro-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Esquí de travesía nocturno: nueva salida en el Cerro San Martín",
-      "bajada": "El Club Andino Bariloche organiza una salida nocturna con esquí, raquetas y splitboard para el viernes 4 de septiembre.",
-      "imagen": "fotos/foto-20260902-esqui-de-travesia-nocturno-nueva-salida-en-el-cerro-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
     }
   ]
 }
