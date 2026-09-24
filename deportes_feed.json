@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260923-aguilas-del-sur-organiza-una-social-run-solidaria-en-dep",
+    "id": "20260924-el-club-andino-bariloche-lanza-curso-de-montanismo-en-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Águilas del Sur organiza una social run solidaria en Río Gallegos",
-    "bajada": "La carrera recreativa se corre este sábado 26 de septiembre con inscripción gratuita a cambio de un alimento no perecedero para el merendero Rayito de Luz.",
-    "imagen": "fotos/foto-20260923-aguilas-del-sur-organiza-una-social-run-solidaria-en-dep.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "titulo": "El Club Andino Bariloche lanza curso de montañismo en altura en San Juan",
+    "bajada": "La subcomisión de montañismo del Club Andino Bariloche abre inscripciones para una formación destinada a quienes quieran dar sus primeros pasos en el ambiente de alta montaña.",
+    "imagen": "fotos/foto-20260924-el-club-andino-bariloche-lanza-curso-de-montanismo-en-dep.webp",
+    "meta": "Hoy · Club Andino Bariloche"
   },
   "secundarias": [
+    {
+      "id": "20260923-aguilas-del-sur-organiza-una-social-run-solidaria-en-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Águilas del Sur organiza una social run solidaria en Río Gallegos",
+      "bajada": "La carrera recreativa se corre este sábado 26 de septiembre con inscripción gratuita a cambio de un alimento no perecedero para el merendero Rayito de Luz.",
+      "imagen": "fotos/foto-20260923-aguilas-del-sur-organiza-una-social-run-solidaria-en-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20260917-catedral-celebro-90-anos-con-1000-residentes-debutando-dep",
       "tag": "🏔️ Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Más de 1.000 residentes de Bariloche y Dina Huapi dieron sus primeros pasos en esquí durante el aniversario del cerro Catedral, con pases de iniciación sin cargo.",
       "imagen": "fotos/foto-20260917-catedral-celebro-90-anos-con-1000-residentes-debutando-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260915-rio-gallegos-se-prepara-para-el-open-de-jiu-jitsu-2026-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El sábado 26 de septiembre, el Club Boca de Río Gallegos será sede del Open provincial de Jiu-Jitsu, con competidores de toda Santa Cruz.",
       "imagen": "fotos/foto-20260915-rio-gallegos-se-prepara-para-el-open-de-jiu-jitsu-2026-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260911-catedral-recibe-la-copa-sudamericana-de-esqui-alpino-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La travesía organizada por el Club Andino Bariloche combinó esquí y raquetas para disfrutar del entorno nevado bajo la luz de la luna.",
       "imagen": "fotos/foto-20260909-una-salida-nocturna-en-el-cerro-catedral-convoco-a-40-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260908-catedral-celebra-sus-90-anos-con-un-beneficio-para-los-dep",
-      "tag": "🏔️ Deportes",
-      "titulo": "Catedral celebra sus 90 años con un beneficio para los residentes",
-      "bajada": "El cerro más emblemático de Bariloche lanza un pase especial para que los locales festejen nueve décadas de historia sobre la nieve.",
-      "imagen": "fotos/foto-20260908-catedral-celebra-sus-90-anos-con-un-beneficio-para-los-dep.webp",
-      "meta": "Hoy · Catedral Alta Patagonia"
     }
   ]
 }
