@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260925-chubut-lleva-diez-estudiantes-de-robotica-a-la-final-dep",
-    "tag": "🤖 Ciencia & Tecnología",
-    "titulo": "Chubut lleva diez estudiantes de robótica a la final nacional en Neuquén",
-    "bajada": "Equipos de Comodoro Rivadavia y Sarmiento representarán a Chubut en la Copa Robótica Educabot 2026, que se disputará este viernes 25 y sábado 26 en Neuquén.",
-    "imagen": "fotos/foto-20260925-chubut-lleva-diez-estudiantes-de-robotica-a-la-final-dep.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "id": "20260926-malvinas-el-complejo-deportivo-nacional-abrira-en-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "Malvinas: el complejo deportivo nacional abrirá en noviembre",
+    "bajada": "El National Sports Council confirmó que la inauguración oficial del complejo deportivo de las islas se realizará a mediados de noviembre, un hito de infraestructura para la comunidad isleña.",
+    "imagen": "fotos/foto-20260926-malvinas-el-complejo-deportivo-nacional-abrira-en-dep.webp",
+    "meta": "Hoy · Penguin News"
   },
   "secundarias": [
+    {
+      "id": "20260925-chubut-lleva-diez-estudiantes-de-robotica-a-la-final-dep",
+      "tag": "🤖 Ciencia & Tecnología",
+      "titulo": "Chubut lleva diez estudiantes de robótica a la final nacional en Neuquén",
+      "bajada": "Equipos de Comodoro Rivadavia y Sarmiento representarán a Chubut en la Copa Robótica Educabot 2026, que se disputará este viernes 25 y sábado 26 en Neuquén.",
+      "imagen": "fotos/foto-20260925-chubut-lleva-diez-estudiantes-de-robotica-a-la-final-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20260924-el-club-andino-bariloche-lanza-curso-de-montanismo-en-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La subcomisión de montañismo del Club Andino Bariloche abre inscripciones para una formación destinada a quienes quieran dar sus primeros pasos en el ambiente de alta montaña.",
       "imagen": "fotos/foto-20260924-el-club-andino-bariloche-lanza-curso-de-montanismo-en-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260923-aguilas-del-sur-organiza-una-social-run-solidaria-en-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La carrera recreativa se corre este sábado 26 de septiembre con inscripción gratuita a cambio de un alimento no perecedero para el merendero Rayito de Luz.",
       "imagen": "fotos/foto-20260923-aguilas-del-sur-organiza-una-social-run-solidaria-en-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260917-catedral-celebro-90-anos-con-1000-residentes-debutando-dep",
       "tag": "🏔️ Deportes",
@@ -50,14 +58,6 @@
       "bajada": "144 atletas de más de 20 países compiten en Slalom y Slalom Gigante en el cerro barilochense, sede de una nueva fecha continental.",
       "imagen": "fotos/foto-20260911-catedral-recibe-la-copa-sudamericana-de-esqui-alpino-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
-    {
-      "id": "20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Newcom: Gladiadores de Río Turbio va por el título nacional en San Juan",
-      "bajada": "El equipo de la Cuenca Carbonífera se consagró campeón provincial y representará a Santa Cruz en los Juegos Evita. El Newcom, disciplina adaptada similar al vóley, busca consolidarse en la región.",
-      "imagen": "fotos/foto-20260910-newcom-gladiadores-de-rio-turbio-va-por-el-titulo-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
     }
   ]
 }
