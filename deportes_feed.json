@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260927-mas-de-8000-personas-corrieron-en-la-edicion-2026-de-dep",
+    "id": "20260930-santa-cruz-impulsa-el-primer-encuentro-patagonico-de-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Más de 8.000 personas corrieron en la edición 2026 de Mi Ciudad Corre",
-    "bajada": "La carrera urbana de Neuquén reunió a más de 8.000 participantes en el Paseo Costero, consolidándose como uno de los eventos de running más masivos de la Patagonia norte.",
-    "imagen": "fotos/foto-20260927-mas-de-8000-personas-corrieron-en-la-edicion-2026-de-dep.webp",
-    "meta": "Hoy · Diario Río Negro"
+    "titulo": "Santa Cruz impulsa el primer Encuentro Patagónico de Boccia",
+    "bajada": "El Centro de Alto Rendimiento Deportivo reúne delegaciones de Santa Cruz y Tierra del Fuego para fortalecer el deporte paralímpico en la Patagonia.",
+    "imagen": "fotos/foto-20260930-santa-cruz-impulsa-el-primer-encuentro-patagonico-de-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260927-mas-de-8000-personas-corrieron-en-la-edicion-2026-de-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Más de 8.000 personas corrieron en la edición 2026 de Mi Ciudad Corre",
+      "bajada": "La carrera urbana de Neuquén reunió a más de 8.000 participantes en el Paseo Costero, consolidándose como uno de los eventos de running más masivos de la Patagonia norte.",
+      "imagen": "fotos/foto-20260927-mas-de-8000-personas-corrieron-en-la-edicion-2026-de-dep.webp",
+      "meta": "Hoy · Diario Río Negro"
+    },
     {
       "id": "20260926-malvinas-el-complejo-deportivo-nacional-abrira-en-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El National Sports Council confirmó que la inauguración oficial del complejo deportivo de las islas se realizará a mediados de noviembre, un hito de infraestructura para la comunidad isleña.",
       "imagen": "fotos/foto-20260926-malvinas-el-complejo-deportivo-nacional-abrira-en-dep.webp",
       "meta": "Hoy · Penguin News"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260925-chubut-lleva-diez-estudiantes-de-robotica-a-la-final-dep",
       "tag": "🤖 Ciencia & Tecnología",
@@ -24,9 +34,7 @@
       "bajada": "Equipos de Comodoro Rivadavia y Sarmiento representarán a Chubut en la Copa Robótica Educabot 2026, que se disputará este viernes 25 y sábado 26 en Neuquén.",
       "imagen": "fotos/foto-20260925-chubut-lleva-diez-estudiantes-de-robotica-a-la-final-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260924-el-club-andino-bariloche-lanza-curso-de-montanismo-en-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Más de 1.000 residentes de Bariloche y Dina Huapi dieron sus primeros pasos en esquí durante el aniversario del cerro Catedral, con pases de iniciación sin cargo.",
       "imagen": "fotos/foto-20260917-catedral-celebro-90-anos-con-1000-residentes-debutando-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
-    {
-      "id": "20260915-rio-gallegos-se-prepara-para-el-open-de-jiu-jitsu-2026-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Río Gallegos se prepara para el Open de Jiu-Jitsu 2026 en el Club Boca",
-      "bajada": "El sábado 26 de septiembre, el Club Boca de Río Gallegos será sede del Open provincial de Jiu-Jitsu, con competidores de toda Santa Cruz.",
-      "imagen": "fotos/foto-20260915-rio-gallegos-se-prepara-para-el-open-de-jiu-jitsu-2026-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
     }
   ]
 }
