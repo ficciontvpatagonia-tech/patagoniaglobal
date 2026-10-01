@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20260930-santa-cruz-impulsa-el-primer-encuentro-patagonico-de-dep",
+    "id": "20261001-santa-cruz-define-su-seleccion-femenina-para-los-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Santa Cruz impulsa el primer Encuentro Patagónico de Boccia",
-    "bajada": "El Centro de Alto Rendimiento Deportivo reúne delegaciones de Santa Cruz y Tierra del Fuego para fortalecer el deporte paralímpico en la Patagonia.",
-    "imagen": "fotos/foto-20260930-santa-cruz-impulsa-el-primer-encuentro-patagonico-de-dep.webp",
+    "titulo": "Santa Cruz define su selección femenina para los Juegos de la Araucanía",
+    "bajada": "Tras la quinta concentración en Río Gallegos, la provincia ya tiene su plantel de fútbol femenino para el torneo binacional que enfrenta a selecciones de la Patagonia argentina y chilena.",
+    "imagen": "fotos/foto-20261001-santa-cruz-define-su-seleccion-femenina-para-los-dep.webp",
     "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20260930-santa-cruz-impulsa-el-primer-encuentro-patagonico-de-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Santa Cruz impulsa el primer Encuentro Patagónico de Boccia",
+      "bajada": "El Centro de Alto Rendimiento Deportivo reúne delegaciones de Santa Cruz y Tierra del Fuego para fortalecer el deporte paralímpico en la Patagonia.",
+      "imagen": "fotos/foto-20260930-santa-cruz-impulsa-el-primer-encuentro-patagonico-de-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20260927-mas-de-8000-personas-corrieron-en-la-edicion-2026-de-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La carrera urbana de Neuquén reunió a más de 8.000 participantes en el Paseo Costero, consolidándose como uno de los eventos de running más masivos de la Patagonia norte.",
       "imagen": "fotos/foto-20260927-mas-de-8000-personas-corrieron-en-la-edicion-2026-de-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260926-malvinas-el-complejo-deportivo-nacional-abrira-en-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El National Sports Council confirmó que la inauguración oficial del complejo deportivo de las islas se realizará a mediados de noviembre, un hito de infraestructura para la comunidad isleña.",
       "imagen": "fotos/foto-20260926-malvinas-el-complejo-deportivo-nacional-abrira-en-dep.webp",
       "meta": "Hoy · Penguin News"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260925-chubut-lleva-diez-estudiantes-de-robotica-a-la-final-dep",
       "tag": "🤖 Ciencia & Tecnología",
@@ -50,14 +58,6 @@
       "bajada": "La carrera recreativa se corre este sábado 26 de septiembre con inscripción gratuita a cambio de un alimento no perecedero para el merendero Rayito de Luz.",
       "imagen": "fotos/foto-20260923-aguilas-del-sur-organiza-una-social-run-solidaria-en-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20260917-catedral-celebro-90-anos-con-1000-residentes-debutando-dep",
-      "tag": "🏔️ Deportes",
-      "titulo": "Catedral celebró 90 años con 1.000 residentes debutando en la nieve",
-      "bajada": "Más de 1.000 residentes de Bariloche y Dina Huapi dieron sus primeros pasos en esquí durante el aniversario del cerro Catedral, con pases de iniciación sin cargo.",
-      "imagen": "fotos/foto-20260917-catedral-celebro-90-anos-con-1000-residentes-debutando-dep.webp",
-      "meta": "Hoy · Catedral Alta Patagonia"
     }
   ]
 }
