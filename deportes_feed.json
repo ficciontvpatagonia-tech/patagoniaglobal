@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261001-santa-cruz-define-su-seleccion-femenina-para-los-dep",
+    "id": "20261003-cipolletti-tendra-pista-de-atletismo-de-ocho-carriles-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Santa Cruz define su selección femenina para los Juegos de la Araucanía",
-    "bajada": "Tras la quinta concentración en Río Gallegos, la provincia ya tiene su plantel de fútbol femenino para el torneo binacional que enfrenta a selecciones de la Patagonia argentina y chilena.",
-    "imagen": "fotos/foto-20261001-santa-cruz-define-su-seleccion-femenina-para-los-dep.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "titulo": "Cipolletti tendrá pista de atletismo de ocho carriles",
+    "bajada": "La ciudad rionegrina avanza con una obra que busca consolidar el atletismo de pista en la región y atraer competencias nacionales.",
+    "imagen": "fotos/foto-20261003-cipolletti-tendra-pista-de-atletismo-de-ocho-carriles-dep.webp",
+    "meta": "Hoy · Diario Río Negro"
   },
   "secundarias": [
+    {
+      "id": "20261001-santa-cruz-define-su-seleccion-femenina-para-los-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Santa Cruz define su selección femenina para los Juegos de la Araucanía",
+      "bajada": "Tras la quinta concentración en Río Gallegos, la provincia ya tiene su plantel de fútbol femenino para el torneo binacional que enfrenta a selecciones de la Patagonia argentina y chilena.",
+      "imagen": "fotos/foto-20261001-santa-cruz-define-su-seleccion-femenina-para-los-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20260930-santa-cruz-impulsa-el-primer-encuentro-patagonico-de-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El Centro de Alto Rendimiento Deportivo reúne delegaciones de Santa Cruz y Tierra del Fuego para fortalecer el deporte paralímpico en la Patagonia.",
       "imagen": "fotos/foto-20260930-santa-cruz-impulsa-el-primer-encuentro-patagonico-de-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260927-mas-de-8000-personas-corrieron-en-la-edicion-2026-de-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La carrera urbana de Neuquén reunió a más de 8.000 participantes en el Paseo Costero, consolidándose como uno de los eventos de running más masivos de la Patagonia norte.",
       "imagen": "fotos/foto-20260927-mas-de-8000-personas-corrieron-en-la-edicion-2026-de-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260926-malvinas-el-complejo-deportivo-nacional-abrira-en-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La subcomisión de montañismo del Club Andino Bariloche abre inscripciones para una formación destinada a quienes quieran dar sus primeros pasos en el ambiente de alta montaña.",
       "imagen": "fotos/foto-20260924-el-club-andino-bariloche-lanza-curso-de-montanismo-en-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20260923-aguilas-del-sur-organiza-una-social-run-solidaria-en-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Águilas del Sur organiza una social run solidaria en Río Gallegos",
-      "bajada": "La carrera recreativa se corre este sábado 26 de septiembre con inscripción gratuita a cambio de un alimento no perecedero para el merendero Rayito de Luz.",
-      "imagen": "fotos/foto-20260923-aguilas-del-sur-organiza-una-social-run-solidaria-en-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
     }
   ]
 }
