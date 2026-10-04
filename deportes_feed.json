@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261003-cipolletti-tendra-pista-de-atletismo-de-ocho-carriles-dep",
+    "id": "20261004-huemules-el-equipo-de-bariloche-que-impulsa-un-deporte-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Cipolletti tendrá pista de atletismo de ocho carriles",
-    "bajada": "La ciudad rionegrina avanza con una obra que busca consolidar el atletismo de pista en la región y atraer competencias nacionales.",
-    "imagen": "fotos/foto-20261003-cipolletti-tendra-pista-de-atletismo-de-ocho-carriles-dep.webp",
+    "titulo": "Huemules, el equipo de Bariloche que impulsa un deporte casi desconocido",
+    "bajada": "El conjunto rionegrino practica y difunde una disciplina poco habitual en el país, con proyección patagónica y crecimiento sostenido.",
+    "imagen": "fotos/foto-20261004-huemules-el-equipo-de-bariloche-que-impulsa-un-deporte-dep.webp",
     "meta": "Hoy · Diario Río Negro"
   },
   "secundarias": [
+    {
+      "id": "20261003-cipolletti-tendra-pista-de-atletismo-de-ocho-carriles-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Cipolletti tendrá pista de atletismo de ocho carriles",
+      "bajada": "La ciudad rionegrina avanza con una obra que busca consolidar el atletismo de pista en la región y atraer competencias nacionales.",
+      "imagen": "fotos/foto-20261003-cipolletti-tendra-pista-de-atletismo-de-ocho-carriles-dep.webp",
+      "meta": "Hoy · Diario Río Negro"
+    },
     {
       "id": "20261001-santa-cruz-define-su-seleccion-femenina-para-los-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Tras la quinta concentración en Río Gallegos, la provincia ya tiene su plantel de fútbol femenino para el torneo binacional que enfrenta a selecciones de la Patagonia argentina y chilena.",
       "imagen": "fotos/foto-20261001-santa-cruz-define-su-seleccion-femenina-para-los-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20260930-santa-cruz-impulsa-el-primer-encuentro-patagonico-de-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El Centro de Alto Rendimiento Deportivo reúne delegaciones de Santa Cruz y Tierra del Fuego para fortalecer el deporte paralímpico en la Patagonia.",
       "imagen": "fotos/foto-20260930-santa-cruz-impulsa-el-primer-encuentro-patagonico-de-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20260927-mas-de-8000-personas-corrieron-en-la-edicion-2026-de-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Equipos de Comodoro Rivadavia y Sarmiento representarán a Chubut en la Copa Robótica Educabot 2026, que se disputará este viernes 25 y sábado 26 en Neuquén.",
       "imagen": "fotos/foto-20260925-chubut-lleva-diez-estudiantes-de-robotica-a-la-final-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20260924-el-club-andino-bariloche-lanza-curso-de-montanismo-en-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "El Club Andino Bariloche lanza curso de montañismo en altura en San Juan",
-      "bajada": "La subcomisión de montañismo del Club Andino Bariloche abre inscripciones para una formación destinada a quienes quieran dar sus primeros pasos en el ambiente de alta montaña.",
-      "imagen": "fotos/foto-20260924-el-club-andino-bariloche-lanza-curso-de-montanismo-en-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
     }
   ]
 }

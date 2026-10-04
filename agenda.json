@@ -1,18 +1,5 @@
 [
   {
-    "id": "aniversario-cipolletti-2026",
-    "titulo": "Aniversario de Cipolletti - Desfile y festejos",
-    "fecha": "2026-10-03",
-    "fecha_fin": null,
-    "fecha_display": "3 de octubre",
-    "lugar": "Cipolletti",
-    "region": "Río Negro, Argentina",
-    "pais": "AR",
-    "categoria": "cultura",
-    "emoji": "🎉",
-    "descripcion": "Celebración del aniversario de la ciudad de Cipolletti con un desfile que reúne a más de 140 instituciones y servicio de colectivos gratuitos para facilitar la participación."
-  },
-  {
     "id": "cumbre-agentes-sanitarios-trelew-2026",
     "titulo": "Cumbre Nacional de Agentes Sanitarios",
     "fecha": "2026-10-08",
@@ -37,6 +24,32 @@
     "categoria": "cultura",
     "emoji": "🎉",
     "descripcion": "Fiesta Nacional que abrió la venta de entradas y confirmó sus fechas, con la actuación de Los Palmeras, cuarteto y chivito al asador como atractivos principales."
+  },
+  {
+    "id": "magallanes-logistics-summit-2026",
+    "titulo": "Magallanes Logistics Summit 2026",
+    "fecha": "2026-10-12",
+    "fecha_fin": "2026-10-13",
+    "fecha_display": "12 al 13 de octubre",
+    "lugar": "Punta Arenas",
+    "region": "Región de Magallanes y de la Antártica Chilena, Chile",
+    "pais": "CL",
+    "categoria": "desarrollo",
+    "emoji": "🚢",
+    "descripcion": "Encuentro de dos jornadas que reúne a especialistas nacionales e internacionales, emprendedores y empresas para abordar los desafíos de la logística en el extremo austral."
+  },
+  {
+    "id": "expedicion-noir-confines-del-pacifico-2026",
+    "titulo": "Expedición \"Noir: confines del Pacífico\" a Isla Noir",
+    "fecha": "2026-11-04",
+    "fecha_fin": "2026-11-10",
+    "fecha_display": "4 al 10 de noviembre",
+    "lugar": "Isla Noir (partida desde Punta Arenas)",
+    "region": "Región de Magallanes y de la Antártica Chilena, Chile",
+    "pais": "CL",
+    "categoria": "naturaleza",
+    "emoji": "🐋",
+    "descripcion": "Expedición exploratoria de siete días hacia Isla Noir, uno de los territorios más aislados de la Patagonia, siguiendo las huellas de De Agostini. Organizada por WhaleSound."
   },
   {
     "id": "guanaco-trail-running-timaukel-2027",
