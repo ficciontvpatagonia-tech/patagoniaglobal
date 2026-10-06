@@ -5232,6 +5232,17 @@ def solo_instagram():
     print("\n  Publicando informe en Instagram (post-push)…")
     publicar_instagram_informe_nuevo()
 
+    # publicar_instagram_informe_nuevo() escribe su propio estado en disco: recargar
+    # para no pisarlo con la copia vieja (si no, el informe se repostea cada día).
+    try:
+        with open(state_path, encoding="utf-8") as f:
+            _estado_disco = json.load(f)
+        for _k, _v in _estado_disco.items():
+            if _k.startswith("informes_") or _k == "ultimo_informe_instagram":
+                ig_state[_k] = _v
+    except Exception:
+        pass
+
     # Secciones automáticas (ig_state ya cargado arriba)
 
     secciones_archivos = [
