@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261007-el-club-andino-bariloche-vuelve-al-cajon-del-azul-con-dep",
+    "id": "20261009-la-escuelita-de-mtb-del-club-andino-compitio-en-alumine-dep",
     "tag": "🏃 Deportes",
-    "titulo": "El Club Andino Bariloche vuelve al Cajón del Azul con su grupo de adultos",
-    "bajada": "El GEDA retoma las salidas de temporada 44 con una travesía al Refugio Cajón del Azul, en la zona de El Bolsón.",
-    "imagen": "fotos/foto-20261007-el-club-andino-bariloche-vuelve-al-cajon-del-azul-con-dep.webp",
+    "titulo": "La Escuelita de MTB del Club Andino compitió en Aluminé",
+    "bajada": "La Escuela de Mountain Bike del Club Andino Bariloche participó en la cuarta fecha de la Copa Argentina de Descenso y el Campeonato Patagónico, con más de 290 corredores.",
+    "imagen": "fotos/foto-20261009-la-escuelita-de-mtb-del-club-andino-compitio-en-alumine-dep.webp",
     "meta": "Hoy · Club Andino Bariloche"
   },
   "secundarias": [
+    {
+      "id": "20261007-el-club-andino-bariloche-vuelve-al-cajon-del-azul-con-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "El Club Andino Bariloche vuelve al Cajón del Azul con su grupo de adultos",
+      "bajada": "El GEDA retoma las salidas de temporada 44 con una travesía al Refugio Cajón del Azul, en la zona de El Bolsón.",
+      "imagen": "fotos/foto-20261007-el-club-andino-bariloche-vuelve-al-cajon-del-azul-con-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20261005-barrio-sur-puerto-natales-y-18-de-septiembre-avanzan-a-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Los seleccionados de Barrio Sur y Última Esperanza ganaron sus llaves, y 18 de Septiembre clasificó como mejor segundo, en una nueva jornada de la Eliminatoria Regional Adulta.",
       "imagen": "fotos/foto-20261005-barrio-sur-puerto-natales-y-18-de-septiembre-avanzan-a-dep.webp",
       "meta": "Hoy · La Prensa Austral"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261004-huemules-el-equipo-de-bariloche-que-impulsa-un-deporte-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El conjunto rionegrino practica y difunde una disciplina poco habitual en el país, con proyección patagónica y crecimiento sostenido.",
       "imagen": "fotos/foto-20261004-huemules-el-equipo-de-bariloche-que-impulsa-un-deporte-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261003-cipolletti-tendra-pista-de-atletismo-de-ocho-carriles-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El Centro de Alto Rendimiento Deportivo reúne delegaciones de Santa Cruz y Tierra del Fuego para fortalecer el deporte paralímpico en la Patagonia.",
       "imagen": "fotos/foto-20260930-santa-cruz-impulsa-el-primer-encuentro-patagonico-de-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20260927-mas-de-8000-personas-corrieron-en-la-edicion-2026-de-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Más de 8.000 personas corrieron en la edición 2026 de Mi Ciudad Corre",
-      "bajada": "La carrera urbana de Neuquén reunió a más de 8.000 participantes en el Paseo Costero, consolidándose como uno de los eventos de running más masivos de la Patagonia norte.",
-      "imagen": "fotos/foto-20260927-mas-de-8000-personas-corrieron-en-la-edicion-2026-de-dep.webp",
-      "meta": "Hoy · Diario Río Negro"
     }
   ]
 }
