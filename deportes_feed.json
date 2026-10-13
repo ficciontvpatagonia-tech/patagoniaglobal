@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261012-wilfredo-perez-gano-la-21a-edicion-del-rally-karukinka-dep",
-    "tag": "🏁 Deportes",
-    "titulo": "Wilfredo Pérez ganó la 21ª edición del Rally Karukinka",
-    "bajada": "El piloto se quedó con la clasificación general del tradicional rally fueguino disputado entre Cerro Sombrero y Porvenir.",
-    "imagen": "fotos/foto-20261012-wilfredo-perez-gano-la-21a-edicion-del-rally-karukinka-dep.webp",
-    "meta": "Hoy · La Prensa Austral"
+    "id": "20261013-cerro-catedral-cerro-temporada-con-17500-residentes-de-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "Cerro Catedral cerró temporada con 17.500 residentes de Bariloche",
+    "bajada": "Más de 2.500 vecinos tuvieron su primera experiencia con deportes de nieve a través del Pase Iniciación, en una temporada que consolidó el vínculo del cerro con la ciudad.",
+    "imagen": "fotos/foto-20261013-cerro-catedral-cerro-temporada-con-17500-residentes-de-dep.webp",
+    "meta": "Hoy · Catedral Alta Patagonia"
   },
   "secundarias": [
+    {
+      "id": "20261012-wilfredo-perez-gano-la-21a-edicion-del-rally-karukinka-dep",
+      "tag": "🏁 Deportes",
+      "titulo": "Wilfredo Pérez ganó la 21ª edición del Rally Karukinka",
+      "bajada": "El piloto se quedó con la clasificación general del tradicional rally fueguino disputado entre Cerro Sombrero y Porvenir.",
+      "imagen": "fotos/foto-20261012-wilfredo-perez-gano-la-21a-edicion-del-rally-karukinka-dep.webp",
+      "meta": "Hoy · La Prensa Austral"
+    },
     {
       "id": "20261009-la-escuelita-de-mtb-del-club-andino-compitio-en-alumine-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La Escuela de Mountain Bike del Club Andino Bariloche participó en la cuarta fecha de la Copa Argentina de Descenso y el Campeonato Patagónico, con más de 290 corredores.",
       "imagen": "fotos/foto-20261009-la-escuelita-de-mtb-del-club-andino-compitio-en-alumine-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261007-el-club-andino-bariloche-vuelve-al-cajon-del-azul-con-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El GEDA retoma las salidas de temporada 44 con una travesía al Refugio Cajón del Azul, en la zona de El Bolsón.",
       "imagen": "fotos/foto-20261007-el-club-andino-bariloche-vuelve-al-cajon-del-azul-con-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261005-barrio-sur-puerto-natales-y-18-de-septiembre-avanzan-a-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La ciudad rionegrina avanza con una obra que busca consolidar el atletismo de pista en la región y atraer competencias nacionales.",
       "imagen": "fotos/foto-20261003-cipolletti-tendra-pista-de-atletismo-de-ocho-carriles-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
-    {
-      "id": "20261001-santa-cruz-define-su-seleccion-femenina-para-los-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Santa Cruz define su selección femenina para los Juegos de la Araucanía",
-      "bajada": "Tras la quinta concentración en Río Gallegos, la provincia ya tiene su plantel de fútbol femenino para el torneo binacional que enfrenta a selecciones de la Patagonia argentina y chilena.",
-      "imagen": "fotos/foto-20261001-santa-cruz-define-su-seleccion-femenina-para-los-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
     }
   ]
 }
