@@ -9,3 +9,12 @@ test-*.html
 prototipo*.html
 demo-*.html
 *.py.bak
+
+# Locales: no subir
+ARCHIVO PROPIO GLOBAL PATAGONIA/
+_preview/
+*.json.bak
+index.html.bak
+__pycache__/
+.DS_Store
+_scripts/_borrador_manual.json
