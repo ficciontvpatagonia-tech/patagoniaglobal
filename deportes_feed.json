@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261013-cerro-catedral-cerro-temporada-con-17500-residentes-de-dep",
+    "id": "20261014-el-detras-de-escena-del-cerro-catedral-el-corazon-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Cerro Catedral cerró temporada con 17.500 residentes de Bariloche",
-    "bajada": "Más de 2.500 vecinos tuvieron su primera experiencia con deportes de nieve a través del Pase Iniciación, en una temporada que consolidó el vínculo del cerro con la ciudad.",
-    "imagen": "fotos/foto-20261013-cerro-catedral-cerro-temporada-con-17500-residentes-de-dep.webp",
-    "meta": "Hoy · Catedral Alta Patagonia"
+    "titulo": "El detrás de escena del cerro Catedral: el corazón mecánico del esquí",
+    "bajada": "Cómo es trabajar en el mantenimiento de los medios de elevación del centro de esquí más grande de Sudamérica, un engranaje vital para Bariloche.",
+    "imagen": "fotos/foto-20261014-el-detras-de-escena-del-cerro-catedral-el-corazon-dep.webp",
+    "meta": "Hoy · Diario Río Negro"
   },
   "secundarias": [
+    {
+      "id": "20261013-cerro-catedral-cerro-temporada-con-17500-residentes-de-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Cerro Catedral cerró temporada con 17.500 residentes de Bariloche",
+      "bajada": "Más de 2.500 vecinos tuvieron su primera experiencia con deportes de nieve a través del Pase Iniciación, en una temporada que consolidó el vínculo del cerro con la ciudad.",
+      "imagen": "fotos/foto-20261013-cerro-catedral-cerro-temporada-con-17500-residentes-de-dep.webp",
+      "meta": "Hoy · Catedral Alta Patagonia"
+    },
     {
       "id": "20261012-wilfredo-perez-gano-la-21a-edicion-del-rally-karukinka-dep",
       "tag": "🏁 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El piloto se quedó con la clasificación general del tradicional rally fueguino disputado entre Cerro Sombrero y Porvenir.",
       "imagen": "fotos/foto-20261012-wilfredo-perez-gano-la-21a-edicion-del-rally-karukinka-dep.webp",
       "meta": "Hoy · La Prensa Austral"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261009-la-escuelita-de-mtb-del-club-andino-compitio-en-alumine-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La Escuela de Mountain Bike del Club Andino Bariloche participó en la cuarta fecha de la Copa Argentina de Descenso y el Campeonato Patagónico, con más de 290 corredores.",
       "imagen": "fotos/foto-20261009-la-escuelita-de-mtb-del-club-andino-compitio-en-alumine-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261007-el-club-andino-bariloche-vuelve-al-cajon-del-azul-con-dep",
       "tag": "🏃 Deportes",
@@ -49,14 +57,6 @@
       "titulo": "Huemules, el equipo de Bariloche que impulsa un deporte casi desconocido",
       "bajada": "El conjunto rionegrino practica y difunde una disciplina poco habitual en el país, con proyección patagónica y crecimiento sostenido.",
       "imagen": "fotos/foto-20261004-huemules-el-equipo-de-bariloche-que-impulsa-un-deporte-dep.webp",
-      "meta": "Hoy · Diario Río Negro"
-    },
-    {
-      "id": "20261003-cipolletti-tendra-pista-de-atletismo-de-ocho-carriles-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Cipolletti tendrá pista de atletismo de ocho carriles",
-      "bajada": "La ciudad rionegrina avanza con una obra que busca consolidar el atletismo de pista en la región y atraer competencias nacionales.",
-      "imagen": "fotos/foto-20261003-cipolletti-tendra-pista-de-atletismo-de-ocho-carriles-dep.webp",
       "meta": "Hoy · Diario Río Negro"
     }
   ]
