@@ -2116,6 +2116,8 @@ PALABRAS_EVENTO = [
     "convocatoria abierta", "ciclo de cine", "ciclo cultural",
     "regata", "travesía", "expedición", "kayak", "ski", "snowboard",
     "semana de", "aniversario", "celebración", "recital", "concierto",
+    "fiesta", "teatro", "obra de", "show", "gira", "se realizará", "se llevará a cabo",
+    "edición", "inscripciones", "abre su", "desembarca", "llega a", "se presentará",
 ]
 
 
@@ -2163,7 +2165,7 @@ def actualizar_agenda(noticias_crudas):
     print(f"  Agenda: {len(candidatos)} posible(s) evento(s) encontrado(s)")
 
     listado = ""
-    for i, n in enumerate(candidatos[:8]):
+    for i, n in enumerate(candidatos[:15]):
         listado += f"""
 --- Candidato {i+1} ---
 Fuente: {n['fuente']} ({n['region']})
@@ -2174,7 +2176,7 @@ URL: {n['url']}
 
     prompt = f"""Sos el editor de agenda de GLOBALpatagonia. Hoy es {hoy}.
 
-Analizá estas noticias y extraé SOLO las que corresponden a un evento futuro concreto (festival, carrera, muestra, fiesta, torneo, congreso, recital, certamen deportivo, etc.) con fecha definida en la Patagonia argentina o chilena. Ignorá inauguraciones de obras, nombramientos, noticias sin fecha de evento.
+Analizá estas noticias y extraé los eventos FUTUROS (posteriores a hoy) con fecha definida en la Patagonia argentina o chilena: festival, carrera, muestra, fiesta, torneo, congreso, recital, obra de teatro, certamen deportivo, etc. Incluí también eventos futuros mencionados de pasada dentro de una noticia. Si falta el año, inferilo (el próximo que corresponda a partir de hoy). Ignorá eventos que ya ocurrieron, inauguraciones de obras y nombramientos.
 
 Noticias candidatas:
 {listado}
@@ -2208,6 +2210,9 @@ Respondé SOLO con un array JSON válido. Si no hay eventos válidos respondé [
         if inicio >= 0 and fin > inicio:
             texto = texto[inicio:fin]
         nuevos = json.loads(texto)
+        if not nuevos:
+            print(f"  Agenda: el modelo devolvió [] para {len(candidatos[:15])} candidato(s): "
+                  + " | ".join(n['titulo_original'][:60] for n in candidatos[:5]))
 
         agregados = 0
         for e in nuevos:
