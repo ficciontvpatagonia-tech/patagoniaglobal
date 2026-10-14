@@ -220,6 +220,7 @@
   <span class="filtro-label">Filtrar</span>
   <button class="agenda-filtro active" data-cat="todos">Todos</button>
   <button class="agenda-filtro" data-cat="deportes">🏃 Deportes</button>
+  <button class="agenda-filtro" data-cat="musica">🎵 Música</button>
   <button class="agenda-filtro" data-cat="cultura">🎭 Cultura</button>
   <button class="agenda-filtro" data-cat="gastronomia">🍽️ Gastronomía</button>
   <button class="agenda-filtro" data-cat="desarrollo">🏭 Desarrollo</button>
@@ -268,7 +269,7 @@ function render() {
       <div class="card-titulo">${e.titulo}</div>
       <div class="card-lugar">📍 ${e.lugar}</div>
       ${e.descripcion ? `<div class="card-desc">${e.descripcion}</div>` : ''}
-      <div class="card-cat">${e.categoria}</div>
+      <div class="card-cat">${({musica:'música',gastronomia:'gastronomía'})[e.categoria]||e.categoria}</div>
     </div>
   `).join('');
 }

@@ -2190,7 +2190,7 @@ Para cada evento válido generá un objeto JSON con estos campos exactos:
 - lugar: ciudad/lugar específico
 - region: "Provincia/Región, País"
 - pais: "AR" o "CL"
-- categoria: "deportes" | "cultura" | "gastronomia" | "desarrollo" | "naturaleza"
+- categoria: "deportes" | "musica" (solo recitales y conciertos) | "cultura" (fiestas, festivales, encuentros, muestras, teatro) | "gastronomia" | "desarrollo" | "naturaleza"
 - emoji: un emoji representativo
 - descripcion: 1-2 oraciones descriptivas
 
