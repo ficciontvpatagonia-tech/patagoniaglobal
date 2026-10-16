@@ -1758,7 +1758,8 @@ def imagen_de_pagina_publicada(nota_id):
 #  recomprimía 2 veces (JPEG q90 en el recorte + WebP q82). Ahora: se juntan
 #  todas las candidatas de la fuente (RSS + og:image + twitter:image, y su versión
 #  sin sufijo de tamaño), se elige la de más píxeles que Claude (visión) confirme
-#  sin logo/marca de agua/banner/viñeta de otro medio, se recortan solo bordes
+#  sin logo/marca de agua/banner/viñeta de otro medio (si la marca está cerca de un
+#  borde se prueba un recorte mínimo antes de descartar la foto), se recortan solo bordes
 #  planos y se guarda UNA vez en WebP 1600px q85 sin agrandar.
 # ══════════════════════════════════════════════════════════
 
@@ -1812,8 +1813,9 @@ def _urls_imagen_pagina(url_articulo):
 
 
 def _foto_sin_marca_ajena(data):
-    """Visión (Claude): True si la foto está limpia, False si trae logo/marca de agua/banner/viñeta
-    de otro medio. None si no se pudo evaluar (sin API) → el llamador decide."""
+    """Visión (Claude). Devuelve {"limpia": bool, "marcas": [[x0,y0,x1,y1], ...]} con las cajas
+    (coordenadas 0–1 desde arriba-izquierda) de cada logo/marca de agua/banner/crédito/viñeta
+    de otro medio, o None si no se pudo evaluar (sin API) → el llamador decide."""
     try:
         import base64, io
         from PIL import Image
@@ -1824,22 +1826,63 @@ def _foto_sin_marca_ajena(data):
         b64 = base64.b64encode(buf.getvalue()).decode()
         client = anthropic.Anthropic(api_key=API_KEY)
         r = client.messages.create(
-            model="claude-sonnet-4-6", max_tokens=120,
+            model="claude-sonnet-4-6", max_tokens=300,
             messages=[{"role": "user", "content": [
                 {"type": "image", "source": {"type": "base64", "media_type": "image/jpeg", "data": b64}},
                 {"type": "text", "text": (
-                    "Sos el editor fotográfico de un diario. Mirá la imagen y respondé SOLO con JSON "
-                    '{"limpia": true|false, "motivo": "..."}. limpia=false si tiene logo o marca de agua de un medio '
-                    "o agencia, banner o franja con texto/titular, crédito impreso sobre la foto, viñeta u borde "
-                    "decorativo oscurecido, marco, o es un collage/captura de pantalla. limpia=true si es una foto "
-                    "natural sin ningún elemento gráfico agregado.")},
+                    "Sos el editor fotográfico de un diario. Buscá en la imagen elementos gráficos AGREGADOS sobre la "
+                    "foto: logo o marca de agua de un medio o agencia, banner o franja con texto/titular, crédito "
+                    "impreso, viñeta o borde oscurecido, marco. Respondé SOLO con JSON: "
+                    '{"limpia": true|false, "marcas": [{"que": "...", "caja": [x0, y0, x1, y1]}]} '
+                    "con cada caja en coordenadas normalizadas 0 a 1 desde la esquina superior izquierda "
+                    "(x0<x1, y0<y1), ajustada a todo el elemento. Si no hay ninguno: "
+                    '{"limpia": true, "marcas": []}. Un collage o captura de pantalla entera es limpia=false '
+                    "con una caja que cubra casi toda la imagen.")},
             ]}])
         txt = r.content[0].text.strip()
         i, j = txt.find("{"), txt.rfind("}") + 1
-        return bool(json.loads(txt[i:j]).get("limpia"))
+        d = json.loads(txt[i:j])
+        cajas = []
+        for m in d.get("marcas") or []:
+            c = m.get("caja") if isinstance(m, dict) else None
+            if c and len(c) == 4:
+                x0, y0, x1, y1 = [max(0.0, min(1.0, float(v))) for v in c]
+                if x1 > x0 and y1 > y0:
+                    cajas.append([x0, y0, x1, y1])
+        limpia = bool(d.get("limpia")) and not cajas
+        return {"limpia": limpia, "marcas": cajas}
     except Exception as e:
         print(f"[visión no disponible: {str(e)[:50]}]", end=" ")
         return None
+
+
+def _recorte_minimo(size, marcas, margen=0.02, max_lado=0.25, min_area=0.70):
+    """Recorte mínimo que deja afuera TODAS las marcas, cortando cada una desde el borde más cercano.
+    Devuelve (izq, arr, der, abj) en píxeles, o None si la marca está muy adentro de la foto
+    (no se arregla con un recorte razonable: se descarta la candidata)."""
+    w, h = size
+    corte = {"t": 0.0, "b": 0.0, "l": 0.0, "r": 0.0}
+    for x0, y0, x1, y1 in marcas:
+        opciones = {"t": y1 + margen, "b": (1 - y0) + margen, "l": x1 + margen, "r": (1 - x0) + margen}
+        lado = min(opciones, key=opciones.get)
+        corte[lado] = max(corte[lado], opciones[lado])
+    if any(v > max_lado for v in corte.values()):
+        return None
+    if (1 - corte["l"] - corte["r"]) * (1 - corte["t"] - corte["b"]) < min_area:
+        return None
+    return (int(w * corte["l"]), int(h * corte["t"]), int(w * corte["r"]), int(h * corte["b"]))
+
+
+def _aplicar_recorte_sin_perdida(data, box):
+    """Recorta y devuelve PNG (sin pérdida): el único encode con pérdida sigue siendo el WebP final."""
+    import io
+    from PIL import Image
+    l, t, r, b = box
+    im = Image.open(io.BytesIO(data)).convert("RGB")
+    im = im.crop((l, t, im.width - r, im.height - b))
+    buf = io.BytesIO()
+    im.save(buf, "PNG")
+    return buf.getvalue(), im.size
 
 
 def _recortar_bordes_planos(img, url_fuente=""):
@@ -1950,12 +1993,20 @@ def elegir_mejor_foto_fuente(nota, nota_id):
 
     elegida = None
     for area, w, hh, v, data in cand[:3]:
-        limpia = _foto_sin_marca_ajena(data)
-        if limpia is False:
-            print(f"{w}×{hh} con marca ajena ✗", end=" · ")
-            continue
-        elegida = (w, hh, v, data)
-        break
+        res = _foto_sin_marca_ajena(data)
+        if res is None or res["limpia"]:
+            elegida = (w, hh, v, data)
+            break
+        # Marca ajena: antes de descartar, probar un recorte mínimo desde el borde más cercano
+        box = _recorte_minimo((w, hh), res["marcas"])
+        if box:
+            data2, tam2 = _aplicar_recorte_sin_perdida(data, box)
+            res2 = _foto_sin_marca_ajena(data2)
+            if res2 is None or res2["limpia"]:
+                print(f"{w}×{hh} con marca → recorte mínimo {tam2[0]}×{tam2[1]} ✓", end=" · ")
+                elegida = (tam2[0], tam2[1], v, data2)
+                break
+        print(f"{w}×{hh} con marca ajena sin arreglo ✗", end=" · ")
     if not elegida:
         print("todas con marca ajena → alternativa")
         return None
