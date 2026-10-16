@@ -1,0 +1,28 @@
+name: Probar clave Anthropic
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install anthropic Pillow numpy feedparser openai
+      - name: Probar visión
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import os, sys
+          print("clave presente:", bool(os.environ.get("ANTHROPIC_API_KEY")))
+          sys.path.insert(0, ".")
+          import actualizar_noticias as A
+          data = open("fotos/malvinas-plataforma-sea-lion.webp", "rb").read()
+          print("foto limpia (esperado limpia=True):", A._foto_sin_marca_ajena(data))
+          ts = open("fotos/malvinas-cartel-ruta-vs-falkland-islands.webp", "rb").read() if os.path.exists("fotos/malvinas-cartel-ruta-vs-falkland-islands.webp") else None
+          if ts: print("otra foto:", A._foto_sin_marca_ajena(ts))
+          PY
