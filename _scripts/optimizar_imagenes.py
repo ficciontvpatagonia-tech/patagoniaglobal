@@ -28,7 +28,7 @@ except ImportError:
 BASE      = Path(__file__).parent.parent  # raíz del repo (un nivel arriba de _scripts/)
 FOTOS_DIR = BASE / "fotos"
 
-MAX_WIDTH  = 1200   # px — ancho máximo web
+MAX_WIDTH  = 1600   # px — ancho máximo web (alineado con FOTO_ANCHO_MAX de actualizar_noticias.py)
 QUALITY    = 82     # calidad WebP
 MIN_BYTES  = 50_000 # ignorar imágenes muy pequeñas (thumbnails IG, etc.)
 

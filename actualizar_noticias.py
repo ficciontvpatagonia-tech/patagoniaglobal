@@ -1751,6 +1751,221 @@ def imagen_de_pagina_publicada(nota_id):
     return src
 
 
+# ══════════════════════════════════════════════════════════
+#  FOTO DE NOTA — MÁXIMA RESOLUCIÓN, SIN DEGRADAR, SIN MARCAS AJENAS
+#  (16/10/2026, a pedido de Marto: solo notas futuras)
+#  Antes se tomaba SIEMPRE la miniatura del RSS (800px, a veces 800x328) y se
+#  recomprimía 2 veces (JPEG q90 en el recorte + WebP q82). Ahora: se juntan
+#  todas las candidatas de la fuente (RSS + og:image + twitter:image, y su versión
+#  sin sufijo de tamaño), se elige la de más píxeles que Claude (visión) confirme
+#  sin logo/marca de agua/banner/viñeta de otro medio, se recortan solo bordes
+#  planos y se guarda UNA vez en WebP 1600px q85 sin agrandar.
+# ══════════════════════════════════════════════════════════
+
+_UA_IMG = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"}
+FOTO_ANCHO_MAX = 1600
+FOTO_CALIDAD   = 85
+
+
+def _bytes_imagen(url, timeout=12):
+    try:
+        req = urllib.request.Request(url, headers=_UA_IMG)
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            data = resp.read()
+        return data if _es_imagen_raster(data) else None
+    except Exception:
+        return None
+
+
+def _variantes_url_hd(url):
+    """Versiones probables de MAYOR resolución de la misma foto (primero la HD, luego la original)."""
+    import re
+    out = []
+    if "auth=" not in url:  # URLs firmadas (resizer de Página12, etc.) no se tocan
+        u = re.sub(r'-\d{2,4}x\d{2,4}(?=\.(?:jpe?g|png|webp)(?:\?|$))', '', url)   # WordPress: foto-300x200.jpg → foto.jpg
+        u = re.sub(r'([?&](?:w|width|resize)=)\d+', lambda m: m.group(1) + "1600", u)
+        if u != url:
+            out.append(u)
+    out.append(url)
+    return out
+
+
+def _urls_imagen_pagina(url_articulo):
+    """og:image / twitter:image del artículo fuente."""
+    import re
+    if not url_articulo:
+        return []
+    try:
+        req = urllib.request.Request(url_articulo, headers=_UA_IMG)
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            html = resp.read().decode("utf-8", errors="ignore")
+    except Exception:
+        return []
+    urls = []
+    for prop in ("og:image:secure_url", "og:image", "twitter:image", "twitter:image:src"):
+        for pat in (rf'<meta[^>]+(?:property|name)=["\']{prop}["\'][^>]+content=["\']([^"\']+)["\']',
+                    rf'<meta[^>]+content=["\']([^"\']+)["\'][^>]+(?:property|name)=["\']{prop}["\']'):
+            m = re.search(pat, html, re.IGNORECASE)
+            if m and m.group(1).startswith("http") and m.group(1) not in urls:
+                urls.append(m.group(1).strip())
+    return urls
+
+
+def _foto_sin_marca_ajena(data):
+    """Visión (Claude): True si la foto está limpia, False si trae logo/marca de agua/banner/viñeta
+    de otro medio. None si no se pudo evaluar (sin API) → el llamador decide."""
+    try:
+        import base64, io
+        from PIL import Image
+        im = Image.open(io.BytesIO(data)).convert("RGB")
+        im.thumbnail((900, 900))
+        buf = io.BytesIO()
+        im.save(buf, "JPEG", quality=75)
+        b64 = base64.b64encode(buf.getvalue()).decode()
+        client = anthropic.Anthropic(api_key=API_KEY)
+        r = client.messages.create(
+            model="claude-sonnet-4-6", max_tokens=120,
+            messages=[{"role": "user", "content": [
+                {"type": "image", "source": {"type": "base64", "media_type": "image/jpeg", "data": b64}},
+                {"type": "text", "text": (
+                    "Sos el editor fotográfico de un diario. Mirá la imagen y respondé SOLO con JSON "
+                    '{"limpia": true|false, "motivo": "..."}. limpia=false si tiene logo o marca de agua de un medio '
+                    "o agencia, banner o franja con texto/titular, crédito impreso sobre la foto, viñeta u borde "
+                    "decorativo oscurecido, marco, o es un collage/captura de pantalla. limpia=true si es una foto "
+                    "natural sin ningún elemento gráfico agregado.")},
+            ]}])
+        txt = r.content[0].text.strip()
+        i, j = txt.find("{"), txt.rfind("}") + 1
+        return bool(json.loads(txt[i:j]).get("limpia"))
+    except Exception as e:
+        print(f"[visión no disponible: {str(e)[:50]}]", end=" ")
+        return None
+
+
+def _recortar_bordes_planos(img, url_fuente=""):
+    """Recorta SOLO franjas planas en los 4 bordes (barras negras/blancas, banners de color sólido).
+    Máx. 25% por lado; nunca toca contenido con textura. Sin guardar: devuelve la imagen PIL."""
+    import numpy as np
+    w, h = img.size
+    if h < 100 or w < 100:
+        return img
+    arr = np.asarray(img.convert("RGB"), dtype=np.int16)
+
+    # Banner corporativo de color sólido al pie (Tiempo Sur y similares): se mide el alto REAL
+    # (antes se cortaba un 22% fijo y se perdía parte de la foto). Fila de banner = ≥60% de píxeles
+    # del color dominante de la última fila (el texto/logo blanco del banner no llega a romper ese umbral).
+    ref = np.median(arr[h - 1], axis=0)
+    n_banner = 0
+    for i in range(h - 1, h - int(h * 0.30) - 1, -1):
+        if (np.abs(arr[i] - ref).max(axis=1) < 45).mean() >= 0.60:
+            n_banner += 1
+        else:
+            break
+    if n_banner >= max(12, int(h * 0.04)) and ref.std() > 0:   # banner real (no una franja gris/negra: de eso se ocupa abajo)
+        if ("tiemposur" in url_fuente.lower()) or (ref[0] > 150 and ref[1] < 90 and ref[2] < 90):   # solo rojo corporativo; mar/cielo/pasto NO se tocan
+            img = img.crop((0, 0, w, h - n_banner))
+            w, h = img.size
+            arr = np.asarray(img.convert("RGB"), dtype=np.int16)
+
+    def plana(linea):                              # fila/columna de un solo color (sin textura)
+        return linea.std(axis=0).max() < 2          # color prácticamente puro (barras blancas/negras, letterbox)
+
+    def contar(rango, eje):
+        n = 0
+        for i in rango:
+            if plana(arr[i] if eje == 0 else arr[:, i]):
+                n += 1
+            else:
+                break
+        return n
+
+    top    = min(contar(range(0, int(h * .25)), 0), int(h * .25))
+    bottom = min(contar(range(h - 1, h - int(h * .25) - 1, -1), 0), int(h * .25))
+    left   = min(contar(range(0, int(w * .25)), 1), int(w * .25))
+    right  = min(contar(range(w - 1, w - int(w * .25) - 1, -1), 1), int(w * .25))
+    if top < 3: top = 0
+    if bottom < 3: bottom = 0
+    if left < 3: left = 0
+    if right < 3: right = 0
+    if not (top or bottom or left or right):
+        return img
+    return img.crop((left, top, w - right, h - bottom))
+
+
+def _guardar_foto_nota(data, nota_id, url_fuente=""):
+    """Un solo encode: recorte de bordes planos (en memoria) → WebP 1600px q85, sin agrandar."""
+    import io
+    from PIL import Image
+    base = os.path.dirname(__file__)
+    ruta = os.path.join(base, "fotos", f"foto-{nota_id}.webp")
+    im = Image.open(io.BytesIO(data))
+    im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB")
+    if im.mode == "RGBA":                           # transparencias → fondo blanco (evita bordes negros)
+        fondo = Image.new("RGB", im.size, (255, 255, 255)); fondo.paste(im, mask=im.split()[-1]); im = fondo
+    im = _recortar_bordes_planos(im, url_fuente)
+    if im.width > FOTO_ANCHO_MAX:                   # solo reducir, nunca agrandar
+        im = im.resize((FOTO_ANCHO_MAX, int(im.height * FOTO_ANCHO_MAX / im.width)), Image.LANCZOS)
+    im.save(ruta, "WEBP", quality=FOTO_CALIDAD, method=6)
+    return f"fotos/foto-{nota_id}.webp", im.size
+
+
+def elegir_mejor_foto_fuente(nota, nota_id):
+    """Devuelve ruta local de la mejor foto de la fuente o None (→ sigue la cadena: foto propia/Unsplash)."""
+    base = os.path.dirname(__file__)
+    ya = os.path.join(base, "fotos", f"foto-{nota_id}.webp")
+    if os.path.exists(ya):
+        return f"fotos/foto-{nota_id}.webp"
+
+    urls = []
+    for u in _urls_imagen_pagina(nota.get("url_original", "")) if not nota.get("skip_og_image") else []:
+        urls.append(u)
+    rss = nota.get("imagen", "")
+    if rss and str(rss).startswith("http"):
+        urls.append(rss)
+
+    from PIL import Image
+    import io, hashlib
+    vistas, cand = set(), []
+    for u in urls:
+        for v in _variantes_url_hd(u):
+            data = _bytes_imagen(v)
+            if not data:
+                continue
+            h = hashlib.md5(data).hexdigest()
+            if h in vistas:
+                break
+            vistas.add(h)
+            try:
+                w, hh = Image.open(io.BytesIO(data)).size
+            except Exception:
+                break
+            if w >= 600 and hh >= 400:
+                cand.append((w * hh, w, hh, v, data))
+            break                                   # la primera variante que baja es la HD; no repetir
+    if not cand:
+        print("sin candidatas ≥600×400")
+        return None
+    cand.sort(key=lambda c: c[0], reverse=True)
+    print(f"{len(cand)} candidata(s): " + ", ".join(f"{c[1]}×{c[2]}" for c in cand), end=" · ")
+
+    elegida = None
+    for area, w, hh, v, data in cand[:3]:
+        limpia = _foto_sin_marca_ajena(data)
+        if limpia is False:
+            print(f"{w}×{hh} con marca ajena ✗", end=" · ")
+            continue
+        elegida = (w, hh, v, data)
+        break
+    if not elegida:
+        print("todas con marca ajena → alternativa")
+        return None
+    w, hh, v, data = elegida
+    ruta, tam = _guardar_foto_nota(data, nota_id, v)
+    print(f"elegida {w}×{hh} → guardada {tam[0]}×{tam[1]}")
+    return ruta
+
+
+
 def resolver_imagen(nota, fotos_propias, fotos_usadas):
     """Jerarquía: página publicada (FIJA) > RSS > og:image > foto propia > Unsplash > fallback. Siempre ruta local."""
     nota_id = nota.get("id", "sin-id")
@@ -1761,6 +1976,17 @@ def resolver_imagen(nota, fotos_propias, fotos_usadas):
     if publicada:
         print(f"    [{nota_id}] foto fijada desde página publicada → {publicada}")
         return publicada
+
+    # Foto de la fuente: la de mayor resolución, sin marcas de otros medios (ver bloque FOTO DE NOTA)
+    print(f"    [{nota_id}] foto fuente (mejor resolución)...", end=" ", flush=True)
+    try:
+        mejor = elegir_mejor_foto_fuente(nota, nota_id)
+        if mejor:
+            return mejor
+        print("    → sin foto de fuente utilizable; alternativas (foto propia / Unsplash)")
+        nota = dict(nota, imagen="", skip_og_image=True)   # ya evaluadas: no repetir el flujo viejo
+    except Exception as e:
+        print(f"falló ({e}) → flujo anterior")
 
     rss_url = nota.get("imagen", "")
     if rss_url and str(rss_url).startswith("http"):
@@ -3065,8 +3291,8 @@ def generar_paginas_og(notas):
     .nota-fuente{{margin-top:40px;padding:16px 20px;background:white;border-radius:4px;border-left:3px solid #5a6070;font-size:12px;color:#5a6070;}}
     .nota-fuente strong{{color:#252830;}}
     .nota-imagen-wrap{{width:100%;height:420px;background-size:cover;background-position:center;border-radius:4px;margin-bottom:32px;overflow:hidden;}}
-    .nota-imagen{{width:100%;height:420px;object-fit:cover;object-position:center;border-radius:4px;margin-bottom:32px;display:block;}}
-    @media(max-width:600px){{.nota-imagen{{height:240px;}}}}
+    .nota-imagen{{width:100%;height:auto;max-height:560px;object-fit:contain;object-position:center;background:#1c2d3d;border-radius:4px;margin-bottom:32px;display:block;}}
+    @media(max-width:600px){{.nota-imagen{{max-height:380px;}}}}
     .autor-avatar{{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #7aadcc;vertical-align:middle;margin-right:10px;}}
     .nota-imagen-placeholder{{width:100%;height:320px;background:linear-gradient(160deg,#0e1a26 0%,#1c2d3d 45%,#4a7a9a 100%);border-radius:4px;margin-bottom:32px;}}
     .nota-cuerpo p{{font-size:17.5px;line-height:1.85;color:#2a2a2a;margin-bottom:24px;}}
