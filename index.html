@@ -1696,6 +1696,51 @@
   </script>
 
 
+  <style>
+    @keyframes bn-fly   { 0%{transform:translateX(-80px)} 100%{transform:translateX(calc(100vw))} }
+    @keyframes bn-road  { 0%{background-position:0 0} 100%{background-position:-40px 0} }
+    @keyframes bn-blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+    .banner-conn { display:block; text-decoration:none; color:inherit; position:relative; overflow:hidden; border-radius:10px; cursor:pointer; transition:transform .2s, border-color .2s; }
+    .banner-conn:hover { transform:translateY(-2px); }
+    .banner-conn .bc-inner { position:relative; z-index:1; display:flex; align-items:center; gap:20px; padding:22px 28px; flex-wrap:wrap; }
+    .banner-conn .bc-icon { font-size:2.3rem; line-height:1; }
+    .banner-conn .bc-kicker { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; margin-bottom:5px; }
+    .banner-conn .bc-kicker i { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:6px; vertical-align:middle; animation:bn-blink 1.6s ease-in-out infinite; }
+    .banner-conn .bc-title { font-family:'Playfair Display',serif; font-weight:700; font-size:1.5rem; color:#fff; line-height:1.2; }
+    .banner-conn .bc-desc { font-size:.82rem; color:rgba(255,255,255,.65); margin-top:6px; max-width:460px; }
+    .banner-conn .bc-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+    .banner-conn .bc-tag { border-radius:4px; padding:4px 10px; font-size:.68rem; white-space:nowrap; }
+    .banner-conn .bc-cta { font-weight:800; font-size:.8rem; letter-spacing:1.5px; text-transform:uppercase; padding:13px 24px; border-radius:5px; white-space:nowrap; }
+    .banner-vuelos { background:linear-gradient(160deg,#0f2233 0%,#1c3d5a 60%,#0f2233 100%); border:2px solid rgba(122,173,204,.4); box-shadow:0 4px 22px rgba(0,0,0,.35); }
+    .banner-vuelos:hover { border-color:rgba(122,173,204,.8); }
+    .banner-vuelos .bc-plane { position:absolute; top:10px; left:0; font-size:1.1rem; opacity:.35; animation:bn-fly 14s linear infinite; pointer-events:none; }
+    .banner-vuelos .bc-kicker { color:#7aadcc; } .banner-vuelos .bc-kicker i { background:#7aadcc; }
+    .banner-vuelos .bc-tag { background:rgba(122,173,204,.12); border:1px solid rgba(122,173,204,.35); color:#a9cde3; }
+    .banner-vuelos .bc-cta { background:#7aadcc; color:#0f2233; }
+    .banner-rutas { background:linear-gradient(160deg,#1a1a1a 0%,#2b2417 60%,#1a1a1a 100%); border:2px solid rgba(232,168,56,.4); box-shadow:0 4px 22px rgba(0,0,0,.35); }
+    .banner-rutas:hover { border-color:rgba(232,168,56,.8); }
+    .banner-rutas .bc-road { position:absolute; left:0; right:0; bottom:0; height:4px; background:repeating-linear-gradient(90deg,#e8a838 0 20px,transparent 20px 40px); animation:bn-road 1.2s linear infinite; opacity:.7; }
+    .banner-rutas .bc-kicker { color:#e8a838; } .banner-rutas .bc-kicker i { background:#4caf50; }
+    .banner-rutas .bc-tag { background:rgba(232,168,56,.1); border:1px solid rgba(232,168,56,.35); color:#f0c26a; }
+    .banner-rutas .bc-cta { background:#e8a838; color:#1a1a1a; }
+    @media (max-width:600px) { .banner-conn .bc-inner { padding:18px; gap:14px; } .banner-conn .bc-title { font-size:1.2rem; } .banner-conn .bc-cta { width:100%; text-align:center; } }
+  </style>
+
+  <!-- ══ BANNER CONECTIVIDAD AÉREA ══ -->
+  <a href="conectividad.html#vuelos" class="banner-conn banner-vuelos" aria-label="Conectividad aérea: vuelos de la Patagonia en vivo" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'vuelos_banner_home'})">
+    <div class="bc-plane">✈️</div>
+    <div class="bc-inner">
+      <div class="bc-icon">🛫</div>
+      <div style="flex:1;min-width:220px;">
+        <div class="bc-kicker"><i></i>Tablero en vivo</div>
+        <div class="bc-title">Conectividad aérea</div>
+        <div class="bc-desc">Salidas y llegadas de los aeropuertos patagónicos, con demoras y cancelaciones al momento.</div>
+        <div class="bc-tags"><span class="bc-tag">Salidas</span><span class="bc-tag">Llegadas</span><span class="bc-tag">Demoras</span><span class="bc-tag">Argentina y Chile</span></div>
+      </div>
+      <div class="bc-cta">Ver vuelos →</div>
+    </div>
+  </a>
+
   <div class="divider" style="margin:32px 0;"></div>
 
   <!-- ══ GUÍAS Y TURISMO ══ -->
@@ -1732,6 +1777,23 @@
     <video class="banner-pub-video" muted loop playsinline preload="none" data-src="Banner_PG.mp4">
       <source data-src="Banner_PG.mp4" type="video/mp4">
     </video>
+  </a>
+
+  <div class="divider" style="margin:32px 0;"></div>
+
+  <!-- ══ BANNER ESTADO DE LAS RUTAS ══ -->
+  <a href="conectividad.html#rutas" class="banner-conn banner-rutas" aria-label="Estado de las rutas patagónicas: cortes, nieve y tránsito" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'rutas_banner_home'})">
+    <div class="bc-inner">
+      <div class="bc-icon">🛣️</div>
+      <div style="flex:1;min-width:220px;">
+        <div class="bc-kicker"><i></i>Antes de salir</div>
+        <div class="bc-title">Estado de las rutas</div>
+        <div class="bc-desc">Cortes, nieve, hielo y obras en las rutas de la Patagonia. Consultá cómo está el camino antes de manejar.</div>
+        <div class="bc-tags"><span class="bc-tag">Ruta 3</span><span class="bc-tag">Ruta 40</span><span class="bc-tag">Cortes y desvíos</span><span class="bc-tag">Pasos fronterizos</span></div>
+      </div>
+      <div class="bc-cta">Ver rutas →</div>
+    </div>
+    <div class="bc-road"></div>
   </a>
 
   <div class="divider" style="margin:32px 0;"></div>
