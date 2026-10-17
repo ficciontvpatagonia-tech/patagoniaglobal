@@ -202,7 +202,19 @@ PALABRAS_CLAVE = [
     "islas del pacífico sur", "isla diego ramírez",
     # Servicios cotidianos
     "clima", "alerta meteorológica", "viento", "nevada", "temporal",
+    # Servicio y trámites con anclaje patagónico (becas, subsidios, tarifas)
+    "zona fría", "zona fria", "beca magallanes", "beca aysén", "beca aysen",
+    "becas patagonia", "beca patagonia", "junaeb", "fuas",
 ]
+
+# Notas de SERVICIO (dato práctico: quién, cuánto, hasta cuándo, cómo hacerlo).
+# Solo suman puntaje: la nota ya pasó el filtro geográfico de PALABRAS_CLAVE.
+_PALABRAS_SERVICIO = frozenset([
+    "beca", "becas", "subsidio", "subsidios", "postulación", "postulacion",
+    "postulaciones", "inscripciones", "plazo", "beneficio", "beneficios",
+    "bono", "trámite", "tramite", "requisitos", "tarifa", "tarifas",
+    "zona fría", "zona fria", "fuas", "junaeb", "cómo postular", "como postular",
+])
 
 MAX_HISTORIAL = 50   # artículos en historial.json
 
@@ -273,6 +285,8 @@ def puntuar_relevancia(titulo, resumen, trending_kw=frozenset()):
             score += 3 if kw in _PALABRAS_PRIORITARIAS else 1
     if trending_kw and any(tk in texto for tk in trending_kw):
         score += 5
+    if any(kw in texto for kw in _PALABRAS_SERVICIO):
+        score += 4
     return score
 
 
@@ -862,6 +876,7 @@ CRITERIO DE SELECCIÓN:
 ✓ Ciencia & Tecnología: hallazgos CONICET, paleontología, innovación aplicada al territorio
 ✓ Turismo & Guías: destinos, temporadas, premios internacionales a Patagonia
 ✓ Negocios: empresas, producción, pesca comercial, energía, comercio, economía regional
+✓ Servicio útil para residentes y viajeros (los lectores lo buscan y lo comparten): becas, subsidios, plazos de postulación, cambios de tarifas o beneficios (Zona Fría, subsidio de gas o luz, FUAS, becas Junaeb/Patagonia). Elegí estas notas cuando traen dato práctico (quién puede, cuánto, hasta cuándo, cómo se hace). Si hay una con plazo vigente o que cambia el bolsillo de los residentes, incluí al menos UNA como secundaria. Escribilas como guía: qué cambia, a quién afecta, pasos y fecha límite al principio.
 ✓ Atlántico Sur & Antártida: Malvinas, Georgias del Sur, Sándwich del Sur, Orcadas del Sur, isla Decepción, islas Picton/Lenox/Nueva, base antártica, soberanía, expediciones, tratado antártico, buques, paso Drake, canal Beagle, isla de los Estados. INACH (Instituto Antártico Chileno): sus notas son de alta prioridad — investigación científica, expediciones, biodiversidad antártica.
 
 PRIORIDADES para la TAPA — orden estricto:
