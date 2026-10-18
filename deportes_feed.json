@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261017-thiago-montes-de-rio-gallegos-a-la-seleccion-argentina-dep",
-    "tag": "🏀 Deportes",
-    "titulo": "Thiago Montes, de Río Gallegos a la selección argentina de básquet 3x3",
-    "bajada": "El joven de 17 años, formado en el Club San Miguel, fue convocado para representar al país en básquet 3x3 y realizará una gira de preparación en España.",
-    "imagen": "fotos/foto-20261017-thiago-montes-de-rio-gallegos-a-la-seleccion-argentina-dep.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "id": "20261018-franco-balboa-y-las-promesas-neuquinas-afrontan-el-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "Franco Balboa y las promesas neuquinas afrontan el Mundial de Canotaje",
+    "bajada": "El canotaje de Neuquén dice presente en el Mundial de la especialidad con Franco Balboa y una camada de jóvenes palistas que buscan dar el salto internacional.",
+    "imagen": "fotos/foto-20261018-franco-balboa-y-las-promesas-neuquinas-afrontan-el-dep.webp",
+    "meta": "Hoy · Diario Río Negro"
   },
   "secundarias": [
+    {
+      "id": "20261017-thiago-montes-de-rio-gallegos-a-la-seleccion-argentina-dep",
+      "tag": "🏀 Deportes",
+      "titulo": "Thiago Montes, de Río Gallegos a la selección argentina de básquet 3x3",
+      "bajada": "El joven de 17 años, formado en el Club San Miguel, fue convocado para representar al país en básquet 3x3 y realizará una gira de preparación en España.",
+      "imagen": "fotos/foto-20261017-thiago-montes-de-rio-gallegos-a-la-seleccion-argentina-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20261014-el-detras-de-escena-del-cerro-catedral-el-corazon-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Cómo es trabajar en el mantenimiento de los medios de elevación del centro de esquí más grande de Sudamérica, un engranaje vital para Bariloche.",
       "imagen": "fotos/foto-20261014-el-detras-de-escena-del-cerro-catedral-el-corazon-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261013-cerro-catedral-cerro-temporada-con-17500-residentes-de-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Más de 2.500 vecinos tuvieron su primera experiencia con deportes de nieve a través del Pase Iniciación, en una temporada que consolidó el vínculo del cerro con la ciudad.",
       "imagen": "fotos/foto-20261013-cerro-catedral-cerro-temporada-con-17500-residentes-de-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261012-wilfredo-perez-gano-la-21a-edicion-del-rally-karukinka-dep",
       "tag": "🏁 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El GEDA retoma las salidas de temporada 44 con una travesía al Refugio Cajón del Azul, en la zona de El Bolsón.",
       "imagen": "fotos/foto-20261007-el-club-andino-bariloche-vuelve-al-cajon-del-azul-con-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20261005-barrio-sur-puerto-natales-y-18-de-septiembre-avanzan-a-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Barrio Sur, Puerto Natales y 18 de Septiembre avanzan a semifinales regionales",
-      "bajada": "Los seleccionados de Barrio Sur y Última Esperanza ganaron sus llaves, y 18 de Septiembre clasificó como mejor segundo, en una nueva jornada de la Eliminatoria Regional Adulta.",
-      "imagen": "fotos/foto-20261005-barrio-sur-puerto-natales-y-18-de-septiembre-avanzan-a-dep.webp",
-      "meta": "Hoy · La Prensa Austral"
     }
   ]
 }
