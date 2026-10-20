@@ -1,0 +1,48 @@
+name: Actualizar Mareas
+
+# Baja el nivel del mar de los mareógrafos de la Armada de Chile (SHOA) y el SHN
+# (vía IOC/UNESCO), calcula la marea estimada del día y guarda mareas.json
+# para que mareas.html lo muestre. Cada hora.
+
+on:
+  schedule:
+    - cron: '12 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar-mareas
+  cancel-in-progress: true
+
+jobs:
+  mareas:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar numpy
+        run: pip install numpy
+
+      - name: Calcular mareas
+        run: python3 actualizar_mareas.py
+
+      - name: Commitear si cambió
+        run: |
+          git config user.name "GLOBALpatagonia Bot"
+          git config user.email "bot@globalpatagonia.org"
+          git add mareas.json
+          git diff --staged --quiet && exit 0
+          git commit -m "Mareas actualizadas — $(date -u +'%d/%m %H:%M')Z [skip-news]"
+          for i in 1 2 3; do
+            git push && exit 0
+            git pull --rebase origin main || exit 1
+          done
+          git push

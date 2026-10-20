@@ -1,0 +1,49 @@
+/* Página de mareas — complementa clima.css */
+.mr-titulo { font-family:'Playfair Display',serif; font-size:30px; color:var(--verde); margin:26px 0 2px; }
+.mr-sub { font-size:13px; color:#777; margin-bottom:22px; }
+.mr-cargando, .mr-error { text-align:center; padding:60px 20px; color:#666; font-size:14px; }
+.mr-grid { display:grid; grid-template-columns:minmax(300px,420px) 1fr; gap:18px; align-items:start; }
+.mr-card { background:#fff; border:1px solid #e2ddd5; border-radius:6px; padding:18px; box-shadow:0 1px 4px rgba(0,0,0,.05); }
+
+.mr-prox { background:var(--verde); color:#fff; border-radius:5px; padding:12px 14px; margin-bottom:14px; font-size:13px; line-height:1.4; }
+.mr-prox b { font-size:20px; display:block; font-family:'Playfair Display',serif; margin-top:2px; }
+
+.mr-tabla { width:100%; border-collapse:collapse; font-size:14px; }
+.mr-tabla th { text-align:left; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#888; padding:6px 8px; border-bottom:2px solid #e2ddd5; }
+.mr-tabla td { padding:10px 8px; border-bottom:1px solid #eee; }
+.mr-tabla td.hora { font-weight:700; font-size:17px; font-variant-numeric:tabular-nums; }
+.mr-tabla tr.pasada td { color:#aaa; }
+.mr-tabla tr.siguiente td { background:#eef5fa; }
+.mr-tabla .tipo-pleamar { color:#1d6fa5; font-weight:600; }
+.mr-tabla .tipo-bajamar { color:#8c6b4a; font-weight:600; }
+.mr-tabla .alt { font-variant-numeric:tabular-nums; font-weight:600; }
+.mr-resumen td, .mr-resumen th { white-space:nowrap; }
+.mr-resumen tr.puerto-link { cursor:pointer; }
+.mr-resumen tr.puerto-link:hover td { background:#f4f1ea; }
+
+.mr-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.mr-chip { font-size:11px; font-weight:600; border-radius:20px; padding:5px 11px; background:#f0ede8; color:#444; }
+.mr-chip.viva { background:#dcebf6; color:#1a5b86; }
+.mr-chip.muerta { background:#f1e8dc; color:#7a5a38; }
+
+#mr-grafico { width:100%; height:auto; display:block; }
+.mr-leyenda { display:flex; gap:16px; flex-wrap:wrap; font-size:11px; color:#666; margin-top:6px; }
+.mr-leyenda i { display:inline-block; width:16px; height:3px; margin-right:5px; vertical-align:middle; border-radius:2px; }
+.l-est { background:#1d6fa5; } .l-obs { background:#d9822b; } .l-now { background:#c0392b; }
+
+.mr-real { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; }
+.mr-real .m { background:#fff; border:1px solid #e2ddd5; border-radius:6px; padding:16px; }
+.mr-real .m .v { font-family:'Playfair Display',serif; font-size:34px; color:var(--verde); line-height:1.1; }
+.mr-real .m .v small { font-size:15px; font-family:'Inter',sans-serif; color:#777; }
+.mr-real .m .k { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#888; margin-top:6px; }
+.mr-real .m .n { font-size:12px; color:#666; margin-top:4px; }
+.mr-real .subiendo .v { color:#1d6fa5; } .mr-real .bajando .v { color:#8c6b4a; }
+
+.mr-aviso { margin:34px 0 40px; background:#fff8e8; border:1px solid #e8d9a8; border-radius:6px; padding:16px 18px; font-size:12.5px; line-height:1.6; color:#5a4a1a; }
+.mr-aviso a { color:#1d6fa5; font-weight:600; }
+.mr-fuente { margin-top:8px; font-size:11px; color:#8a7a4a; }
+
+@media (max-width:820px) {
+  .mr-grid { grid-template-columns:1fr; }
+  .mr-titulo { font-size:24px; }
+}
