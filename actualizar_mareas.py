@@ -56,6 +56,18 @@ ESTACIONES_MODELO = [
 MARINE = ("https://marine-api.open-meteo.com/v1/marine?latitude={la}&longitude={lo}"
           "&hourly=sea_level_height_msl&timezone=UTC&past_days=14&forecast_days=3")
 
+# Coordenadas de los puertos con mareógrafo (para pedir el viento del modelo)
+COORD = {
+    "pmon": (-41.485, -72.961), "ancu": (-41.867, -73.833), "cstr": (-42.481, -73.758),
+    "pcha": (-45.467, -72.82), "pnat": (-51.729, -72.516), "ptar": (-53.124, -70.862),
+    "pwil": (-54.933, -67.608), "madry": (-42.763, -65.031), "dese": (-47.754, -65.915),
+    "ushu": (-54.817, -68.217),
+}
+VIENTO = ("https://api.open-meteo.com/v1/forecast?latitude={la}&longitude={lo}"
+          "&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m"
+          "&hourly=wind_speed_10m,wind_direction_10m,wind_gusts_10m"
+          "&wind_speed_unit=kmh&timezone={tz}&forecast_days=2")
+
 EPOCA = dt.datetime(2026, 1, 1)
 
 
@@ -238,6 +250,29 @@ def procesar_modelo(codigo, nombre, pais, tz, region, lat, lon, ahora):
     }
 
 
+def viento(lat, lon, tz):
+    """Viento a 10 m del modelo (Open-Meteo): ahora y cada hora de hoy y mañana. None si falla."""
+    try:
+        url = VIENTO.format(la=lat, lo=lon, tz=tz.replace("/", "%2F"))
+        with urllib.request.urlopen(url, timeout=60) as r:
+            d = json.load(r)
+        c, h = d["current"], d["hourly"]
+        horas_ = []
+        for i, t in enumerate(h["time"]):
+            if h["wind_speed_10m"][i] is None:
+                continue
+            horas_.append({"f": t[:10], "h": t[11:16], "vel": round(h["wind_speed_10m"][i]),
+                           "racha": round(h["wind_gusts_10m"][i]), "dir": round(h["wind_direction_10m"][i])})
+        return {
+            "actual": {"vel": round(c["wind_speed_10m"]), "racha": round(c["wind_gusts_10m"]),
+                       "dir": round(c["wind_direction_10m"]), "hora": c["time"][11:16]},
+            "horas": horas_,
+        }
+    except Exception as ex:
+        print("   viento no disponible:", ex)
+        return None
+
+
 def main():
     ahora = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None, second=0, microsecond=0)
     if "--backtest" in sys.argv:
@@ -255,14 +290,18 @@ def main():
     estaciones, fallas = [], []
     for cod, nom, pais, tz, reg in ESTACIONES:
         try:
-            estaciones.append(procesar(cod, nom, pais, tz, reg, ahora))
+            est = procesar(cod, nom, pais, tz, reg, ahora)
+            est["viento"] = viento(*COORD[cod], tz)
+            estaciones.append(est)
             print("OK ", nom)
         except Exception as ex:
             fallas.append(nom)
             print("ERR", nom, ex)
     for cod, nom, pais, tz, reg, la, lo in ESTACIONES_MODELO:
         try:
-            estaciones.append(procesar_modelo(cod, nom, pais, tz, reg, la, lo, ahora))
+            est = procesar_modelo(cod, nom, pais, tz, reg, la, lo, ahora)
+            est["viento"] = viento(la, lo, tz)
+            estaciones.append(est)
             print("OK (modelo)", nom)
         except Exception as ex:
             fallas.append(nom)

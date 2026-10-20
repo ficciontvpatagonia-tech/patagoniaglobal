@@ -82,6 +82,58 @@
     svg.innerHTML = s;
   }
 
+  var CUAD = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
+  var CUAD_N = { N:'Norte', NNE:'Nor-noreste', NE:'Noreste', ENE:'Este-noreste', E:'Este', ESE:'Este-sudeste', SE:'Sudeste', SSE:'Sud-sudeste', S:'Sur', SSO:'Sud-sudoeste', SO:'Sudoeste', OSO:'Oeste-sudoeste', O:'Oeste', ONO:'Oeste-noroeste', NO:'Noroeste', NNO:'Nor-noroeste' };
+  function cuad(d) { return CUAD[Math.round(((d % 360) + 360) % 360 / 22.5) % 16]; }
+  function nudos(kmh) { return Math.round(kmh / 1.852); }
+  // dir = de dónde VIENE el viento; la flecha apunta hacia donde sopla
+  function flecha(d) { return '<span class="mr-flecha" style="transform:rotate(' + (d + 180) + 'deg)">↑</span>'; }
+  function claseRacha(r) { return r >= 60 ? 'v-fuerte' : r >= 40 ? 'v-ojo' : ''; }
+
+  function viento(e, now) {
+    var v = e.viento, box = $('mr-viento-ahora'), tb = document.querySelector('#mr-tabla-viento tbody');
+    tb.innerHTML = '';
+    if (!v) {
+      box.innerHTML = '<div class="mr-v-nota" style="margin:0">Viento no disponible en este momento.</div>';
+      return;
+    }
+    var a = v.actual, c = cuad(a.dir);
+    var aviso = '';
+    if (a.racha >= 60) aviso = '<span class="mr-chip aviso-vf">Rachas muy fuertes (' + nudos(a.racha) + ' nudos): extremar precauciones</span>';
+    else if (a.racha >= 40) aviso = '<span class="mr-chip aviso-v">Rachas fuertes (' + nudos(a.racha) + ' nudos): precaución en el agua</span>';
+    var brujula = '<svg class="mr-brujula" viewBox="0 0 100 100" aria-hidden="true">' +
+      '<circle cx="50" cy="50" r="44" fill="#f7f5f0" stroke="#d8d2c6" stroke-width="2"/>' +
+      '<text x="50" y="17" text-anchor="middle" font-size="11" font-weight="700" fill="#555">N</text>' +
+      '<text x="50" y="93" text-anchor="middle" font-size="11" fill="#999">S</text>' +
+      '<text x="91" y="54" text-anchor="middle" font-size="11" fill="#999">E</text>' +
+      '<text x="9" y="54" text-anchor="middle" font-size="11" fill="#999">O</text>' +
+      '<g transform="rotate(' + (a.dir + 180) + ' 50 50)"><path d="M50 22 L60 58 L50 50 L40 58 Z" fill="#1d6fa5"/><line x1="50" y1="50" x2="50" y2="76" stroke="#1d6fa5" stroke-width="3" stroke-linecap="round"/></g>' +
+      '</svg>';
+    box.innerHTML = '<div class="mr-v-ppal">' + brujula + '<div class="mr-v-dato">' +
+      '<div class="cuad">' + c + ' <small>' + CUAD_N[c] + ' · ' + a.dir + '°</small></div>' +
+      '<div class="vel">' + a.vel + ' km/h <small>· ' + nudos(a.vel) + ' nudos</small></div>' +
+      '<div class="rac">Rachas ' + a.racha + ' km/h <small>· ' + nudos(a.racha) + ' nudos</small></div></div></div>' +
+      (aviso ? '<div class="mr-chips">' + aviso + '</div>' : '') +
+      '<div class="mr-v-nota">El cuadrante indica de dónde sopla el viento (viento del ' + CUAD_N[c] + '). La flecha apunta hacia donde va.</div>';
+
+    // tabla: de la hora actual en adelante, cada 3 h (próximas 24 h)
+    var hh = Math.floor(now.min / 60), mostradas = 0;
+    var hoy = now.fecha;
+    v.horas.forEach(function (x) {
+      var hx = parseInt(x.h.slice(0, 2), 10);
+      var abs = (x.f === hoy ? 0 : 24) + hx;
+      if (abs < hh || abs > hh + 24 || (abs - hh) % 3 !== 0) return;
+      var cx = cuad(x.dir), tr = document.createElement('tr');
+      if (abs === hh) tr.className = 'v-actual';
+      tr.innerHTML = '<td class="hora" style="font-size:15px">' + x.h + (x.f !== hoy ? ' <small style="color:#888;font-weight:400">mañana</small>' : '') + '</td>' +
+        '<td>' + flecha(x.dir) + '<strong>' + cx + '</strong> <small style="color:#888">' + x.dir + '°</small></td>' +
+        '<td class="alt">' + x.vel + ' km/h <small style="color:#888;font-weight:400">' + nudos(x.vel) + ' nd</small></td>' +
+        '<td class="alt ' + claseRacha(x.racha) + '">' + x.racha + ' km/h <small style="font-weight:400">' + nudos(x.racha) + ' nd</small></td>';
+      tb.appendChild(tr);
+      mostradas++;
+    });
+  }
+
   function mostrar(cod) {
     SEL = DATA.estaciones.filter(function (x) { return x.codigo === cod; })[0];
     if (!SEL) return;
@@ -117,6 +169,7 @@
     $('mr-chips').innerHTML = chips;
 
     grafico(e, now);
+    viento(e, now);
 
     // altura real
     var sinReal = !e.actual;

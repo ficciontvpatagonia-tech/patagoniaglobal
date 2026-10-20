@@ -149,7 +149,19 @@
     <div class="section-label" id="mr-titulo-real" style="margin-top:26px">Altura real del mar — medida ahora</div>
     <div class="mr-real" id="mr-real"></div>
 
-    <!-- 3. MAÑANA -->
+    <!-- 3. VIENTO -->
+    <div class="section-label" style="margin-top:26px">Viento — ahora y próximas horas</div>
+    <div class="mr-grid">
+      <div class="mr-card" id="mr-viento-ahora"></div>
+      <div class="mr-card" style="overflow-x:auto">
+        <table class="mr-tabla" id="mr-tabla-viento">
+          <thead><tr><th>Hora</th><th>Cuadrante</th><th>Velocidad</th><th>Rachas</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. MAÑANA -->
     <div class="section-label" style="margin-top:26px">Marea estimada de mañana</div>
     <div class="mr-card" style="max-width:520px">
       <table class="mr-tabla" id="mr-tabla-man">
@@ -174,7 +186,7 @@
   <!-- AVISO -->
   <div class="mr-aviso">
     <strong>⚠ Información referencial — no apta para navegación.</strong>
-    Las horas y alturas de la marea estimada se calculan con un modelo a partir de las mediciones reales de los mareógrafos de la Armada de Chile (SHOA) y del Servicio de Hidrografía Naval argentino (SHN), y pueden diferir de las tablas oficiales, sobre todo con viento fuerte, cambios bruscos de presión o temporales. Las alturas se expresan en metros sobre un nivel de referencia aproximado (la bajamar más baja del período) y no equivalen al cero hidrográfico oficial de las cartas náuticas.
+    El viento es una estimación del modelo meteorológico a 10 m de altura (Open-Meteo), no una medición en el puerto; en canales y fiordos puede ser muy distinto por efecto del relieve. Las horas y alturas de la marea estimada se calculan con un modelo a partir de las mediciones reales de los mareógrafos de la Armada de Chile (SHOA) y del Servicio de Hidrografía Naval argentino (SHN), y pueden diferir de las tablas oficiales, sobre todo con viento fuerte, cambios bruscos de presión o temporales. Las alturas se expresan en metros sobre un nivel de referencia aproximado (la bajamar más baja del período) y no equivalen al cero hidrográfico oficial de las cartas náuticas.
     Para navegar, pescar en zonas de corriente o cruzar pasos y canales, consultá siempre las tablas oficiales:
     <a href="https://www.shoa.cl/" target="_blank" rel="noopener">SHOA Chile</a> ·
     <a href="https://www.hidro.gob.ar/oceanografia/Tmareas/Form_Tmareas.asp" target="_blank" rel="noopener">SHN Argentina</a>.
