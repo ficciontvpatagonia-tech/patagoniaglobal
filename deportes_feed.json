@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261022-jovenes-a-la-montana-abre-la-temporada-andinista-en-dep",
+    "id": "20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Jóvenes a la Montaña abre la temporada andinista en Bariloche",
-    "bajada": "El Club Andino Bariloche convoca a chicos de 8 a 18 años para la primera salida del programa, este sábado 24 de octubre, con el Cerro Ventana como destino.",
-    "imagen": "fotos/foto-20261022-jovenes-a-la-montana-abre-la-temporada-andinista-en-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche"
+    "titulo": "230 jugadores animan la última fecha de la Liga de Pádel Magallanes",
+    "bajada": "El Club Indoor de Punta Arenas reúne a 230 jugadores en la cuarta y última fecha de la Liga de Pádel Magallanes, con presencia de competidores de Río Gallegos y otras localidades.",
+    "imagen": "fotos/foto-20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep-unsplash.webp",
+    "meta": "Hoy · La Prensa Austral (Magallanes)"
   },
   "secundarias": [
+    {
+      "id": "20261022-jovenes-a-la-montana-abre-la-temporada-andinista-en-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Jóvenes a la Montaña abre la temporada andinista en Bariloche",
+      "bajada": "El Club Andino Bariloche convoca a chicos de 8 a 18 años para la primera salida del programa, este sábado 24 de octubre, con el Cerro Ventana como destino.",
+      "imagen": "fotos/foto-20261022-jovenes-a-la-montana-abre-la-temporada-andinista-en-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20261020-la-arqueria-patagonica-desafia-distancias-y-climas-dep",
       "tag": "🏹 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Amparo de María y su entrenador Sergio de María, del club Arqueros del Viento, preparan el próximo torneo de aire libre en Ushuaia con una disciplina que gana adeptos en el fin del mundo.",
       "imagen": "fotos/foto-20261020-la-arqueria-patagonica-desafia-distancias-y-climas-dep.webp",
       "meta": "Hoy · Tiempo Sur (Santa Cruz)"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261018-franco-balboa-y-las-promesas-neuquinas-afrontan-el-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El canotaje de Neuquén dice presente en el Mundial de la especialidad con Franco Balboa y una camada de jóvenes palistas que buscan dar el salto internacional.",
       "imagen": "fotos/foto-20261018-franco-balboa-y-las-promesas-neuquinas-afrontan-el-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261017-thiago-montes-de-rio-gallegos-a-la-seleccion-argentina-dep",
       "tag": "🏀 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Más de 2.500 vecinos tuvieron su primera experiencia con deportes de nieve a través del Pase Iniciación, en una temporada que consolidó el vínculo del cerro con la ciudad.",
       "imagen": "fotos/foto-20261013-cerro-catedral-cerro-temporada-con-17500-residentes-de-dep.webp",
       "meta": "Hoy · Catedral Alta Patagonia"
-    },
-    {
-      "id": "20261012-wilfredo-perez-gano-la-21a-edicion-del-rally-karukinka-dep",
-      "tag": "🏁 Deportes",
-      "titulo": "Wilfredo Pérez ganó la 21ª edición del Rally Karukinka",
-      "bajada": "El piloto se quedó con la clasificación general del tradicional rally fueguino disputado entre Cerro Sombrero y Porvenir.",
-      "imagen": "fotos/foto-20261012-wilfredo-perez-gano-la-21a-edicion-del-rally-karukinka-dep.webp",
-      "meta": "Hoy · La Prensa Austral"
     }
   ]
 }
