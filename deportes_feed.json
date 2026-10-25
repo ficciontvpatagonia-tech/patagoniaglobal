@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "230 jugadores animan la última fecha de la Liga de Pádel Magallanes",
-    "bajada": "El Club Indoor de Punta Arenas reúne a 230 jugadores en la cuarta y última fecha de la Liga de Pádel Magallanes, con presencia de competidores de Río Gallegos y otras localidades.",
-    "imagen": "fotos/foto-20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep-unsplash.webp",
-    "meta": "Hoy · La Prensa Austral (Magallanes)"
+    "id": "20261025-caleta-olivia-y-pico-truncado-debutan-en-el-nacional-dep",
+    "tag": "🤾 Deportes",
+    "titulo": "Caleta Olivia y Pico Truncado debutan en el Nacional de Clubes C de handball",
+    "bajada": "Una docena de equipos participan desde este domingo en el Torneo Nacional de Clubes Adultos C de handball, organizado por la Federación de Chubut y fiscalizado por la Confederación Argentina. Caleta Olivia y Pico Truncado representan a Santa Cruz.",
+    "imagen": "fotos/foto-20261025-caleta-olivia-y-pico-truncado-debutan-en-el-nacional-dep.webp",
+    "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "230 jugadores animan la última fecha de la Liga de Pádel Magallanes",
+      "bajada": "El Club Indoor de Punta Arenas reúne a 230 jugadores en la cuarta y última fecha de la Liga de Pádel Magallanes, con presencia de competidores de Río Gallegos y otras localidades.",
+      "imagen": "fotos/foto-20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep-unsplash.webp",
+      "meta": "Hoy · La Prensa Austral (Magallanes)"
+    },
     {
       "id": "20261022-jovenes-a-la-montana-abre-la-temporada-andinista-en-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El Club Andino Bariloche convoca a chicos de 8 a 18 años para la primera salida del programa, este sábado 24 de octubre, con el Cerro Ventana como destino.",
       "imagen": "fotos/foto-20261022-jovenes-a-la-montana-abre-la-temporada-andinista-en-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261020-la-arqueria-patagonica-desafia-distancias-y-climas-dep",
       "tag": "🏹 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Amparo de María y su entrenador Sergio de María, del club Arqueros del Viento, preparan el próximo torneo de aire libre en Ushuaia con una disciplina que gana adeptos en el fin del mundo.",
       "imagen": "fotos/foto-20261020-la-arqueria-patagonica-desafia-distancias-y-climas-dep.webp",
       "meta": "Hoy · Tiempo Sur (Santa Cruz)"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261018-franco-balboa-y-las-promesas-neuquinas-afrontan-el-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Cómo es trabajar en el mantenimiento de los medios de elevación del centro de esquí más grande de Sudamérica, un engranaje vital para Bariloche.",
       "imagen": "fotos/foto-20261014-el-detras-de-escena-del-cerro-catedral-el-corazon-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
-    {
-      "id": "20261013-cerro-catedral-cerro-temporada-con-17500-residentes-de-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Cerro Catedral cerró temporada con 17.500 residentes de Bariloche",
-      "bajada": "Más de 2.500 vecinos tuvieron su primera experiencia con deportes de nieve a través del Pase Iniciación, en una temporada que consolidó el vínculo del cerro con la ciudad.",
-      "imagen": "fotos/foto-20261013-cerro-catedral-cerro-temporada-con-17500-residentes-de-dep.webp",
-      "meta": "Hoy · Catedral Alta Patagonia"
     }
   ]
 }
