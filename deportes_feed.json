@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261025-caleta-olivia-y-pico-truncado-debutan-en-el-nacional-dep",
-    "tag": "🤾 Deportes",
-    "titulo": "Caleta Olivia y Pico Truncado debutan en el Nacional de Clubes C de handball",
-    "bajada": "Una docena de equipos participan desde este domingo en el Torneo Nacional de Clubes Adultos C de handball, organizado por la Federación de Chubut y fiscalizado por la Confederación Argentina. Caleta Olivia y Pico Truncado representan a Santa Cruz.",
-    "imagen": "fotos/foto-20261025-caleta-olivia-y-pico-truncado-debutan-en-el-nacional-dep.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "id": "20261026-gimnastas-de-agipa-se-coronan-campeonas-en-rio-gallegos-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "Gimnastas de Agipa se coronan campeonas en Río Gallegos",
+    "bajada": "El representativo de la Asociación de Gimnasia de Punta Arenas ganó el torneo Vientos del Sur, organizado por Boxing Club en la capital de Santa Cruz.",
+    "imagen": "fotos/foto-20261026-gimnastas-de-agipa-se-coronan-campeonas-en-rio-gallegos-dep.webp",
+    "meta": "Hoy · La Prensa Austral (Magallanes)"
   },
   "secundarias": [
+    {
+      "id": "20261025-caleta-olivia-y-pico-truncado-debutan-en-el-nacional-dep",
+      "tag": "🤾 Deportes",
+      "titulo": "Caleta Olivia y Pico Truncado debutan en el Nacional de Clubes C de handball",
+      "bajada": "Una docena de equipos participan desde este domingo en el Torneo Nacional de Clubes Adultos C de handball, organizado por la Federación de Chubut y fiscalizado por la Confederación Argentina. Caleta Olivia y Pico Truncado representan a Santa Cruz.",
+      "imagen": "fotos/foto-20261025-caleta-olivia-y-pico-truncado-debutan-en-el-nacional-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El Club Indoor de Punta Arenas reúne a 230 jugadores en la cuarta y última fecha de la Liga de Pádel Magallanes, con presencia de competidores de Río Gallegos y otras localidades.",
       "imagen": "fotos/foto-20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep-unsplash.webp",
       "meta": "Hoy · La Prensa Austral (Magallanes)"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261022-jovenes-a-la-montana-abre-la-temporada-andinista-en-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El Club Andino Bariloche convoca a chicos de 8 a 18 años para la primera salida del programa, este sábado 24 de octubre, con el Cerro Ventana como destino.",
       "imagen": "fotos/foto-20261022-jovenes-a-la-montana-abre-la-temporada-andinista-en-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261020-la-arqueria-patagonica-desafia-distancias-y-climas-dep",
       "tag": "🏹 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El joven de 17 años, formado en el Club San Miguel, fue convocado para representar al país en básquet 3x3 y realizará una gira de preparación en España.",
       "imagen": "fotos/foto-20261017-thiago-montes-de-rio-gallegos-a-la-seleccion-argentina-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20261014-el-detras-de-escena-del-cerro-catedral-el-corazon-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "El detrás de escena del cerro Catedral: el corazón mecánico del esquí",
-      "bajada": "Cómo es trabajar en el mantenimiento de los medios de elevación del centro de esquí más grande de Sudamérica, un engranaje vital para Bariloche.",
-      "imagen": "fotos/foto-20261014-el-detras-de-escena-del-cerro-catedral-el-corazon-dep.webp",
-      "meta": "Hoy · Diario Río Negro"
     }
   ]
 }
