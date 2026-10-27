@@ -460,6 +460,24 @@
       line-height: 1.5;
     }
 
+    /* Tapa principal con el texto ARRIBA de la foto (legibilidad) */
+    .nota-tapa-top { display: flex; flex-direction: column; }
+    .nota-tapa-top .img-cover, .nota-tapa-top .img-placeholder { height: 400px !important; }
+    .nota-tapa-texto { padding: 2px 2px 16px; }
+    .nota-tapa-texto .tag {
+      display: inline-block; background: #7aadcc; color: #1c2d3d;
+      font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 3px 10px; margin-bottom: 10px; border-radius: 2px;
+    }
+    .nota-tapa-texto h3 {
+      font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700;
+      color: #1c2d3d; line-height: 1.2; margin: 0 0 10px;
+    }
+    .nota-tapa-texto p { font-size: 15px; color: #3a4150; line-height: 1.55; margin: 0; }
+    @media (min-width: 769px) {
+      .tapa-grid:has(.nota-tapa-top) .nota-secundaria > :first-child { height: 100% !important; min-height: 238px; }
+    }
+
     /* Notas secundarias de tapa */
     .nota-secundaria {
       position: relative;
@@ -1356,6 +1374,9 @@
 
       /* Imágenes de cards (inline styles → !important) */
       .img-cover, .img-placeholder { height: 240px !important; }
+      .nota-tapa-top .img-cover, .nota-tapa-top .img-placeholder { height: 240px !important; }
+      .nota-tapa-texto h3 { font-size: 22px; }
+      .nota-tapa-texto p { font-size: 14px; }
       .nota-secundaria .img-placeholder { height: 180px !important; }
       .card-img { height: 120px !important; }
       .guia-img { height: 130px !important; }
@@ -1497,13 +1518,13 @@
 
   <div class="tapa-grid" id="tapa-grid">
   <!-- TAPA-STATIC-START -->
-    <div class="nota-tapa" onclick="irANota('20261027-de-puerto-montt-a-bariloche-en-45-minutos-la-ruta-tapa')">
-      <div class="img-cover" style="width:100%;height:480px;display:block;background-image:url('fotos/foto-20261027-de-puerto-montt-a-bariloche-en-45-minutos-la-ruta-tapa.webp');background-size:cover;background-position:center;"></div>
-      <div class="nota-overlay">
+    <div class="nota-tapa nota-tapa-top" onclick="irANota('20261027-de-puerto-montt-a-bariloche-en-45-minutos-la-ruta-tapa')">
+      <div class="nota-tapa-texto">
         <div class="tag">✈ Transporte</div>
         <h3>De Puerto Montt a Bariloche en 45 minutos: la ruta aérea directa busca volver este verano</h3>
         <p><span style="font-size:11px;opacity:0.8;">🇦🇷🇨🇱</span> Una delegación del municipio chileno recorrió el aeropuerto de Bariloche y la reapertura de la ruta entra en su fase final. Falta un escáner de Aduanas para el aeropuerto El Tepual.</p>
       </div>
+      <div class="img-cover" style="width:100%;height:480px;display:block;background-image:url('fotos/foto-20261027-de-puerto-montt-a-bariloche-en-45-minutos-la-ruta-tapa.webp');background-size:cover;background-position:center;"></div>
     </div>
     <div class="nota-secundaria" onclick="irANota('20261026-concejal-de-el-chalten-cuestiona-camping-de-lujo-tapa')">
       <div class="img-placeholder nota-sec-1" style="width:100%;height:238px;background-image:url('fotos/foto-20261026-concejal-de-el-chalten-cuestiona-camping-de-lujo-tapa.webp');background-size:cover;background-position:center;"></div>
@@ -2382,13 +2403,13 @@ function renderTapa(data) {
   }
 
   let html = `
-    <div class="nota-tapa" onclick="irANota('${t.id||'tapa'}')">
-      ${tapaImg}
-      <div class="nota-overlay">
+    <div class="nota-tapa nota-tapa-top" onclick="irANota('${t.id||'tapa'}')">
+      <div class="nota-tapa-texto">
         <div class="tag">${normTag(t.tag) || '🗞️ Tapa'}</div>
         <h3>${t.titulo}</h3>
         <p>${bandera(t.pais)}${t.bajada}</p>
       </div>
+      ${tapaImg}
     </div>`;
 
   (s.slice(0,2)).forEach((n, i) => {

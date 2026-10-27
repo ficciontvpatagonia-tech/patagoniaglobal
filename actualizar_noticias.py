@@ -2327,13 +2327,13 @@ def inyectar_tapa_en_index(datos):
 
     tapa_id = e(t.get("id", "tapa"))
     tapa_html = f"""
-    <div class="nota-tapa" onclick="irANota('{tapa_id}')">
-      <div class="{tapa_cls}" style="width:100%;height:480px;display:block;{tapa_bg}"></div>
-      <div class="nota-overlay">
+    <div class="nota-tapa nota-tapa-top" onclick="irANota('{tapa_id}')">
+      <div class="nota-tapa-texto">
         <div class="tag">{norm_tag(t.get("tag")) or "🗞️ Tapa"}</div>
         <h3>{e(t.get("titulo", ""))}</h3>
         <p>{bandera_html(t.get("pais"))}{e(t.get("bajada", ""))}</p>
       </div>
+      <div class="{tapa_cls}" style="width:100%;height:480px;display:block;{tapa_bg}"></div>
     </div>"""
 
     for i, n in enumerate(s):
