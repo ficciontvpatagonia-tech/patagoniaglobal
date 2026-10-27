@@ -3813,9 +3813,16 @@ def generar_feed_rss():
     vistas = set()
     notas = []
 
+    def _es_noindex(nid):
+        try:
+            with open(os.path.join(base, "notas", f"{nid}.html"), encoding="utf-8") as _f:
+                return "noindex" in _f.read(20000)
+        except Exception:
+            return False
+
     def agregar(n):
         nid = n.get("id", "")
-        if not nid or nid in vistas:
+        if not nid or nid in vistas or _es_noindex(nid):
             return
         vistas.add(nid)
         notas.append(n)

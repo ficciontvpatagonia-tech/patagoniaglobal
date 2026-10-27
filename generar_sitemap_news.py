@@ -76,7 +76,13 @@ def recolectar_notas():
                 vistas.add(nid)
                 notas.append(nota)
 
-    return notas
+    def _noindex(nid):
+        try:
+            with open(os.path.join(REPO, 'notas', nid + '.html'), encoding='utf-8') as f:
+                return 'noindex' in f.read(20000)
+        except Exception:
+            return False
+    return [n for n in notas if not _noindex(n.get('id', ''))]
 
 
 def titulo_de_nota(nota):
