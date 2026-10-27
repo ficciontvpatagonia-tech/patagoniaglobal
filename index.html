@@ -474,8 +474,24 @@
       color: #1c2d3d; line-height: 1.2; margin: 0 0 10px;
     }
     .nota-tapa-texto p { font-size: 15px; color: #3a4150; line-height: 1.55; margin: 0; }
-    @media (min-width: 769px) {
-      .tapa-grid:has(.nota-tapa-top) .nota-secundaria > :first-child { height: 100% !important; min-height: 238px; }
+    /* Secundarias de tapa con el texto ARRIBA de la foto */
+    .nota-secundaria-top { display: flex; flex-direction: column; }
+    .nota-secundaria-top .img-placeholder { flex: 1 1 auto; height: auto !important; min-height: 150px; }
+    .nota-secundaria-texto { padding: 2px 2px 12px; }
+    .nota-secundaria-top + .nota-secundaria-top .nota-secundaria-texto { padding-top: 12px; }
+    .nota-secundaria-texto .tag {
+      display: inline-block; background: #7aadcc; color: #1c2d3d;
+      font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 3px 10px; margin-bottom: 8px; border-radius: 2px;
+    }
+    .nota-secundaria-texto h3 {
+      font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700;
+      color: #1c2d3d; line-height: 1.25; margin: 0 0 6px;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .nota-secundaria-texto p {
+      font-size: 13px; color: #3a4150; line-height: 1.5; margin: 0;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
 
     /* Notas secundarias de tapa */
@@ -1526,21 +1542,21 @@
       </div>
       <div class="img-cover" style="width:100%;height:480px;display:block;background-image:url('fotos/foto-20261027-de-puerto-montt-a-bariloche-en-45-minutos-la-ruta-tapa.webp');background-size:cover;background-position:center;"></div>
     </div>
-    <div class="nota-secundaria" onclick="irANota('20261026-concejal-de-el-chalten-cuestiona-camping-de-lujo-tapa')">
-      <div class="img-placeholder nota-sec-1" style="width:100%;height:238px;background-image:url('fotos/foto-20261026-concejal-de-el-chalten-cuestiona-camping-de-lujo-tapa.webp');background-size:cover;background-position:center;"></div>
-      <div class="nota-overlay">
+    <div class="nota-secundaria nota-secundaria-top" onclick="irANota('20261026-concejal-de-el-chalten-cuestiona-camping-de-lujo-tapa')">
+      <div class="nota-secundaria-texto">
         <div class="tag">🌿 Ambiente</div>
         <h3>Concejal de El Chaltén cuestiona camping de lujo francés en Los Glaciares</h3>
         <p><span style="font-size:11px;opacity:0.8;">🇦🇷</span> Leonardo Mardones advirtió que la iniciativa de Huttopia dentro del Parque Nacional Los Glaciares debe evaluarse con criterios ambientales estrictos. El debate expone la tensión entre inversión turística y protección de un patrimonio binacional.</p>
       </div>
+      <div class="img-placeholder nota-sec-1" style="width:100%;height:238px;background-image:url('fotos/foto-20261026-concejal-de-el-chalten-cuestiona-camping-de-lujo-tapa.webp');background-size:cover;background-position:center;"></div>
     </div>
-    <div class="nota-secundaria" onclick="irANota('20261026-vaca-muerta-reduce-emisiones-mientras-record-de-sec1')">
-      <div class="img-placeholder nota-sec-2" style="width:100%;height:238px;background-image:url('fotos/foto-20261026-vaca-muerta-reduce-emisiones-mientras-record-de-sec1.webp');background-size:cover;background-position:center;"></div>
-      <div class="nota-overlay">
+    <div class="nota-secundaria nota-secundaria-top" onclick="irANota('20261026-vaca-muerta-reduce-emisiones-mientras-record-de-sec1')">
+      <div class="nota-secundaria-texto">
         <div class="tag">· Energía ·</div>
         <h3>Vaca Muerta reduce emisiones mientras récord de producción petrolera</h3>
         <p><span style="font-size:11px;opacity:0.8;">🇦🇷</span> Neuquén reportó una baja en gases de efecto invernadero pese al aumento de barriles, en un monitoreo que busca compatibilizar hidrocarburos con estándares ambientales.</p>
       </div>
+      <div class="img-placeholder nota-sec-2" style="width:100%;height:238px;background-image:url('fotos/foto-20261026-vaca-muerta-reduce-emisiones-mientras-record-de-sec1.webp');background-size:cover;background-position:center;"></div>
     </div>
   <!-- TAPA-STATIC-END -->
   </div>
@@ -2418,13 +2434,13 @@ function renderTapa(data) {
       ? `<img class="img-placeholder ${cls}" src="${n.imagen}" alt="${n.titulo || ''}" loading="lazy" style="width:100%;height:238px;object-fit:cover;display:block;"/>`
       : `<div class="img-placeholder ${cls}" style="width:100%;height:238px;"></div>`;
     html += `
-    <div class="nota-secundaria" onclick="irANota('${n.id||'sec'+(i+1)}')">
-      ${secImg}
-      <div class="nota-overlay">
+    <div class="nota-secundaria nota-secundaria-top" onclick="irANota('${n.id||'sec'+(i+1)}')">
+      <div class="nota-secundaria-texto">
         <div class="tag">${normTag(n.tag) || '🗞️ Noticias'}</div>
         <h3>${n.titulo}</h3>
         <p>${bandera(n.pais)}${n.bajada || ''}</p>
       </div>
+      ${secImg}
     </div>`;
   });
 

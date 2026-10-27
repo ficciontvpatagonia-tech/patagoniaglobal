@@ -2342,13 +2342,13 @@ def inyectar_tapa_en_index(datos):
         sec_cls = SEC_COLORS[i] if i < len(SEC_COLORS) else ""
         sec_id  = e(n.get("id", f"sec{i+1}"))
         tapa_html += f"""
-    <div class="nota-secundaria" onclick="irANota('{sec_id}')">
-      <div class="img-placeholder {sec_cls}" style="width:100%;height:238px;{sec_bg}"></div>
-      <div class="nota-overlay">
+    <div class="nota-secundaria nota-secundaria-top" onclick="irANota('{sec_id}')">
+      <div class="nota-secundaria-texto">
         <div class="tag">{norm_tag(n.get("tag")) or "🗞️ Noticias"}</div>
         <h3>{e(n.get("titulo", ""))}</h3>
         <p>{bandera_html(n.get("pais"))}{e(n.get("bajada", ""))}</p>
       </div>
+      <div class="img-placeholder {sec_cls}" style="width:100%;height:238px;{sec_bg}"></div>
     </div>"""
 
     # ── 8 noticias de la semana ───────────────────────────────────────────────
