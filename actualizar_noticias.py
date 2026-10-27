@@ -831,7 +831,7 @@ URL: {n['url']}
         seccion_domingo = f"""
   "cultura": {{
     "id": "{hoy}-cul",
-    "titulo": "Título (máx 12 palabras)",
+    "titulo": "Título (máx 12 palabras; oración completa con verbo, sin estilo telegráfico)",
     "bajada": "Una oración con dato concreto",
     "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
     "tag": "🎭 Cultura",
@@ -845,7 +845,7 @@ URL: {n['url']}
   }},
   "turismo": {{
     "id": "{hoy}-tur",
-    "titulo": "Título (máx 12 palabras)",
+    "titulo": "Título (máx 12 palabras; oración completa con verbo, sin estilo telegráfico)",
     "bajada": "Una oración con dato concreto",
     "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
     "tag": "🏔 Turismo",
@@ -904,7 +904,7 @@ Devolvé EXACTAMENTE este JSON (sin texto adicional):
   "ticker": ["titular corto 1", "titular corto 2", "titular corto 3", "titular corto 4", "titular corto 5"],
   "tapa": {{
     "id": "{hoy}-tapa",
-    "titulo": "Título reescrito (máx 15 palabras)",
+    "titulo": "Título reescrito (máx 15 palabras; oración completa con verbo, sin estilo telegráfico)",
     "bajada": "Bajada con contexto y ángulo propio (2-3 oraciones)",
     "cuerpo": "Artículo completo con párrafos separados por \\n\\n (350-500 palabras)",
     "tag": "emoji + categoría",
@@ -918,7 +918,7 @@ Devolvé EXACTAMENTE este JSON (sin texto adicional):
   "secundarias": [
     {{
       "id": "{hoy}-sec1",
-      "titulo": "Título (máx 12 palabras)",
+      "titulo": "Título (máx 12 palabras; oración completa con verbo, sin estilo telegráfico)",
       "bajada": "Una oración con dato concreto",
       "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
       "tag": "· Categoría ·",
@@ -931,7 +931,7 @@ Devolvé EXACTAMENTE este JSON (sin texto adicional):
     }},
     {{
       "id": "{hoy}-sec2",
-      "titulo": "Título (máx 12 palabras)",
+      "titulo": "Título (máx 12 palabras; oración completa con verbo, sin estilo telegráfico)",
       "bajada": "Una oración con dato concreto",
       "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
       "tag": "· Categoría ·",
@@ -945,7 +945,7 @@ Devolvé EXACTAMENTE este JSON (sin texto adicional):
   ],
   "deportes": {{
     "id": "{hoy}-dep",
-    "titulo": "Título (máx 12 palabras)",
+    "titulo": "Título (máx 12 palabras; oración completa con verbo, sin estilo telegráfico)",
     "bajada": "Una oración con dato concreto",
     "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
     "tag": "🏃 Deportes",
@@ -959,7 +959,7 @@ Devolvé EXACTAMENTE este JSON (sin texto adicional):
   }},{seccion_domingo}
   "negocios": {{
     "id": "{hoy}-neg",
-    "titulo": "Título sobre economía/empresas patagónicas (máx 12 palabras)",
+    "titulo": "Título sobre economía/empresas patagónicas (máx 12 palabras; oración completa con verbo, sin estilo telegráfico)",
     "bajada": "Una oración con dato económico concreto",
     "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
     "tag": "💼 Economía",
