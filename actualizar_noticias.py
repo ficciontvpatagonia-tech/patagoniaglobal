@@ -2388,6 +2388,16 @@ def inyectar_tapa_en_index(datos):
         nuevo, flags=re.DOTALL
     )
 
+    # ── Fecha de cabecera y ticker estáticos (fallback sin JS / para Google) ──
+    if datos.get("fecha_display"):
+        nuevo = re.sub(r'(<span class="fecha" id="fecha-display">)[^<]*(</span>)',
+                       lambda m: f'{m.group(1)}{e(datos["fecha_display"])} · Patagonia Argentina y Chilena{m.group(2)}',
+                       nuevo, count=1)
+    if datos.get("ticker"):
+        nuevo = re.sub(r'(id="ticker-texto">)[^<]*(</div>)',
+                       lambda m: f'{m.group(1)}\n    {e(" · ".join(datos["ticker"]))}\n  {m.group(2)}',
+                       nuevo, count=1)
+
     # ── Inyectar fb:pages meta tag ───────────────────────────────────────────
     fb_page_id = os.environ.get("FACEBOOK_PAGE_ID", "")
     if fb_page_id:
@@ -2770,6 +2780,24 @@ def main():
                 ids_portada.add(reemplazo['id'])
             else:
                 print(f"     ⚠ Sin reemplazo disponible — se mantiene (revisar manualmente)")
+
+    # Notas de sección (deportes/negocios/cultura/turismo): mismo control contra el
+    # historial Y contra la portada de hoy (antes solo se revisaban tapa+secundarias,
+    # y una nota de sección podía repetir el tema de una de portada el mismo día).
+    _hoy_tmp = datetime.now().strftime('%Y%m%d')
+    _portada_hoy = [{"id": f"{_hoy_tmp}-portada-{i}", "titulo": n.get("titulo"), "fuente": n.get("fuente")}
+                    for i, n in enumerate([tapa] + secundarias) if n and n.get("titulo")]
+    _secciones = {"deportes": deportes, "negocios": negocios, "cultura": cultura, "turismo": turismo}
+    for _nombre, _nota in _secciones.items():
+        if not _nota or not _nota.get("titulo"):
+            continue
+        _dup = verificar_duplicado_tematico(_nota, _portada_hoy + list(historial))
+        if _dup:
+            print(f"\n  ⚠ DUPLICADO TEMÁTICO en sección {_nombre}: \"{_nota['titulo'][:70]}\" "
+                  f"(similitud {_dup[2]:.0%} con {_dup[1]}) → se omite")
+            _secciones[_nombre] = None
+    deportes, negocios, cultura, turismo = (_secciones["deportes"], _secciones["negocios"],
+                                            _secciones["cultura"], _secciones["turismo"])
 
     # Slugificar IDs de notas auto-generadas
     hoy_slug = datetime.now().strftime('%Y%m%d')
@@ -3304,8 +3332,12 @@ def generar_paginas_og(notas):
                               if firma_martineau else '')
                            + '</div>')
         else:
+            _url_fuente = str(nota.get("url_original", "") or "")
+            _fuente_nombre = (f'<a href="{ea(_url_fuente)}" target="_blank" rel="noopener" '
+                              f'style="color:inherit;"><strong>{e(fuente)}</strong></a>'
+                              if _url_fuente.startswith("http") else f'<strong>{e(fuente)}</strong>')
             fuente_html = (f'<div class="nota-fuente"><strong>Fuente original:</strong> '
-                           f'Esta nota fue elaborada con información de <strong>{e(fuente)}</strong>.</div>')
+                           f'Esta nota fue elaborada con información de {_fuente_nombre}.</div>')
 
         html_out = f"""<!DOCTYPE html>
 <html lang="es">
