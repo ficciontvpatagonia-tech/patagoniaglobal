@@ -98,7 +98,12 @@ jobs:
           git add notas/
           git add temas/   # páginas de sección por tema (las genera generar_paginas_temas; antes no se commiteaban → sitemap apuntaba a 404)
           git diff --staged --quiet || git commit -m "Noticias actualizadas — $(date +'%d/%m/%Y')"
-          git push
+          # Si alguien pusheó mientras corría el Action (27/10: push manual a las 15:02Z), rebasar y reintentar
+          for i in 1 2 3; do
+            git push && break
+            git pull --rebase -X theirs origin main || git rebase --abort
+          done
+          git diff origin/main --quiet || git push
 
       - name: Validar SEO páginas raíz
         run: |
