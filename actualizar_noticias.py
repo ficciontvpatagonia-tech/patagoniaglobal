@@ -1856,7 +1856,12 @@ def _foto_sin_marca_ajena(data):
                     "con cada caja en coordenadas normalizadas 0 a 1 desde la esquina superior izquierda "
                     "(x0<x1, y0<y1), ajustada a todo el elemento. Si no hay ninguno: "
                     '{"limpia": true, "marcas": []}. Un collage o captura de pantalla entera es limpia=false '
-                    "con una caja que cubra casi toda la imagen.")},
+                    "con una caja que cubra casi toda la imagen. "
+                    "ADEMÁS agregá dos campos booleanos al JSON: "
+                    '"fondo_medio": true si la foto es una toma de estudio/redacción/radio/TV con el logo o cartel '
+                    "del propio medio como fondo (por ejemplo un fondo rojo con el logo de un diario o radio, como Tiempo 97.5 FM, detrás de "
+                    'una persona entrevistada), aunque el logo sea parte de la escena; y "cabeza_cortada": true si '
+                    "a alguna persona se le corta la cabeza o la cara contra el borde de la imagen.")},
             ]}])
         txt = r.content[0].text.strip()
         i, j = txt.find("{"), txt.rfind("}") + 1
@@ -1868,8 +1873,12 @@ def _foto_sin_marca_ajena(data):
                 x0, y0, x1, y1 = [max(0.0, min(1.0, float(v))) for v in c]
                 if x1 > x0 and y1 > y0:
                     cajas.append([x0, y0, x1, y1])
+        fondo_medio = bool(d.get("fondo_medio"))
+        if fondo_medio:                                  # estudio con logo del propio medio: no se arregla recortando
+            cajas = [[0.0, 0.0, 1.0, 1.0]]
         limpia = bool(d.get("limpia")) and not cajas
-        return {"limpia": limpia, "marcas": cajas}
+        return {"limpia": limpia, "marcas": cajas, "fondo_medio": fondo_medio,
+                "cabeza_cortada": bool(d.get("cabeza_cortada"))}
     except Exception as e:
         print(f"[visión no disponible: {str(e)[:50]}]", end=" ")
         return None
@@ -2010,6 +2019,26 @@ def elegir_mejor_foto_fuente(nota, nota_id):
     cand.sort(key=lambda c: c[0], reverse=True)
     print(f"{len(cand)} candidata(s): " + ", ".join(f"{c[1]}×{c[2]}" for c in cand), end=" · ")
 
+    # Tiempo Sur: sus fotos de estudio (fondo rojo con el logo "Tiempo 97.5 FM" de su propia radio/redacción)
+    # no se usan (Marto, 28/10/2026). Regla sin visión: mucho rojo corporativo → se descarta la candidata.
+    if "tiemposur" in str(nota.get("url_original", "")).lower():
+        sin_rojo = []
+        for c in cand:
+            try:
+                import numpy as np
+                a = np.asarray(Image.open(io.BytesIO(c[4])).convert("RGB"), dtype=np.int16)
+                rojo = ((a[..., 0] > 130) & (a[..., 1] < 80) & (a[..., 2] < 80) & (a[..., 0] - a[..., 1] > 80)).mean()
+            except Exception:
+                rojo = 0.0
+            if rojo >= 0.12:
+                print(f"{c[1]}×{c[2]} fondo rojo de estudio de Tiempo Sur ✗", end=" · ")
+            else:
+                sin_rojo.append(c)
+        cand = sin_rojo
+        if not cand:
+            print("→ alternativa (foto propia/Unsplash por tema)")
+            return None
+
     elegida = None
     for area, w, hh, v, data in cand[:3]:
         res = _foto_sin_marca_ajena(data)
@@ -2021,7 +2050,9 @@ def elegir_mejor_foto_fuente(nota, nota_id):
         if box:
             data2, tam2 = _aplicar_recorte_sin_perdida(data, box)
             res2 = _foto_sin_marca_ajena(data2)
-            if res2 is None or res2["limpia"]:
+            if res2 is not None and res2.get("cabeza_cortada"):
+                print(f"{w}×{hh} el recorte corta una cabeza ✗", end=" · ")
+            elif res2 is None or res2["limpia"]:
                 print(f"{w}×{hh} con marca → recorte mínimo {tam2[0]}×{tam2[1]} ✓", end=" · ")
                 elegida = (tam2[0], tam2[1], v, data2)
                 break
