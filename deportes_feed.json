@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261026-gimnastas-de-agipa-se-coronan-campeonas-en-rio-gallegos-dep",
+    "id": "20261028-rio-negro-y-neuquen-sostienen-su-nivel-en-futbol-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Gimnastas de Agipa se coronan campeonas en Río Gallegos",
-    "bajada": "El representativo de la Asociación de Gimnasia de Punta Arenas ganó el torneo Vientos del Sur, organizado por Boxing Club en la capital de Santa Cruz.",
-    "imagen": "fotos/foto-20261026-gimnastas-de-agipa-se-coronan-campeonas-en-rio-gallegos-dep.webp",
-    "meta": "Hoy · La Prensa Austral (Magallanes)"
+    "titulo": "Río Negro y Neuquén sostienen su nivel en fútbol, básquet y vóley en los Juegos de la Araucanía",
+    "bajada": "Las delegaciones argentinas siguen firmes en los Juegos de la Araucanía 2026, el torneo binacional que enfrenta a selecciones de la Patagonia argentina y chilena.",
+    "imagen": "fotos/foto-20261028-rio-negro-y-neuquen-sostienen-su-nivel-en-futbol-dep.webp",
+    "meta": "Hoy · Diario Río Negro"
   },
   "secundarias": [
+    {
+      "id": "20261026-gimnastas-de-agipa-se-coronan-campeonas-en-rio-gallegos-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Gimnastas de Agipa se coronan campeonas en Río Gallegos",
+      "bajada": "El representativo de la Asociación de Gimnasia de Punta Arenas ganó el torneo Vientos del Sur, organizado por Boxing Club en la capital de Santa Cruz.",
+      "imagen": "fotos/foto-20261026-gimnastas-de-agipa-se-coronan-campeonas-en-rio-gallegos-dep.webp",
+      "meta": "Hoy · La Prensa Austral (Magallanes)"
+    },
     {
       "id": "20261025-caleta-olivia-y-pico-truncado-debutan-en-el-nacional-dep",
       "tag": "🤾 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Una docena de equipos participan desde este domingo en el Torneo Nacional de Clubes Adultos C de handball, organizado por la Federación de Chubut y fiscalizado por la Confederación Argentina. Caleta Olivia y Pico Truncado representan a Santa Cruz.",
       "imagen": "fotos/foto-20261025-caleta-olivia-y-pico-truncado-debutan-en-el-nacional-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El Club Indoor de Punta Arenas reúne a 230 jugadores en la cuarta y última fecha de la Liga de Pádel Magallanes, con presencia de competidores de Río Gallegos y otras localidades.",
       "imagen": "fotos/foto-20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep-unsplash.webp",
       "meta": "Hoy · La Prensa Austral (Magallanes)"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261020-la-arqueria-patagonica-desafia-distancias-y-climas-dep",
       "tag": "🏹 Deportes",
