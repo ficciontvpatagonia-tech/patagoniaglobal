@@ -2,7 +2,7 @@ name: Actualizar Noticias
 
 on:
   schedule:
-    - cron: '0 9 * * *'    # Todos los días a las 6:00 AM hora Argentina (UTC-3)
+    - cron: '7 7 * * *'    # 4:07 AM hora Argentina (UTC-3). Hora no redonda y temprana: GitHub demora estos cron 3-7 h, así debería caer ~8-9 AM ART
   workflow_dispatch:        # También disponible manual desde GitHub
 
 permissions:
