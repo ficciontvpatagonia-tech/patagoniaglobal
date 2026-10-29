@@ -772,6 +772,40 @@ def fetch_noticias_crudas():
 #  CLAUDE — REESCRITURA EDITORIAL
 # ══════════════════════════════════════════════════════════
 
+def texto_articulo_fuente(url, max_chars=2600):
+    """Texto de los párrafos del artículo fuente (nombres, cifras, lugares). '' si falla."""
+    import html as _html
+    from urllib.error import URLError
+    if not url:
+        return ""
+    try:
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        })
+        with urllib.request.urlopen(req, timeout=8) as resp:
+            raw = resp.read(600000).decode("utf-8", errors="ignore")
+        raw = re.sub(r"<(script|style|nav|footer|header)[^>]*>.*?</\1>", "", raw, flags=re.S | re.I)
+        pars = []
+        for p in re.findall(r"<p[^>]*>(.*?)</p>", raw, flags=re.S | re.I):
+            t = re.sub(r"\s+", " ", _html.unescape(re.sub(r"<[^>]+>", "", p))).strip()
+            if len(t) >= 70:
+                pars.append(t)
+        return "\n".join(pars)[:max_chars]
+    except Exception:
+        return ""
+
+
+def enriquecer_con_texto_fuente(noticias):
+    """Agrega 'texto_fuente' a cada candidata (en paralelo) para que el LLM no escriba solo con el resumen RSS."""
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        textos = list(ex.map(lambda n: texto_articulo_fuente(n.get("url", "")), noticias))
+    for n, t in zip(noticias, textos):
+        n["texto_fuente"] = t
+    ok = sum(1 for t in textos if t)
+    print(f"  Texto completo de la fuente leído: {ok}/{len(noticias)}")
+
+
 def reescribir_con_claude(noticias_crudas, historial, es_domingo=False):
     """
     Claude elige y reescribe notas NUEVAS del RSS de hoy para cada sección:
@@ -796,13 +830,15 @@ def reescribir_con_claude(noticias_crudas, historial, es_domingo=False):
         print("  ⚠ No hay noticias nuevas para agregar hoy.")
         return None
 
+    enriquecer_con_texto_fuente(noticias_nuevas)
     listado = ""
     for i, n in enumerate(noticias_nuevas):
+        bloque_texto = f"\nTexto de la fuente:\n{n['texto_fuente']}" if n.get("texto_fuente") else ""
         listado += f"""
 --- Noticia {i+1} ---
 Fuente: {n['fuente']} ({n['region']})
 Título original: {n['titulo_original']}
-Resumen: {n['resumen_original']}
+Resumen: {n['resumen_original']}{bloque_texto}
 URL: {n['url']}
 """
 
@@ -870,6 +906,7 @@ IDENTIDAD EDITORIAL:
 - Cada nota tiene perspectiva propia: qué significa para la Patagonia binacional, antecedentes, qué viene después.
 - Si el hecho cruza la frontera Argentina-Chile, marcarlo siempre.
 - NUNCA copiés párrafos de la fuente. Reescribí con voz propia.
+- FIDELIDAD A LA FUENTE: usá los datos del "Texto de la fuente". Conservá los NOMBRES de investigadores, autoridades y organismos con su cargo (ej. quién lidera un proyecto, instituciones que participan), el lugar exacto, las cifras, fechas y citas relevantes. Es lo que más valoran los lectores. No inventes mecanismos, resultados ni cifras que la fuente no diga; si un dato no está en el texto, no lo agregues. El análisis propio va después de los hechos, nunca en su lugar.
 
 CRITERIO DE SELECCIÓN:
 ✓ Medio Ambiente: glaciares, agua, fauna, ecosistemas, legislación ambiental, especies invasoras, contaminación
