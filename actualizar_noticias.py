@@ -806,6 +806,36 @@ def enriquecer_con_texto_fuente(noticias):
     print(f"  Texto completo de la fuente leído: {ok}/{len(noticias)}")
 
 
+def auditar_fidelidad(datos, noticias):
+    """Avisa (no bloquea) si una nota generada trae cifras o nombres propios que no están en su fuente."""
+    import unicodedata as _u
+    def norm(t):
+        return _u.normalize("NFKD", t).encode("ascii", "ignore").decode().lower()
+    por_url = {_normalizar_url(n["url"]): n for n in noticias}
+    def notas_de(o):
+        if isinstance(o, dict):
+            if o.get("cuerpo") and o.get("url_original"):
+                yield o
+            for v in o.values():
+                yield from notas_de(v)
+        elif isinstance(o, list):
+            for v in o:
+                yield from notas_de(v)
+    for nota in notas_de(datos):
+        src = por_url.get(_normalizar_url(nota["url_original"]))
+        if not src:
+            continue
+        base = norm(" ".join([src.get("titulo_original", ""), src.get("resumen_original", ""), src.get("texto_fuente", "")]))
+        if not src.get("texto_fuente"):
+            print(f"  ⚠ [{nota.get('id')}] sin texto completo de la fuente: revisar a mano")
+            continue
+        cuerpo = nota["cuerpo"]
+        nums = {n for n in re.findall(r"\d[\d.,]*", cuerpo) if len(n) > 1 and n.strip(".,") not in base}
+        nombres = {m for m in re.findall(r"(?<![.¿¡])\s([A-ZÁÉÍÓÚ][a-záéíóúñ]+(?:\s[A-ZÁÉÍÓÚ][a-záéíóúñ]+)+)", cuerpo) if norm(m) not in base}
+        if nums or nombres:
+            print(f"  ⚠ [{nota.get('id')}] datos que no están en la fuente → cifras: {sorted(nums)[:6]} · nombres: {sorted(nombres)[:6]}")
+
+
 def reescribir_con_claude(noticias_crudas, historial, es_domingo=False):
     """
     Claude elige y reescribe notas NUEVAS del RSS de hoy para cada sección:
@@ -869,7 +899,7 @@ URL: {n['url']}
     "id": "{hoy}-cul",
     "titulo": "Título (máx 12 palabras; oración completa con verbo, sin estilo telegráfico)",
     "bajada": "Una oración con dato concreto",
-    "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
+    "cuerpo": "Artículo completo con párrafos separados por \\n\\n (400-600 palabras)",
     "tag": "🎭 Cultura",
     "categoria": "cultura|historia|pueblos originarios",
     "fuente": "...",
@@ -883,7 +913,7 @@ URL: {n['url']}
     "id": "{hoy}-tur",
     "titulo": "Título (máx 12 palabras; oración completa con verbo, sin estilo telegráfico)",
     "bajada": "Una oración con dato concreto",
-    "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
+    "cuerpo": "Artículo completo con párrafos separados por \\n\\n (400-600 palabras)",
     "tag": "🏔 Turismo",
     "categoria": "turismo",
     "fuente": "...",
@@ -907,6 +937,7 @@ IDENTIDAD EDITORIAL:
 - Si el hecho cruza la frontera Argentina-Chile, marcarlo siempre.
 - NUNCA copiés párrafos de la fuente. Reescribí con voz propia.
 - FIDELIDAD A LA FUENTE: usá los datos del "Texto de la fuente". Conservá los NOMBRES de investigadores, autoridades y organismos con su cargo (ej. quién lidera un proyecto, instituciones que participan), el lugar exacto, las cifras, fechas y citas relevantes. Es lo que más valoran los lectores. No inventes mecanismos, resultados ni cifras que la fuente no diga; si un dato no está en el texto, no lo agregues. El análisis propio va después de los hechos, nunca en su lugar.
+- ESTILO GLOBALpatagonia: abrí con el hecho concreto (quién, qué, dónde, cuánto). Seguí con las personas e instituciones, cómo funciona o qué pasó, y el contexto regional. Cerrá con lo que significa para la Patagonia binacional (comparación con el otro lado de la frontera, antecedentes, qué falta o qué viene), marcando con claridad qué es dato de la fuente y qué es lectura nuestra. Una nota nuestra tiene que ser más completa y útil que la original, nunca más pobre ni con relleno genérico.
 
 CRITERIO DE SELECCIÓN:
 ✓ Medio Ambiente: glaciares, agua, fauna, ecosistemas, legislación ambiental, especies invasoras, contaminación
@@ -943,7 +974,7 @@ Devolvé EXACTAMENTE este JSON (sin texto adicional):
     "id": "{hoy}-tapa",
     "titulo": "Título reescrito (máx 15 palabras; oración completa con verbo, sin estilo telegráfico)",
     "bajada": "Bajada con contexto y ángulo propio (2-3 oraciones)",
-    "cuerpo": "Artículo completo con párrafos separados por \\n\\n (350-500 palabras)",
+    "cuerpo": "Artículo completo con párrafos separados por \\n\\n (450-650 palabras)",
     "tag": "emoji + categoría",
     "categoria": "medio ambiente|pueblos originarios|turismo|cultura|ciencia|producción|conectividad|bienestar|pesca|historia|general",
     "fuente": "Nombre del medio original",
@@ -957,7 +988,7 @@ Devolvé EXACTAMENTE este JSON (sin texto adicional):
       "id": "{hoy}-sec1",
       "titulo": "Título (máx 12 palabras; oración completa con verbo, sin estilo telegráfico)",
       "bajada": "Una oración con dato concreto",
-      "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
+      "cuerpo": "Artículo completo con párrafos separados por \\n\\n (400-600 palabras)",
       "tag": "· Categoría ·",
       "categoria": "...",
       "fuente": "...",
@@ -970,7 +1001,7 @@ Devolvé EXACTAMENTE este JSON (sin texto adicional):
       "id": "{hoy}-sec2",
       "titulo": "Título (máx 12 palabras; oración completa con verbo, sin estilo telegráfico)",
       "bajada": "Una oración con dato concreto",
-      "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
+      "cuerpo": "Artículo completo con párrafos separados por \\n\\n (400-600 palabras)",
       "tag": "· Categoría ·",
       "categoria": "...",
       "fuente": "...",
@@ -984,7 +1015,7 @@ Devolvé EXACTAMENTE este JSON (sin texto adicional):
     "id": "{hoy}-dep",
     "titulo": "Título (máx 12 palabras; oración completa con verbo, sin estilo telegráfico)",
     "bajada": "Una oración con dato concreto",
-    "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
+    "cuerpo": "Artículo completo con párrafos separados por \\n\\n (400-600 palabras)",
     "tag": "🏃 Deportes",
     "categoria": "deportes",
     "fuente": "...",
@@ -998,7 +1029,7 @@ Devolvé EXACTAMENTE este JSON (sin texto adicional):
     "id": "{hoy}-neg",
     "titulo": "Título sobre economía/empresas patagónicas (máx 12 palabras; oración completa con verbo, sin estilo telegráfico)",
     "bajada": "Una oración con dato económico concreto",
-    "cuerpo": "Artículo completo con párrafos separados por \\n\\n (300-450 palabras)",
+    "cuerpo": "Artículo completo con párrafos separados por \\n\\n (400-600 palabras)",
     "tag": "💼 Economía",
     "categoria": "economia",
     "fuente": "...",
@@ -1063,6 +1094,7 @@ REGLAS CRÍTICAS:
             except json.JSONDecodeError:
                 datos = json.loads(_reparar_json(texto))  # si también falla, sube al except de abajo
             print("OK")
+            auditar_fidelidad(datos, noticias_nuevas)
             return datos
         except json.JSONDecodeError as e:
             ultimo_error = e
