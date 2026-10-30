@@ -76,11 +76,11 @@ EN = [
 "🚌", "Puerto Natales – Punta Arenas",  # 149-150
 "About 250 km, around 3 hours. There are many departures a day in summer and fewer in winter. You buy tickets at the terminal or online.",  # 151
 "⛴️", "Punta Arenas – Ushuaia",  # 152-153
-"The longest leg: 10 to 12 hours by bus, with a ferry crossing of the Strait of Magellan (about 20 minutes) and a border check at San Sebastián. The companies do not run every day and the ferry depends on the weather.",  # 154
+"The longest leg: 10 to 12 hours by bus, with a ferry crossing of the Strait of Magellan (30 to 45 minutes, depending on the weather) and a border check at San Sebastián. The companies do not run every day and the ferry depends on the weather.",  # 154
 "✈️", "Flying as an alternative",  # 155-156
 "If time is short, you can fly between Punta Arenas and Ushuaia or from El Calafate to the rest of the country, and keep the bus only for the shorter legs. Flights change by season: check before planning the trip.",  # 157
 "A car boards the ferry that crosses the Strait of Magellan to Tierra del Fuego", "Crossing the Strait of Magellan",  # 158-159
-"To reach Tierra del Fuego you have to cross the Strait on a ferry, at the Primera Angostura crossing, between Punta Delgada and Bahía Azul. It carries buses, cars and trucks, and the crossing takes about 20 minutes. If it is very windy, it is delayed or cancelled: that is why it is wise to leave some margin in the day.",  # 160
+"To reach Tierra del Fuego you have to cross the Strait on a ferry, at the Primera Angostura crossing, between Punta Delgada and Bahía Azul. It carries buses, cars and trucks, and the crossing takes 30 to 45 minutes depending on the weather. If it is very windy, it is delayed or cancelled: that is why it is wise to leave some margin in the day.",  # 160
 "Border:",  # 161
 "this route crosses between Argentina and Chile twice: when going from El Calafate to Puerto Natales and when going from Punta Arenas to Ushuaia. Bring your passport (or the valid document for your nationality) and do not carry fresh fruit, meat, dairy or seeds into Chile: they are checked and confiscated. Always check requirements, schedules and the status of the crossings on official sites before you leave.",  # 162
 "Doing it by rental car",  # 163
@@ -208,11 +208,11 @@ PT = [
 "🚌", "Puerto Natales – Punta Arenas",  # 149-150
 "Cerca de 250 km, em torno de 3 horas. Há muitas saídas diárias no verão e menos no inverno. Compra-se no terminal ou on-line.",  # 151
 "⛴️", "Punta Arenas – Ushuaia",  # 152-153
-"O trecho mais longo: de 10 a 12 horas de ônibus, com travessia do Estreito de Magalhães de balsa (cerca de 20 minutos) e controle de fronteira em San Sebastián. As empresas não saem todos os dias e a balsa depende do clima.",  # 154
+"O trecho mais longo: de 10 a 12 horas de ônibus, com travessia do Estreito de Magalhães de balsa (de 30 a 45 minutos, conforme o clima) e controle de fronteira em San Sebastián. As empresas não saem todos os dias e a balsa depende do clima.",  # 154
 "✈️", "Alternativa de avião",  # 155-156
 "Se o tempo apertar, é possível voar entre Punta Arenas e Ushuaia ou de El Calafate para o resto do país, e reservar o ônibus só para os trechos mais curtos. Os voos mudam por temporada: verifique antes de montar a viagem.",  # 157
 "Um carro embarca na balsa que atravessa o Estreito de Magalhães rumo à Terra do Fogo", "A travessia do Estreito de Magalhães",  # 158-159
-"Para chegar à Terra do Fogo é preciso atravessar o Estreito de balsa, na passagem de Primera Angostura, entre Punta Delgada e Bahía Azul. Embarca ônibus, carros e caminhões, e a travessia dura cerca de 20 minutos. Se houver muito vento, atrasa ou é suspensa: por isso convém deixar margem no dia.",  # 160
+"Para chegar à Terra do Fogo é preciso atravessar o Estreito de balsa, na passagem de Primera Angostura, entre Punta Delgada e Bahía Azul. Embarca ônibus, carros e caminhões, e a travessia dura de 30 a 45 minutos conforme o clima. Se houver muito vento, atrasa ou é suspensa: por isso convém deixar margem no dia.",  # 160
 "Fronteira:",  # 161
 "este roteiro cruza duas vezes entre Argentina e Chile: ao ir de El Calafate a Puerto Natales e ao ir de Punta Arenas a Ushuaia. Leve o passaporte (ou o documento válido para sua nacionalidade) e não leve frutas, carnes, laticínios nem sementes frescas ao passar para o Chile: são controlados e confiscados. Verifique sempre requisitos, horários e o estado das passagens nos sites oficiais antes de sair.",  # 162
 "Fazer de carro alugado",  # 163
@@ -340,11 +340,11 @@ ZH = [
 "🚌", "纳塔莱斯港 – 蓬塔阿雷纳斯",  # 149-150
 "约250公里，大约3小时。夏季每天班次很多，冬季较少。可在车站或网上购票。",  # 151
 "⛴️", "蓬塔阿雷纳斯 – 乌斯怀亚",  # 152-153
-"最长的一段：巴士10至12小时，包括乘渡轮横渡麦哲伦海峡（约20分钟）和在圣塞巴斯蒂安过境检查。各公司并非每天发车，渡轮也取决于天气。",  # 154
+"最长的一段：巴士10至12小时，包括乘渡轮横渡麦哲伦海峡（30至45分钟，视天气而定）和在圣塞巴斯蒂安过境检查。各公司并非每天发车，渡轮也取决于天气。",  # 154
 "✈️", "乘飞机替代",  # 155-156
 "如果时间紧，可以在蓬塔阿雷纳斯和乌斯怀亚之间飞，或从埃尔卡拉法特飞往全国其他地方，只把巴士留给较短的路段。航班随季节变化：规划行程前请先确认。",  # 157
 "一辆汽车驶上横渡麦哲伦海峡前往火地岛的渡轮", "横渡麦哲伦海峡",  # 158-159
-"要到火地岛，必须乘渡轮横渡海峡，渡口在第一窄口（Primera Angostura），位于蓬塔德尔加达与阿苏尔湾之间。渡轮可载巴士、汽车和卡车，航程约20分钟。风大时会延误或停航：所以行程里最好留出余量。",  # 160
+"要到火地岛，必须乘渡轮横渡海峡，渡口在第一窄口（Primera Angostura），位于蓬塔德尔加达与阿苏尔湾之间。渡轮可载巴士、汽车和卡车，航程30至45分钟，视天气而定。风大时会延误或停航：所以行程里最好留出余量。",  # 160
 "边境：",  # 161
 "本线路在阿根廷和智利之间过境两次：从埃尔卡拉法特去纳塔莱斯港时，以及从蓬塔阿雷纳斯去乌斯怀亚时。请携带护照（或适用于您国籍的有效证件），进入智利时不要携带新鲜水果、肉类、乳制品和种子：会被检查并没收。出发前请务必在官方网站上确认要求、时间和过境点状态。",  # 162
 "租车自驾",  # 163

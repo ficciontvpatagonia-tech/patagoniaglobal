@@ -217,7 +217,7 @@ hero = f'''<div class="hero">
       <div class="llegar-item">
         <div class="icono">⛴️</div>
         <h4>Punta Arenas – Ushuaia</h4>
-        <p>El tramo más largo: de 10 a 12 horas de bus, con cruce del Estrecho de Magallanes en transbordador (unos 20 minutos) y control de frontera en San Sebastián. Las empresas no salen todos los días y el transbordador depende del clima.</p>
+        <p>El tramo más largo: de 10 a 12 horas de bus, con cruce del Estrecho de Magallanes en transbordador (entre 30 y 45 minutos, según el clima) y control de frontera en San Sebastián. Las empresas no salen todos los días y el transbordador depende del clima.</p>
       </div>
       <div class="llegar-item">
         <div class="icono">✈️</div>
@@ -225,7 +225,7 @@ hero = f'''<div class="hero">
         <p>Si el tiempo apremia, se puede volar entre Punta Arenas y Ushuaia o desde El Calafate hacia el resto del país, y reservar el bus solo para los tramos más cortos. Los vuelos cambian por temporada: verificá antes de armar el viaje.</p>
       </div>
     </div>
-{item("estrecho-magallanes-barcaza-embarque.webp", "Un auto embarca en la barcaza que cruza el Estrecho de Magallanes hacia Tierra del Fuego", "El cruce del Estrecho de Magallanes", "Para llegar a Tierra del Fuego hay que cruzar el Estrecho en una barcaza, en el paso de Primera Angostura, entre Punta Delgada y Bahía Azul. Embarca buses, autos y camiones, y el cruce dura unos 20 minutos. Si hay mucho viento, se demora o se suspende: por eso conviene dejar margen en la jornada.")}
+{item("estrecho-magallanes-barcaza-embarque.webp", "Un auto embarca en la barcaza que cruza el Estrecho de Magallanes hacia Tierra del Fuego", "El cruce del Estrecho de Magallanes", "Para llegar a Tierra del Fuego hay que cruzar el Estrecho en una barcaza, en el paso de Primera Angostura, entre Punta Delgada y Bahía Azul. Embarca buses, autos y camiones, y el cruce dura entre 30 y 45 minutos según el clima. Si hay mucho viento, se demora o se suspende: por eso conviene dejar margen en la jornada.")}
     <div class="nota-oficial"><strong>Frontera:</strong> este recorrido cruza dos veces entre Argentina y Chile: al ir de El Calafate a Puerto Natales y al ir de Punta Arenas a Ushuaia. Llevá el pasaporte (o el documento habilitado para tu nacionalidad) y no cargues frutas, carnes, lácteos ni semillas frescas al pasar a Chile: se controlan y se decomisan. Verificá siempre requisitos, horarios y estado de los pasos en los sitios oficiales antes de salir.</div>
   </div>
 
