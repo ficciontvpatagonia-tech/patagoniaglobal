@@ -2717,8 +2717,8 @@ function fillerCardHTML(tipo, context, span) {
   return '';
 }
 
-function llenarHuecos(container, cantidadActual, maxSlots, context) {
-  const disponibles = ['cinemateca', 'newsletter'].filter(t => !FILLER_USADOS.has(t));
+function llenarHuecos(container, cantidadActual, maxSlots, context, pool) {
+  const disponibles = (pool || ['cinemateca', 'newsletter']).filter(t => !FILLER_USADOS.has(t));
   const cuantos = Math.min(maxSlots - cantidadActual, disponibles.length);
   for (let i = 0; i < cuantos; i++) {
     FILLER_USADOS.add(disponibles[i]);
@@ -2735,11 +2735,11 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// ── GUIAS: carga desde guias.json — máx 8 ──
+// ── GUIAS: carga desde guias.json — máx 12 (10 guías + 2 promos de secciones mientras se completa la serie; 16 = grilla exacta) ──
 function renderGuias(guias) {
   const container = document.getElementById("guias-container");
   if (!container || !guias || !guias.length) return;
-  const maxSlots = 8;
+  const maxSlots = 12;
   const visibles = guias.slice(0, maxSlots);
   container.innerHTML = visibles.map(g => {
     const img = g.imagen
@@ -2758,7 +2758,7 @@ function renderGuias(guias) {
         </div>
       </a>`;
   }).join("");
-  llenarHuecos(container, visibles.length, maxSlots, 'guia');
+  llenarHuecos(container, visibles.length, maxSlots, 'guia', ['clima', 'cinemateca', 'newsletter']);
 }
 
 fetch("guias.json")
