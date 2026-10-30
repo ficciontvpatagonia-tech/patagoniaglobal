@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261028-rio-negro-y-neuquen-sostienen-su-nivel-en-futbol-dep",
+    "id": "20261030-club-andino-bariloche-suma-una-nueva-caminata-de-baja-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Río Negro y Neuquén sostienen su nivel en fútbol, básquet y vóley en los Juegos de la Araucanía",
-    "bajada": "Las delegaciones argentinas siguen firmes en los Juegos de la Araucanía 2026, el torneo binacional que enfrenta a selecciones de la Patagonia argentina y chilena.",
-    "imagen": "fotos/foto-20261028-rio-negro-y-neuquen-sostienen-su-nivel-en-futbol-dep.webp",
-    "meta": "Hoy · Diario Río Negro"
+    "titulo": "Club Andino Bariloche suma una nueva caminata de baja dificultad por el Cerro Villegas",
+    "bajada": "La salida del domingo 25 de octubre recorre 10 kilómetros y 280 metros de desnivel por la ladera norte-noroeste del Cerro Villegas y el Cerro Abrojo, ingresando por el Área Natural Protegida Río Limay.",
+    "imagen": "fotos/foto-20261030-club-andino-bariloche-suma-una-nueva-caminata-de-baja-dep.webp",
+    "meta": "Hoy · Club Andino Bariloche"
   },
   "secundarias": [
+    {
+      "id": "20261028-rio-negro-y-neuquen-sostienen-su-nivel-en-futbol-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Río Negro y Neuquén sostienen su nivel en fútbol, básquet y vóley en los Juegos de la Araucanía",
+      "bajada": "Las delegaciones argentinas siguen firmes en los Juegos de la Araucanía 2026, el torneo binacional que enfrenta a selecciones de la Patagonia argentina y chilena.",
+      "imagen": "fotos/foto-20261028-rio-negro-y-neuquen-sostienen-su-nivel-en-futbol-dep.webp",
+      "meta": "Hoy · Diario Río Negro"
+    },
     {
       "id": "20261026-gimnastas-de-agipa-se-coronan-campeonas-en-rio-gallegos-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El representativo de la Asociación de Gimnasia de Punta Arenas ganó el torneo Vientos del Sur, organizado por Boxing Club en la capital de Santa Cruz.",
       "imagen": "fotos/foto-20261026-gimnastas-de-agipa-se-coronan-campeonas-en-rio-gallegos-dep.webp",
       "meta": "Hoy · La Prensa Austral (Magallanes)"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261025-caleta-olivia-y-pico-truncado-debutan-en-el-nacional-dep",
       "tag": "🤾 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Una docena de equipos participan desde este domingo en el Torneo Nacional de Clubes Adultos C de handball, organizado por la Federación de Chubut y fiscalizado por la Confederación Argentina. Caleta Olivia y Pico Truncado representan a Santa Cruz.",
       "imagen": "fotos/foto-20261025-caleta-olivia-y-pico-truncado-debutan-en-el-nacional-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "El canotaje de Neuquén dice presente en el Mundial de la especialidad con Franco Balboa y una camada de jóvenes palistas que buscan dar el salto internacional.",
       "imagen": "fotos/foto-20261018-franco-balboa-y-las-promesas-neuquinas-afrontan-el-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
-    {
-      "id": "20261017-thiago-montes-de-rio-gallegos-a-la-seleccion-argentina-dep",
-      "tag": "🏀 Deportes",
-      "titulo": "Thiago Montes, de Río Gallegos a la selección argentina de básquet 3x3",
-      "bajada": "El joven de 17 años, formado en el Club San Miguel, fue convocado para representar al país en básquet 3x3 y realizará una gira de preparación en España.",
-      "imagen": "fotos/foto-20261017-thiago-montes-de-rio-gallegos-a-la-seleccion-argentina-dep.webp",
-      "meta": "Hoy · Tiempo Sur"
     }
   ]
 }
