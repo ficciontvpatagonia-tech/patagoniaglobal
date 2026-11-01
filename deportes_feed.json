@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261030-club-andino-bariloche-suma-una-nueva-caminata-de-baja-dep",
+    "id": "20261101-cientos-de-magallanicos-corrieron-por-las-jornadas-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Club Andino Bariloche suma una nueva caminata de baja dificultad por el Cerro Villegas",
-    "bajada": "La salida del domingo 25 de octubre recorre 10 kilómetros y 280 metros de desnivel por la ladera norte-noroeste del Cerro Villegas y el Cerro Abrojo, ingresando por el Área Natural Protegida Río Limay.",
-    "imagen": "fotos/foto-20261030-club-andino-bariloche-suma-una-nueva-caminata-de-baja-dep.webp",
-    "meta": "Hoy · Club Andino Bariloche"
+    "titulo": "Cientos de magallánicos corrieron por las Jornadas Magallánicas en el muelle Prat",
+    "bajada": "La corrida solidaria de Magallanes Puerto Sostenible, con circuitos de 2,5 y 5 kilómetros femenino y masculino, recaudó fondos para una de las campañas solidarias más significativas de la región.",
+    "imagen": "fotos/foto-20261101-cientos-de-magallanicos-corrieron-por-las-jornadas-dep.webp",
+    "meta": "Hoy · Diálogo Sur"
   },
   "secundarias": [
+    {
+      "id": "20261030-club-andino-bariloche-suma-una-nueva-caminata-de-baja-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Club Andino Bariloche suma una nueva caminata de baja dificultad por el Cerro Villegas",
+      "bajada": "La salida del domingo 25 de octubre recorre 10 kilómetros y 280 metros de desnivel por la ladera norte-noroeste del Cerro Villegas y el Cerro Abrojo, ingresando por el Área Natural Protegida Río Limay.",
+      "imagen": "fotos/foto-20261030-club-andino-bariloche-suma-una-nueva-caminata-de-baja-dep.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20261028-rio-negro-y-neuquen-sostienen-su-nivel-en-futbol-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Las delegaciones argentinas siguen firmes en los Juegos de la Araucanía 2026, el torneo binacional que enfrenta a selecciones de la Patagonia argentina y chilena.",
       "imagen": "fotos/foto-20261028-rio-negro-y-neuquen-sostienen-su-nivel-en-futbol-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261026-gimnastas-de-agipa-se-coronan-campeonas-en-rio-gallegos-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El representativo de la Asociación de Gimnasia de Punta Arenas ganó el torneo Vientos del Sur, organizado por Boxing Club en la capital de Santa Cruz.",
       "imagen": "fotos/foto-20261026-gimnastas-de-agipa-se-coronan-campeonas-en-rio-gallegos-dep.webp",
       "meta": "Hoy · La Prensa Austral (Magallanes)"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261025-caleta-olivia-y-pico-truncado-debutan-en-el-nacional-dep",
       "tag": "🤾 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Amparo de María y su entrenador Sergio de María, del club Arqueros del Viento, preparan el próximo torneo de aire libre en Ushuaia con una disciplina que gana adeptos en el fin del mundo.",
       "imagen": "fotos/foto-20261020-la-arqueria-patagonica-desafia-distancias-y-climas-dep.webp",
       "meta": "Hoy · Tiempo Sur (Santa Cruz)"
-    },
-    {
-      "id": "20261018-franco-balboa-y-las-promesas-neuquinas-afrontan-el-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Franco Balboa y las promesas neuquinas afrontan el Mundial de Canotaje",
-      "bajada": "El canotaje de Neuquén dice presente en el Mundial de la especialidad con Franco Balboa y una camada de jóvenes palistas que buscan dar el salto internacional.",
-      "imagen": "fotos/foto-20261018-franco-balboa-y-las-promesas-neuquinas-afrontan-el-dep.webp",
-      "meta": "Hoy · Diario Río Negro"
     }
   ]
 }
