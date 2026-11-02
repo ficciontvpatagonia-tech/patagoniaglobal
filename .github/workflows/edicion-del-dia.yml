@@ -41,7 +41,7 @@ jobs:
           python-version: '3.11'
 
       - name: Instalar dependencias
-        run: pip install reportlab Pillow
+        run: pip install reportlab Pillow pymupdf
 
       - name: Generar PDF (y mandarlo a Telegram)
         env:
@@ -53,6 +53,16 @@ jobs:
           if [ "${{ github.event.inputs.telegram }}" = "no" ]; then OPC="$OPC --no-enviar"; fi
           python3 _scripts/enviar_edicion_telegram.py $OPC
 
+      # Imagen de la portada (página 1): para subir al canal de WhatsApp, que no admite documentos
+      - name: Imagen de portada para WhatsApp
+        if: hashFiles('GLOBALpatagonia-edicion-del-dia.pdf') != ''
+        run: |
+          python3 - <<'PY'
+          import fitz
+          doc = fitz.open("GLOBALpatagonia-edicion-del-dia.pdf")
+          doc[0].get_pixmap(dpi=130).save("portada-del-dia.jpg", jpg_quality=82)
+          PY
+
       # El PDF NO se commitea al repo (cada día sumaría peso al historial):
       # se guarda como archivo de una release fija, que se pisa todos los días.
       - name: Actualizar la descarga fija (release)
@@ -63,4 +73,4 @@ jobs:
           gh release view edicion-del-dia >/dev/null 2>&1 || \
             gh release create edicion-del-dia --title "Edición del día (PDF)" \
               --notes "Última edición del día de GLOBALpatagonia. Se actualiza solo cada mañana."
-          gh release upload edicion-del-dia GLOBALpatagonia-edicion-del-dia.pdf --clobber
+          gh release upload edicion-del-dia GLOBALpatagonia-edicion-del-dia.pdf portada-del-dia.jpg --clobber
