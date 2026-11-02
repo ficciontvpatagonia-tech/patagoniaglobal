@@ -8,7 +8,7 @@ SUBS_FORM = B + "/#sec-newsletter"  # sección de suscripción del sitio (lista 
 
 L = {
  "es": dict(
-  lang="es", sfx="", pre="Medio independiente de noticias de la Patagonia, Malvinas y la Antártida",
+  lang="es", sfx="", pre="Toda la Patagonia Argentina – Chile en un solo lugar",
   tag="Noticias de la Patagonia argentina y chilena",
   hola="Hola,",
   intro="Te escribimos desde <b>GLOBALpatagonia</b>, un medio de noticias independiente que sigue lo que pasa en toda la Patagonia, a ambos lados de la cordillera, y también en el Pacífico sur, Malvinas, el Atlántico Sur y la Antártida: turismo, economía, ciencia, cultura, deportes, ambiente y conectividad. Publicamos en <b>español, inglés, portugués y chino</b>, con informes propios y herramientas pensadas para quien vive, viaja o trabaja en la Patagonia.",
@@ -32,7 +32,7 @@ L = {
   b1="Publicidad", b2="Apoyanos", h1="publicidad.html", h2="apoyanos.html",
   firma="Equipo GLOBALpatagonia", motivo="Te escribimos porque tu organización está vinculada al turismo o a la Patagonia, y creemos que este portal puede resultarte útil. Si no querés recibir más mensajes, <a href=\"#BAJA\" style=\"color:#7aadcc\">dá de baja tu dirección acá</a>. <a href=\"%s/privacidad.html\" style=\"color:#7aadcc\">Privacidad</a>."%B),
  "en": dict(
-  lang="en", sfx="-en", pre="Independent news from Patagonia, Malvinas and Antarctica",
+  lang="en", sfx="-en", pre="All of Argentine and Chilean Patagonia in one place",
   tag="News from Argentine and Chilean Patagonia",
   hola="Hello,",
   intro="We are writing from <b>GLOBALpatagonia</b>, an independent news outlet covering all of Patagonia, on both sides of the Andes, as well as the southern Pacific, Malvinas, the South Atlantic and Antarctica: tourism, economy, science, culture, sports, environment and connectivity. We publish in <b>Spanish, English, Portuguese and Chinese</b>, with original reporting and tools for anyone who lives, travels or works in Patagonia.",
@@ -58,7 +58,7 @@ L = {
 }
 
 def btn(href, txt, bg="#1c2d3d", fg="#fff"):
-    return f'<a href="{href}" style="display:inline-block;background:{bg};color:{fg};text-decoration:none;letter-spacing:1px;text-transform:uppercase;font-weight:bold;padding:14px 28px;font-family:Arial,sans-serif;font-size:13px">{txt}</a>'
+    return f'<a href="{href}" style="display:inline-block;border:2px solid #1c2d3d;color:#1c2d3d;text-decoration:none;letter-spacing:1px;text-transform:uppercase;font-weight:bold;padding:13px 26px;font-family:Arial,sans-serif;font-size:13px">{txt}</a>'
 
 def img(name, w, alt="", extra=""):
     return f'<img src="{IMG}{name}.jpg" width="{w}" alt="{alt}" style="display:block;width:100%;max-width:{w}px;height:auto;border:0;{extra}">'
@@ -86,13 +86,11 @@ def build(c):
       [("WhatsApp","https://whatsapp.com/channel/0029VbDPKE6DJ6Gyg2eQTH2j"),("Telegram","https://t.me/globalpatagonia"),("Instagram","https://www.instagram.com/global.patagonia"),("Facebook","https://www.facebook.com/PatagoniaGLOBAL"),("RSS",B+"/feed.xml")])
     H = 'font-family:Georgia,serif;font-size:22px;color:#1b2e42;font-weight:normal'
     S = 'font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#b03a2e'
-    return f'''<!DOCTYPE html><html lang="{c["lang"]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GLOBALpatagonia</title></head>
+    return f'''<!DOCTYPE html><html lang="{c["lang"]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light"><style>:root{{color-scheme:light only;supported-color-schemes:light}}</style><title>GLOBALpatagonia</title></head>
 <body style="margin:0;background:#f0ede8"><span style="display:none;max-height:0;overflow:hidden">{c["pre"]}</span>
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#f0ede8"><tr><td align="center" style="padding:0 0 24px">
 <table width="640" cellpadding="0" cellspacing="0" style="max-width:640px;width:100%;background:#ffffff">
-<tr><td align="center" bgcolor="#1f2a3c" style="background:#1f2a3c;padding:34px 20px 30px"><img src="{IMG}logo-gp.png" alt="GLOBALpatagonia" width="380" style="display:block;width:100%;max-width:380px;height:auto;border:0"><div style="font-family:Arial,sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#7aadcc;padding-top:14px">{c["tag"]}</div></td></tr>
-<tr><td>{img("hero-cuernos",640,"Cuernos del Paine")}</td></tr>
-<tr><td align="center" bgcolor="#1f2a3c" style="background:#1f2a3c;padding:34px 44px 38px;font-family:Georgia,serif;font-size:30px;line-height:38px;color:#ffffff">{c["ban1"]}</td></tr>
+<tr><td>{img("cabecera-"+c["lang"],640,c["ban1"])}</td></tr>
 <tr><td style="padding:12px 40px 8px;font-family:Georgia,serif;font-size:17px;line-height:27px;color:#3b3f48">{c["intro"]}</td></tr>
 <tr><td align="center" style="padding:20px 40px 8px">{btn(SUBS_FORM, c["cta_main"], "#1c2d3d")}<div style="font-family:Arial,sans-serif;font-size:12px;color:#7a7f8a;margin-top:10px">{c["cta_sub"]}</div></td></tr>
 <tr><td align="center" style="padding:16px 40px 28px;font-family:Arial,sans-serif;font-size:13px;color:#5a6070">{soc}</td></tr>
@@ -101,12 +99,12 @@ def build(c):
 <tr><td style="padding:4px 25px 30px"><table width="100%" cellpadding="0" cellspacing="0"><tr>{serv}</tr></table></td></tr>
 <tr><td style="padding:0 30px 4px"><div style="{S}">{c["guias_t"]}</div><div style="font-family:Arial,sans-serif;font-size:13px;color:#7a7f8a;padding:4px 0 12px">{c["guias_s"]}</div></td></tr>
 <tr><td style="padding:0 26px 30px"><table width="100%" cellpadding="0" cellspacing="0"><tr>{guias}</tr></table></td></tr>
-<tr><td style="background:#1c2d3d;padding:26px 30px 24px" align="center"><div style="{S};color:#7aadcc">Cinemateca</div><div style="font-family:Georgia,serif;font-size:22px;color:#fff;padding:6px 0 4px">{c["cine_t"]}</div><div style="font-family:Arial,sans-serif;font-size:13px;color:#b9c8d6;padding-bottom:16px">{c["cine_s"]}</div><table width="100%" cellpadding="0" cellspacing="0"><tr>{cine}</tr></table><div style="padding-top:18px">{btn(B+"/videos.html", c["cine_b"], "#b03a2e")}</div></td></tr>
+<tr><td style="background:#f0ede8;padding:26px 30px 28px" align="center"><div style="{S}">Cinemateca</div><div style="font-family:Georgia,serif;font-size:22px;color:#1b2e42;padding:6px 0 4px">{c["cine_t"]}</div><div style="font-family:Arial,sans-serif;font-size:13px;color:#5a6070;padding-bottom:16px">{c["cine_s"]}</div><table width="100%" cellpadding="0" cellspacing="0"><tr>{cine}</tr></table><div style="padding-top:18px">{btn(B+"/videos.html", c["cine_b"])}</div></td></tr>
 <tr><td style="padding:30px 30px 2px"><div style="{S}">{c["inf_t"]}</div></td></tr>
 <tr><td style="padding:6px 30px 20px"><table width="100%" cellpadding="0" cellspacing="0">{inf}</table></td></tr>
 <tr><td>{img("banda-chalten",640,"El Chaltén")}</td></tr>
 <tr><td align="center" style="padding:30px 40px 34px"><div style="{H}">{c["close_t"]}</div><div style="font-family:Arial,sans-serif;color:#5a6070;font-size:14px;line-height:21px;margin:8px 0 18px">{c["close"]}</div>{btn(B, c["close_b"], "#1c2d3d")}</td></tr>
-<tr><td style="background:#1c2d3d;padding:22px 30px;font-family:Arial,sans-serif;font-size:12px;line-height:18px;color:#9fb4c7"><b style="color:#fff">{c["firma"]}</b> · <a href="{B}" style="color:#7aadcc">globalpatagonia.org</a><br><br>{c["motivo"]}</td></tr>
+<tr><td style="background:#f0ede8;padding:22px 30px;font-family:Arial,sans-serif;font-size:12px;line-height:18px;color:#5a6070"><b style="color:#1b2e42">{c["firma"]}</b> · <a href="{B}" style="color:#3a5a7a">globalpatagonia.org</a><br><br>{c["motivo"]}</td></tr>
 </table></td></tr></table></body></html>'''
 
 def main():
