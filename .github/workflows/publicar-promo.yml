@@ -15,6 +15,7 @@ on:
           - guia_torres
           - guia_circuito
           - guias
+          - portal
       redes:
         description: 'Redes (todas, o sacar alguna)'
         required: true

@@ -84,6 +84,24 @@ PROMOS = {
         "hashtags": "#Patagonia #ClimaPatagonia #Bariloche #Ushuaia #ElCalafate "
                     "#Pronostico #ViajarPatagonia #SurGlobal #GLOBALpatagonia",
     },
+    "portal": {
+        "emoji": "🏔️",
+        "titulo": "GLOBALPATAGONIA · TODA LA PATAGONIA, ARGENTINA Y CHILENA",
+        "link": f"{SITE}/?utm_source=social&utm_medium=promo&utm_campaign=portal",
+        "imagen": "fotos/promo-portal.jpg",
+        "cuerpo": (
+            "Noticias de Argentina y Chile en un solo lugar, sin fronteras.\n\n"
+            "📰 Noticias del día e informes propios\n"
+            "🧭 Guías de viaje: Torres del Paine, Circuito Austral y más\n"
+            "🌦️ Clima, mareas y tablero de vuelos de la región\n"
+            "🎬 Cinemateca Patagónica, con cine y series del sur\n"
+            "🌍 Notas en español, inglés, portugués y chino\n\n"
+            "Gratis, todos los días. Escaneá el código de la imagen o entrá directo."
+        ),
+        "cta": "🏔️ Entrá a GLOBALpatagonia",
+        "hashtags": "#Patagonia #Argentina #Chile #Noticias #ViajarPatagonia "
+                    "#SurGlobal #GLOBALpatagonia",
+    },
     "guia_torres": {
         "emoji": "🏔️",
         "titulo": "GUÍA DE TORRES DEL PAINE",
