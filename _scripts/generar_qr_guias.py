@@ -37,6 +37,11 @@ AFICHES = [
      "tag": "TRAVEL GUIDE", "titulo": ["Southern Circuit", "12 days, 2 countries"],
      "bajada": "From El Calafate to Ushuaia via Chile, day by day.",
      "cta": "Scan and plan your trip"},
+    {"campania": "whatsapp", "url": "https://whatsapp.com/channel/0029VbDPKE6DJ6Gyg2eQTH2j", "path": "",
+     "foto": "fotos/CIUDADES/torres-del-paine-hero.webp",
+     "tag": "CANAL DE WHATSAPP", "titulo": ["La edición del día,", "en tu WhatsApp"],
+     "bajada": "Sumate al canal de GLOBALpatagonia y recibí cada mañana las noticias de la Patagonia.",
+     "cta": "Escaneá y sumate"},
     {"campania": "sitio", "path": "",
      "foto": "fotos/CIUDADES/torres-del-paine-hero.webp",
      "tag": "NOTICIAS", "titulo": ["La Patagonia,", "todos los días"],
@@ -70,7 +75,7 @@ def afiche(c, a):
         c.drawString(40, y, ln)
         y -= 38
     # QR
-    url = f"{SITE}/{a['path']}?utm_source=qr&utm_medium=impreso&utm_campaign={a['campania']}"
+    url = a.get("url") or f"{SITE}/{a['path']}?utm_source=qr&utm_medium=impreso&utm_campaign={a['campania']}"
     lado = 190
     qr_codigo(c, url, 40, 95, lado)
     c.setFillColor(AZUL)

@@ -202,6 +202,7 @@ def notas_de_seccion(excluir):
 
 QR_URL = f"{SITE}/?utm_source=qr&utm_medium=edicion-pdf&utm_campaign=edicion-diaria"
 PDF_URL = f"{SITE}/edicion-del-dia.pdf"
+WA_URL = "https://whatsapp.com/channel/0029VbDPKE6DJ6Gyg2eQTH2j"
 
 
 def banda_qr(c, ancho):
@@ -253,10 +254,23 @@ def contratapa(c, fecha, pagina):
     c.drawCentredString(W / 2, 150, "de toda la Patagonia argentina y chilena.")
     c.setFont("Helvetica-Bold", 16)
     c.setFillColor(white)
-    c.drawCentredString(W / 2, 112, "globalpatagonia.org")
+    c.drawCentredString(W / 2, 128, "globalpatagonia.org")
+    # Canal de WhatsApp: QR chico de invitación + texto
+    x0 = W / 2 - 160
+    c.setFillColor(white)
+    c.roundRect(x0, 50, 62, 62, 5, fill=1, stroke=0)
+    qr_codigo(c, WA_URL, x0 + 3, 53, 56, logo=False)
+    c.linkURL(WA_URL, (x0, 50, x0 + 320, 112), relative=0)
+    c.setFillColor(white)
+    c.setFont("Helvetica-Bold", 13)
+    c.drawString(x0 + 76, 94, "Recibí la edición cada mañana")
+    c.setFont("Helvetica", 10)
+    c.setFillColor(GLACIAL)
+    c.drawString(x0 + 76, 78, "Sumate al canal de WhatsApp de GLOBALpatagonia:")
+    c.drawString(x0 + 76, 64, "escaneá el código o tocá acá.")
     c.setFont("Helvetica", 8)
     c.setFillColor(GLACIAL)
-    c.drawCentredString(W / 2, 40, f"Edición del día · {fecha}")
+    c.drawCentredString(W / 2, 28, f"Edición del día · {fecha}")
 
 
 def generar(salida):
