@@ -167,16 +167,19 @@ def notas_de_seccion(excluir):
 
 def bloque_qr(c, ancho):
     c.setFillColor(AZUL)
-    c.rect(M, 38, ancho, 70, fill=1, stroke=0)
-    qr_codigo(c, f"{SITE}/?utm_source=qr&utm_medium=edicion-pdf&utm_campaign=edicion-diaria",
-              M + 8, 44, 58)
+    c.rect(M, 34, ancho, 80, fill=1, stroke=0)
+    # QR sobre baldosa blanca: negro sobre fondo oscuro no se escanea
     c.setFillColor(white)
-    c.setFont("Helvetica-Bold", 12)
-    c.drawString(M + 80, 84, "Escaneá y leé el resto en globalpatagonia.org")
+    c.roundRect(M + 8, 40, 68, 68, 4, fill=1, stroke=0)
+    qr_codigo(c, f"{SITE}/?utm_source=qr&utm_medium=edicion-pdf&utm_campaign=edicion-diaria",
+              M + 12, 44, 60)
+    c.setFillColor(white)
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(M + 92, 88, "Escaneá y leé el resto en globalpatagonia.org")
     c.setFont("Helvetica", 9)
     c.setFillColor(GLACIAL)
-    c.drawString(M + 80, 70, "Toda la Patagonia argentina y chilena, todos los días.")
-    c.drawString(M + 80, 57, "Cada titular de esta edición es un enlace a la nota completa.")
+    c.drawString(M + 92, 72, "Toda la Patagonia argentina y chilena, todos los días.")
+    c.drawString(M + 92, 59, "Cada titular de esta edición es un enlace a la nota completa.")
 
 
 def generar(salida):
