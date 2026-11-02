@@ -139,6 +139,46 @@ def tarjeta(c, n, x, y_top, ancho, alto_img, tit_size, lineas_tit, lineas_baj):
     return y
 
 
+def primera(archivo, excluir):
+    """Primer item de un JSON de sección que no esté ya en la edición."""
+    try:
+        datos = json.load(open(os.path.join(BASE, archivo), encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    return next((n for n in datos if n.get("id") not in excluir), None)
+
+
+def notas_de_seccion(excluir):
+    """La última nota de Informes, Guías, Cultura y Negocios, con la sección como etiqueta."""
+    salida = []
+    for archivo, etiqueta in (("propios.json", "Informe"), ("guias.json", "Guía de viaje"),
+                              ("cultura.json", "Cultura"), ("negocios.json", "Negocios")):
+        n = primera(archivo, excluir)
+        if not n:
+            continue
+        n = dict(n)
+        if archivo == "guias.json":
+            n["titulo"] = n.get("destino", "")
+            n["bajada"] = n.get("tagline", "") + ". " + n.get("descripcion", "")
+        n["tag"] = etiqueta
+        salida.append(n)
+    return salida
+
+
+def bloque_qr(c, ancho):
+    c.setFillColor(AZUL)
+    c.rect(M, 38, ancho, 70, fill=1, stroke=0)
+    qr_codigo(c, f"{SITE}/?utm_source=qr&utm_medium=edicion-pdf&utm_campaign=edicion-diaria",
+              M + 8, 44, 58)
+    c.setFillColor(white)
+    c.setFont("Helvetica-Bold", 12)
+    c.drawString(M + 80, 84, "Escaneá y leé el resto en globalpatagonia.org")
+    c.setFont("Helvetica", 9)
+    c.setFillColor(GLACIAL)
+    c.drawString(M + 80, 70, "Toda la Patagonia argentina y chilena, todos los días.")
+    c.drawString(M + 80, 57, "Cada titular de esta edición es un enlace a la nota completa.")
+
+
 def generar(salida):
     d = json.load(open(os.path.join(BASE, "noticias.json"), encoding="utf-8"))
     fecha = d.get("fecha_display", "")
@@ -160,28 +200,22 @@ def generar(salida):
     pie(c, 1)
     c.showPage()
 
-    # ── Página 2: 6 notas en grilla de 2×3 + QR
-    c.setFillColor(FONDO)
-    c.rect(0, 0, W, H, fill=1, stroke=0)
-    cabecera(c, fecha, 2)
-    top = H - 80
-    for i, n in enumerate(resto[2:8]):
-        fila, colu = divmod(i, 2)
-        tarjeta(c, n, M + colu * (col + 16), top - fila * 215, col, 92, 12, 3, 3)
-    # bloque QR
-    c.setFillColor(AZUL)
-    c.rect(M, 38, ancho, 70, fill=1, stroke=0)
-    qr_codigo(c, f"{SITE}/?utm_source=qr&utm_medium=edicion-pdf&utm_campaign=edicion-diaria",
-              M + 8, 44, 58)
-    c.setFillColor(white)
-    c.setFont("Helvetica-Bold", 12)
-    c.drawString(M + 80, 84, "Escaneá y leé el resto en globalpatagonia.org")
-    c.setFont("Helvetica", 9)
-    c.setFillColor(GLACIAL)
-    c.drawString(M + 80, 70, "Toda la Patagonia argentina y chilena, todos los días.")
-    c.drawString(M + 80, 57, "Cada titular de esta edición es un enlace a la nota completa.")
-    pie(c, 2)
-    c.showPage()
+    # ── Páginas siguientes: resto de las notas del día + una nota de cada sección
+    items = resto[2:] + notas_de_seccion({n["id"] for n in [tapa] + resto})
+    por_pagina = 6
+    paginas = [items[i:i + por_pagina] for i in range(0, len(items), por_pagina)] or [[]]
+    for k, grupo in enumerate(paginas):
+        c.setFillColor(FONDO)
+        c.rect(0, 0, W, H, fill=1, stroke=0)
+        cabecera(c, fecha, k + 2)
+        top = H - 80
+        for i, n in enumerate(grupo):
+            fila, colu = divmod(i, 2)
+            tarjeta(c, n, M + colu * (col + 16), top - fila * 215, col, 92, 12, 3, 3)
+        if k == len(paginas) - 1:
+            bloque_qr(c, ancho)
+        pie(c, k + 2)
+        c.showPage()
     c.save()
     return salida
 
