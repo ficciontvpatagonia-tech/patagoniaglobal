@@ -1,0 +1,45 @@
+name: Edición del día (PDF a Telegram)
+
+on:
+  workflow_run:
+    workflows: ["Actualizar Noticias"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      forzar:
+        description: 'Enviar aunque noticias.json no sea de hoy'
+        required: true
+        default: 'no'
+        type: choice
+        options:
+          - 'no'
+          - 'si'
+
+permissions:
+  contents: read
+
+jobs:
+  edicion:
+    # Solo si el Action de noticias terminó bien (o si se lanza a mano)
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install reportlab Pillow
+
+      - name: Generar y enviar la edición
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+        run: |
+          FORZAR=""
+          if [ "${{ github.event.inputs.forzar }}" = "si" ]; then FORZAR="--forzar"; fi
+          python3 _scripts/enviar_edicion_telegram.py $FORZAR
