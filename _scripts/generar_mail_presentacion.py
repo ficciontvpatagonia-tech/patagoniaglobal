@@ -26,7 +26,7 @@ L = {
        ("Reino Desunido: la crisis constitucional británica y su impacto real en Malvinas","notas/20260917-propio-reino-desunido.html","inf-reino"),
        ("EEUU amenaza con soltarle la mano a Londres por Malvinas","notas/20260830-propio-malvinas-eeuu-otan.html","inf-eeuu")],
   inf_sfx="", leer="Leer",
-  close_t="Conocé el portal completo", close="Noticias de toda la Patagonia, Malvinas y la Antártida, clima, mareas, vuelos, rutas, cine y guías de viaje, todo en un solo lugar.", close_b="Visitar globalpatagonia.org",
+  close_t="Conocé el portal completo", close="Noticias de toda la Patagonia, Malvinas y la Antártida, clima, mareas, vuelos, rutas, cine y guías de viaje, todo en un solo lugar.", close_b="Visitar globalpatagonia.org", qr_t="Escaneá el código con tu celular para entrar al portal",
   org_t="",
   org="Podés enviarnos gacetillas y novedades, o sumarte como auspiciante del portal.",
   b1="Publicidad", b2="Apoyanos", h1="publicidad.html", h2="apoyanos.html",
@@ -50,7 +50,7 @@ L = {
        ("Disunited Kingdom: Britain's constitutional crisis and its real impact on Malvinas","notas/20260917-propio-reino-desunido.html","inf-reino"),
        ("US threatens to let go of London's hand over Malvinas","notas/20260830-propio-malvinas-eeuu-otan.html","inf-eeuu")],
   inf_sfx="-en", leer="Read",
-  close_t="Discover the full portal", close="News from all of Patagonia, Malvinas and Antarctica, weather, tides, flights, roads, cinema and travel guides, all in one place.", close_b="Visit globalpatagonia.org",
+  close_t="Discover the full portal", close="News from all of Patagonia, Malvinas and Antarctica, weather, tides, flights, roads, cinema and travel guides, all in one place.", close_b="Visit globalpatagonia.org", qr_t="Scan the code with your phone to open the portal",
   org_t="",
   org="Send us your press releases and news, or join the portal as a sponsor.",
   b1="Advertise", b2="Support us", h1="publicidad.html", h2="apoyanos.html",
@@ -103,7 +103,7 @@ def build(c):
 <tr><td style="padding:30px 30px 2px"><div style="{S}">{c["inf_t"]}</div></td></tr>
 <tr><td style="padding:6px 30px 20px"><table width="100%" cellpadding="0" cellspacing="0">{inf}</table></td></tr>
 <tr><td>{img("banda-chalten",640,"El Chaltén")}</td></tr>
-<tr><td align="center" style="padding:30px 40px 34px"><div style="{H}">{c["close_t"]}</div><div style="font-family:Arial,sans-serif;color:#5a6070;font-size:14px;line-height:21px;margin:8px 0 18px">{c["close"]}</div>{btn(B, c["close_b"], "#1c2d3d")}</td></tr>
+<tr><td align="center" style="padding:30px 40px 34px"><div style="{H}">{c["close_t"]}</div><div style="font-family:Arial,sans-serif;color:#5a6070;font-size:14px;line-height:21px;margin:8px 0 18px">{c["close"]}</div>{btn(B+"/?utm_source=mail&utm_medium=email&utm_campaign=presentacion-g1", c["close_b"])}<div style="padding-top:26px"><img src="{IMG}qr-portal.png" width="170" alt="QR globalpatagonia.org" style="display:block;margin:0 auto;width:170px;height:auto;border:0"><div style="font-family:Arial,sans-serif;font-size:12px;color:#7a7f8a;padding-top:8px">{c["qr_t"]}</div></div></td></tr>
 <tr><td style="background:#f0ede8;padding:22px 30px;font-family:Arial,sans-serif;font-size:12px;line-height:18px;color:#5a6070"><b style="color:#1b2e42">{c["firma"]}</b> · <a href="{B}" style="color:#3a5a7a">globalpatagonia.org</a><br><br>{c["motivo"]}</td></tr>
 </table></td></tr></table></body></html>'''
 
