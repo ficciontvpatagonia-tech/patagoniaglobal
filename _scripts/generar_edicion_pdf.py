@@ -12,6 +12,7 @@ import json
 import os
 import re
 import sys
+import tempfile
 
 from PIL import Image
 from reportlab.graphics import renderPDF
@@ -47,14 +48,19 @@ def url_nota(nid):
     return f"{SITE}/notas/{nid}.html?{UTM}"
 
 
+_TMP = tempfile.mkdtemp()
+
+
 def imagen(ruta):
     p = os.path.join(BASE, ruta or "")
     if not ruta or not os.path.isfile(p):
         return None
-    buf = io.BytesIO()
-    Image.open(p).convert("RGB").save(buf, "JPEG", quality=85)
-    buf.seek(0)
-    return ImageReader(buf)
+    im = Image.open(p).convert("RGB")
+    im.thumbnail((800, 800))  # el PDF se sube al repo cada día: livianito
+    # Archivo .jpg real: así reportlab incrusta el JPEG tal cual en vez de re-comprimirlo
+    ruta_tmp = os.path.join(_TMP, os.path.basename(p) + ".jpg")
+    im.save(ruta_tmp, "JPEG", quality=68, optimize=True)
+    return ImageReader(ruta_tmp)
 
 
 def recorte(c, ruta, x, y, w, h):
@@ -116,13 +122,22 @@ def pie(c, pagina):
     c.drawRightString(W - M, 22, f"globalpatagonia.org · página {pagina}")
 
 
+_LOGO = None
+
+
 def _logo():
     """Logo de GP (domo + Fitz Roy) recortado, listo para el centro del QR."""
+    global _LOGO
+    if _LOGO is not None:
+        return _LOGO
     im = Image.open(os.path.join(BASE, "logo-icono.png")).convert("RGBA")
     im = im.crop(im.getchannel("A").getbbox())
     fondo = Image.new("RGBA", im.size, (28, 45, 61, 255))  # azul cordillera detrás del domo
     fondo.alpha_composite(im)
-    return ImageReader(fondo.convert("RGB"))
+    fondo = fondo.convert("RGB")
+    fondo.thumbnail((300, 300))
+    _LOGO = ImageReader(fondo)
+    return _LOGO
 
 
 def qr_codigo(c, url, x, y, lado, logo=True):
@@ -186,6 +201,7 @@ def notas_de_seccion(excluir):
 
 
 QR_URL = f"{SITE}/?utm_source=qr&utm_medium=edicion-pdf&utm_campaign=edicion-diaria"
+PDF_URL = f"{SITE}/edicion-del-dia.pdf"
 
 
 def banda_qr(c, ancho):

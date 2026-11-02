@@ -1,4 +1,4 @@
-name: Edición del día (PDF a Telegram)
+name: Edición del día (PDF a Telegram y descarga)
 
 on:
   workflow_run:
@@ -7,16 +7,24 @@ on:
   workflow_dispatch:
     inputs:
       forzar:
-        description: 'Enviar aunque noticias.json no sea de hoy'
+        description: 'Generar aunque noticias.json no sea de hoy'
         required: true
         default: 'no'
         type: choice
         options:
           - 'no'
           - 'si'
+      telegram:
+        description: '¿Mandar también a Telegram?'
+        required: true
+        default: 'si'
+        type: choice
+        options:
+          - 'si'
+          - 'no'
 
 permissions:
-  contents: read
+  contents: write   # para actualizar el archivo de la release «edicion-del-dia»
 
 jobs:
   edicion:
@@ -35,11 +43,24 @@ jobs:
       - name: Instalar dependencias
         run: pip install reportlab Pillow
 
-      - name: Generar y enviar la edición
+      - name: Generar PDF (y mandarlo a Telegram)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
         run: |
-          FORZAR=""
-          if [ "${{ github.event.inputs.forzar }}" = "si" ]; then FORZAR="--forzar"; fi
-          python3 _scripts/enviar_edicion_telegram.py $FORZAR
+          OPC="--salida GLOBALpatagonia-edicion-del-dia.pdf"
+          if [ "${{ github.event.inputs.forzar }}" = "si" ]; then OPC="$OPC --forzar"; fi
+          if [ "${{ github.event.inputs.telegram }}" = "no" ]; then OPC="$OPC --no-enviar"; fi
+          python3 _scripts/enviar_edicion_telegram.py $OPC
+
+      # El PDF NO se commitea al repo (cada día sumaría peso al historial):
+      # se guarda como archivo de una release fija, que se pisa todos los días.
+      - name: Actualizar la descarga fija (release)
+        if: hashFiles('GLOBALpatagonia-edicion-del-dia.pdf') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view edicion-del-dia >/dev/null 2>&1 || \
+            gh release create edicion-del-dia --title "Edición del día (PDF)" \
+              --notes "Última edición del día de GLOBALpatagonia. Se actualiza solo cada mañana."
+          gh release upload edicion-del-dia GLOBALpatagonia-edicion-del-dia.pdf --clobber

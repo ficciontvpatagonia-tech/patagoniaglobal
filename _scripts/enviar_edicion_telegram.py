@@ -6,7 +6,8 @@ Si noticias.json no es de hoy (hora Argentina) no manda nada, para no repetir
 la edición de ayer cuando el Action de noticias falló.
 
 Entorno: TELEGRAM_BOT_TOKEN, TELEGRAM_CHANNEL_ID.
-Uso: python3 _scripts/enviar_edicion_telegram.py [--forzar] [--no-enviar]
+Uso: python3 _scripts/enviar_edicion_telegram.py [--forzar] [--no-enviar] [--salida ruta.pdf]
+Con --salida el PDF se deja en esa ruta (el workflow lo sube como descarga fija del sitio).
 """
 import json
 import os
@@ -17,6 +18,9 @@ from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from generar_edicion_pdf import BASE, generar  # noqa: E402
+
+
+DESCARGA = "globalpatagonia.org (botón «Edición del día en PDF»)"
 
 
 def hoy_argentina():
@@ -47,7 +51,10 @@ def main():
         print(f"noticias.json es de {d.get('generado','?')[:10]}, no de hoy: no se envía.")
         return
     fecha = d.get("fecha_display", "")
-    pdf = os.path.join(tempfile.mkdtemp(), "GLOBALpatagonia-edicion-del-dia.pdf")
+    if "--salida" in sys.argv:
+        pdf = sys.argv[sys.argv.index("--salida") + 1]
+    else:
+        pdf = os.path.join(tempfile.mkdtemp(), "GLOBALpatagonia-edicion-del-dia.pdf")
     generar(pdf)
     print(f"PDF generado ({os.path.getsize(pdf) // 1024} KB)")
     if "--no-enviar" in sys.argv:
@@ -58,6 +65,7 @@ def main():
         sys.exit("Faltan TELEGRAM_BOT_TOKEN / TELEGRAM_CHANNEL_ID")
     caption = (f"📰 <b>Edición del día</b> · {fecha}\n\n"
                "Las notas de hoy en un PDF: tocá cualquier titular para leerla completa.\n\n"
+               f"📲 Compartilo con quien quieras. Siempre disponible en {DESCARGA}\n\n"
                "<i>GLOBALpatagonia · Sur Global, principio de todo.</i>")
     res = enviar_documento(token, canal, pdf, caption)
     print("Telegram OK ✓" if res.get("ok") else f"Telegram error: {res.get('description')}")
