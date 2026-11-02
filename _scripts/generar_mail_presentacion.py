@@ -82,8 +82,8 @@ def build(c):
     inf = "".join(
       f'<tr><td width="120" valign="top" style="padding:10px 14px 10px 0;border-bottom:1px solid #e8e3da"><a href="{B}/{h.replace(".html", c["inf_sfx"]+".html")}">{img(g,120,"")}</a></td><td valign="middle" style="padding:10px 0;border-bottom:1px solid #e8e3da;font-family:Georgia,serif;font-size:17px;line-height:23px"><a href="{B}/{h.replace(".html", c["inf_sfx"]+".html")}" style="color:#1b2e42;text-decoration:none">{t}</a></td></tr>'
       for t, h, g in c["inf"])
-    soc = " &nbsp;·&nbsp; ".join(f'<a href="{h}" style="color:#1c2d3d;text-decoration:none;font-weight:bold">{n}</a>' for n, h in
-      [("WhatsApp","https://whatsapp.com/channel/0029VbDPKE6DJ6Gyg2eQTH2j"),("Telegram","https://t.me/globalpatagonia"),("Instagram","https://www.instagram.com/global.patagonia"),("Facebook","https://www.facebook.com/PatagoniaGLOBAL"),("RSS",B+"/feed.xml")])
+    soc = "".join(f'<a href="{h}" style="display:inline-block;margin:0 7px"><img src="{IMG}ic-{n}.png" width="44" height="44" alt="{t}" style="display:block;width:44px;height:44px;border:0"></a>' for n, t, h in
+      [("whatsapp","WhatsApp","https://whatsapp.com/channel/0029VbDPKE6DJ6Gyg2eQTH2j"),("telegram","Telegram","https://t.me/globalpatagonia"),("instagram","Instagram","https://www.instagram.com/global.patagonia"),("facebook","Facebook","https://www.facebook.com/PatagoniaGLOBAL"),("rss","RSS",B+"/feed.xml")])
     H = 'font-family:Georgia,serif;font-size:22px;color:#1b2e42;font-weight:normal'
     S = 'font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#b03a2e'
     return f'''<!DOCTYPE html><html lang="{c["lang"]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light"><style>:root{{color-scheme:light only;supported-color-schemes:light}}</style><title>GLOBALpatagonia</title></head>
@@ -93,7 +93,7 @@ def build(c):
 <tr><td>{img("cabecera-"+c["lang"],640,c["ban1"])}</td></tr>
 <tr><td style="padding:12px 40px 8px;font-family:Georgia,serif;font-size:17px;line-height:27px;color:#3b3f48">{c["intro"]}</td></tr>
 <tr><td align="center" style="padding:20px 40px 8px">{btn(SUBS_FORM, c["cta_main"], "#1c2d3d")}<div style="font-family:Arial,sans-serif;font-size:12px;color:#7a7f8a;margin-top:10px">{c["cta_sub"]}</div></td></tr>
-<tr><td align="center" style="padding:16px 40px 28px;font-family:Arial,sans-serif;font-size:13px;color:#5a6070">{soc}</td></tr>
+<tr><td align="center" style="padding:16px 40px 28px;font-family:Arial,sans-serif;font-size:13px;color:#5a6070"><div style="padding-bottom:10px">{c["follow"]}</div>{soc}</td></tr>
 <tr><td>{img("banda-fitz-roy",640,"Fitz Roy")}</td></tr>
 <tr><td align="center" style="padding:30px 30px 8px"><div style="{S}">{c["serv_t"]}</div></td></tr>
 <tr><td style="padding:4px 25px 30px"><table width="100%" cellpadding="0" cellspacing="0"><tr>{serv}</tr></table></td></tr>
@@ -102,7 +102,7 @@ def build(c):
 <tr><td style="background:#f0ede8;padding:26px 30px 28px" align="center"><div style="{S}">Cinemateca</div><div style="font-family:Georgia,serif;font-size:22px;color:#1b2e42;padding:6px 0 4px">{c["cine_t"]}</div><div style="font-family:Arial,sans-serif;font-size:13px;color:#5a6070;padding-bottom:16px">{c["cine_s"]}</div><table width="100%" cellpadding="0" cellspacing="0"><tr>{cine}</tr></table><div style="padding-top:18px">{btn(B+"/videos.html", c["cine_b"])}</div></td></tr>
 <tr><td style="padding:30px 30px 2px"><div style="{S}">{c["inf_t"]}</div></td></tr>
 <tr><td style="padding:6px 30px 20px"><table width="100%" cellpadding="0" cellspacing="0">{inf}</table></td></tr>
-<tr><td>{img("banda-chalten",640,"El Chaltén")}</td></tr>
+<tr><td>{img("banda-ushuaia",640,"Ushuaia")}</td></tr>
 <tr><td align="center" style="padding:30px 40px 34px"><div style="{H}">{c["close_t"]}</div><div style="font-family:Arial,sans-serif;color:#5a6070;font-size:14px;line-height:21px;margin:8px 0 18px">{c["close"]}</div>{btn(B+"/?utm_source=mail&utm_medium=email&utm_campaign=presentacion-g1", c["close_b"])}<div style="padding-top:26px"><img src="{IMG}qr-portal.png" width="170" alt="QR globalpatagonia.org" style="display:block;margin:0 auto;width:170px;height:auto;border:0"><div style="font-family:Arial,sans-serif;font-size:12px;color:#7a7f8a;padding-top:8px">{c["qr_t"]}</div></div></td></tr>
 <tr><td style="background:#f0ede8;padding:22px 30px;font-family:Arial,sans-serif;font-size:12px;line-height:18px;color:#5a6070"><b style="color:#1b2e42">{c["firma"]}</b> · <a href="{B}" style="color:#3a5a7a">globalpatagonia.org</a><br><br>{c["motivo"]}</td></tr>
 </table></td></tr></table></body></html>'''
