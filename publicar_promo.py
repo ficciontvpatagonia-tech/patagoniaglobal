@@ -84,10 +84,45 @@ PROMOS = {
         "hashtags": "#Patagonia #ClimaPatagonia #Bariloche #Ushuaia #ElCalafate "
                     "#Pronostico #ViajarPatagonia #SurGlobal #GLOBALpatagonia",
     },
+    "guia_torres": {
+        "emoji": "🏔️",
+        "titulo": "GUÍA DE TORRES DEL PAINE",
+        "link": f"{SITE}/notas/guia-torres-del-paine.html",
+        "imagen": "fotos/promo-guia-torres.jpg",
+        "cuerpo": (
+            "Todo lo que necesitás para ir a Torres del Paine, en una sola guía:\n\n"
+            "📅 Cuándo ir y cómo llegar desde Puerto Natales y El Calafate.\n"
+            "🥾 Circuito W y O: cuál elegir según tu tiempo y tu estado físico.\n"
+            "🧊 Base de las Torres, Glaciar Grey y la fauna del parque.\n"
+            "🛏️ Dónde dormir y consejos prácticos.\n\n"
+            "Con mapa propio. Disponible en español, inglés, portugués y chino."
+        ),
+        "cta": "🥾 Leé la guía",
+        "hashtags": "#TorresDelPaine #Patagonia #CircuitoW #Chile #ViajarPatagonia "
+                    "#GuiaDeViaje #SurGlobal #GLOBALpatagonia",
+    },
+    "guia_circuito": {
+        "emoji": "🧭",
+        "titulo": "CIRCUITO AUSTRAL: 12 DÍAS, 2 PAÍSES",
+        "link": f"{SITE}/notas/guia-circuito-austral.html",
+        "imagen": "fotos/promo-guia-circuito.jpg",
+        "cuerpo": (
+            "De El Calafate a Ushuaia pasando por Chile, día por día:\n\n"
+            "📍 El Calafate, Torres del Paine, Puerto Natales, Punta Arenas y Ushuaia.\n"
+            "🚌 Cómo moverte entre tramos, en bus o en auto alquilado.\n"
+            "🛂 Cruces de frontera, distancias y qué comer en el camino.\n\n"
+            "Con mapa del recorrido. Disponible en español, inglés, portugués y chino."
+        ),
+        "cta": "🧭 Armá tu viaje",
+        "hashtags": "#CircuitoAustral #Patagonia #ElCalafate #Ushuaia #PuntaArenas "
+                    "#ViajarPatagonia #GuiaDeViaje #SurGlobal #GLOBALpatagonia",
+    },
 }
 
 # Fotos base para generar las placas (si la promo no trae una placa ya armada)
 FUENTES_PLACA = {
+    "guia_torres": "fotos/CIUDADES/torres-del-paine-hero.webp",
+    "guia_circuito": "fotos/CIUDADES/calafate-glaciar-tempanos-aereo.webp",
     "clima": "fotos/foto-20260514-catedral-lanza-pases-2026-desde-160000-la-nieve-ya-dep.webp",
 }
 
@@ -242,6 +277,13 @@ def asegurar_placas():
         generar_placa(src_clima, "El clima de toda la Patagonia",
                       "Pronóstico del Sur", "Mirá el clima  ·  globalpatagonia.org",
                       out_clima)
+    # Guías de viaje
+    for clave, tit, tag in (("guia_torres", "Guía de Torres del Paine", "Guías de viaje"),
+                            ("guia_circuito", "Circuito Austral: 12 días", "Guías de viaje")):
+        src = os.path.join(BASE_DIR, FUENTES_PLACA[clave])
+        out = os.path.join(BASE_DIR, "fotos", "promo-" + clave.replace("_", "-") + ".jpg")
+        if os.path.exists(src):
+            generar_placa(src, tit, tag, "Leé la guía  ·  globalpatagonia.org", out)
 
 
 # ══════════════════════════════════════════════════════════
@@ -454,7 +496,9 @@ def main():
     do_ig = "--no-instagram" not in args
 
     cuales = [a for a in args if a in PROMOS]
-    if "ambas" in args or not cuales:
+    if "guias" in args:
+        cuales = ["guia_torres", "guia_circuito"]
+    elif "ambas" in args or not cuales:
         cuales = ["cinemateca", "clima"]
 
     asegurar_placas()

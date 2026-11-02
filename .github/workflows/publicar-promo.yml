@@ -12,6 +12,9 @@ on:
           - ambas
           - cinemateca
           - clima
+          - guia_torres
+          - guia_circuito
+          - guias
       redes:
         description: 'Redes (todas, o sacar alguna)'
         required: true
