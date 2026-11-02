@@ -116,12 +116,32 @@ def pie(c, pagina):
     c.drawRightString(W - M, 22, f"globalpatagonia.org · página {pagina}")
 
 
-def qr_codigo(c, url, x, y, lado):
-    codigo = qr.QrCodeWidget(url)
+def _logo():
+    """Logo de GP (domo + Fitz Roy) recortado, listo para el centro del QR."""
+    im = Image.open(os.path.join(BASE, "logo-icono.png")).convert("RGBA")
+    im = im.crop(im.getchannel("A").getbbox())
+    fondo = Image.new("RGBA", im.size, (28, 45, 61, 255))  # azul cordillera detrás del domo
+    fondo.alpha_composite(im)
+    return ImageReader(fondo.convert("RGB"))
+
+
+def qr_codigo(c, url, x, y, lado, logo=True):
+    """QR (corrección H) con el logo de GP al centro, sobre baldosa blanca."""
+    codigo = qr.QrCodeWidget(url, barLevel="H")
     b = codigo.getBounds()
     d = Drawing(lado, lado, transform=[lado / (b[2] - b[0]), 0, 0, lado / (b[3] - b[1]), 0, 0])
     d.add(codigo)
     renderPDF.draw(d, c, x, y)
+    if logo:
+        marco = lado * 0.27   # ~7% de la superficie: bien dentro de lo que corrige el nivel H
+        cx, cy = x + lado / 2, y + lado / 2
+        c.setFillColor(white)
+        c.roundRect(cx - marco / 2, cy - marco / 2, marco, marco, marco * 0.12, fill=1, stroke=0)
+        img = _logo()
+        iw, ih = img.getSize()
+        w = marco * 0.84
+        h = w * ih / iw
+        c.drawImage(img, cx - w / 2, cy - h / 2, w, h)
 
 
 def tarjeta(c, n, x, y_top, ancho, alto_img, tit_size, lineas_tit, lineas_baj):
@@ -165,21 +185,62 @@ def notas_de_seccion(excluir):
     return salida
 
 
-def bloque_qr(c, ancho):
+QR_URL = f"{SITE}/?utm_source=qr&utm_medium=edicion-pdf&utm_campaign=edicion-diaria"
+
+
+def banda_qr(c, ancho):
+    """Franja de portada: QR con logo + llamado a escanear."""
     c.setFillColor(AZUL)
-    c.rect(M, 34, ancho, 80, fill=1, stroke=0)
-    # QR sobre baldosa blanca: negro sobre fondo oscuro no se escanea
+    c.rect(M, 38, ancho, 96, fill=1, stroke=0)
     c.setFillColor(white)
-    c.roundRect(M + 8, 40, 68, 68, 4, fill=1, stroke=0)
-    qr_codigo(c, f"{SITE}/?utm_source=qr&utm_medium=edicion-pdf&utm_campaign=edicion-diaria",
-              M + 12, 44, 60)
-    c.setFillColor(white)
-    c.setFont("Helvetica-Bold", 14)
-    c.drawString(M + 92, 88, "Escaneá y leé el resto en globalpatagonia.org")
-    c.setFont("Helvetica", 9)
+    c.roundRect(M + 10, 44, 84, 84, 5, fill=1, stroke=0)
+    qr_codigo(c, QR_URL, M + 14, 48, 76)
+    c.linkURL(QR_URL, (M + 10, 44, M + 94, 128), relative=0)
     c.setFillColor(GLACIAL)
-    c.drawString(M + 92, 72, "Toda la Patagonia argentina y chilena, todos los días.")
-    c.drawString(M + 92, 59, "Cada titular de esta edición es un enlace a la nota completa.")
+    c.setFont("Helvetica-Bold", 9)
+    c.drawString(M + 112, 108, "ESCANEÁ EL CÓDIGO")
+    c.setFillColor(white)
+    c.setFont("Times-Bold", 19)
+    c.drawString(M + 112, 86, "Leé GLOBALpatagonia en tu celular")
+    c.setFillColor(GLACIAL)
+    c.setFont("Helvetica", 9.5)
+    c.drawString(M + 112, 66, "Noticias de toda la Patagonia, argentina y chilena, todos los días.")
+    c.drawString(M + 112, 53, "Cada titular de esta edición es un enlace a la nota completa.")
+
+
+def contratapa(c, fecha, pagina):
+    c.setFillColor(AZUL)
+    c.rect(0, 0, W, H, fill=1, stroke=0)
+    c.setFont("Helvetica-Bold", 34)
+    c.setFillColor(GLACIAL)
+    anch = c.stringWidth("GLOBAL", "Helvetica-Bold", 34) + c.stringWidth("patagonia", "Helvetica", 34)
+    x0 = (W - anch) / 2
+    c.drawString(x0, H - 110, "GLOBAL")
+    c.setFillColor(white)
+    c.setFont("Helvetica", 34)
+    c.drawString(x0 + c.stringWidth("GLOBAL", "Helvetica-Bold", 34), H - 110, "patagonia")
+    c.setFont("Times-Italic", 15)
+    c.setFillColor(GLACIAL)
+    c.drawCentredString(W / 2, H - 136, "Sur Global, principio de todo.")
+    lado = 300
+    x = (W - lado) / 2
+    c.setFillColor(white)
+    c.roundRect(x - 22, 262 - 22, lado + 44, lado + 44, 12, fill=1, stroke=0)
+    qr_codigo(c, QR_URL, x, 262, lado)
+    c.linkURL(QR_URL, (x - 22, 240, x + lado + 22, 262 + lado + 22), relative=0)
+    c.setFillColor(white)
+    c.setFont("Times-Bold", 28)
+    c.drawCentredString(W / 2, 190, "Escaneá y leé el resto")
+    c.setFont("Helvetica", 12)
+    c.setFillColor(GLACIAL)
+    c.drawCentredString(W / 2, 166, "Noticias, informes, guías de viaje, clima, mareas y vuelos")
+    c.drawCentredString(W / 2, 150, "de toda la Patagonia argentina y chilena.")
+    c.setFont("Helvetica-Bold", 16)
+    c.setFillColor(white)
+    c.drawCentredString(W / 2, 112, "globalpatagonia.org")
+    c.setFont("Helvetica", 8)
+    c.setFillColor(GLACIAL)
+    c.drawCentredString(W / 2, 40, f"Edición del día · {fecha}")
 
 
 def generar(salida):
@@ -199,7 +260,8 @@ def generar(salida):
     y = tarjeta(c, tapa, M, H - 78, ancho, 250, 22, 3, 4)
     col = (ancho - 16) / 2
     for i, n in enumerate(resto[:2]):
-        tarjeta(c, n, M + i * (col + 16), y - 22, col, 160, 14, 4, 6)
+        tarjeta(c, n, M + i * (col + 16), y - 22, col, 150, 14, 4, 5)
+    banda_qr(c, ancho)
     pie(c, 1)
     c.showPage()
 
@@ -215,10 +277,9 @@ def generar(salida):
         for i, n in enumerate(grupo):
             fila, colu = divmod(i, 2)
             tarjeta(c, n, M + colu * (col + 16), top - fila * 215, col, 92, 12, 3, 3)
-        if k == len(paginas) - 1:
-            bloque_qr(c, ancho)
         pie(c, k + 2)
         c.showPage()
+    contratapa(c, fecha, len(paginas) + 2)
     c.save()
     return salida
 
