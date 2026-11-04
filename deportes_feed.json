@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261103-amuvoca-de-el-calafate-se-aseguro-el-numero-uno-de-la-dep",
-    "tag": "🏐 Deportes",
-    "titulo": "AMUVOCA de El Calafate se aseguró el número uno de la Liga Sur de Vóley Sub-18",
-    "bajada": "El equipo calafateño superó en sets corridos a Esmeralda de Puerto Natales y cerró la fase regular en lo más alto, con pasaje directo al hexagonal final que se jugará el 13 y 14 de noviembre.",
-    "imagen": "fotos/foto-20261103-amuvoca-de-el-calafate-se-aseguro-el-numero-uno-de-la-dep.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "id": "20261104-el-asics-k42-de-villa-la-angostura-vuelve-con-cinco-dep",
+    "tag": "🏃 Deportes",
+    "titulo": "El ASICS K42 de Villa La Angostura vuelve con cinco modalidades y el Nacional Másters",
+    "bajada": "La maratón de montaña pionera de Sudamérica celebra su 23ª edición desde el jueves 5 de noviembre, con nieve en el circuito de 42 kilómetros y los ganadores de 2025 en la línea de largada.",
+    "imagen": "fotos/foto-20261104-el-asics-k42-de-villa-la-angostura-vuelve-con-cinco-dep.webp",
+    "meta": "Hoy · Diario Río Negro"
   },
   "secundarias": [
+    {
+      "id": "20261103-amuvoca-de-el-calafate-se-aseguro-el-numero-uno-de-la-dep",
+      "tag": "🏐 Deportes",
+      "titulo": "AMUVOCA de El Calafate se aseguró el número uno de la Liga Sur de Vóley Sub-18",
+      "bajada": "El equipo calafateño superó en sets corridos a Esmeralda de Puerto Natales y cerró la fase regular en lo más alto, con pasaje directo al hexagonal final que se jugará el 13 y 14 de noviembre.",
+      "imagen": "fotos/foto-20261103-amuvoca-de-el-calafate-se-aseguro-el-numero-uno-de-la-dep.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20261101-cientos-de-magallanicos-corrieron-por-las-jornadas-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La corrida solidaria de Magallanes Puerto Sostenible, con circuitos de 2,5 y 5 kilómetros femenino y masculino, recaudó fondos para una de las campañas solidarias más significativas de la región.",
       "imagen": "fotos/foto-20261101-cientos-de-magallanicos-corrieron-por-las-jornadas-dep.webp",
       "meta": "Hoy · Diálogo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261030-club-andino-bariloche-suma-una-nueva-caminata-de-baja-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La salida del domingo 25 de octubre recorre 10 kilómetros y 280 metros de desnivel por la ladera norte-noroeste del Cerro Villegas y el Cerro Abrojo, ingresando por el Área Natural Protegida Río Limay.",
       "imagen": "fotos/foto-20261030-club-andino-bariloche-suma-una-nueva-caminata-de-baja-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261028-rio-negro-y-neuquen-sostienen-su-nivel-en-futbol-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Una docena de equipos participan desde este domingo en el Torneo Nacional de Clubes Adultos C de handball, organizado por la Federación de Chubut y fiscalizado por la Confederación Argentina. Caleta Olivia y Pico Truncado representan a Santa Cruz.",
       "imagen": "fotos/foto-20261025-caleta-olivia-y-pico-truncado-debutan-en-el-nacional-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "230 jugadores animan la última fecha de la Liga de Pádel Magallanes",
-      "bajada": "El Club Indoor de Punta Arenas reúne a 230 jugadores en la cuarta y última fecha de la Liga de Pádel Magallanes, con presencia de competidores de Río Gallegos y otras localidades.",
-      "imagen": "fotos/foto-20261023-230-jugadores-animan-la-ultima-fecha-de-la-liga-de-dep-unsplash.webp",
-      "meta": "Hoy · La Prensa Austral (Magallanes)"
     }
   ]
 }
