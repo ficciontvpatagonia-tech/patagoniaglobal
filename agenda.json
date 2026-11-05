@@ -26,19 +26,6 @@
     "descripcion": "Río Gallegos será sede del Torneo Nacional de Selecciones de Futsal AFA, con la participación del seleccionado local ante la Liga Nicoleña y cinco partidos en la jornada inaugural."
   },
   {
-    "id": "asics-k42-villa-la-angostura-2026",
-    "titulo": "23ª edición del ASICS K42 Villa La Angostura",
-    "fecha": "2026-11-04",
-    "fecha_fin": null,
-    "fecha_display": "noviembre (fecha a confirmar)",
-    "lugar": "Villa La Angostura",
-    "region": "Neuquén, Argentina",
-    "pais": "AR",
-    "categoria": "deportes",
-    "emoji": "🏃",
-    "descripcion": "La tradicional carrera de montaña ASICS K42 llega a su 23ª edición con cinco modalidades y la disputa del Nacional Másters en Villa La Angostura."
-  },
-  {
     "id": "k42-villa-la-angostura-2026",
     "titulo": "K42 Villa La Angostura",
     "fecha": "2026-11-05",
@@ -180,6 +167,19 @@
     "categoria": "deportes",
     "emoji": "🏎️",
     "descripcion": "Emblemática prueba automovilística que se disputa en el circuito Dorotea de Puerto Natales, con autoridades y organizadores afinando los operativos de seguridad."
+  },
+  {
+    "id": "festival-ritual-cipolletti-2026",
+    "titulo": "Festival Ritual en Cipolletti",
+    "fecha": "2026-11-14",
+    "fecha_fin": null,
+    "fecha_display": "14 de noviembre",
+    "lugar": "Cipolletti",
+    "region": "Río Negro, Argentina",
+    "pais": "AR",
+    "categoria": "gastronomia",
+    "emoji": "🍖",
+    "descripcion": "Festival gastronómico que reúne salames, curados y ahumados de sabores regionales en Cipolletti, Río Negro."
   },
   {
     "id": "paseo-aniversario-mercado-atlantico-2026",
@@ -440,6 +440,19 @@
     "categoria": "musica",
     "emoji": "🎹",
     "descripcion": "La cantautora chilena se presenta en Dreams Punta Arenas."
+  },
+  {
+    "id": "fiesta-nacional-cereza-los-antiguos-2027",
+    "titulo": "36° Fiesta Nacional de la Cereza",
+    "fecha": "2027-01-08",
+    "fecha_fin": "2027-01-09",
+    "fecha_display": "8 al 9 de enero",
+    "lugar": "Los Antiguos",
+    "region": "Santa Cruz, Argentina",
+    "pais": "AR",
+    "categoria": "cultura",
+    "emoji": "🍒",
+    "descripcion": "La tradicional Fiesta Nacional de la Cereza de Los Antiguos celebra su 36° edición con actividades para toda la comunidad."
   },
   {
     "id": "fiesta-nacional-pescadores-del-sur-2027",
