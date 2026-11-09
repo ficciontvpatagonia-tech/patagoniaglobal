@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261107-cientos-de-magallanicos-corrieron-por-las-jornadas-dep",
+    "id": "20261109-mas-de-800-escolares-de-magallanes-corrieron-en-torres-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Cientos de magallánicos corrieron por las Jornadas Magallánicas en Punta Arenas",
-    "bajada": "La corrida solidaria organizada por Magallanes Puerto Sostenible partió del muelle Arturo Prat con circuitos de 2,5 y 5 kilómetros y recaudó fondos para una de las campañas solidarias más significativas de la región.",
-    "imagen": "fotos/foto-20261107-cientos-de-magallanicos-corrieron-por-las-jornadas-dep-unsplash.webp",
+    "titulo": "Más de 800 escolares de Magallanes corrieron en Torres del Paine",
+    "bajada": "La 5° versión de Patagonia Running reunió a estudiantes de 30 establecimientos del SLEP en distancias de 2,5K y 5K, con la presencia de la subsecretaria del Deporte, María Paz Ríos.",
+    "imagen": "fotos/foto-20261109-mas-de-800-escolares-de-magallanes-corrieron-en-torres-dep.webp",
     "meta": "Hoy · El Magallánico"
   },
   "secundarias": [
+    {
+      "id": "20261107-cientos-de-magallanicos-corrieron-por-las-jornadas-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Cientos de magallánicos corrieron por las Jornadas Magallánicas en Punta Arenas",
+      "bajada": "La corrida solidaria organizada por Magallanes Puerto Sostenible partió del muelle Arturo Prat con circuitos de 2,5 y 5 kilómetros y recaudó fondos para una de las campañas solidarias más significativas de la región.",
+      "imagen": "fotos/foto-20261107-cientos-de-magallanicos-corrieron-por-las-jornadas-dep-unsplash.webp",
+      "meta": "Hoy · El Magallánico"
+    },
     {
       "id": "20261104-el-asics-k42-de-villa-la-angostura-vuelve-con-cinco-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La maratón de montaña pionera de Sudamérica celebra su 23ª edición desde el jueves 5 de noviembre, con nieve en el circuito de 42 kilómetros y los ganadores de 2025 en la línea de largada.",
       "imagen": "fotos/foto-20261104-el-asics-k42-de-villa-la-angostura-vuelve-con-cinco-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261103-amuvoca-de-el-calafate-se-aseguro-el-numero-uno-de-la-dep",
       "tag": "🏐 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El equipo calafateño superó en sets corridos a Esmeralda de Puerto Natales y cerró la fase regular en lo más alto, con pasaje directo al hexagonal final que se jugará el 13 y 14 de noviembre.",
       "imagen": "fotos/foto-20261103-amuvoca-de-el-calafate-se-aseguro-el-numero-uno-de-la-dep.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261101-cientos-de-magallanicos-corrieron-por-las-jornadas-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Las delegaciones argentinas siguen firmes en los Juegos de la Araucanía 2026, el torneo binacional que enfrenta a selecciones de la Patagonia argentina y chilena.",
       "imagen": "fotos/foto-20261028-rio-negro-y-neuquen-sostienen-su-nivel-en-futbol-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
-    {
-      "id": "20261026-gimnastas-de-agipa-se-coronan-campeonas-en-rio-gallegos-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Gimnastas de Agipa se coronan campeonas en Río Gallegos",
-      "bajada": "El representativo de la Asociación de Gimnasia de Punta Arenas ganó el torneo Vientos del Sur, organizado por Boxing Club en la capital de Santa Cruz.",
-      "imagen": "fotos/foto-20261026-gimnastas-de-agipa-se-coronan-campeonas-en-rio-gallegos-dep.webp",
-      "meta": "Hoy · La Prensa Austral (Magallanes)"
     }
   ]
 }
