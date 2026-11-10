@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261109-mas-de-800-escolares-de-magallanes-corrieron-en-torres-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Más de 800 escolares de Magallanes corrieron en Torres del Paine",
-    "bajada": "La 5° versión de Patagonia Running reunió a estudiantes de 30 establecimientos del SLEP en distancias de 2,5K y 5K, con la presencia de la subsecretaria del Deporte, María Paz Ríos.",
-    "imagen": "fotos/foto-20261109-mas-de-800-escolares-de-magallanes-corrieron-en-torres-dep.webp",
-    "meta": "Hoy · El Magallánico"
+    "id": "20261110-el-club-andino-bariloche-abre-una-charla-sobre-jovenes-dep",
+    "tag": "🏔️ Deportes",
+    "titulo": "El Club Andino Bariloche abre una charla sobre jóvenes andinistas FASA",
+    "bajada": "Este miércoles 11 de noviembre a las 19 horas, egresados del programa compartirán su experiencia en la sede del CA Bariloche, con inscripción previa y entrada gratuita.",
+    "imagen": "fotos/foto-20261110-el-club-andino-bariloche-abre-una-charla-sobre-jovenes-dep-unsplash.webp",
+    "meta": "Hoy · Club Andino Bariloche"
   },
   "secundarias": [
+    {
+      "id": "20261109-mas-de-800-escolares-de-magallanes-corrieron-en-torres-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Más de 800 escolares de Magallanes corrieron en Torres del Paine",
+      "bajada": "La 5° versión de Patagonia Running reunió a estudiantes de 30 establecimientos del SLEP en distancias de 2,5K y 5K, con la presencia de la subsecretaria del Deporte, María Paz Ríos.",
+      "imagen": "fotos/foto-20261109-mas-de-800-escolares-de-magallanes-corrieron-en-torres-dep.webp",
+      "meta": "Hoy · El Magallánico"
+    },
     {
       "id": "20261107-cientos-de-magallanicos-corrieron-por-las-jornadas-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La corrida solidaria organizada por Magallanes Puerto Sostenible partió del muelle Arturo Prat con circuitos de 2,5 y 5 kilómetros y recaudó fondos para una de las campañas solidarias más significativas de la región.",
       "imagen": "fotos/foto-20261107-cientos-de-magallanicos-corrieron-por-las-jornadas-dep-unsplash.webp",
       "meta": "Hoy · El Magallánico"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261104-el-asics-k42-de-villa-la-angostura-vuelve-con-cinco-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La maratón de montaña pionera de Sudamérica celebra su 23ª edición desde el jueves 5 de noviembre, con nieve en el circuito de 42 kilómetros y los ganadores de 2025 en la línea de largada.",
       "imagen": "fotos/foto-20261104-el-asics-k42-de-villa-la-angostura-vuelve-con-cinco-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261103-amuvoca-de-el-calafate-se-aseguro-el-numero-uno-de-la-dep",
       "tag": "🏐 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La salida del domingo 25 de octubre recorre 10 kilómetros y 280 metros de desnivel por la ladera norte-noroeste del Cerro Villegas y el Cerro Abrojo, ingresando por el Área Natural Protegida Río Limay.",
       "imagen": "fotos/foto-20261030-club-andino-bariloche-suma-una-nueva-caminata-de-baja-dep.webp",
       "meta": "Hoy · Club Andino Bariloche"
-    },
-    {
-      "id": "20261028-rio-negro-y-neuquen-sostienen-su-nivel-en-futbol-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Río Negro y Neuquén sostienen su nivel en fútbol, básquet y vóley en los Juegos de la Araucanía",
-      "bajada": "Las delegaciones argentinas siguen firmes en los Juegos de la Araucanía 2026, el torneo binacional que enfrenta a selecciones de la Patagonia argentina y chilena.",
-      "imagen": "fotos/foto-20261028-rio-negro-y-neuquen-sostienen-su-nivel-en-futbol-dep.webp",
-      "meta": "Hoy · Diario Río Negro"
     }
   ]
 }
