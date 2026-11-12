@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261110-el-club-andino-bariloche-abre-una-charla-sobre-jovenes-dep",
-    "tag": "🏔️ Deportes",
-    "titulo": "El Club Andino Bariloche abre una charla sobre jóvenes andinistas FASA",
-    "bajada": "Este miércoles 11 de noviembre a las 19 horas, egresados del programa compartirán su experiencia en la sede del CA Bariloche, con inscripción previa y entrada gratuita.",
-    "imagen": "fotos/foto-20261110-el-club-andino-bariloche-abre-una-charla-sobre-jovenes-dep-unsplash.webp",
-    "meta": "Hoy · Club Andino Bariloche"
+    "id": "20261112-tres-amazonas-neuquinas-compiten-con-la-elite-de-la-dep",
+    "tag": "🏇 Deportes",
+    "titulo": "Tres amazonas neuquinas compiten con la élite de la equitación nacional",
+    "bajada": "Salma Ockier, Martina Ockier y Luz García Dignani, del Club Hípico Río Limay, participan de una gira por Buenos Aires con saltos de 1,10, 1,20 y 1,30 metros.",
+    "imagen": "fotos/foto-20261112-tres-amazonas-neuquinas-compiten-con-la-elite-de-la-dep.webp",
+    "meta": "Hoy · Diario Río Negro"
   },
   "secundarias": [
+    {
+      "id": "20261110-el-club-andino-bariloche-abre-una-charla-sobre-jovenes-dep",
+      "tag": "🏔️ Deportes",
+      "titulo": "El Club Andino Bariloche abre una charla sobre jóvenes andinistas FASA",
+      "bajada": "Este miércoles 11 de noviembre a las 19 horas, egresados del programa compartirán su experiencia en la sede del CA Bariloche, con inscripción previa y entrada gratuita.",
+      "imagen": "fotos/foto-20261110-el-club-andino-bariloche-abre-una-charla-sobre-jovenes-dep-unsplash.webp",
+      "meta": "Hoy · Club Andino Bariloche"
+    },
     {
       "id": "20261109-mas-de-800-escolares-de-magallanes-corrieron-en-torres-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La 5° versión de Patagonia Running reunió a estudiantes de 30 establecimientos del SLEP en distancias de 2,5K y 5K, con la presencia de la subsecretaria del Deporte, María Paz Ríos.",
       "imagen": "fotos/foto-20261109-mas-de-800-escolares-de-magallanes-corrieron-en-torres-dep.webp",
       "meta": "Hoy · El Magallánico"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261107-cientos-de-magallanicos-corrieron-por-las-jornadas-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "La corrida solidaria organizada por Magallanes Puerto Sostenible partió del muelle Arturo Prat con circuitos de 2,5 y 5 kilómetros y recaudó fondos para una de las campañas solidarias más significativas de la región.",
       "imagen": "fotos/foto-20261107-cientos-de-magallanicos-corrieron-por-las-jornadas-dep-unsplash.webp",
       "meta": "Hoy · El Magallánico"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261104-el-asics-k42-de-villa-la-angostura-vuelve-con-cinco-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La corrida solidaria de Magallanes Puerto Sostenible, con circuitos de 2,5 y 5 kilómetros femenino y masculino, recaudó fondos para una de las campañas solidarias más significativas de la región.",
       "imagen": "fotos/foto-20261101-cientos-de-magallanicos-corrieron-por-las-jornadas-dep.webp",
       "meta": "Hoy · Diálogo Sur"
-    },
-    {
-      "id": "20261030-club-andino-bariloche-suma-una-nueva-caminata-de-baja-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Club Andino Bariloche suma una nueva caminata de baja dificultad por el Cerro Villegas",
-      "bajada": "La salida del domingo 25 de octubre recorre 10 kilómetros y 280 metros de desnivel por la ladera norte-noroeste del Cerro Villegas y el Cerro Abrojo, ingresando por el Área Natural Protegida Río Limay.",
-      "imagen": "fotos/foto-20261030-club-andino-bariloche-suma-una-nueva-caminata-de-baja-dep.webp",
-      "meta": "Hoy · Club Andino Bariloche"
     }
   ]
 }
