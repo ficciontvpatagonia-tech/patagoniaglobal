@@ -14,9 +14,7 @@ L = {
   intro="Te escribimos desde <b>GLOBALpatagonia</b>, un medio de noticias independiente que sigue lo que pasa en toda la Patagonia, a ambos lados de la cordillera, y también en el Pacífico sur, Malvinas, el Atlántico Sur y la Antártida: turismo, economía, ciencia, cultura, deportes, ambiente y conectividad. Publicamos en <b>español, inglés, portugués y chino</b>, con informes propios y herramientas pensadas para quien vive, viaja o trabaja en la Patagonia.",
   cta_main="Suscribirme al newsletter", cta_sub="Las noticias de la Patagonia en tu mail. Gratis, baja en un clic.",
   follow="Seguinos también en", serv_t="Servicios para viajeros y para el sector",
-  serv=[("","Pronóstico","clima.html"),("","Mareas","mareas.html"),("","Vuelos","conectividad.html#vuelos"),
-        ("","Estado de rutas","conectividad.html#rutas"),("","Pasos fronterizos","conectividad.html#pasos"),
-        ("","Divisas","cotizaciones.html"),("","Agenda","agenda.html"),("","Informes","reports.html")],
+  serv=[("","Informes","index.html#sec-pesca"),("","Notas de tapa","index.html#tapa-grid"),("","Pronóstico","clima.html"),("","Mareas","mareas.html"),("","Vuelos","conectividad.html#vuelos"),("","Estado de rutas","conectividad.html#rutas"),("","Pasos fronterizos","conectividad.html#pasos"),("","Agenda","agenda.html")],
   cards_t="Para explorar",
   cards=[],
   guias=[("Torres del Paine","notas/guia-torres-del-paine{s}.html","guia-paine"),("El Calafate","notas/guia-calafate{s}.html","guia-calafate"),("Circuito Austral","notas/guia-circuito-austral{s}.html","guia-circuito")],
@@ -38,9 +36,7 @@ L = {
   intro="We are writing from <b>GLOBALpatagonia</b>, an independent news outlet covering all of Patagonia, on both sides of the Andes, as well as the southern Pacific, Malvinas, the South Atlantic and Antarctica: tourism, economy, science, culture, sports, environment and connectivity. We publish in <b>Spanish, English, Portuguese and Chinese</b>, with original reporting and tools for anyone who lives, travels or works in Patagonia.",
   cta_main="Subscribe to the newsletter", cta_sub="Patagonia news in your inbox. Free, one-click unsubscribe.",
   follow="Follow us on", serv_t="Services for travelers and the industry",
-  serv=[("","Weather","clima.html"),("","Tides","mareas.html"),("","Flights","conectividad.html#vuelos"),
-        ("","Road status","conectividad.html#rutas"),("","Border crossings","conectividad.html#pasos"),
-        ("","Exchange rates","cotizaciones.html"),("","Events","agenda.html"),("","Reports","reports.html")],
+  serv=[("","Reports","reports.html"),("","Top stories","index.html#tapa-grid"),("","Weather","clima.html"),("","Tides","mareas.html"),("","Flights","conectividad.html#vuelos"),("","Road status","conectividad.html#rutas"),("","Border crossings","conectividad.html#pasos"),("","Events","agenda.html")],
   cards_t="Explore",
   cards=[],
   guias=[("Torres del Paine","notas/guia-torres-del-paine{s}.html","guia-paine"),("El Calafate","notas/guia-calafate{s}.html","guia-calafate"),("Austral Circuit","notas/guia-circuito-austral{s}.html","guia-circuito")],
@@ -64,8 +60,8 @@ def img(name, w, alt="", extra=""):
     return f'<img src="{IMG}{name}.jpg" width="{w}" alt="{alt}" style="display:block;width:100%;max-width:{w}px;height:auto;border:0;{extra}">'
 
 CAP = {
- "es": {"clima.html":"9 ciudades patagónicas","mareas.html":"Tablas y horarios","conectividad.html#vuelos":"Arribos y partidas","conectividad.html#rutas":"Cortes y estado actual","conectividad.html#pasos":"Fronteras Argentina–Chile","cotizaciones.html":"Dólar, peso chileno y más","agenda.html":"Eventos de la región","reports.html":"Investigaciones propias"},
- "en": {"clima.html":"9 Patagonian cities","mareas.html":"Tables and schedules","conectividad.html#vuelos":"Arrivals and departures","conectividad.html#rutas":"Closures and live status","conectividad.html#pasos":"Argentina–Chile borders","cotizaciones.html":"Dollar, Chilean peso and more","agenda.html":"Regional events","reports.html":"Original investigations"}}
+ "es": {"clima.html":"9 ciudades patagónicas","mareas.html":"Tablas y horarios","conectividad.html#vuelos":"Arribos y partidas","conectividad.html#rutas":"Cortes y estado actual","conectividad.html#pasos":"Fronteras Argentina–Chile","cotizaciones.html":"Dólar, peso chileno y más","agenda.html":"Eventos de la región","index.html#tapa-grid":"Lo más importante del día","index.html#sec-noticias":"Últimas noticias","index.html#sec-pesca":"Investigaciones propias"},
+ "en": {"clima.html":"9 Patagonian cities","mareas.html":"Tables and schedules","conectividad.html#vuelos":"Arrivals and departures","conectividad.html#rutas":"Closures and live status","conectividad.html#pasos":"Argentina–Chile borders","cotizaciones.html":"Dollar, Chilean peso and more","agenda.html":"Regional events","index.html#tapa-grid":"The day's main stories","index.html#sec-noticias":"Latest news","reports.html":"Original investigations"}}
 
 def build(c):
     sfx = c["sfx"]
