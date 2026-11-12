@@ -124,12 +124,61 @@ FUENTES_RSS = [
     {"nombre": "Diálogo Sur",             "url": "https://dialogosur.cl/feed/",                          "region": "Magallanes"},
     # ── Chile · Antártica ──
     {"nombre": "INACH",                   "url": "https://www.inach.cl/feed/",                           "region": "Antártica Chile"},
+    # ── Antártida Argentina / Atlántico Sur ──
+    {"nombre": "CADIC-CONICET",           "url": "https://cadic.conicet.gov.ar/feed/",                   "region": "Tierra del Fuego"},
+    {"nombre": "MercoPress Antártida",    "url": "https://es.mercopress.com/rss/antartida",              "region": "Antártida"},
     # ── Islas Malvinas / Falkland Islands ──
     {"nombre": "Penguin News",            "url": "https://penguin-news.com/feed/",                        "region": "Malvinas", "idioma": "en"},
     # ── Deportes de aventura patagónicos ──
     {"nombre": "Club Andino Bariloche",   "url": "https://clubandino.org/feed/",                         "region": "Bariloche"},
     {"nombre": "Catedral Alta Patagonia", "url": "https://www.catedralaltapatagonia.com/feed/",           "region": "Bariloche"},
 ]
+
+# Fuentes sin RSS: se scrapea el listado y se retienen solo notas que mencionen estas palabras
+FUENTES_WEB = [
+    {"nombre": "Ministerio de Defensa", "url": "https://www.argentina.gob.ar/defensa/noticias",
+     "region": "Antártida", "base": "https://www.argentina.gob.ar",
+     "filtro": r"ant[aá]rtic|ant[aá]rtid|irízar|irizar|marambio|base esperanza|base petrel|comando conjunto"},
+]
+
+def fetch_fuentes_web(trending_kw, titulos_vetados):
+    """Scraper liviano de listados argentina.gob.ar (panels con <time datetime> + <h3>)."""
+    import html as _html
+    salida = []
+    for f in FUENTES_WEB:
+        print(f"  Leyendo: {f['nombre']} (web) ...", end=" ", flush=True)
+        try:
+            req = urllib.request.Request(f["url"], headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"})
+            with urllib.request.urlopen(req, timeout=15) as r:
+                raw = r.read(900000).decode("utf-8", errors="ignore")
+            n = 0
+            for m in re.finditer(r'<a href="(/noticias/[^"]+)"[^>]*>(.*?)</a>', raw, re.S):
+                bloque = m.group(2)
+                h3 = re.search(r"<h3>(.*?)</h3>", bloque, re.S)
+                if not h3:
+                    continue
+                titulo = _html.unescape(re.sub(r"<[^>]+>", "", h3.group(1))).strip()
+                bajada = _html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", (re.search(r'<p class="text-muted">(.*?)</p>', bloque, re.S) or [None, ""])[1]))).strip()
+                if not re.search(f["filtro"], titulo + " " + bajada, re.I):
+                    continue
+                fecha = re.search(r"datetime='([\d-]+)", bloque)
+                if fecha and (time.time() - time.mktime(time.strptime(fecha.group(1), "%Y-%m-%d"))) / 86400 > 14:
+                    continue
+                if any(v in titulo.lower() for v in titulos_vetados):
+                    continue
+                img = re.search(r"url\((https?://[^)]+)\)", bloque)
+                salida.append({
+                    "fuente": f["nombre"], "region": f["region"],
+                    "titulo_original": titulo, "resumen_original": bajada[:250],
+                    "url": f["base"] + m.group(1),
+                    "imagen_rss": img.group(1) if img else "",
+                    "score": puntuar_relevancia(titulo, bajada, trending_kw),
+                })
+                n += 1
+            print(f"{n} antárticas")
+        except Exception as e:
+            print(f"error ({e})")
+    return salida
 
 PALABRAS_CLAVE = [
     # Provincias y regiones
@@ -756,6 +805,9 @@ def fetch_noticias_crudas():
             print(f"{encontradas} patagónicas")
         except Exception as e:
             print(f"error ({e})")
+
+    for art in fetch_fuentes_web(trending_kw, titulos_vetados):
+        (cl if art["region"] in REGIONES_CHILE else ar).append(art)
 
     # Ordenar por relevancia antes de recortar (las más patagónicas primero)
     ar.sort(key=lambda x: x["score"], reverse=True)
