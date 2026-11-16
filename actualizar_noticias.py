@@ -4013,8 +4013,8 @@ def generar_feed_rss():
         '    <link>https://globalpatagonia.org/</link>',
         '    <description>Sur Global, principio de todo. Noticias de la Patagonia argentina y chilena.</description>',
         '    <language>es-ar</language>',
-        '    <managingEditor>ficciontvpatagonia@gmail.com (GLOBALpatagonia)</managingEditor>',
-        '    <webMaster>ficciontvpatagonia@gmail.com</webMaster>',
+        '    <managingEditor>hola@globalpatagonia.org (GLOBALpatagonia)</managingEditor>',
+        '    <webMaster>hola@globalpatagonia.org</webMaster>',
         f'    <lastBuildDate>{format_datetime(datetime.now(tz=timezone.utc))}</lastBuildDate>',
         '    <image>',
         '      <url>https://globalpatagonia.org/logo-globalpatagonia.png</url>',
@@ -4040,7 +4040,7 @@ def generar_feed_rss():
             f'      <guid isPermaLink="true">{url}</guid>',
             f'      <description>{bajada}</description>',
             f'      <pubDate>{pub}</pubDate>',
-            f'      <author>ficciontvpatagonia@gmail.com ({fuente})</author>',
+            f'      <author>hola@globalpatagonia.org ({fuente})</author>',
             f'      <media:content url="{img}" medium="image"/>',
             '      <news:news>',
             '        <news:publication>',
@@ -5109,7 +5109,7 @@ def enviar_newsletter():
         campaign_payload = json.dumps({
             "name":        f"GLOBALpatagonia — {fecha_dd_mm}",
             "subject":     f"El Sur de hoy — {fecha_dd_mm}",
-            "sender":      {"name": "GLOBALpatagonia", "email": "ficciontvpatagonia@gmail.com"},
+            "sender":      {"name": "GLOBALpatagonia", "email": os.environ.get("BREVO_SENDER_EMAIL", "hola@globalpatagonia.org")},
             "type":        "classic",
             "htmlContent": html_content,
             "recipients":  {"listIds": [BREVO_LIST_ID]}
