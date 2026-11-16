@@ -4899,6 +4899,11 @@ def enviar_newsletter():
     if not BREVO_API_KEY:
         print("  Newsletter: BREVO_API_KEY no configurada, saltando.")
         return
+    # Remitente: debe ser un remitente verificado en Brevo. Sale del secret
+    # BREVO_SENDER_EMAIL (no se escribe en el repo, que es público).
+    if not os.environ.get("BREVO_SENDER_EMAIL"):
+        print("::warning::Newsletter NO enviado: falta el secret BREVO_SENDER_EMAIL")
+        return
 
     base_dir   = os.path.dirname(__file__)
     state_path = os.path.join(base_dir, "telegram_state.json")
@@ -5109,7 +5114,7 @@ def enviar_newsletter():
         campaign_payload = json.dumps({
             "name":        f"GLOBALpatagonia — {fecha_dd_mm}",
             "subject":     f"El Sur de hoy — {fecha_dd_mm}",
-            "sender":      {"name": "GLOBALpatagonia", "email": os.environ.get("BREVO_SENDER_EMAIL", "hola@globalpatagonia.org")},
+            "sender":      {"name": "GLOBALpatagonia", "email": os.environ["BREVO_SENDER_EMAIL"]},
             "type":        "classic",
             "htmlContent": html_content,
             "recipients":  {"listIds": [BREVO_LIST_ID]}
