@@ -182,8 +182,7 @@
   var href = encodeURIComponent(window.location.href);
   var titulo = encodeURIComponent(document.title.replace(' — GLOBALpatagonia','').replace(' - GLOBALpatagonia',''));
   var mailSubject = encodeURIComponent(document.title.replace(' — GLOBALpatagonia','').replace(' - GLOBALpatagonia',''));
-  var mailBody = encodeURIComponent(document.title + '
-' + window.location.href);
+  var mailBody = encodeURIComponent(document.title + '\n' + window.location.href);
   var div = document.getElementById('compartir-bloque');
   if (!div) return;
   div.innerHTML =
@@ -193,7 +192,7 @@
     '<a class="btn-c btn-c-x" href="https://twitter.com/intent/tweet?text='+titulo+'&url='+href+'" target="_blank" rel="noopener">X</a>' +
     '<a class="btn-c btn-c-fb" href="https://www.facebook.com/sharer/sharer.php?u='+href+'" target="_blank" rel="noopener">Facebook</a>' +
     '<a class="btn-c btn-c-mail" href="mailto:?subject='+mailSubject+'&body='+mailBody+'">Email</a>' +
-    '<button class="btn-c btn-c-copy" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='¡Copiado!'">Copiar enlace</button>' +
+    '<button class="btn-c btn-c-copy" onclick="navigator.clipboard.writeText(window.location.href);this.textContent=\x27¡Copiado!\x27">Copiar enlace</button>' +
     '</div>';
 })();
 </script>
