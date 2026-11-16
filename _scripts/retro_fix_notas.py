@@ -241,8 +241,65 @@ def paso_onesignal(s):
     return s[:i] + ONESIGNAL_NOTAS + "\n" + s[i:], 1
 
 
+# ── Tanda 4: metadatos (datos estructurados y vista previa al compartir) ──
+import html as _html, json as _json, unicodedata as _ud
+
+FB_PAGE_ID = os.environ.get("FACEBOOK_PAGE_ID", "").strip()   # mismo origen que el generador
+_RE_LD = re.compile(r'(<script type="application/ld\+json">)(.*?)(</script>)', re.S)
+_RE_FB = re.compile(r'<meta\s+property="fb:pages"\s+content="[^"]*"\s*/?>')
+_RE_OGIMG = re.compile(r'([ \t]*)<meta\s+property="og:image"\s+content="([^"]*)"\s*/?>')
+
+def limpiar_etiqueta(txt):
+    """Igual que _limpiar_etiqueta del generador: sin emojis, banderas ni adornos."""
+    t = _ud.normalize("NFC", str(txt or ""))
+    t = "".join(c for c in t if c != "·" and _ud.category(c) not in ("So", "Sk", "Cf", "Mn", "Me", "Cs", "Co"))
+    return re.sub(r"\s+", " ", t).strip(" ,-")
+
+def _kw(m):
+    try:
+        val = _json.loads('"' + m.group(2) + '"')
+    except Exception:
+        return m.group(0)
+    out = []
+    for parte in val.split(","):
+        parte = limpiar_etiqueta(parte)
+        if parte and parte.lower() not in [x.lower() for x in out]:
+            out.append(parte)
+    return m.group(1) + _json.dumps(", ".join(out), ensure_ascii=False)
+
+def _ld(m):
+    b = m.group(2)
+    b = re.sub(r'("date(?:Published|Modified)":\s*")(\d{4}-\d{2}-\d{2})"', r'\1\2T06:00:00-03:00"', b)
+    b = b.replace("https://globalpatagonia.org/favicon.svg", "https://globalpatagonia.org/icon-512.png")
+    b = re.sub(r'("keywords":\s*)"((?:[^"\\]|\\.)*)"', _kw, b)
+    return m.group(1) + b + m.group(3)
+
+def paso_meta(s, pagina):
+    orig = s
+    s = _RE_LD.sub(_ld, s)
+    s = re.sub(r'(<meta\s+property="article:(?:published|modified)_time"\s+content=")(\d{4}-\d{2}-\d{2})"',
+               r'\1\2T06:00:00-03:00"', s)
+    s = re.sub(r'(<meta\s+property="article:section"\s+content=")([^"]*)"',
+               lambda m: m.group(1) + _html.escape(limpiar_etiqueta(_html.unescape(m.group(2))), quote=True) + '"', s)
+    m = _RE_OGIMG.search(s)
+    if m and "og:image:width" not in s:
+        d = _dim_local(m.group(2), pagina)
+        if d:
+            s = (s[:m.end()] + f'\n{m.group(1)}<meta property="og:image:width" content="{d[0]}"/>'
+                 f'\n{m.group(1)}<meta property="og:image:height" content="{d[1]}"/>' + s[m.end():])
+    if FB_PAGE_ID:
+        meta = f'<meta property="fb:pages" content="{FB_PAGE_ID}"/>'
+        if _RE_FB.search(s):
+            s = _RE_FB.sub(meta, s, count=1)
+        else:
+            m = _RE_OGIMG.search(s)
+            if m:
+                s = s[:m.start()] + f'{m.group(1)}{meta}\n' + s[m.start():]
+    return s, int(s != orig)
+
+
 def main():
-    tot = dict(paginas=0, compartir=0, fuentes=0, zh=0, dim=0, lazy=0, iframes=0, onesignal=0)
+    tot = dict(paginas=0, compartir=0, fuentes=0, zh=0, dim=0, lazy=0, iframes=0, onesignal=0, meta=0)
     archivos = (sorted(glob.glob(os.path.join(BASE, "notas", "*.html")))
                 + sorted(glob.glob(os.path.join(BASE, "temas", "*.html")))
                 + sorted(glob.glob(os.path.join(BASE, "autor-*.html"))))
@@ -258,6 +315,7 @@ def main():
         s, a = paso_iframes(s);              tot["iframes"] += a
         if es_nota and rel != os.path.join("notas", "index.html"):
             s, a = paso_onesignal(s);        tot["onesignal"] += a
+            s, a = paso_meta(s, rel);        tot["meta"] += a
         if s != orig:
             tot["paginas"] += 1
             if not DRY:

@@ -2599,12 +2599,11 @@ def inyectar_tapa_en_index(datos):
                        nuevo, count=1)
 
     # ── Inyectar fb:pages meta tag ───────────────────────────────────────────
-    fb_page_id = os.environ.get("FACEBOOK_PAGE_ID", "")
+    # (reemplaza también un ID viejo ya escrito: antes solo cambiaba el marcador
+    #  la primera vez y la home quedó con un ID de página anterior)
+    fb_page_id = os.environ.get("FACEBOOK_PAGE_ID", "").strip()
     if fb_page_id:
-        nuevo = nuevo.replace(
-            "<!-- FB-PAGES-META -->",
-            f'<meta property="fb:pages" content="{fb_page_id}"/>'
-        )
+        nuevo = _RE_FB_PAGES.sub(f'<meta property="fb:pages" content="{fb_page_id}"/>', nuevo, count=1)
 
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(nuevo)
@@ -3089,6 +3088,7 @@ def main():
     # 7c. Inyectar tapa+noticias en index.html para eliminar LCP dependiente de JS
     print(f"\n  Inyectando tapa en index.html...")
     inyectar_tapa_en_index(datos)
+    sincronizar_fb_pages()
 
     # 8. Agenda
     print(f"\n  Actualizando agenda...")
@@ -3418,6 +3418,49 @@ def _dimensiones_imagen(imagen):
     return (1200, 630)
 
 
+def _limpiar_etiqueta(txt):
+    """Etiqueta para metadatos (keywords, article:section): sin emojis, banderas ni adornos '·'.
+    El texto visible de la nota no pasa por acá."""
+    t = unicodedata.normalize("NFC", str(txt or ""))
+    t = "".join(c for c in t if c != "·" and unicodedata.category(c) not in ("So", "Sk", "Cf", "Mn", "Me", "Cs", "Co"))
+    return re.sub(r"\s+", " ", t).strip(" ,-")
+
+
+def _fecha_iso_completa(fecha_dia):
+    """'2026-11-15' → '2026-11-15T06:00:00-03:00' (hora de Argentina). Si la fecha es hoy, usa la hora real."""
+    from datetime import timezone, timedelta
+    ahora = datetime.now(timezone(timedelta(hours=-3)))
+    hora = ahora.strftime("%H:%M:%S") if ahora.strftime("%Y-%m-%d") == fecha_dia else "06:00:00"
+    return f"{fecha_dia}T{hora}-03:00"
+
+
+# Páginas fijas de la raíz que llevan fb:pages. El valor sale SIEMPRE del secret
+# FACEBOOK_PAGE_ID (igual que en las notas): no se escribe a mano en el HTML.
+_RE_FB_PAGES = re.compile(r'<meta\s+property="fb:pages"\s+content="[^"]*"\s*/?>|<!-- FB-PAGES-META -->')
+
+def sincronizar_fb_pages():
+    """Pone el fb:pages del secret en la home y en las páginas de servicio."""
+    import glob as _glob
+    fb_id = os.environ.get("FACEBOOK_PAGE_ID", "").strip()
+    if not fb_id:
+        return
+    base = os.path.dirname(os.path.abspath(__file__))
+    meta = f'<meta property="fb:pages" content="{fb_id}"/>'
+    paginas = (["index.html", "clima.html", "mareas.html", "cotizaciones.html", "conectividad.html"]
+               + sorted(os.path.basename(x) for x in _glob.glob(os.path.join(base, "clima-*.html"))))
+    for nombre in paginas:
+        ruta = os.path.join(base, nombre)
+        if not os.path.isfile(ruta):
+            continue
+        with open(ruta, encoding="utf-8") as f:
+            orig = f.read()
+        nuevo = _RE_FB_PAGES.sub(meta, orig, count=1)
+        if nuevo != orig:
+            with open(ruta, "w", encoding="utf-8") as f:
+                f.write(nuevo)
+            print(f"  fb:pages actualizado en {nombre}")
+
+
 def generar_paginas_og(notas):
     """Genera notas/[id].html con contenido completo — indexable por Google sin JS."""
     import html as htmllib
@@ -3461,6 +3504,16 @@ def generar_paginas_og(notas):
             m = re.match(r"(\d{4}-\d{2}-\d{2})", str(fecha_raw))
             if m:
                 fecha_iso = m.group(1)
+        fecha_iso = _fecha_iso_completa(fecha_iso)
+        tag_meta = _limpiar_etiqueta(tag)
+        _kw = []
+        for _k in ("patagonia", _limpiar_etiqueta({"argentina": "argentina", "chile": "chile",
+                   "ambos": "argentina, chile", "malvinas": "malvinas"}.get(pais, "")), tag_meta):
+            for _p in _k.split(","):
+                _p = _p.strip()
+                if _p and _p.lower() not in [x.lower() for x in _kw]:
+                    _kw.append(_p)
+        _ogw, _ogh = _dimensiones_imagen(imagen)
 
         pais_label = {"argentina": "🇦🇷 Argentina", "chile": "🇨🇱 Chile",
                       "ambos": "🇦🇷🇨🇱 Argentina · Chile", "malvinas": "🇦🇷 Malvinas"}.get(pais, "🌎 Patagonia")
@@ -3496,12 +3549,13 @@ def generar_paginas_og(notas):
             "dateModified": fecha_iso,
             "url": static_url,
             "inLanguage": "es",
-            "keywords": f"patagonia, {pais_label.lower()}, {tag}",
+            "keywords": ", ".join(_kw),
             "publisher": {
                 "@type": "NewsMediaOrganization",
                 "name": "GLOBALpatagonia",
                 "url": "https://globalpatagonia.org/",
-                "logo": {"@type": "ImageObject", "url": "https://globalpatagonia.org/favicon.svg"}
+                "logo": {"@type": "ImageObject", "url": "https://globalpatagonia.org/icon-512.png",
+                         "width": 512, "height": 512}
             },
             "author": ({"@type": "Person", "name": autor,
                         "url": "https://globalpatagonia.org/autor-j-martineau.html"}
@@ -3596,6 +3650,8 @@ def generar_paginas_og(notas):
   <meta property="og:title" content="{ea(titulo)} — GLOBALpatagonia"/>
   <meta property="og:description" content="{ea(bajada)}"/>
   <meta property="og:image" content="{ea(imagen_abs)}"/>
+  <meta property="og:image:width" content="{_ogw}"/>
+  <meta property="og:image:height" content="{_ogh}"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@GLOBALpatagonia"/>
   <meta name="twitter:title" content="{ea(titulo)} — GLOBALpatagonia"/>
@@ -3603,7 +3659,7 @@ def generar_paginas_og(notas):
   <meta name="twitter:image" content="{ea(imagen_abs)}"/>
   <meta property="article:published_time" content="{ea(fecha_iso)}"/>
   <meta property="article:author" content="https://www.facebook.com/PatagoniaGLOBAL"/>
-  {f'<meta property="article:section" content="{ea(tag)}"/>' if tag else ''}
+  {f'<meta property="article:section" content="{ea(tag_meta)}"/>' if tag_meta else ''}
   {f'<meta property="fb:pages" content="{ea(os.environ.get("FACEBOOK_PAGE_ID", ""))}"/>' if os.environ.get("FACEBOOK_PAGE_ID") else ''}
   <script type="application/ld+json">{jsonld}</script>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
