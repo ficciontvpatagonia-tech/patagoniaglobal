@@ -97,14 +97,12 @@ BREVO_LIST_ID       = 3
 FUENTES_RSS = [
     # ── Argentina · Regionales ──
     {"nombre": "Diario Río Negro",        "url": "https://www.rionegro.com.ar/feed/",                    "region": "Río Negro"},
-    {"nombre": "La Opinión Austral",      "url": "https://laopinionaustral.com.ar/feed/",                "region": "Santa Cruz"},
     {"nombre": "El Patagónico",           "url": "https://www.elpatagonico.com/rss/home.xml",         "region": "Chubut"},
-    {"nombre": "Jornada Patagonia",       "url": "https://www.diariojornada.com.ar/rss/",                "region": "Chubut"},
+    {"nombre": "El Chubut",               "url": "https://www.elchubut.com.ar/rss/portada.xml",          "region": "Chubut"},
     {"nombre": "ADN Sur",                 "url": "https://www.adnsur.com.ar/rss",                      "region": "Patagonia"},
-    {"nombre": "El Cordillerano",         "url": "https://www.elcordillerano.com.ar/rss/home.xml",       "region": "Río Negro"},
     {"nombre": "Bariloche2000",           "url": "https://www.bariloche2000.com/rss/feed.xml",                  "region": "Bariloche"},
     {"nombre": "InfoFueguina",            "url": "https://www.infofueguina.com/feeds/rss",                     "region": "Tierra del Fuego"},
-    {"nombre": "Neuquén Informa",         "url": "https://www.neuqueninforma.gob.ar/feed/",              "region": "Neuquén"},
+    {"nombre": "Sureño",                  "url": "https://www.surenio.com.ar/feed/",                     "region": "Tierra del Fuego"},
     {"nombre": "LMNeuquén",              "url": "https://www.lmneuquen.com/rss/ultimas-noticias.xml",                       "region": "Neuquén"},
     {"nombre": "Tiempo Sur",             "url": "https://www.tiemposur.com.ar/feed",                     "region": "Santa Cruz"},
     # ── Argentina · Nacional ──
@@ -116,10 +114,9 @@ FUENTES_RSS = [
     {"nombre": "La Nación Chile",           "url": "https://www.lanacion.cl/feed/",                        "region": "Nacional Chile"},
     # ── Chile · Regionales ──
     {"nombre": "La Prensa Austral",       "url": "https://laprensaaustral.cl/feed/",                     "region": "Magallanes"},
-    {"nombre": "El Divisadero",           "url": "https://www.eldivisadero.cl/feed/",                    "region": "Aysén"},
-    {"nombre": "El Llanquihue",           "url": "https://www.elllanquihue.cl/feed/",                    "region": "Los Lagos"},
-    {"nombre": "El Pingüino",             "url": "https://www.elpinguino.com/feed/",                     "region": "Magallanes"},
-    {"nombre": "Diario de Valdivia",      "url": "https://www.diariodevaldivia.cl/feed/",                "region": "Los Ríos"},
+    {"nombre": "Radio Santa María",       "url": "https://www.radiosantamaria.cl/feed/",                 "region": "Aysén"},
+    {"nombre": "El Calbucano",            "url": "https://elcalbucano.cl/feed/",                         "region": "Los Lagos"},
+    {"nombre": "Paislobo",                "url": "https://www.paislobo.cl/feeds/posts/default",          "region": "Los Lagos"},
     {"nombre": "El Magallánico",          "url": "https://www.elmagallanico.com/feed/",                  "region": "Magallanes"},
     {"nombre": "Diálogo Sur",             "url": "https://dialogosur.cl/feed/",                          "region": "Magallanes"},
     # ── Chile · Antártica ──
@@ -133,6 +130,38 @@ FUENTES_RSS = [
     {"nombre": "Club Andino Bariloche",   "url": "https://clubandino.org/feed/",                         "region": "Bariloche"},
     {"nombre": "Catedral Alta Patagonia", "url": "https://www.catedralaltapatagonia.com/feed/",           "region": "Bariloche"},
 ]
+
+# Fuentes INACTIVAS: salieron de FUENTES_RSS el 16/11/2026 porque dejaron de publicar RSS.
+# No se leen ni disparan el aviso diario de FEED CAÍDO. Se conservan para reactivarlas si el
+# medio vuelve a tener RSS: basta con mover la línea de vuelta a FUENTES_RSS con la URL nueva.
+FUENTES_RSS_INACTIVAS = [
+    # el feed responde vacío; sin reemplazo todavía en Santa Cruz (queda Tiempo Sur)
+    {"nombre": "La Opinión Austral",      "url": "https://laopinionaustral.com.ar/feed/",                "region": "Santa Cruz"},
+    # sacó el RSS; reemplazada por El Chubut
+    {"nombre": "Jornada Patagonia",       "url": "https://www.diariojornada.com.ar/rss/",                "region": "Chubut"},
+    # sacó el RSS; Río Negro queda cubierto por Diario Río Negro y Bariloche2000
+    {"nombre": "El Cordillerano",         "url": "https://www.elcordillerano.com.ar/rss/home.xml",       "region": "Río Negro"},
+    # sacó el RSS; Neuquén queda cubierto por LMNeuquén
+    {"nombre": "Neuquén Informa",         "url": "https://www.neuqueninforma.gob.ar/feed/",              "region": "Neuquén"},
+    # sacó el RSS; reemplazada por Radio Santa María
+    {"nombre": "El Divisadero",           "url": "https://www.eldivisadero.cl/feed/",                    "region": "Aysén"},
+    # el dominio ya no resuelve; reemplazada por El Calbucano y Paislobo
+    {"nombre": "El Llanquihue",           "url": "https://www.elllanquihue.cl/feed/",                    "region": "Los Lagos"},
+    # sacó el RSS; Magallanes queda cubierto por La Prensa Austral, El Magallánico y Diálogo Sur
+    {"nombre": "El Pingüino",             "url": "https://www.elpinguino.com/feed/",                     "region": "Magallanes"},
+    # sacó el RSS; reemplazo propuesto: Diario El Ranco (pendiente de aprobación)
+    {"nombre": "Diario de Valdivia",      "url": "https://www.diariodevaldivia.cl/feed/",                "region": "Los Ríos"},
+]
+
+# Respaldo SIN ACTIVAR: sitemap de noticias de los medios que lo publican. Ningún código lo
+# lee hoy. Si alguno vuelve a mover su RSS, se puede leer el sitemap en su lugar.
+SITEMAPS_NOTICIAS_RESPALDO = {
+    "El Patagónico": "https://www.elpatagonico.com/sitemap-news.xml",
+    "ADN Sur":       "https://www.adnsur.com.ar/sitemap-news.xml",
+    "InfoFueguina":  "https://www.infofueguina.com/sitemaps/index.xml",
+    "LMNeuquén":     "https://www.lmneuquen.com/sitemap-news.xml",
+    "El Chubut":     "https://www.elchubut.com.ar/sitemap-news.xml",
+}
 
 # Fuentes sin RSS: se scrapea el listado y se retienen solo notas que mencionen estas palabras
 FUENTES_WEB = [
