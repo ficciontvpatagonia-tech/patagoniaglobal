@@ -532,6 +532,7 @@ def actualizar_search_index():
         "historial.json", "noticias.json", "historias.json",
         "turismo.json", "deportes_feed.json", "propios.json",
         "propios_historial.json", "negocios.json", "guias.json",
+        "cultura.json", "guias_historial.json", "deportes_historial.json",
     ]
     for nombre in fuentes:
         ruta = os.path.join(base, nombre)
@@ -575,7 +576,16 @@ def actualizar_search_index():
         except Exception:
             pass
 
-    if nuevas or reparadas:
+    # El buscador enlaza a notas/ID.html: una entrada sin página manda al lector a un 404.
+    # Se filtran las viejas y también las candidatas nuevas (entran cuando su página exista).
+    def _tiene_pagina(n):
+        return os.path.exists(os.path.join(base, "notas", f"{n.get('id')}.html"))
+    antes = len(indice)
+    indice = [n for n in indice if _tiene_pagina(n)]
+    huerfanas = antes - len(indice)
+    nuevas = [n for n in nuevas if _tiene_pagina(n)]
+
+    if nuevas or reparadas or huerfanas:
         if nuevas:
             indice = nuevas + indice
             indice.sort(key=lambda n: n.get("fecha", ""), reverse=True)
@@ -586,6 +596,8 @@ def actualizar_search_index():
             partes.append(f"{len(nuevas)} nota(s) agregada(s)")
         if reparadas:
             partes.append(f"{reparadas} ruta(s) de foto auto-reparada(s)")
+        if huerfanas:
+            partes.append(f"{huerfanas} entrada(s) sin página quitada(s)")
         print(f"  → Índice de búsqueda: {', '.join(partes)} ({len(indice)} total)")
     else:
         print(f"  → Índice de búsqueda sin cambios ({len(indice)} notas)")
