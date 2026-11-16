@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# NOTA (16/11/2026): los borradores que lee este script (_borrador_*) ya no están en el repo.
+# Se movieron a CLAUDCODE/GP_HERRAMIENTAS/borradores_gp/ (fuera del repo público).
+# Para volver a correrlo hay que copiarlos de nuevo a _scripts/.
 """
 Notas de SERVICIO del 17/10/2026 (FUAS 2027 + Zona Fría), escritas a mano.
 Entran como las 2 SECUNDARIAS de portada; la tapa actual queda; las secundarias

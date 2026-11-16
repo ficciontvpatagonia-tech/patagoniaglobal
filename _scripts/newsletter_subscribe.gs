@@ -1,10 +1,10 @@
 // GLOBALpatagonia — Suscripción al newsletter via Brevo
 // Instrucciones:
-//   1. Abrí script.google.com con ficciontvpatagonia@gmail.com
+//   1. Abrí script.google.com con la cuenta de Google de GLOBALpatagonia
 //   2. Nuevo proyecto → pegá este código → guardá (Ctrl+S)
 //   3. Clic en "Implementar" → "Nueva implementación"
 //   4. Tipo: Aplicación web
-//   5. Ejecutar como: Yo (ficciontvpatagonia@gmail.com)
+//   5. Ejecutar como: Yo (la cuenta de GLOBALpatagonia)
 //   6. Quién tiene acceso: Cualquier usuario
 //   7. Clic en "Implementar" → copiá la URL → pegala en index.html (constante NEWSLETTER_ENDPOINT)
 

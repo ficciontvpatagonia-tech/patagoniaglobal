@@ -5,7 +5,7 @@
  * 1. Ir a script.google.com → Nuevo proyecto
  * 2. Pegar este código completo
  * 3. En "Implementar" → "Nueva implementación" → Aplicación web
- *    - Ejecutar como: Yo (ficciontvpatagonia@gmail.com)
+ *    - Ejecutar como: Yo (la cuenta de GLOBALpatagonia)
  *    - Acceso: Cualquier persona
  * 4. Copiar la URL generada y pegarla en colaboradores.html (const APPS_SCRIPT_URL)
  * 5. Crear carpeta en Drive: "GLOBALpatagonia_Colaboradores"
@@ -29,17 +29,17 @@ const USUARIOS = {
   "amolina": {
     nombre: "A. Molina",
     email:  "",      // completar cuando confirmen
-    pass:   "GP2026am"
+    pass:   "PEGAR_CLAVE_AQUI"  // no escribir claves reales en el repo (es público)
   },
   "bortega": {
     nombre: "B. Ortega",
     email:  "",      // completar cuando confirmen
-    pass:   "GP2026bo"
+    pass:   "PEGAR_CLAVE_AQUI"  // no escribir claves reales en el repo (es público)
   },
   "msubira": {
     nombre: "M. Subirá",
-    email:  "ficciontvpatagonia@gmail.com",
-    pass:   "GP2026ms"
+    email:  "hola@globalpatagonia.org",
+    pass:   "PEGAR_CLAVE_AQUI"  // no escribir claves reales en el repo (es público)
   }
 };
 

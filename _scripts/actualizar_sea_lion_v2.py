@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# NOTA (16/11/2026): los borradores que lee este script (_borrador_*) ya no están en el repo.
+# Se movieron a CLAUDCODE/GP_HERRAMIENTAS/borradores_gp/ (fuera del repo público).
+# Para volver a correrlo hay que copiarlos de nuevo a _scripts/.
 # Reemplaza el informe Sea Lion / Tribunal del Mar por la v2 (aprobada por Marto 14/10/2026):
 # actualiza la entrada en propios.json (ES/EN/PT/ZH). Las páginas se regeneran con
 # _gen_variantes_malvinas_tribunal_mar_sea_lion.py (borrando antes las 4 notas/*.html).

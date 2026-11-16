@@ -97,29 +97,26 @@ BREVO_LIST_ID       = 3
 FUENTES_RSS = [
     # ── Argentina · Regionales ──
     {"nombre": "Diario Río Negro",        "url": "https://www.rionegro.com.ar/feed/",                    "region": "Río Negro"},
-    {"nombre": "La Opinión Austral",      "url": "https://laopinionaustral.com.ar/feed/",                "region": "Santa Cruz"},
-    {"nombre": "El Patagónico",           "url": "https://www.elpatagonico.com/rss/portada.xml",         "region": "Chubut"},
-    {"nombre": "Jornada Patagonia",       "url": "https://www.diariojornada.com.ar/rss/",                "region": "Chubut"},
-    {"nombre": "ADN Sur",                 "url": "https://www.adnsur.com.ar/feed/",                      "region": "Patagonia"},
-    {"nombre": "El Cordillerano",         "url": "https://www.elcordillerano.com.ar/rss/home.xml",       "region": "Río Negro"},
-    {"nombre": "Bariloche2000",           "url": "https://www.bariloche2000.com/feed/",                  "region": "Bariloche"},
-    {"nombre": "InfoFueguina",            "url": "https://www.infofueguina.com/rss",                     "region": "Tierra del Fuego"},
-    {"nombre": "Neuquén Informa",         "url": "https://www.neuqueninforma.gob.ar/feed/",              "region": "Neuquén"},
-    {"nombre": "LMNeuquén",              "url": "https://www.lmneuquen.com/rss/",                       "region": "Neuquén"},
+    {"nombre": "El Patagónico",           "url": "https://www.elpatagonico.com/rss/home.xml",         "region": "Chubut"},
+    {"nombre": "El Chubut",               "url": "https://www.elchubut.com.ar/rss/portada.xml",          "region": "Chubut"},
+    {"nombre": "ADN Sur",                 "url": "https://www.adnsur.com.ar/rss",                      "region": "Patagonia"},
+    {"nombre": "Bariloche2000",           "url": "https://www.bariloche2000.com/rss/feed.xml",                  "region": "Bariloche"},
+    {"nombre": "InfoFueguina",            "url": "https://www.infofueguina.com/feeds/rss",                     "region": "Tierra del Fuego"},
+    {"nombre": "Sureño",                  "url": "https://www.surenio.com.ar/feed/",                     "region": "Tierra del Fuego"},
+    {"nombre": "LMNeuquén",              "url": "https://www.lmneuquen.com/rss/ultimas-noticias.xml",                       "region": "Neuquén"},
     {"nombre": "Tiempo Sur",             "url": "https://www.tiemposur.com.ar/feed",                     "region": "Santa Cruz"},
     # ── Argentina · Nacional ──
     {"nombre": "La Nación",               "url": "https://www.lanacion.com.ar/arc/outboundfeeds/rss/",              "region": "Nacional"},
-    {"nombre": "Infobae",                 "url": "https://www.infobae.com/feeds/rss/",                              "region": "Nacional"},
+    {"nombre": "Infobae",                 "url": "https://www.infobae.com/arc/outboundfeeds/rss/?outputType=xml",                              "region": "Nacional"},
     {"nombre": "Clarín",                  "url": "https://www.clarin.com/rss/lo-ultimo/",                           "region": "Nacional"},
     {"nombre": "Página 12",               "url": "https://www.pagina12.com.ar/arc/outboundfeeds/rss/portada",       "region": "Nacional"},
     # ── Chile · Nacional ──
     {"nombre": "La Nación Chile",           "url": "https://www.lanacion.cl/feed/",                        "region": "Nacional Chile"},
     # ── Chile · Regionales ──
     {"nombre": "La Prensa Austral",       "url": "https://laprensaaustral.cl/feed/",                     "region": "Magallanes"},
-    {"nombre": "El Divisadero",           "url": "https://www.eldivisadero.cl/feed/",                    "region": "Aysén"},
-    {"nombre": "El Llanquihue",           "url": "https://www.elllanquihue.cl/feed/",                    "region": "Los Lagos"},
-    {"nombre": "El Pingüino",             "url": "https://www.elpinguino.com/feed/",                     "region": "Magallanes"},
-    {"nombre": "Diario de Valdivia",      "url": "https://www.diariodevaldivia.cl/feed/",                "region": "Los Ríos"},
+    {"nombre": "Radio Santa María",       "url": "https://www.radiosantamaria.cl/feed/",                 "region": "Aysén"},
+    {"nombre": "El Calbucano",            "url": "https://elcalbucano.cl/feed/",                         "region": "Los Lagos"},
+    {"nombre": "Paislobo",                "url": "https://www.paislobo.cl/feeds/posts/default",          "region": "Los Lagos"},
     {"nombre": "El Magallánico",          "url": "https://www.elmagallanico.com/feed/",                  "region": "Magallanes"},
     {"nombre": "Diálogo Sur",             "url": "https://dialogosur.cl/feed/",                          "region": "Magallanes"},
     # ── Chile · Antártica ──
@@ -133,6 +130,38 @@ FUENTES_RSS = [
     {"nombre": "Club Andino Bariloche",   "url": "https://clubandino.org/feed/",                         "region": "Bariloche"},
     {"nombre": "Catedral Alta Patagonia", "url": "https://www.catedralaltapatagonia.com/feed/",           "region": "Bariloche"},
 ]
+
+# Fuentes INACTIVAS: salieron de FUENTES_RSS el 16/11/2026 porque dejaron de publicar RSS.
+# No se leen ni disparan el aviso diario de FEED CAÍDO. Se conservan para reactivarlas si el
+# medio vuelve a tener RSS: basta con mover la línea de vuelta a FUENTES_RSS con la URL nueva.
+FUENTES_RSS_INACTIVAS = [
+    # el feed responde vacío; sin reemplazo todavía en Santa Cruz (queda Tiempo Sur)
+    {"nombre": "La Opinión Austral",      "url": "https://laopinionaustral.com.ar/feed/",                "region": "Santa Cruz"},
+    # sacó el RSS; reemplazada por El Chubut
+    {"nombre": "Jornada Patagonia",       "url": "https://www.diariojornada.com.ar/rss/",                "region": "Chubut"},
+    # sacó el RSS; Río Negro queda cubierto por Diario Río Negro y Bariloche2000
+    {"nombre": "El Cordillerano",         "url": "https://www.elcordillerano.com.ar/rss/home.xml",       "region": "Río Negro"},
+    # sacó el RSS; Neuquén queda cubierto por LMNeuquén
+    {"nombre": "Neuquén Informa",         "url": "https://www.neuqueninforma.gob.ar/feed/",              "region": "Neuquén"},
+    # sacó el RSS; reemplazada por Radio Santa María
+    {"nombre": "El Divisadero",           "url": "https://www.eldivisadero.cl/feed/",                    "region": "Aysén"},
+    # el dominio ya no resuelve; reemplazada por El Calbucano y Paislobo
+    {"nombre": "El Llanquihue",           "url": "https://www.elllanquihue.cl/feed/",                    "region": "Los Lagos"},
+    # sacó el RSS; Magallanes queda cubierto por La Prensa Austral, El Magallánico y Diálogo Sur
+    {"nombre": "El Pingüino",             "url": "https://www.elpinguino.com/feed/",                     "region": "Magallanes"},
+    # sacó el RSS; reemplazo propuesto: Diario El Ranco (pendiente de aprobación)
+    {"nombre": "Diario de Valdivia",      "url": "https://www.diariodevaldivia.cl/feed/",                "region": "Los Ríos"},
+]
+
+# Respaldo SIN ACTIVAR: sitemap de noticias de los medios que lo publican. Ningún código lo
+# lee hoy. Si alguno vuelve a mover su RSS, se puede leer el sitemap en su lugar.
+SITEMAPS_NOTICIAS_RESPALDO = {
+    "El Patagónico": "https://www.elpatagonico.com/sitemap-news.xml",
+    "ADN Sur":       "https://www.adnsur.com.ar/sitemap-news.xml",
+    "InfoFueguina":  "https://www.infofueguina.com/sitemaps/index.xml",
+    "LMNeuquén":     "https://www.lmneuquen.com/sitemap-news.xml",
+    "El Chubut":     "https://www.elchubut.com.ar/sitemap-news.xml",
+}
 
 # Fuentes sin RSS: se scrapea el listado y se retienen solo notas que mencionen estas palabras
 FUENTES_WEB = [
@@ -752,6 +781,8 @@ def buscar_reemplazo_en_historial(historial, ids_excluidos, dias=7):
 #  RSS
 # ══════════════════════════════════════════════════════════
 
+_UA_FEEDS = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+
 REGIONES_CHILE = {
     "Nacional Chile", "Magallanes", "Aysén", "Los Lagos", "Los Ríos",
     "Antártica Chile", "Malvinas",
@@ -767,10 +798,21 @@ def fetch_noticias_crudas():
     trending_kw = obtener_trending_keywords()
     _, titulos_vetados = cargar_vetadas()
 
+    fuentes_caidas = []
     for fuente in FUENTES_RSS:
         print(f"  Leyendo: {fuente['nombre']} ...", end=" ", flush=True)
         try:
-            feed = feedparser.parse(fuente["url"])
+            # UA de navegador: varios medios (p.ej. Penguin News) no responden al UA por defecto de feedparser.
+            feed = feedparser.parse(fuente["url"], agent=_UA_FEEDS)
+            # Feed caído ≠ día sin noticias: 404/403, HTML en vez de RSS o feed vacío dan 0 entradas
+            # sin lanzar error. Se registra aparte para avisar en el Action.
+            if not feed.entries:
+                _status = getattr(feed, "status", None)
+                _motivo = (f"HTTP {_status}" if _status and _status >= 400
+                           else "no es RSS/Atom" if getattr(feed, "bozo", 0) else "feed vacío")
+                fuentes_caidas.append(f"{fuente['nombre']} ({_motivo})")
+                print(f"⚠ FEED CAÍDO — {_motivo}")
+                continue
             encontradas = 0
             for entry in feed.entries[:20]:
                 titulo  = entry.get("title", "")
@@ -804,7 +846,13 @@ def fetch_noticias_crudas():
                     encontradas += 1
             print(f"{encontradas} patagónicas")
         except Exception as e:
+            fuentes_caidas.append(f"{fuente['nombre']} (error: {str(e)[:60]})")
             print(f"error ({e})")
+
+    if fuentes_caidas:
+        # Anotación visible en el resumen del run de GitHub Actions (no corta el flujo).
+        print(f"\n::warning title=Fuentes caídas ({len(fuentes_caidas)} de {len(FUENTES_RSS)})::"
+              + "; ".join(fuentes_caidas))
 
     for art in fetch_fuentes_web(trending_kw, titulos_vetados):
         (cl if art["region"] in REGIONES_CHILE else ar).append(art)
@@ -3309,7 +3357,7 @@ def _make_rel_html(notes):
         titulo = htmllib.escape(str(n["titulo"] or ""), quote=True)
         if n["imagen"]:
             img = (f'<img class="rel-img" src="{htmllib.escape(n["imagen"], quote=True)}" '
-                   f'alt="{titulo}" onerror="this.style.display=\'none\'">')
+                   f'alt="{titulo}" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">')
         else:
             img = '<div class="rel-img"></div>'
         tag = htmllib.escape(_rel_norm_tag(n["tag"]))
@@ -3327,6 +3375,47 @@ def _make_rel_html(notes):
         f'\n      <div class="relacionadas-grid">{cards}</div>'
         '\n    </div>'
     )
+
+
+# ── Bloques compartidos por las plantillas (mismos que aplica _scripts/retro_fix_notas.py) ──
+# Fuentes: <link> no bloqueante en vez de @import dentro del CSS (bloqueaba el primer render).
+_FUENTES_URL = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap"
+_FUENTES_HEAD = (
+    '<link rel="preconnect" href="https://fonts.googleapis.com"/>\n'
+    '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>\n'
+    f'  <link rel="stylesheet" href="{_FUENTES_URL}" media="print" onload="this.media=\'all\'"/>\n'
+    f'  <noscript><link rel="stylesheet" href="{_FUENTES_URL}"/></noscript>'
+)
+
+# OneSignal en notas: el SDK se carga y el aviso de suscripción aparece recién después
+# de que el lector hizo scroll (no tapa el encabezado ni compite con la carga inicial).
+_ONESIGNAL_NOTAS = (
+    '<script>/* gp-onesignal: el SDK se carga y el aviso aparece recien despues de scroll */\n'
+    '(function(){var hecho=false;function ir(){if(hecho)return;'
+    'if((window.scrollY||document.documentElement.scrollTop||0)<600)return;hecho=true;'
+    "window.removeEventListener('scroll',ir);"
+    'window.OneSignalDeferred=window.OneSignalDeferred||[];'
+    'OneSignalDeferred.push(async function(OneSignal){'
+    'await OneSignal.init({appId:"d351217a-5fe8-4af2-bb35-fffdafb5e30f"});'
+    'try{if(OneSignal.Notifications.isPushSupported()&&!OneSignal.Notifications.permission)'
+    'OneSignal.Slidedown.promptPush();}catch(e){}});'
+    "var s=document.createElement('script');"
+    "s.src='https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';s.defer=true;"
+    "document.head.appendChild(s);}"
+    "window.addEventListener('scroll',ir,{passive:true});})();</script>"
+)
+
+
+def _dimensiones_imagen(imagen):
+    """(ancho, alto) reales de una imagen local; (1200, 630) si es externa o no se puede leer."""
+    try:
+        if imagen and not str(imagen).startswith("http"):
+            from PIL import Image
+            with Image.open(os.path.join(os.path.dirname(__file__), imagen)) as im:
+                return im.size
+    except Exception:
+        pass
+    return (1200, 630)
 
 
 def generar_paginas_og(notas):
@@ -3440,8 +3529,10 @@ def generar_paginas_og(notas):
 
         # SEO #1 — imagen principal como <img> real (indexable por Google Imágenes
         # y Discover; alt = título; carga prioritaria para mejorar LCP).
+        # width/height = tamaño REAL del archivo (reserva el espacio exacto → sin salto de layout).
+        _iw, _ih = _dimensiones_imagen(imagen)
         imagen_block = (f'<img class="nota-imagen" src="{ea(imagen_abs)}" alt="{ea(titulo)}" '
-                        f'width="1200" height="630" fetchpriority="high" decoding="async"/>'
+                        f'width="{_iw}" height="{_ih}" fetchpriority="high" decoding="async"/>'
                         if imagen else '<div class="nota-imagen-placeholder"></div>')
 
         # SEO #2 — meta description recortada a ~155 chars en corte limpio de palabra
@@ -3520,8 +3611,8 @@ def generar_paginas_og(notas):
   <script>if(localStorage.getItem('gp_admin')==='1'){{window['ga-disable-G-5FP2F41BZG']=true;}}</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-5FP2F41BZG');</script>
+  {_FUENTES_HEAD}
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
     :root{{--verde:#1c2d3d;--azul-claro:#8ab8d4;--gris-oscuro:#252830;--gris-medio:#5a6070;--crema:#f0ede8;}}
     *{{margin:0;padding:0;box-sizing:border-box;}}
     body{{font-family:'Inter',sans-serif;background:var(--crema);color:var(--gris-oscuro);}}
@@ -3572,7 +3663,7 @@ def generar_paginas_og(notas):
   <div class="header-main">
     <div class="logo-tagline">Sur Global, principio de todo.</div>
     <a href="../" style="text-decoration:none">
-      <img src="../logo-globalpatagonia.webp" alt="GLOBALpatagonia" class="logo-img"/>
+      <img src="../logo-globalpatagonia.webp" alt="GLOBALpatagonia" class="logo-img" width="1440" height="321"/>
     </a>
   </div>
   <nav>
@@ -3626,10 +3717,11 @@ def generar_paginas_og(notas):
     '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#1877F2;" href="https://www.facebook.com/sharer/sharer.php?u='+href+'" target="_blank" rel="noopener">Facebook</a>' +
     '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#0A66C2;" href="https://www.linkedin.com/sharing/share-offsite/?url='+href+'" target="_blank" rel="noopener">LinkedIn</a>' +
     '<a style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;text-decoration:none;color:white;background:#555;" href="mailto:?subject='+mailSubject+'&body='+mailBody+'">Email</a>' +
-    '<button style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;cursor:pointer;border:none;color:white;background:#3a5a7a;" onclick="navigator.clipboard.writeText(window.location.href);this.textContent=\x27\xa1Copiado!\x27">Copiar enlace</button>' +
+    '<button style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:3px;font-size:12px;font-weight:600;cursor:pointer;border:none;color:white;background:#3a5a7a;" onclick="navigator.clipboard.writeText(window.location.href);this.textContent=\\x27¡Copiado!\\x27">Copiar enlace</button>' +
     '</div>';
 }})();
 </script>
+{_ONESIGNAL_NOTAS}
 </body>
 </html>"""
 
@@ -3766,8 +3858,8 @@ def generar_paginas_temas(notas_all):
   <script>if(localStorage.getItem('gp_admin')==='1'){{window['ga-disable-G-5FP2F41BZG']=true;}}</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-5FP2F41BZG');</script>
+  {_FUENTES_HEAD}
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
     :root{{--verde:#1c2d3d;--azul-claro:#8ab8d4;--gris-oscuro:#252830;--gris-medio:#5a6070;--crema:#f0ede8;}}
     *{{margin:0;padding:0;box-sizing:border-box;}}
     body{{font-family:'Inter',sans-serif;background:var(--crema);color:var(--gris-oscuro);}}
@@ -3819,7 +3911,7 @@ def generar_paginas_temas(notas_all):
   <div class="header-main">
     <div class="logo-tagline">Sur Global, principio de todo.</div>
     <a href="../" style="text-decoration:none">
-      <img src="../logo-globalpatagonia.webp" alt="GLOBALpatagonia" class="logo-img"/>
+      <img src="../logo-globalpatagonia.webp" alt="GLOBALpatagonia" class="logo-img" width="1440" height="321"/>
     </a>
   </div>
   <nav>
@@ -4013,8 +4105,8 @@ def generar_feed_rss():
         '    <link>https://globalpatagonia.org/</link>',
         '    <description>Sur Global, principio de todo. Noticias de la Patagonia argentina y chilena.</description>',
         '    <language>es-ar</language>',
-        '    <managingEditor>ficciontvpatagonia@gmail.com (GLOBALpatagonia)</managingEditor>',
-        '    <webMaster>ficciontvpatagonia@gmail.com</webMaster>',
+        '    <managingEditor>hola@globalpatagonia.org (GLOBALpatagonia)</managingEditor>',
+        '    <webMaster>hola@globalpatagonia.org</webMaster>',
         f'    <lastBuildDate>{format_datetime(datetime.now(tz=timezone.utc))}</lastBuildDate>',
         '    <image>',
         '      <url>https://globalpatagonia.org/logo-globalpatagonia.png</url>',
@@ -4040,7 +4132,7 @@ def generar_feed_rss():
             f'      <guid isPermaLink="true">{url}</guid>',
             f'      <description>{bajada}</description>',
             f'      <pubDate>{pub}</pubDate>',
-            f'      <author>ficciontvpatagonia@gmail.com ({fuente})</author>',
+            f'      <author>hola@globalpatagonia.org ({fuente})</author>',
             f'      <media:content url="{img}" medium="image"/>',
             '      <news:news>',
             '        <news:publication>',
@@ -4899,6 +4991,11 @@ def enviar_newsletter():
     if not BREVO_API_KEY:
         print("  Newsletter: BREVO_API_KEY no configurada, saltando.")
         return
+    # Remitente: debe ser un remitente verificado en Brevo. Sale del secret
+    # BREVO_SENDER_EMAIL (no se escribe en el repo, que es público).
+    if not os.environ.get("BREVO_SENDER_EMAIL"):
+        print("::warning::Newsletter NO enviado: falta el secret BREVO_SENDER_EMAIL")
+        return
 
     base_dir   = os.path.dirname(__file__)
     state_path = os.path.join(base_dir, "telegram_state.json")
@@ -5109,7 +5206,7 @@ def enviar_newsletter():
         campaign_payload = json.dumps({
             "name":        f"GLOBALpatagonia — {fecha_dd_mm}",
             "subject":     f"El Sur de hoy — {fecha_dd_mm}",
-            "sender":      {"name": "GLOBALpatagonia", "email": "ficciontvpatagonia@gmail.com"},
+            "sender":      {"name": "GLOBALpatagonia", "email": os.environ["BREVO_SENDER_EMAIL"]},
             "type":        "classic",
             "htmlContent": html_content,
             "recipients":  {"listIds": [BREVO_LIST_ID]}
