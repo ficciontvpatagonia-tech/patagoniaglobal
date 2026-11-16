@@ -98,18 +98,18 @@ FUENTES_RSS = [
     # ── Argentina · Regionales ──
     {"nombre": "Diario Río Negro",        "url": "https://www.rionegro.com.ar/feed/",                    "region": "Río Negro"},
     {"nombre": "La Opinión Austral",      "url": "https://laopinionaustral.com.ar/feed/",                "region": "Santa Cruz"},
-    {"nombre": "El Patagónico",           "url": "https://www.elpatagonico.com/rss/portada.xml",         "region": "Chubut"},
+    {"nombre": "El Patagónico",           "url": "https://www.elpatagonico.com/rss/home.xml",         "region": "Chubut"},
     {"nombre": "Jornada Patagonia",       "url": "https://www.diariojornada.com.ar/rss/",                "region": "Chubut"},
-    {"nombre": "ADN Sur",                 "url": "https://www.adnsur.com.ar/feed/",                      "region": "Patagonia"},
+    {"nombre": "ADN Sur",                 "url": "https://www.adnsur.com.ar/rss",                      "region": "Patagonia"},
     {"nombre": "El Cordillerano",         "url": "https://www.elcordillerano.com.ar/rss/home.xml",       "region": "Río Negro"},
-    {"nombre": "Bariloche2000",           "url": "https://www.bariloche2000.com/feed/",                  "region": "Bariloche"},
-    {"nombre": "InfoFueguina",            "url": "https://www.infofueguina.com/rss",                     "region": "Tierra del Fuego"},
+    {"nombre": "Bariloche2000",           "url": "https://www.bariloche2000.com/rss/feed.xml",                  "region": "Bariloche"},
+    {"nombre": "InfoFueguina",            "url": "https://www.infofueguina.com/feeds/rss",                     "region": "Tierra del Fuego"},
     {"nombre": "Neuquén Informa",         "url": "https://www.neuqueninforma.gob.ar/feed/",              "region": "Neuquén"},
-    {"nombre": "LMNeuquén",              "url": "https://www.lmneuquen.com/rss/",                       "region": "Neuquén"},
+    {"nombre": "LMNeuquén",              "url": "https://www.lmneuquen.com/rss/ultimas-noticias.xml",                       "region": "Neuquén"},
     {"nombre": "Tiempo Sur",             "url": "https://www.tiemposur.com.ar/feed",                     "region": "Santa Cruz"},
     # ── Argentina · Nacional ──
     {"nombre": "La Nación",               "url": "https://www.lanacion.com.ar/arc/outboundfeeds/rss/",              "region": "Nacional"},
-    {"nombre": "Infobae",                 "url": "https://www.infobae.com/feeds/rss/",                              "region": "Nacional"},
+    {"nombre": "Infobae",                 "url": "https://www.infobae.com/arc/outboundfeeds/rss/?outputType=xml",                              "region": "Nacional"},
     {"nombre": "Clarín",                  "url": "https://www.clarin.com/rss/lo-ultimo/",                           "region": "Nacional"},
     {"nombre": "Página 12",               "url": "https://www.pagina12.com.ar/arc/outboundfeeds/rss/portada",       "region": "Nacional"},
     # ── Chile · Nacional ──
@@ -752,6 +752,8 @@ def buscar_reemplazo_en_historial(historial, ids_excluidos, dias=7):
 #  RSS
 # ══════════════════════════════════════════════════════════
 
+_UA_FEEDS = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+
 REGIONES_CHILE = {
     "Nacional Chile", "Magallanes", "Aysén", "Los Lagos", "Los Ríos",
     "Antártica Chile", "Malvinas",
@@ -767,10 +769,21 @@ def fetch_noticias_crudas():
     trending_kw = obtener_trending_keywords()
     _, titulos_vetados = cargar_vetadas()
 
+    fuentes_caidas = []
     for fuente in FUENTES_RSS:
         print(f"  Leyendo: {fuente['nombre']} ...", end=" ", flush=True)
         try:
-            feed = feedparser.parse(fuente["url"])
+            # UA de navegador: varios medios (p.ej. Penguin News) no responden al UA por defecto de feedparser.
+            feed = feedparser.parse(fuente["url"], agent=_UA_FEEDS)
+            # Feed caído ≠ día sin noticias: 404/403, HTML en vez de RSS o feed vacío dan 0 entradas
+            # sin lanzar error. Se registra aparte para avisar en el Action.
+            if not feed.entries:
+                _status = getattr(feed, "status", None)
+                _motivo = (f"HTTP {_status}" if _status and _status >= 400
+                           else "no es RSS/Atom" if getattr(feed, "bozo", 0) else "feed vacío")
+                fuentes_caidas.append(f"{fuente['nombre']} ({_motivo})")
+                print(f"⚠ FEED CAÍDO — {_motivo}")
+                continue
             encontradas = 0
             for entry in feed.entries[:20]:
                 titulo  = entry.get("title", "")
@@ -804,7 +817,13 @@ def fetch_noticias_crudas():
                     encontradas += 1
             print(f"{encontradas} patagónicas")
         except Exception as e:
+            fuentes_caidas.append(f"{fuente['nombre']} (error: {str(e)[:60]})")
             print(f"error ({e})")
+
+    if fuentes_caidas:
+        # Anotación visible en el resumen del run de GitHub Actions (no corta el flujo).
+        print(f"\n::warning title=Fuentes caídas ({len(fuentes_caidas)} de {len(FUENTES_RSS)})::"
+              + "; ".join(fuentes_caidas))
 
     for art in fetch_fuentes_web(trending_kw, titulos_vetados):
         (cl if art["region"] in REGIONES_CHILE else ar).append(art)
