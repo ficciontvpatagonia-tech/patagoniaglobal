@@ -3328,7 +3328,7 @@ def _make_rel_html(notes):
         titulo = htmllib.escape(str(n["titulo"] or ""), quote=True)
         if n["imagen"]:
             img = (f'<img class="rel-img" src="{htmllib.escape(n["imagen"], quote=True)}" '
-                   f'alt="{titulo}" onerror="this.style.display=\'none\'">')
+                   f'alt="{titulo}" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">')
         else:
             img = '<div class="rel-img"></div>'
         tag = htmllib.escape(_rel_norm_tag(n["tag"]))
@@ -3346,6 +3346,47 @@ def _make_rel_html(notes):
         f'\n      <div class="relacionadas-grid">{cards}</div>'
         '\n    </div>'
     )
+
+
+# ── Bloques compartidos por las plantillas (mismos que aplica _scripts/retro_fix_notas.py) ──
+# Fuentes: <link> no bloqueante en vez de @import dentro del CSS (bloqueaba el primer render).
+_FUENTES_URL = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap"
+_FUENTES_HEAD = (
+    '<link rel="preconnect" href="https://fonts.googleapis.com"/>\n'
+    '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>\n'
+    f'  <link rel="stylesheet" href="{_FUENTES_URL}" media="print" onload="this.media=\'all\'"/>\n'
+    f'  <noscript><link rel="stylesheet" href="{_FUENTES_URL}"/></noscript>'
+)
+
+# OneSignal en notas: el SDK se carga y el aviso de suscripción aparece recién después
+# de que el lector hizo scroll (no tapa el encabezado ni compite con la carga inicial).
+_ONESIGNAL_NOTAS = (
+    '<script>/* gp-onesignal: el SDK se carga y el aviso aparece recien despues de scroll */\n'
+    '(function(){var hecho=false;function ir(){if(hecho)return;'
+    'if((window.scrollY||document.documentElement.scrollTop||0)<600)return;hecho=true;'
+    "window.removeEventListener('scroll',ir);"
+    'window.OneSignalDeferred=window.OneSignalDeferred||[];'
+    'OneSignalDeferred.push(async function(OneSignal){'
+    'await OneSignal.init({appId:"d351217a-5fe8-4af2-bb35-fffdafb5e30f"});'
+    'try{if(OneSignal.Notifications.isPushSupported()&&!OneSignal.Notifications.permission)'
+    'OneSignal.Slidedown.promptPush();}catch(e){}});'
+    "var s=document.createElement('script');"
+    "s.src='https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';s.defer=true;"
+    "document.head.appendChild(s);}"
+    "window.addEventListener('scroll',ir,{passive:true});})();</script>"
+)
+
+
+def _dimensiones_imagen(imagen):
+    """(ancho, alto) reales de una imagen local; (1200, 630) si es externa o no se puede leer."""
+    try:
+        if imagen and not str(imagen).startswith("http"):
+            from PIL import Image
+            with Image.open(os.path.join(os.path.dirname(__file__), imagen)) as im:
+                return im.size
+    except Exception:
+        pass
+    return (1200, 630)
 
 
 def generar_paginas_og(notas):
@@ -3459,8 +3500,10 @@ def generar_paginas_og(notas):
 
         # SEO #1 — imagen principal como <img> real (indexable por Google Imágenes
         # y Discover; alt = título; carga prioritaria para mejorar LCP).
+        # width/height = tamaño REAL del archivo (reserva el espacio exacto → sin salto de layout).
+        _iw, _ih = _dimensiones_imagen(imagen)
         imagen_block = (f'<img class="nota-imagen" src="{ea(imagen_abs)}" alt="{ea(titulo)}" '
-                        f'width="1200" height="630" fetchpriority="high" decoding="async"/>'
+                        f'width="{_iw}" height="{_ih}" fetchpriority="high" decoding="async"/>'
                         if imagen else '<div class="nota-imagen-placeholder"></div>')
 
         # SEO #2 — meta description recortada a ~155 chars en corte limpio de palabra
@@ -3539,8 +3582,8 @@ def generar_paginas_og(notas):
   <script>if(localStorage.getItem('gp_admin')==='1'){{window['ga-disable-G-5FP2F41BZG']=true;}}</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-5FP2F41BZG');</script>
+  {_FUENTES_HEAD}
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
     :root{{--verde:#1c2d3d;--azul-claro:#8ab8d4;--gris-oscuro:#252830;--gris-medio:#5a6070;--crema:#f0ede8;}}
     *{{margin:0;padding:0;box-sizing:border-box;}}
     body{{font-family:'Inter',sans-serif;background:var(--crema);color:var(--gris-oscuro);}}
@@ -3591,7 +3634,7 @@ def generar_paginas_og(notas):
   <div class="header-main">
     <div class="logo-tagline">Sur Global, principio de todo.</div>
     <a href="../" style="text-decoration:none">
-      <img src="../logo-globalpatagonia.webp" alt="GLOBALpatagonia" class="logo-img"/>
+      <img src="../logo-globalpatagonia.webp" alt="GLOBALpatagonia" class="logo-img" width="1440" height="321"/>
     </a>
   </div>
   <nav>
@@ -3649,6 +3692,7 @@ def generar_paginas_og(notas):
     '</div>';
 }})();
 </script>
+{_ONESIGNAL_NOTAS}
 </body>
 </html>"""
 
@@ -3785,8 +3829,8 @@ def generar_paginas_temas(notas_all):
   <script>if(localStorage.getItem('gp_admin')==='1'){{window['ga-disable-G-5FP2F41BZG']=true;}}</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP2F41BZG"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-5FP2F41BZG');</script>
+  {_FUENTES_HEAD}
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
     :root{{--verde:#1c2d3d;--azul-claro:#8ab8d4;--gris-oscuro:#252830;--gris-medio:#5a6070;--crema:#f0ede8;}}
     *{{margin:0;padding:0;box-sizing:border-box;}}
     body{{font-family:'Inter',sans-serif;background:var(--crema);color:var(--gris-oscuro);}}
@@ -3838,7 +3882,7 @@ def generar_paginas_temas(notas_all):
   <div class="header-main">
     <div class="logo-tagline">Sur Global, principio de todo.</div>
     <a href="../" style="text-decoration:none">
-      <img src="../logo-globalpatagonia.webp" alt="GLOBALpatagonia" class="logo-img"/>
+      <img src="../logo-globalpatagonia.webp" alt="GLOBALpatagonia" class="logo-img" width="1440" height="321"/>
     </a>
   </div>
   <nav>
