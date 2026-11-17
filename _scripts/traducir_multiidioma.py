@@ -83,10 +83,10 @@ def make_switcher(note_id: str, active_lang: str) -> str:
         return ' class="active"' if lang == active_lang else ""
     return (
         f'    <div class="lang-switcher">\n'
-        f'      <a href="{note_id}.html"{a("es")}>🇦🇷 ES</a>\n'
-        f'      <a href="{note_id}-en.html"{a("en")}>🇬🇧 EN</a>\n'
-        f'      <a href="{note_id}-pt.html"{a("pt")}>🇧🇷 PT</a>\n'
-        f'      <a href="{note_id}-zh.html"{a("zh")}>🇨🇳 中文</a>\n'
+        f'      <a href="{note_id}.html"{a("es")}>ES</a>\n'
+        f'      <a href="{note_id}-en.html"{a("en")}>EN</a>\n'
+        f'      <a href="{note_id}-pt.html"{a("pt")}>PT</a>\n'
+        f'      <a href="{note_id}-zh.html"{a("zh")}>中文</a>\n'
         f'    </div>'
     )
 

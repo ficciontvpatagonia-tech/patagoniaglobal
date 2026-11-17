@@ -183,10 +183,10 @@ def switcher_block(active):
         cls = ' class="active"' if code == active else ''
         return f'      <a href="{NID}{suf}.html"{cls}>{label}</a>'
     return ('    <div class="lang-switcher">\n'
-            + a("es","","🇦🇷 ES") + "\n"
-            + a("en","-en","🇬🇧 EN") + "\n"
-            + a("pt","-pt","🇧🇷 PT") + "\n"
-            + a("zh","-zh","🇨🇳 中文") + "\n"
+            + a("es","","ES") + "\n"
+            + a("en","-en","EN") + "\n"
+            + a("pt","-pt","PT") + "\n"
+            + a("zh","-zh","中文") + "\n"
             + '    </div>\n')
 
 LANG_CSS = (

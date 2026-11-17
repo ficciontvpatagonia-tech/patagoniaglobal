@@ -74,10 +74,10 @@ hero = f'''<div class="hero">
 <div class="container">
   <a href="../" class="volver">← Inicio</a>
     <div class="lang-switcher">
-      <a href="{SLUG}.html" class="active">🇦🇷 ES</a>
-      <a href="{SLUG}-en.html">🇬🇧 EN</a>
-      <a href="{SLUG}-pt.html">🇧🇷 PT</a>
-      <a href="{SLUG}-zh.html">🇨🇳 中文</a>
+      <a href="{SLUG}.html" class="active">ES</a>
+      <a href="{SLUG}-en.html">EN</a>
+      <a href="{SLUG}-pt.html">PT</a>
+      <a href="{SLUG}-zh.html">中文</a>
     </div>
 
   <p class="guia-intro">Un solo viaje, dos países y cinco paradas: el glaciar Perito Moreno en El Calafate, las torres de granito de Torres del Paine, Puerto Natales, Punta Arenas sobre el estrecho de Magallanes y Ushuaia, la ciudad más austral del mundo. Son 12 días de recorrido por tierra, con dos cruces de frontera, que van bajando hacia el sur hasta llegar al final del continente. Se puede hacer en bus o en auto alquilado: se retira en El Calafate y se devuelve en Ushuaia, o al revés.</p>

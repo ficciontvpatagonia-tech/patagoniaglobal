@@ -13,7 +13,7 @@ META = {
  "zh": ("百内国家公园旅行指南 — W环线与O环线、冰川与野生动物 — GLOBALpatagonia",
         "智利巴塔哥尼亚百内国家公园（Torres del Paine）旅行指南：何时前往、从纳塔莱斯港和埃尔卡拉法特如何到达、W环线与O环线、塔底、格雷冰川、住宿与实用提示。附自制地图。"),
 }
-FLAG = {"en": "🇬🇧 EN", "pt": "🇧🇷 PT", "zh": "🇨🇳 中文"}
+FLAG = {"en": "EN", "pt": "PT", "zh": "中文"}
 def seg_translate(body, tr):
     i = [0]
     def f(m):
@@ -48,7 +48,7 @@ for lang in ("en", "pt", "zh"):
     assert "Esquel" not in head, re.findall(r".{40}Esquel.{40}", head)
     body = seg_translate(G.hero, tr)
     # selector de idioma: activo = este
-    body = body.replace(' class="active">🇨🇱 ES', '>🇨🇱 ES').replace(f'-{lang}.html">{FLAG[lang]}', f'-{lang}.html" class="active">{FLAG[lang]}')
+    body = body.replace(' class="active">ES', '>ES').replace(f'-{lang}.html">{FLAG[lang]}', f'-{lang}.html" class="active">{FLAG[lang]}')
     # links de guías relacionadas al mismo idioma si existen
     for g in ("guia-calafate", "guia-patagonia-argentina-chile", "guia-ushuaia"):
         if os.path.exists(f"{BASE}/notas/{g}-{lang}.html"):

@@ -2539,14 +2539,14 @@ def inyectar_tapa_en_index(datos):
 
     tapa_id = e(t.get("id", "tapa"))
     tapa_html = f"""
-    <div class="nota-tapa nota-tapa-top" onclick="irANota('{tapa_id}')">
+    <a class="nota-tapa nota-tapa-top" href="/notas/{tapa_id}.html">
       <div class="nota-tapa-texto">
         <div class="tag">{norm_tag(t.get("tag")) or "🗞️ Tapa"}</div>
         <h3>{e(t.get("titulo", ""))}</h3>
         <p>{bandera_html(t.get("pais"))}{e(t.get("bajada", ""))}</p>
       </div>
       <div class="{tapa_cls}" style="width:100%;height:480px;display:block;{tapa_bg}"></div>
-    </div>"""
+    </a>"""
 
     for i, n in enumerate(s):
         sec_img = n.get("imagen", "")
@@ -2554,14 +2554,14 @@ def inyectar_tapa_en_index(datos):
         sec_cls = SEC_COLORS[i] if i < len(SEC_COLORS) else ""
         sec_id  = e(n.get("id", f"sec{i+1}"))
         tapa_html += f"""
-    <div class="nota-secundaria nota-secundaria-top" onclick="irANota('{sec_id}')">
+    <a class="nota-secundaria nota-secundaria-top" href="/notas/{sec_id}.html">
       <div class="nota-secundaria-texto">
         <div class="tag">{norm_tag(n.get("tag")) or "🗞️ Noticias"}</div>
         <h3>{e(n.get("titulo", ""))}</h3>
         <p>{bandera_html(n.get("pais"))}{e(n.get("bajada", ""))}</p>
       </div>
       <div class="img-placeholder {sec_cls}" style="width:100%;height:238px;{sec_bg}"></div>
-    </div>"""
+    </a>"""
 
     # ── 8 noticias de la semana ───────────────────────────────────────────────
     noticias_html = ""
@@ -2574,14 +2574,14 @@ def inyectar_tapa_en_index(datos):
         nid       = e(n.get("id", f"n{i+1}"))
         tag_txt   = norm_tag(n.get("tag", ""))
         noticias_html += f"""
-    <div class="noticia-card" onclick="irANota('{nid}')">
+    <a class="noticia-card" href="/notas/{nid}.html">
       <div class="card-img {color_cls}" style="{bg}"></div>
       <div class="card-body">
         <div class="card-tag {tag_cls}">{tag_txt}</div>
         <h3>{e(n.get("titulo", ""))}</h3>
         <div class="card-meta">{bandera_html(n.get("pais"))} · {fecha_desde_id(n.get("id")) or e(n.get("meta", ""))}</div>
       </div>
-    </div>"""
+    </a>"""
 
     # ── Aplicar los tres reemplazos ───────────────────────────────────────────
     nuevo = re.sub(
@@ -3473,6 +3473,14 @@ def sincronizar_fb_pages():
             print(f"  fb:pages actualizado en {nombre}")
 
 
+# Área táctil de 44px en los enlaces chicos de la nota, sin cambiar su aspecto
+# (mismo bloque que agrega _scripts/retro_fix_notas.py a las notas existentes).
+_TAP_CSS = ('<style>/* gp-tap: area tactil de 44px sin cambiar el aspecto */'
+            '.volver,a.nota-tag,.lang-switcher a,.btn-c,.nota-fuente a{position:relative}'
+            '.volver::after,a.nota-tag::after,.nota-fuente a::after{content:"";position:absolute;inset:-12px -4px}'
+            '.lang-switcher a::after,.btn-c::after{content:"";position:absolute;inset:-9px -4px}</style>')
+
+
 def generar_paginas_og(notas):
     """Genera notas/[id].html con contenido completo — indexable por Google sin JS."""
     import html as htmllib
@@ -3721,6 +3729,7 @@ def generar_paginas_og(notas):
     .footer-copy{{font-size:11px;letter-spacing:1px;margin-top:12px;color:rgba(255,255,255,0.35);}}
     @media(max-width:600px){{.top-bar{{padding:6px 16px;}}.logo-img{{height:46px;}}nav{{flex-wrap:wrap;}}nav a{{padding:10px 10px;font-size:10px;}}}}
   </style>
+{_TAP_CSS}
 </head>
 <body>
 <header>
@@ -4066,7 +4075,7 @@ def actualizar_archivo_en_index(notas):
         "<!-- ARCHIVO-STATIC-START -->\n"
         '<section id="archivo-notas" style="background:#f0ede8;padding:32px 20px 40px;border-top:1px solid #ddd;">\n'
         '  <div style="max-width:900px;margin:0 auto;">\n'
-        '    <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#8c6b4a;font-weight:700;margin-bottom:16px;">Archivo de notas</p>\n'
+        '    <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#6e5236;font-weight:700;margin-bottom:16px;">Archivo de notas</p>\n'
         '    <ul style="list-style:none;columns:2;column-gap:32px;" id="archivo-lista">\n'
         + "\n".join(links) + "\n"
         '    </ul>\n'
@@ -4075,7 +4084,7 @@ def actualizar_archivo_en_index(notas):
         '<style>\n'
         '#archivo-notas a{font-size:13px;color:#1c2d3d;text-decoration:none;line-height:1.9;}\n'
         '#archivo-notas a:hover{text-decoration:underline;}\n'
-        '#archivo-notas .arc-cat{font-size:10px;color:#8c6b4a;font-weight:600;letter-spacing:1px;text-transform:uppercase;}\n'
+        '#archivo-notas .arc-cat{font-size:10px;color:#6e5236;font-weight:600;letter-spacing:1px;text-transform:uppercase;}\n'
         '@media(max-width:600px){#archivo-notas ul{columns:1;}}\n'
         '</style>\n'
         "<!-- ARCHIVO-STATIC-END -->"
