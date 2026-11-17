@@ -701,8 +701,12 @@ def _tokenizar_titulo(titulo):
     return {t[:5] for t in tokens}  # Prefix para unificar sing/plural
 
 
-def verificar_duplicado_tematico(nota, historial, dias=5):
+def verificar_duplicado_tematico(nota, historial, dias=5, dias_titulo=60, umbral_titulo=0.70):
     """Detecta si una nota cubre el mismo tema que otra ya publicada.
+    - Últimos `dias`: mismo tema (similitud de título >= 30–40 %).
+    - Hasta `dias_titulo`: título casi idéntico (>= umbral_titulo), para la misma
+      noticia republicada semanas después (ej. "INACH invita a redescubrir el legado
+      de Ramón Cañas", 28/09 y 25/10).
     Retorna (True, id_conflicto, similitud) o False."""
     from datetime import timedelta
 
@@ -714,12 +718,14 @@ def verificar_duplicado_tematico(nota, historial, dias=5):
         return False
 
     hace_n_dias = (datetime.now() - timedelta(days=dias)).strftime('%Y%m%d')
+    hace_titulo = (datetime.now() - timedelta(days=dias_titulo)).strftime('%Y%m%d')
 
     for art in historial:
         art_id = art.get("id", "")
         art_fecha = art_id[:8] if len(art_id) >= 8 else ""
-        if art_fecha < hace_n_dias:
+        if art_fecha < hace_titulo:
             continue
+        reciente = art_fecha >= hace_n_dias
         if not art.get("titulo"):
             continue
 
@@ -734,7 +740,7 @@ def verificar_duplicado_tematico(nota, historial, dias=5):
         # Mismo medio: umbral más bajo para atrapar eventos semanales repetidos
         misma_fuente = (art.get("fuente", "").lower() == nota.get("fuente", "").lower()
                         and art.get("fuente", ""))
-        umbral = 0.30 if misma_fuente else 0.40
+        umbral = (0.30 if misma_fuente else 0.40) if reciente else umbral_titulo
         if sim >= umbral:
             return (True, art["id"], sim)
 
@@ -2539,14 +2545,14 @@ def inyectar_tapa_en_index(datos):
 
     tapa_id = e(t.get("id", "tapa"))
     tapa_html = f"""
-    <div class="nota-tapa nota-tapa-top" onclick="irANota('{tapa_id}')">
+    <a class="nota-tapa nota-tapa-top" href="/notas/{tapa_id}.html">
       <div class="nota-tapa-texto">
         <div class="tag">{norm_tag(t.get("tag")) or "🗞️ Tapa"}</div>
         <h3>{e(t.get("titulo", ""))}</h3>
         <p>{bandera_html(t.get("pais"))}{e(t.get("bajada", ""))}</p>
       </div>
       <div class="{tapa_cls}" style="width:100%;height:480px;display:block;{tapa_bg}"></div>
-    </div>"""
+    </a>"""
 
     for i, n in enumerate(s):
         sec_img = n.get("imagen", "")
@@ -2554,14 +2560,14 @@ def inyectar_tapa_en_index(datos):
         sec_cls = SEC_COLORS[i] if i < len(SEC_COLORS) else ""
         sec_id  = e(n.get("id", f"sec{i+1}"))
         tapa_html += f"""
-    <div class="nota-secundaria nota-secundaria-top" onclick="irANota('{sec_id}')">
+    <a class="nota-secundaria nota-secundaria-top" href="/notas/{sec_id}.html">
       <div class="nota-secundaria-texto">
         <div class="tag">{norm_tag(n.get("tag")) or "🗞️ Noticias"}</div>
         <h3>{e(n.get("titulo", ""))}</h3>
         <p>{bandera_html(n.get("pais"))}{e(n.get("bajada", ""))}</p>
       </div>
       <div class="img-placeholder {sec_cls}" style="width:100%;height:238px;{sec_bg}"></div>
-    </div>"""
+    </a>"""
 
     # ── 8 noticias de la semana ───────────────────────────────────────────────
     noticias_html = ""
@@ -2574,14 +2580,14 @@ def inyectar_tapa_en_index(datos):
         nid       = e(n.get("id", f"n{i+1}"))
         tag_txt   = norm_tag(n.get("tag", ""))
         noticias_html += f"""
-    <div class="noticia-card" onclick="irANota('{nid}')">
+    <a class="noticia-card" href="/notas/{nid}.html">
       <div class="card-img {color_cls}" style="{bg}"></div>
       <div class="card-body">
         <div class="card-tag {tag_cls}">{tag_txt}</div>
         <h3>{e(n.get("titulo", ""))}</h3>
         <div class="card-meta">{bandera_html(n.get("pais"))} · {fecha_desde_id(n.get("id")) or e(n.get("meta", ""))}</div>
       </div>
-    </div>"""
+    </a>"""
 
     # ── Aplicar los tres reemplazos ───────────────────────────────────────────
     nuevo = re.sub(
@@ -2999,9 +3005,22 @@ def main():
     _portada_hoy = [{"id": f"{_hoy_tmp}-portada-{i}", "titulo": n.get("titulo"), "fuente": n.get("fuente")}
                     for i, n in enumerate([tapa] + secundarias) if n and n.get("titulo")]
     _secciones = {"deportes": deportes, "negocios": negocios, "cultura": cultura, "turismo": turismo}
+    # Misma URL de origen = misma noticia. Pasó 17 veces: la misma nota publicada en
+    # portada y en Economía/Deportes el mismo día con títulos distintos.
+    _urls_usadas = {_normalizar_url(n.get("url_original", "")) for n in [tapa] + secundarias if n}
+    _urls_usadas |= urls_ya_publicadas(historial)
+    _urls_usadas.discard("")
     for _nombre, _nota in _secciones.items():
         if not _nota or not _nota.get("titulo"):
             continue
+        _u = _normalizar_url(_nota.get("url_original", ""))
+        if _u and _u in _urls_usadas:
+            print(f"\n  ⚠ DUPLICADO POR URL en sección {_nombre}: \"{_nota['titulo'][:70]}\" "
+                  f"(misma fuente que otra nota de hoy o ya publicada) → se omite")
+            _secciones[_nombre] = None
+            continue
+        if _u:
+            _urls_usadas.add(_u)
         _dup = verificar_duplicado_tematico(_nota, _portada_hoy + list(historial))
         if _dup:
             print(f"\n  ⚠ DUPLICADO TEMÁTICO en sección {_nombre}: \"{_nota['titulo'][:70]}\" "
@@ -3473,6 +3492,14 @@ def sincronizar_fb_pages():
             print(f"  fb:pages actualizado en {nombre}")
 
 
+# Área táctil de 44px en los enlaces chicos de la nota, sin cambiar su aspecto
+# (mismo bloque que agrega _scripts/retro_fix_notas.py a las notas existentes).
+_TAP_CSS = ('<style>/* gp-tap: area tactil de 44px sin cambiar el aspecto */'
+            '.volver,a.nota-tag,.lang-switcher a,.btn-c,.nota-fuente a{position:relative}'
+            '.volver::after,a.nota-tag::after,.nota-fuente a::after{content:"";position:absolute;inset:-12px -4px}'
+            '.lang-switcher a::after,.btn-c::after{content:"";position:absolute;inset:-9px -4px}</style>')
+
+
 def generar_paginas_og(notas):
     """Genera notas/[id].html con contenido completo — indexable por Google sin JS."""
     import html as htmllib
@@ -3721,6 +3748,7 @@ def generar_paginas_og(notas):
     .footer-copy{{font-size:11px;letter-spacing:1px;margin-top:12px;color:rgba(255,255,255,0.35);}}
     @media(max-width:600px){{.top-bar{{padding:6px 16px;}}.logo-img{{height:46px;}}nav{{flex-wrap:wrap;}}nav a{{padding:10px 10px;font-size:10px;}}}}
   </style>
+{_TAP_CSS}
 </head>
 <body>
 <header>
@@ -4066,7 +4094,7 @@ def actualizar_archivo_en_index(notas):
         "<!-- ARCHIVO-STATIC-START -->\n"
         '<section id="archivo-notas" style="background:#f0ede8;padding:32px 20px 40px;border-top:1px solid #ddd;">\n'
         '  <div style="max-width:900px;margin:0 auto;">\n'
-        '    <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#8c6b4a;font-weight:700;margin-bottom:16px;">Archivo de notas</p>\n'
+        '    <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#6e5236;font-weight:700;margin-bottom:16px;">Archivo de notas</p>\n'
         '    <ul style="list-style:none;columns:2;column-gap:32px;" id="archivo-lista">\n'
         + "\n".join(links) + "\n"
         '    </ul>\n'
@@ -4075,7 +4103,7 @@ def actualizar_archivo_en_index(notas):
         '<style>\n'
         '#archivo-notas a{font-size:13px;color:#1c2d3d;text-decoration:none;line-height:1.9;}\n'
         '#archivo-notas a:hover{text-decoration:underline;}\n'
-        '#archivo-notas .arc-cat{font-size:10px;color:#8c6b4a;font-weight:600;letter-spacing:1px;text-transform:uppercase;}\n'
+        '#archivo-notas .arc-cat{font-size:10px;color:#6e5236;font-weight:600;letter-spacing:1px;text-transform:uppercase;}\n'
         '@media(max-width:600px){#archivo-notas ul{columns:1;}}\n'
         '</style>\n'
         "<!-- ARCHIVO-STATIC-END -->"
@@ -4534,6 +4562,42 @@ def generar_news_sitemap():
 #  TELEGRAM
 # ══════════════════════════════════════════════════════════
 
+def _aviso_red(texto):
+    """Deja la falla de una red como aviso amarillo en el run de GitHub (antes quedaba
+    solo en el log y el job terminaba en verde sin que nadie se enterara)."""
+    print(f"  {texto}")
+    print(f"::warning title=Redes sociales::{texto}")
+
+
+def _telegram_enviar(token, method, fields, file_path=None, intentos=3):
+    """_telegram_request con reintentos SIN riesgo de duplicar:
+    - reintenta solo si Telegram no llegó a recibir el mensaje (no se pudo conectar,
+      429 "demasiadas solicitudes" o error 5xx del servidor);
+    - si se corta esperando la respuesta (timeout de lectura) NO reintenta, porque
+      el mensaje pudo haberse publicado igual.
+    Devuelve el dict de respuesta de Telegram; lanza la excepción si no hubo forma."""
+    import socket
+    espera = 5
+    for intento in range(1, intentos + 1):
+        try:
+            r = _telegram_request(token, method, fields, file_path=file_path)
+        except (socket.timeout, TimeoutError):
+            raise
+        except (ConnectionRefusedError, socket.gaierror, OSError) as e:
+            if intento == intentos:
+                raise
+            print(f"  Telegram: sin conexión ({e.__class__.__name__}), reintento {intento + 1}/{intentos} en {espera}s…")
+            time.sleep(espera); espera *= 3
+            continue
+        codigo = r.get("error_code") or 0
+        if r.get("ok") or not (codigo == 429 or codigo >= 500) or intento == intentos:
+            return r
+        espera_srv = int((r.get("parameters") or {}).get("retry_after") or espera)
+        print(f"  Telegram: error {codigo}, reintento {intento + 1}/{intentos} en {espera_srv}s…")
+        time.sleep(espera_srv); espera *= 3
+    return r
+
+
 def _telegram_request(token, method, fields, file_path=None):
     """Hace un POST a la API de Telegram. Si file_path está presente, sube la imagen."""
     import http.client, uuid, mimetypes
@@ -4565,7 +4629,8 @@ def _telegram_request(token, method, fields, file_path=None):
         lines.append(f"--{boundary}--")
         body = "\r\n".join(lines).encode()
 
-    conn = http.client.HTTPSConnection("api.telegram.org", timeout=20)
+    # 60 s: subir la foto puede tardar más de 20 s (el 15/11 fallaron 5 de 6 envíos por timeout)
+    conn = http.client.HTTPSConnection("api.telegram.org", timeout=60)
     conn.request(
         "POST",
         f"/bot{token}/{method}",
@@ -4609,13 +4674,13 @@ def publicar_telegram(tapa):
 
     try:
         if ruta_img:
-            resultado = _telegram_request(token, "sendPhoto", {
+            resultado = _telegram_enviar(token, "sendPhoto", {
                 "chat_id":    channel,
                 "caption":    caption,
                 "parse_mode": "HTML",
             }, file_path=ruta_img)
         else:
-            resultado = _telegram_request(token, "sendMessage", {
+            resultado = _telegram_enviar(token, "sendMessage", {
                 "chat_id":                  channel,
                 "text":                     caption,
                 "parse_mode":               "HTML",
@@ -4625,9 +4690,9 @@ def publicar_telegram(tapa):
         if resultado.get("ok"):
             print(f"  Telegram OK ✓ [{nota_id}]")
         else:
-            print(f"  Telegram error: {resultado.get('description')}")
+            _aviso_red(f"Telegram error [{nota_id}]: {resultado.get('description')}")
     except Exception as e:
-        print(f"  Telegram falló: {e}")
+        _aviso_red(f"Telegram falló [{nota_id}]: {e} (no se reintenta para no duplicar el posteo)")
 
 
 def _informes_pendientes(state, propios, plataforma):
@@ -4707,13 +4772,13 @@ def publicar_telegram_informe_nuevo():
 
         try:
             if ruta_img:
-                resultado = _telegram_request(token, "sendPhoto", {
+                resultado = _telegram_enviar(token, "sendPhoto", {
                     "chat_id":    channel,
                     "caption":    caption,
                     "parse_mode": "HTML",
                 }, file_path=ruta_img)
             else:
-                resultado = _telegram_request(token, "sendMessage", {
+                resultado = _telegram_enviar(token, "sendMessage", {
                     "chat_id":    channel,
                     "text":       caption,
                     "parse_mode": "HTML",
@@ -4726,9 +4791,9 @@ def publicar_telegram_informe_nuevo():
                     json.dump(state, f, ensure_ascii=False, indent=2)
                 print(f"  Telegram informe OK ✓ [{informe_id}]")
             else:
-                print(f"  Telegram informe error: {resultado.get('description')}")
+                _aviso_red(f"Telegram informe error [{informe_id}]: {resultado.get('description')}")
         except Exception as e:
-            print(f"  Telegram informe falló: {e}")
+            _aviso_red(f"Telegram informe falló [{informe_id}]: {e}")
 
 
 def _seleccionar_notas_binacionales(tapa, secundarias):
@@ -4899,13 +4964,13 @@ def publicar_facebook(tapa):
             if resultado.get("id"):
                 print(f"  Facebook OK ✓ [{nota_id}]")
             else:
-                print(f"  Facebook error: {resultado}")
+                _aviso_red(f"Facebook error [{nota_id}]: {resultado}")
         except urllib.error.HTTPError as http_err:
             detalle = http_err.read().decode("utf-8", errors="replace")
-            print(f"  Facebook falló {http_err.code}: {detalle}")
+            _aviso_red(f"Facebook falló {http_err.code} [{nota_id}]: {detalle[:300]}")
 
     except Exception as e:
-        print(f"  Facebook falló: {e}")
+        _aviso_red(f"Facebook falló [{nota_id}]: {e}")
 
 
 def publicar_facebook_informe_nuevo():
@@ -5018,13 +5083,13 @@ def publicar_facebook_informe_nuevo():
                         json.dump(state, f, ensure_ascii=False, indent=2)
                     print(f"  Facebook informe OK ✓ [{informe_id}]")
                 else:
-                    print(f"  Facebook informe error: {resultado}")
+                    _aviso_red(f"Facebook informe error [{informe_id}]: {resultado}")
             except urllib.error.HTTPError as http_err:
                 detalle = http_err.read().decode("utf-8", errors="replace")
-                print(f"  Facebook informe falló {http_err.code}: {detalle}")
+                _aviso_red(f"Facebook informe falló {http_err.code} [{informe_id}]: {detalle[:300]}")
 
         except Exception as e:
-            print(f"  Facebook informe falló: {e}")
+            _aviso_red(f"Facebook informe falló [{informe_id}]: {e}")
 
 
 def _nl_seccion_html(label, nota, color_label="#7aadcc"):
@@ -5494,6 +5559,20 @@ def _generar_imagen_ig(ruta_local, titulo, tag="", nota_id=""):
 #  INSTAGRAM
 # ══════════════════════════════════════════════════════════
 
+def _apta_instagram(ruta_rel):
+    """True si la imagen local es JPEG con proporción entre 4:5 y 1.91:1, lo que acepta
+    Instagram. Evita el error 400 'aspect ratio not supported' (código 36003)."""
+    try:
+        from PIL import Image
+        with Image.open(os.path.join(os.path.dirname(__file__), ruta_rel)) as im:
+            if im.format != "JPEG":
+                return False
+            w, h = im.size
+        return 0.8 <= (w / h) <= 1.91
+    except Exception:
+        return False
+
+
 def publicar_instagram(tapa):
     """Publica la tapa del día en Instagram Business via Graph API (2 pasos: container → publish).
     Devuelve True si publicó con éxito, False en cualquier otro caso."""
@@ -5527,8 +5606,13 @@ def publicar_instagram(tapa):
     else:
         imagen_ig     = None
     image_url_ig   = f"https://globalpatagonia.org/{imagen_ig}" if imagen_ig else None
-    image_url_orig = f"https://globalpatagonia.org/{imagen}"
+    # La original solo sirve de respaldo si Instagram la acepta (JPEG y proporción válida)
+    image_url_orig = f"https://globalpatagonia.org/{imagen}" if _apta_instagram(imagen) else None
     image_url = image_url_ig or image_url_orig
+    if not image_url:
+        _aviso_red(f"Instagram [{nota_id}]: sin tarjeta _ig.jpg y la foto original no es apta "
+                   f"(Instagram solo acepta JPEG entre 4:5 y 1.91:1); se omite")
+        return False
 
     hashtags = "#Patagonia #GLOBALpatagonia #Noticias #SurGlobal #PatagoniaArgentina"
     cuerpo_raw = tapa.get("cuerpo", "")
@@ -5570,16 +5654,16 @@ def publicar_instagram(tapa):
         except urllib.error.HTTPError as http_err:
             detalle = http_err.read().decode("utf-8", errors="replace")
             # Si falló con la imagen _ig.jpg, reintentar con la original
-            if image_url_ig and image_url != image_url_orig:
+            if image_url_ig and image_url_orig and image_url != image_url_orig:
                 print(f"  Instagram _ig.jpg falló ({http_err.code}): {detalle[:200]}, reintentando con imagen original...")
                 try:
                     resultado = _crear_container_ig(image_url_orig)
                 except urllib.error.HTTPError as http_err2:
                     detalle2 = http_err2.read().decode("utf-8", errors="replace")
-                    print(f"  Instagram container falló {http_err2.code}: {detalle2}")
+                    _aviso_red(f"Instagram container falló {http_err2.code} [{nota_id}]: {detalle2[:300]}")
                     return False
             else:
-                print(f"  Instagram container falló {http_err.code}: {detalle}")
+                _aviso_red(f"Instagram container falló {http_err.code} [{nota_id}]: {detalle[:300]}")
                 return False
 
         creation_id = resultado.get("id")
@@ -5626,11 +5710,11 @@ def publicar_instagram(tapa):
                 return False
         except urllib.error.HTTPError as http_err:
             detalle = http_err.read().decode("utf-8", errors="replace")
-            print(f"  Instagram publish falló {http_err.code}: {detalle}")
+            _aviso_red(f"Instagram publish falló {http_err.code} [{nota_id}]: {detalle[:300]}")
             return False
 
     except Exception as e:
-        print(f"  Instagram falló: {e}")
+        _aviso_red(f"Instagram falló [{nota_id}]: {e}")
         return False
 
 
@@ -5689,8 +5773,11 @@ def publicar_instagram_informe_nuevo():
     else:
         imagen_ig_i = None
     image_url_ig_i   = f"https://globalpatagonia.org/{imagen_ig_i}" if imagen_ig_i else None
-    image_url_orig_i = f"https://globalpatagonia.org/{imagen}"
+    image_url_orig_i = f"https://globalpatagonia.org/{imagen}" if _apta_instagram(imagen) else None
     image_url = image_url_ig_i or image_url_orig_i
+    if not image_url:
+        _aviso_red(f"Instagram informe [{informe_id}]: sin tarjeta _ig.jpg y la foto original no es apta; se omite")
+        return
 
     # Caption con la nota completa (igual que la tapa): cabecera + cuerpo + hashtags, recortado a 2200.
     import re as _re_i
@@ -5722,16 +5809,16 @@ def publicar_instagram_informe_nuevo():
             resultado = _crear_container_informe_ig(image_url)
         except urllib.error.HTTPError as http_err:
             detalle = http_err.read().decode("utf-8", errors="replace")
-            if image_url_ig_i and image_url != image_url_orig_i:
+            if image_url_ig_i and image_url_orig_i and image_url != image_url_orig_i:
                 print(f"  Instagram informe _ig.jpg falló ({http_err.code}), reintentando con imagen original...")
                 try:
                     resultado = _crear_container_informe_ig(image_url_orig_i)
                 except urllib.error.HTTPError as http_err2:
                     detalle2 = http_err2.read().decode("utf-8", errors="replace")
-                    print(f"  Instagram informe container falló {http_err2.code}: {detalle2}")
+                    _aviso_red(f"Instagram informe container falló {http_err2.code} [{informe_id}]: {detalle2[:300]}")
                     return
             else:
-                print(f"  Instagram informe container falló {http_err.code}: {detalle}")
+                _aviso_red(f"Instagram informe container falló {http_err.code} [{informe_id}]: {detalle[:300]}")
                 return
 
         creation_id = resultado.get("id")
@@ -5779,10 +5866,10 @@ def publicar_instagram_informe_nuevo():
                 print(f"  Instagram informe publish error: {resultado}")
         except urllib.error.HTTPError as http_err:
             detalle = http_err.read().decode("utf-8", errors="replace")
-            print(f"  Instagram informe publish falló {http_err.code}: {detalle}")
+            _aviso_red(f"Instagram informe publish falló {http_err.code} [{informe_id}]: {detalle[:300]}")
 
     except Exception as e:
-        print(f"  Instagram informe falló: {e}")
+        _aviso_red(f"Instagram informe falló [{informe_id}]: {e}")
 
 
 def publicar_notas_manuales_nuevas():

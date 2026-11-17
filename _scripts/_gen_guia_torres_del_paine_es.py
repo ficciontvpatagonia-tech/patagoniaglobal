@@ -68,10 +68,10 @@ hero = f'''<div class="hero">
 <div class="container">
   <a href="../" class="volver">← Inicio</a>
     <div class="lang-switcher">
-      <a href="{SLUG}.html" class="active">🇨🇱 ES</a>
-      <a href="{SLUG}-en.html">🇬🇧 EN</a>
-      <a href="{SLUG}-pt.html">🇧🇷 PT</a>
-      <a href="{SLUG}-zh.html">🇨🇳 中文</a>
+      <a href="{SLUG}.html" class="active">ES</a>
+      <a href="{SLUG}-en.html">EN</a>
+      <a href="{SLUG}-pt.html">PT</a>
+      <a href="{SLUG}-zh.html">中文</a>
     </div>
 
   <p class="guia-intro">Torres del Paine es el parque más famoso de la Patagonia chilena y una Reserva de la Biosfera de la UNESCO desde 1978. En unas 240.000 hectáreas de la región de Magallanes, a unos 110 km de Puerto Natales, se juntan torres de granito, glaciares, lagos turquesa y una fauna que se deja ver: guanacos, cóndores y pumas en libertad. Se recorre en una caminata de un día o en circuitos de varios días.</p>

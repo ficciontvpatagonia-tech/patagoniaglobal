@@ -8,21 +8,27 @@ on:
 permissions:
   contents: write
 
+# Nunca dos corridas de noticias a la vez (se pisarían los JSON y el push)
+concurrency:
+  group: actualizar-noticias
+  cancel-in-progress: false
+
 jobs:
   actualizar:
     runs-on: ubuntu-latest
+    timeout-minutes: 45   # hoy tarda 4-9 min; si se cuelga, corta en vez de gastar 6 horas
 
     steps:
       - name: Descargar repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Configurar Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
       - name: Instalar dependencias
-        run: pip install anthropic openai feedparser Pillow numpy pytrends
+        run: pip install -r requirements.txt
 
       - name: Correr script de noticias
         env:

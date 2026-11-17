@@ -529,9 +529,9 @@
 
     /* LANG SWITCHER */
     .lang-switcher { display: flex; gap: 6px; margin-bottom: 20px; }
-    .lang-btn { padding: 4px 10px; border-radius: 4px; font-size: 20px; line-height: 1; border: 2px solid transparent; cursor: pointer; background: transparent; transition: all 0.15s; opacity: 0.5; filter: grayscale(0.3); }
-    .lang-btn.active { border-color: #1c2d3d; opacity: 1; filter: none; background: rgba(28,45,61,0.06); }
-    .lang-btn:hover:not(.active) { opacity: 0.85; filter: none; }
+    .lang-btn { min-width: 44px; min-height: 36px; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 700; letter-spacing: 1px; line-height: 1; border: 2px solid #c8d4dc; cursor: pointer; background: transparent; color: #3a5a7a; transition: all 0.15s; }
+    .lang-btn.active { border-color: #1c2d3d; background: #1c2d3d; color: #fff; }
+    .lang-btn:hover:not(.active) { border-color: #1c2d3d; }
 
     /* SKI TABLES */
     .ski-table { width: 100%; border-collapse: collapse; margin: 24px 0 8px; font-size: 14px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
@@ -899,9 +899,9 @@ function renderNota(nota, fechaDisplay, data) {
 
   const langSwitcherHtml = hasMultilang ? `
     <div class="lang-switcher">
-      <button class="lang-btn ${lang==='es'?'active':''}" onclick="switchLang('es')" title="Español">🇦🇷</button>
-      ${hasEN ? `<button class="lang-btn ${lang==='en'?'active':''}" onclick="switchLang('en')" title="English">🇬🇧</button>` : ''}
-      ${hasPT ? `<button class="lang-btn ${lang==='pt'?'active':''}" onclick="switchLang('pt')" title="Português">🇧🇷</button>` : ''}
+      <button class="lang-btn ${lang==='es'?'active':''}" onclick="switchLang('es')" title="Español">ES</button>
+      ${hasEN ? `<button class="lang-btn ${lang==='en'?'active':''}" onclick="switchLang('en')" title="English">EN</button>` : ''}
+      ${hasPT ? `<button class="lang-btn ${lang==='pt'?'active':''}" onclick="switchLang('pt')" title="Português">PT</button>` : ''}
     </div>` : '';
 
   document.getElementById("contenido").innerHTML = `

@@ -13,7 +13,7 @@ META = {
  "zh": ("南方环线：从埃尔卡拉法特到乌斯怀亚，横跨阿根廷与智利的12天 — GLOBALpatagonia",
         "巴塔哥尼亚南部两国12天行程：埃尔卡拉法特、百内国家公园、纳塔莱斯港、蓬塔阿雷纳斯和乌斯怀亚。逐日安排、站点间交通、过境信息、租车费用和实用提示。"),
 }
-FLAG = {"en": "🇬🇧 EN", "pt": "🇧🇷 PT", "zh": "🇨🇳 中文"}
+FLAG = {"en": "EN", "pt": "PT", "zh": "中文"}
 def seg_translate(body, tr):
     i = [0]
     def f(m):
@@ -48,7 +48,7 @@ for lang in ("en", "pt", "zh"):
     head = head.replace("  </style>", G.extra_css + "  </style>", 1)
     assert "Esquel" not in head, re.findall(r".{40}Esquel.{40}", head)
     body = seg_translate(G.hero, tr)
-    body = body.replace(' class="active">🇦🇷 ES', '>🇦🇷 ES').replace(f'-{lang}.html">{FLAG[lang]}', f'-{lang}.html" class="active">{FLAG[lang]}')
+    body = body.replace(' class="active">ES', '>ES').replace(f'-{lang}.html">{FLAG[lang]}', f'-{lang}.html" class="active">{FLAG[lang]}')
     for g in ("guia-calafate", "guia-torres-del-paine", "guia-ushuaia"):
         body = body.replace(f"/notas/{g}.html", f"/notas/{g}-{lang}.html").replace(f"href='{g}.html'", f"href='{g}-{lang}.html'")
     tail = esq[esq.index('<div class="divider-footer">'):]

@@ -1440,6 +1440,28 @@
     });
   });
 </script>
+<style id="gp-tanda6">
+/* Tapa y cards como enlaces reales: se ven igual que antes */
+:where(a.nota-tapa,a.nota-secundaria,a.noticia-card,a.informe-principal,a.informe-item,a.informe-mini){display:block;color:inherit;text-decoration:none}
+/* Cinta AHORA: el texto pasa por debajo de la etiqueta */
+.ticker-label{position:relative;z-index:2;box-shadow:12px 0 0 #2a3d52}
+/* Panel de accesos rapidos: sin sombra ni foco mientras esta cerrado */
+.qa-drawer{visibility:hidden;box-shadow:none;transition:transform .3s cubic-bezier(.4,0,.2,1),visibility 0s linear .3s}
+.qa-drawer.qa-open{visibility:visible;box-shadow:-8px 0 30px rgba(0,0,0,.18);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+/* Deportes en movil: una columna, el titulo ya no se monta sobre la etiqueta */
+@media(max-width:600px){#deportes-grid{grid-template-columns:1fr !important}}
+/* Contraste (WCAG AA) */
+.noticia-card .card-meta{color:#6b6f78}
+.tag-social{color:#3d6f96}
+.informe-item p,.tp-meta,.turismo-sec p{color:#666}
+.turismo-tipo{color:#1c2d3d}
+.social-btn.telegram{background:#1b78a8}
+.social-btn.facebook{background:#166fe5}
+.social-btn.whatsapp{background:#11793f}
+.astrip-lugar{color:rgba(255,255,255,.62) !important}
+.footer-copy{color:rgba(255,255,255,.6)}
+#archivo-notas .arc-cat{color:#6e5236 !important}
+</style>
 </head>
 <body>
 
@@ -1537,30 +1559,30 @@
 
   <div class="tapa-grid" id="tapa-grid">
   <!-- TAPA-STATIC-START -->
-    <div class="nota-tapa nota-tapa-top" onclick="irANota('20261116-investigadora-del-cadic-expuso-en-nueva-zelanda-tapa')">
+    <a class="nota-tapa nota-tapa-top" href="/notas/20261116-investigadora-del-cadic-expuso-en-nueva-zelanda-tapa.html">
       <div class="nota-tapa-texto">
         <div class="tag">🌊 Ambiente</div>
         <h3>Investigadora del CADIC expuso en Nueva Zelanda avances sobre acidificación del Canal Beagle</h3>
         <p><span style="font-size:11px;opacity:0.8;">🇦🇷🇨🇱</span> María Eugenia Lattuca presentó en el 6.º Simposio Internacional sobre el Océano en un Mundo con Elevado CO₂, en Wellington, los avances del proyecto binacional OCAH-Beagle, que estudia acidificación e hipoxia en los ecosistemas costeros de altas latitudes. La iniciativa se financia con fondos de la Fundación Príncipe Alberto II de Mónaco y articula equipos argentinos y chilenos.</p>
       </div>
       <div class="img-cover" style="width:100%;height:480px;display:block;background-image:url('fotos/foto-20261116-investigadora-del-cadic-expuso-en-nueva-zelanda-tapa.webp');background-size:cover;background-position:center;"></div>
-    </div>
-    <div class="nota-secundaria nota-secundaria-top" onclick="irANota('20261116-san-julian-es-sede-del-primer-congreso-nacional-de-sec1')">
+    </a>
+    <a class="nota-secundaria nota-secundaria-top" href="/notas/20261116-san-julian-es-sede-del-primer-congreso-nacional-de-sec1.html">
       <div class="nota-secundaria-texto">
         <div class="tag">· Cultura ·</div>
         <h3>San Julián es sede del primer Congreso Nacional de Arte Rupestre en la Patagonia</h3>
         <p><span style="font-size:11px;opacity:0.8;">🇦🇷</span> El V CONAR reúne a arqueólogos, antropólogos e investigadores hasta el 19 de noviembre con 52 presentaciones orales y 31 pósteres, organizado por la UNPA y el LEPPAC junto a la UNLP y el CONICET.</p>
       </div>
       <div class="img-placeholder nota-sec-1" style="width:100%;height:238px;background-image:url('fotos/foto-20261116-san-julian-es-sede-del-primer-congreso-nacional-de-sec1.webp');background-size:cover;background-position:center;"></div>
-    </div>
-    <div class="nota-secundaria nota-secundaria-top" onclick="irANota('20261116-inach-fue-certificado-por-senda-en-prevencion-laboral-sec2')">
+    </a>
+    <a class="nota-secundaria nota-secundaria-top" href="/notas/20261116-inach-fue-certificado-por-senda-en-prevencion-laboral-sec2.html">
       <div class="nota-secundaria-texto">
         <div class="tag">· Bienestar ·</div>
         <h3>INACH fue certificado por SENDA en prevención laboral y lo extiende a sus bases antárticas</h3>
         <p><span style="font-size:11px;opacity:0.8;">🇨🇱</span> El Instituto Antártico Chileno completó la primera etapa del programa Trabajar con Calidad de Vida, que beneficia a cerca de 80 trabajadores en Punta Arenas, bases, refugios y campamentos del Continente Blanco.</p>
       </div>
       <div class="img-placeholder nota-sec-2" style="width:100%;height:238px;background-image:url('fotos/INSTITUCIONES/antartica-base-escudero-chile.jpg');background-size:cover;background-position:center;"></div>
-    </div>
+    </a>
   <!-- TAPA-STATIC-END -->
   </div>
 
@@ -1573,70 +1595,70 @@
 
   <div class="noticias-grid" id="noticias-grid">
   <!-- NOTICIAS-STATIC-START -->
-    <div class="noticia-card" onclick="irANota('20261115-glaciares-grey-y-tyndall-retroceden-mientras-el-pio-xi-tapa')">
+    <a class="noticia-card" href="/notas/20261115-glaciares-grey-y-tyndall-retroceden-mientras-el-pio-xi-tapa.html">
       <div class="card-img card-azul" style="background-image:url('fotos/foto-20261115-glaciares-grey-y-tyndall-retroceden-mientras-el-pio-xi-tapa.webp');background-size:cover;background-position:center;"></div>
       <div class="card-body">
         <div class="card-tag tag-turismo">🌎 Ambiente</div>
         <h3>Glaciares Grey y Tyndall retroceden mientras el Pío XI avanza en la Patagonia</h3>
         <div class="card-meta"><span style="font-size:11px;opacity:0.8;">🇨🇱</span>  · 15/11/2026</div>
       </div>
-    </div>
-    <div class="noticia-card" onclick="irANota('20261115-punta-arenas-celebra-el-dia-de-la-antartica-chilena-sec1')">
+    </a>
+    <a class="noticia-card" href="/notas/20261115-punta-arenas-celebra-el-dia-de-la-antartica-chilena-sec1.html">
       <div class="card-img card-verde" style="background-image:url('fotos/foto-20261115-punta-arenas-celebra-el-dia-de-la-antartica-chilena-sec1-unsplash.webp');background-size:cover;background-position:center;"></div>
       <div class="card-body">
         <div class="card-tag tag-social">· Ciencia ·</div>
         <h3>Punta Arenas celebra el Día de la Antártica Chilena con actividades abiertas a la comunidad</h3>
         <div class="card-meta"><span style="font-size:11px;opacity:0.8;">🇨🇱</span>  · 15/11/2026</div>
       </div>
-    </div>
-    <div class="noticia-card" onclick="irANota('20261115-un-empresario-del-agro-compro-10000-hectareas-en-negro-sec2')">
+    </a>
+    <a class="noticia-card" href="/notas/20261115-un-empresario-del-agro-compro-10000-hectareas-en-negro-sec2.html">
       <div class="card-img card-gris" style="background-image:url('fotos/AMBIENTE/alto-valle-rio-negro-fruticultura.webp');background-size:cover;background-position:center;"></div>
       <div class="card-body">
         <div class="card-tag tag-social">· Producción ·</div>
         <h3>Un empresario del agro compró 10.000 hectáreas en Negro Muerto, Río Negro</h3>
         <div class="card-meta"><span style="font-size:11px;opacity:0.8;">🇦🇷</span>  · 15/11/2026</div>
       </div>
-    </div>
-    <div class="noticia-card" onclick="irANota('20261114-torres-del-paine-refuerza-su-flota-y-suma-camillas-de-tapa')">
+    </a>
+    <a class="noticia-card" href="/notas/20261114-torres-del-paine-refuerza-su-flota-y-suma-camillas-de-tapa.html">
       <div class="card-img card-cafe" style="background-image:url('fotos/foto-20261114-torres-del-paine-refuerza-su-flota-y-suma-camillas-de-tapa.webp');background-size:cover;background-position:center;"></div>
       <div class="card-body">
         <div class="card-tag tag-turismo">🔥 Ambiente</div>
         <h3>Torres del Paine refuerza su flota y suma camillas de rescate ante la temporada de incendios</h3>
         <div class="card-meta"><span style="font-size:11px;opacity:0.8;">🇨🇱</span>  · 14/11/2026</div>
       </div>
-    </div>
-    <div class="noticia-card" onclick="irANota('20261114-el-rompehielos-irizar-prueba-maquinas-y-helicopteros-sec1')">
+    </a>
+    <a class="noticia-card" href="/notas/20261114-el-rompehielos-irizar-prueba-maquinas-y-helicopteros-sec1.html">
       <div class="card-img card-azul" style="background-image:url('fotos/foto-20261114-el-rompehielos-irizar-prueba-maquinas-y-helicopteros-sec1-unsplash.webp');background-size:cover;background-position:center;"></div>
       <div class="card-body">
         <div class="card-tag tag-social">· Antártida ·</div>
         <h3>El rompehielos Irízar prueba máquinas y helicópteros antes de la Campaña Antártica</h3>
         <div class="card-meta"><span style="font-size:11px;opacity:0.8;">🇦🇷</span>  · 14/11/2026</div>
       </div>
-    </div>
-    <div class="noticia-card" onclick="irANota('20261114-aguas-magallanes-capacita-a-municipios-sobre-el-sec2')">
+    </a>
+    <a class="noticia-card" href="/notas/20261114-aguas-magallanes-capacita-a-municipios-sobre-el-sec2.html">
       <div class="card-img card-verde" style="background-image:url('fotos/foto-20261114-aguas-magallanes-capacita-a-municipios-sobre-el-sec2.webp');background-size:cover;background-position:center;"></div>
       <div class="card-body">
         <div class="card-tag tag-social">· Servicio útil ·</div>
         <h3>Aguas Magallanes capacita a municipios sobre el Subsidio al Agua Potable</h3>
         <div class="card-meta"><span style="font-size:11px;opacity:0.8;">🇨🇱</span>  · 14/11/2026</div>
       </div>
-    </div>
-    <div class="noticia-card" onclick="irANota('20261113-el-british-antarctic-survey-inicia-una-temporada-tapa')">
+    </a>
+    <a class="noticia-card" href="/notas/20261113-el-british-antarctic-survey-inicia-una-temporada-tapa.html">
       <div class="card-img card-gris" style="background-image:url('fotos/foto-20261113-el-british-antarctic-survey-inicia-una-temporada-tapa-unsplash.webp');background-size:cover;background-position:center;"></div>
       <div class="card-body">
         <div class="card-tag tag-turismo">🌍 Ambiente</div>
         <h3>El British Antarctic Survey inicia una temporada récord con el mayor censo de pingüinos de la historia</h3>
         <div class="card-meta"><span style="font-size:11px;opacity:0.8;">🇦🇷🇨🇱</span>  · 13/11/2026</div>
       </div>
-    </div>
-    <div class="noticia-card" onclick="irANota('20261113-inach-lanza-un-manual-con-39-actividades-para-ensenar-sec1')">
+    </a>
+    <a class="noticia-card" href="/notas/20261113-inach-lanza-un-manual-con-39-actividades-para-ensenar-sec1.html">
       <div class="card-img card-cafe" style="background-image:url('fotos/foto-20261113-inach-lanza-un-manual-con-39-actividades-para-ensenar-sec1-unsplash.webp');background-size:cover;background-position:center;"></div>
       <div class="card-body">
         <div class="card-tag tag-social">· Ciencia ·</div>
         <h3>INACH lanza un manual con 39 actividades para enseñar la Antártica en las aulas chilenas</h3>
         <div class="card-meta"><span style="font-size:11px;opacity:0.8;">🇨🇱</span>  · 13/11/2026</div>
       </div>
-    </div>
+    </a>
   <!-- NOTICIAS-STATIC-END -->
   </div>
 
@@ -1679,7 +1701,7 @@
     @media (max-width:600px) { .banner-cine .bcn-inner { padding:38px 20px; } .banner-cine .bcn-title { font-size:1.55rem; } .banner-cine .bcn-cta { width:100%; justify-content:center; } .banner-cine .bcn-reel img { width:25%; } .banner-cine .bcn-shade { background:linear-gradient(180deg,rgba(8,8,8,.88),rgba(8,8,8,.7)); } }
     @media (prefers-reduced-motion:reduce) { .banner-cine .bcn-reel, .banner-cine .bcn-kicker i { animation:none; } }
   </style>
-  <a href="videos.html" class="banner-cine" aria-label="Cinemateca Patagónica: cine, documentales y series del fin del mundo" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'cinemateca_banner_home'})">
+  <a href="videos.html" class="banner-cine" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'cinemateca_banner_home'})">
     <div class="bcn-reel" aria-hidden="true">
       <img src="fotos/la-patagonia-rebelde-poster.webp" alt="" loading="lazy"><img src="fotos/el-turbio-2024-poster.webp" alt="" loading="lazy"><img src="fotos/erase-patagonia-poster.webp" alt="" loading="lazy"><img src="fotos/misterios-submarinos-poster.webp" alt="" loading="lazy">
       <img src="fotos/la-patagonia-rebelde-poster.webp" alt="" loading="lazy"><img src="fotos/el-turbio-2024-poster.webp" alt="" loading="lazy"><img src="fotos/erase-patagonia-poster.webp" alt="" loading="lazy"><img src="fotos/misterios-submarinos-poster.webp" alt="" loading="lazy">
@@ -1769,7 +1791,7 @@
               <div style="padding:12px 14px;">
                 <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:${color};margin-bottom:5px;">${normTag(c.tag) || '🏃 Deportes'}</div>
                 <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;line-height:1.3;color:#252830;">${c.titulo}</div>
-                ${c.meta ? `<div style="font-size:10px;color:#888;margin-top:5px;">${c.meta}</div>` : ''}
+                ${c.meta ? `<div style="font-size:10px;color:#666;margin-top:5px;">${c.meta}</div>` : ''}
               </div>
             </div>
           </a>`;
@@ -1812,7 +1834,7 @@
   </style>
 
   <!-- ══ BANNER CONECTIVIDAD AÉREA ══ -->
-  <a href="conectividad.html#vuelos" class="banner-conn banner-vuelos" aria-label="Conectividad aérea: vuelos de la Patagonia en vivo" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'vuelos_banner_home'})">
+  <a href="conectividad.html#vuelos" class="banner-conn banner-vuelos" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'vuelos_banner_home'})">
     <div class="bc-plane">✈️</div>
     <div class="bc-inner">
       <div class="bc-icon">🛫</div>
@@ -1867,7 +1889,7 @@
   <div class="divider" style="margin:32px 0;"></div>
 
   <!-- ══ BANNER ESTADO DE LAS RUTAS ══ -->
-  <a href="conectividad.html#rutas" class="banner-conn banner-rutas" aria-label="Estado de las rutas patagónicas: cortes, nieve y tránsito" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'rutas_banner_home'})">
+  <a href="conectividad.html#rutas" class="banner-conn banner-rutas" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'rutas_banner_home'})">
     <div class="bc-inner">
       <div class="bc-icon">🛣️</div>
       <div style="flex:1;min-width:220px;">
@@ -1982,7 +2004,7 @@
       .banner-arcade .ba-cta { width:100%; text-align:center; }
     }
   </style>
-  <a href="arcade.html" class="banner-arcade" aria-label="Arcade Patagónico: minijuegos 8 bits gratis, jugá online" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'arcade_banner_home'})">
+  <a href="arcade.html" class="banner-arcade" onclick="typeof gtag==='function'&&gtag('event','quick_access_click',{boton:'arcade_banner_home'})">
     <div class="ba-scanlines"></div>
     <div class="ba-sweep-track"><div class="ba-sweep"></div></div>
     <div class="ba-inner">
@@ -2142,7 +2164,7 @@
     <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#f0ede8;margin-bottom:4px;">
       Toda la Patagonia en tu inbox
     </div>
-    <div style="font-family:Inter,sans-serif;font-size:0.82rem;color:rgba(122,173,204,0.75);margin-bottom:14px;">
+    <div style="font-family:Inter,sans-serif;font-size:0.82rem;color:#9dbfd6;margin-bottom:14px;">
       Recibí cada mañana las noticias más importantes del sur global.
     </div>
     <div id="newsletter-form-wrap">
@@ -2177,7 +2199,7 @@
         '</button>' +
       '</form>' +
       '<a href="apoyanos.html" ' +
-        'style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:#8c6b4a;color:#f0ede8;border-radius:6px;' +
+        'style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:#7a5c3e;color:#f0ede8;border-radius:6px;' +
                'font-family:Inter,sans-serif;font-size:0.88rem;font-weight:700;text-decoration:none;white-space:nowrap;">' +
         '♥ Apoyanos' +
       '</a>' +
@@ -2245,14 +2267,14 @@
   <div class="footer-copy">
     © 2026 GLOBALpatagonia · globalpatagonia.org · Argentina · Chile
     <span style="margin-left:12px;opacity:0.4;">·</span>
-    <a href="colaboradores.html" style="color:rgba(255,255,255,0.2);text-decoration:none;font-size:10px;margin-left:8px;">Colaboradores</a>
+    <a href="colaboradores.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:10px;margin-left:8px;">Colaboradores</a>
   </div>
 </footer>
 
 <!-- ARCHIVO-STATIC-START -->
 <section id="archivo-notas" style="background:#f0ede8;padding:32px 20px 40px;border-top:1px solid #ddd;">
   <div style="max-width:900px;margin:0 auto;">
-    <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#8c6b4a;font-weight:700;margin-bottom:16px;">Archivo de notas</p>
+    <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#6e5236;font-weight:700;margin-bottom:16px;">Archivo de notas</p>
     <ul style="list-style:none;columns:2;column-gap:32px;" id="archivo-lista">
     <li><span class="arc-cat">deportes</span> <a href="/notas/trail-monte-leon-2026.html">Cuatro podios patagónicos: atletas de El Calafate brillaron en el Desafío Monte León</a></li>
     <li><span class="arc-cat">deportes</span> <a href="/notas/rescate-chalten-marzo-2026.html">Dos turistas rescatados en El Chaltén en menos de 24 horas: una mexicana con fractura en Laguna de los Tres y un holandés extraviado toda la noche</a></li>
@@ -2429,14 +2451,14 @@ function renderTapa(data) {
   }
 
   let html = `
-    <div class="nota-tapa nota-tapa-top" onclick="irANota('${t.id||'tapa'}')">
+    <a class="nota-tapa nota-tapa-top" href="/notas/${t.id||'tapa'}.html">
       <div class="nota-tapa-texto">
         <div class="tag">${normTag(t.tag) || '🗞️ Tapa'}</div>
         <h3>${t.titulo}</h3>
         <p>${bandera(t.pais)}${t.bajada}</p>
       </div>
       ${tapaImg}
-    </div>`;
+    </a>`;
 
   (s.slice(0,2)).forEach((n, i) => {
     const cls = SEC_COLORS[i] || "";
@@ -2444,14 +2466,14 @@ function renderTapa(data) {
       ? `<img class="img-placeholder ${cls}" src="${n.imagen}" alt="${n.titulo || ''}" loading="lazy" style="width:100%;height:238px;object-fit:cover;display:block;"/>`
       : `<div class="img-placeholder ${cls}" style="width:100%;height:238px;"></div>`;
     html += `
-    <div class="nota-secundaria nota-secundaria-top" onclick="irANota('${n.id||'sec'+(i+1)}')">
+    <a class="nota-secundaria nota-secundaria-top" href="/notas/${n.id||'sec'+(i+1)}.html">
       <div class="nota-secundaria-texto">
         <div class="tag">${normTag(n.tag) || '🗞️ Noticias'}</div>
         <h3>${n.titulo}</h3>
         <p>${bandera(n.pais)}${n.bajada || ''}</p>
       </div>
       ${secImg}
-    </div>`;
+    </a>`;
   });
 
   grid.innerHTML = html;
@@ -2470,14 +2492,14 @@ function renderNoticias(data) {
       ? `<img class="card-img ${colorCls}" src="${n.imagen}" alt="${n.titulo || ''}" loading="lazy" style="width:100%;height:140px;object-fit:cover;display:block;"/>`
       : `<div class="card-img ${colorCls}"></div>`;
     html += `
-    <div class="noticia-card" onclick="irANota('${n.id||'n'+(i+1)}')">
+    <a class="noticia-card" href="/notas/${n.id||'n'+(i+1)}.html">
       ${img}
       <div class="card-body">
         <div class="card-tag ${tagCls}">${normTag(n.tag)}</div>
         <h3>${n.titulo}</h3>
         <div class="card-meta">${bandera(n.pais)} · ${fechaDesdeId(n.id) || n.meta}</div>
       </div>
-    </div>`;
+    </a>`;
   });
 
   grid.innerHTML = html;
@@ -2551,7 +2573,7 @@ function renderTurismo(turismo) {
           <div style="padding:12px 14px;flex:1;">
             <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:${color};margin-bottom:5px;">${c.badge || '🌿 Turismo'}</div>
             <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;line-height:1.3;color:#252830;">${c.titulo}</div>
-            ${c.meta ? `<div style="font-size:10px;color:#888;margin-top:5px;">${c.meta}</div>` : ''}
+            ${c.meta ? `<div style="font-size:10px;color:#666;margin-top:5px;">${c.meta}</div>` : ''}
           </div>
         </div>
       </a>`;
@@ -2577,7 +2599,7 @@ function renderTurismo(turismo) {
                 <div style="padding:12px 14px;flex:1;">
                   <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:${color};margin-bottom:5px;">${c.badge || c.tag || '🌿 Turismo'}</div>
                   <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;line-height:1.3;color:#252830;">${c.titulo}</div>
-                  ${c.meta ? `<div style="font-size:10px;color:#888;margin-top:5px;">${c.meta}</div>` : ''}
+                  ${c.meta ? `<div style="font-size:10px;color:#666;margin-top:5px;">${c.meta}</div>` : ''}
                 </div>
               </div>
             </a>`);
@@ -2622,7 +2644,7 @@ function fillerCardHTML(tipo, context, span) {
   if (tipo === 'cinemateca') {
     const img = 'fotos/ad-cinemateca.webp';
     if (context === 'guia') {
-      return `<a href="videos.html" class="destino-card" style="text-decoration:none;grid-column:span 1;background:#0f0f0f;">
+      return `<a href="videos.html" class="destino-card" aria-label="Cinemateca Patagónica" style="text-decoration:none;grid-column:span 1;background:#0f0f0f;">
         <div style="background-image:url('${img}');background-size:contain;background-repeat:no-repeat;background-position:center;flex:1;min-height:180px;"></div>
       </a>`;
     }
@@ -2849,14 +2871,14 @@ function renderInformes(propios) {
   let html = '<div class="informes-top">';
 
   html += `
-    <div class="informe-principal" onclick="irANota('${principal.id}')">
+    <a class="informe-principal" href="/notas/${principal.id}.html">
       ${imgPrincipal}
       <div class="inf-body">
         <div class="inf-label">· Informe · ${principal.tag || ''} ·</div>
         <h3>${principal.titulo}</h3>
         <p>${principal.bajada || ''}</p>
       </div>
-    </div>`;
+    </a>`;
 
   if (secundarias.length > 0) {
     html += '<div class="informes-lista">';
@@ -2865,14 +2887,14 @@ function renderInformes(propios) {
         ? `<img class="informe-item-img" src="${n.imagen}" alt="${n.titulo || ''}" loading="lazy" style="width:100%;height:220px;object-fit:cover;object-position:${n.imagen_position || 'center'};display:block;border-radius:4px 4px 0 0;flex-shrink:0;"/>`
         : `<div class="informe-item-img" style="background:linear-gradient(135deg,#1c2d3d,#3a5a7a);"></div>`;
       html += `
-        <div class="informe-item" onclick="irANota('${n.id}')">
+        <a class="informe-item" href="/notas/${n.id}.html">
           ${imgSec}
           <div class="informe-item-body">
             <div class="inf-label">· ${normTag(n.tag) || 'Informe'} ·</div>
             <h4>${n.titulo}</h4>
             <p>${n.bajada || ''}</p>
           </div>
-        </div>`;
+        </a>`;
     });
     html += '</div>';
   }
@@ -2886,13 +2908,13 @@ function renderInformes(propios) {
         ? `<img class="informe-mini-img" src="${n.imagen}" alt="${n.titulo || ''}" loading="lazy" style="width:100%;height:90px;object-fit:cover;object-position:${n.imagen_position || 'center'};display:block;"/>`
         : `<div class="informe-mini-img" style="background:linear-gradient(135deg,#1c2d3d,#3a5a7a);"></div>`;
       html += `
-        <div class="informe-mini" onclick="irANota('${n.id}')">
+        <a class="informe-mini" href="/notas/${n.id}.html">
           ${imgMini}
           <div class="informe-mini-body">
             <div class="inf-label">· ${normTag(n.tag) || 'Informe'} ·</div>
             <h4>${n.titulo}</h4>
           </div>
-        </div>`;
+        </a>`;
     });
     html += '</div>';
   }

@@ -298,8 +298,32 @@ def paso_meta(s, pagina):
     return s, int(s != orig)
 
 
+# ── Tanda 6: selector de idioma solo texto y áreas táctiles ──
+_RE_SWITCH = re.compile(r'(<(div|nav)\b[^>]*class="[^"]*lang-switcher[^"]*"[^>]*>)(.*?)(</\2>)', re.S)
+_RE_BANDERA = re.compile(r'[\U0001F1E6-\U0001F1FF]{2}\s*')
+
+def paso_idioma(s):
+    n = [0]
+    def _f(m):
+        cuerpo = _RE_BANDERA.sub("", m.group(3))
+        if cuerpo != m.group(3):
+            n[0] += 1
+        return m.group(1) + cuerpo + m.group(4)
+    return _RE_SWITCH.sub(_f, s), n[0]
+
+TAP_CSS = ('<style>/* gp-tap: area tactil de 44px sin cambiar el aspecto */'
+           '.volver,a.nota-tag,.lang-switcher a,.btn-c,.nota-fuente a{position:relative}'
+           '.volver::after,a.nota-tag::after,.nota-fuente a::after{content:"";position:absolute;inset:-12px -4px}'
+           '.lang-switcher a::after,.btn-c::after{content:"";position:absolute;inset:-9px -4px}</style>')
+
+def paso_tap(s):
+    if "gp-tap" in s or "</head>" not in s:
+        return s, 0
+    return s.replace("</head>", TAP_CSS + "\n</head>", 1), 1
+
+
 def main():
-    tot = dict(paginas=0, compartir=0, fuentes=0, zh=0, dim=0, lazy=0, iframes=0, onesignal=0, meta=0)
+    tot = dict(paginas=0, compartir=0, fuentes=0, zh=0, dim=0, lazy=0, iframes=0, onesignal=0, meta=0, idioma=0, tap=0)
     archivos = (sorted(glob.glob(os.path.join(BASE, "notas", "*.html")))
                 + sorted(glob.glob(os.path.join(BASE, "temas", "*.html")))
                 + sorted(glob.glob(os.path.join(BASE, "autor-*.html"))))
@@ -313,6 +337,9 @@ def main():
         s, a = paso_zh(s);                   tot["zh"] += a
         s, a, b = paso_imagenes(s, rel);     tot["dim"] += a; tot["lazy"] += b
         s, a = paso_iframes(s);              tot["iframes"] += a
+        s, a = paso_idioma(s);               tot["idioma"] += a
+        if es_nota:
+            s, a = paso_tap(s);              tot["tap"] += a
         if es_nota and rel != os.path.join("notas", "index.html"):
             s, a = paso_onesignal(s);        tot["onesignal"] += a
             s, a = paso_meta(s, rel);        tot["meta"] += a
