@@ -117,6 +117,7 @@ FUENTES_RSS = [
     {"nombre": "Radio Santa María",       "url": "https://www.radiosantamaria.cl/feed/",                 "region": "Aysén"},
     {"nombre": "El Calbucano",            "url": "https://elcalbucano.cl/feed/",                         "region": "Los Lagos"},
     {"nombre": "Paislobo",                "url": "https://www.paislobo.cl/feeds/posts/default",          "region": "Los Lagos"},
+    {"nombre": "Diario El Ranco",         "url": "https://www.diarioelranco.cl/feed",                   "region": "Los Ríos"},
     {"nombre": "El Magallánico",          "url": "https://www.elmagallanico.com/feed/",                  "region": "Magallanes"},
     {"nombre": "Diálogo Sur",             "url": "https://dialogosur.cl/feed/",                          "region": "Magallanes"},
     # ── Chile · Antártica ──
@@ -149,7 +150,7 @@ FUENTES_RSS_INACTIVAS = [
     {"nombre": "El Llanquihue",           "url": "https://www.elllanquihue.cl/feed/",                    "region": "Los Lagos"},
     # sacó el RSS; Magallanes queda cubierto por La Prensa Austral, El Magallánico y Diálogo Sur
     {"nombre": "El Pingüino",             "url": "https://www.elpinguino.com/feed/",                     "region": "Magallanes"},
-    # sacó el RSS; reemplazo propuesto: Diario El Ranco (pendiente de aprobación)
+    # sacó el RSS; reemplazada por Diario El Ranco (La Unión)
     {"nombre": "Diario de Valdivia",      "url": "https://www.diariodevaldivia.cl/feed/",                "region": "Los Ríos"},
 ]
 
@@ -3851,6 +3852,7 @@ _TEMA_LABELS = {
     "pueblos-originarios":"Pueblos Originarios",
     "bienestar":          "Bienestar",
     "sociedad":           "Sociedad",
+    "soberania":          "Soberanía",
 }
 
 def _slug_categoria(cat):
@@ -3879,9 +3881,15 @@ def generar_paginas_temas(notas_all):
         if not isinstance(nota, dict):
             continue
         cat_raw = nota.get("categoria", "").strip()
-        if not cat_raw or cat_raw == "general":
-            continue
-        slug = _slug_categoria(cat_raw)
+        _segs = [_slug_categoria(x) for x in cat_raw.split("|") if x.strip()]
+        # Soberanía: los informes de Malvinas/Atlántico Sur traen categorías compuestas
+        # ("soberania|malvinas|geopolitica") que antes no caían en ningún tema.
+        if "soberania" in _segs or "soberan" in str(nota.get("tag", "")).lower():
+            slug = "soberania"
+        else:
+            if not cat_raw or cat_raw == "general":
+                continue
+            slug = _slug_categoria(cat_raw)
         if slug not in _TEMA_LABELS:
             continue
         por_tema.setdefault(slug, [])
@@ -4156,7 +4164,8 @@ def generar_feed_rss():
     def _es_noindex(nid):
         try:
             with open(os.path.join(base, "notas", f"{nid}.html"), encoding="utf-8") as _f:
-                return "noindex" in _f.read(20000)
+                _h = _f.read(20000)
+                return "noindex" in _h or "gp-duplicada-de" in _h
         except Exception:
             return False
 
@@ -4357,7 +4366,7 @@ def actualizar_sitemap():
         try:
             with open(os.path.join(base, _fname), encoding='utf-8') as _fh:
                 _head = _fh.read(20000)
-            if 'noindex' in _head:
+            if 'noindex' in _head or 'gp-duplicada-de' in _head:
                 continue  # página excluida explícitamente — no va al sitemap
         except Exception:
             continue
@@ -4388,7 +4397,8 @@ def actualizar_sitemap():
                 head = fh.read(2000)
             return ('http-equiv="refresh"' in head or
                     'window.location.replace' in head or
-                    'noindex' in head)
+                    'noindex' in head or
+                    'gp-duplicada-de' in head)   # copia con canonical a la original
         except Exception:
             return False
 

@@ -79,7 +79,8 @@ def recolectar_notas():
     def _noindex(nid):
         try:
             with open(os.path.join(REPO, 'notas', nid + '.html'), encoding='utf-8') as f:
-                return 'noindex' in f.read(20000)
+                h = f.read(20000)
+                return 'noindex' in h or 'gp-duplicada-de' in h
         except Exception:
             return False
     return [n for n in notas if not _noindex(n.get('id', ''))]
