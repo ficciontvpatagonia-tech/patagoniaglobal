@@ -701,8 +701,12 @@ def _tokenizar_titulo(titulo):
     return {t[:5] for t in tokens}  # Prefix para unificar sing/plural
 
 
-def verificar_duplicado_tematico(nota, historial, dias=5):
+def verificar_duplicado_tematico(nota, historial, dias=5, dias_titulo=60, umbral_titulo=0.70):
     """Detecta si una nota cubre el mismo tema que otra ya publicada.
+    - Últimos `dias`: mismo tema (similitud de título >= 30–40 %).
+    - Hasta `dias_titulo`: título casi idéntico (>= umbral_titulo), para la misma
+      noticia republicada semanas después (ej. "INACH invita a redescubrir el legado
+      de Ramón Cañas", 28/09 y 25/10).
     Retorna (True, id_conflicto, similitud) o False."""
     from datetime import timedelta
 
@@ -714,12 +718,14 @@ def verificar_duplicado_tematico(nota, historial, dias=5):
         return False
 
     hace_n_dias = (datetime.now() - timedelta(days=dias)).strftime('%Y%m%d')
+    hace_titulo = (datetime.now() - timedelta(days=dias_titulo)).strftime('%Y%m%d')
 
     for art in historial:
         art_id = art.get("id", "")
         art_fecha = art_id[:8] if len(art_id) >= 8 else ""
-        if art_fecha < hace_n_dias:
+        if art_fecha < hace_titulo:
             continue
+        reciente = art_fecha >= hace_n_dias
         if not art.get("titulo"):
             continue
 
@@ -734,7 +740,7 @@ def verificar_duplicado_tematico(nota, historial, dias=5):
         # Mismo medio: umbral más bajo para atrapar eventos semanales repetidos
         misma_fuente = (art.get("fuente", "").lower() == nota.get("fuente", "").lower()
                         and art.get("fuente", ""))
-        umbral = 0.30 if misma_fuente else 0.40
+        umbral = (0.30 if misma_fuente else 0.40) if reciente else umbral_titulo
         if sim >= umbral:
             return (True, art["id"], sim)
 
@@ -2999,9 +3005,22 @@ def main():
     _portada_hoy = [{"id": f"{_hoy_tmp}-portada-{i}", "titulo": n.get("titulo"), "fuente": n.get("fuente")}
                     for i, n in enumerate([tapa] + secundarias) if n and n.get("titulo")]
     _secciones = {"deportes": deportes, "negocios": negocios, "cultura": cultura, "turismo": turismo}
+    # Misma URL de origen = misma noticia. Pasó 17 veces: la misma nota publicada en
+    # portada y en Economía/Deportes el mismo día con títulos distintos.
+    _urls_usadas = {_normalizar_url(n.get("url_original", "")) for n in [tapa] + secundarias if n}
+    _urls_usadas |= urls_ya_publicadas(historial)
+    _urls_usadas.discard("")
     for _nombre, _nota in _secciones.items():
         if not _nota or not _nota.get("titulo"):
             continue
+        _u = _normalizar_url(_nota.get("url_original", ""))
+        if _u and _u in _urls_usadas:
+            print(f"\n  ⚠ DUPLICADO POR URL en sección {_nombre}: \"{_nota['titulo'][:70]}\" "
+                  f"(misma fuente que otra nota de hoy o ya publicada) → se omite")
+            _secciones[_nombre] = None
+            continue
+        if _u:
+            _urls_usadas.add(_u)
         _dup = verificar_duplicado_tematico(_nota, _portada_hoy + list(historial))
         if _dup:
             print(f"\n  ⚠ DUPLICADO TEMÁTICO en sección {_nombre}: \"{_nota['titulo'][:70]}\" "
@@ -4543,6 +4562,42 @@ def generar_news_sitemap():
 #  TELEGRAM
 # ══════════════════════════════════════════════════════════
 
+def _aviso_red(texto):
+    """Deja la falla de una red como aviso amarillo en el run de GitHub (antes quedaba
+    solo en el log y el job terminaba en verde sin que nadie se enterara)."""
+    print(f"  {texto}")
+    print(f"::warning title=Redes sociales::{texto}")
+
+
+def _telegram_enviar(token, method, fields, file_path=None, intentos=3):
+    """_telegram_request con reintentos SIN riesgo de duplicar:
+    - reintenta solo si Telegram no llegó a recibir el mensaje (no se pudo conectar,
+      429 "demasiadas solicitudes" o error 5xx del servidor);
+    - si se corta esperando la respuesta (timeout de lectura) NO reintenta, porque
+      el mensaje pudo haberse publicado igual.
+    Devuelve el dict de respuesta de Telegram; lanza la excepción si no hubo forma."""
+    import socket
+    espera = 5
+    for intento in range(1, intentos + 1):
+        try:
+            r = _telegram_request(token, method, fields, file_path=file_path)
+        except (socket.timeout, TimeoutError):
+            raise
+        except (ConnectionRefusedError, socket.gaierror, OSError) as e:
+            if intento == intentos:
+                raise
+            print(f"  Telegram: sin conexión ({e.__class__.__name__}), reintento {intento + 1}/{intentos} en {espera}s…")
+            time.sleep(espera); espera *= 3
+            continue
+        codigo = r.get("error_code") or 0
+        if r.get("ok") or not (codigo == 429 or codigo >= 500) or intento == intentos:
+            return r
+        espera_srv = int((r.get("parameters") or {}).get("retry_after") or espera)
+        print(f"  Telegram: error {codigo}, reintento {intento + 1}/{intentos} en {espera_srv}s…")
+        time.sleep(espera_srv); espera *= 3
+    return r
+
+
 def _telegram_request(token, method, fields, file_path=None):
     """Hace un POST a la API de Telegram. Si file_path está presente, sube la imagen."""
     import http.client, uuid, mimetypes
@@ -4574,7 +4629,8 @@ def _telegram_request(token, method, fields, file_path=None):
         lines.append(f"--{boundary}--")
         body = "\r\n".join(lines).encode()
 
-    conn = http.client.HTTPSConnection("api.telegram.org", timeout=20)
+    # 60 s: subir la foto puede tardar más de 20 s (el 15/11 fallaron 5 de 6 envíos por timeout)
+    conn = http.client.HTTPSConnection("api.telegram.org", timeout=60)
     conn.request(
         "POST",
         f"/bot{token}/{method}",
@@ -4618,13 +4674,13 @@ def publicar_telegram(tapa):
 
     try:
         if ruta_img:
-            resultado = _telegram_request(token, "sendPhoto", {
+            resultado = _telegram_enviar(token, "sendPhoto", {
                 "chat_id":    channel,
                 "caption":    caption,
                 "parse_mode": "HTML",
             }, file_path=ruta_img)
         else:
-            resultado = _telegram_request(token, "sendMessage", {
+            resultado = _telegram_enviar(token, "sendMessage", {
                 "chat_id":                  channel,
                 "text":                     caption,
                 "parse_mode":               "HTML",
@@ -4634,9 +4690,9 @@ def publicar_telegram(tapa):
         if resultado.get("ok"):
             print(f"  Telegram OK ✓ [{nota_id}]")
         else:
-            print(f"  Telegram error: {resultado.get('description')}")
+            _aviso_red(f"Telegram error [{nota_id}]: {resultado.get('description')}")
     except Exception as e:
-        print(f"  Telegram falló: {e}")
+        _aviso_red(f"Telegram falló [{nota_id}]: {e} (no se reintenta para no duplicar el posteo)")
 
 
 def _informes_pendientes(state, propios, plataforma):
@@ -4716,13 +4772,13 @@ def publicar_telegram_informe_nuevo():
 
         try:
             if ruta_img:
-                resultado = _telegram_request(token, "sendPhoto", {
+                resultado = _telegram_enviar(token, "sendPhoto", {
                     "chat_id":    channel,
                     "caption":    caption,
                     "parse_mode": "HTML",
                 }, file_path=ruta_img)
             else:
-                resultado = _telegram_request(token, "sendMessage", {
+                resultado = _telegram_enviar(token, "sendMessage", {
                     "chat_id":    channel,
                     "text":       caption,
                     "parse_mode": "HTML",
@@ -4735,9 +4791,9 @@ def publicar_telegram_informe_nuevo():
                     json.dump(state, f, ensure_ascii=False, indent=2)
                 print(f"  Telegram informe OK ✓ [{informe_id}]")
             else:
-                print(f"  Telegram informe error: {resultado.get('description')}")
+                _aviso_red(f"Telegram informe error [{informe_id}]: {resultado.get('description')}")
         except Exception as e:
-            print(f"  Telegram informe falló: {e}")
+            _aviso_red(f"Telegram informe falló [{informe_id}]: {e}")
 
 
 def _seleccionar_notas_binacionales(tapa, secundarias):
@@ -4908,13 +4964,13 @@ def publicar_facebook(tapa):
             if resultado.get("id"):
                 print(f"  Facebook OK ✓ [{nota_id}]")
             else:
-                print(f"  Facebook error: {resultado}")
+                _aviso_red(f"Facebook error [{nota_id}]: {resultado}")
         except urllib.error.HTTPError as http_err:
             detalle = http_err.read().decode("utf-8", errors="replace")
-            print(f"  Facebook falló {http_err.code}: {detalle}")
+            _aviso_red(f"Facebook falló {http_err.code} [{nota_id}]: {detalle[:300]}")
 
     except Exception as e:
-        print(f"  Facebook falló: {e}")
+        _aviso_red(f"Facebook falló [{nota_id}]: {e}")
 
 
 def publicar_facebook_informe_nuevo():
@@ -5027,13 +5083,13 @@ def publicar_facebook_informe_nuevo():
                         json.dump(state, f, ensure_ascii=False, indent=2)
                     print(f"  Facebook informe OK ✓ [{informe_id}]")
                 else:
-                    print(f"  Facebook informe error: {resultado}")
+                    _aviso_red(f"Facebook informe error [{informe_id}]: {resultado}")
             except urllib.error.HTTPError as http_err:
                 detalle = http_err.read().decode("utf-8", errors="replace")
-                print(f"  Facebook informe falló {http_err.code}: {detalle}")
+                _aviso_red(f"Facebook informe falló {http_err.code} [{informe_id}]: {detalle[:300]}")
 
         except Exception as e:
-            print(f"  Facebook informe falló: {e}")
+            _aviso_red(f"Facebook informe falló [{informe_id}]: {e}")
 
 
 def _nl_seccion_html(label, nota, color_label="#7aadcc"):
@@ -5503,6 +5559,20 @@ def _generar_imagen_ig(ruta_local, titulo, tag="", nota_id=""):
 #  INSTAGRAM
 # ══════════════════════════════════════════════════════════
 
+def _apta_instagram(ruta_rel):
+    """True si la imagen local es JPEG con proporción entre 4:5 y 1.91:1, lo que acepta
+    Instagram. Evita el error 400 'aspect ratio not supported' (código 36003)."""
+    try:
+        from PIL import Image
+        with Image.open(os.path.join(os.path.dirname(__file__), ruta_rel)) as im:
+            if im.format != "JPEG":
+                return False
+            w, h = im.size
+        return 0.8 <= (w / h) <= 1.91
+    except Exception:
+        return False
+
+
 def publicar_instagram(tapa):
     """Publica la tapa del día en Instagram Business via Graph API (2 pasos: container → publish).
     Devuelve True si publicó con éxito, False en cualquier otro caso."""
@@ -5536,8 +5606,13 @@ def publicar_instagram(tapa):
     else:
         imagen_ig     = None
     image_url_ig   = f"https://globalpatagonia.org/{imagen_ig}" if imagen_ig else None
-    image_url_orig = f"https://globalpatagonia.org/{imagen}"
+    # La original solo sirve de respaldo si Instagram la acepta (JPEG y proporción válida)
+    image_url_orig = f"https://globalpatagonia.org/{imagen}" if _apta_instagram(imagen) else None
     image_url = image_url_ig or image_url_orig
+    if not image_url:
+        _aviso_red(f"Instagram [{nota_id}]: sin tarjeta _ig.jpg y la foto original no es apta "
+                   f"(Instagram solo acepta JPEG entre 4:5 y 1.91:1); se omite")
+        return False
 
     hashtags = "#Patagonia #GLOBALpatagonia #Noticias #SurGlobal #PatagoniaArgentina"
     cuerpo_raw = tapa.get("cuerpo", "")
@@ -5579,16 +5654,16 @@ def publicar_instagram(tapa):
         except urllib.error.HTTPError as http_err:
             detalle = http_err.read().decode("utf-8", errors="replace")
             # Si falló con la imagen _ig.jpg, reintentar con la original
-            if image_url_ig and image_url != image_url_orig:
+            if image_url_ig and image_url_orig and image_url != image_url_orig:
                 print(f"  Instagram _ig.jpg falló ({http_err.code}): {detalle[:200]}, reintentando con imagen original...")
                 try:
                     resultado = _crear_container_ig(image_url_orig)
                 except urllib.error.HTTPError as http_err2:
                     detalle2 = http_err2.read().decode("utf-8", errors="replace")
-                    print(f"  Instagram container falló {http_err2.code}: {detalle2}")
+                    _aviso_red(f"Instagram container falló {http_err2.code} [{nota_id}]: {detalle2[:300]}")
                     return False
             else:
-                print(f"  Instagram container falló {http_err.code}: {detalle}")
+                _aviso_red(f"Instagram container falló {http_err.code} [{nota_id}]: {detalle[:300]}")
                 return False
 
         creation_id = resultado.get("id")
@@ -5635,11 +5710,11 @@ def publicar_instagram(tapa):
                 return False
         except urllib.error.HTTPError as http_err:
             detalle = http_err.read().decode("utf-8", errors="replace")
-            print(f"  Instagram publish falló {http_err.code}: {detalle}")
+            _aviso_red(f"Instagram publish falló {http_err.code} [{nota_id}]: {detalle[:300]}")
             return False
 
     except Exception as e:
-        print(f"  Instagram falló: {e}")
+        _aviso_red(f"Instagram falló [{nota_id}]: {e}")
         return False
 
 
@@ -5698,8 +5773,11 @@ def publicar_instagram_informe_nuevo():
     else:
         imagen_ig_i = None
     image_url_ig_i   = f"https://globalpatagonia.org/{imagen_ig_i}" if imagen_ig_i else None
-    image_url_orig_i = f"https://globalpatagonia.org/{imagen}"
+    image_url_orig_i = f"https://globalpatagonia.org/{imagen}" if _apta_instagram(imagen) else None
     image_url = image_url_ig_i or image_url_orig_i
+    if not image_url:
+        _aviso_red(f"Instagram informe [{informe_id}]: sin tarjeta _ig.jpg y la foto original no es apta; se omite")
+        return
 
     # Caption con la nota completa (igual que la tapa): cabecera + cuerpo + hashtags, recortado a 2200.
     import re as _re_i
@@ -5731,16 +5809,16 @@ def publicar_instagram_informe_nuevo():
             resultado = _crear_container_informe_ig(image_url)
         except urllib.error.HTTPError as http_err:
             detalle = http_err.read().decode("utf-8", errors="replace")
-            if image_url_ig_i and image_url != image_url_orig_i:
+            if image_url_ig_i and image_url_orig_i and image_url != image_url_orig_i:
                 print(f"  Instagram informe _ig.jpg falló ({http_err.code}), reintentando con imagen original...")
                 try:
                     resultado = _crear_container_informe_ig(image_url_orig_i)
                 except urllib.error.HTTPError as http_err2:
                     detalle2 = http_err2.read().decode("utf-8", errors="replace")
-                    print(f"  Instagram informe container falló {http_err2.code}: {detalle2}")
+                    _aviso_red(f"Instagram informe container falló {http_err2.code} [{informe_id}]: {detalle2[:300]}")
                     return
             else:
-                print(f"  Instagram informe container falló {http_err.code}: {detalle}")
+                _aviso_red(f"Instagram informe container falló {http_err.code} [{informe_id}]: {detalle[:300]}")
                 return
 
         creation_id = resultado.get("id")
@@ -5788,10 +5866,10 @@ def publicar_instagram_informe_nuevo():
                 print(f"  Instagram informe publish error: {resultado}")
         except urllib.error.HTTPError as http_err:
             detalle = http_err.read().decode("utf-8", errors="replace")
-            print(f"  Instagram informe publish falló {http_err.code}: {detalle}")
+            _aviso_red(f"Instagram informe publish falló {http_err.code} [{informe_id}]: {detalle[:300]}")
 
     except Exception as e:
-        print(f"  Instagram informe falló: {e}")
+        _aviso_red(f"Instagram informe falló [{informe_id}]: {e}")
 
 
 def publicar_notas_manuales_nuevas():
