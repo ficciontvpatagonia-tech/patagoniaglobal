@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261115-el-atletismo-adaptado-de-santa-cruz-brillo-en-los-para-dep",
+    "id": "20261118-santacrucena-y-santa-cruz-norte-debutan-en-el-dep",
     "tag": "🏃 Deportes",
-    "titulo": "El atletismo adaptado de Santa Cruz brilló en los Para Araucanía de Valdivia",
-    "bajada": "Deportistas de distintas localidades santacruceñas sumaron primeros puestos en disco, bala, jabalina y pruebas de velocidad y mediofondo en los V Juegos Binacionales disputados en Chile.",
-    "imagen": "fotos/foto-20261115-el-atletismo-adaptado-de-santa-cruz-brillo-en-los-para-dep-unsplash.webp",
+    "titulo": "Santacruceña y Santa Cruz Norte debutan en el Argentino de Selecciones en Comodoro",
+    "bajada": "Los seleccionados de Santa Cruz compiten desde mañana en el torneo de Sub-14 y Sub-16 Damas y Sub-14 Caballeros que se juega en Comodoro Rivadavia, con la Asociación Austral como anfitriona.",
+    "imagen": "fotos/foto-20261118-santacrucena-y-santa-cruz-norte-debutan-en-el-dep-unsplash.webp",
     "meta": "Hoy · Tiempo Sur"
   },
   "secundarias": [
+    {
+      "id": "20261115-el-atletismo-adaptado-de-santa-cruz-brillo-en-los-para-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "El atletismo adaptado de Santa Cruz brilló en los Para Araucanía de Valdivia",
+      "bajada": "Deportistas de distintas localidades santacruceñas sumaron primeros puestos en disco, bala, jabalina y pruebas de velocidad y mediofondo en los V Juegos Binacionales disputados en Chile.",
+      "imagen": "fotos/foto-20261115-el-atletismo-adaptado-de-santa-cruz-brillo-en-los-para-dep-unsplash.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20261113-la-liga-sur-cierra-la-temporada-con-los-hexagonales-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Boxing Club, Gimnasio Nicolai y Verón recibirán a equipos de El Calafate, Río Turbio, Puerto Natales y Punta Arenas en dos jornadas que definirán los torneos formativos de la región.",
       "imagen": "fotos/foto-20261113-la-liga-sur-cierra-la-temporada-con-los-hexagonales-dep-unsplash.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261112-tres-amazonas-neuquinas-compiten-con-la-elite-de-la-dep",
       "tag": "🏇 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Salma Ockier, Martina Ockier y Luz García Dignani, del Club Hípico Río Limay, participan de una gira por Buenos Aires con saltos de 1,10, 1,20 y 1,30 metros.",
       "imagen": "fotos/foto-20261112-tres-amazonas-neuquinas-compiten-con-la-elite-de-la-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261110-el-club-andino-bariloche-abre-una-charla-sobre-jovenes-dep",
       "tag": "🏔️ Deportes",
@@ -50,14 +58,6 @@
       "bajada": "La corrida solidaria organizada por Magallanes Puerto Sostenible partió del muelle Arturo Prat con circuitos de 2,5 y 5 kilómetros y recaudó fondos para una de las campañas solidarias más significativas de la región.",
       "imagen": "fotos/foto-20261107-cientos-de-magallanicos-corrieron-por-las-jornadas-dep-unsplash.webp",
       "meta": "Hoy · El Magallánico"
-    },
-    {
-      "id": "20261104-el-asics-k42-de-villa-la-angostura-vuelve-con-cinco-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "El ASICS K42 de Villa La Angostura vuelve con cinco modalidades y el Nacional Másters",
-      "bajada": "La maratón de montaña pionera de Sudamérica celebra su 23ª edición desde el jueves 5 de noviembre, con nieve en el circuito de 42 kilómetros y los ganadores de 2025 en la línea de largada.",
-      "imagen": "fotos/foto-20261104-el-asics-k42-de-villa-la-angostura-vuelve-con-cinco-dep.webp",
-      "meta": "Hoy · Diario Río Negro"
     }
   ]
 }

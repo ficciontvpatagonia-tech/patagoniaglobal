@@ -1,31 +1,5 @@
 [
   {
-    "id": "charla-montanas-vivas-bariloche-2026",
-    "titulo": "Conversatorio Montañas Vivas: restaurar ambientes y formas de relacionarnos",
-    "fecha": "2026-11-17",
-    "fecha_fin": null,
-    "fecha_display": "17 de noviembre",
-    "lugar": "Bariloche",
-    "region": "Río Negro, Argentina",
-    "pais": "AR",
-    "categoria": "cultura",
-    "emoji": "🏔️",
-    "descripcion": "Charla organizada por la Subcomisión de Impacto, Monitoreo y Ambiente (SIMA) del Club Andino Bariloche sobre restauración ambiental y vínculo con la naturaleza."
-  },
-  {
-    "id": "fiesta-del-cordero-paillaco-2026",
-    "titulo": "XVIII Fiesta del Cordero de Paillaco",
-    "fecha": "2026-11-17",
-    "fecha_fin": null,
-    "fecha_display": "fecha por confirmar (noviembre/diciembre 2026)",
-    "lugar": "Paillaco",
-    "region": "Los Ríos, Chile",
-    "pais": "CL",
-    "categoria": "cultura",
-    "emoji": "🐑",
-    "descripcion": "El Consejo Regional de Los Ríos aprobó el financiamiento para la XVIII Fiesta del Cordero de Paillaco, que busca rescatar y poner en valor la cultura mapuche y ganadera de la comuna."
-  },
-  {
     "id": "patagonia-bariloche-utmb-2026",
     "titulo": "Patagonia Bariloche by UTMB",
     "fecha": "2026-11-18",
@@ -37,6 +11,32 @@
     "categoria": "deportes",
     "emoji": "⛰️",
     "descripcion": "Trail running bajo el sello UTMB con distancias de 132, 86, 57, 36, 22 y 12 km."
+  },
+  {
+    "id": "campeonato-argentino-selecciones-comodoro-rivadavia-2026",
+    "titulo": "Campeonato Argentino de Selecciones (Sub-14 y Sub-16 Damas, Sub-14 Caballeros)",
+    "fecha": "2026-11-19",
+    "fecha_fin": "2026-11-22",
+    "fecha_display": "19 al 22 de noviembre",
+    "lugar": "Comodoro Rivadavia",
+    "region": "Chubut, Argentina",
+    "pais": "AR",
+    "categoria": "deportes",
+    "emoji": "🏐",
+    "descripcion": "Torneo nacional que reúne a las selecciones de Santa Cruz (Santacruceña y Santa Cruz Norte) y otras provincias en tres categorías. Se disputa desde mañana y hasta el domingo en Comodoro Rivadavia."
+  },
+  {
+    "id": "festival-poesia-ciencia-acrux-punta-arenas-2026",
+    "titulo": "Festival de Poesía y Ciencia del Estrecho de Magallanes Ácrux (4.ª edición)",
+    "fecha": "2026-11-19",
+    "fecha_fin": null,
+    "fecha_display": "etapa culminante en noviembre",
+    "lugar": "Punta Arenas",
+    "region": "Magallanes, Chile",
+    "pais": "CL",
+    "categoria": "cultura",
+    "emoji": "📖",
+    "descripcion": "Festival que entrelaza literatura, astronomía, ciencias antárticas y patrimonio, en su etapa culminante de la cuarta edición. Incluye actividad abierta sobre cifras antárticas y meteoritos en el INACH."
   },
   {
     "id": "fiesta-nacional-del-chivito-chos-malal-2026",
@@ -557,5 +557,18 @@
     "categoria": "gastronomia",
     "emoji": "🍲",
     "descripcion": "Fiesta nacional del curanto, comida tradicional patagónica, en Bariloche."
+  },
+  {
+    "id": "congreso-argentino-radiologia-trelew-2027",
+    "titulo": "45.º Congreso Argentino de Radiología",
+    "fecha": "2027-11-01",
+    "fecha_fin": null,
+    "fecha_display": "noviembre de 2027",
+    "lugar": "Trelew",
+    "region": "Chubut, Argentina",
+    "pais": "AR",
+    "categoria": "desarrollo",
+    "emoji": "🩻",
+    "descripcion": "Encuentro nacional de licenciados y técnicos radiólogos que por primera vez se realizará en Trelew y en Chubut. Incluye actividades de capacitación e investigación."
   }
 ]
