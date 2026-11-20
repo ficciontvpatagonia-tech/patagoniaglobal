@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261118-santacrucena-y-santa-cruz-norte-debutan-en-el-dep",
+    "id": "20261120-punta-arenas-busca-financiamiento-del-core-para-dep",
     "tag": "🏃 Deportes",
-    "titulo": "Santacruceña y Santa Cruz Norte debutan en el Argentino de Selecciones en Comodoro",
-    "bajada": "Los seleccionados de Santa Cruz compiten desde mañana en el torneo de Sub-14 y Sub-16 Damas y Sub-14 Caballeros que se juega en Comodoro Rivadavia, con la Asociación Austral como anfitriona.",
-    "imagen": "fotos/foto-20261118-santacrucena-y-santa-cruz-norte-debutan-en-el-dep-unsplash.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "titulo": "Punta Arenas busca financiamiento del Core para diseñar un polideportivo para 5.000 espectadores",
+    "bajada": "La Municipalidad presentó ante la Comisión de Infraestructura del Consejo Regional el proyecto del Polideportivo Antártica Chilena, con diez espacios de entrenamiento permanente y capacidad para grandes competencias.",
+    "imagen": "fotos/foto-20261120-punta-arenas-busca-financiamiento-del-core-para-dep.webp",
+    "meta": "Hoy · Diálogo Sur"
   },
   "secundarias": [
+    {
+      "id": "20261118-santacrucena-y-santa-cruz-norte-debutan-en-el-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Santacruceña y Santa Cruz Norte debutan en el Argentino de Selecciones en Comodoro",
+      "bajada": "Los seleccionados de Santa Cruz compiten desde mañana en el torneo de Sub-14 y Sub-16 Damas y Sub-14 Caballeros que se juega en Comodoro Rivadavia, con la Asociación Austral como anfitriona.",
+      "imagen": "fotos/foto-20261118-santacrucena-y-santa-cruz-norte-debutan-en-el-dep-unsplash.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20261115-el-atletismo-adaptado-de-santa-cruz-brillo-en-los-para-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "Deportistas de distintas localidades santacruceñas sumaron primeros puestos en disco, bala, jabalina y pruebas de velocidad y mediofondo en los V Juegos Binacionales disputados en Chile.",
       "imagen": "fotos/foto-20261115-el-atletismo-adaptado-de-santa-cruz-brillo-en-los-para-dep-unsplash.webp",
       "meta": "Hoy · Tiempo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261113-la-liga-sur-cierra-la-temporada-con-los-hexagonales-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Boxing Club, Gimnasio Nicolai y Verón recibirán a equipos de El Calafate, Río Turbio, Puerto Natales y Punta Arenas en dos jornadas que definirán los torneos formativos de la región.",
       "imagen": "fotos/foto-20261113-la-liga-sur-cierra-la-temporada-con-los-hexagonales-dep-unsplash.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261112-tres-amazonas-neuquinas-compiten-con-la-elite-de-la-dep",
       "tag": "🏇 Deportes",
@@ -49,14 +57,6 @@
       "titulo": "Más de 800 escolares de Magallanes corrieron en Torres del Paine",
       "bajada": "La 5° versión de Patagonia Running reunió a estudiantes de 30 establecimientos del SLEP en distancias de 2,5K y 5K, con la presencia de la subsecretaria del Deporte, María Paz Ríos.",
       "imagen": "fotos/foto-20261109-mas-de-800-escolares-de-magallanes-corrieron-en-torres-dep.webp",
-      "meta": "Hoy · El Magallánico"
-    },
-    {
-      "id": "20261107-cientos-de-magallanicos-corrieron-por-las-jornadas-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "Cientos de magallánicos corrieron por las Jornadas Magallánicas en Punta Arenas",
-      "bajada": "La corrida solidaria organizada por Magallanes Puerto Sostenible partió del muelle Arturo Prat con circuitos de 2,5 y 5 kilómetros y recaudó fondos para una de las campañas solidarias más significativas de la región.",
-      "imagen": "fotos/foto-20261107-cientos-de-magallanicos-corrieron-por-las-jornadas-dep-unsplash.webp",
       "meta": "Hoy · El Magallánico"
     }
   ]
