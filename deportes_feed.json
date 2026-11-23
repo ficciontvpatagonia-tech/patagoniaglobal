@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261121-santacrucena-va-invicta-y-acaricia-las-tres-finales-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "Santacruceña va invicta y acaricia las tres finales del Argentino de Hockey Pista",
-    "bajada": "Las Sub-14, Caballeros y Sub-16 Damas de la Asociación Santacruceña lideran sus grupos y llegan a la última jornada del Campeonato Argentino en Comodoro Rivadavia con puntaje ideal.",
-    "imagen": "fotos/foto-20261121-santacrucena-va-invicta-y-acaricia-las-tres-finales-dep-unsplash.webp",
-    "meta": "Hoy · Tiempo Sur"
+    "id": "20261123-el-gran-fondo-de-los-7-lagos-trajo-visitantes-de-chile-dep",
+    "tag": "🚴 Deportes",
+    "titulo": "El Gran Fondo de los 7 Lagos trajo visitantes de Chile, Uruguay y Brasil a Neuquén",
+    "bajada": "El evento ciclístico fue uno de los tres motores que sostuvieron una ocupación turística superior al 75% en la provincia durante el fin de semana largo.",
+    "imagen": "fotos/foto-20261123-el-gran-fondo-de-los-7-lagos-trajo-visitantes-de-chile-dep.webp",
+    "meta": "Hoy · LMNeuquén"
   },
   "secundarias": [
+    {
+      "id": "20261121-santacrucena-va-invicta-y-acaricia-las-tres-finales-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "Santacruceña va invicta y acaricia las tres finales del Argentino de Hockey Pista",
+      "bajada": "Las Sub-14, Caballeros y Sub-16 Damas de la Asociación Santacruceña lideran sus grupos y llegan a la última jornada del Campeonato Argentino en Comodoro Rivadavia con puntaje ideal.",
+      "imagen": "fotos/foto-20261121-santacrucena-va-invicta-y-acaricia-las-tres-finales-dep-unsplash.webp",
+      "meta": "Hoy · Tiempo Sur"
+    },
     {
       "id": "20261120-punta-arenas-busca-financiamiento-del-core-para-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "La Municipalidad presentó ante la Comisión de Infraestructura del Consejo Regional el proyecto del Polideportivo Antártica Chilena, con diez espacios de entrenamiento permanente y capacidad para grandes competencias.",
       "imagen": "fotos/foto-20261120-punta-arenas-busca-financiamiento-del-core-para-dep.webp",
       "meta": "Hoy · Diálogo Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261118-santacrucena-y-santa-cruz-norte-debutan-en-el-dep",
       "tag": "🏃 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "Los seleccionados de Santa Cruz compiten desde mañana en el torneo de Sub-14 y Sub-16 Damas y Sub-14 Caballeros que se juega en Comodoro Rivadavia, con la Asociación Austral como anfitriona.",
       "imagen": "fotos/foto-20261118-santacrucena-y-santa-cruz-norte-debutan-en-el-dep-unsplash.webp",
       "meta": "Hoy · Tiempo Sur"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261115-el-atletismo-adaptado-de-santa-cruz-brillo-en-los-para-dep",
       "tag": "🏃 Deportes",
@@ -50,14 +58,6 @@
       "bajada": "Salma Ockier, Martina Ockier y Luz García Dignani, del Club Hípico Río Limay, participan de una gira por Buenos Aires con saltos de 1,10, 1,20 y 1,30 metros.",
       "imagen": "fotos/foto-20261112-tres-amazonas-neuquinas-compiten-con-la-elite-de-la-dep.webp",
       "meta": "Hoy · Diario Río Negro"
-    },
-    {
-      "id": "20261110-el-club-andino-bariloche-abre-una-charla-sobre-jovenes-dep",
-      "tag": "🏔️ Deportes",
-      "titulo": "El Club Andino Bariloche abre una charla sobre jóvenes andinistas FASA",
-      "bajada": "Este miércoles 11 de noviembre a las 19 horas, egresados del programa compartirán su experiencia en la sede del CA Bariloche, con inscripción previa y entrada gratuita.",
-      "imagen": "fotos/foto-20261110-el-club-andino-bariloche-abre-una-charla-sobre-jovenes-dep-unsplash.webp",
-      "meta": "Hoy · Club Andino Bariloche"
     }
   ]
 }
