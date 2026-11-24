@@ -5666,6 +5666,70 @@ def _apta_instagram(ruta_rel):
         return False
 
 
+_IG_LUGARES = [
+    # (patrón en título/bajada/fuente, hashtag) — orden = prioridad
+    (r"bariloche|cerro catedral|nahuel huapi", "#Bariloche"),
+    (r"el bols[oó]n", "#ElBolson"),
+    (r"villa la angostura", "#VillaLaAngostura"),
+    (r"san mart[ií]n de los andes", "#SanMartinDeLosAndes"),
+    (r"ushuaia", "#Ushuaia"),
+    (r"r[ií]o grande", "#RioGrande"),
+    (r"tierra del fuego", "#TierraDelFuego"),
+    (r"el calafate|perito moreno", "#ElCalafate"),
+    (r"el chalt[eé]n|fitz ?roy", "#ElChalten"),
+    (r"r[ií]o gallegos", "#RioGallegos"),
+    (r"santa cruz", "#SantaCruz"),
+    (r"puerto madryn|pen[ií]nsula vald[eé]s", "#PuertoMadryn"),
+    (r"trelew", "#Trelew"),
+    (r"comodoro", "#ComodoroRivadavia"),
+    (r"esquel", "#Esquel"),
+    (r"chubut", "#Chubut"),
+    (r"neuqu[eé]n|vaca muerta", "#Neuquen"),
+    (r"viedma|r[ií]o negro", "#RioNegro"),
+    (r"malvinas", "#Malvinas"),
+    (r"ant[aá]rti", "#Antartida"),
+    (r"punta arenas", "#PuntaArenas"),
+    (r"puerto natales", "#PuertoNatales"),
+    (r"torres del paine", "#TorresDelPaine"),
+    (r"puerto williams|navarino|cabo de hornos", "#PuertoWilliams"),
+    (r"magallanes", "#Magallanes"),
+    (r"coyhaique|ays[eé]n", "#Aysen"),
+    (r"carretera austral", "#CarreteraAustral"),
+    (r"chilo[eé]", "#Chiloe"),
+    (r"puerto montt", "#PuertoMontt"),
+    (r"puerto varas", "#PuertoVaras"),
+    (r"osorno", "#Osorno"),
+    (r"valdivia|los r[ií]os", "#Valdivia"),
+    (r"los lagos", "#LosLagos"),
+]
+
+
+def _hashtags_ig(nota, extra="#Noticias"):
+    """Hashtags de Instagram: marca + país + hasta 3 lugares detectados en la nota
+    (23/11/2026: antes eran 5 fijos genéricos; los de lugar traen gente nueva)."""
+    import re as _re_h
+    # De la fuente solo vale la región entre paréntesis ("Paislobo (Los Lagos)"):
+    # el nombre del medio (p. ej. "Bariloche2000") no dice dónde pasó la nota.
+    region_fuente = " ".join(_re_h.findall(r"\(([^)]*)\)", str(nota.get("fuente", ""))))
+    texto = " ".join([str(nota.get("titulo", "")), str(nota.get("bajada", "")), region_fuente]).lower()
+    pais = nota.get("pais", "")
+    tags = ["#Patagonia", "#GLOBALpatagonia", extra, "#SurGlobal"]
+    if pais in ("argentina", "ambos"):
+        tags.append("#PatagoniaArgentina")
+    if pais in ("chile", "ambos"):
+        tags.append("#PatagoniaChilena")
+    lugares = []
+    for patron, tag in _IG_LUGARES:
+        if tag not in lugares and _re_h.search(patron, texto):
+            lugares.append(tag)
+        if len(lugares) == 3:
+            break
+    return " ".join(dict.fromkeys(tags + lugares))
+
+
+_IG_SIGUE = "\n\nSigue en globalpatagonia.org · link en la bio"
+
+
 def publicar_instagram(tapa):
     """Publica la tapa del día en Instagram Business via Graph API (2 pasos: container → publish).
     Devuelve True si publicó con éxito, False en cualquier otro caso."""
@@ -5707,7 +5771,7 @@ def publicar_instagram(tapa):
                    f"(Instagram solo acepta JPEG entre 4:5 y 1.91:1); se omite")
         return False
 
-    hashtags = "#Patagonia #GLOBALpatagonia #Noticias #SurGlobal #PatagoniaArgentina"
+    hashtags = _hashtags_ig(tapa)
     cuerpo_raw = tapa.get("cuerpo", "")
     if not cuerpo_raw.strip() and nota_id:
         # Los JSON de sección (deportes/cultura/turismo) solo guardan el resumen;
@@ -5723,9 +5787,10 @@ def publicar_instagram(tapa):
     pie = f"\n\n{hashtags}"
     disponible = 2200 - len(encabezado) - len(pie)
     if len(cuerpo_texto) > disponible:
-        # Truncar en el último párrafo completo que quepa
+        # Truncar en el último párrafo completo que quepa y avisar que sigue en la web
+        disponible -= len(_IG_SIGUE)
         corte = cuerpo_texto[:disponible].rfind("\n\n")
-        cuerpo_texto = cuerpo_texto[:corte if corte > 0 else disponible].rstrip() + "…"
+        cuerpo_texto = cuerpo_texto[:corte if corte > 0 else disponible].rstrip() + "…" + _IG_SIGUE
     caption = encabezado + cuerpo_texto + pie
 
     try:
@@ -5874,14 +5939,15 @@ def publicar_instagram_informe_nuevo():
 
     # Caption con la nota completa (igual que la tapa): cabecera + cuerpo + hashtags, recortado a 2200.
     import re as _re_i
-    hashtags_i   = "#Patagonia #GLOBALpatagonia #Informe #SurGlobal #PatagoniaArgentina"
+    hashtags_i   = _hashtags_ig(informe, extra="#Informe")
     cuerpo_i     = _re_i.sub(r"<[^>]+>", "", informe.get("cuerpo", "")).strip()
     encabezado_i = f"{tag} {titulo}\n\n{bajada}\n\n"
     pie_i        = f"\n\n{hashtags_i}"
     disponible_i = 2200 - len(encabezado_i) - len(pie_i)
     if len(cuerpo_i) > disponible_i:
+        disponible_i -= len(_IG_SIGUE)
         corte_i  = cuerpo_i[:disponible_i].rfind("\n\n")
-        cuerpo_i = cuerpo_i[:corte_i if corte_i > 0 else disponible_i].rstrip() + "…"
+        cuerpo_i = cuerpo_i[:corte_i if corte_i > 0 else disponible_i].rstrip() + "…" + _IG_SIGUE
     caption = encabezado_i + cuerpo_i + pie_i
 
     try:
