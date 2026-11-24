@@ -163,6 +163,18 @@ jobs:
       - name: Esperar propagación GitHub Pages
         run: sleep 90
 
+      # 23/11/2026: Facebook se publica acá (después del deploy) como TARJETA DE LINK,
+      # porque Facebook arma la tarjeta leyendo la nota online. Tapa + 1ª secundaria.
+      # Si la nota no está online o la tarjeta sale sin imagen, cae solo al formato foto.
+      - name: Publicar tapa en Facebook
+        continue-on-error: true
+        env:
+          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
+          FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
+        run: python3 actualizar_noticias.py --solo-facebook
+
       - name: Publicar tapa e informes en Instagram   # REACTIVADO 12/09/2026 — @global.patagonia (id 17841432640127604) recuperada y enlazada a la Página de Facebook (verificado por API)
         env:
           FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}

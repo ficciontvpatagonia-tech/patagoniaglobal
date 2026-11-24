@@ -3174,9 +3174,11 @@ def main():
         publicar_telegram(nota)
     publicar_telegram_informe_nuevo()
 
-    print(f"\n  Publicando en Facebook...")
-    for nota in notas_tapa_redes:
-        publicar_facebook(nota)
+    # Facebook (tapa + 1ª secundaria) se publica DESPUÉS del push, en el paso
+    # --solo-facebook del workflow: la tarjeta de link necesita la nota online.
+    # Acá solo sale el informe nuevo (si su página ya está online va como tarjeta;
+    # si no, como foto).
+    print(f"\n  Publicando informe en Facebook (si hay nuevo)...")
     publicar_facebook_informe_nuevo()
 
     print(f"\n  Enviando newsletter...")
@@ -3208,10 +3210,8 @@ def main():
             print(f"\n  Publicando {_clave} en Telegram...")
             publicar_telegram(_ns)
             _sec_state[f"ultimo_{_clave}_telegram"] = _ns_id
-        if _sec_state.get(f"ultimo_{_clave}_facebook") != _ns_id:
-            print(f"  Publicando {_clave} en Facebook...")
-            publicar_facebook(_ns)
-            _sec_state[f"ultimo_{_clave}_facebook"] = _ns_id
+        # Facebook ya no publica secciones (23/11/2026): se bajó a 2-3 posteos/día
+        # (tapa + 1ª secundaria + informe nuevo) para no cansar al seguidor.
 
     with open(_sec_state_path, "w", encoding="utf-8") as _f:
         json.dump(_sec_state, _f, ensure_ascii=False, indent=2)
@@ -4883,8 +4883,77 @@ def _renovar_token_facebook(token):
     return token, page_id
 
 
+def _fb_publicar_link(page_id, page_token, mensaje, link, nota_id=""):
+    """Publica en Facebook como TARJETA DE LINK (toda la imagen es clickeable y lleva
+    a la nota). Antes se posteaba foto + link escondido en el texto → <1 clic cada 3
+    posteos (diagnóstico 23/11/2026).
+
+    Facebook arma la tarjeta leyendo las etiquetas og: de la página, así que la nota
+    TIENE que estar online. Devuelve el id del post, o None si no se pudo (página no
+    online, error de API o la tarjeta salió sin imagen) → el llamador cae al formato
+    foto de siempre, así nunca se pierde un posteo."""
+    import time as _t
+    graph = "https://graph.facebook.com/v21.0"
+
+    # 1. La nota tiene que responder 200 (si se publica antes del deploy, FB guarda
+    #    una tarjeta rota en su caché).
+    online = False
+    for intento in range(4):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(link, method="HEAD"), timeout=20) as r:
+                if r.status == 200:
+                    online = True
+                    break
+        except Exception:
+            pass
+        if intento < 3:
+            _t.sleep(30)
+    if not online:
+        print(f"  Facebook: la nota todavía no está online, se publica como foto [{nota_id}]")
+        return None
+
+    # 2. Pedirle a FB que lea la página fresca (evita caché vieja o vacía).
+    try:
+        data = urllib.parse.urlencode({"id": link, "scrape": "true", "access_token": page_token}).encode()
+        urllib.request.urlopen(urllib.request.Request(f"{graph}/", data=data, method="POST"), timeout=30).read()
+    except Exception as e:
+        print(f"  Facebook: scrape previo falló ({e}), se sigue igual")
+
+    # 3. Publicar el link.
+    try:
+        data = urllib.parse.urlencode({"message": mensaje, "link": link, "access_token": page_token}).encode()
+        with urllib.request.urlopen(urllib.request.Request(f"{graph}/{page_id}/feed", data=data, method="POST"), timeout=30) as resp:
+            post_id = json.loads(resp.read().decode()).get("id")
+    except urllib.error.HTTPError as e:
+        print(f"  Facebook link falló {e.code} [{nota_id}]: {e.read().decode('utf-8', 'replace')[:200]}")
+        return None
+    except Exception as e:
+        print(f"  Facebook link falló [{nota_id}]: {e}")
+        return None
+    if not post_id:
+        return None
+
+    # 4. Verificar que la tarjeta salió CON imagen; si no, borrarla y caer a foto.
+    try:
+        q = urllib.parse.urlencode({"fields": "full_picture", "access_token": page_token})
+        with urllib.request.urlopen(f"{graph}/{post_id}?{q}", timeout=30) as resp:
+            tiene_img = bool(json.loads(resp.read().decode()).get("full_picture"))
+    except Exception:
+        tiene_img = True   # si no se puede verificar, se deja el post (no duplicar)
+    if not tiene_img:
+        try:
+            data = urllib.parse.urlencode({"access_token": page_token}).encode()
+            urllib.request.urlopen(urllib.request.Request(f"{graph}/{post_id}", data=data, method="DELETE"), timeout=30).read()
+            print(f"  Facebook: la tarjeta salió sin imagen, se borró y se publica como foto [{nota_id}]")
+            return None
+        except Exception as e:
+            print(f"  Facebook: tarjeta sin imagen y no se pudo borrar ({e}); se deja [{nota_id}]")
+    return post_id
+
+
 def publicar_facebook(tapa):
-    """Publica la tapa del día en la página de Facebook con foto y link."""
+    """Publica una nota en la página de Facebook: primero como tarjeta de link
+    (_fb_publicar_link); si no se puede, como foto con el link en el texto."""
     page_id    = os.environ.get("FACEBOOK_PAGE_ID", "")
     page_token = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
     if not page_token:
@@ -4912,6 +4981,12 @@ def publicar_facebook(tapa):
         f"GLOBALpatagonia · Sur Global, principio de todo.\n"
         f"globalpatagonia.org"
     )
+
+    # Tarjeta de link: el texto no repite la URL (la tarjeta ya es el link).
+    mensaje_link = f"{bandera} {titulo}\n\n{bajada}".strip()
+    if _fb_publicar_link(page_id, page_token, mensaje_link, link, nota_id):
+        print(f"  Facebook OK ✓ (tarjeta de link) [{nota_id}]")
+        return True
 
     ruta_img = os.path.join(os.path.dirname(__file__), imagen) if imagen else ""
     ruta_img = ruta_img if os.path.exists(ruta_img) else ""
@@ -5033,6 +5108,14 @@ def publicar_facebook_informe_nuevo():
             f"GLOBALpatagonia · Sur Global, principio de todo.\n"
             f"globalpatagonia.org"
         )
+
+        # Primero como tarjeta de link; si no se puede, foto como siempre.
+        if _fb_publicar_link(page_id, page_token, f"{tag} {titulo}\n\n{bajada}".strip(), link, informe_id):
+            _marcar_informe_posteado(state, informe_id, "facebook")
+            with open(state_path, "w", encoding="utf-8") as f:
+                json.dump(state, f, ensure_ascii=False, indent=2)
+            print(f"  Facebook informe OK ✓ (tarjeta de link) [{informe_id}]")
+            continue
 
         ruta_img = os.path.join(base_dir, imagen) if imagen else ""
         ruta_img = ruta_img if os.path.exists(ruta_img) else ""
@@ -6086,11 +6169,12 @@ def solo_facebook():
             fb_state = json.load(f)
     except Exception:
         fb_state = {}
-    tapa_fb_posteadas = set(fb_state.get("tapa_facebook_posteadas", []))
+    tapa_fb_posteadas = list(fb_state.get("tapa_facebook_posteadas", []))  # lista: conserva orden
 
     tapa        = noticias.get("tapa", {})
     secundarias = noticias.get("secundarias", [])
-    notas       = [n for n in [tapa] + secundarias if n]
+    # Solo tapa + 1ª secundaria (23/11/2026: de 5-6 posteos/día a 2-3).
+    notas       = [n for n in [tapa] + secundarias[:1] if n]
 
     print(f"\n  Publicando notas de tapa en Facebook (con deduplicación)...")
     for nota in notas:
@@ -6101,28 +6185,12 @@ def solo_facebook():
         print(f"  → [{nid}] {nota.get('titulo','')[:60]}")
         publicar_facebook(nota)
         if nid:
-            tapa_fb_posteadas.add(nid)
+            tapa_fb_posteadas.append(nid)
 
-    # Negocios (omite si ya se publicó en la mañana)
-    neg_path = os.path.join(base_dir, "negocios.json")
-    try:
-        with open(neg_path, encoding="utf-8") as f:
-            negocios_data = json.load(f)
-        if negocios_data:
-            neg    = negocios_data[0]
-            neg_id = neg.get("id", "")
-            if neg_id and fb_state.get("ultimo_negocios_facebook") == neg_id:
-                print(f"  → negocios ya posteado, se omite [{neg_id}]")
-            else:
-                print(f"\n  Publicando negocios en Facebook...")
-                print(f"  → [{neg_id}] {neg.get('titulo','')[:60]}")
-                publicar_facebook(neg)
-                fb_state["ultimo_negocios_facebook"] = neg_id
-    except Exception as e:
-        print(f"  Error en negocios: {e}")
+    # Negocios ya no se publica en Facebook (23/11/2026, menos posteos por día).
 
     # Persistir estado (en local; en el Action manual no se commitea, no molesta)
-    fb_state["tapa_facebook_posteadas"] = list(tapa_fb_posteadas)
+    fb_state["tapa_facebook_posteadas"] = list(tapa_fb_posteadas)[-300:]
     try:
         with open(state_path, "w", encoding="utf-8") as f:
             json.dump(fb_state, f, ensure_ascii=False, indent=2)
