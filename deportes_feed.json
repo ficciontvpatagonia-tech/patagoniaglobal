@@ -1,14 +1,22 @@
 {
   "_info": "Feed de la sección Deportes & Aventura. Actualizado por actualizar_deportes.py. NO editar manualmente salvo corrección de emergencia.",
   "principal": {
-    "id": "20261126-la-night-run-5k-de-trelew-celebra-su-14a-edicion-con-dep",
-    "tag": "🏃 Deportes",
-    "titulo": "La Night Run 5K de Trelew celebra su 14.ª edición con 200 inscriptos",
-    "bajada": "La carrera nocturna largará este sábado 28 de noviembre a las 22 horas desde la Confitería Bertolucci, con una prueba competitiva de 5K y una caminata participativa de 2,5K.",
-    "imagen": "fotos/CIUDADES/ultra-trail.webp",
-    "meta": "Hoy · El Chubut (Chubut)"
+    "id": "20261127-puerto-madryn-celebra-la-11a-kayakeada-en-honor-a-la-dep",
+    "tag": "🛶 Deportes",
+    "titulo": "Puerto Madryn celebra la 11ª Kayakeada en honor a la Virgen con inscripción abierta",
+    "bajada": "La procesión náutica se realizará el 8 de diciembre a las 19 horas desde la Bajada N° 8. Los participantes deben inscribirse antes del 4 de diciembre o hasta completar el cupo. La actividad cuenta con la bendición del Papa Francisco desde hace siete años.",
+    "imagen": "fotos/foto-20261127-puerto-madryn-celebra-la-11a-kayakeada-en-honor-a-la-dep-unsplash.webp",
+    "meta": "Hoy · El Chubut"
   },
   "secundarias": [
+    {
+      "id": "20261126-la-night-run-5k-de-trelew-celebra-su-14a-edicion-con-dep",
+      "tag": "🏃 Deportes",
+      "titulo": "La Night Run 5K de Trelew celebra su 14.ª edición con 200 inscriptos",
+      "bajada": "La carrera nocturna largará este sábado 28 de noviembre a las 22 horas desde la Confitería Bertolucci, con una prueba competitiva de 5K y una caminata participativa de 2,5K.",
+      "imagen": "fotos/CIUDADES/ultra-trail.webp",
+      "meta": "Hoy · El Chubut (Chubut)"
+    },
     {
       "id": "20261124-luca-pereira-gano-el-pre-cosquin-en-malambo-y-dep",
       "tag": "🏃 Deportes",
@@ -16,7 +24,9 @@
       "bajada": "El bailarín se consagró en la categoría solista de malambo frente a otros 21 competidores y viajará el 12 de enero junto a su equipo Viento Sureño para competir en el festival nacional.",
       "imagen": "fotos/foto-20261124-luca-pereira-gano-el-pre-cosquin-en-malambo-y-dep-unsplash.webp",
       "meta": "Hoy · ADN Sur"
-    },
+    }
+  ],
+  "row_cards": [
     {
       "id": "20261123-el-gran-fondo-de-los-7-lagos-trajo-visitantes-de-chile-dep",
       "tag": "🚴 Deportes",
@@ -24,9 +34,7 @@
       "bajada": "El evento ciclístico fue uno de los tres motores que sostuvieron una ocupación turística superior al 75% en la provincia durante el fin de semana largo.",
       "imagen": "fotos/foto-20261123-el-gran-fondo-de-los-7-lagos-trajo-visitantes-de-chile-dep.webp",
       "meta": "Hoy · LMNeuquén"
-    }
-  ],
-  "row_cards": [
+    },
     {
       "id": "20261121-santacrucena-va-invicta-y-acaricia-las-tres-finales-dep",
       "tag": "🏃 Deportes",
@@ -49,14 +57,6 @@
       "titulo": "Santacruceña y Santa Cruz Norte debutan en el Argentino de Selecciones en Comodoro",
       "bajada": "Los seleccionados de Santa Cruz compiten desde mañana en el torneo de Sub-14 y Sub-16 Damas y Sub-14 Caballeros que se juega en Comodoro Rivadavia, con la Asociación Austral como anfitriona.",
       "imagen": "fotos/foto-20261118-santacrucena-y-santa-cruz-norte-debutan-en-el-dep-unsplash.webp",
-      "meta": "Hoy · Tiempo Sur"
-    },
-    {
-      "id": "20261115-el-atletismo-adaptado-de-santa-cruz-brillo-en-los-para-dep",
-      "tag": "🏃 Deportes",
-      "titulo": "El atletismo adaptado de Santa Cruz brilló en los Para Araucanía de Valdivia",
-      "bajada": "Deportistas de distintas localidades santacruceñas sumaron primeros puestos en disco, bala, jabalina y pruebas de velocidad y mediofondo en los V Juegos Binacionales disputados en Chile.",
-      "imagen": "fotos/foto-20261115-el-atletismo-adaptado-de-santa-cruz-brillo-en-los-para-dep-unsplash.webp",
       "meta": "Hoy · Tiempo Sur"
     }
   ]
